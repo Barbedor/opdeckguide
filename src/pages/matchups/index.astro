@@ -1,0 +1,67 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+
+const title = "Matchup Guides for One Piece Card Game";
+const description = "Matchup breakdowns for One Piece Card Game leaders with win conditions, key turns, and tech priorities.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Matchups</span>
+			<h1>Matchup Guides for One Piece Card Game</h1>
+			<p>
+				Matchups decide tournaments. These guides explain the win conditions, timing windows, and pressure
+				points for the most common leader pairings. The focus is on practical decision making: when to race,
+				when to stabilize, and how to sequence your best turns so you do not give away tempo.
+			</p>
+			<p>
+				Each matchup entry includes an early plan, mid-game pivots, and endgame finish lines. You will also
+				see recommended tech cards and which resources to protect. Pair this with the
+				<a href="/deck-guides">Deck Guides</a> for leader-specific context, then check the latest
+				<a href="/meta-analysis">Meta Analysis</a> to see which matchups matter most in the current field.
+				If you are newer to the game, start with <a href="/beginner-guides">Beginner Guides</a> before diving
+				into matchup depth.
+			</p>
+			<p>
+				We keep the writing concise so you can reference it between rounds. Use these pages to lock in your
+				core plan, avoid common mistakes, and recognize the exact turns where you can swing the game. If a
+				leader changes after a <a href="/banlist">Banlist</a> update, we will call out how the matchup shifts.
+			</p>
+		</div>
+	</section>
+
+	<Section
+		title="Highlighted Matchups"
+		description="High-impact pairings that show up in competitive play."
+		linkHref="/matchups"
+		linkLabel="All matchups"
+	>
+		<Card
+			eyebrow="Tempo"
+			title="Zoro vs. Sakazuki"
+			description="Avoid overextending, bait removal, and sequence safe pressure."
+			href="/matchups"
+		/>
+		<Card
+			eyebrow="Control"
+			title="Doflamingo vs. Enel"
+			description="Hand management, counter timing, and late-game inevitability."
+			href="/matchups"
+		/>
+		<Card
+			eyebrow="Midrange"
+			title="Uta vs. Law"
+			description="Know when to trade resources and when to push through board stalls."
+			href="/matchups"
+		/>
+		<Card
+			eyebrow="Ramp"
+			title="Kaido vs. Big Mom"
+			description="DON!! acceleration and the safest windows to commit finishers."
+			href="/matchups"
+		/>
+	</Section>
+</MainLayout>

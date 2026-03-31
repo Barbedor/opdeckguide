@@ -1,0 +1,150 @@
+﻿---
+import MainLayout from "../layouts/MainLayout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+
+const title = "One Piece Card Game Deck Guides & Meta Analysis";
+const description = "OPDeckGuide delivers competitive One Piece Card Game deck guides, matchup breakdowns, and meta analysis with a focus on clean execution, reliable fundamentals, and tournament-ready insights.";
+---
+
+<MainLayout title={title} description={description}>
+	<Hero
+		title="One Piece Card Game Deck Guides & Meta Analysis"
+		description="Build smarter lists, understand the field, and sharpen your matchup plans with focused, English-language strategy content for the One Piece Card Game."
+		primaryHref="/deck-guides"
+		primaryLabel="Explore Deck Guides"
+		secondaryHref="/meta-analysis"
+		secondaryLabel="See Meta Analysis"
+	/>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Welcome to OPDeckGuide</h2>
+			<p>
+				OPDeckGuide is a strategy hub for competitive and aspiring One Piece Card Game players who want
+				clear answers about what wins, why it wins, and how to pilot it. Every guide is written to help you
+				make confident decisions at locals, online events, and major tournaments. We focus on deck structure,
+				tempo planning, and sequencing so you can translate theory into clean gameplay.
+			</p>
+			<p>
+				Use the <a href="/deck-guides">Deck Guides</a> area to find leader-specific plans, mulligan priorities,
+				and upgrade paths. Visit <a href="/meta-analysis">Meta Analysis</a> for weekly trends, format shifts,
+				and counterplay concepts. If you are tightening your execution, <a href="/matchups">Matchups</a>
+				breaks down win conditions and sideboarding-style tech choices. New to the game? Start with
+				<a href="/beginner-guides">Beginner Guides</a> for product advice, learning paths, and budget builds.
+				Stay compliant with official changes in the <a href="/banlist">Banlist</a> section so your deck is always
+				legal and tournament ready.
+			</p>
+			<p>
+				This homepage is designed to grow with future articles and deck techs. Expect clean summaries, sharp
+				recommendations, and performance-first pages that load fast on mobile. The goal is simple: help you
+				read the room, build the right list, and play with purpose.
+			</p>
+		</div>
+	</section>
+
+	<Section
+		title="Deck Guides"
+		description="Leader-specific game plans, sample lists, upgrade paths, and play patterns for the most relevant archetypes."
+		linkHref="/deck-guides"
+		linkLabel="Browse all deck guides"
+	>
+		<Card
+			eyebrow="Featured Guide"
+			title="Red Zoro Tempo Primer"
+			description="Aggressive curve planning, turn-by-turn pressure, and how to avoid overextending into removal."
+			href="/deck-guides"
+		/>
+		<Card
+			eyebrow="Core Plan"
+			title="Blue Doflamingo Control"
+			description="Resource loops, event timing, and the cleanest lines to stabilize after early pressure."
+			href="/deck-guides"
+		/>
+		<Card
+			eyebrow="Upgrades"
+			title="Green Uta Midrange"
+			description="Consistency pieces, flexible counters, and matchup tuning for balanced formats."
+			href="/deck-guides"
+		/>
+	</Section>
+
+	<Section
+		title="Meta Analysis"
+		description="Snapshot the current field, identify climbing leaders, and find the answers that matter most."
+		linkHref="/meta-analysis"
+		linkLabel="View meta analysis"
+	>
+		<Card
+			eyebrow="Meta Watch"
+			title="Top Leaders by Conversion"
+			description="Track which leaders are consistently reaching top cuts and why they thrive."
+			href="/meta-analysis"
+		/>
+		<Card
+			eyebrow="Format Trends"
+			title="Removal vs. Tempo"
+			description="How interaction density is shaping deckbuilding and the best answers to high tempo lists."
+			href="/meta-analysis"
+		/>
+		<Card
+			eyebrow="Counterplay"
+			title="Tech Cards That Swing Rounds"
+			description="Sideboard-style options and flexible inclusions that flip hard matchups."
+			href="/meta-analysis"
+		/>
+	</Section>
+
+	<Section
+		title="Matchups"
+		description="Understand win conditions, key turns, and pressure points for the matchups that decide events."
+		linkHref="/matchups"
+		linkLabel="Explore matchups"
+	>
+		<Card
+			eyebrow="Matchup Plan"
+			title="Zoro vs. Sakazuki"
+			description="Tempo lines, removal pacing, and when to commit resources to the board."
+			href="/matchups"
+		/>
+		<Card
+			eyebrow="Decision Points"
+			title="Doflamingo vs. Yellow Enel"
+			description="Timing for counter events, late game inevitability, and hand sizing."
+			href="/matchups"
+		/>
+		<Card
+			eyebrow="Tech Guide"
+			title="Green vs. Purple Control"
+			description="Pivot turns, DON!! management, and safe windows to push damage."
+			href="/matchups"
+		/>
+	</Section>
+
+	<Section
+		title="Beginner Guides"
+		description="Start strong with clear learning paths, essential rules knowledge, and smart first upgrades."
+		linkHref="/beginner-guides"
+		linkLabel="Start learning"
+	>
+		<Card
+			eyebrow="Getting Started"
+			title="First 30 Days Plan"
+			description="What to learn each week, which leaders are easiest to pilot, and how to practice."
+			href="/beginner-guides"
+		/>
+		<Card
+			eyebrow="Budget Build"
+			title="Starter Deck Upgrades"
+			description="Affordable improvements that keep your list competitive without over-investing early."
+			href="/beginner-guides"
+		/>
+		<Card
+			eyebrow="Rules"
+			title="Combat Basics and Timing"
+			description="Clear explanations of attacks, counters, and sequencing to avoid misplays."
+			href="/beginner-guides"
+		/>
+	</Section>
+</MainLayout>

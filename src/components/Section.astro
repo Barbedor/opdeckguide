@@ -1,0 +1,20 @@
+﻿---
+const { title, description, linkHref, linkLabel } = Astro.props;
+---
+
+<section class="section">
+	<div class="container">
+		<div class="section-header">
+			<div>
+				<h2>{title}</h2>
+				<p>{description}</p>
+			</div>
+			{linkHref && linkLabel && (
+				<a href={linkHref}>{linkLabel}</a>
+			)}
+		</div>
+		<div class="card-grid">
+			<slot />
+		</div>
+	</div>
+</section>

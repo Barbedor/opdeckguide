@@ -1,0 +1,67 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+
+const title = "Beginner Guides for One Piece Card Game";
+const description = "Beginner-friendly One Piece Card Game guides covering rules, product advice, and first deck upgrades.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Beginner Guides</span>
+			<h1>Beginner Guides for One Piece Card Game</h1>
+			<p>
+				New to the One Piece Card Game? This section gives you a clear, step-by-step path to learn the rules,
+				choose a starter leader, and upgrade your first list without wasting money. We focus on fundamentals
+				that stay relevant even as the meta shifts, so your practice time always pays off.
+			</p>
+			<p>
+				Learn core concepts like life management, counter timing, and sequencing your attacks for maximum
+				value. Once you have the basics, you can move into leader-specific plans in the
+				<a href="/deck-guides">Deck Guides</a> section. When you are ready to compete, the
+				<a href="/matchups">Matchups</a> and <a href="/meta-analysis">Meta Analysis</a> pages will help you
+				understand what you are up against.
+			</p>
+			<p>
+				These guides are written for quick reading on mobile but include practical advice you can apply
+				immediately. You will find realistic upgrade paths, priority lists for purchases, and drills that
+				improve your gameplay. When official changes happen, check the <a href="/banlist">Banlist</a> to keep
+				your deck legal and avoid wasted upgrades.
+			</p>
+		</div>
+	</section>
+
+	<Section
+		title="Start Here"
+		description="Clear learning paths and beginner-friendly practice steps."
+		linkHref="/beginner-guides"
+		linkLabel="All beginner guides"
+	>
+		<Card
+			eyebrow="Learning Path"
+			title="First 30 Days Plan"
+			description="A structured roadmap for rules, practice matches, and early upgrades."
+			href="/beginner-guides"
+		/>
+		<Card
+			eyebrow="Budget"
+			title="Starter Deck Upgrades"
+			description="Affordable improvements that keep your list competitive without overspending."
+			href="/beginner-guides"
+		/>
+		<Card
+			eyebrow="Fundamentals"
+			title="Timing and Counter Basics"
+			description="Understand attack windows, counters, and why sequencing matters."
+			href="/beginner-guides"
+		/>
+		<Card
+			eyebrow="Practice"
+			title="Solo Training Drills"
+			description="Repetition exercises that build consistency and reduce misplays."
+			href="/beginner-guides"
+		/>
+	</Section>
+</MainLayout>

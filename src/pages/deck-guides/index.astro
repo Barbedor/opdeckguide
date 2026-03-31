@@ -1,0 +1,68 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+
+const title = "Deck Guides for One Piece Card Game";
+const description = "Leader-focused One Piece Card Game deck guides with game plans, mulligans, upgrade paths, and matchup tips.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Deck Guides</span>
+			<h1>Deck Guides for One Piece Card Game</h1>
+			<p>
+				Build better lists and pilot them with purpose. These deck guides break down leader identities,
+				core packages, and the key turns that define each archetype. Whether you are pushing for a top
+				cut finish or learning a new leader, the goal is the same: simplify the plan so your decisions are
+				clear and repeatable.
+			</p>
+			<p>
+				Each guide focuses on three pillars. First, your opening plan: mulligan priorities, early tempo lines,
+				and when to protect life versus race. Second, your mid-game: resource loops, attack sequencing, and
+				how to pivot based on opposing leaders. Third, your upgrade path: the most impactful changes as your
+				collection grows. You can cross-reference matchup notes in the <a href="/matchups">Matchups</a>
+				section and stay aware of format shifts in <a href="/meta-analysis">Meta Analysis</a>. If you are still
+				learning fundamentals, the <a href="/beginner-guides">Beginner Guides</a> will get you up to speed fast.
+			</p>
+			<p>
+				Guides are structured to be quick to scan on mobile while still offering depth. Expect realistic
+				list snapshots, tech options for common threats, and explanation of why each card matters. You can
+				bookmark favorite leaders and return as new sets drop or the <a href="/banlist">Banlist</a> changes.
+			</p>
+		</div>
+	</section>
+
+	<Section
+		title="Featured Guides"
+		description="Popular leaders with clear game plans and matchup angles."
+		linkHref="/deck-guides"
+		linkLabel="All guides"
+	>
+		<Card
+			eyebrow="Tempo"
+			title="Red Zoro"
+			description="Turn-by-turn pressure, clean curve choices, and how to keep damage flowing."
+			href="/deck-guides"
+		/>
+		<Card
+			eyebrow="Control"
+			title="Blue Doflamingo"
+			description="Stabilize, loop value, and set up a safe finishing sequence."
+			href="/deck-guides"
+		/>
+		<Card
+			eyebrow="Midrange"
+			title="Green Uta"
+			description="Balanced lines with flexible answers to the most common threats."
+			href="/deck-guides"
+		/>
+		<Card
+			eyebrow="Ramp"
+			title="Purple Kaido"
+			description="Explosive DON!! turns, board sweeps, and when to shift to lethal."
+			href="/deck-guides"
+		/>
+	</Section>
+</MainLayout>

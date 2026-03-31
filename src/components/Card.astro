@@ -1,0 +1,9 @@
+﻿---
+const { title, description, href, eyebrow } = Astro.props;
+---
+
+<a class="card" href={href}>
+	{eyebrow && <span class="card-eyebrow">{eyebrow}</span>}
+	<h3>{title}</h3>
+	<p>{description}</p>
+</a>

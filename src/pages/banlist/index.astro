@@ -1,0 +1,69 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+
+const title = "One Piece Card Game Banlist & Legality";
+const description = "Banlist tracking and deck legality guidance for the One Piece Card Game, with impact notes for competitive players.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Banlist</span>
+			<h1>One Piece Card Game Banlist & Legality</h1>
+			<p>
+				Stay tournament legal with clear updates on restricted and banned cards. This page is your
+				foundation for making sure every list you play at locals or competitive events follows the official
+				rules. We summarize changes, explain how they impact deck construction, and point you toward relevant
+				guides so you can adapt quickly.
+			</p>
+			<p>
+				Whenever the banlist changes, there is a ripple effect across the meta. Some leaders lose key tools,
+				others gain room to rise, and new tech cards become essential. Use the
+				<a href="/meta-analysis">Meta Analysis</a> section to see how the field adjusts and the
+				<a href="/deck-guides">Deck Guides</a> section for updated lists. If you want focused advice on which
+				matchups shift most after a change, review the <a href="/matchups">Matchups</a> section for direct
+				impact notes.
+			</p>
+			<p>
+				This page is also designed for newer players who want to avoid investing in cards that are no longer
+				legal. For learning paths and budget upgrades that are banlist-safe, start in
+				<a href="/beginner-guides">Beginner Guides</a>. As the official list evolves, we will keep the content
+				here concise and easy to scan on mobile.
+			</p>
+		</div>
+	</section>
+
+	<Section
+		title="Banlist Updates"
+		description="Summaries and impact notes for each update."
+		linkHref="/banlist"
+		linkLabel="View all updates"
+	>
+		<Card
+			eyebrow="Status"
+			title="Current Legal Status"
+			description="Quick overview of what is banned, restricted, or monitored."
+			href="/banlist"
+		/>
+		<Card
+			eyebrow="Impact"
+			title="Deckbuilding Adjustments"
+			description="Which packages change and the best replacement options."
+			href="/banlist"
+		/>
+		<Card
+			eyebrow="Meta"
+			title="Format Shifts"
+			description="Leaders that gain or lose ground after each update."
+			href="/banlist"
+		/>
+		<Card
+			eyebrow="Compliance"
+			title="Tournament Checklist"
+			description="Verify your list before events and avoid last-minute edits."
+			href="/banlist"
+		/>
+	</Section>
+</MainLayout>
