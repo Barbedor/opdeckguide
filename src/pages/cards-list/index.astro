@@ -1,0 +1,410 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
+
+const title = "One Piece Card Game Cards List";
+const description = "Browse One Piece Card Game cards by extension. Search by card number or name and open full-size images instantly.";
+
+const metadataAvailable = hasMetadata();
+
+const extensionSummaries = getExtensionSummaries();
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Cards List</span>
+			<h1>One Piece Card Game Cards List</h1>
+			<div class="search-results" data-search-results></div>
+			<div class="hero-text" data-hero-text>
+				<p>
+					This library keeps every card organized by extension, with fast thumbnails and a full-size preview
+					on click. Use the search bar under the menu to jump straight to a card number or, when metadata is
+					available, to find cards by name. The layout is optimized for mobile so you can reference cards
+					between rounds without friction.
+				</p>
+				<p>
+					Click an extension to open its full card list. The previews show the most recent cards to help you
+					spot the right set quickly. Use the <a href="/deck-guides">Deck Guides</a> and
+					<a href="/meta-analysis">Meta Analysis</a> sections to see where these cards fit into competitive play.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Extensions</h2>
+					<p>Choose a set to browse all cards in that extension.</p>
+				</div>
+			</div>
+			<div class="extensions-grid">
+				{extensionSummaries.map((item) => (
+					<a class="extension-card" href={`/cards-list/${item.extension}`}>
+						<div class="extension-card-header">
+							<h3>{item.extension}</h3>
+							<span>{item.count} cards</span>
+						</div>
+						<div class="extension-previews">
+							{item.previews.map((card) => (
+								<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+							))}
+						</div>
+						<span class="extension-link">Browse extension</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script define:vars={{ metadataAvailable }}>
+	const searchInput = document.querySelector("[data-global-search]");
+	const resultsContainer = document.querySelector("[data-search-results]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	const heroText = document.querySelector("[data-hero-text]");
+	let cardIndex = null;
+	let isLoadingIndex = false;
+
+	const colorOrder = ["Red", "Green", "Blue", "Purple", "Yellow", "Black", "Don", "Other"];
+
+	const normalize = (value) => value.trim().toLowerCase();
+	const normalizeCode = (value) =>
+		value
+			.trim()
+			.toUpperCase()
+			.replace(/\s+/g, "")
+			.replace(/_/g, "-");
+	const isDigitsOnly = (value) => /^[0-9]+$/.test(value);
+	const formatOpCode = (value) => {
+		const match = value.match(/^OP?(\d{1,2})-?(\d{1,3})$/i);
+		if (!match) return null;
+		const set = match[1].padStart(2, "0");
+		const number = match[2].padStart(3, "0");
+		return `OP${set}-${number}`;
+	};
+
+	const openModal = (card) => {
+		if (!modal || !modalImage) return;
+		modalImage.setAttribute("src", card.fullUrl);
+		modalImage.setAttribute("alt", `${card.code} card`);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	const renderCards = (cards) => {
+		if (!resultsContainer) return;
+		resultsContainer.innerHTML = "";
+		if (cards.length === 0) {
+			resultsContainer.innerHTML = '<p class="muted">No card found for this number.</p>';
+			return;
+		}
+		const grid = document.createElement("div");
+		grid.className = "cards-grid";
+		cards.forEach((card) => {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "card-thumb";
+			button.addEventListener("click", () => openModal(card));
+			const img = document.createElement("img");
+			img.loading = "lazy";
+			img.src = card.smallUrl;
+			img.alt = `${card.code} card`;
+			button.appendChild(img);
+			grid.appendChild(button);
+		});
+		resultsContainer.appendChild(grid);
+	};
+
+	const renderGroupedByColor = (cards) => {
+		if (!resultsContainer) return;
+		resultsContainer.innerHTML = "";
+		if (cards.length === 0) {
+			resultsContainer.innerHTML = '<p class="muted">No card found for this number.</p>';
+			return;
+		}
+		const groups = new Map();
+		cards.forEach((card) => {
+			const key = card.color || "Other";
+			if (!groups.has(key)) groups.set(key, []);
+			groups.get(key).push(card);
+		});
+		colorOrder.forEach((color) => {
+			if (!groups.has(color)) return;
+			const section = document.createElement("div");
+			section.className = "color-group";
+			const heading = document.createElement("h3");
+			heading.textContent = color;
+			section.appendChild(heading);
+			const grid = document.createElement("div");
+			grid.className = "cards-grid";
+			groups.get(color).forEach((card) => {
+				const button = document.createElement("button");
+				button.type = "button";
+				button.className = "card-thumb";
+				button.addEventListener("click", () => openModal(card));
+				const img = document.createElement("img");
+				img.loading = "lazy";
+				img.src = card.smallUrl;
+				img.alt = `${card.code} card`;
+				button.appendChild(img);
+				grid.appendChild(button);
+			});
+			section.appendChild(grid);
+			resultsContainer.appendChild(section);
+		});
+	};
+
+	const loadIndex = async () => {
+		if (cardIndex || isLoadingIndex) return;
+		isLoadingIndex = true;
+		try {
+			const response = await fetch("/cards-index.json");
+			if (!response.ok) throw new Error("Failed to load card index");
+			cardIndex = await response.json();
+		} catch (error) {
+			cardIndex = [];
+		} finally {
+			isLoadingIndex = false;
+		}
+	};
+
+	const runSearch = async (query) => {
+		const raw = query.trim();
+		if (!raw) {
+			if (resultsContainer) resultsContainer.innerHTML = "";
+			if (heroText) heroText.style.display = "";
+			return;
+		}
+		if (heroText) heroText.style.display = "none";
+		await loadIndex();
+		if (!cardIndex) return;
+
+		const normalized = normalizeCode(raw);
+		const formatted = formatOpCode(normalized) ?? normalized;
+		const digitsOnly = isDigitsOnly(raw);
+		const hasLetters = /[a-z]/i.test(raw);
+		const allowNameSearch = metadataAvailable && hasLetters;
+		const rawLower = normalize(raw);
+
+		const results = cardIndex.filter((card) => {
+			const codeNormalized = card.code.toUpperCase();
+
+			if (digitsOnly) {
+				const padded = raw.padStart(3, "0");
+				return codeNormalized.endsWith(`-${padded}`) || codeNormalized.endsWith(`-${raw}`);
+			}
+
+			const codeMatch = codeNormalized.includes(formatted);
+			if (!allowNameSearch) return codeMatch;
+			const nameMatch = card.name && card.name.toLowerCase().includes(rawLower);
+			return nameMatch || codeMatch;
+		});
+
+		if (allowNameSearch) {
+			renderGroupedByColor(results);
+		} else {
+			renderCards(results);
+		}
+	};
+
+	const params = new URLSearchParams(window.location.search);
+	const initialQuery = params.get("query") ?? "";
+	if (searchInput && initialQuery) {
+		searchInput.value = initialQuery;
+		runSearch(initialQuery);
+	}
+
+	searchInput?.addEventListener("input", (event) => {
+		runSearch(event.target.value);
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.muted {
+		color: var(--text-300);
+	}
+
+	.search-results {
+		margin-top: 1.5rem;
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.hero-text {
+		margin-top: 1.5rem;
+	}
+
+	.extensions-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.extension-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		padding: 1.2rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: rgba(12, 17, 30, 0.9);
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.extension-card:hover,
+	.extension-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.extension-card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.extension-card-header h3 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+
+	.extension-card-header span {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.extension-previews {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.5rem;
+	}
+
+	.extension-previews img {
+		width: 100%;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		background: rgba(9, 12, 20, 0.8);
+	}
+
+	.extension-link {
+		color: var(--accent);
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.color-group h3 {
+		margin: 0 0 0.8rem;
+	}
+
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.card-thumb {
+		padding: 0.4rem;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		cursor: pointer;
+	}
+
+	.card-thumb img {
+		width: 100%;
+		border-radius: 8px;
+	}
+
+	.card-thumb:hover,
+	.card-thumb:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 600px) {
+		.cards-grid {
+			grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+		}
+
+		.extension-previews {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

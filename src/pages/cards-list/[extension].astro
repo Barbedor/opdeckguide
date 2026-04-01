@@ -1,0 +1,243 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getExtensions, getCardsForExtension } from "../../lib/cards";
+
+export const getStaticPaths = () => {
+	const extensions = getExtensions();
+	return extensions.map((extension) => ({
+		params: { extension },
+	}));
+};
+
+const { extension } = Astro.params;
+const cards = getCardsForExtension(extension);
+const initialBatch = 96;
+const initialCards = cards.slice(0, initialBatch);
+const remainingCards = cards.slice(initialBatch);
+
+const title = `One Piece Card Game ${extension} Cards`;
+const description = `Browse every One Piece Card Game card from ${extension} with fast thumbnails and full-size previews.`;
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">{extension}</span>
+			<h1>{extension} Card List</h1>
+			<p>
+				Browse every card from {extension}. Click any thumbnail to open the full-size image, then click
+				outside the image to return to the grid. Use the search bar under the menu to jump directly to a
+				card number or name across all extensions.
+			</p>
+			<p>
+				Need strategy context? Head back to <a href="/deck-guides">Deck Guides</a> or
+				<a href="/meta-analysis">Meta Analysis</a> to see how cards show up in competitive lists.
+			</p>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>{extension} Cards</h2>
+					<p>{cards.length} cards available in this extension.</p>
+				</div>
+				<a href="/cards-list">Back to all extensions</a>
+			</div>
+			<div class="cards-grid" data-card-grid>
+				{initialCards.map((card) => (
+					<button
+						class="card-thumb"
+						type="button"
+						data-card
+						data-full={card.fullUrl}
+						data-name={card.code}
+					>
+						<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+					</button>
+				))}
+			</div>
+			{remainingCards.length > 0 && (
+				<div class="load-more">
+					<button type="button" class="btn btn-secondary" data-load-more>Load more cards</button>
+					<p>{remainingCards.length} more cards available</p>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script define:vars={{ remainingCards }}>
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	const grid = document.querySelector("[data-card-grid]");
+	const loadMoreButton = document.querySelector("[data-load-more]");
+	let remaining = remainingCards ?? [];
+	const batchSize = 96;
+
+	const openModal = (fullUrl, name) => {
+		if (!modal || !modalImage) return;
+		modalImage.setAttribute("src", fullUrl);
+		modalImage.setAttribute("alt", `${name} card`);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	document.addEventListener("click", (event) => {
+		const cardButton = event.target.closest("[data-card]");
+		if (cardButton) {
+			const fullUrl = cardButton.getAttribute("data-full");
+			const name = cardButton.getAttribute("data-name");
+			if (!fullUrl) return;
+			openModal(fullUrl, name);
+			return;
+		}
+
+		if (event.target === modal) {
+			closeModal();
+		}
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			closeModal();
+		}
+	});
+
+	const appendBatch = () => {
+		if (!grid || remaining.length === 0) return;
+		const batch = remaining.splice(0, batchSize);
+		batch.forEach((card) => {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "card-thumb";
+			button.setAttribute("data-card", "");
+			button.setAttribute("data-full", card.fullUrl);
+			button.setAttribute("data-name", card.code);
+			button.addEventListener("click", () => openModal(card.fullUrl, card.code));
+			const img = document.createElement("img");
+			img.loading = "lazy";
+			img.src = card.smallUrl;
+			img.alt = `${card.code} card`;
+			button.appendChild(img);
+			grid.appendChild(button);
+		});
+		if (remaining.length === 0 && loadMoreButton) {
+			loadMoreButton.closest(".load-more")?.remove();
+		} else if (loadMoreButton) {
+			const note = loadMoreButton.nextElementSibling;
+			if (note) {
+				note.textContent = `${remaining.length} more cards available`;
+			}
+		}
+	};
+
+	loadMoreButton?.addEventListener("click", appendBatch);
+</script>
+
+<style>
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.card-thumb {
+		padding: 0.4rem;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		cursor: pointer;
+	}
+
+	.card-thumb img {
+		width: 100%;
+		border-radius: 8px;
+	}
+
+	.card-thumb:hover,
+	.card-thumb:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	.load-more {
+		margin-top: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.6rem;
+		color: var(--text-300);
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 600px) {
+		.cards-grid {
+			grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+		}
+	}
+</style>

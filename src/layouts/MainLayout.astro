@@ -26,15 +26,30 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		<a class="skip-link" href="#content">Skip to content</a>
 		<header class="site-header">
 			<div class="container header-inner">
-				<a class="logo" href="/">OPDeckGuide</a>
-				<nav class="nav">
-					<a href="/">Home</a>
-					<a href="/deck-guides">Deck Guides</a>
-					<a href="/meta-analysis">Meta Analysis</a>
-					<a href="/matchups">Matchups</a>
-					<a href="/beginner-guides">Beginner Guides</a>
-					<a href="/banlist">Banlist</a>
-				</nav>
+				<div class="header-top">
+					<a class="logo" href="/">OPDeckGuide</a>
+					<nav class="nav">
+						<a href="/">Home</a>
+						<a href="/deck-guides">Deck Guides</a>
+						<a href="/meta-analysis">Meta Analysis</a>
+						<a href="/matchups">Matchups</a>
+						<a href="/beginner-guides">Beginner Guides</a>
+						<a href="/banlist">Banlist</a>
+						<a href="/cards-list">Cards List</a>
+					</nav>
+				</div>
+				<div class="header-search-row">
+					<form class="nav-search" action="/cards-list" method="get" role="search">
+						<input
+							type="search"
+							name="query"
+							placeholder="Search card number or name"
+							aria-label="Search card number or name"
+							data-global-search
+						/>
+						<button type="submit">Search</button>
+					</form>
+				</div>
 			</div>
 		</header>
 
@@ -51,6 +66,7 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 					<a href="/matchups">Matchups</a>
 					<a href="/beginner-guides">Beginner Guides</a>
 					<a href="/banlist">Banlist</a>
+					<a href="/cards-list">Cards List</a>
 				</div>
 			</div>
 		</footer>
@@ -130,10 +146,24 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 
 	.header-inner {
 		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		padding: 1rem 0;
+	}
+
+	.header-top {
+		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
-		padding: 1rem 0;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.header-search-row {
+		display: flex;
+		justify-content: center;
+		width: 100%;
 	}
 
 	.logo {
@@ -163,6 +193,42 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		background: rgba(255, 107, 61, 0.15);
 		color: var(--text-100);
 		outline: none;
+	}
+
+	.nav-search {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 107, 61, 0.35);
+		border-radius: 999px;
+		padding: 0.45rem 0.5rem 0.45rem 1rem;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+		max-width: 520px;
+		width: 100%;
+	}
+
+	.nav-search input {
+		background: transparent;
+		border: none;
+		color: var(--text-100);
+		font-size: 0.9rem;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.nav-search input:focus {
+		outline: none;
+	}
+
+	.nav-search button {
+		border: none;
+		border-radius: 999px;
+		padding: 0.4rem 0.9rem;
+		background: linear-gradient(120deg, rgba(255, 107, 61, 0.95), rgba(255, 159, 26, 0.95));
+		color: var(--text-100);
+		font-weight: 600;
+		cursor: pointer;
 	}
 
 	.site-footer {
@@ -370,14 +436,21 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 	}
 
 	@media (max-width: 800px) {
-		.header-inner {
-			flex-direction: column;
-			align-items: flex-start;
+		.header-top {
+			width: 100%;
 		}
 
 		.section-header {
 			flex-direction: column;
 			align-items: flex-start;
+		}
+
+		.nav-search {
+			max-width: none;
+		}
+
+		.header-search-row {
+			justify-content: stretch;
 		}
 	}
 
