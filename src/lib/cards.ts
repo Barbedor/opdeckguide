@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
@@ -98,7 +98,7 @@ export const getCardsForExtension = (extension) => {
 				code: base,
 				name: meta.name ?? base,
 				color: meta.color ?? "Other",
-				smallUrl: `/Cards/${extension}/${file}`,
+				smallUrl: fullUrl,
 				fullUrl,
 			};
 		})
@@ -125,7 +125,7 @@ export const getExtensionSummary = (extension) => {
 			const fullUrl = fullByBase.get(base);
 			return {
 				code: base,
-				smallUrl: `/Cards/${extension}/${file}`,
+				smallUrl: fullUrl,
 				fullUrl,
 			};
 		})
