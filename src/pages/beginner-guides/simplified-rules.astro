@@ -1,0 +1,376 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Simplified Rules Overview";
+const description = "A clear, beginner-friendly summary of the official One Piece Card Game rules for fast learning and quick reference.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Beginner Guides</span>
+			<h1>Simplified Rules Overview</h1>
+			<p>
+				This page is a simplified, accurate summary of the official One Piece Card Game rules. It keeps the
+				same structure as the official manuals but focuses on the essentials you need to start playing
+				correctly. It does not add strategy or interpretation. If you want the complete, detailed reference,
+				use the <a href="/beginner-guides/complete-rules">Complete One Piece TCG Rules</a> page.
+			</p>
+			<p>
+				You will learn how to set up a game, what each zone is for, how turns flow, and how combat resolves.
+				All terms and timings here come directly from the official rules. This is a practical checklist you
+				can keep open while learning your first matches.
+			</p>
+			<p>
+				This summary stays strictly within the official rules language. It does not add deck advice or
+				gameplay strategy. For the complete reference, use the full rules page linked above.
+			</p>
+			<p>
+				For deck‑specific learning and improvement, go to <a href="/deck-guides">Deck Guides</a>. For a quick
+				view of what is popular in tournaments, use <a href="/meta-analysis">Meta Analysis</a>.
+			</p>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Illustrations</h2>
+			<p class="section-note">Sample card images used as visual references.</p>
+			<div class="cards-grid">
+				<img loading="lazy" src="/Cards/OP01/OP01-001.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/OP01/OP01-002.png" alt="Sample card image" />
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Quick Setup Checklist</h2>
+			<ul>
+				<li>Each player has 1 Leader, a 50‑card main deck, and a 10‑card DON!! deck.</li>
+				<li>Shuffle your main deck and place it in the Deck area.</li>
+				<li>Place your Leader face up in the Leader area.</li>
+				<li>Decide who goes first with rock‑paper‑scissors; the winner chooses first or second.</li>
+				<li>Draw 5 cards. Each player may mulligan once (return all cards, shuffle, draw 5).</li>
+				<li>Place Life cards equal to the Leader’s Life value from the top of the deck, face down.</li>
+				<li>The first player starts the game.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Card Types (First Look)</h2>
+			<div class="rule-visual-list">
+				<div class="rule-visual-item">
+					<div class="rule-text">Leader cards define your deck colors and Life value.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-003.png"
+						data-name="Leader card"
+					>
+						<img src="/Cards/OP01/OP01-003.png" alt="Leader card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">
+						Character cards enter the Character area and can attack. Only Characters with the [Blocker]
+						effect can block.
+					</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-054.png"
+						data-name="Character card"
+					>
+						<img src="/Cards/OP01/OP01-054.png" alt="Character card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">Event cards are played from hand, resolve, and go to the trash.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-029.png"
+						data-name="Event card"
+					>
+						<img src="/Cards/OP01/OP01-029.png" alt="Event card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">Stage cards stay in the Stage area and provide ongoing effects.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/ST04/ST04-017.png"
+						data-name="Stage card"
+					>
+						<img src="/Cards/ST04/ST04-017.png" alt="Stage card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">DON!! cards are used to pay costs and power up Leaders or Characters.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/Don/Don.png"
+						data-name="DON!! card"
+					>
+						<img src="/Cards/Don/Don.png" alt="DON!! card illustration" />
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Win Conditions</h2>
+			<ul>
+				<li>You win if the opponent has no Life cards and their Leader takes damage.</li>
+				<li>You win if the opponent’s deck reaches 0 cards.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Zones at a Glance</h2>
+			<ul>
+				<li>Leader Area: your Leader card.</li>
+				<li>Character Area: your Characters (up to 5).</li>
+				<li>Stage Area: your Stage (only 1 at a time).</li>
+				<li>Cost Area: your DON!! cards.</li>
+				<li>DON!! Deck: separate deck of DON!! cards.</li>
+				<li>Life Area: face‑down Life cards.</li>
+				<li>Deck: your main deck.</li>
+				<li>Trash: discarded cards and KO’d Characters.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Turn Flow (Every Turn)</h2>
+			<ul>
+				<li>Refresh Phase: set rested cards to active and return given DON!! to Cost area.</li>
+				<li>Draw Phase: draw 1 card (first player skips draw on their first turn).</li>
+				<li>DON!! Phase: add 2 DON!! to Cost area (first player adds only 1 on their first turn).</li>
+				<li>Main Phase: play cards, give DON!!, activate effects, and attack.</li>
+				<li>End Phase: resolve end‑of‑turn effects and pass turn.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Main Phase Essentials</h2>
+			<ul>
+				<li>Play a Character: place it active, then pay its cost.</li>
+				<li>Play a Stage: place it active, then pay its cost. You can control only 1 Stage.</li>
+				<li>Play an Event with [Main]: pay cost, resolve effect, then discard it.</li>
+				<li>Give DON!!: move active DON!! to a Leader or Character. Each adds +1000 power during your turn.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Combat (Simplified)</h2>
+			<ul>
+				<li>Attacks are not allowed on the first player’s first turn.</li>
+				<li>Declare attack: rest a Leader or active Character and choose a target.</li>
+				<li>Block Step: defender may use a [Blocker] to redirect the attack.</li>
+				<li>Counter Step: defender may use [Counter] effects from Characters or Events.</li>
+				<li>Damage Step: compare power; if attacker ≥ defender, attacker wins.</li>
+				<li>Leader hit: take 1 Life card. Character hit: that Character is KO’d and discarded.</li>
+				<li>End of battle: resolve end‑of‑battle effects.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Life and Trigger</h2>
+			<ul>
+				<li>When a Leader takes damage, take the top Life card.</li>
+				<li>If the Life card has [Trigger], you may reveal it and resolve the effect instead of adding it to hand.</li>
+				<li>You may choose not to activate [Trigger] and keep the card in hand.</li>
+			</ul>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (fullUrl, name) => {
+		if (!modal || !modalImage) return;
+		modalImage.setAttribute("src", fullUrl);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	document.addEventListener("click", (event) => {
+		const cardButton = event.target.closest("[data-card-preview]");
+		if (cardButton) {
+			const fullUrl = cardButton.getAttribute("data-full");
+			const name = cardButton.getAttribute("data-name") || "Card preview";
+			if (fullUrl) openModal(fullUrl, name);
+			return;
+		}
+		if (event.target === modal) closeModal();
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.section-note {
+		color: var(--text-300);
+		margin-bottom: 1rem;
+	}
+
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+	}
+
+	.cards-grid img {
+		width: 100%;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		box-shadow: var(--shadow);
+	}
+
+	.rule-visual-list {
+		display: grid;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.rule-visual-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.2rem;
+		padding: 0.8rem 1rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: rgba(12, 17, 30, 0.6);
+	}
+
+	.rule-text {
+		color: var(--text-200);
+		max-width: 52ch;
+	}
+
+	.card-thumb {
+		padding: 0.4rem;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		flex: 0 0 auto;
+	}
+
+	.card-thumb img {
+		width: 160px;
+		max-width: 160px;
+		border-radius: 10px;
+		display: block;
+	}
+
+	.card-thumb:hover,
+	.card-thumb:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 720px) {
+		.rule-visual-item {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.card-thumb img {
+			width: 170px;
+			max-width: 170px;
+		}
+	}
+</style>

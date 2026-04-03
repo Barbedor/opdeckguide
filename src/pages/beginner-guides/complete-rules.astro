@@ -1,0 +1,561 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Complete One Piece TCG Rules";
+const description = "Complete, precise One Piece Card Game rules based on the official rule manuals. Covers setup, phases, combat, effects, and keywords.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">Beginner Guides</span>
+			<h1>Complete One Piece TCG Rules</h1>
+			<p>
+				This page is a faithful, structured rewrite of the official One Piece Card Game rules you provided.
+				It is meant to be a complete reference that stays precise and avoids interpretation. The goal is
+				clarity: every section maps to official rule topics such as card information, zones, deck building,
+				turn structure, combat steps, effect timing, and keyword definitions. If you need a shorter version,
+				use the <a href="/beginner-guides/simplified-rules">Simplified Rules Overview</a>.
+			</p>
+			<p>
+				When you read these rules, remember two fundamentals stated in the official comprehensive rules:
+				if a card text contradicts the rules, the card text takes priority, and if an action is impossible,
+				you perform as much of it as possible. This page keeps those priorities front and center. It also
+				includes official keyword explanations so you can resolve timing windows and effects correctly during
+				play.
+			</p>
+			<p>
+				Images below are provided only as visual illustrations and do not change any rules. For strategy or
+				deck construction advice, use <a href="/deck-guides">Deck Guides</a> or <a href="/meta-analysis">Meta Analysis</a>.
+			</p>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Illustrations</h2>
+			<p class="section-note">Sample card images used as visual references.</p>
+			<div class="cards-grid">
+				<img loading="lazy" src="/Cards/OP01/OP01-001.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/OP01/OP01-002.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/OP01/OP01-003.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/OP01/OP01-004.png" alt="Sample card image" />
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Game Overview and Win Conditions</h2>
+			<ul>
+				<li>The game is designed for two players, head-to-head.</li>
+				<li>You win if your opponent has no Life cards and their Leader takes damage.</li>
+				<li>You win if your opponent’s deck reaches 0 cards.</li>
+				<li>Players may concede at any time. A concession is immediate and cannot be prevented or replaced by card effects.</li>
+				<li>Some card effects can directly cause a player to win or lose when the effect resolves.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Core Rules Principles</h2>
+			<ul>
+				<li>If a card text contradicts the comprehensive rules, the card text takes priority.</li>
+				<li>If an action is impossible, it is not performed. If only part of a multi‑step action is possible, perform as much as possible.</li>
+				<li>If both players must choose simultaneously, the turn player chooses first.</li>
+				<li>When a rule or effect asks for a number, it must be an integer ≥ 0 unless stated otherwise.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Cards and Card Information</h2>
+			<h3>Card Types</h3>
+			<div class="rule-visual-list">
+				<div class="rule-visual-item">
+					<div class="rule-text">Leader cards define your deck colors and Life value.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-003.png"
+						data-name="Leader card"
+					>
+						<img src="/Cards/OP01/OP01-003.png" alt="Leader card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">
+						Character cards enter the Character area and can attack. Blocking is only possible for
+						Characters with the [Blocker] effect.
+					</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-054.png"
+						data-name="Character card"
+					>
+						<img src="/Cards/OP01/OP01-054.png" alt="Character card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">Event cards activate effects and then go to the trash.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/OP01/OP01-029.png"
+						data-name="Event card"
+					>
+						<img src="/Cards/OP01/OP01-029.png" alt="Event card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">Stage cards remain in the Stage area and provide ongoing effects.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/ST04/ST04-017.png"
+						data-name="Stage card"
+					>
+						<img src="/Cards/ST04/ST04-017.png" alt="Stage card example" />
+					</button>
+				</div>
+				<div class="rule-visual-item">
+					<div class="rule-text">DON!! cards are used to pay costs and power up Leaders or Characters.</div>
+					<button
+						class="card-thumb"
+						type="button"
+						data-card-preview
+						data-full="/Cards/Don/Don.png"
+						data-name="DON!! card"
+					>
+						<img src="/Cards/Don/Don.png" alt="DON!! card illustration" />
+					</button>
+				</div>
+			</div>
+			<h3>Common Card Information</h3>
+			<ul>
+				<li>Cost: number of DON!! to pay when playing or activating.</li>
+				<li>Power: used to compare in battle; higher power wins.</li>
+				<li>Attribute, color, card type, name, card number, rarity, and block symbol.</li>
+				<li>Effects: special abilities described by the card text.</li>
+				<li>Trigger effects: some cards can be activated when revealed from Life.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Zones and Play Area</h2>
+			<ul>
+				<li>Character Area: where your Characters are placed.</li>
+				<li>Leader Area: where your single Leader is placed face up.</li>
+				<li>Stage Area: where a single Stage can be placed.</li>
+				<li>Deck: your main deck.</li>
+				<li>Trash: where KO’d Characters and used Events go.</li>
+				<li>Cost Area: where DON!! cards are placed.</li>
+				<li>DON!! Deck: separate deck of DON!! cards.</li>
+				<li>Life Area: face‑down cards equal to your Leader’s Life value.</li>
+			</ul>
+			<p class="section-note">Leader, Character, Stage, and Cost areas together are called the “field.”</p>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Deck Construction Requirements</h2>
+			<ul>
+				<li>1 Leader card.</li>
+				<li>Main deck of 50 cards (Characters, Events, Stages).</li>
+				<li>DON!! deck of 10 DON!! cards.</li>
+				<li>Your main deck may include only colors shown on your Leader.</li>
+				<li>No more than 4 cards with the same card number in the main deck.</li>
+				<li>Multi‑color cards count as all their listed colors at the same time.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Game Setup</h2>
+			<ul>
+				<li>Shuffle your deck and place it in the Deck area.</li>
+				<li>Place your Leader face up in the Leader area.</li>
+				<li>Decide the first player by rock‑paper‑scissors; the winner chooses to go first or second.</li>
+				<li>Draw 5 cards.</li>
+				<li>Each player may mulligan once: return all hand cards to the deck, shuffle, and draw 5.</li>
+				<li>The first player decides first whether to mulligan.</li>
+				<li>Place Life cards equal to your Leader’s Life value from the top of your deck, face down.</li>
+				<li>The first player begins the game.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Turn Structure</h2>
+			<h3>1. Refresh Phase</h3>
+			<ul>
+				<li>Set all rested cards to active (upright).</li>
+				<li>Return all given DON!! cards to the Cost area in active position.</li>
+			</ul>
+			<h3>2. Draw Phase</h3>
+			<ul>
+				<li>Draw 1 card. The first player does not draw on their first turn.</li>
+			</ul>
+			<h3>3. DON!! Phase</h3>
+			<ul>
+				<li>Place 2 active DON!! from the DON!! deck into the Cost area.</li>
+				<li>If only 1 DON!! remains, place 1.</li>
+				<li>The first player places only 1 DON!! on their first turn.</li>
+			</ul>
+			<h3>4. Main Phase</h3>
+			<ul>
+				<li>Play Character cards.</li>
+				<li>Play Stage cards.</li>
+				<li>Activate Event cards with [Main].</li>
+				<li>Activate card effects.</li>
+				<li>Give DON!! cards.</li>
+				<li>Attack and resolve battles.</li>
+			</ul>
+			<h3>5. End Phase</h3>
+			<ul>
+				<li>Resolve “End of your turn” effects, then your opponent’s end‑of‑turn effects.</li>
+				<li>End effects lasting “for the turn.”</li>
+				<li>Pass the turn to the opponent.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Main Phase Actions in Detail</h2>
+			<h3>Playing Characters</h3>
+			<ul>
+				<li>Place the Character in the Character area active, then pay its cost.</li>
+				<li>You may have up to 5 Characters. To play a 6th, discard a Character you control.</li>
+			</ul>
+			<h3>Playing Stages</h3>
+			<ul>
+				<li>Place the Stage active, then pay its cost.</li>
+				<li>Only 1 Stage can be controlled; to play a new one, discard the current Stage.</li>
+			</ul>
+			<h3>Activating Events</h3>
+			<ul>
+				<li>Play an Event from your hand and pay its cost to activate its [Main] effect.</li>
+				<li>After resolution, the Event is placed in the trash.</li>
+			</ul>
+			<h3>Giving DON!!</h3>
+			<ul>
+				<li>Move 1 active DON!! from the Cost area to a Leader or Character as “given.”</li>
+				<li>Each given DON!! grants +1000 power during your turn.</li>
+				<li>You may give DON!! any number of times while you have available DON!!.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Combat Procedure</h2>
+			<ul>
+				<li>Attacks cannot be declared on the first player’s first turn.</li>
+			</ul>
+			<h3>Step 1: Declare Attack</h3>
+			<ul>
+				<li>Rest a Leader or active Character to declare an attack.</li>
+				<li>Choose a target: opposing Leader or a rested opposing Character.</li>
+				<li>Resolve effects that trigger “when attacking.”</li>
+			</ul>
+			<h3>Step 2: Block Step</h3>
+			<ul>
+				<li>The defending player may activate a [Blocker] to redirect the attack.</li>
+			</ul>
+			<h3>Step 3: Counter Step</h3>
+			<ul>
+				<li>The defending player may activate [Counter] effects in any order.</li>
+				<li>They may discard Characters with Counter values or play Event cards with [Counter].</li>
+			</ul>
+			<h3>Step 4: Damage Step</h3>
+			<ul>
+				<li>Compare attacker power vs defender power.</li>
+				<li>If attacker power is greater or equal, the attacker wins.</li>
+				<li>Leader attacked: Leader takes 1 damage (or more if effects specify).</li>
+				<li>Character attacked: that Character is KO’d and placed in the trash.</li>
+				<li>If attacker power is lower, the attacker loses and nothing happens.</li>
+			</ul>
+			<h3>Step 5: End of Battle</h3>
+			<ul>
+				<li>Resolve effects that trigger at end of battle.</li>
+				<li>End any effects that last “for the battle.”</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Life Damage and Trigger</h2>
+			<ul>
+				<li>When your Leader takes damage, take the top Life card without showing it.</li>
+				<li>If the Life card has a [Trigger], you may reveal it and activate that Trigger instead of adding it to your hand.</li>
+				<li>You may choose not to activate [Trigger], in which case you add the Life card to your hand without revealing it.</li>
+				<li>If multiple damage is dealt, repeat this process for each damage.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Rested and Active, Paying Costs</h2>
+			<ul>
+				<li>Cards are normally played upright (active).</li>
+				<li>After attacking or blocking, a card becomes rested (horizontal).</li>
+				<li>To pay a cost, rest the required number of active DON!! in your Cost area.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Effect Order and Simultaneous Effects</h2>
+			<ul>
+				<li>If a player has multiple effects that trigger at the same time, that player chooses the order.</li>
+				<li>If both players have effects at the same time, the turn player resolves theirs first, then the opponent.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>DON!! When a Character Leaves the Field</h2>
+			<ul>
+				<li>If a Character with given DON!! leaves the field (KO or returned to hand), those DON!! are rested and returned to the Cost area.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Keyword Effects (Official Labels)</h2>
+			<ul>
+				<li>[Initiative]: a Character can attack on the turn it is played.</li>
+				<li>[Double attaque]: deal 2 Life damage instead of 1 when this card damages a Leader.</li>
+				<li>[Exil]: Life cards damaged by this card go to the trash instead of the hand; [Trigger] does not activate.</li>
+				<li>[Bloqueur]: during the Block Step, rest this card to make it the new attack target.</li>
+				<li>[Déclenchement]: when a Life card with this label is taken as damage, you may reveal it and resolve its effect instead of adding it to hand.</li>
+			</ul>
+			<h2>Keywords (Official Labels)</h2>
+			<ul>
+				<li>KO: a Character that loses a battle or is discarded by an effect.</li>
+				<li>[Activation : Principale]: effect can be activated during your Main Phase outside battle.</li>
+				<li>[Principale]: Event effect that can be activated during your Main Phase outside battle.</li>
+				<li>[Contre]: Event effect that can be activated during the opponent’s Counter Step.</li>
+				<li>[En attaquant]: effect window is when you declare an attack.</li>
+				<li>[Jouée]: effect window is when the card is played.</li>
+				<li>[Fin de votre tour]: effect window is the End Phase of your turn.</li>
+				<li>[Fin du tour adverse]: effect window is the End Phase of your opponent’s turn.</li>
+				<li>[DON!! xX]: condition met when the card has been given at least X DON!!.</li>
+				<li>DON!! -X: return a total of X DON!! from your Leader, Character, and Cost areas to the DON!! deck.</li>
+				<li>[Votre tour]: condition is met during your turn.</li>
+				<li>[Tour adverse]: condition is met during the opponent’s turn.</li>
+				<li>[Une fois par tour]: effect can resolve only once each turn for that card.</li>
+				<li>Défausser: choose a card from hand and place it in the trash.</li>
+				<li>[En bloquant]: effect window is when you activate [Bloqueur] during the Block Step.</li>
+				<li>[Attaque adverse]: effect window is after the opponent declares an attack.</li>
+				<li>[En cas de KO]: effect window is when this Character is KO’d and the effect resolves while it is in the trash.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Rule Processing and Defeat</h2>
+			<ul>
+				<li>Rule processing resolves immediately when a relevant event occurs, even during other actions.</li>
+				<li>A player who meets a defeat condition loses when rule processing occurs.</li>
+				<li>Defeat conditions include taking Leader damage with no Life cards, or having no cards in deck.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Infinite Loops</h2>
+			<ul>
+				<li>If an action loop would repeat indefinitely and no player can stop it, the game ends in a draw.</li>
+			</ul>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (fullUrl, name) => {
+		if (!modal || !modalImage) return;
+		modalImage.setAttribute("src", fullUrl);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	document.addEventListener("click", (event) => {
+		const cardButton = event.target.closest("[data-card-preview]");
+		if (cardButton) {
+			const fullUrl = cardButton.getAttribute("data-full");
+			const name = cardButton.getAttribute("data-name") || "Card preview";
+			if (fullUrl) openModal(fullUrl, name);
+			return;
+		}
+		if (event.target === modal) closeModal();
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.section-note {
+		color: var(--text-300);
+		margin-bottom: 1rem;
+	}
+
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+	}
+
+	.cards-grid img {
+		width: 100%;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		box-shadow: var(--shadow);
+	}
+
+	.rule-visual-list {
+		display: grid;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.rule-visual-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.2rem;
+		padding: 0.8rem 1rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: rgba(12, 17, 30, 0.6);
+	}
+
+	.rule-text {
+		color: var(--text-200);
+		max-width: 52ch;
+	}
+
+	.card-thumb {
+		padding: 0.4rem;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: rgba(11, 15, 26, 0.6);
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		flex: 0 0 auto;
+	}
+
+	.card-thumb img {
+		width: 160px;
+		max-width: 160px;
+		border-radius: 10px;
+		display: block;
+	}
+
+	.card-thumb:hover,
+	.card-thumb:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 720px) {
+		.rule-visual-item {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.card-thumb img {
+			width: 170px;
+			max-width: 170px;
+		}
+	}
+</style>

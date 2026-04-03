@@ -2,30 +2,16 @@
 const { title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
 ---
 
-<section class="hero">
-	<div class="container hero-grid">
-		<div>
-			<span class="hero-badge">OPTCG Strategy Hub</span>
-			<h1>{title}</h1>
-			<p>{description}</p>
-			<div class="hero-actions">
-				<a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
-				<a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+	<section class="hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">OPTCG Strategy Hub</span>
+				<h1>{title}</h1>
+				<p>{description}</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
+					<a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+				</div>
 			</div>
 		</div>
-		<div class="meta-grid">
-			<div class="meta-item">
-				<h3>Competitive Decklists</h3>
-				<p>Leaders, tech choices, and matchup planning distilled for tournament readiness.</p>
-			</div>
-			<div class="meta-item">
-				<h3>Meta Tracking</h3>
-				<p>Weekly snapshots and format trends so you can counter the field.</p>
-			</div>
-			<div class="meta-item">
-				<h3>New Player Paths</h3>
-				<p>Step-by-step fundamentals and budget builds to start strong.</p>
-			</div>
-		</div>
-	</div>
-</section>
+	</section>
