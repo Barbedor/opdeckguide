@@ -37,8 +37,10 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<h2>Illustrations</h2>
 			<p class="section-note">Sample card images used as visual references.</p>
 			<div class="cards-grid">
-				<img loading="lazy" src="/Cards/OP01/OP01-001.png" alt="Sample card image" />
-				<img loading="lazy" src="/Cards/OP01/OP01-002.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/EB04/EB04-001.jpg" alt="Leader card sample" />
+				<img loading="lazy" src="/Cards/EB04/EB04-048.jpg" alt="Character card sample" />
+				<img loading="lazy" src="/Cards/OP15/OP15-078.jpg" alt="Event card sample" />
+				<img loading="lazy" src="/Cards/OP15/OP15-057.jpg" alt="Stage card sample" />
 			</div>
 		</div>
 	</section>
@@ -63,7 +65,10 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<h2>Card Types (First Look)</h2>
 			<div class="rule-visual-list">
 				<div class="rule-visual-item">
-					<div class="rule-text">Leader cards define your deck colors and Life value.</div>
+					<div class="rule-text">
+						Leader cards are your main card. They define your deck colors and Life value, and can have
+						effects that impact the game.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -76,8 +81,9 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 				</div>
 				<div class="rule-visual-item">
 					<div class="rule-text">
-						Character cards enter the Character area and can attack. Only Characters with the [Blocker]
-						effect can block.
+						Character cards enter the Character area and can attack. Some Characters have effects, while
+						others do not. Only Characters with the
+						<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> effect can block.
 					</div>
 					<button
 						class="card-thumb"
@@ -90,7 +96,9 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">Event cards are played from hand, resolve, and go to the trash.</div>
+					<div class="rule-text">
+						Event cards are played from hand to activate their effect, then are placed in the trash.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -102,7 +110,9 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">Stage cards stay in the Stage area and provide ongoing effects.</div>
+					<div class="rule-text">
+						Stage cards stay in the Stage area and provide ongoing or repeated effects while in play.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -114,7 +124,10 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">DON!! cards are used to pay costs and power up Leaders or Characters.</div>
+					<div class="rule-text">
+						DON!! cards are used to pay costs and can be given to Leaders or Characters to increase power
+						during your turn.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -174,7 +187,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<ul>
 				<li>Play a Character: place it active, then pay its cost.</li>
 				<li>Play a Stage: place it active, then pay its cost. You can control only 1 Stage.</li>
-				<li>Play an Event with [Main]: pay cost, resolve effect, then discard it.</li>
+				<li>Play an Event with <img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />: pay cost, resolve effect, then discard it.</li>
 				<li>Give DON!!: move active DON!! to a Leader or Character. Each adds +1000 power during your turn.</li>
 			</ul>
 		</div>
@@ -186,8 +199,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<ul>
 				<li>Attacks are not allowed on the first player’s first turn.</li>
 				<li>Declare attack: rest a Leader or active Character and choose a target.</li>
-				<li>Block Step: defender may use a [Blocker] to redirect the attack.</li>
-				<li>Counter Step: defender may use [Counter] effects from Characters or Events.</li>
+				<li>Block Step: defender may use a <img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> to redirect the attack.</li>
+				<li>Counter Step: defender may use <img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" /> effects from Characters or Events.</li>
 				<li>Damage Step: compare power; if attacker ≥ defender, attacker wins.</li>
 				<li>Leader hit: take 1 Life card. Character hit: that Character is KO’d and discarded.</li>
 				<li>End of battle: resolve end‑of‑battle effects.</li>
@@ -200,8 +213,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<h2>Life and Trigger</h2>
 			<ul>
 				<li>When a Leader takes damage, take the top Life card.</li>
-				<li>If the Life card has [Trigger], you may reveal it and resolve the effect instead of adding it to hand.</li>
-				<li>You may choose not to activate [Trigger] and keep the card in hand.</li>
+				<li>If the Life card has <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />, you may reveal it and resolve the effect instead of adding it to hand.</li>
+				<li>You may choose not to activate <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" /> and keep the card in hand.</li>
 			</ul>
 		</div>
 	</section>
@@ -260,10 +273,12 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 		gap: 1rem;
+		justify-items: center;
 	}
 
 	.cards-grid img {
 		width: 100%;
+		max-width: 160px;
 		border-radius: 12px;
 		border: 1px solid var(--border);
 		background: rgba(11, 15, 26, 0.6);
@@ -360,6 +375,14 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		padding: 0.35rem 0.8rem;
 		cursor: pointer;
 		font-size: 0.85rem;
+	}
+
+	.keyword-badge {
+		height: 1em;
+		width: auto;
+		vertical-align: -0.15em;
+		display: inline-block !important;
+		margin-right: 0.15em;
 	}
 
 	@media (max-width: 720px) {

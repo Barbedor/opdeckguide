@@ -13,25 +13,28 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 			<span class="hero-badge">Meta Analysis</span>
 			<h1>Meta Analysis for One Piece Card Game</h1>
 			<p>
-				Winning consistently starts with understanding the field. Our meta analysis breaks down what is
-				performing well, which leaders are rising, and why certain lists convert better than others. We focus
-				on data-driven patterns from tournaments and community events, then translate those patterns into
-				practical decisions you can bring to your next round.
+				Weekly snapshots of what’s winning now, why it’s winning, and how to respond. Scroll for the tier list
+				and recent meta notes.
 			</p>
+		</div>
+	</section>
+
+	<section class="tier-list">
+		<div class="container">
+			<h2>Current Tier List</h2>
 			<p>
-				Expect weekly snapshots of top leaders, the interaction packages they lean on, and the matchup
-				pressure points that keep them in check. We also highlight tech cards that swing specific pairings
-				and explain when they are worth the slot. If you need a leader-specific plan, jump to
-				<a href="/deck-guides">Deck Guides</a>. For a focused look at head-to-head play, use
-				<a href="/matchups">Matchups</a>. Beginners can start with <a href="/beginner-guides">Beginner Guides</a>
-				to build a strong foundation before diving into advanced teching.
+				This tier list is updated regularly to reflect results from tournaments, locals, and major online
+				events. Use it as a fast snapshot of which leaders are converting today and which archetypes are
+				pressured by the field. When the list shifts, check Deck Guides and Matchups to understand why.
 			</p>
-			<p>
-				These updates are built for fast scanning on mobile while keeping the depth needed for tournament
-				preparation. You will see format threats, counter options, and the likely next moves as new sets drop
-				or the <a href="/banlist">Banlist</a> shifts. Save the pages you rely on so you can react quickly when
-				the meta moves.
-			</p>
+			<figure class="tier-figure">
+				<img
+					loading="lazy"
+					src="/assets/tier-list/tier-list-opdeckguides.png"
+					alt="One Piece Card Game tier list snapshot"
+				/>
+				<figcaption>Updated tier list snapshot. New versions will replace this image over time.</figcaption>
+			</figure>
 		</div>
 	</section>
 
@@ -66,4 +69,72 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 			href="/meta-analysis"
 		/>
 	</Section>
+
+	<section class="seo-block">
+		<div class="container">
+			<h2>About Our Meta Analysis</h2>
+			<p>
+				Winning consistently starts with understanding the field. Our meta analysis breaks down what is
+				performing well, which leaders are rising, and why certain lists convert better than others. We focus
+				on data-driven patterns from tournaments and community events, then translate those patterns into
+				practical decisions you can bring to your next round.
+			</p>
+			<p>
+				Expect weekly snapshots of top leaders, the interaction packages they lean on, and the matchup
+				pressure points that keep them in check. We also highlight tech cards that swing specific pairings
+				and explain when they are worth the slot. If you need a leader-specific plan, jump to
+				<a href="/deck-guides">Deck Guides</a>. For a focused look at head-to-head play, use
+				<a href="/matchups">Matchups</a>. Beginners can start with <a href="/beginner-guides">Beginner Guides</a>
+				to build a strong foundation before diving into advanced teching.
+			</p>
+			<p>
+				These updates are built for fast scanning on mobile while keeping the depth needed for tournament
+				preparation. You will see format threats, counter options, and the likely next moves as new sets drop
+				or the <a href="/banlist">Banlist</a> shifts. Save the pages you rely on so you can react quickly when
+				the meta moves.
+			</p>
+		</div>
+	</section>
 </MainLayout>
+
+<style>
+	.tier-list {
+		padding: 40px 0 20px;
+	}
+
+	.tier-list h2 {
+		margin-bottom: 12px;
+	}
+
+	.tier-figure {
+		margin: 24px 0 0;
+		padding: 18px;
+		background: rgba(14, 18, 30, 0.8);
+		border: 1px solid rgba(255, 120, 52, 0.25);
+		border-radius: 18px;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+	}
+
+	.tier-figure img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 12px;
+	}
+
+	.tier-figure figcaption {
+		margin-top: 12px;
+		color: rgba(234, 238, 255, 0.7);
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 720px) {
+		.tier-list {
+			padding-top: 24px;
+		}
+
+		.tier-figure {
+			padding: 12px;
+		}
+	}
+</style>

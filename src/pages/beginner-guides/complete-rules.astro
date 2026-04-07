@@ -36,10 +36,10 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			<h2>Illustrations</h2>
 			<p class="section-note">Sample card images used as visual references.</p>
 			<div class="cards-grid">
-				<img loading="lazy" src="/Cards/OP01/OP01-001.png" alt="Sample card image" />
-				<img loading="lazy" src="/Cards/OP01/OP01-002.png" alt="Sample card image" />
-				<img loading="lazy" src="/Cards/OP01/OP01-003.png" alt="Sample card image" />
-				<img loading="lazy" src="/Cards/OP01/OP01-004.png" alt="Sample card image" />
+				<img loading="lazy" src="/Cards/EB04/EB04-001.jpg" alt="Leader card sample" />
+				<img loading="lazy" src="/Cards/EB04/EB04-048.jpg" alt="Character card sample" />
+				<img loading="lazy" src="/Cards/OP15/OP15-078.jpg" alt="Event card sample" />
+				<img loading="lazy" src="/Cards/OP15/OP15-057.jpg" alt="Stage card sample" />
 			</div>
 		</div>
 	</section>
@@ -75,7 +75,10 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			<h3>Card Types</h3>
 			<div class="rule-visual-list">
 				<div class="rule-visual-item">
-					<div class="rule-text">Leader cards define your deck colors and Life value.</div>
+					<div class="rule-text">
+						Leader cards are your main card. They define your deck colors and Life value, and can have
+						effects that impact the game during specific timing windows.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -88,8 +91,9 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 				</div>
 				<div class="rule-visual-item">
 					<div class="rule-text">
-						Character cards enter the Character area and can attack. Blocking is only possible for
-						Characters with the [Blocker] effect.
+						Character cards enter the Character area and can attack. Some Characters have effects that
+						impact the game; others have no effects. Blocking is only possible for Characters with the
+						<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> effect.
 					</div>
 					<button
 						class="card-thumb"
@@ -102,7 +106,9 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">Event cards activate effects and then go to the trash.</div>
+					<div class="rule-text">
+						Event cards are played from hand to activate their effect, then are placed in the trash.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -114,7 +120,9 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">Stage cards remain in the Stage area and provide ongoing effects.</div>
+					<div class="rule-text">
+						Stage cards stay in the Stage area and provide ongoing or repeated effects while in play.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -126,7 +134,10 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 					</button>
 				</div>
 				<div class="rule-visual-item">
-					<div class="rule-text">DON!! cards are used to pay costs and power up Leaders or Characters.</div>
+					<div class="rule-text">
+						DON!! cards are used to pay costs and can be given to Leaders or Characters to increase power
+						during your turn.
+					</div>
 					<button
 						class="card-thumb"
 						type="button"
@@ -218,7 +229,10 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			<ul>
 				<li>Play Character cards.</li>
 				<li>Play Stage cards.</li>
-				<li>Activate Event cards with [Main].</li>
+				<li>
+					Activate Event cards with
+					<img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />.
+				</li>
 				<li>Activate card effects.</li>
 				<li>Give DON!! cards.</li>
 				<li>Attack and resolve battles.</li>
@@ -247,7 +261,10 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			</ul>
 			<h3>Activating Events</h3>
 			<ul>
-				<li>Play an Event from your hand and pay its cost to activate its [Main] effect.</li>
+				<li>
+					Play an Event from your hand and pay its cost to activate its
+					<img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" /> effect.
+				</li>
 				<li>After resolution, the Event is placed in the trash.</li>
 			</ul>
 			<h3>Giving DON!!</h3>
@@ -273,12 +290,21 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			</ul>
 			<h3>Step 2: Block Step</h3>
 			<ul>
-				<li>The defending player may activate a [Blocker] to redirect the attack.</li>
+				<li>
+					The defending player may activate a
+					<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> to redirect the attack.
+				</li>
 			</ul>
 			<h3>Step 3: Counter Step</h3>
 			<ul>
-				<li>The defending player may activate [Counter] effects in any order.</li>
-				<li>They may discard Characters with Counter values or play Event cards with [Counter].</li>
+				<li>
+					The defending player may activate
+					<img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" /> effects in any order.
+				</li>
+				<li>
+					They may discard Characters with Counter values or play Event cards with
+					<img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" />.
+				</li>
 			</ul>
 			<h3>Step 4: Damage Step</h3>
 			<ul>
@@ -301,8 +327,14 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			<h2>Life Damage and Trigger</h2>
 			<ul>
 				<li>When your Leader takes damage, take the top Life card without showing it.</li>
-				<li>If the Life card has a [Trigger], you may reveal it and activate that Trigger instead of adding it to your hand.</li>
-				<li>You may choose not to activate [Trigger], in which case you add the Life card to your hand without revealing it.</li>
+				<li>
+					If the Life card has a <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />,
+					you may reveal it and activate that Trigger instead of adding it to your hand.
+				</li>
+				<li>
+					You may choose not to activate <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />,
+					in which case you add the Life card to your hand without revealing it.
+				</li>
 				<li>If multiple damage is dealt, repeat this process for each damage.</li>
 			</ul>
 		</div>
@@ -342,31 +374,31 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		<div class="container">
 			<h2>Keyword Effects (Official Labels)</h2>
 			<ul>
-				<li>[Initiative]: a Character can attack on the turn it is played.</li>
-				<li>[Double attaque]: deal 2 Life damage instead of 1 when this card damages a Leader.</li>
-				<li>[Exil]: Life cards damaged by this card go to the trash instead of the hand; [Trigger] does not activate.</li>
-				<li>[Bloqueur]: during the Block Step, rest this card to make it the new attack target.</li>
-				<li>[Déclenchement]: when a Life card with this label is taken as damage, you may reveal it and resolve its effect instead of adding it to hand.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/rush.png" alt="Rush" />: a Character can attack on the turn it is played.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/double-attack.png" alt="Double Attack" />: deal 2 Life damage instead of 1 when this card damages a Leader.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/banish.png" alt="Banish" />: Life cards damaged by this card go to the trash instead of the hand; Trigger does not activate.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />: during the Block Step, rest this card to make it the new attack target.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />: when a Life card with this label is taken as damage, you may reveal it and resolve its effect instead of adding it to hand.</li>
 			</ul>
 			<h2>Keywords (Official Labels)</h2>
 			<ul>
 				<li>KO: a Character that loses a battle or is discarded by an effect.</li>
-				<li>[Activation : Principale]: effect can be activated during your Main Phase outside battle.</li>
-				<li>[Principale]: Event effect that can be activated during your Main Phase outside battle.</li>
-				<li>[Contre]: Event effect that can be activated during the opponent’s Counter Step.</li>
-				<li>[En attaquant]: effect window is when you declare an attack.</li>
-				<li>[Jouée]: effect window is when the card is played.</li>
-				<li>[Fin de votre tour]: effect window is the End Phase of your turn.</li>
-				<li>[Fin du tour adverse]: effect window is the End Phase of your opponent’s turn.</li>
-				<li>[DON!! xX]: condition met when the card has been given at least X DON!!.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate:Main" />: effect can be activated during your Main Phase outside battle.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />: Event effect that can be activated during your Main Phase outside battle.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" />: Event effect that can be activated during the opponent’s Counter Step.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" />: effect window is when you declare an attack.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />: effect window is when the card is played.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/end-of-your-turn.png" alt="End of Your Turn" />: effect window is the End Phase of your turn.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/opponents-turn.png" alt="Opponent's Turn" />: effect window is the End Phase of your opponent’s turn.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/don-x1.png" alt="DON!! x1" />: condition met when the card has been given at least X DON!!.</li>
 				<li>DON!! -X: return a total of X DON!! from your Leader, Character, and Cost areas to the DON!! deck.</li>
-				<li>[Votre tour]: condition is met during your turn.</li>
-				<li>[Tour adverse]: condition is met during the opponent’s turn.</li>
-				<li>[Une fois par tour]: effect can resolve only once each turn for that card.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/your-turn.png" alt="Your Turn" />: condition is met during your turn.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/opponents-turn.png" alt="Opponent's Turn" />: condition is met during the opponent’s turn.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />: effect can resolve only once each turn for that card.</li>
 				<li>Défausser: choose a card from hand and place it in the trash.</li>
-				<li>[En bloquant]: effect window is when you activate [Bloqueur] during the Block Step.</li>
-				<li>[Attaque adverse]: effect window is after the opponent declares an attack.</li>
-				<li>[En cas de KO]: effect window is when this Character is KO’d and the effect resolves while it is in the trash.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/on-block.png" alt="On Block" />: effect window is when you activate Blocker during the Block Step.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />: effect window is after the opponent declares an attack.</li>
+				<li><img class="keyword-badge" src="/assets/keywords/on-ko.png" alt="On K.O." />: effect window is when this Character is KO’d and the effect resolves while it is in the trash.</li>
 			</ul>
 		</div>
 	</section>
@@ -445,10 +477,12 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 		gap: 1rem;
+		justify-items: center;
 	}
 
 	.cards-grid img {
 		width: 100%;
+		max-width: 160px;
 		border-radius: 12px;
 		border: 1px solid var(--border);
 		background: rgba(11, 15, 26, 0.6);
@@ -545,6 +579,14 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		padding: 0.35rem 0.8rem;
 		cursor: pointer;
 		font-size: 0.85rem;
+	}
+
+	.keyword-badge {
+		height: 1em;
+		width: auto;
+		vertical-align: -0.15em;
+		display: inline-block !important;
+		margin-right: 0.15em;
 	}
 
 	@media (max-width: 720px) {
