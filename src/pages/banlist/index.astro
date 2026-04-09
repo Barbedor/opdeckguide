@@ -1,78 +1,488 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
-import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
 
-const title = "One Piece Card Game Banlist & Legality";
-const description = "Banlist tracking and deck legality guidance for the One Piece Card Game, with impact notes for competitive players.";
+const title = "One Piece Card Game Ban & Limited List";
+const description = "Official One Piece Card Game banned, limited, and banned-pair list with effective dates and card references.";
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
 		<div class="container">
 			<span class="hero-badge">Banlist</span>
-			<h1>One Piece Card Game Banlist & Legality</h1>
+			<h1>One Piece Card Game Ban & Limited List</h1>
 			<p>
-				Quick legality checks and update notes, built for fast scanning before events.
+				Official policy notes and the current list of banned, limited, and banned-pair cards. This page
+				presents the announcement content in a clean, readable format for competitive play.
 			</p>
 		</div>
 	</section>
 
-	<Section
-		title="Banlist Updates"
-		description="Summaries and impact notes for each update."
-		linkHref="/banlist"
-		linkLabel="View all updates"
-	>
-		<Card
-			eyebrow="Status"
-			title="Current Legal Status"
-			description="Quick overview of what is banned, restricted, or monitored."
-			href="/banlist"
-		/>
-		<Card
-			eyebrow="Impact"
-			title="Deckbuilding Adjustments"
-			description="Which packages change and the best replacement options."
-			href="/banlist"
-		/>
-		<Card
-			eyebrow="Meta"
-			title="Format Shifts"
-			description="Leaders that gain or lose ground after each update."
-			href="/banlist"
-		/>
-		<Card
-			eyebrow="Compliance"
-			title="Tournament Checklist"
-			description="Verify your list before events and avoid last-minute edits."
-			href="/banlist"
-		/>
-	</Section>
-
-	<section class="seo-block">
+	<section class="list-section">
 		<div class="container">
-			<h2>About the Banlist</h2>
+			<div class="banlist-meta">
+				<div>
+					<h2>Banned/Limited Card List</h2>
+					<p class="meta-date">Announcement date: March 31, 2026</p>
+					<p class="meta-date">Publication date: April 1, 2026</p>
+					<p class="meta-date">Applies from: April 10, 2026</p>
+				</div>
+				<div class="banlist-note">
+					<p>
+						Decks may include up to four copies of a card with the same card number, but some cards are
+						designated as banned, banned pairs, or limited for official and sanctioned tournaments.
+					</p>
+					<p>
+						The official list can be revised over time. Cards listed as banned, banned pairs, or limited may
+						be removed from the list in a future update as the game environment changes.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Policy for Ban & Limited Revisions</h2>
 			<p>
-				Stay tournament legal with clear updates on restricted and banned cards. This page is your
-				foundation for making sure every list you play at locals or competitive events follows the official
-				rules. We summarize changes, explain how they impact deck construction, and point you toward relevant
-				guides so you can adapt quickly.
+				The official development team states that a core design goal is to let players enjoy a wide variety of
+				decks built around Leader cards. Throughout the year, the environment is monitored to maintain
+				strategic diversity, with ongoing evaluation of whether a revision to the ban/limited list is needed.
 			</p>
 			<p>
-				Whenever the banlist changes, there is a ripple effect across the meta. Some leaders lose key tools,
-				others gain room to rise, and new tech cards become essential. Use the
-				<a href="/meta-analysis">Meta Analysis</a> section to see how the field adjusts and the
-				<a href="/deck-guides">Deck Guides</a> section for updated lists. If you want focused advice on which
-				matchups shift most after a change, review the <a href="/matchups">Matchups</a> section for direct
-				impact notes.
+				When deciding whether to add cards, the announcement cites multiple factors, including a deck’s win
+				rate, performance in major tournaments, usage rate, expected impact on future environments, and whether
+				it reduces the viability of other Leaders.
 			</p>
 			<p>
-				This page is also designed for newer players who want to avoid investing in cards that are no longer
-				legal. For learning paths and budget upgrades that are banlist-safe, start in
-				<a href="/beginner-guides">Beginner Guides</a>. As the official list evolves, we will keep the content
-				here concise and easy to scan on mobile.
+				The same policy also considers removing cards from the list when the environment allows it, so players
+				can enjoy the full range of the game again.
+			</p>
+			<p>
+				Revisions are generally announced twice per year: after the end of Championship Season 1 in Japan, and
+				after the World Championship. However, if a card directly compromises a healthy environment, additions
+				can be made without waiting for the end of a Championship season.
 			</p>
 		</div>
 	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Banned Pair (Effective April 10, 2026)</h2>
+			<p class="section-note">
+				If a deck contains Card A, it is not allowed to include Card B.
+			</p>
+			<div class="pair-grid pair-grid-plus">
+				<div class="pair-card">
+					<div class="pair-label">Card A</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb card-thumb-sm"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP07/OP07-115.jpg"
+							data-name="OP07-115 I Re-Quasar Helllp!!"
+						>
+							<img loading="lazy" src="/Cards/OP07/OP07-115.jpg" alt="OP07-115 I Re-Quasar Helllp!!" />
+						</button>
+						<div class="card-caption">
+							<strong>OP07-115</strong> I Re-Quasar Helllp!!
+						</div>
+					</div>
+				</div>
+				<div class="pair-plus" aria-hidden="true">+</div>
+				<div class="pair-card">
+					<div class="pair-label">Card B</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb card-thumb-sm"
+							type="button"
+							data-card-preview
+							data-full="/Cards/EB04/EB04-058.jpg"
+							data-name="EB04-058 Borsalino"
+						>
+							<img loading="lazy" src="/Cards/EB04/EB04-058.jpg" alt="EB04-058 Borsalino" />
+						</button>
+						<div class="card-caption">
+							<strong>EB04-058</strong> Borsalino <span>(including parallel versions)</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Previously Banned / Limited Cards</h2>
+			<div>
+				<h3>Banned Cards</h3>
+				<div class="cards-grid">
+					<div class="card-visual">
+						<button
+							class="card-thumb"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP06/OP06-047.png"
+							data-name="OP06-047 Charlotte Pudding"
+						>
+							<img loading="lazy" src="/Cards/OP06/OP06-047.png" alt="OP06-047 Charlotte Pudding" />
+						</button>
+						<div class="card-caption"><strong>OP06-047</strong> Charlotte Pudding</div>
+					</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP03/OP03-040.png"
+							data-name="OP03-040 Nami"
+						>
+							<img loading="lazy" src="/Cards/OP03/OP03-040.png" alt="OP03-040 Nami" />
+						</button>
+						<div class="card-caption"><strong>OP03-040</strong> Nami</div>
+					</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP06/OP06-086.png"
+							data-name="OP06-086 Gecko Moria"
+						>
+							<img loading="lazy" src="/Cards/OP06/OP06-086.png" alt="OP06-086 Gecko Moria" />
+						</button>
+						<div class="card-caption"><strong>OP06-086</strong> Gecko Moria</div>
+					</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb"
+							type="button"
+							data-card-preview
+							data-full="/Cards/ST10/ST10-001.png"
+							data-name="ST10-001 Trafalgar Law"
+						>
+							<img loading="lazy" src="/Cards/ST10/ST10-001.png" alt="ST10-001 Trafalgar Law" />
+						</button>
+						<div class="card-caption"><strong>ST10-001</strong> Trafalgar Law</div>
+					</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP06/OP06-116.png"
+							data-name="OP06-116 Reject"
+						>
+							<img loading="lazy" src="/Cards/OP06/OP06-116.png" alt="OP06-116 Reject" />
+						</button>
+						<div class="card-caption"><strong>OP06-116</strong> Reject</div>
+					</div>
+				</div>
+			</div>
+			<div class="limited-block">
+				<h3>Limited Cards</h3>
+				<p class="section-note">No cards are currently limited.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container">
+			<h2>Previously Banned Pairs</h2>
+			<p class="section-note">
+				If a deck contains Card A, it is not allowed to include Card B.
+			</p>
+			<div class="pair-grid pair-grid-plus">
+				<div class="pair-card">
+					<div class="pair-label">Card A</div>
+					<div class="card-visual">
+						<button
+							class="card-thumb card-thumb-sm"
+							type="button"
+							data-card-preview
+							data-full="/Cards/OP11/OP11-040.jpg"
+							data-name="OP11-040 Monkey D. Luffy"
+						>
+							<img loading="lazy" src="/Cards/OP11/OP11-040.jpg" alt="OP11-040 Monkey D. Luffy" />
+						</button>
+						<div class="card-caption"><strong>OP11-040</strong> Monkey D. Luffy</div>
+					</div>
+				</div>
+				<div class="pair-plus" aria-hidden="true">+</div>
+				<div class="pair-card">
+					<div class="pair-label">Card B Options</div>
+					<div class="pair-b-options">
+						<div class="card-visual">
+							<button
+								class="card-thumb card-thumb-sm"
+								type="button"
+								data-card-preview
+								data-full="/Cards/OP11/OP11-067.jpg"
+								data-name="OP11-067 Charlotte Katakuri"
+							>
+								<img loading="lazy" src="/Cards/OP11/OP11-067.jpg" alt="OP11-067 Charlotte Katakuri" />
+							</button>
+							<div class="card-caption"><strong>OP11-067</strong> Charlotte Katakuri</div>
+						</div>
+						<div class="card-visual">
+							<button
+								class="card-thumb card-thumb-sm"
+								type="button"
+								data-card-preview
+								data-full="/Cards/OP08/OP08-069.png"
+								data-name="OP08-069 Charlotte Linlin"
+							>
+								<img loading="lazy" src="/Cards/OP08/OP08-069.png" alt="OP08-069 Charlotte Linlin" />
+							</button>
+							<div class="card-caption"><strong>OP08-069</strong> Charlotte Linlin</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
 </MainLayout>
+
+<script>
+	window.addEventListener("DOMContentLoaded", () => {
+		const previewButtons = document.querySelectorAll("[data-card-preview]");
+		const modal = document.querySelector("[data-modal]");
+		const modalImage = document.querySelector("[data-modal-image]");
+		const closeButton = document.querySelector("[data-close]");
+
+		const openModal = (button) => {
+			if (!modal || !modalImage) return;
+			const full = button.getAttribute("data-full");
+			const name = button.getAttribute("data-name") || "Card preview";
+			modalImage.setAttribute("src", full);
+			modalImage.setAttribute("alt", name);
+			modal.classList.add("is-open");
+			modal.setAttribute("aria-hidden", "false");
+		};
+
+		const closeModal = () => {
+			if (!modal) return;
+			modal.classList.remove("is-open");
+			modal.setAttribute("aria-hidden", "true");
+		};
+
+		previewButtons.forEach((button) => {
+			button.addEventListener("click", () => openModal(button));
+		});
+
+		closeButton?.addEventListener("click", closeModal);
+		modal?.addEventListener("click", (event) => {
+			if (event.target === modal) closeModal();
+		});
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") closeModal();
+		});
+	});
+</script>
+
+<style>
+	.banlist-meta {
+		display: grid;
+		grid-template-columns: minmax(220px, 1fr) minmax(280px, 1.4fr);
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.meta-date {
+		margin: 0.15rem 0;
+		color: var(--text-300);
+		font-size: 0.95rem;
+	}
+
+	.banlist-note {
+		background: rgba(14, 18, 30, 0.7);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem 1.4rem;
+	}
+
+	.section-note {
+		color: var(--text-300);
+	}
+
+	.pair-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.pair-grid-plus {
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		align-items: center;
+	}
+
+	.pair-plus {
+		width: 54px;
+		height: 54px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 2.1rem;
+		font-weight: 700;
+		color: #0b0f1a;
+		background: linear-gradient(135deg, rgba(255, 107, 61, 0.95), rgba(255, 159, 26, 0.95));
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.pair-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.pair-b-options {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+	}
+
+	.pair-label {
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+		gap: 1.2rem;
+		margin-top: 1rem;
+	}
+
+	.card-visual {
+		display: grid;
+		gap: 0.6rem;
+		align-items: start;
+	}
+
+	.card-thumb {
+		width: 100%;
+		max-width: 170px;
+		margin: 0 auto;
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(9, 12, 20, 0.8);
+		padding: 0.3rem;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.card-thumb:hover,
+	.card-thumb:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.card-thumb img {
+		width: 100%;
+		max-width: 100%;
+		margin: 0 auto;
+		border-radius: 12px;
+		display: block;
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+	}
+
+	.card-thumb-sm img {
+		max-width: 130px;
+	}
+
+	.card-thumb-sm {
+		max-width: 150px;
+	}
+
+	.card-caption {
+		color: var(--text-200);
+		font-size: 0.92rem;
+	}
+
+	.card-caption span {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.limited-block {
+		margin-top: 1.5rem;
+		padding-top: 1.2rem;
+		border-top: 1px solid rgba(31, 42, 60, 0.6);
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.banlist-meta {
+			grid-template-columns: 1fr;
+		}
+
+		.pair-grid-plus {
+			grid-template-columns: 1fr;
+		}
+
+		.pair-plus {
+			margin: 0 auto;
+		}
+	}
+</style>

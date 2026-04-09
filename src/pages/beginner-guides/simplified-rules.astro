@@ -14,7 +14,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 				This page is a simplified, accurate summary of the official One Piece Card Game rules. It keeps the
 				same structure as the official manuals but focuses on the essentials you need to start playing
 				correctly. It does not add strategy or interpretation. If you want the complete, detailed reference,
-				use the <a href="/beginner-guides/complete-rules">Complete One Piece TCG Rules</a> page.
+				use the <a class="inline-link" href="/beginner-guides/complete-rules">Règles complètes du jeu de cartes One Piece</a> page.
 			</p>
 			<p>
 				You will learn how to set up a game, what each zone is for, how turns flow, and how combat resolves.
@@ -375,6 +375,20 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		padding: 0.35rem 0.8rem;
 		cursor: pointer;
 		font-size: 0.85rem;
+	}
+
+	.inline-link {
+		color: var(--accent);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: rgba(255, 159, 26, 0.6);
+		text-underline-offset: 4px;
+	}
+
+	.inline-link:hover,
+	.inline-link:focus-visible {
+		color: var(--accent-2);
+		text-decoration-color: var(--accent-2);
 	}
 
 	.keyword-badge {
