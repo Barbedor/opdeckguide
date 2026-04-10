@@ -66,12 +66,31 @@ const buildMetadataIndex = () => {
 
 export const getExtensions = () => {
 	if (!fs.existsSync(cardsRoot)) return [];
+	const prefixOrder = ["OP", "EB", "PR", "ST"];
+	const parse = (value) => {
+		const match = value.match(/^([A-Z]+)(\d+)/i);
+		if (!match) return { prefix: value.toUpperCase(), num: -1 };
+		let prefix = match[1].toUpperCase();
+		const num = Number.parseInt(match[2], 10);
+		if (prefix.startsWith("PR")) prefix = "PR";
+		return { prefix, num: Number.isNaN(num) ? -1 : num };
+	};
 	return fs
 		.readdirSync(cardsRoot, { withFileTypes: true })
 		.filter((entry) => entry.isDirectory())
 		.filter((entry) => entry.name.toLowerCase() !== "don")
 		.map((entry) => entry.name)
-		.sort((a, b) => a.localeCompare(b, "en"));
+		.sort((a, b) => {
+			const aInfo = parse(a);
+			const bInfo = parse(b);
+			const aGroup = prefixOrder.indexOf(aInfo.prefix);
+			const bGroup = prefixOrder.indexOf(bInfo.prefix);
+			const aRank = aGroup === -1 ? prefixOrder.length : aGroup;
+			const bRank = bGroup === -1 ? prefixOrder.length : bGroup;
+			if (aRank !== bRank) return aRank - bRank;
+			if (aInfo.num !== bInfo.num) return bInfo.num - aInfo.num;
+			return a.localeCompare(b, "en");
+		});
 };
 
 export const getCardsForExtension = (extension) => {

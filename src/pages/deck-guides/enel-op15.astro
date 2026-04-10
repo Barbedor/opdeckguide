@@ -1,138 +1,91 @@
----
+﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Lucy OP15 Deck Guide";
+const title = "Enel OP15 Deck Guide";
 const description =
-	"Lucy OP15 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup notes.";
+	"Enel OP15 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup notes.";
 
-const icon = "/assets/guides/lucy-op15.png";
+const icon = "/assets/guides/enel-op15.png";
 
 const decklist = [
-	{ code: "OP15-002", name: "Lucy", count: 1, img: "/Cards/OP15/OP15-002.jpg", role: "Leader" },
-	{ code: "OP15-053", name: "Rebecca", count: 4, img: "/Cards/OP15/OP15-053.jpg", role: "Character" },
-	{ code: "OP15-052", name: "Leo", count: 4, img: "/Cards/OP15/OP15-052.jpg", role: "Character" },
-	{ code: "OP15-040", name: "Viola", count: 4, img: "/Cards/OP15/OP15-040.jpg", role: "Character" },
-	{ code: "OP10-045", name: "Cavendish", count: 4, img: "/Cards/OP10/OP10-045.jpg", role: "Character" },
-	{ code: "OP10-049", name: "Sabo", count: 4, img: "/Cards/OP10/OP10-049.jpg", role: "Character" },
-	{ code: "OP15-046", name: "Sabo", count: 4, img: "/Cards/OP15/OP15-046.jpg", role: "Character" },
-	{ code: "OP09-118", name: "Gol D. Roger", count: 1, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
-	{ code: "OP15-057", name: "Dressrosa Kingdom", count: 4, img: "/Cards/OP15/OP15-057.jpg", role: "Stage" },
-	{ code: "OP10-059", name: "Go Ahead and Die, I’m Luffy!!", count: 4, img: "/Cards/OP10/OP10-059.jpg", role: "Event" },
-	{ code: "OP15-021", name: "Just Watch Me, Ace!!", count: 4, img: "/Cards/OP15/OP15-021.jpg", role: "Event" },
-	{ code: "OP15-054", name: "It’s Memento of Him…", count: 4, img: "/Cards/OP15/OP15-054.jpg", role: "Event" },
-	{ code: "OP10-060", name: "Barrier Barrier Pistol", count: 3, img: "/Cards/OP10/OP10-060.jpg", role: "Event" },
-	{ code: "OP15-020", name: "Fire Fist", count: 4, img: "/Cards/OP15/OP15-020.jpg", role: "Event" },
-	{ code: "OP15-056", name: "Would You Let Me Eat…?", count: 2, img: "/Cards/OP15/OP15-056.jpg", role: "Event" },
+	{ code: "OP15-058", name: "Enel", count: 1, img: "/Cards/OP15/OP15-058.jpg", role: "Leader" },
+	{ code: "OP15-060", name: "Enel", count: 4, img: "/Cards/OP15/OP15-060.jpg", role: "Character" },
+	{ code: "OP15-118", name: "Enel", count: 4, img: "/Cards/OP15/OP15-118.jpg", role: "Character" },
+	{ code: "OP15-061", name: "Ohm", count: 4, img: "/Cards/OP15/OP15-061.jpg", role: "Character" },
+	{ code: "OP15-066", name: "Satori", count: 4, img: "/Cards/OP15/OP15-066.jpg", role: "Character" },
+	{ code: "OP15-067", name: "Shura", count: 4, img: "/Cards/OP15/OP15-067.jpg", role: "Character" },
+	{ code: "OP15-071", name: "Holly", count: 4, img: "/Cards/OP15/OP15-071.jpg", role: "Character" },
+	{ code: "OP15-074", name: "Varie", count: 4, img: "/Cards/OP15/OP15-074.jpg", role: "Event" },
+	{ code: "OP15-075", name: "El Thor", count: 4, img: "/Cards/OP15/OP15-075.jpg", role: "Event" },
+	{ code: "OP15-076", name: "Lightning Beast Kiten", count: 4, img: "/Cards/OP15/OP15-076.jpg", role: "Event" },
+	{ code: "OP15-077", name: "Lightning Dragon", count: 4, img: "/Cards/OP15/OP15-077.jpg", role: "Event" },
+	{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
+	{ code: "OP12-071", name: "Charlotte Pudding", count: 4, img: "/Cards/OP12/OP12-071.jpg", role: "Character" },
+	{ code: "OP13-076", name: "Divine Departure", count: 2, img: "/Cards/OP13/OP13-076.jpg", role: "Event" },
 ];
 
 const options = [
 	{
-		code: "OP15-047",
+		code: "OP07-064",
 		name: "Sanji",
-		img: "/Cards/OP15/OP15-047.jpg",
+		img: "/Cards/OP07/OP07-064.png",
 		note:
-			"New Sanji OP15 is a good card option if you do not have Roger or if you do not want to spend too much to buy them. Play it to make your Sabo unblockable and steal some games.",
+			"Sanji is a valid alternative instead of the Varie spell and also increases the Pudding targets.",
 	},
 	{
-		code: "OP15-014",
-		name: "Bartolomeo",
-		img: "/Cards/OP15/OP15-014.jpg",
+		code: "OP05-077",
+		name: "Gamma Knife",
+		img: "/Cards/OP05/OP05-077.png",
 		note:
-			"I call this card the “Barto Pack”. In my opinion you don’t really need them because deck consistency is very high, but for a spicy decklist you can try it.",
-	},
-	{
-		code: "OP05-006",
-		name: "Belo Betty",
-		img: "/Cards/OP05/OP05-006.png",
-		note:
-			"Some decklists have started playing a Revolutionary pack by removing the Stage and reducing the OP10 spells to increase the searchers and the possibility of finding the Sabo 7C needed in the curve.",
-	},
-	{
-		code: "OP05-015",
-		name: "Koala",
-		img: "/Cards/OP05/OP05-015.png",
-		note:
-			"Some decklists have started playing a Revolutionary pack by removing the Stage and reducing the OP10 spells to increase the searchers and the possibility of finding the Sabo 7C needed in the curve.",
+			"If you do not like Divine Departure, you can play 2x Gamma Knife in its place, but watch out for counter density.",
 	},
 ];
 
 const mulliganCards = [
-	{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-	{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-	{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
-	{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
+	{ code: "OP15-118", name: "Enel", img: "/Cards/OP15/OP15-118.jpg" },
+	{ code: "OP15-061", name: "Ohm", img: "/Cards/OP15/OP15-061.jpg" },
+	{ code: "OP15-071", name: "Holly", img: "/Cards/OP15/OP15-071.jpg" },
 ];
 
-const curveFirst = [
+const curve = [
 	{
-		label: "1 DON",
-		notes: "Search for missing cards on curve.",
+		label: "1/2 DON",
+		notes:
+			"Ohm is the best choice, but any 1C drop is ok to pressure the board and cycle hand.",
 		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
+			{ code: "OP12-071", name: "Charlotte Pudding", img: "/Cards/OP12/OP12-071.jpg" },
+			{ code: "OP15-061", name: "Ohm", img: "/Cards/OP15/OP15-061.jpg" },
+			{ code: "OP15-066", name: "Satori", img: "/Cards/OP15/OP15-066.jpg" },
+			{ code: "OP15-067", name: "Shura", img: "/Cards/OP15/OP15-067.jpg" },
 		],
 	},
 	{
-		label: "3 DON",
-		notes: "Leo for mirror or repeat turn 1.",
+		label: "3/4 DON",
+		notes:
+			"Use leader ability to ramp 1 DON, assign 4 DON rested to Ohm and play Holly. This allows a 6k double attack from turn 2.",
 		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
+			{ code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+			{ code: "OP15-071", name: "Holly", img: "/Cards/OP15/OP15-071.jpg" },
 		],
 	},
 	{
-		label: "5 DON",
-		notes: "Memento for draw or Bari for control board.",
+		label: "5/6 DON",
+		notes:
+			"Play the SEC to search another Enel or a missing spell for combo. Play SR for setup blocker if you need for the next turn.",
 		cards: [
-			{ code: "OP15-054", name: "It’s Memento of Him…", img: "/Cards/OP15/OP15-054.jpg" },
-			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-			{ code: "OP10-060", name: "Barrier Barrier Pistol", img: "/Cards/OP10/OP10-060.jpg" },
+			{ code: "OP15-118", name: "Enel", img: "/Cards/OP15/OP15-118.jpg" },
+			{ code: "OP15-060", name: "Enel", img: "/Cards/OP15/OP15-060.jpg" },
 		],
 	},
 	{
-		label: "7 DON",
-		notes: "Your late game! See the next slide for the combo.",
+		label: "Late game",
+		notes:
+			"Spells are the best resources. They serve as 2k but also for the various combos, so use them carefully.",
 		cards: [
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
-		],
-	},
-];
-
-const curveSecond = [
-	{
-		label: "2 DON",
-		notes: "Leo for mirror or search for missing cards on curve.",
-		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
-		],
-	},
-	{
-		label: "4 DON",
-		notes: "Memento spell and draw 3 cards is too strong.",
-		cards: [
-			{ code: "OP15-054", name: "It’s Memento of Him…", img: "/Cards/OP15/OP15-054.jpg" },
-			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-		],
-	},
-	{
-		label: "6 DON",
-		notes: "Sabo for mirror or spell for control board vs Yellow.",
-		cards: [
-			{ code: "OP10-049", name: "Sabo", img: "/Cards/OP10/OP10-049.jpg" },
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-		],
-	},
-	{
-		label: "8 DON",
-		notes: "Your late game! See the next slide for the combo.",
-		cards: [
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
+			{ code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
+			{ code: "OP15-075", name: "El Thor", img: "/Cards/OP15/OP15-075.jpg" },
+			{ code: "OP15-076", name: "Lightning Beast Kiten", img: "/Cards/OP15/OP15-076.jpg" },
+			{ code: "OP15-077", name: "Lightning Dragon", img: "/Cards/OP15/OP15-077.jpg" },
 		],
 	},
 ];
@@ -140,68 +93,67 @@ const curveSecond = [
 const tips = [
 	{
 		title:
-			"Leo and Sabo 2K are your best choices in mirror, necessary to save your Cavendish from a Bari‑Bari and continue to make card advantage.",
+			"This is the best combo to see in your first curve and it allows you to survive the opponent's Wypers.",
 		cards: [
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
-			{ code: "OP10-049", name: "Sabo", img: "/Cards/OP10/OP10-049.jpg" },
+			{ code: "OP15-061", name: "Ohm", img: "/Cards/OP15/OP15-061.jpg" },
+			{ code: "OP15-071", name: "Holly", img: "/Cards/OP15/OP15-071.jpg" },
 		],
 	},
 	{
 		title:
-			"7C spell double attack is a very strong play if you want to have a lethal or Roger setup. If you want to be sure the damage comes in, don’t forget to use the leader effect to enhance it.",
+			"If a 6k blocker like Borsalino bothers you, use the beast spell to reduce power. Mamaragan lets you rest it and Dragon freezes it. The package is recycled each time.",
 		cards: [
-			{ code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
-			{ code: "OP15-021", name: "Just Watch Me, Ace!!", img: "/Cards/OP15/OP15-021.jpg" },
+			{ code: "OP15-076", name: "Lightning Beast Kiten", img: "/Cards/OP15/OP15-076.jpg" },
+			{ code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
+			{ code: "OP15-077", name: "Lightning Dragon", img: "/Cards/OP15/OP15-077.jpg" },
 		],
 	},
 	{
 		title:
-			"Here you can have fun: 4C spell + Bari to bottom‑deck a 9K power (strong in mirror), or 4C spell + Fire Fist to remove an 11K power.",
+			"This combo removes any 12k. Very strong against opponent's Sabo blockers and also in mirror to control the opponent's Enel.",
 		cards: [
-			{ code: "OP10-059", name: "Go Ahead and Die, I’m Luffy!!", img: "/Cards/OP10/OP10-059.jpg" },
-			{ code: "OP10-060", name: "Barrier Barrier Pistol", img: "/Cards/OP10/OP10-060.jpg" },
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
+			{ code: "OP13-076", name: "Divine Departure", img: "/Cards/OP13/OP13-076.jpg" },
+			{ code: "OP15-075", name: "El Thor", img: "/Cards/OP15/OP15-075.jpg" },
 		],
 	},
 ];
 
 const matchups = [
 	{
-		label: "Even",
-		icon: "≈",
-		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 1st", "Manage your life", "Bari‑Bari key card"],
-	},
-	{
 		label: "Slight Disadv.",
 		icon: "↓",
-		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
-		notes: ["Start 1st", "Control oppo board", "Fire Fist 7C on Enel"],
+		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
+		notes: ["Start 1st", "Manage your life", "Freeze the board"],
 	},
 	{
-		label: "Positive MU",
+		label: "Slight Adv.",
 		icon: "↑",
+		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
+		notes: ["Start 1st", "Starve with 6C Enel", "Control oppo board"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
 		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
-		notes: ["Start 1st", "Bari‑Bari key card", "Manage your board and life"],
+		notes: ["Start 1st", "Try to survive", "Worst MU ever"],
 	},
 	{
 		label: "Positive MU",
 		icon: "↑",
 		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Chain 7C Sabo", "Watch out for Roger"],
+		notes: ["Start 2nd", "Go aggro with Holly", "6C Enel is too OP"],
 	},
 	{
 		label: "Negative MU",
 		icon: "↓",
 		leader: { code: "OP15-098", name: "Monkey D. Luffy", img: "/Cards/OP15/OP15-098.jpg" },
-		notes: ["Start 2nd", "Force leader ability", "Go only face"],
+		notes: ["Start 1st", "Holly key card", "Go only face"],
 	},
 	{
 		label: "Positive MU",
 		icon: "↑",
 		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
-		notes: ["Start 2nd", "Go aggro", "Memento spell auto win"],
+		notes: ["Start 2nd", "Go aggro with Holly", "Mamaragan combo OP"],
 	},
 ];
 ---
@@ -211,9 +163,9 @@ const matchups = [
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Lucy OP15 Deck Guide</h1>
+				<h1>Enel OP15 Deck Guide</h1>
 				<p>
-					Complete reference guide for Lucy OP15: decklist, curve checkpoints, mulligan priorities, tech
+					Complete reference guide for Enel OP15: decklist, curve checkpoints, mulligan priorities, tech
 					options, and matchup notes. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
@@ -222,7 +174,7 @@ const matchups = [
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Lucy OP15 guide icon" loading="lazy" />
+				<img src={icon} alt="Enel OP15 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -232,7 +184,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>Main list from your OP15 Lucy build.</p>
+					<p>Main list from your OP15 Enel build.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -285,6 +237,7 @@ const matchups = [
 					</button>
 				))}
 			</div>
+			<p class="section-note">These are the right ratios for the options package.</p>
 		</div>
 	</section>
 
@@ -293,7 +246,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1C searcher + 4C setup is the priority.</p>
+					<p>1C vassal + Holly or 1C vassal + Enel 6C is the target.</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -311,8 +264,8 @@ const matchups = [
 				))}
 			</div>
 			<p class="mulligan-text">
-				1C searcher to look for the missing pieces in the curve + 4C Cavendish or spell to build your board
-				and draw 3 cards. If you don’t see this combo, mulligan is the way.
+				1C vassal + Holly for more aggression, or 1C vassal + Enel 6C for consistency. If you do not see this
+				combo, mulligan is the way.
 			</p>
 		</div>
 	</section>
@@ -322,37 +275,13 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Curve Guide</h2>
-					<p>Turn-by-turn curve reminders for going first or second.</p>
+					<p>Turn-by-turn curve reminders.</p>
 				</div>
 			</div>
 			<div class="curve-block">
-				<h3>Curve 1st</h3>
+				<h3>Curve</h3>
 				<div class="curve-rows">
-					{curveFirst.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((card) => (
-									<button
-										class="mini-card"
-										type="button"
-										data-card-preview
-										data-full={card.img}
-										data-name={`${card.code} ${card.name}`}
-									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-									</button>
-								))}
-							</div>
-							<div class="curve-note">{slot.notes}</div>
-						</div>
-					))}
-				</div>
-			</div>
-			<div class="curve-block">
-				<h3>Curve 2nd</h3>
-				<div class="curve-rows">
-					{curveSecond.map((slot) => (
+					{curve.map((slot) => (
 						<div class="curve-row">
 							<div class="curve-label">{slot.label}</div>
 							<div class="curve-cards">
@@ -381,7 +310,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
-					<p>Key reminders and timing notes from your slides.</p>
+					<p>Key reminders and timing notes.</p>
 				</div>
 			</div>
 			<div class="tips-grid">
@@ -418,10 +347,10 @@ const matchups = [
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
 					<div class="matchup-card">
-					<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
-						<span class="badge-icon">{matchup.icon}</span>
-						<span>{matchup.label}</span>
-					</div>
+						<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
 						<button
 							class="mini-card"
 							type="button"
@@ -595,6 +524,8 @@ const matchups = [
 
 	.option-card img {
 		width: 100%;
+		max-width: 220px;
+		margin: 0 auto;
 		border-radius: 10px;
 	}
 
