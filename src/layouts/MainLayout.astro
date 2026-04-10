@@ -32,7 +32,6 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 						<a href="/">Home</a>
 						<a href="/deck-guides">Deck Guides</a>
 						<a href="/meta-analysis">Meta Analysis</a>
-						<a href="/matchups">Matchups</a>
 						<a href="/beginner-guides">Beginner Guides</a>
 						<a href="/banlist">Banlist</a>
 						<a href="/cards-list">Cards List</a>
@@ -63,7 +62,6 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 				<div class="footer-links">
 					<a href="/deck-guides">Deck Guides</a>
 					<a href="/meta-analysis">Meta Analysis</a>
-					<a href="/matchups">Matchups</a>
 					<a href="/beginner-guides">Beginner Guides</a>
 					<a href="/banlist">Banlist</a>
 					<a href="/cards-list">Cards List</a>
@@ -363,6 +361,10 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		gap: 1.2rem;
 	}
 
+	.card-grid.grid-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
 	.card {
 		display: flex;
 		flex-direction: column;
@@ -389,6 +391,18 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		letter-spacing: 1px;
 		color: var(--accent);
 		font-weight: 600;
+	}
+
+	.card-icon {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	.card-icon img {
+		width: min(100px, 60%);
+		border-radius: 12px;
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 	}
 
 	.card h3 {
@@ -466,6 +480,9 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 
 		.header-search-row {
 			justify-content: stretch;
+		}
+		.card-grid.grid-3 {
+			grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 		}
 	}
 

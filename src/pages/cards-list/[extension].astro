@@ -158,24 +158,23 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 		gap: 0.8rem;
 	}
 
-	.card-thumb {
-		padding: 0.4rem;
+	:global(.card-thumb) {
+		padding: 0;
 		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: rgba(11, 15, 26, 0.6);
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		border: none;
+		background: transparent;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		cursor: pointer;
 	}
 
-	.card-thumb img {
+	:global(.card-thumb img) {
 		width: 100%;
 		border-radius: 8px;
 	}
 
-	.card-thumb:hover,
-	.card-thumb:focus-visible {
+	:global(.card-thumb:hover),
+	:global(.card-thumb:focus-visible) {
 		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
 		outline: none;
 	}

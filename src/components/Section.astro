@@ -1,5 +1,5 @@
 ﻿---
-const { title, description, linkHref, linkLabel } = Astro.props;
+const { title, description, linkHref, linkLabel, gridClass } = Astro.props;
 ---
 
 <section class="section">
@@ -13,7 +13,7 @@ const { title, description, linkHref, linkLabel } = Astro.props;
 				<a href={linkHref}>{linkLabel}</a>
 			)}
 		</div>
-		<div class="card-grid">
+		<div class={`card-grid ${gridClass ?? ""}`.trim()}>
 			<slot />
 		</div>
 	</div>

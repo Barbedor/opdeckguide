@@ -395,7 +395,7 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 				<li><img class="keyword-badge" src="/assets/keywords/your-turn.png" alt="Your Turn" />: condition is met during your turn.</li>
 				<li><img class="keyword-badge" src="/assets/keywords/opponents-turn.png" alt="Opponent's Turn" />: condition is met during the opponent’s turn.</li>
 				<li><img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />: effect can resolve only once each turn for that card.</li>
-				<li>Défausser: choose a card from hand and place it in the trash.</li>
+				<li>Discard: choose a card from hand and place it in the trash.</li>
 				<li><img class="keyword-badge" src="/assets/keywords/on-block.png" alt="On Block" />: effect window is when you activate Blocker during the Block Step.</li>
 				<li><img class="keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />: effect window is after the opponent declares an attack.</li>
 				<li><img class="keyword-badge" src="/assets/keywords/on-ko.png" alt="On K.O." />: effect window is when this Character is KO’d and the effect resolves while it is in the trash.</li>
@@ -512,12 +512,12 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 	}
 
 	.card-thumb {
-		padding: 0.4rem;
+		padding: 0;
 		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: rgba(11, 15, 26, 0.6);
+		border: none;
+		background: transparent;
 		cursor: pointer;
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		flex: 0 0 auto;
 	}
 
@@ -531,7 +531,6 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 	.card-thumb:hover,
 	.card-thumb:focus-visible {
 		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
 		outline: none;
 	}

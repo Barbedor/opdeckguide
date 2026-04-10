@@ -320,8 +320,8 @@ const extensionSummaries = getExtensionSummaries();
 	.extension-previews img {
 		width: 100%;
 		border-radius: 8px;
-		border: 1px solid rgba(255, 255, 255, 0.05);
-		background: rgba(9, 12, 20, 0.8);
+		border: none;
+		background: transparent;
 	}
 
 	.extension-link {
@@ -341,11 +341,11 @@ const extensionSummaries = getExtensionSummaries();
 	}
 
 	.card-thumb {
-		padding: 0.4rem;
+		padding: 0;
 		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: rgba(11, 15, 26, 0.6);
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		border: none;
+		background: transparent;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		cursor: pointer;
 	}
 
@@ -357,7 +357,6 @@ const extensionSummaries = getExtensionSummaries();
 	.card-thumb:hover,
 	.card-thumb:focus-visible {
 		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
 		outline: none;
 	}
