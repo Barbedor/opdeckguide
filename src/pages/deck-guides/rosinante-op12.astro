@@ -1,0 +1,778 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Rosinante OP12 Deck Guide";
+const description =
+	"Rosinante OP12 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup notes.";
+
+const icon = "/assets/guides/rosinante-op12.png";
+
+const decklist = [
+	{ code: "OP12-061", name: "Donquixote Rosinante", count: 1, img: "/Cards/OP12/OP12-061.jpg", role: "Leader" },
+	{ code: "OP09-069", name: "Trafalgar Law", count: 4, img: "/Cards/OP09/OP09-069.jpg", role: "Character" },
+	{ code: "OP12-108", name: "Donquixote Rosinante", count: 4, img: "/Cards/OP12/OP12-108.jpg", role: "Character" },
+	{ code: "OP10-065", name: "Sugar", count: 4, img: "/Cards/OP10/OP10-065.jpg", role: "Character" },
+	{ code: "ST18-001", name: "Usohachi", count: 4, img: "/Cards/ST18/ST18-001.png", role: "Character" },
+	{ code: "OP12-112", name: "Baby 5", count: 4, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
+	{ code: "ST10-010", name: "Trafalgar Law", count: 1, img: "/Cards/ST10/ST10-010.png", role: "Character" },
+	{ code: "P-088", name: "Trafalgar Law", count: 4, img: "/Cards/P/P-088.jpg", role: "Character" },
+	{ code: "P-093", name: "Trafalgar Law", count: 4, img: "/Cards/P/P-093.jpg", role: "Character" },
+	{ code: "OP14-061", name: "Vergo", count: 3, img: "/Cards/OP14/OP14-061.jpg", role: "Character" },
+	{ code: "EB04-038", name: "Rosinante & Law", count: 4, img: "/Cards/EB04/EB04-038.jpg", role: "Character" },
+	{ code: "EB03-062", name: "Trafalgar Law", count: 4, img: "/Cards/EB03/EB03-062.jpg", role: "Character" },
+	{ code: "OP12-073", name: "Trafalgar Law", count: 4, img: "/Cards/OP12/OP12-073.jpg", role: "Event" },
+	{ code: "OP13-076", name: "Divine Departure", count: 2, img: "/Cards/OP13/OP13-076.jpg", role: "Event" },
+	{ code: "OP12-115", name: "I Love You!!", count: 4, img: "/Cards/OP12/OP12-115.jpg", role: "Event" },
+];
+
+const options = [
+	{
+		code: "OP05-069",
+		name: "Trafalgar Law",
+		img: "/Cards/OP05/OP05-069.png",
+	},
+	{
+		code: "OP12-077",
+		name: "OP12-077",
+		img: "/Cards/OP12/OP12-077.jpg",
+	},
+	{
+		code: "OP05-077",
+		name: "OP05-077",
+		img: "/Cards/OP05/OP05-077.png",
+	},
+	{
+		code: "OP14-078",
+		name: "OP14-078",
+		img: "/Cards/OP14/OP14-078.jpg",
+	},
+];
+
+const optionsNote =
+	"The deck allows few changes. Law maximizes the searches while the spells are situational and depend on the meta. Gamma Knife helps against Kid Fortress, and Bullet String is a small tech that can steal games by reducing some 2K slots.";
+
+const mulliganCards = [
+	{ code: "OP09-069", name: "Law", img: "/Cards/OP09/OP09-069.jpg" },
+	{ code: "OP12-108", name: "Rosinante", img: "/Cards/OP12/OP12-108.jpg" },
+	{ code: "OP10-065", name: "Sugar", img: "/Cards/OP10/OP10-065.jpg" },
+	{ code: "P-093", name: "Law", img: "/Cards/P/P-093.jpg" },
+];
+
+const curve = [
+	{
+		label: "1/2 DON",
+		notes: "Search for missing character.",
+		cards: [
+			{ code: "OP09-069", name: "Law", img: "/Cards/OP09/OP09-069.jpg" },
+			{ code: "OP12-108", name: "Rosinante", img: "/Cards/OP12/OP12-108.jpg" },
+			{ code: "OP10-065", name: "Sugar", img: "/Cards/OP10/OP10-065.jpg" },
+		],
+	},
+	{
+		label: "3/4 DON",
+		notes:
+			"Promo Law is the best choice because it allows you to play in the curve without going negative of DON. Law blocker instead is a valid option for a tempo play against decks like Ace.",
+		cards: [
+			{ code: "P-093", name: "Law", img: "/Cards/P/P-093.jpg" },
+			{ code: "ST10-010", name: "Law", img: "/Cards/ST10/ST10-010.png" },
+		],
+	},
+	{
+		label: "5/6 DON",
+		notes:
+			"Vergo is essential against blue deck or based removal. Your choice is always the new Rosinante to start growing your board and putting pressure.",
+		cards: [
+			{ code: "OP14-061", name: "Vergo", img: "/Cards/OP14/OP14-061.jpg" },
+			{ code: "EB04-038", name: "EB04-038", img: "/Cards/EB04/EB04-038.jpg" },
+		],
+	},
+	{
+		label: "7/8 DON",
+		notes:
+			"Law 7C allows you to bring the Leader to 6k base and make your blockers even more problematic for the opponent. Against decks like ST29 or Boa, the new Law 6C allows you to push and heal yourself so as to ruin their plans.",
+		cards: [
+			{ code: "EB03-062", name: "EB03-062", img: "/Cards/EB03/EB03-062.jpg" },
+			{ code: "OP12-073", name: "OP12-073", img: "/Cards/OP12/OP12-073.jpg" },
+		],
+	},
+	{
+		label: "Late game",
+		notes:
+			"This card allows you not only to counter, but also to take a Law from the trash so you can use a 2K against a 5k base attack. Use it carefully to resume Laws like 8c, but remember you only have 4x.",
+		cards: [{ code: "OP12-115", name: "OP12-115", img: "/Cards/OP12/OP12-115.jpg" }],
+	},
+];
+
+const tips = [
+	{
+		title:
+			"Leader ability allows you to play in any curve, so choose the most annoying one for the opponent and force them to play by your rules. Saving all your board from KO does not always work against removal like Red Roc, so be careful.",
+		cards: [{ code: "OP12-061", name: "Rosinante", img: "/Cards/OP12/OP12-061.jpg" }],
+	},
+	{
+		title:
+			"Vergo is indispensable to save your Doffy family pieces, but not all are needed. That is why we only play 3x. The card is strong but is not searchable by Sugar, so think well which searcher to play in order to not mix any character in curve.",
+		cards: [{ code: "OP14-061", name: "Vergo", img: "/Cards/OP14/OP14-061.jpg" }],
+	},
+	{
+		title:
+			"As we have seen this spell allows you to make absurd ticks and we would like to play another 4x but you can't. Sometimes it's better to let go of a piece of your board and play it the next turn, even if we don't have a play for the next round it can be useful.",
+		cards: [{ code: "OP12-115", name: "OP12-115", img: "/Cards/OP12/OP12-115.jpg" }],
+	},
+];
+
+const matchups = [
+	{
+		label: "Slight Adv.",
+		icon: "↑",
+		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
+		notes: ["Start 2nd", "Manage your life", "Use the spell correctly"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
+		notes: ["Start 2nd", "Manage your board", "Ramp fast"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
+		notes: ["Start 1st", "Board control", "Spam your board"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: ["Start 2nd", "Manage your board", "Blue is a problem"],
+	},
+	{
+		label: "Slight Disadv.",
+		icon: "↓",
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: ["Start 1st", "Manage your board", "Blue is a problem"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "ST29-001", name: "Monkey D. Luffy", img: "/Cards/ST29/ST29-001.jpg" },
+		notes: ["Start 1st", "Go aggro", "Add life as much as possible"],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Rosinante OP12 Deck Guide</h1>
+				<p>
+					Complete reference guide for Rosinante OP12: decklist, curve checkpoints, mulligan priorities, tech
+					options, and matchup notes. Built for fast reading between rounds.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Rosinante OP12 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Main list from your OP12 Rosinante build.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Options & Tech Cards</h2>
+					<p>Flexible slots to adapt the list.</p>
+				</div>
+			</div>
+			<div class="options-grid">
+				{options.map((card) => (
+					<button
+						class="option-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+					<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="option-info">
+							<div class="deck-name">{card.name}</div>
+							<div class="deck-code">{card.code}</div>
+						</div>
+					</button>
+				))}
+			</div>
+			<p class="section-note">{optionsNote}</p>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>Searcher for missing curve + promo Law for ramp and establishing your board.</p>
+				</div>
+			</div>
+			<div class="mulligan-grid">
+				{mulliganCards.map((card) => (
+					<button
+						class="mini-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="mini-label">{card.name}</div>
+					</button>
+				))}
+			</div>
+			<p class="mulligan-text">
+				If you do not see this combo, mulligan is the way.
+			</p>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn curve reminders.</p>
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve</h3>
+				<div class="curve-rows">
+					{curve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Key reminders and timing notes.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-cards">
+							{tip.cards.map((card) => (
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<p>{tip.title}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>Quick matchup snapshot based on your slide notes.</p>
+				</div>
+			</div>
+			<div class="matchups-grid">
+				{matchups.map((matchup) => (
+					<div class="matchup-card">
+						<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<button
+							class="mini-card"
+							type="button"
+							data-card-preview
+							data-full={matchup.leader.img}
+							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+						>
+							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+						</button>
+						<div class="matchup-name">{matchup.leader.name}</div>
+						<ul>
+							{matchup.notes.map((note) => (
+								<li>{note}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.8rem;
+		display: grid;
+		gap: 0.6rem;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 220px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.option-note {
+		margin: 0.4rem 0 0;
+		color: var(--text-300);
+		font-size: 0.9rem;
+	}
+
+	.note-block {
+		background: rgba(14, 18, 30, 0.7);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem 1.4rem;
+	}
+
+	.mulligan-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.mulligan-text {
+		color: var(--text-200);
+	}
+
+	.curve-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.curve-block {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-note {
+		color: var(--text-300);
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.tip-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.matchups-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	.curve-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+	}
+
+	.section-note {
+		color: var(--text-300);
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.deck-card img {
+			max-width: 120px;
+		}
+
+		.option-card img {
+			max-width: 200px;
+			margin: 0 auto;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+	}
+</style>

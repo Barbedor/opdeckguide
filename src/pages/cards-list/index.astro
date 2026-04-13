@@ -8,6 +8,26 @@ const description = "Browse One Piece Card Game cards by extension. Search by ca
 const metadataAvailable = hasMetadata();
 
 const extensionSummaries = getExtensionSummaries();
+const groupForExtension = (value) => {
+	const upper = value.toUpperCase();
+	if (upper.startsWith("OP")) return "OP";
+	if (upper.startsWith("EB")) return "EB";
+	if (upper.startsWith("PRB")) return "PRB";
+	if (upper.startsWith("ST")) return "ST";
+	if (upper === "P") return "Promo";
+	return "Other";
+};
+
+const groupedExtensions = [];
+let lastGroup = null;
+for (const item of extensionSummaries) {
+	const group = groupForExtension(item.extension);
+	if (lastGroup && group !== lastGroup) {
+		groupedExtensions.push({ type: "separator", group });
+	}
+	groupedExtensions.push({ type: "extension", item, group });
+	lastGroup = group;
+}
 ---
 
 <MainLayout title={title} description={description}>
@@ -33,20 +53,26 @@ const extensionSummaries = getExtensionSummaries();
 				</div>
 			</div>
 			<div class="extensions-grid">
-				{extensionSummaries.map((item) => (
-					<a class="extension-card" href={`/cards-list/${item.extension}`}>
-						<div class="extension-card-header">
-							<h3>{item.extension}</h3>
-							<span>{item.count} cards</span>
+				{groupedExtensions.map((entry) =>
+					entry.type === "separator" ? (
+						<div class="extension-separator">
+							<span>{entry.group}</span>
 						</div>
-						<div class="extension-previews">
-							{item.previews.map((card) => (
-								<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
-							))}
-						</div>
-						<span class="extension-link">Browse extension</span>
-					</a>
-				))}
+					) : (
+						<a class="extension-card" href={`/cards-list/${entry.item.extension}`}>
+							<div class="extension-card-header">
+								<h3>{entry.item.extension}</h3>
+								<span>{entry.item.count} cards</span>
+							</div>
+							<div class="extension-previews">
+								{entry.item.previews.map((card) => (
+									<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+								))}
+							</div>
+							<span class="extension-link">Browse extension</span>
+						</a>
+					)
+				)}
 			</div>
 		</div>
 	</section>
@@ -273,6 +299,27 @@ const extensionSummaries = getExtensionSummaries();
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 1.5rem;
+	}
+
+	.extension-separator {
+		grid-column: 1 / -1;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		margin: 0.2rem 0 0.4rem;
+		color: var(--accent);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.8rem;
+	}
+
+	.extension-separator::before,
+	.extension-separator::after {
+		content: "";
+		height: 1px;
+		background: rgba(255, 107, 61, 0.4);
+		flex: 1;
 	}
 
 	.extension-card {

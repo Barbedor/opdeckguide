@@ -98,10 +98,12 @@ export const getCardsForExtension = (extension) => {
 	if (!fs.existsSync(extensionPath)) return [];
 	const files = fs.readdirSync(extensionPath);
 	const fullByBase = new Map();
+	const isPromoDon = (base) => extension.toUpperCase() === "P" && base.toLowerCase() === "don";
 
 	for (const file of files) {
 		if (file.toLowerCase().includes("_small")) continue;
 		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		if (isPromoDon(base)) continue;
 		fullByBase.set(base, `/Cards/${extension}/${file}`);
 	}
 
@@ -111,6 +113,7 @@ export const getCardsForExtension = (extension) => {
 		.filter((file) => /_small\.(png|jpg|jpeg|webp)$/i.test(file))
 		.map((file) => {
 			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
+			if (isPromoDon(base)) return null;
 			const fullUrl = fullByBase.get(base);
 			const meta = metadataIndex.get(base) ?? {};
 			return {
@@ -121,7 +124,7 @@ export const getCardsForExtension = (extension) => {
 				fullUrl,
 			};
 		})
-		.filter((card) => Boolean(card.fullUrl))
+		.filter((card) => card && Boolean(card.fullUrl))
 		.sort((a, b) => a.code.localeCompare(b.code, "en"));
 };
 
@@ -130,10 +133,12 @@ export const getExtensionSummary = (extension) => {
 	if (!fs.existsSync(extensionPath)) return { extension, count: 0, previews: [] };
 	const files = fs.readdirSync(extensionPath);
 	const fullByBase = new Map();
+	const isPromoDon = (base) => extension.toUpperCase() === "P" && base.toLowerCase() === "don";
 
 	for (const file of files) {
 		if (file.toLowerCase().includes("_small")) continue;
 		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		if (isPromoDon(base)) continue;
 		fullByBase.set(base, `/Cards/${extension}/${file}`);
 	}
 
@@ -141,6 +146,7 @@ export const getExtensionSummary = (extension) => {
 	const cards = smallFiles
 		.map((file) => {
 			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
+			if (isPromoDon(base)) return null;
 			const fullUrl = fullByBase.get(base);
 			return {
 				code: base,
@@ -148,7 +154,7 @@ export const getExtensionSummary = (extension) => {
 				fullUrl,
 			};
 		})
-		.filter((card) => Boolean(card.fullUrl))
+		.filter((card) => card && Boolean(card.fullUrl))
 		.sort((a, b) => a.code.localeCompare(b.code, "en"));
 
 	return {
