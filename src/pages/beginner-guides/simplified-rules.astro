@@ -22,26 +22,9 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 				can keep open while learning your first matches.
 			</p>
 			<p>
-				This summary stays strictly within the official rules language. It does not add deck advice or
-				gameplay strategy. For the complete reference, use the full rules page linked above.
-			</p>
-			<p>
 				For deck‑specific learning and improvement, go to <a href="/deck-guides">Deck Guides</a>. For a quick
 				view of what is popular in tournaments, use <a href="/meta-analysis">Meta Analysis</a>.
 			</p>
-		</div>
-	</section>
-
-	<section class="list-section">
-		<div class="container">
-			<h2>Illustrations</h2>
-			<p class="section-note">Sample card images used as visual references.</p>
-			<div class="cards-grid">
-				<img loading="lazy" src="/Cards/EB04/EB04-001.jpg" alt="Leader card sample" />
-				<img loading="lazy" src="/Cards/EB04/EB04-048.jpg" alt="Character card sample" />
-				<img loading="lazy" src="/Cards/OP15/OP15-078.jpg" alt="Event card sample" />
-				<img loading="lazy" src="/Cards/OP15/OP15-057.jpg" alt="Stage card sample" />
-			</div>
 		</div>
 	</section>
 
@@ -82,8 +65,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 				<div class="rule-visual-item">
 					<div class="rule-text">
 						Character cards enter the Character area and can attack. Some Characters have effects, while
-						others do not. Only Characters with the
-						<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> effect can block.
+						others do not.
 					</div>
 					<button
 						class="card-thumb"
@@ -125,8 +107,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 				</div>
 				<div class="rule-visual-item">
 					<div class="rule-text">
-						DON!! cards are used to pay costs and can be given to Leaders or Characters to increase power
-						during your turn.
+						DON!! cards are the resource you use to play Characters, Stages, and Events. You can also give
+						active DON!! to your Leader or Characters to increase power during your turn.
 					</div>
 					<button
 						class="card-thumb"
@@ -143,27 +125,84 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 	</section>
 
 	<section class="list-section">
-		<div class="container">
-			<h2>Win Conditions</h2>
-			<ul>
-				<li>You win if the opponent has no Life cards and their Leader takes damage.</li>
-				<li>You win if the opponent’s deck reaches 0 cards.</li>
-			</ul>
+		<div class="container board-section">
+			<h2>Board Layout</h2>
+			<p class="section-note">
+				This sample board follows the real One Piece Card Game playmat structure so new players can quickly
+				understand where each zone goes.
+			</p>
+			<figure class="board-figure" aria-label="One Piece Card Game board layout example">
+				<div class="playmat">
+					<div class="playmat-logo">
+						<span>ONE PIECE</span>
+						<small>CARD GAME</small>
+					</div>
+					<div class="zone zone-character">
+						<span class="zone-number">1</span>
+						<div class="zone-title">CHARACTER AREA</div>
+						<ul class="zone-notes">
+							<li>You can play up to 5 Character cards.</li>
+							<li>Characters cannot attack on the turn they were played.</li>
+						</ul>
+					</div>
+					<div class="zone zone-life">
+						<span class="zone-number">8</span>
+						<div class="zone-label zone-label-bottom">LIFE</div>
+					</div>
+					<div class="playmat-middle">
+						<div class="turn-flow">
+							<div>Refresh Phase</div>
+							<div>Draw Phase</div>
+							<div>DON!! Phase</div>
+							<div>Main Phase</div>
+							<div>End Phase</div>
+						</div>
+						<div class="zone zone-leader">
+							<span class="zone-number">2</span>
+							<div class="zone-title zone-title-small">LEADER CARD</div>
+						</div>
+						<div class="zone zone-stage">
+							<span class="zone-number">3</span>
+							<div class="zone-title zone-title-small">STAGE CARD</div>
+						</div>
+						<div class="zone zone-deck">
+							<span class="zone-number">4</span>
+							<div class="zone-title zone-title-small">DECK</div>
+						</div>
+					</div>
+					<div class="zone zone-don-deck">
+						<span class="zone-number">7</span>
+						<div class="zone-title zone-title-small">DON!! DECK</div>
+					</div>
+					<div class="zone zone-cost">
+						<span class="zone-number">6</span>
+						<div class="zone-title">COST AREA</div>
+					</div>
+					<div class="zone zone-trash">
+						<span class="zone-number">5</span>
+						<div class="zone-title zone-title-small">TRASH</div>
+					</div>
+				</div>
+			</figure>
+			<ol class="board-legend">
+				<li><strong>Character Area:</strong> This is where you play Character cards. You can have up to 5 Characters on the field at a time.</li>
+				<li><strong>Leader Card:</strong> This is where you place your Leader card.</li>
+				<li><strong>Stage Card:</strong> This is where you play your Stage card. Each player can have only one Stage card on the field at a time.</li>
+				<li><strong>Deck:</strong> This is where you place your deck and draw cards from.</li>
+				<li><strong>Trash:</strong> This is where you place K.O.'d Characters and used cards.</li>
+				<li><strong>Cost Area:</strong> This is where you place DON!! cards. Use the cards here to pay costs or power up for battle.</li>
+				<li><strong>DON!! Deck:</strong> This is where you place your DON!! deck. It contains exactly 10 DON!! cards.</li>
+				<li><strong>Life Cards:</strong> This is where you place your Life cards.</li>
+			</ol>
 		</div>
 	</section>
 
 	<section class="list-section">
 		<div class="container">
-			<h2>Zones at a Glance</h2>
+			<h2>Win Conditions</h2>
 			<ul>
-				<li>Leader Area: your Leader card.</li>
-				<li>Character Area: your Characters (up to 5).</li>
-				<li>Stage Area: your Stage (only 1 at a time).</li>
-				<li>Cost Area: your DON!! cards.</li>
-				<li>DON!! Deck: separate deck of DON!! cards.</li>
-				<li>Life Area: face‑down Life cards.</li>
-				<li>Deck: your main deck.</li>
-				<li>Trash: discarded cards and KO’d Characters.</li>
+				<li>You win if the opponent has no Life cards and their Leader takes damage.</li>
+				<li>You win if the opponent’s deck reaches 0 cards.</li>
 			</ul>
 		</div>
 	</section>
@@ -197,7 +236,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		<div class="container">
 			<h2>Combat (Simplified)</h2>
 			<ul>
-				<li>Attacks are not allowed on the first player’s first turn.</li>
+				<li>Attacks are not allowed on the first turn of the game.</li>
 				<li>Declare attack: rest a Leader or active Character and choose a target.</li>
 				<li>Block Step: defender may use a <img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> to redirect the attack.</li>
 				<li>Counter Step: defender may use <img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" /> effects from Characters or Events.</li>
@@ -269,20 +308,322 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		margin-bottom: 1rem;
 	}
 
-	.cards-grid {
+	.board-legend {
+		margin: 1.5rem 0 0;
+		padding-left: 1.2rem;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-		gap: 1rem;
-		justify-items: center;
+		gap: 0.55rem;
+		color: var(--text-200);
+		max-width: 72rem;
 	}
 
-	.cards-grid img {
-		width: 100%;
-		max-width: 160px;
-		border-radius: 12px;
+	.board-section {
+		max-width: min(100%, 92rem);
+	}
+
+	.board-figure {
+		margin: 0;
+		padding: 1rem;
+		border-radius: var(--radius-lg);
 		border: 1px solid var(--border);
-		background: rgba(11, 15, 26, 0.6);
+		background:
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.18), transparent 55%),
+			rgba(10, 14, 24, 0.88);
 		box-shadow: var(--shadow);
+	}
+
+	.playmat {
+		display: grid;
+		grid-template-columns: 12rem minmax(0, 1fr) 12rem;
+		grid-template-rows: auto auto auto;
+		grid-template-areas:
+			"logo character character"
+			"life middle middle"
+			"dondeck cost trash";
+		gap: 1.25rem;
+		padding: 1.25rem;
+		border-radius: calc(var(--radius-lg) - 4px);
+		background:
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.16), transparent 34%),
+			linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(10, 14, 24, 0.98));
+		border: 1px solid rgba(255, 122, 24, 0.18);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+	}
+
+	.playmat-logo {
+		grid-area: logo;
+		align-self: start;
+		padding: 0.25rem 0.1rem 0 0.1rem;
+		color: var(--text-100);
+		font-weight: 900;
+		letter-spacing: 0.04em;
+	}
+
+	.playmat-logo span {
+		display: block;
+		font-size: 1.9rem;
+		line-height: 0.9;
+	}
+
+	.playmat-logo small {
+		display: block;
+		font-size: 1rem;
+		letter-spacing: 0.18em;
+		color: var(--text-300);
+	}
+
+	.zone {
+		position: relative;
+		border: 2px solid rgba(255, 122, 24, 0.9);
+		border-radius: 0.9rem;
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.08), transparent 70%),
+			rgba(12, 17, 30, 0.9);
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+			0 14px 30px rgba(0, 0, 0, 0.24);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 1.25rem;
+	}
+
+	.zone-number {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 3.8rem;
+		height: 3.8rem;
+		display: grid;
+		place-items: center;
+		background: linear-gradient(180deg, var(--accent-2), var(--accent));
+		color: #fff;
+		font-size: 1.8rem;
+		font-weight: 900;
+		line-height: 1;
+		border-bottom-right-radius: 1rem;
+		box-shadow: 0 10px 18px rgba(255, 122, 24, 0.22);
+	}
+
+	.zone-title {
+		color: var(--text-100);
+		font-size: clamp(1.7rem, 1.8vw, 2.6rem);
+		font-weight: 900;
+		letter-spacing: 0.04em;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+	}
+
+	.zone-title-small {
+		font-size: clamp(1.15rem, 1.3vw, 1.8rem);
+	}
+
+	.zone-label-bottom {
+		align-self: flex-end;
+		font-size: 2rem;
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		color: var(--text-100);
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	.zone-character {
+		grid-area: character;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 0.9rem;
+		padding: 4.8rem 1.8rem 1.6rem;
+		min-height: 14rem;
+	}
+
+	.zone-notes {
+		margin: 0;
+		padding-left: 1.2rem;
+		align-self: flex-start;
+		text-align: left;
+		color: var(--text-200);
+		font-size: 0.98rem;
+		font-weight: 600;
+	}
+
+	.zone-life {
+		grid-area: life;
+		min-height: 23rem;
+		align-items: flex-end;
+		justify-content: flex-start;
+		padding: 1.2rem;
+	}
+
+	.playmat-middle {
+		grid-area: middle;
+		display: grid;
+		grid-template-columns: 12rem repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+		align-items: stretch;
+	}
+
+	.turn-flow {
+		grid-column: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+		padding: 0.4rem 0;
+	}
+
+	.turn-flow div {
+		width: 100%;
+		padding: 0.5rem 0.75rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, rgba(71, 85, 105, 0.95), rgba(51, 65, 85, 0.95));
+		color: #f8fafc;
+		font-weight: 800;
+		text-align: center;
+		position: relative;
+		box-shadow: 0 8px 18px rgba(15, 23, 42, 0.28);
+		font-size: 0.95rem;
+	}
+
+	.turn-flow div:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: calc(100% + 0.12rem);
+		width: 2px;
+		height: 0.45rem;
+		background: #475569;
+		transform: translateX(-50%);
+	}
+
+	.zone-leader,
+	.zone-stage,
+	.zone-deck,
+	.zone-don-deck,
+	.zone-cost,
+	.zone-trash {
+		min-height: 12rem;
+	}
+
+	.zone-leader {
+		grid-column: 2;
+	}
+
+	.zone-stage {
+		grid-column: 3;
+	}
+
+	.zone-deck {
+		grid-column: 4;
+	}
+
+	.zone-don-deck {
+		grid-area: dondeck;
+	}
+
+	.zone-cost {
+		grid-area: cost;
+	}
+
+	.zone-trash {
+		grid-area: trash;
+	}
+
+	@media (max-width: 1100px) {
+		.playmat {
+			grid-template-columns: 9.5rem minmax(0, 1fr) 9.5rem;
+		}
+
+		.playmat-middle {
+			grid-template-columns: 9.5rem repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 920px) {
+		.playmat {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto;
+			grid-template-areas:
+				"logo"
+				"character"
+				"life"
+				"middle"
+				"cost"
+				"trash"
+				"dondeck";
+		}
+
+		.playmat-middle {
+			grid-template-columns: 1fr;
+			gap: 0.8rem;
+		}
+
+		.zone-life,
+		.playmat > .zone-don-deck,
+		.playmat > .zone-trash,
+		.playmat > .zone-cost {
+			width: 100%;
+			margin: 0;
+			justify-self: stretch;
+			min-height: 9rem;
+		}
+
+		.zone-life {
+			min-height: 12rem;
+		}
+
+		.zone-character {
+			min-height: 14rem;
+		}
+
+		.zone-leader,
+		.zone-stage,
+		.zone-deck {
+			grid-column: auto;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.playmat-logo span {
+			font-size: 1.45rem;
+		}
+
+		.playmat-logo small {
+			font-size: 0.8rem;
+		}
+
+		.zone-number {
+			width: 3rem;
+			height: 3rem;
+			font-size: 1.35rem;
+		}
+
+		.zone-title {
+			font-size: 1.3rem;
+		}
+
+		.zone-title-small {
+			font-size: 1.05rem;
+		}
+
+		.zone-label-bottom {
+			font-size: 1.45rem;
+		}
+
+		.zone-character {
+			padding: 3.7rem 1rem 1rem;
+		}
+
+		.zone-notes {
+			font-size: 0.85rem;
+		}
+
+		.turn-flow div {
+			font-size: 0.85rem;
+		}
 	}
 
 	.rule-visual-list {
@@ -399,6 +740,10 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 	}
 
 	@media (max-width: 720px) {
+		.board-figure {
+			padding: 0.7rem;
+		}
+
 		.rule-visual-item {
 			flex-direction: column;
 			align-items: flex-start;
@@ -406,10 +751,6 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 
 		.card-thumb img {
 			width: 120px;
-			max-width: 120px;
-		}
-
-		.cards-grid img {
 			max-width: 120px;
 		}
 	}
