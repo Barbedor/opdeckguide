@@ -1,17 +1,552 @@
-﻿---
+---
 const { title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
+
+const cardPool = [
+	"/Cards/OP14/OP14-001.jpg",
+	"/Cards/OP14/OP14-002.jpg",
+	"/Cards/OP14/OP14-003.jpg",
+	"/Cards/OP14/OP14-004.jpg",
+	"/Cards/OP14/OP14-005.jpg",
+	"/Cards/OP14/OP14-006.jpg",
+	"/Cards/OP14/OP14-007.jpg",
+	"/Cards/OP14/OP14-008.jpg",
+	"/Cards/OP14/OP14-009.jpg",
+	"/Cards/OP14/OP14-010.jpg",
+	"/Cards/OP14/OP14-011.jpg",
+	"/Cards/OP14/OP14-012.jpg",
+	"/Cards/OP14/OP14-020.jpg",
+	"/Cards/OP14/OP14-041.jpg",
+	"/Cards/OP14/OP14-060.jpg",
+	"/Cards/OP14/OP14-061.jpg",
+	"/Cards/OP14/OP14-100.jpg",
+	"/Cards/OP14/OP14-104.jpg",
+	"/Cards/OP14/OP14-110.jpg",
+	"/Cards/OP14/OP14-111.jpg",
+	"/Cards/OP15/OP15-001.jpg",
+	"/Cards/OP15/OP15-002.jpg",
+	"/Cards/OP15/OP15-003.jpg",
+	"/Cards/OP15/OP15-004.jpg",
+	"/Cards/OP15/OP15-005.jpg",
+	"/Cards/OP15/OP15-006.jpg",
+	"/Cards/OP15/OP15-007.jpg",
+	"/Cards/OP15/OP15-008.jpg",
+	"/Cards/OP15/OP15-009.jpg",
+	"/Cards/OP15/OP15-010.jpg",
+	"/Cards/OP15/OP15-011.jpg",
+	"/Cards/OP15/OP15-012.jpg",
+	"/Cards/OP15/OP15-041.jpg",
+	"/Cards/OP15/OP15-047.jpg",
+	"/Cards/OP15/OP15-058.jpg",
+	"/Cards/OP15/OP15-098.jpg",
+	"/Cards/OP15/OP15-113.jpg",
+	"/Cards/EB03/EB03-001.jpg",
+	"/Cards/EB03/EB03-002.jpg",
+	"/Cards/EB03/EB03-003.jpg",
+	"/Cards/EB03/EB03-004.jpg",
+	"/Cards/EB03/EB03-005.jpg",
+	"/Cards/EB03/EB03-006.jpg",
+	"/Cards/EB03/EB03-007.jpg",
+	"/Cards/EB03/EB03-008.jpg",
+	"/Cards/EB03/EB03-009.jpg",
+	"/Cards/EB03/EB03-010.jpg",
+	"/Cards/EB03/EB03-011.jpg",
+	"/Cards/EB03/EB03-012.jpg",
+	"/Cards/EB03/EB03-053.jpg",
+	"/Cards/EB03/EB03-055.jpg",
+	"/Cards/EB03/EB03-060.jpg",
+	"/Cards/EB03/EB03-062.jpg",
+	"/Cards/EB04/EB04-001.jpg",
+	"/Cards/EB04/EB04-002.jpg",
+	"/Cards/EB04/EB04-003.jpg",
+	"/Cards/EB04/EB04-004.jpg",
+	"/Cards/EB04/EB04-005.jpg",
+	"/Cards/EB04/EB04-006.jpg",
+	"/Cards/EB04/EB04-007.jpg",
+	"/Cards/EB04/EB04-008.jpg",
+	"/Cards/EB04/EB04-009.jpg",
+	"/Cards/EB04/EB04-010.jpg",
+	"/Cards/EB04/EB04-011.jpg",
+	"/Cards/EB04/EB04-012.jpg",
+	"/Cards/EB04/EB04-038.jpg",
+	"/Cards/EB04/EB04-058.jpg",
+	"/Cards/PRB02/PRB02-001.jpg",
+	"/Cards/PRB02/PRB02-002.jpg",
+	"/Cards/PRB02/PRB02-003.jpg",
+	"/Cards/PRB02/PRB02-004.jpg",
+	"/Cards/PRB02/PRB02-005.jpg",
+	"/Cards/PRB02/PRB02-006.jpg",
+	"/Cards/PRB02/PRB02-007.jpg",
+	"/Cards/PRB02/PRB02-008.jpg",
+	"/Cards/PRB02/PRB02-009.jpg",
+	"/Cards/PRB02/PRB02-010.jpg",
+	"/Cards/PRB02/PRB02-011.jpg",
+	"/Cards/PRB02/PRB02-012.jpg",
+];
 ---
 
-	<section class="hero">
-		<div class="container hero-grid">
-			<div>
-				<span class="hero-badge">OPTCG Strategy Hub</span>
-				<h1>{title}</h1>
-				<p>{description}</p>
-				<div class="hero-actions">
-					<a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
-					<a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+<section class="hero hero-showcase">
+	<div class="hero-float-layer" data-hero-float-layer aria-hidden="true"></div>
+	<div class="container">
+		<div class="hero-shell" data-hero-shell>
+			<div class="hero-center">
+				<div class="hero-copy">
+					<span class="hero-badge">OPTCG Strategy Hub</span>
+					<h1 class="hero-title">{title}</h1>
+					<p>{description}</p>
+					<div class="hero-actions">
+						<a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
+						<a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
+
+<script define:vars={{ cardPool }}>
+	const shell = document.querySelector("[data-hero-shell]");
+	const layer = document.querySelector("[data-hero-float-layer]");
+
+	if (shell && layer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		const activeCards = new Set();
+		const maxActiveCards = 5;
+		const spawnIntervalMs = 1450;
+		const laneReleaseDelayMs = 1300;
+		const initialSpawnCount = 3;
+		const initialSpawnSpacingMs = 900;
+		const sideLanes = {
+			left: [14, 34, 56],
+			right: [16, 38, 60],
+		};
+
+		const randomFrom = (items) => items[Math.floor(Math.random() * items.length)];
+		const sideState = { next: "left" };
+		const laneState = {
+			left: [false, false, false],
+			right: [false, false, false],
+		};
+
+		const getUniqueCard = () => {
+			const used = new Set(Array.from(activeCards).map((node) => node.getAttribute("data-card-src")));
+			const available = cardPool.filter((src) => !used.has(src));
+			return randomFrom(available.length ? available : cardPool);
+		};
+
+		const createFloatingCard = () => {
+			if (activeCards.size >= maxActiveCards) return;
+
+			const side = sideState.next;
+			sideState.next = side === "left" ? "right" : "left";
+			const availableLanes = laneState[side]
+				.map((used, index) => ({ used, index }))
+				.filter((lane) => !lane.used);
+			if (!availableLanes.length) return;
+			const lane = randomFrom(availableLanes).index;
+			laneState[side][lane] = true;
+
+			const node = document.createElement("div");
+			const image = document.createElement("img");
+			const cardSrc = getUniqueCard();
+			image.src = cardSrc;
+			image.alt = "";
+			node.className = "floating-card-dynamic";
+			image.className = "floating-card-face";
+			node.setAttribute("data-card-src", cardSrc);
+			image.decoding = "async";
+			image.loading = "eager";
+
+			const width = `${100 + Math.round(Math.random() * 40)}px`;
+			const startY = `${88 + Math.random() * 8}%`;
+			const driftX = `${28 + Math.random() * 24}px`;
+			const driftY = `${500 + Math.random() * 160}px`;
+			const startRotate = `${side === "left" ? -22 + Math.random() * 12 : 10 + Math.random() * 16}deg`;
+			const endRotate = `${side === "left" ? -6 + Math.random() * 18 : -2 + Math.random() * 18}deg`;
+			const pivotX = `${side === "left" ? -18 + Math.random() * 24 : -16 + Math.random() * 24}deg`;
+			const pivotY = `${side === "left" ? -28 + Math.random() * 30 : -30 + Math.random() * 32}deg`;
+			const pivotZ = `${-8 + Math.random() * 16}deg`;
+			const duration = `${6200 + Math.round(Math.random() * 1400)}ms`;
+			const delay = `${Math.round(Math.random() * 120)}ms`;
+			const scale = `${0.96 + Math.random() * 0.1}`;
+			const startX = side === "left" ? `${4 + Math.random() * 8}%` : `${80 + Math.random() * 6}%`;
+			const rotateMidA = `${Number.parseFloat(startRotate) + (-6 + Math.random() * 12)}deg`;
+			const rotateMidB = `${Number.parseFloat(endRotate) + (-7 + Math.random() * 14)}deg`;
+			const tiltBiasX = `${-6 + Math.random() * 12}deg`;
+			const tiltBiasY = `${-8 + Math.random() * 16}deg`;
+			const swayX1 = `${(side === "left" ? 1 : -1) * (8 + Math.random() * 14)}px`;
+			const swayX2 = `${(side === "left" ? -1 : 1) * (4 + Math.random() * 12)}px`;
+			const swayY1 = `${-8 - Math.random() * 12}px`;
+			const swayY2 = `${6 + Math.random() * 12}px`;
+			const depthA = `${12 + Math.random() * 26}px`;
+			const depthB = `${6 + Math.random() * 20}px`;
+			const depthC = `${2 + Math.random() * 14}px`;
+			const originX = `${28 + Math.random() * 44}%`;
+			const originY = `${34 + Math.random() * 32}%`;
+
+			node.style.setProperty("--card-width", width);
+			node.style.setProperty("--card-start-x", startX);
+			node.style.setProperty("--card-start-y", startY);
+			node.style.setProperty("--card-drift-x", side === "left" ? driftX : `-${driftX}`);
+			node.style.setProperty("--card-drift-y", `-${driftY}`);
+			node.style.setProperty("--card-rotate-start", startRotate);
+			node.style.setProperty("--card-rotate-end", endRotate);
+			node.style.setProperty("--card-pivot-x", pivotX);
+			node.style.setProperty("--card-pivot-y", pivotY);
+			node.style.setProperty("--card-pivot-z", pivotZ);
+			node.style.setProperty("--card-scale", scale);
+			node.style.setProperty("--card-duration", duration);
+			node.style.setProperty("--card-delay", delay);
+			node.style.setProperty("--card-rotate-mid-a", rotateMidA);
+			node.style.setProperty("--card-rotate-mid-b", rotateMidB);
+			node.style.setProperty("--card-tilt-bias-x", tiltBiasX);
+			node.style.setProperty("--card-tilt-bias-y", tiltBiasY);
+			node.style.setProperty("--card-sway-x-1", swayX1);
+			node.style.setProperty("--card-sway-x-2", swayX2);
+			node.style.setProperty("--card-sway-y-1", swayY1);
+			node.style.setProperty("--card-sway-y-2", swayY2);
+			node.style.setProperty("--card-depth-a", depthA);
+			node.style.setProperty("--card-depth-b", depthB);
+			node.style.setProperty("--card-depth-c", depthC);
+			node.style.setProperty("--card-origin-x", originX);
+			node.style.setProperty("--card-origin-y", originY);
+
+			node.appendChild(image);
+			layer.appendChild(node);
+			activeCards.add(node);
+
+			window.setTimeout(() => {
+				activeCards.delete(node);
+				node.remove();
+			}, Number.parseInt(duration, 10) + Number.parseInt(delay, 10) + 150);
+
+			window.setTimeout(() => {
+				laneState[side][lane] = false;
+			}, Number.parseInt(duration, 10) + Number.parseInt(delay, 10) + laneReleaseDelayMs);
+		};
+
+		for (let index = 0; index < initialSpawnCount; index += 1) {
+			window.setTimeout(() => createFloatingCard(), index * initialSpawnSpacingMs);
+		}
+
+		const applyParallax = (event) => {
+			const rect = shell.getBoundingClientRect();
+			const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
+			const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
+			shell.style.setProperty("--hero-parallax-x", `${relativeX * 44}px`);
+			shell.style.setProperty("--hero-parallax-y", `${relativeY * 32}px`);
+		};
+
+		const resetParallax = () => {
+			shell.style.setProperty("--hero-parallax-x", "0px");
+			shell.style.setProperty("--hero-parallax-y", "0px");
+		};
+
+		shell.addEventListener("pointermove", applyParallax);
+		shell.addEventListener("pointerleave", resetParallax);
+
+		window.setInterval(() => {
+			if (activeCards.size < maxActiveCards) {
+				createFloatingCard();
+			}
+		}, spawnIntervalMs);
+	}
+</script>
+
+<style>
+	.hero-showcase {
+		padding: 1rem 0 1.5rem;
+		position: relative;
+		background:
+			radial-gradient(circle at 12% 28%, rgba(255, 159, 26, 0.14), transparent 22%),
+			radial-gradient(circle at 88% 30%, rgba(255, 107, 61, 0.12), transparent 22%),
+			linear-gradient(180deg, rgba(12, 17, 30, 0.98), rgba(9, 13, 24, 0.98));
+		overflow: hidden;
+	}
+
+	.hero-shell {
+		position: relative;
+		min-height: 470px;
+		padding: 0;
+		isolation: isolate;
+	}
+
+	.hero-shell::before {
+		content: "";
+		position: absolute;
+		inset: -4% -2%;
+		background:
+			radial-gradient(circle at calc(18% + var(--hero-parallax-x, 0px)) calc(26% + var(--hero-parallax-y, 0px)), rgba(255, 159, 26, 0.22), transparent 24%),
+			radial-gradient(circle at calc(84% + var(--hero-parallax-x, 0px)) calc(24% + var(--hero-parallax-y, 0px)), rgba(255, 107, 61, 0.2), transparent 22%),
+			radial-gradient(circle at calc(14% + var(--hero-parallax-x, 0px)) calc(82% + var(--hero-parallax-y, 0px)), rgba(255, 107, 61, 0.14), transparent 20%),
+			radial-gradient(circle at calc(88% + var(--hero-parallax-x, 0px)) calc(80% + var(--hero-parallax-y, 0px)), rgba(255, 159, 26, 0.12), transparent 18%);
+		filter: blur(14px);
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.hero-float-layer {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 1;
+		perspective: 1400px;
+		perspective-origin: 50% 50%;
+	}
+
+	.hero-center {
+		position: relative;
+		z-index: 2;
+		max-width: 760px;
+		margin: 0 auto;
+		min-height: 420px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.hero-copy {
+		padding: 2rem 2.4rem;
+	}
+
+	.hero-title {
+		position: relative;
+	}
+
+	.hero-title::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 48%;
+		width: min(86%, 660px);
+		height: 72%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle, rgba(255, 159, 26, 0.34), rgba(255, 107, 61, 0.18) 44%, rgba(255, 107, 61, 0.06) 64%, transparent 78%);
+		filter: blur(44px);
+		animation: heroTitleGlow 5.4s ease-in-out infinite;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.hero-center p {
+		max-width: 40ch;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	:global(.floating-card-dynamic) {
+		position: absolute;
+		left: var(--card-start-x);
+		top: var(--card-start-y);
+		width: var(--card-width);
+		transform-style: preserve-3d;
+		will-change: transform, opacity;
+		transform-origin: var(--card-origin-x) var(--card-origin-y);
+		opacity: 0;
+		animation: heroCardFlight var(--card-duration) linear var(--card-delay) forwards;
+	}
+
+	:global(.floating-card-dynamic)::after {
+		content: "";
+		position: absolute;
+		left: 12%;
+		top: 18%;
+		width: 68%;
+		height: 56%;
+		border-radius: 999px;
+		background: linear-gradient(180deg, rgba(255, 159, 26, 0.14), rgba(255, 107, 61, 0.02));
+		filter: blur(16px);
+		opacity: 0;
+		transform: translate3d(-14px, 18px, -1px) rotate(-8deg);
+		animation: heroTrailPulse var(--card-duration) linear var(--card-delay) forwards;
+		pointer-events: none;
+	}
+
+	:global(.floating-card-dynamic:nth-child(2n))::after {
+		opacity: 0;
+		background: linear-gradient(180deg, rgba(255, 159, 26, 0.1), rgba(255, 107, 61, 0.015));
+	}
+
+	:global(.floating-card-face) {
+		display: block;
+		width: 100%;
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+		filter: saturate(1.05) contrast(1.03) brightness(1.01);
+		backface-visibility: hidden;
+		transform: translateZ(1px);
+	}
+
+	@keyframes heroCardFlight {
+		0% {
+			opacity: 0;
+			transform:
+				translateZ(0)
+				translate3d(0, 18px, 0)
+				rotate(var(--card-rotate-start))
+				rotateX(var(--card-tilt-bias-x))
+				rotateY(var(--card-tilt-bias-y))
+				rotateZ(calc(var(--card-pivot-z) * 0.2))
+				scale(0.9)
+				skewX(0deg);
+		}
+
+		18% {
+			opacity: 0.96;
+			transform:
+				translateZ(var(--card-depth-a))
+				translate3d(calc(var(--card-drift-x) * 0.24), calc(var(--card-drift-y) * 0.16), 0)
+				rotate(var(--card-rotate-mid-a))
+				rotateX(calc(var(--card-pivot-x) * 0.75 + var(--card-tilt-bias-x)))
+				rotateY(calc(var(--card-pivot-y) * 0.8 + var(--card-tilt-bias-y)))
+				rotateZ(calc(var(--card-pivot-z) * 0.65))
+				scale(calc(var(--card-scale) * 0.98))
+				skewX(0.4deg);
+		}
+
+		42% {
+			opacity: 0.92;
+			transform:
+				translateZ(var(--card-depth-b))
+				translate3d(
+					calc(var(--card-drift-x) * 0.4 + var(--card-sway-x-1)),
+					calc(var(--card-drift-y) * 0.42 + var(--card-sway-y-1)),
+					0
+				)
+				rotate(var(--card-rotate-mid-b))
+				rotateX(calc(var(--card-pivot-x) * 1.08 - var(--card-tilt-bias-x) * 0.4))
+				rotateY(calc(var(--card-pivot-y) * 1.1 - var(--card-tilt-bias-y) * 0.4))
+				rotateZ(calc(var(--card-pivot-z) * -0.35))
+				scale(calc(var(--card-scale) * 0.99))
+				skewX(-0.6deg);
+		}
+
+		68% {
+			opacity: 0.88;
+			transform:
+				translateZ(var(--card-depth-c))
+				translate3d(
+					calc(var(--card-drift-x) * 0.72 + var(--card-sway-x-2)),
+					calc(var(--card-drift-y) * 0.7 + var(--card-sway-y-2)),
+					0
+				)
+				rotate(calc(var(--card-rotate-end) - 2deg))
+				rotateX(calc(var(--card-pivot-x) * 1.2 + var(--card-tilt-bias-y) * 0.2))
+				rotateY(calc(var(--card-pivot-y) * 1.22 + var(--card-tilt-bias-x) * 0.2))
+				rotateZ(calc(var(--card-pivot-z) * 0.45))
+				scale(calc(var(--card-scale) * 1.01))
+				skewX(0.25deg);
+		}
+
+		86% {
+			opacity: 0.62;
+			transform:
+				translateZ(0)
+				translate3d(calc(var(--card-drift-x) * 0.88), calc(var(--card-drift-y) * 0.86), 0)
+				rotate(calc(var(--card-rotate-end) - 1deg))
+				rotateX(calc(var(--card-pivot-x) * 1.28 - var(--card-tilt-bias-x) * 0.25))
+				rotateY(calc(var(--card-pivot-y) * 1.3 - var(--card-tilt-bias-y) * 0.25))
+				rotateZ(calc(var(--card-pivot-z) * -0.18))
+				scale(calc(var(--card-scale) * 1.025))
+				skewX(-0.2deg);
+		}
+
+		100% {
+			opacity: 0;
+			transform:
+				translateZ(0)
+				translate3d(var(--card-drift-x), var(--card-drift-y), 0)
+				rotate(var(--card-rotate-end))
+				rotateX(calc(var(--card-pivot-x) * 1.35))
+				rotateY(calc(var(--card-pivot-y) * 1.38))
+				rotateZ(calc(var(--card-pivot-z) * 0.1))
+				scale(calc(var(--card-scale) * 1.04))
+				skewX(0deg);
+		}
+	}
+
+	@keyframes heroTitleGlow {
+		0%, 100% {
+			opacity: 0.72;
+			transform: translate(-50%, -50%) scale(0.96);
+		}
+
+		50% {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1.08);
+		}
+	}
+
+	@keyframes heroTrailPulse {
+		0%, 12% {
+			opacity: 0;
+			transform: translate3d(-14px, 18px, -1px) rotate(-8deg) scale(0.92);
+		}
+
+		34% {
+			opacity: 0.22;
+			transform: translate3d(-10px, 10px, -1px) rotate(-6deg) scale(1);
+		}
+
+		72% {
+			opacity: 0.14;
+			transform: translate3d(-4px, 2px, -1px) rotate(-3deg) scale(1.04);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translate3d(0, -4px, -1px) rotate(0deg) scale(1.06);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-float-layer {
+			display: none;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.hero-shell {
+			min-height: 420px;
+		}
+
+		.hero-center {
+			min-height: 360px;
+			max-width: 640px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.hero-showcase {
+			padding: 2rem 0 1.5rem;
+		}
+
+		.hero-shell {
+			min-height: auto;
+		}
+
+		.hero-center {
+			min-height: auto;
+			padding: 1.2rem 0;
+		}
+
+		.hero-copy {
+			padding: 1.4rem 1rem;
+		}
+
+		.hero-title::before {
+			width: 90%;
+			height: 70%;
+			filter: blur(30px);
+		}
+
+		.hero-float-layer {
+			opacity: 0.58;
+		}
+
+		:global(.floating-card-dynamic) {
+			width: max(72px, calc(var(--card-width) * 0.72));
+		}
+	}
+</style>

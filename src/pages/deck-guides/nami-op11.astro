@@ -1,0 +1,826 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Nami OP11 Deck Guide";
+const description =
+	"Nami OP11 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
+
+const icon = "/assets/guides/nami-op11.png";
+
+const decklist = [
+	{ code: "OP11-041", name: "Nami", count: 1, img: "/Cards/OP11/OP11-041.jpg", role: "Leader" },
+	{ code: "OP14-102", name: "Kumacy", count: 4, img: "/Cards/OP14/OP14-102.jpg", role: "Character" },
+	{ code: "P-096", name: "Girl", count: 4, img: "/Cards/P/P-096.jpg", role: "Character" },
+	{ code: "OP11-106", name: "Zeus", count: 4, img: "/Cards/OP11/OP11-106.jpg", role: "Character" },
+	{ code: "OP15-047", name: "Sanji", count: 1, img: "/Cards/OP15/OP15-047.jpg", role: "Character" },
+	{ code: "OP15-113", name: "Roronoa Zoro", count: 1, img: "/Cards/OP15/OP15-113.jpg", role: "Character" },
+	{ code: "OP12-112", name: "Baby 5", count: 2, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
+	{ code: "OP06-104", name: "Kikunojo", count: 4, img: "/Cards/OP06/OP06-104.png", role: "Character" },
+	{ code: "OP14-110", name: "Dr. Hogback", count: 4, img: "/Cards/OP14/OP14-110.jpg", role: "Character" },
+	{ code: "OP14-111", name: "Perona", count: 4, img: "/Cards/OP14/OP14-111.jpg", role: "Character" },
+	{ code: "EB03-053", name: "Nami", count: 4, img: "/Cards/EB03/EB03-053.jpg", role: "Character" },
+	{ code: "EB04-058", name: "Borsalino", count: 4, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
+	{ code: "EB03-055", name: "Nico Robin", count: 4, img: "/Cards/EB03/EB03-055.jpg", role: "Character" },
+	{ code: "OP14-104", name: "Gecko Moria", count: 4, img: "/Cards/OP14/OP14-104.jpg", role: "Character" },
+	{ code: "OP13-042", name: "Edward.Newgate", count: 3, img: "/Cards/OP13/OP13-042.jpg", role: "Character" },
+	{ code: "EB03-060", name: "Will You Be My Servant?", count: 3, img: "/Cards/EB03/EB03-060.jpg", role: "Event" },
+];
+
+const options = [
+	{ code: "OP03-048", name: "Nojiko", img: "/Cards/OP03/OP03-048.png" },
+	{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+	{ code: "OP06-106", name: "Kouzuki Hiyori", img: "/Cards/OP06/OP06-106.png" },
+	{ code: "OP10-112", name: "Eustass\"Captain\"Kid", img: "/Cards/OP10/OP10-112.jpg" },
+];
+
+const optionsNote =
+	"These are just some of the valid cards that can be inserted in the deck: Nojiko is useful for bouncing Lucy’s Cavendish or in the mirror, Marco helps to see the pieces on curve, Hiyori is one of best 2K for the deck both to arrange lives and to use the leader ability, and Kid is a piece of end game even if in this format you don’t need it so much anymore.";
+
+const mulliganCards = [
+	{ code: "EB03-060", name: "Will You Be My Servant?", img: "/Cards/EB03/EB03-060.jpg" },
+	{ code: "P-096", name: "Girl", img: "/Cards/P/P-096.jpg" },
+	{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+	{ code: "OP06-104", name: "Kikunojo", img: "/Cards/OP06/OP06-104.png" },
+	{ code: "OP14-111", name: "Perona", img: "/Cards/OP14/OP14-111.jpg" },
+];
+
+const curveFirst = [
+	{
+		label: "1 DON",
+		notes: "Use the event to look for the missing pieces in the curve.",
+		cards: [{ code: "EB03-060", name: "Will You Be My Servant?", img: "/Cards/EB03/EB03-060.jpg" }],
+	},
+	{
+		label: "3 DON",
+		notes: "The promo allows you to play on curve and always have DON assigned to the Leader to be able to use the secondary ability.",
+		cards: [{ code: "P-096", name: "Girl", img: "/Cards/P/P-096.jpg" }],
+	},
+	{
+		label: "5 DON",
+		notes: "5C Nami burns a opponent’s life and assigns a DON to the Leader, remember that oppo must have 3+ lives.",
+		cards: [{ code: "EB03-053", name: "Nami", img: "/Cards/EB03/EB03-053.jpg" }],
+	},
+	{
+		label: "7 DON",
+		notes: "7C Robin doesn’t need introductions, you take care of 2 lives and if put KO it does damage.",
+		cards: [{ code: "EB03-055", name: "Nico Robin", img: "/Cards/EB03/EB03-055.jpg" }],
+	},
+	{
+		label: "9 DON",
+		notes: "Another Moria not leader lock that reborn a 4C? Even if it’s stronger in the Triggers.",
+		cards: [{ code: "OP14-104", name: "Gecko Moria", img: "/Cards/OP14/OP14-104.jpg" }],
+	},
+	{
+		label: "Late game",
+		notes: "Borsalino is one of the strongest cards in the game and it’s like having 2 lives while Newgate is the monster boss of the deck that is needed to have even more cards but be careful to have 7 max.",
+		cards: [
+			{ code: "EB04-058", name: "Borsalino", img: "/Cards/EB04/EB04-058.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON",
+		notes: "Use the event to look for the missing pieces in the curve or the promo if you have a Character to play next turn.",
+		cards: [
+			{ code: "EB03-060", name: "Will You Be My Servant?", img: "/Cards/EB03/EB03-060.jpg" },
+			{ code: "P-096", name: "Girl", img: "/Cards/P/P-096.jpg" },
+		],
+	},
+	{
+		label: "4 DON",
+		notes: "Kiku is your choice to start establishing a board or Zoro to setup Perona in the trash for a Trigger or for Moria at 8 DON.",
+		cards: [
+			{ code: "OP06-104", name: "Kikunojo", img: "/Cards/OP06/OP06-104.png" },
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+		],
+	},
+	{
+		label: "6 DON",
+		notes: "5C Nami burns a opponent’s life and assigns a DON to the Leader, remember that oppo must have 3+ lives.",
+		cards: [{ code: "EB03-053", name: "Nami", img: "/Cards/EB03/EB03-053.jpg" }],
+	},
+	{
+		label: "8 DON",
+		notes: "7C Robin if you need to recover life or 8C Moria to slow down the opponent by reborn Perona and putting pressure the next turn.",
+		cards: [
+			{ code: "EB03-055", name: "Nico Robin", img: "/Cards/EB03/EB03-055.jpg" },
+			{ code: "OP14-104", name: "Gecko Moria", img: "/Cards/OP14/OP14-104.jpg" },
+		],
+	},
+	{
+		label: "Late game",
+		notes: "Borsalino is one of the strongest cards in the game and it’s like having 2 lives while Newgate is the monster boss of the deck that is needed to have even more cards but be careful to have 7 max.",
+		cards: [
+			{ code: "EB04-058", name: "Borsalino", img: "/Cards/EB04/EB04-058.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
+	},
+];
+
+const tips = [
+	{
+		title:
+			"Don’t be afraid to play Zeus to remove a threat because in addition to taking a life the Leader ability allows you to draw a card.",
+		cards: [
+			{ code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+			{ code: "OP11-106", name: "Zeus", img: "/Cards/OP11/OP11-106.jpg" },
+		],
+	},
+	{
+		title:
+			"Zoro is great for setup Perona in the trash in preparation for 8C Moria on for a possible Trigger, how lucky are you?",
+		cards: [
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+			{ code: "OP14-111", name: "Perona", img: "/Cards/OP14/OP14-111.jpg" },
+		],
+	},
+	{
+		title:
+			"This is one of the possible and strongest closures of the deck, play Sanji to make Newgate unlockable and finish the game with a 21K attack.",
+		cards: [
+			{ code: "OP15-047", name: "Sanji", img: "/Cards/OP15/OP15-047.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
+	},
+];
+
+const matchups = [
+	{
+		label: "Even",
+		icon: "≈",
+		leader: { code: "OP13-001", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-001.jpg" },
+		notes: ["Start 1st", "Manage your board", "Attack correctly"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: ["Start 1st", "Control oppo board", "Recover your lives"],
+	},
+	{
+		label: "Even",
+		icon: "≈",
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: ["Start 1st", "Manage your live", "Dependent on the list"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
+		notes: ["Start 2nd", "Force leader ability", "Go only face"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP13-002", name: "Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: ["Start 2nd", "Manage your board", "7K body are a prob"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
+		notes: ["Start 1st", "Go aggro", "Control oppo board"],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">April Guide</span>
+				<h1>Nami OP11 Deck Guide</h1>
+				<p>
+					Complete reference guide for Nami OP11: decklist, curve checkpoints, mulligan priorities, tech
+					options, and matchup notes. Built for fast reading between rounds.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Nami OP11 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Main list from your April Nami OP11 build.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Options & Tech Cards</h2>
+					<p>Valid inserts and alternative slots from your notes.</p>
+				</div>
+			</div>
+			<div class="options-grid">
+				{options.map((card) => (
+					<button
+						class="option-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="option-info">
+							<div class="deck-name">{card.name}</div>
+							<div class="deck-code">{card.code}</div>
+						</div>
+					</button>
+				))}
+			</div>
+			<p class="section-note">{optionsNote}</p>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>1C searcher to look for the missing pieces in the curve or the 2C promo if you start second and have everything you need, plus one of your 4C Character depending on the situation.</p>
+				</div>
+			</div>
+			<div class="mulligan-grid">
+				{mulliganCards.map((card) => (
+					<button
+						class="mini-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="mini-label">{card.name}</div>
+					</button>
+				))}
+			</div>
+			<p class="mulligan-text">If you don’t see this combo mulligan is the way.</p>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn curve reminders for going first or second.</p>
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 1st</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 2nd</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Key card interactions and closing patterns.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-cards">
+							{tip.cards.map((card) => (
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<p>{tip.title}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>Leaders listed in your matchup notes.</p>
+				</div>
+			</div>
+			<div class="matchups-grid">
+				{matchups.map((matchup) => (
+					<div class="matchup-card">
+						<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<button
+							class="mini-card"
+							type="button"
+							data-card-preview
+							data-full={matchup.leader.img}
+							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+						>
+							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+						</button>
+						<div class="matchup-name">{matchup.leader.name}</div>
+						<ul>
+							{matchup.notes.map((note) => (
+								<li>{note}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.8rem;
+		display: grid;
+		gap: 0.6rem;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 220px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.option-note {
+		margin: 0.4rem 0 0;
+		color: var(--text-300);
+		font-size: 0.9rem;
+	}
+
+	.note-block {
+		background: rgba(14, 18, 30, 0.7);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem 1.4rem;
+	}
+
+	.mulligan-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.mulligan-text {
+		color: var(--text-200);
+	}
+
+	.curve-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.curve-block {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-note {
+		color: var(--text-300);
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.tip-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.matchups-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	.curve-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+	}
+
+	.section-note {
+		color: var(--text-300);
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.deck-card img {
+			max-width: 120px;
+		}
+
+		.option-card img {
+			max-width: 200px;
+			margin: 0 auto;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+	}
+</style>
