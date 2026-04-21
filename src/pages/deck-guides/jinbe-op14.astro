@@ -25,16 +25,29 @@ const decklist = [
 	{ code: "OP04-056", name: "Gum-Gum Red Roc", count: 3, img: "/Cards/OP04/OP04-056.png", role: "Event" },
 ];
 
-const options = [
-	{ code: "OP07-046", name: "Sengoku", img: "/Cards/OP07/OP07-046.png" },
-	{ code: "OP07-047", name: "Trafalgar Law", img: "/Cards/OP07/OP07-047.png" },
-	{ code: "OP14-045", name: "Kuroobi", img: "/Cards/OP14/OP14-045.jpg" },
-	{ code: "OP14-047", name: "Shirahoshi", img: "/Cards/OP14/OP14-047.jpg" },
-	{ code: "OP06-058", name: "Gravity Blade Raging Tiger", img: "/Cards/OP06/OP06-058.png" },
+const optionsGroups = [
+	{
+		cards: [
+			{ code: "OP07-046", name: "Sengoku", img: "/Cards/OP07/OP07-046.png" },
+			{ code: "OP07-047", name: "Trafalgar Law", img: "/Cards/OP07/OP07-047.png" },
+		],
+		note:
+			"SW pack is a good option, Sengoku can search 8C and Perfume Law help vs Ace or Imu.",
+	},
+	{
+		cards: [
+			{ code: "OP14-045", name: "Kuroobi", img: "/Cards/OP14/OP14-045.jpg" },
+			{ code: "OP14-047", name: "Shirahoshi", img: "/Cards/OP14/OP14-047.jpg" },
+		],
+		note:
+			"Fish pack allows you to go more aggressive and cheat your Characters but the list is very short and this isn’t a good body.",
+	},
+	{
+		cards: [{ code: "OP06-058", name: "Gravity Blade Raging Tiger", img: "/Cards/OP06/OP06-058.png" }],
+		note:
+			"Very helpful option vs Boa or Mihawk and at 7 DON this deck don’t have a play on curve for increase your value. 1x is enough.",
+	},
 ];
-
-const optionsNote =
-	"SW pack is a good option, Sengoku can search 8C and Perfume Law help vs Ace or Imu. Fish pack allows you to go more aggressive and cheat your Characters but the list is very short and this isn’t a good body. Gravity Blade Raging Tiger is a very helpful option vs Boa or Mihawk and at 7 DON this deck don’t have a play on curve for increase your value. 1x is enough.";
 
 const mulliganCards = [
 	{ code: "OP14-042", name: "Arlong", img: "/Cards/OP14/OP14-042.jpg" },
@@ -159,7 +172,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>Main list from your March Jinbe OP14 build.</p>
+					<p>Main list for Jinbe OP14.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -191,27 +204,33 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Options & Tech Cards</h2>
-					<p>Alternative cards from your notes and screenshots.</p>
+					<p>Alternative cards and tech options.</p>
 				</div>
 			</div>
-			<div class="options-grid">
-				{options.map((card) => (
-					<button
-						class="option-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="option-info">
-							<div class="deck-name">{card.name}</div>
-							<div class="deck-code">{card.code}</div>
+			<div class="options-stack">
+				{optionsGroups.map((group) => (
+					<div class="option-group">
+						<div class="options-grid">
+							{group.cards.map((card) => (
+								<button
+									class="option-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<div class="option-info">
+										<div class="deck-name">{card.name}</div>
+										<div class="deck-code">{card.code}</div>
+									</div>
+								</button>
+							))}
 						</div>
-					</button>
+						<p class="section-note">{group.note}</p>
+					</div>
 				))}
 			</div>
-			<p class="section-note">{optionsNote}</p>
 		</div>
 	</section>
 
@@ -246,7 +265,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Curve</h2>
-					<p>Turn checkpoints from your notes.</p>
+					<p>Turn checkpoints and curve reminders.</p>
 				</div>
 			</div>
 			<div class="curve-block">
@@ -281,7 +300,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
-					<p>Key reminders from your notes.</p>
+					<p>Key reminders and play patterns.</p>
 				</div>
 			</div>
 			<div class="tips-grid">
@@ -312,7 +331,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Leaders listed in your matchup notes and screenshots.</p>
+					<p>Key leaders for the matchup spread.</p>
 				</div>
 			</div>
 			<div class="matchups-grid">
@@ -469,9 +488,25 @@ const matchups = [
 	}
 
 	.options-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-start;
 		gap: 1rem;
+	}
+
+	.options-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.option-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: rgba(12, 17, 30, 0.55);
 	}
 
 	.option-card {
@@ -481,6 +516,9 @@ const matchups = [
 		padding: 0.8rem;
 		display: grid;
 		gap: 0.6rem;
+		width: min(220px, 100%);
+		justify-items: center;
+		text-align: center;
 		cursor: pointer;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
@@ -503,6 +541,7 @@ const matchups = [
 	.option-info {
 		display: grid;
 		gap: 0.2rem;
+		text-align: center;
 	}
 
 	.option-note {
@@ -678,6 +717,11 @@ const matchups = [
 
 	.section-note {
 		color: var(--text-300);
+		max-width: 68ch;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 1.65;
+		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
 	}
 
 	.card-modal {
@@ -732,13 +776,16 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
+		.option-group {
+			padding: 0.85rem;
+		}
+
 		.deck-card img {
 			max-width: 120px;
 		}
 
 		.option-card img {
-			max-width: 200px;
-			margin: 0 auto;
+			max-width: 170px;
 		}
 
 		.mini-card img {

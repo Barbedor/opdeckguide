@@ -25,17 +25,26 @@ const decklist = [
 	{ code: "ST13-017", name: "Flame Dragon King", count: 4, img: "/Cards/ST13/ST13-017.png", role: "Event" },
 ];
 
-const options = [
-	{ code: "OP14-100", name: "Absalom", img: "/Cards/OP14/OP14-100.jpg" },
-	{ code: "OP14-110", name: "Dr. Hogback", img: "/Cards/OP14/OP14-110.jpg" },
-	{ code: "OP14-111", name: "Perona", img: "/Cards/OP14/OP14-111.jpg" },
-	{ code: "OP14-104", name: "Gecko Moria", img: "/Cards/OP14/OP14-104.jpg" },
-	{ code: "OP07-116", name: "Blaze Slice", img: "/Cards/OP07/OP07-116.png" },
-	{ code: "OP14-118", name: "You’ll Frighten Me …", img: "/Cards/OP14/OP14-118.jpg" },
+const optionsGroups = [
+	{
+		cards: [
+			{ code: "OP14-100", name: "Absalom", img: "/Cards/OP14/OP14-100.jpg" },
+			{ code: "OP14-110", name: "Dr. Hogback", img: "/Cards/OP14/OP14-110.jpg" },
+			{ code: "OP14-111", name: "Perona", img: "/Cards/OP14/OP14-111.jpg" },
+			{ code: "OP14-104", name: "Gecko Moria", img: "/Cards/OP14/OP14-104.jpg" },
+		],
+		note:
+			"Thriller Pack is a good option up to EB03, have some powerful Trigger and help if you need starve for more time.",
+	},
+	{
+		cards: [
+			{ code: "OP07-116", name: "Blaze Slice", img: "/Cards/OP07/OP07-116.png" },
+			{ code: "OP14-118", name: "You’ll Frighten Me …", img: "/Cards/OP14/OP14-118.jpg" },
+		],
+		note:
+			"If you don’t have Flame Dragon King or need cheapest option you can play Blaze Slice and You’ll Frighten Me …, they are a good alternative but less effective for the line that has the deck.",
+	},
 ];
-
-const optionsNote =
-	"Thriller Pack is a good option up to EB03, have some powerful Trigger and help if you need starve for more time. If you don’t have Flame Dragon King or need cheapest option you can play Blaze Slice and You’ll Frighten Me …, they are a good alternative but less effective for the line that has the deck.";
 
 const mulliganCards = [
 	{ code: "ST13-017", name: "Flame Dragon King", img: "/Cards/ST13/ST13-017.png" },
@@ -195,7 +204,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>Main list from your March Monkey.D.Luffy ST29 build.</p>
+					<p>Main list for Monkey.D.Luffy ST29.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -227,27 +236,33 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Options & Tech Cards</h2>
-					<p>Alternative cards from your notes.</p>
+					<p>Alternative cards and tech options.</p>
 				</div>
 			</div>
-			<div class="options-grid">
-				{options.map((card) => (
-					<button
-						class="option-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="option-info">
-							<div class="deck-name">{card.name}</div>
-							<div class="deck-code">{card.code}</div>
+			<div class="options-stack">
+				{optionsGroups.map((group) => (
+					<div class="option-group">
+						<div class="options-grid">
+							{group.cards.map((card) => (
+								<button
+									class="option-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<div class="option-info">
+										<div class="deck-name">{card.name}</div>
+										<div class="deck-code">{card.code}</div>
+									</div>
+								</button>
+							))}
 						</div>
-					</button>
+						<p class="section-note">{group.note}</p>
+					</div>
 				))}
 			</div>
-			<p class="section-note">{optionsNote}</p>
 		</div>
 	</section>
 
@@ -341,7 +356,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
-					<p>Key cards highlighted in your notes.</p>
+					<p>Key cards highlighted in the guide.</p>
 				</div>
 			</div>
 			<div class="tips-grid">
@@ -372,7 +387,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Leaders listed in your matchup notes.</p>
+					<p>Key leaders for the matchup spread.</p>
 				</div>
 			</div>
 			<div class="matchups-grid">
@@ -529,9 +544,25 @@ const matchups = [
 	}
 
 	.options-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-start;
 		gap: 1rem;
+	}
+
+	.options-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.option-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: rgba(12, 17, 30, 0.55);
 	}
 
 	.option-card {
@@ -541,6 +572,9 @@ const matchups = [
 		padding: 0.8rem;
 		display: grid;
 		gap: 0.6rem;
+		width: min(220px, 100%);
+		justify-items: center;
+		text-align: center;
 		cursor: pointer;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
@@ -563,6 +597,7 @@ const matchups = [
 	.option-info {
 		display: grid;
 		gap: 0.2rem;
+		text-align: center;
 	}
 
 	.option-note {
@@ -738,6 +773,11 @@ const matchups = [
 
 	.section-note {
 		color: var(--text-300);
+		max-width: 68ch;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 1.65;
+		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
 	}
 
 	.card-modal {
@@ -792,13 +832,16 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
+		.option-group {
+			padding: 0.85rem;
+		}
+
 		.deck-card img {
 			max-width: 120px;
 		}
 
 		.option-card img {
-			max-width: 200px;
-			margin: 0 auto;
+			max-width: 170px;
 		}
 
 		.mini-card img {

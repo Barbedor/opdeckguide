@@ -1,138 +1,100 @@
----
+﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Lucy OP15 Deck Guide";
+const title = "Dracule Mihawk OP14 Deck Guide";
 const description =
-	"Lucy OP15 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup notes.";
+	"Dracule Mihawk OP14 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
 
-const icon = "/assets/guides/lucy-op15.png";
+const icon = "/assets/guides/dracule-mihawk-op14.png";
 
 const decklist = [
-	{ code: "OP15-002", name: "Lucy", count: 1, img: "/Cards/OP15/OP15-002.jpg", role: "Leader" },
-	{ code: "OP15-053", name: "Rebecca", count: 4, img: "/Cards/OP15/OP15-053.jpg", role: "Character" },
-	{ code: "OP15-052", name: "Leo", count: 4, img: "/Cards/OP15/OP15-052.jpg", role: "Character" },
-	{ code: "OP15-040", name: "Viola", count: 4, img: "/Cards/OP15/OP15-040.jpg", role: "Character" },
-	{ code: "OP10-045", name: "Cavendish", count: 4, img: "/Cards/OP10/OP10-045.jpg", role: "Character" },
-	{ code: "OP10-049", name: "Sabo", count: 4, img: "/Cards/OP10/OP10-049.jpg", role: "Character" },
-	{ code: "OP15-046", name: "Sabo", count: 4, img: "/Cards/OP15/OP15-046.jpg", role: "Character" },
-	{ code: "OP09-118", name: "Gol D. Roger", count: 1, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
-	{ code: "OP15-057", name: "Dressrosa Kingdom", count: 4, img: "/Cards/OP15/OP15-057.jpg", role: "Stage" },
-	{ code: "OP10-059", name: "Go Ahead and Die, I’m Luffy!!", count: 4, img: "/Cards/OP10/OP10-059.jpg", role: "Event" },
-	{ code: "OP15-021", name: "Just Watch Me, Ace!!", count: 4, img: "/Cards/OP15/OP15-021.jpg", role: "Event" },
-	{ code: "OP15-054", name: "It’s Memento of Him…", count: 4, img: "/Cards/OP15/OP15-054.jpg", role: "Event" },
-	{ code: "OP10-060", name: "Barrier Barrier Pistol", count: 3, img: "/Cards/OP10/OP10-060.jpg", role: "Event" },
-	{ code: "OP15-020", name: "Fire Fist", count: 4, img: "/Cards/OP15/OP15-020.jpg", role: "Event" },
-	{ code: "OP15-056", name: "Would You Let Me Eat…?", count: 2, img: "/Cards/OP15/OP15-056.jpg", role: "Event" },
+	{ code: "OP14-020", name: "Dracule Mihawk", count: 1, img: "/Cards/OP14/OP14-020.jpg", role: "Leader" },
+	{ code: "OP12-034", name: "Perona", count: 4, img: "/Cards/OP12/OP12-034.jpg", role: "Character" },
+	{ code: "OP14-023", name: "Kikunojo", count: 4, img: "/Cards/OP14/OP14-023.jpg", role: "Character" },
+	{ code: "OP10-032", name: "Tashigi", count: 4, img: "/Cards/OP10/OP10-032.jpg", role: "Character" },
+	{ code: "OP08-023", name: "Carrot", count: 4, img: "/Cards/OP08/OP08-023.png", role: "Character" },
+	{ code: "OP14-029", name: "Tashigi", count: 4, img: "/Cards/OP14/OP14-029.jpg", role: "Character" },
+	{ code: "OP14-033", name: "Perona", count: 4, img: "/Cards/OP14/OP14-033.jpg", role: "Character" },
+	{ code: "OP14-027", name: "Shanks", count: 4, img: "/Cards/OP14/OP14-027.jpg", role: "Character" },
+	{ code: "OP14-119", name: "Dracule Mihawk", count: 3, img: "/Cards/OP14/OP14-119.jpg", role: "Character" },
+	{ code: "ST24-004", name: "Law & Bepo", count: 4, img: "/Cards/ST24/ST24-004.jpg", role: "Character" },
+	{ code: "OP06-038", name: "The Billion-fold World Trichiliocosm", count: 4, img: "/Cards/OP06/OP06-038.png", role: "Event" },
+	{ code: "OP12-037", name: "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", count: 3, img: "/Cards/OP12/OP12-037.jpg", role: "Event" },
+	{ code: "OP13-040", name: "I Know You're Strong... So I'll Go All Out from the Very Start!!!", count: 2, img: "/Cards/OP13/OP13-040.jpg", role: "Event" },
+	{ code: "OP04-035", name: "Spiderweb", count: 2, img: "/Cards/OP04/OP04-035.png", role: "Event" },
+	{ code: "OP14-039", name: "Coffin Boat", count: 4, img: "/Cards/OP14/OP14-039.jpg", role: "Stage" },
 ];
 
-const options = [
+const optionsGroups = [
 	{
-		code: "OP15-047",
-		name: "Sanji",
-		img: "/Cards/OP15/OP15-047.jpg",
+		cards: [
+			{ code: "OP01-041", name: "Kouzuki Momonosuke", img: "/Cards/OP01/OP01-041.png" },
+			{ code: "OP07-022", name: "Otama", img: "/Cards/OP07/OP07-022.png" },
+			{ code: "OP01-055", name: "You Can Be My Samurai!!", img: "/Cards/OP01/OP01-055.png" },
+		],
 		note:
-			"New Sanji OP15 is a good card option if you do not have Roger or if you do not want to spend too much to buy them. Play it to make your Sabo unblockable and steal some games.",
+			"Wano pack is small but powerful for draw. You need play them in this rateo for maximize their effect but is a little inconsistent.",
 	},
 	{
-		code: "OP15-014",
-		name: "Bartolomeo",
-		img: "/Cards/OP15/OP15-014.jpg",
+		cards: [
+			{ code: "ST02-007", name: "Jewelry Bonney", img: "/Cards/ST02/ST02-007.png" },
+			{ code: "ST24-002", name: "Kid & Killer", img: "/Cards/ST24/ST24-002.jpg" },
+			{ code: "OP12-118", name: "Jewelry Bonney", img: "/Cards/OP12/OP12-118.jpg" },
+			{ code: "OP13-031", name: "Trafalgar Law", img: "/Cards/OP13/OP13-031.jpg" },
+		],
 		note:
-			"I call this card the “Barto Pack”. In my opinion you don’t really need them because deck consistency is very high, but for a spicy decklist you can try it.",
-	},
-	{
-		code: "OP05-006",
-		name: "Belo Betty",
-		img: "/Cards/OP05/OP05-006.png",
-		note:
-			"Some decklists have started playing a Revolutionary pack by removing the Stage and reducing the OP10 spells to increase the searchers and the possibility of finding the Sabo 7C needed in the curve.",
-	},
-	{
-		code: "OP05-015",
-		name: "Koala",
-		img: "/Cards/OP05/OP05-015.png",
-		note:
-			"Some decklists have started playing a Revolutionary pack by removing the Stage and reducing the OP10 spells to increase the searchers and the possibility of finding the Sabo 7C needed in the curve.",
+			"Supernova pack is very strong, more consistent that Wano pack and open the deck to various option like Law or triple searcher. Not to be underestimated.",
 	},
 ];
 
 const mulliganCards = [
-	{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-	{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-	{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
-	{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
+	{ code: "OP12-034", name: "Perona", img: "/Cards/OP12/OP12-034.jpg" },
+	{ code: "OP14-039", name: "Coffin Boat", img: "/Cards/OP14/OP14-039.jpg" },
+	{ code: "OP14-033", name: "Perona", img: "/Cards/OP14/OP14-033.jpg" },
+	{ code: "OP14-029", name: "Tashigi", img: "/Cards/OP14/OP14-029.jpg" },
+	{ code: "OP08-023", name: "Carrot", img: "/Cards/OP08/OP08-023.png" },
 ];
 
-const curveFirst = [
+const curve = [
 	{
-		label: "1 DON",
-		notes: "Search for missing cards on curve.",
+		label: "1/2 DON",
+		notes: "Perona for missing Character. Stage for value the Leader ability.",
 		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
+			{ code: "OP12-034", name: "Perona", img: "/Cards/OP12/OP12-034.jpg" },
+			{ code: "OP14-039", name: "Coffin Boat", img: "/Cards/OP14/OP14-039.jpg" },
 		],
 	},
 	{
-		label: "3 DON",
-		notes: "Leo for mirror or repeat turn 1.",
+		label: "3/4 DON",
+		notes: "This turn is usually “empty”. Take advantage of it to develop your board or for refresh your hand.",
 		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
+			{ code: "OP12-034", name: "Perona", img: "/Cards/OP12/OP12-034.jpg" },
+			{ code: "OP14-023", name: "Kikunojo", img: "/Cards/OP14/OP14-023.jpg" },
+			{ code: "OP14-039", name: "Coffin Boat", img: "/Cards/OP14/OP14-039.jpg" },
 		],
 	},
 	{
-		label: "5 DON",
-		notes: "Memento for draw or Bari for control board.",
+		label: "5/6 DON",
+		notes: "Perona is good for stall this turn. Tashigi is your play against removal deck. Carrot have value versus Boa for continued to freeze.",
 		cards: [
-			{ code: "OP15-054", name: "It’s Memento of Him…", img: "/Cards/OP15/OP15-054.jpg" },
-			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-			{ code: "OP10-060", name: "Barrier Barrier Pistol", img: "/Cards/OP10/OP10-060.jpg" },
+			{ code: "OP14-033", name: "Perona", img: "/Cards/OP14/OP14-033.jpg" },
+			{ code: "OP14-029", name: "Tashigi", img: "/Cards/OP14/OP14-029.jpg" },
+			{ code: "OP08-023", name: "Carrot", img: "/Cards/OP08/OP08-023.png" },
 		],
 	},
 	{
-		label: "7 DON",
-		notes: "Your late game! See the next slide for the combo.",
+		label: "7/8 DON",
+		notes: "-1K on opponent board. You can rest it for Leader ability, nothing to say.",
 		cards: [
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
-		],
-	},
-];
-
-const curveSecond = [
-	{
-		label: "2 DON",
-		notes: "Leo for mirror or search for missing cards on curve.",
-		cards: [
-			{ code: "OP15-053", name: "Rebecca", img: "/Cards/OP15/OP15-053.jpg" },
-			{ code: "OP15-040", name: "Viola", img: "/Cards/OP15/OP15-040.jpg" },
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
+			{ code: "OP14-027", name: "Shanks", img: "/Cards/OP14/OP14-027.jpg" },
 		],
 	},
 	{
-		label: "4 DON",
-		notes: "Memento spell and draw 3 cards is too strong.",
+		label: "9/10 DON",
+		notes: "Late game is very strong especially if you chain this two guys. Leader can rest Mihawk for activate his effect in the play turn, joke your opponent and rest Law/Bepo if you don’t have much counter. 11K Character is more that 7K leader. In any case remember to stay with DON open for counter spell.",
 		cards: [
-			{ code: "OP15-054", name: "It’s Memento of Him…", img: "/Cards/OP15/OP15-054.jpg" },
-			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-		],
-	},
-	{
-		label: "6 DON",
-		notes: "Sabo for mirror or spell for control board vs Yellow.",
-		cards: [
-			{ code: "OP10-049", name: "Sabo", img: "/Cards/OP10/OP10-049.jpg" },
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-		],
-	},
-	{
-		label: "8 DON",
-		notes: "Your late game! See the next slide for the combo.",
-		cards: [
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
-			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
+			{ code: "OP14-119", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-119.jpg" },
+			{ code: "ST24-004", name: "Law & Bepo", img: "/Cards/ST24/ST24-004.jpg" },
 		],
 	},
 ];
@@ -140,68 +102,69 @@ const curveSecond = [
 const tips = [
 	{
 		title:
-			"Leo and Sabo 2K are your best choices in mirror, necessary to save your Cavendish from a Bari‑Bari and continue to make card advantage.",
+			"Play Tashigi and use Leader ability on Stage. Restand 3 DON and use Tashigi effect on 2 DON (if you don’t have a searcher to rest). End of turn restand one DON for Stage, this help Character from removal.",
 		cards: [
-			{ code: "OP15-052", name: "Leo", img: "/Cards/OP15/OP15-052.jpg" },
-			{ code: "OP10-049", name: "Sabo", img: "/Cards/OP10/OP10-049.jpg" },
+			{ code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
+			{ code: "OP14-039", name: "Coffin Boat", img: "/Cards/OP14/OP14-039.jpg" },
+			{ code: "OP14-029", name: "Tashigi", img: "/Cards/OP14/OP14-029.jpg" },
 		],
 	},
 	{
 		title:
-			"7C spell double attack is a very strong play if you want to have a lethal or Roger setup. If you want to be sure the damage comes in, don’t forget to use the leader effect to enhance it.",
+			"Remember that you can use Leader ability on this Characters and win in the same turn that you play them.",
 		cards: [
-			{ code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
-			{ code: "OP15-056", name: "Would You Let Me Eat…?", img: "/Cards/OP15/OP15-056.jpg" },
-			{ code: "OP15-021", name: "Just Watch Me, Ace!!", img: "/Cards/OP15/OP15-021.jpg" },
+			{ code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
+			{ code: "OP14-027", name: "Shanks", img: "/Cards/OP14/OP14-027.jpg" },
+			{ code: "OP14-119", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-119.jpg" },
 		],
 	},
 	{
 		title:
-			"Here you can have fun: 4C spell + Bari to bottom‑deck a 9K power (strong in mirror), or 4C spell + Fire Fist to remove an 11K power.",
+			"Use Asura main effect and rest 2 opponent Characters, next step: play Carrot if you rest one DON + one Character or use other spell main effect for freeze two opponent 7C.",
 		cards: [
-			{ code: "OP10-059", name: "Go Ahead and Die, I’m Luffy!!", img: "/Cards/OP10/OP10-059.jpg" },
-			{ code: "OP10-060", name: "Barrier Barrier Pistol", img: "/Cards/OP10/OP10-060.jpg" },
-			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
+			{ code: "OP06-038", name: "The Billion-fold World Trichiliocosm", img: "/Cards/OP06/OP06-038.png" },
+			{ code: "OP08-023", name: "Carrot", img: "/Cards/OP08/OP08-023.png" },
+			{ code: "OP13-040", name: "I Know You're Strong... So I'll Go All Out from the Very Start!!!", img: "/Cards/OP13/OP13-040.jpg" },
 		],
 	},
 ];
 
 const matchups = [
 	{
-		label: "Even",
-		icon: "≈",
+		label: "Even/Slight Disadv.",
+		icon: "↓",
 		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 1st", "Manage your life", "Bari‑Bari key card"],
-	},
-	{
-		label: "Slight Disadv.",
-		icon: "↓",
-		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
-		notes: ["Start 1st", "Control oppo board", "Fire Fist 7C on Enel"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
-		notes: ["Start 1st", "Bari‑Bari key card", "Manage your board and life"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Chain 7C Sabo", "Watch out for Roger"],
-	},
-	{
-		label: "Negative MU",
-		icon: "↓",
-		leader: { code: "OP15-098", name: "Monkey D. Luffy", img: "/Cards/OP15/OP15-098.jpg" },
-		notes: ["Start 2nd", "Force leader ability", "Go only face"],
+		notes: ["Start 1st", "Manage your life", "Carrot/Shanks key cards"],
 	},
 	{
 		label: "Positive MU",
 		icon: "↑",
 		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
-		notes: ["Start 2nd", "Go aggro", "Memento spell auto win"],
+		notes: ["Start 2nd", "Manage your board", "Push"],
+	},
+	{
+		label: "Even",
+		icon: "≈",
+		leader: { code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
+		notes: ["Start 1st", "Board control", "Law/Bepo key card"],
+	},
+	{
+		label: "Even/Slight Disadv.",
+		icon: "↓",
+		leader: { code: "OP14-060", name: "Donquixote Doflamingo", img: "/Cards/OP14/OP14-060.jpg" },
+		notes: ["Start 1st", "Manage your board"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP13-002", name: "Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: ["Start 1st", "Play on curve", "Asura key card"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP11-040", name: "Monkey.D.Luffy", img: "/Cards/OP11/OP11-040.jpg" },
+		notes: ["Start 1st", "Play on curve", "Asura key card"],
 	},
 ];
 ---
@@ -210,11 +173,11 @@ const matchups = [
 	<section class="hero guide-hero">
 		<div class="container hero-grid">
 			<div>
-				<span class="hero-badge">Deck Guide</span>
-				<h1>Lucy OP15 Deck Guide</h1>
+				<span class="hero-badge">March Guide</span>
+				<h1>Dracule Mihawk OP14 Deck Guide</h1>
 				<p>
-					Complete reference guide for Lucy OP15: decklist, curve checkpoints, mulligan priorities, tech
-					options, and matchup notes. Built for fast reading between rounds.
+					Complete reference guide for Dracule Mihawk OP14: decklist, curve checkpoints, mulligan priorities,
+					tech options, and matchup focus leaders. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -222,7 +185,7 @@ const matchups = [
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Lucy OP15 guide icon" loading="lazy" />
+				<img src={icon} alt="Dracule Mihawk OP14 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -232,7 +195,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>Main list for Lucy OP15.</p>
+					<p>Main list for Dracule Mihawk OP14.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -264,25 +227,31 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Options & Tech Cards</h2>
-					<p>Flexible slots to adapt the list.</p>
+					<p>Alternative packs and insert options.</p>
 				</div>
 			</div>
-			<div class="options-grid">
-				{options.map((card) => (
-					<button
-						class="option-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="option-info">
-							<div class="deck-name">{card.name}</div>
-							<div class="deck-code">{card.code}</div>
-							<p class="option-note">{card.note}</p>
+			<div class="options-stack">
+				{optionsGroups.map((group) => (
+					<div class="option-group">
+						<div class="options-grid">
+							{group.cards.map((card) => (
+								<button
+									class="option-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<div class="option-info">
+										<div class="deck-name">{card.name}</div>
+										<div class="deck-code">{card.code}</div>
+									</div>
+								</button>
+							))}
 						</div>
-					</button>
+						<p class="section-note">{group.note}</p>
+					</div>
 				))}
 			</div>
 		</div>
@@ -293,7 +262,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1C searcher + 4C setup is the priority.</p>
+					<p>1st or 2nd this deck need to see 1C search for Leader effect plus 5C for play at the best your curve (you can’t miss the curve).</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -310,10 +279,7 @@ const matchups = [
 					</button>
 				))}
 			</div>
-			<p class="mulligan-text">
-				1C searcher to look for the missing pieces in the curve + 4C Cavendish or spell to build your board
-				and draw 3 cards. If you don’t see this combo, mulligan is the way.
-			</p>
+			<p class="mulligan-text">If you don’t see this combo mulligan is the way.</p>
 		</div>
 	</section>
 
@@ -321,38 +287,14 @@ const matchups = [
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Curve Guide</h2>
-					<p>Turn-by-turn curve reminders for going first or second.</p>
+					<h2>Curve</h2>
+					<p>Turn checkpoints and key curve reminders.</p>
 				</div>
 			</div>
 			<div class="curve-block">
-				<h3>Curve 1st</h3>
+				<h3>Curve</h3>
 				<div class="curve-rows">
-					{curveFirst.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((card) => (
-									<button
-										class="mini-card"
-										type="button"
-										data-card-preview
-										data-full={card.img}
-										data-name={`${card.code} ${card.name}`}
-									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-									</button>
-								))}
-							</div>
-							<div class="curve-note">{slot.notes}</div>
-						</div>
-					))}
-				</div>
-			</div>
-			<div class="curve-block">
-				<h3>Curve 2nd</h3>
-				<div class="curve-rows">
-					{curveSecond.map((slot) => (
+					{curve.map((slot) => (
 						<div class="curve-row">
 							<div class="curve-label">{slot.label}</div>
 							<div class="curve-cards">
@@ -381,7 +323,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
-					<p>Key reminders and timing notes.</p>
+					<p>Sequencing reminders and key card interactions.</p>
 				</div>
 			</div>
 			<div class="tips-grid">
@@ -412,16 +354,16 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Quick matchup snapshot for the key leaders.</p>
+					<p>Key leaders for the matchup spread.</p>
 				</div>
 			</div>
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
 					<div class="matchup-card">
-					<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
-						<span class="badge-icon">{matchup.icon}</span>
-						<span>{matchup.label}</span>
-					</div>
+						<div class={`matchup-badge ${matchup.label === "Negative MU" || matchup.label === "Slight Disadv." || matchup.label === "Even/Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
 						<button
 							class="mini-card"
 							type="button"
@@ -497,7 +439,7 @@ const matchups = [
 	}
 
 	.guide-icon img {
-		width: min(360px, 90%);
+		width: min(320px, 90%);
 		border-radius: 18px;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		box-shadow: var(--shadow);
@@ -569,9 +511,25 @@ const matchups = [
 	}
 
 	.options-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-start;
 		gap: 1rem;
+	}
+
+	.options-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.option-group {
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: rgba(12, 17, 30, 0.55);
 	}
 
 	.option-card {
@@ -581,6 +539,9 @@ const matchups = [
 		padding: 0.8rem;
 		display: grid;
 		gap: 0.6rem;
+		width: min(220px, 100%);
+		justify-items: center;
+		text-align: center;
 		cursor: pointer;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
@@ -595,12 +556,15 @@ const matchups = [
 
 	.option-card img {
 		width: 100%;
+		max-width: 220px;
+		margin: 0 auto;
 		border-radius: 10px;
 	}
 
 	.option-info {
 		display: grid;
 		gap: 0.2rem;
+		text-align: center;
 	}
 
 	.option-note {
@@ -776,6 +740,11 @@ const matchups = [
 
 	.section-note {
 		color: var(--text-300);
+		max-width: 68ch;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 1.65;
+		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
 	}
 
 	.card-modal {
@@ -830,13 +799,16 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
+		.option-group {
+			padding: 0.85rem;
+		}
+
 		.deck-card img {
 			max-width: 120px;
 		}
 
 		.option-card img {
-			max-width: 200px;
-			margin: 0 auto;
+			max-width: 170px;
 		}
 
 		.mini-card img {
