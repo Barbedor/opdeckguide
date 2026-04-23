@@ -7,29 +7,34 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
-		<div class="container">
-			<span class="hero-badge">Beginner Guides</span>
-			<h1>Complete One Piece TCG Rules</h1>
-			<p>
-				This guide organizes the official rules into a clear, step-by-step reference.
-				It is meant to be a complete reference that stays precise and avoids interpretation. The goal is
-				clarity: every section maps to official rule topics such as card information, zones, deck building,
-				turn structure, combat steps, effect timing, and keyword definitions. If you want the shorter,
-				beginner-friendly version, use the
-				<a class="inline-link" href="/beginner-guides/simplified-rules">Simplified Rules Overview</a> page.
-			</p>
-			<p>
-				When you read these rules, remember two fundamentals stated in the official comprehensive rules:
-				if a card text contradicts the rules, the card text takes priority, and if an action is impossible,
-				you perform as much of it as possible. This page keeps those priorities front and center. It also
-				includes official keyword explanations so you can resolve timing windows and effects correctly during
-				play.
-			</p>
-			<p>
-				Card images and the board layout below are provided only as visual references and do not change any
-				rules. For strategy or deck construction advice, use <a href="/deck-guides">Deck Guides</a> or
-				<a href="/meta-analysis">Meta Analysis</a>.
-			</p>
+		<div class="container rules-hero-grid">
+			<div class="rules-hero-copy">
+				<span class="hero-badge">Beginner Guides</span>
+				<h1>Complete One Piece TCG Rules</h1>
+				<p>
+					This guide organizes the official rules into a clear, step-by-step reference.
+					It is meant to be a complete reference that stays precise and avoids interpretation. The goal is
+					clarity: every section maps to official rule topics such as card information, zones, deck building,
+					turn structure, combat steps, effect timing, and keyword definitions. If you want the shorter,
+					beginner-friendly version, use the
+					<a class="inline-link" href="/beginner-guides/simplified-rules">Simplified Rules Overview</a> page.
+				</p>
+				<p>
+					When you read these rules, remember two fundamentals stated in the official comprehensive rules:
+					if a card text contradicts the rules, the card text takes priority, and if an action is impossible,
+					you perform as much of it as possible. This page keeps those priorities front and center. It also
+					includes official keyword explanations so you can resolve timing windows and effects correctly during
+					play.
+				</p>
+				<p>
+					Card images and the board layout below are provided only as visual references and do not change any
+					rules. For strategy or deck construction advice, use <a href="/deck-guides">Deck Guides</a> or
+					<a href="/meta-analysis">Meta Analysis</a>.
+				</p>
+			</div>
+			<div class="rules-hero-cover" aria-hidden="true">
+				<img src="/assets/beginner-guides/complete-rules.png" alt="" loading="eager" />
+			</div>
 		</div>
 	</section>
 
@@ -586,6 +591,36 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 </script>
 
 <style>
+	.rules-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+		gap: clamp(2rem, 5vw, 4.5rem);
+		align-items: center;
+	}
+
+	.rules-hero-copy {
+		max-width: 72ch;
+	}
+
+	.rules-hero-cover {
+		justify-self: end;
+		width: min(100%, 320px);
+		border-radius: var(--radius-lg);
+		border: 1px solid rgba(255, 107, 61, 0.22);
+		background:
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.16), transparent 58%),
+			rgba(12, 17, 30, 0.78);
+		box-shadow: var(--shadow);
+		overflow: hidden;
+	}
+
+	.rules-hero-cover img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+	}
+
 	.section-note {
 		color: var(--text-300);
 		margin-bottom: 1rem;
@@ -1227,6 +1262,15 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 	}
 
 	@media (max-width: 720px) {
+		.rules-hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.rules-hero-cover {
+			justify-self: start;
+			width: min(100%, 280px);
+		}
+
 		.setup-guide {
 			padding: 0.75rem;
 		}

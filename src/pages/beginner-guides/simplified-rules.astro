@@ -7,24 +7,29 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
-		<div class="container">
-			<span class="hero-badge">Beginner Guides</span>
-			<h1>Simplified Rules Overview</h1>
-			<p>
-				This page is a simplified, accurate summary of the official One Piece Card Game rules. It keeps the
-				same structure as the official manuals but focuses on the essentials you need to start playing
-				correctly. It does not add strategy or interpretation. If you want the complete, detailed reference,
-				use the <a class="inline-link" href="/beginner-guides/complete-rules">Complete One Piece Card Game Rules</a> page.
-			</p>
-			<p>
-				You will learn how to set up a game, what each zone is for, how turns flow, and how combat resolves.
-				All terms and timings here come directly from the official rules. This is a practical checklist you
-				can keep open while learning your first matches.
-			</p>
-			<p>
-				For deck‑specific learning and improvement, go to <a href="/deck-guides">Deck Guides</a>. For a quick
-				view of what is popular in tournaments, use <a href="/meta-analysis">Meta Analysis</a>.
-			</p>
+		<div class="container rules-hero-grid">
+			<div class="rules-hero-copy">
+				<span class="hero-badge">Beginner Guides</span>
+				<h1>Simplified Rules Overview</h1>
+				<p>
+					This page is a simplified, accurate summary of the official One Piece Card Game rules. It keeps the
+					same structure as the official manuals but focuses on the essentials you need to start playing
+					correctly. It does not add strategy or interpretation. If you want the complete, detailed reference,
+					use the <a class="inline-link" href="/beginner-guides/complete-rules">Complete One Piece Card Game Rules</a> page.
+				</p>
+				<p>
+					You will learn how to set up a game, what each zone is for, how turns flow, and how combat resolves.
+					All terms and timings here come directly from the official rules. This is a practical checklist you
+					can keep open while learning your first matches.
+				</p>
+				<p>
+					For deck‑specific learning and improvement, go to <a href="/deck-guides">Deck Guides</a>. For a quick
+					view of what is popular in tournaments, use <a href="/meta-analysis">Meta Analysis</a>.
+				</p>
+			</div>
+			<div class="rules-hero-cover" aria-hidden="true">
+				<img src="/assets/beginner-guides/simplified-rules.png" alt="" loading="eager" />
+			</div>
 		</div>
 	</section>
 
@@ -303,6 +308,36 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 </script>
 
 <style>
+	.rules-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+		gap: clamp(2rem, 5vw, 4.5rem);
+		align-items: center;
+	}
+
+	.rules-hero-copy {
+		max-width: 72ch;
+	}
+
+	.rules-hero-cover {
+		justify-self: end;
+		width: min(100%, 320px);
+		border-radius: var(--radius-lg);
+		border: 1px solid rgba(255, 107, 61, 0.22);
+		background:
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.16), transparent 58%),
+			rgba(12, 17, 30, 0.78);
+		box-shadow: var(--shadow);
+		overflow: hidden;
+	}
+
+	.rules-hero-cover img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+	}
+
 	.section-note {
 		color: var(--text-300);
 		margin-bottom: 1rem;
@@ -543,6 +578,15 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 	}
 
 	@media (max-width: 920px) {
+		.rules-hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.rules-hero-cover {
+			justify-self: start;
+			width: min(100%, 280px);
+		}
+
 		.playmat {
 			grid-template-columns: 1fr;
 			grid-template-rows: auto;
