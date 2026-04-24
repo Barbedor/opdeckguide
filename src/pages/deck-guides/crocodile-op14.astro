@@ -1,0 +1,873 @@
+﻿---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Crocodile OP14 Deck Guide";
+const description =
+	"Crocodile OP14 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
+
+const icon = "/assets/guides/crocodile-op14.png";
+
+const decklist = [
+	{ code: "OP14-079", name: "Crocodile", count: 1, img: "/Cards/OP14/OP14-079.jpg", role: "Leader" },
+	{ code: "OP14-083", name: "Ms. Wednesday", count: 4, img: "/Cards/OP14/OP14-083.jpg", role: "Character" },
+	{ code: "OP14-088", name: "Miss.MerryChristmas(Drophy)", count: 4, img: "/Cards/OP14/OP14-088.jpg", role: "Character" },
+	{ code: "OP14-085", name: "Miss.Goldenweek(Marianne)", count: 2, img: "/Cards/OP14/OP14-085.jpg", role: "Character" },
+	{ code: "OP14-087", name: "Miss.Valentine(Mikita)", count: 4, img: "/Cards/OP14/OP14-087.jpg", role: "Character" },
+	{ code: "OP14-091", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/OP14/OP14-091.jpg", role: "Character" },
+	{ code: "OP14-093", name: "Mr.4(Babe)", count: 2, img: "/Cards/OP14/OP14-093.jpg", role: "Character" },
+	{ code: "OP14-086", name: "Miss Doublefinger(Zala)", count: 2, img: "/Cards/OP14/OP14-086.jpg", role: "Character" },
+	{ code: "OP14-090", name: "Mr.1(Daz.Bonez)", count: 4, img: "/Cards/OP14/OP14-090.jpg", role: "Character" },
+	{ code: "OP14-094", name: "Mr.5(Gem)", count: 4, img: "/Cards/OP14/OP14-094.jpg", role: "Character" },
+	{ code: "OP14-084", name: "Ms. All Sunday", count: 4, img: "/Cards/OP14/OP14-084.jpg", role: "Character" },
+	{ code: "OP14-120", name: "Crocodile", count: 4, img: "/Cards/OP14/OP14-120.jpg", role: "Character" },
+	{ code: "OP05-094", name: "Haute Couture PatchWork", count: 4, img: "/Cards/OP05/OP05-094.png", role: "Event" },
+	{ code: "OP14-099", name: "Disappointed?", count: 4, img: "/Cards/OP14/OP14-099.jpg", role: "Event" },
+	{ code: "OP14-096", name: "Ground Death", count: 4, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+];
+
+const optionsGroups = [
+	{
+		cards: [{ code: "OP05-086", name: "Nefeltari Vivi", img: "/Cards/OP05/OP05-086.png" }],
+		note:
+			"If you need cheap blocker this is the best, they feel so good in the deck and with Leader effect is very easy reach 10 cards in trash. 2x if in your local aggro is the most popular!",
+	},
+	{
+		cards: [{ code: "OP05-082", name: "Shirahoshi", img: "/Cards/OP05/OP05-082.png" }],
+		note:
+			"Best 2K in the format for black decks, you would won't mill you spell or the wrong character but this Shirahoshi help for recovery it and save you from deckout. Wisn't searchable but still a good option, 4x!",
+	},
+];
+
+const mulliganCards = [
+	{ code: "OP14-085", name: "Miss.Goldenweek(Marianne)", img: "/Cards/OP14/OP14-085.jpg" },
+	{ code: "OP14-087", name: "Miss.Valentine(Mikita)", img: "/Cards/OP14/OP14-087.jpg" },
+	{ code: "OP14-099", name: "Disappointed?", img: "/Cards/OP14/OP14-099.jpg" },
+	{ code: "OP14-091", name: "Mr.2.Bon.Kurei(Bentham)", img: "/Cards/OP14/OP14-091.jpg" },
+];
+
+const curveFirst = [
+	{
+		label: "1 DON",
+		notes: "For missing Character.",
+		cards: [
+			{ code: "OP14-087", name: "Miss.Valentine(Mikita)", img: "/Cards/OP14/OP14-087.jpg" },
+		],
+	},
+	{
+		label: "3 DON",
+		notes: "& 7K to Leader.",
+		cards: [
+			{ code: "OP14-087", name: "Miss.Valentine(Mikita)", img: "/Cards/OP14/OP14-087.jpg" },
+			{ code: "OP14-099", name: "Disappointed?", img: "/Cards/OP14/OP14-099.jpg" },
+		],
+	},
+	{
+		label: "5 DON",
+		notes: "Increase value.",
+		cards: [
+			{ code: "OP14-094", name: "Mr.5(Gem)", img: "/Cards/OP14/OP14-094.jpg" },
+		],
+	},
+	{
+		label: "7 DON",
+		notes: "Moria 7C?! Infinite combo reborn MR2+serch Wednesday+MR1 MR4+Goldenweek [W/ Leader Eff]",
+		cards: [{ code: "OP14-084", name: "Ms. All Sunday", img: "/Cards/OP14/OP14-084.jpg" }],
+	},
+	{
+		label: "Late Game",
+		notes: "Stun! Stun! Stun!",
+		cards: [{ code: "OP14-120", name: "Crocodile", img: "/Cards/OP14/OP14-120.jpg" }],
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON",
+		notes: "For missing Character.",
+		cards: [
+			{ code: "OP14-087", name: "Miss.Valentine(Mikita)", img: "/Cards/OP14/OP14-087.jpg" },
+		],
+	},
+	{
+		label: "4 DON",
+		notes: "Increase value.",
+		cards: [
+			{ code: "OP14-091", name: "Mr.2.Bon.Kurei(Bentham)", img: "/Cards/OP14/OP14-091.jpg" },
+		],
+	},
+	{
+		label: "6 DON",
+		notes: "Before play/reborn Character swing with MR2 and use Leader effect on it, after that run MR1 for board control or MR5 for draw two cards.",
+		cards: [
+			{ code: "OP14-090", name: "Mr.1(Daz.Bonez)", img: "/Cards/OP14/OP14-090.jpg" },
+			{ code: "OP14-094", name: "Mr.5(Gem)", img: "/Cards/OP14/OP14-094.jpg" },
+		],
+	},
+	{
+		label: "8 DON",
+		notes: "At 8 DON you have two options: play Ms. All Sunday if the opponent don't have pressure on board and you can use this turn for board spam, or play 8C Croco if your opponent big body on field or you need survive this turn, stun two opponent Character but remember that Crocodile is your late game option.",
+		cards: [
+			{ code: "OP14-084", name: "Ms. All Sunday", img: "/Cards/OP14/OP14-084.jpg" },
+			{ code: "OP14-120", name: "Crocodile", img: "/Cards/OP14/OP14-120.jpg" },
+		],
+	},
+];
+
+const tips = [
+	{
+		title: "Combo 1 Board Control",
+		body:
+			"For this combo you need MR2 stick on board previous turn, use Leader ability on it and reborn MR1 from trash that rest a opponent 0C, play Ms Wednesday and use her ability... now you can swing two more easily but before that if have 5 DON left consider to play MR5 for refresh your hand!",
+		cards: [
+			{ code: "OP14-083", name: "Ms. Wednesday", img: "/Cards/OP14/OP14-083.jpg" },
+			{ code: "OP14-090", name: "Mr.1(Daz.Bonez)", img: "/Cards/OP14/OP14-090.jpg" },
+		],
+	},
+	{
+		title: "Combo 2 Triple Stun",
+		body:
+			"Play Crocodile and stun a 9C opponent Character, use Leader ability on it and reduce at 0C another rested Character, trash one card and play 8C from your trash for stun the second 9C opponent Character, last but not least use the spell on 0C for the third stun. If you play correctly may stun 2x 9C and 1x 10C crazy!",
+		cards: [
+			{ code: "OP14-120", name: "Crocodile", img: "/Cards/OP14/OP14-120.jpg" },
+			{ code: "OP05-094", name: "Haute Couture PatchWork", img: "/Cards/OP05/OP05-094.png" },
+		],
+	},
+];
+
+const matchups = [
+	{
+		label: "Even/Slight Disadv.",
+		icon: "↓",
+		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
+		notes: ["Start 2nd", "Manage your life"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
+		notes: ["Start 2nd", "Manage your life", "1C spell help for blocker"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
+		notes: ["Start 1st", "Control board", "8C Croco stun 9C Mihawk"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP14-060", name: "Donquixote Doflamingo", img: "/Cards/OP14/OP14-060.jpg" },
+		notes: ["Start 1st for push", "Growe your board with Sunday for more swing"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP13-002", name: "Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: ["Start 2nd", "Control board", "6K is a problem"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP11-040", name: "Monkey.D.Luffy", img: "/Cards/OP11/OP11-040.jpg" },
+		notes: ["Start 1st", "Manage life", "Use 8C on Sanji/Roger"],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">March Guide</span>
+				<h1>Crocodile OP14 Deck Guide</h1>
+				<p>
+					Complete reference guide for Crocodile OP14: decklist, curve checkpoints, mulligan priorities,
+					tech options, and matchup focus leaders. Built for fast reading between rounds.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Crocodile OP14 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Main list for Crocodile OP14.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Options & Tech Cards</h2>
+					<p>Alternative cards and tech options.</p>
+				</div>
+			</div>
+			<div class="options-paired-grid">
+				{optionsGroups.map((group) => {
+					const card = group.cards[0];
+					return (
+						<div class="option-paired-item">
+							<button
+								class="option-card"
+								type="button"
+								data-card-preview
+								data-full={card.img}
+								data-name={`${card.code} ${card.name}`}
+							>
+								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<div class="option-info">
+									<div class="deck-name">{card.name}</div>
+									<div class="deck-code">{card.code}</div>
+								</div>
+							</button>
+							<p class="section-note option-note-inline">{group.note}</p>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>1st or 2nd this deck need to see 1C serch for fill the trash + the most important Character MR2 for double swing and reborn one of your Character.</p>
+				</div>
+			</div>
+			<div class="mulligan-grid">
+				{mulliganCards.map((card) => (
+					<button
+						class="mini-card"
+						type="button"
+						data-card-preview
+						data-full={card.img}
+						data-name={`${card.code} ${card.name}`}
+					>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="mini-label">{card.name}</div>
+					</button>
+				))}
+			</div>
+			<p class="mulligan-text">If you don't see this combo mulligan is the way.</p>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn curve reminders for going first or second.</p>
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 1st</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 2nd</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Key reminders, board control lines, and late game stun patterns.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-cards">
+							{tip.cards.map((card) => (
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<h3>{tip.title}</h3>
+						<p>{tip.body}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>Key leaders for the matchup spread.</p>
+				</div>
+			</div>
+			<div class="matchups-grid">
+				{matchups.map((matchup) => (
+					<div class="matchup-card">
+						<div class={`matchup-badge ${matchup.label.includes("Negative") || matchup.label.includes("Disadv") ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<button
+							class="mini-card"
+							type="button"
+							data-card-preview
+							data-full={matchup.leader.img}
+							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+						>
+							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+						</button>
+						<div class="matchup-name">{matchup.leader.name}</div>
+						<ul>
+							{matchup.notes.map((note) => (
+								<li>{note}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.options-paired-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(220px, 280px));
+		justify-content: center;
+		gap: 2.25rem 3rem;
+		align-items: start;
+	}
+
+	.option-paired-item {
+		display: grid;
+		gap: 0.8rem;
+		align-content: start;
+		justify-items: stretch;
+	}
+
+	.option-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.8rem;
+		display: grid;
+		gap: 0.6rem;
+		width: 100%;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 220px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mulligan-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.mulligan-text {
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-note {
+		color: var(--text-300);
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.tip-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.tip-card h3 {
+		margin: 0;
+		font-size: 1rem;
+	}
+
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.matchups-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	.section-note {
+		color: var(--text-300);
+		text-align: center;
+		line-height: 1.65;
+		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
+	}
+
+	.option-note-inline {
+		max-width: 32ch;
+		margin: 0;
+		text-align: left;
+		justify-self: start;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.options-paired-grid {
+			grid-template-columns: 1fr;
+			gap: 1.4rem;
+		}
+
+		.deck-card img {
+			max-width: 120px;
+		}
+
+		.option-card img {
+			max-width: 170px;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+	}
+	@media (max-width: 640px) {
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.deck-card {
+			padding: 0.35rem;
+			gap: 0.4rem;
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.deck-card img {
+			max-width: 94px;
+			border-radius: 8px;
+		}
+
+		.deck-info {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.28rem;
+		}
+
+		.deck-count {
+			padding: 0.18rem 0.45rem;
+			font-size: 0.68rem;
+			line-height: 1;
+		}
+
+		.deck-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.deck-code {
+			font-size: 0.66rem;
+			line-height: 1.1;
+		}
+
+		.deck-role {
+			display: none;
+		}
+	}
+</style>

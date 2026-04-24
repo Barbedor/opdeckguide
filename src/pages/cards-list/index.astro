@@ -1,9 +1,10 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
+import { guideSearchIndex } from "../../lib/guides";
 
 const title = "One Piece Card Game Cards List";
-const description = "Browse One Piece Card Game cards by extension. Search by card number or name and open full-size images instantly.";
+const description = "Browse One Piece Card Game cards by extension, and search both cards and deck guides from one global bar.";
 
 const metadataAvailable = hasMetadata();
 
@@ -38,7 +39,9 @@ for (const item of extensionSummaries) {
 			<div class="search-results" data-search-results></div>
 			<div class="hero-text" data-hero-text>
 				<p>
-					Search a card number or name, or pick an extension to browse full lists with instant previews.
+					Search a card number, name, leader, or guide. Try queries like <strong>guides</strong>,
+					<strong>guides OP14</strong>, <strong>Mihawk</strong>, or a card code to jump straight to the
+					right result.
 				</p>
 			</div>
 		</div>
@@ -82,9 +85,9 @@ for (const item of extensionSummaries) {
 			<h2>About the Cards List</h2>
 			<p>
 				This library keeps every card organized by extension, with fast thumbnails and a full-size preview on
-				click. Use the search bar under the menu to jump straight to a card number or, when metadata is
-				available, to find cards by name. The layout is optimized for mobile so you can reference cards
-				between rounds without friction.
+				click. Use the search bar under the menu to jump straight to a card number, find cards by name, or
+				open matching deck guides from leader names and guide keywords. The layout is optimized for mobile so
+				you can reference cards between rounds without friction.
 			</p>
 			<p>
 				Click an extension to open its full card list. The previews show the most recent cards to help you
@@ -102,7 +105,7 @@ for (const item of extensionSummaries) {
 	</div>
 </MainLayout>
 
-<script define:vars={{ metadataAvailable }}>
+<script define:vars={{ metadataAvailable, guideSearchIndex }}>
 	const searchInput = document.querySelector("[data-global-search]");
 	const resultsContainer = document.querySelector("[data-search-results]");
 	const modal = document.querySelector("[data-modal]");
@@ -111,10 +114,20 @@ for (const item of extensionSummaries) {
 	const heroText = document.querySelector("[data-hero-text]");
 	let cardIndex = null;
 	let isLoadingIndex = false;
+	const guideIndex = guideSearchIndex ?? [];
 
 	const colorOrder = ["Red", "Green", "Blue", "Purple", "Yellow", "Black", "Don", "Other"];
+	const guideIntentTokens = new Set(["guide", "guides", "deck", "decks", "leader", "leaders", "article", "articles"]);
 
 	const normalize = (value) => value.trim().toLowerCase();
+	const normalizeSearch = (value) =>
+		value
+			.toLowerCase()
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[^a-z0-9]+/g, " ")
+			.replace(/\s+/g, " ")
+			.trim();
 	const normalizeCode = (value) =>
 		value
 			.trim()
@@ -122,12 +135,50 @@ for (const item of extensionSummaries) {
 			.replace(/\s+/g, "")
 			.replace(/_/g, "-");
 	const isDigitsOnly = (value) => /^[0-9]+$/.test(value);
+	const isCardCodeQuery = (value) => /^([A-Z]{1,3}\d{1,2})-?(\d{1,3})$/i.test(value.trim().replace(/\s+/g, ""));
 	const formatOpCode = (value) => {
 		const match = value.match(/^OP?(\d{1,2})-?(\d{1,3})$/i);
 		if (!match) return null;
 		const set = match[1].padStart(2, "0");
 		const number = match[2].padStart(3, "0");
 		return `OP${set}-${number}`;
+	};
+	const tokenize = (value) => normalizeSearch(value).split(" ").filter(Boolean);
+	const extractSetTokens = (value) => {
+		const matches = [...normalizeSearch(value).matchAll(/\b(op|eb|st|prb)\s?(\d{1,2})\b/g)];
+		return matches.map((match) => `${match[1].toUpperCase()}${match[2].padStart(2, "0")}`);
+	};
+	const levenshtein = (a, b) => {
+		const rows = a.length + 1;
+		const cols = b.length + 1;
+		const matrix = Array.from({ length: rows }, () => Array(cols).fill(0));
+		for (let i = 0; i < rows; i += 1) matrix[i][0] = i;
+		for (let j = 0; j < cols; j += 1) matrix[0][j] = j;
+		for (let i = 1; i < rows; i += 1) {
+			for (let j = 1; j < cols; j += 1) {
+				const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+				matrix[i][j] = Math.min(
+					matrix[i - 1][j] + 1,
+					matrix[i][j - 1] + 1,
+					matrix[i - 1][j - 1] + cost,
+				);
+			}
+		}
+		return matrix[a.length][b.length];
+	};
+
+	const createResultsSection = (title, count) => {
+		const section = document.createElement("section");
+		section.className = "results-section";
+		const heading = document.createElement("div");
+		heading.className = "results-heading";
+		const h2 = document.createElement("h2");
+		h2.textContent = title;
+		const meta = document.createElement("span");
+		meta.textContent = `${count} result${count > 1 ? "s" : ""}`;
+		heading.append(h2, meta);
+		section.appendChild(heading);
+		return section;
 	};
 
 	const openModal = (card) => {
@@ -144,37 +195,44 @@ for (const item of extensionSummaries) {
 		modal.setAttribute("aria-hidden", "true");
 	};
 
-	const renderCards = (cards) => {
-		if (!resultsContainer) return;
-		resultsContainer.innerHTML = "";
-		if (cards.length === 0) {
-			resultsContainer.innerHTML = '<p class="muted">No card found for this number.</p>';
-			return;
-		}
+	const renderGuideResults = (guides) => {
+		if (!resultsContainer || guides.length === 0) return;
+		const section = createResultsSection("Deck Guides", guides.length);
 		const grid = document.createElement("div");
-		grid.className = "cards-grid";
-		cards.forEach((card) => {
-			const button = document.createElement("button");
-			button.type = "button";
-			button.className = "card-thumb";
-			button.addEventListener("click", () => openModal(card));
+		grid.className = "guide-results-grid";
+		guides.forEach((guide) => {
+			const card = document.createElement("a");
+			card.className = "guide-result-card";
+			card.href = guide.href;
+
+			const eyebrow = document.createElement("span");
+			eyebrow.className = "guide-result-eyebrow";
+			eyebrow.textContent = `${guide.month} • ${guide.code}`;
+
+			const media = document.createElement("div");
+			media.className = "guide-result-media";
 			const img = document.createElement("img");
 			img.loading = "lazy";
-			img.src = card.smallUrl;
-			img.alt = `${card.code} card`;
-			button.appendChild(img);
-			grid.appendChild(button);
+			img.src = guide.imageSrc;
+			img.alt = guide.imageAlt;
+			media.appendChild(img);
+
+			const title = document.createElement("h3");
+			title.textContent = guide.title;
+
+			const meta = document.createElement("p");
+			meta.textContent = `${guide.leader} • ${guide.code}`;
+
+			card.append(eyebrow, media, title, meta);
+			grid.appendChild(card);
 		});
-		resultsContainer.appendChild(grid);
+		section.appendChild(grid);
+		resultsContainer.appendChild(section);
 	};
 
 	const renderGroupedByColor = (cards) => {
-		if (!resultsContainer) return;
-		resultsContainer.innerHTML = "";
-		if (cards.length === 0) {
-			resultsContainer.innerHTML = '<p class="muted">No card found for this number.</p>';
-			return;
-		}
+		if (!resultsContainer || cards.length === 0) return;
+		const wrapper = createResultsSection("Cards", cards.length);
 		const groups = new Map();
 		cards.forEach((card) => {
 			const key = card.color || "Other";
@@ -183,11 +241,11 @@ for (const item of extensionSummaries) {
 		});
 		colorOrder.forEach((color) => {
 			if (!groups.has(color)) return;
-			const section = document.createElement("div");
-			section.className = "color-group";
+			const group = document.createElement("div");
+			group.className = "color-group";
 			const heading = document.createElement("h3");
 			heading.textContent = color;
-			section.appendChild(heading);
+			group.appendChild(heading);
 			const grid = document.createElement("div");
 			grid.className = "cards-grid";
 			groups.get(color).forEach((card) => {
@@ -202,9 +260,31 @@ for (const item of extensionSummaries) {
 				button.appendChild(img);
 				grid.appendChild(button);
 			});
-			section.appendChild(grid);
-			resultsContainer.appendChild(section);
+			group.appendChild(grid);
+			wrapper.appendChild(group);
 		});
+		resultsContainer.appendChild(wrapper);
+	};
+
+	const renderCards = (cards) => {
+		if (!resultsContainer || cards.length === 0) return;
+		const section = createResultsSection("Cards", cards.length);
+		const grid = document.createElement("div");
+		grid.className = "cards-grid";
+		cards.forEach((card) => {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "card-thumb";
+			button.addEventListener("click", () => openModal(card));
+			const img = document.createElement("img");
+			img.loading = "lazy";
+			img.src = card.smallUrl;
+			img.alt = `${card.code} card`;
+			button.appendChild(img);
+			grid.appendChild(button);
+		});
+		section.appendChild(grid);
+		resultsContainer.appendChild(section);
 	};
 
 	const loadIndex = async () => {
@@ -221,6 +301,84 @@ for (const item of extensionSummaries) {
 		}
 	};
 
+	const searchGuides = (query) => {
+		const normalizedQuery = normalizeSearch(query);
+		if (!normalizedQuery) return [];
+		const queryTokens = tokenize(query);
+		const requestedSets = extractSetTokens(query);
+		const hasGuideIntent = queryTokens.some((token) => guideIntentTokens.has(token));
+		const meaningfulTokens = queryTokens.filter((token) => !guideIntentTokens.has(token));
+		const genericGuideQuery =
+			hasGuideIntent && (meaningfulTokens.length === 0 || meaningfulTokens.every((token) => extractSetTokens(token).length > 0));
+
+		const results = guideIndex
+			.map((guide, index) => {
+				const searchText = normalizeSearch(guide.searchText ?? "");
+				const title = normalizeSearch(guide.title);
+				const leader = normalizeSearch(guide.leader);
+				const guideTokens = [...new Set(tokenize(searchText))];
+				let score = 0;
+				let matchedTokens = 0;
+
+				if (genericGuideQuery) {
+					score += 40;
+				}
+
+				if (title === normalizedQuery || leader === normalizedQuery) {
+					score += 120;
+				} else if (title.includes(normalizedQuery) || leader.includes(normalizedQuery)) {
+					score += 80;
+				} else if (searchText.includes(normalizedQuery)) {
+					score += 65;
+				}
+
+				if (requestedSets.length > 0) {
+					if (requestedSets.includes(guide.code.toUpperCase())) {
+						score += 55;
+					} else {
+						return null;
+					}
+				}
+
+				for (const token of meaningfulTokens) {
+					if (!token) continue;
+					let tokenMatched = false;
+					if (guideTokens.includes(token)) {
+						score += 28;
+						tokenMatched = true;
+					} else if (guideTokens.some((candidate) => candidate.startsWith(token) || token.startsWith(candidate))) {
+						score += 18;
+						tokenMatched = true;
+					} else if (
+						token.length >= 4 &&
+						guideTokens.some((candidate) => {
+							const limit = token.length >= 7 ? 2 : 1;
+							return Math.abs(candidate.length - token.length) <= 2 && levenshtein(candidate, token) <= limit;
+						})
+					) {
+						score += 12;
+						tokenMatched = true;
+					}
+					if (tokenMatched) matchedTokens += 1;
+				}
+
+				if (hasGuideIntent) score += 15;
+				if (meaningfulTokens.length > 0 && matchedTokens === meaningfulTokens.length) score += 16;
+				if (!genericGuideQuery && meaningfulTokens.length > 0 && matchedTokens === 0 && score < 65) return null;
+				if (score < 25) return null;
+
+				return { ...guide, score, index };
+			})
+			.filter(Boolean)
+			.sort((a, b) => {
+				if (b.score !== a.score) return b.score - a.score;
+				return a.index - b.index;
+			})
+			.slice(0, genericGuideQuery ? 12 : 8);
+
+		return results;
+	};
+
 	const runSearch = async (query) => {
 		const raw = query.trim();
 		if (!raw) {
@@ -229,6 +387,7 @@ for (const item of extensionSummaries) {
 			return;
 		}
 		if (heroText) heroText.style.display = "none";
+		if (resultsContainer) resultsContainer.innerHTML = "";
 		await loadIndex();
 		if (!cardIndex) return;
 
@@ -238,6 +397,10 @@ for (const item of extensionSummaries) {
 		const hasLetters = /[a-z]/i.test(raw);
 		const allowNameSearch = metadataAvailable && hasLetters;
 		const rawLower = normalize(raw);
+		const guideResults = searchGuides(raw);
+		const hasGuideIntent = tokenize(raw).some((token) => guideIntentTokens.has(token));
+		const requestedSets = extractSetTokens(raw);
+		const specificCardQuery = digitsOnly || isCardCodeQuery(raw);
 
 		const results = cardIndex.filter((card) => {
 			const codeNormalized = card.code.toUpperCase();
@@ -253,10 +416,26 @@ for (const item of extensionSummaries) {
 			return nameMatch || codeMatch;
 		});
 
-		if (allowNameSearch) {
-			renderGroupedByColor(results);
-		} else {
-			renderCards(results);
+		const shouldPrioritizeGuides = guideResults.length > 0 && !specificCardQuery;
+		const shouldRenderCards =
+			results.length > 0 &&
+			(!shouldPrioritizeGuides ||
+				(!hasGuideIntent && requestedSets.length === 0 && results.length <= 12));
+
+		if (guideResults.length > 0) {
+			renderGuideResults(guideResults);
+		}
+
+		if (shouldRenderCards) {
+			if (allowNameSearch) {
+				renderGroupedByColor(results);
+			} else {
+				renderCards(results);
+			}
+		}
+
+		if (guideResults.length === 0 && results.length === 0 && resultsContainer) {
+			resultsContainer.innerHTML = '<p class="muted">No cards or guides matched this search.</p>';
 		}
 	};
 
@@ -293,6 +472,85 @@ for (const item of extensionSummaries) {
 
 	.hero-text {
 		margin-top: 1.5rem;
+	}
+
+	:global(.results-section) {
+		display: grid;
+		gap: 1rem;
+	}
+
+	:global(.results-heading) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	:global(.results-heading h2) {
+		margin: 0;
+		font-size: 1.15rem;
+	}
+
+	:global(.results-heading span) {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	:global(.guide-results-grid) {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	:global(.guide-result-card) {
+		display: grid;
+		gap: 0.7rem;
+		padding: 1rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: rgba(12, 17, 30, 0.9);
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	:global(.guide-result-card:hover),
+	:global(.guide-result-card:focus-visible) {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	:global(.guide-result-eyebrow) {
+		color: var(--accent);
+		font-size: 0.76rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	:global(.guide-result-media) {
+		display: flex;
+		justify-content: center;
+	}
+
+	:global(.guide-result-media img) {
+		width: min(112px, 70%);
+		border-radius: 16px;
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+	}
+
+	:global(.guide-result-card h3) {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.25;
+	}
+
+	:global(.guide-result-card p) {
+		margin: 0;
+		color: var(--text-200);
+		font-size: 0.9rem;
 	}
 
 	.extensions-grid {
@@ -385,24 +643,27 @@ for (const item of extensionSummaries) {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 		gap: 0.8rem;
+		justify-items: start;
 	}
 
-	.card-thumb {
+	:global(.card-thumb) {
 		padding: 0;
 		border-radius: 12px;
 		border: none;
 		background: transparent;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		cursor: pointer;
+		width: 100%;
+		max-width: 180px;
 	}
 
-	.card-thumb img {
+	:global(.card-thumb img) {
 		width: 100%;
 		border-radius: 8px;
 	}
 
-	.card-thumb:hover,
-	.card-thumb:focus-visible {
+	:global(.card-thumb:hover),
+	:global(.card-thumb:focus-visible) {
 		transform: translateY(-4px);
 		box-shadow: var(--shadow);
 		outline: none;
@@ -454,8 +715,50 @@ for (const item of extensionSummaries) {
 	}
 
 	@media (max-width: 600px) {
+		:global(.results-heading) {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		:global(.guide-results-grid) {
+			grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+			gap: 0.7rem;
+		}
+
+		:global(.guide-result-card) {
+			padding: 0.7rem;
+			gap: 0.5rem;
+		}
+
+		:global(.guide-result-eyebrow) {
+			font-size: 0.66rem;
+		}
+
+		:global(.guide-result-media img) {
+			width: 100%;
+			max-width: 120px;
+			border-radius: 18px;
+		}
+
+		:global(.guide-result-card h3) {
+			font-size: 0.9rem;
+			line-height: 1.2;
+		}
+
+		:global(.guide-result-card p) {
+			font-size: 0.78rem;
+			line-height: 1.2;
+		}
+
 		.cards-grid {
-			grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.7rem;
+			justify-items: center;
+		}
+
+		:global(.card-thumb) {
+			max-width: 148px;
 		}
 
 		.extension-previews {
