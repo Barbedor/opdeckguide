@@ -9,31 +9,37 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 	<section class="hero">
 		<div class="container rules-hero-grid">
 			<div class="rules-hero-copy">
-				<span class="hero-badge">Beginner Guides</span>
-				<h1>Complete One Piece TCG Rules</h1>
-				<p>
-					This guide organizes the official rules into a clear, step-by-step reference.
-					It is meant to be a complete reference that stays precise and avoids interpretation. The goal is
-					clarity: every section maps to official rule topics such as card information, zones, deck building,
-					turn structure, combat steps, effect timing, and keyword definitions. If you want the shorter,
-					beginner-friendly version, use the
-					<a class="inline-link" href="/beginner-guides/simplified-rules">Simplified Rules Overview</a> page.
-				</p>
-				<p>
-					When you read these rules, remember two fundamentals stated in the official comprehensive rules:
-					if a card text contradicts the rules, the card text takes priority, and if an action is impossible,
-					you perform as much of it as possible. This page keeps those priorities front and center. It also
-					includes official keyword explanations so you can resolve timing windows and effects correctly during
-					play.
-				</p>
-				<p>
-					Card images and the board layout below are provided only as visual references and do not change any
-					rules. For strategy or deck construction advice, use <a href="/deck-guides">Deck Guides</a> or
-					<a href="/meta-analysis">Meta Analysis</a>.
-				</p>
-			</div>
-			<div class="rules-hero-cover" aria-hidden="true">
-				<img src="/assets/beginner-guides/complete-rules.png" alt="" loading="eager" />
+				<div class="rules-hero-header">
+					<div class="rules-hero-heading">
+						<span class="hero-badge">Beginner Guides</span>
+						<h1>Complete One Piece TCG Rules</h1>
+					</div>
+					<div class="rules-hero-cover" aria-hidden="true">
+						<img src="/assets/beginner-guides/complete-rules.png" alt="" loading="eager" />
+					</div>
+				</div>
+				<div class="rules-hero-body">
+					<p>
+						This guide organizes the official rules into a clear, step-by-step reference.
+						It is meant to be a complete reference that stays precise and avoids interpretation. The goal is
+						clarity: every section maps to official rule topics such as card information, zones, deck building,
+						turn structure, combat steps, effect timing, and keyword definitions. If you want the shorter,
+						beginner-friendly version, use the
+						<a class="inline-link" href="/beginner-guides/simplified-rules">Simplified Rules Overview</a> page.
+					</p>
+					<p>
+						When you read these rules, remember two fundamentals stated in the official comprehensive rules:
+						if a card text contradicts the rules, the card text takes priority, and if an action is impossible,
+						you perform as much of it as possible. This page keeps those priorities front and center. It also
+						includes official keyword explanations so you can resolve timing windows and effects correctly during
+						play.
+					</p>
+					<p>
+						Card images and the board layout below are provided only as visual references and do not change any
+						rules. For strategy or deck construction advice, use <a href="/deck-guides">Deck Guides</a> or
+						<a href="/meta-analysis">Meta Analysis</a>.
+					</p>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -552,12 +558,22 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			<img src="" alt="" data-modal-image />
 		</div>
 	</div>
+
+	<div class="board-modal" data-board-modal aria-hidden="true">
+		<div class="board-modal-inner" role="dialog" aria-modal="true" aria-label="Board preview">
+			<button class="modal-close" type="button" data-board-close>Close</button>
+			<div class="board-modal-stage" data-board-stage></div>
+		</div>
+	</div>
 </MainLayout>
 
 <script>
 	const modal = document.querySelector("[data-modal]");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
+	const boardModal = document.querySelector("[data-board-modal]");
+	const boardStage = document.querySelector("[data-board-stage]");
+	const boardCloseButton = document.querySelector("[data-board-close]");
 
 	const openModal = (fullUrl, name) => {
 		if (!modal || !modalImage) return;
@@ -573,6 +589,26 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		modal.setAttribute("aria-hidden", "true");
 	};
 
+	const isMobileBoardView = () => window.matchMedia("(max-width: 720px)").matches;
+
+	const openBoardModal = (figure) => {
+		if (!boardModal || !boardStage || !figure) return;
+		const clone = figure.cloneNode(true);
+		clone.classList.remove("board-preview-trigger");
+		clone.removeAttribute("data-board-preview");
+		boardStage.innerHTML = "";
+		boardStage.append(clone);
+		boardModal.classList.add("is-open");
+		boardModal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeBoardModal = () => {
+		if (!boardModal || !boardStage) return;
+		boardModal.classList.remove("is-open");
+		boardModal.setAttribute("aria-hidden", "true");
+		boardStage.innerHTML = "";
+	};
+
 	document.addEventListener("click", (event) => {
 		const cardButton = event.target.closest("[data-card-preview]");
 		if (cardButton) {
@@ -581,30 +617,53 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			if (fullUrl) openModal(fullUrl, name);
 			return;
 		}
+		const boardFigure = event.target.closest("[data-board-preview]");
+		if (boardFigure && isMobileBoardView()) {
+			openBoardModal(boardFigure);
+			return;
+		}
 		if (event.target === modal) closeModal();
+		if (event.target === boardModal) closeBoardModal();
 	});
 
 	closeButton?.addEventListener("click", closeModal);
+	boardCloseButton?.addEventListener("click", closeBoardModal);
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
+		if (event.key === "Escape") closeBoardModal();
 	});
 </script>
 
 <style>
 	.rules-hero-grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
-		gap: clamp(2rem, 5vw, 4.5rem);
-		align-items: center;
+		display: block;
 	}
 
 	.rules-hero-copy {
-		max-width: 72ch;
+		max-width: none;
+	}
+
+	.rules-hero-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+		gap: 1.5rem;
+		align-items: center;
+		max-width: 72rem;
+	}
+
+	.rules-hero-heading {
+		min-width: 0;
+	}
+
+	.rules-hero-body {
+		margin-top: 1.5rem;
+		max-width: none;
 	}
 
 	.rules-hero-cover {
 		justify-self: end;
-		width: min(100%, 320px);
+		width: 100%;
+		max-width: 240px;
 		border-radius: var(--radius-lg);
 		border: 1px solid rgba(255, 107, 61, 0.22);
 		background:
@@ -1209,6 +1268,45 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		display: flex;
 	}
 
+	.board-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.92);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		z-index: 45;
+	}
+
+	.board-modal.is-open {
+		display: flex;
+	}
+
+	.board-modal-inner {
+		width: min(1180px, 94vw);
+		max-height: 92vh;
+		background: rgba(10, 14, 24, 0.96);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem;
+		position: relative;
+		box-shadow: var(--shadow);
+		overflow: auto;
+	}
+
+	.board-modal-stage {
+		display: grid;
+		justify-items: center;
+		gap: 1rem;
+	}
+
+	.board-modal-stage .board-figure,
+	.board-modal-stage .setup-figure {
+		width: 100%;
+		margin: 0;
+	}
+
 	.card-modal-inner {
 		max-width: min(520px, 90vw);
 		max-height: 90vh;
@@ -1262,157 +1360,54 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 	}
 
 	@media (max-width: 720px) {
-		.rules-hero-grid {
-			grid-template-columns: 1fr;
+		.rules-hero-header {
+			grid-template-columns: minmax(0, 1fr) 104px;
+			gap: 0.85rem;
+			align-items: center;
+		}
+
+		.rules-hero-copy,
+		.rules-hero-heading {
+			min-width: 0;
 		}
 
 		.rules-hero-cover {
-			justify-self: start;
-			width: min(100%, 280px);
+			justify-self: end;
+			align-self: center;
+			width: 104px;
+			max-width: 104px;
+			margin-top: 0;
+		}
+
+		.rules-hero-body {
+			margin-top: 1rem;
 		}
 
 		.setup-guide {
 			padding: 0.75rem;
 		}
 
-		.setup-grid {
-			grid-template-columns: 1fr;
-			grid-template-rows: auto;
-			grid-template-areas:
-				"character"
-				"life"
-				"flow"
-				"leader"
-				"stage"
-				"deck"
-				"don"
-				"cost"
-				"trash"
-				"hand";
-		}
-
-		.setup-life-stack,
-		.setup-slot,
-		.setup-cost-area,
-		.setup-trash-area {
-			min-height: 10rem;
-		}
-
-		.setup-hand {
-			min-height: 12rem;
-			justify-content: center;
-			padding: 0 2rem 0 0;
-		}
-
-		.setup-hand-label {
-			bottom: -2.2rem;
-			font-size: 1rem;
-			transform: translateX(-54%);
-		}
-
-		.hand-card {
-			width: 5.35rem;
-		}
-
-		.hand-card-1 {
-			margin-right: -2rem;
-		}
-
-		.hand-card-2 {
-			margin-right: -2rem;
-		}
-
-		.hand-card-3 {
-			margin-right: -2rem;
-		}
-
-		.hand-card-4 {
-			margin-right: -2rem;
-		}
-
-		.hand-card-5 {
-			margin-right: 0;
-		}
-
 		.board-figure {
 			padding: 0.7rem;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
 		}
 
-		.playmat {
-			grid-template-columns: 1fr;
-			grid-template-rows: auto;
-			grid-template-areas:
-				"logo"
-				"character"
-				"life"
-				"middle"
-				"cost"
-				"trash"
-				"dondeck";
+		.setup-figure {
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
 		}
 
-		.playmat-middle {
-			grid-template-columns: 1fr;
-			gap: 0.8rem;
+		.board-figure .playmat {
+			zoom: 0.41;
+			margin: 0 auto;
 		}
 
-		.zone-life,
-		.playmat > .zone-don-deck,
-		.playmat > .zone-trash,
-		.playmat > .zone-cost {
-			width: 100%;
-			margin: 0;
-			justify-self: stretch;
-			min-height: 9rem;
-		}
-
-		.zone-life {
-			min-height: 12rem;
-		}
-
-		.zone-character {
-			min-height: 14rem;
-			padding: 3.7rem 1rem 1rem;
-		}
-
-		.zone-leader,
-		.zone-stage,
-		.zone-deck {
-			grid-column: auto;
-		}
-
-		.playmat-logo span {
-			font-size: 1.45rem;
-		}
-
-		.playmat-logo small {
-			font-size: 0.8rem;
-		}
-
-		.zone-number {
-			width: 3rem;
-			height: 3rem;
-			font-size: 1.35rem;
-		}
-
-		.zone-title {
-			font-size: 1.3rem;
-		}
-
-		.zone-title-small {
-			font-size: 1.05rem;
-		}
-
-		.zone-label-bottom {
-			font-size: 1.45rem;
-		}
-
-		.zone-notes {
-			font-size: 0.85rem;
-		}
-
-		.turn-flow div {
-			font-size: 0.85rem;
+		.setup-figure .setup-guide {
+			zoom: 0.36;
+			margin: 0 auto;
 		}
 
 		.rule-visual-item {
@@ -1423,6 +1418,72 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		.card-thumb img {
 			width: 120px;
 			max-width: 120px;
+		}
+
+		.board-modal {
+			padding: 1rem;
+		}
+
+		.board-modal-inner {
+			width: 100vw;
+			max-width: 100vw;
+			height: 100vh;
+			max-height: 100vh;
+			border-radius: 0;
+			padding: 0;
+			border: none;
+			overflow: hidden;
+		}
+
+		.board-modal-stage {
+			width: 100%;
+			height: 100%;
+			align-content: center;
+			justify-items: center;
+			overflow: hidden;
+		}
+
+		.board-modal-stage .board-figure,
+		.board-modal-stage .setup-figure {
+			width: calc(100vh - 2rem);
+			max-width: calc(100vh - 2rem);
+			margin: 0;
+			padding: 0;
+			border: none;
+			background: transparent;
+			box-shadow: none;
+		}
+
+		.board-modal-stage .board-figure .playmat,
+		.board-modal-stage .setup-figure .setup-guide {
+			transform: rotate(-90deg);
+			transform-origin: center;
+		}
+
+		.board-modal-stage .board-figure .playmat {
+			zoom: 0.66;
+		}
+
+		.board-modal-stage .setup-figure .setup-guide {
+			zoom: 0.44;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.board-figure .playmat {
+			zoom: 0.36;
+		}
+
+		.setup-figure .setup-guide {
+			zoom: 0.32;
+		}
+
+		.board-modal-stage .board-figure .playmat {
+			zoom: 0.62;
+		}
+
+		.board-modal-stage .setup-figure .setup-guide {
+			zoom: 0.4;
 		}
 	}
 </style>

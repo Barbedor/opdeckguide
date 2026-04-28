@@ -34,7 +34,7 @@ const options = [
 ];
 
 const optionsNote =
-	"If you play the version with Kuma, you could consider Sengoku instead of Nyon so you can look for it. I do not recommend removing the searchers completely because you need consistency. Kuma is very expensive; the cheaper alternative is Rindo, which is archetype, but if you want to play the deck at maximum potential you need to invest a little. The spells are occasional: if your locals are aggro-heavy, the 1-cost spell helps; if there are many Boa, Gravity is the right choice. This ratio is fine.";
+	"If you play the version with the Kuma you could consider Sengoku instead of Nyon so that you can look for it. I do not recommend in any case to completely remove the searchers to maintain consistency in the deck. Speaking of Kuma being very expensive an alternative, not as valid as the bear, are the Rindo being very cheap and archetype but if you want to play the deck to the maximum potential you have to invest a little. The spells instead are occasional, if in your local there are many aggro the spell at 1 helps you while if there are many Boa then Gravity is the right choice, this ratio is fine.";
 
 const mulliganCards = [
 	{ code: "OP07-041", name: "Gloriosa (Grandma Nyon)", img: "/Cards/OP07/OP07-041.png" },
@@ -66,7 +66,7 @@ const curveFirst = [
 	{
 		label: "7 DON",
 		notes:
-			"Ray is the only removal of the deck, strong against Jozu. Kuma is the best choice to gain time.",
+			"Ray is the only removal of the deck, very strong against Jozu or if you want to relieve some pressure. Alternatively Kuma is the best choice to play to gain time.",
 		cards: [
 			{ code: "OP14-108", name: "Silvers Rayleigh", img: "/Cards/OP14/OP14-108.jpg" },
 			{ code: "OP12-119", name: "Bartholomew Kuma", img: "/Cards/OP12/OP12-119.jpg" },
@@ -80,7 +80,7 @@ const curveFirst = [
 	{
 		label: "Late game",
 		notes:
-			"This is your best finisher. If you set up correctly, play it. Alternatively play boss monster and starve.",
+			"Imo this is your best finisher if you correctly set that or alternatively play boss monster and starve.",
 		cards: [{ code: "OP07-057", name: "Perfume Femur", img: "/Cards/OP07/OP07-057.png" }],
 	},
 ];
@@ -122,7 +122,7 @@ const curveSecond = [
 	{
 		label: "Late game",
 		notes:
-			"This is your best finisher. If you set up correctly, play it. Alternatively play boss monster and starve.",
+			"Imo this is your best finisher if you correctly set that or alternatively play boss monster and starve.",
 		cards: [{ code: "OP07-057", name: "Perfume Femur", img: "/Cards/OP07/OP07-057.png" }],
 	},
 ];
@@ -135,7 +135,7 @@ const tips = [
 	},
 	{
 		title:
-			"This is a very strong combo if the opponent is at 0 lives with many cards in hand. Pudding and Perfume on Boa 9C can ensure victory.",
+			"This is a very strong combo if the opponent is at 0 lives with many cards in hand, Pudding and Perfume on Boa 9C can ensure you victory.",
 		cards: [
 			{ code: "OP06-047", name: "Pudding", img: "/Cards/OP06/OP06-047.png" },
 			{ code: "OP07-057", name: "Perfume Femur", img: "/Cards/OP07/OP07-057.png" },
@@ -143,7 +143,7 @@ const tips = [
 	},
 	{
 		title:
-			"If you are in a 2nd curve, being able to look at the top and fix it with Boa helps you put the right trigger in your lives with Kuma the next turn. Knowing that you have a Character who enters makes the difference, not to try your luck.",
+			"If you are in a 2nd curve, being able to look at the top and fix it with Boa helps you to put the right trigger in your lives with Kuma the next turn, knowing that you have a character who enters make the difference not to try your luck.",
 		cards: [
 			{ code: "ST17-004", name: "Boa Hancock", img: "/Cards/ST17/ST17-004.png" },
 			{ code: "OP12-119", name: "Bartholomew Kuma", img: "/Cards/OP12/OP12-119.jpg" },
@@ -156,7 +156,7 @@ const matchups = [
 		label: "Even",
 		icon: "≈",
 		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 2nd", "Manage your lives", "Polarized to trigger"],
+		notes: ["Start 2nd", "Manage your lifes", "Polarized to trigger"],
 	},
 	{
 		label: "Slight Adv.",
@@ -295,7 +295,7 @@ const matchups = [
 					</button>
 				))}
 			</div>
-			<p class="mulligan-text">If you don't see this combo, mulligan is the way.</p>
+			<p class="mulligan-text">If you don't see this combo mulligan is the way.</p>
 		</div>
 	</section>
 
@@ -810,6 +810,31 @@ const matchups = [
 	@media (max-width: 900px) {
 		.guide-hero .hero-grid {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px;
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.guide-hero .hero-grid > :first-child {
+			min-width: 0;
+		}
+
+		.guide-icon {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: start;
+			justify-self: end;
+		}
+
+		.guide-icon img {
+			width: 96px;
+			max-width: 96px;
+			border-radius: 14px;
 		}
 	}
 

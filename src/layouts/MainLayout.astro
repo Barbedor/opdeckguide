@@ -681,5 +681,29 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 			padding-left: 0.65rem !important;
 			border-left: 2px solid rgba(255, 107, 61, 0.55) !important;
 		}
+
+		.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px !important;
+			gap: 1rem !important;
+			align-items: start !important;
+		}
+
+		.guide-hero .hero-grid > :first-child {
+			min-width: 0 !important;
+		}
+
+		.guide-icon {
+			grid-column: 2 !important;
+			grid-row: 1 !important;
+			align-self: start !important;
+			justify-self: end !important;
+			margin-top: 5.2rem !important;
+		}
+
+		.guide-icon img {
+			width: 96px !important;
+			max-width: 96px !important;
+			border-radius: 14px !important;
+		}
 	}
 </style>

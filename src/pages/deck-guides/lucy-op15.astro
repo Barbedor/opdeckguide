@@ -91,7 +91,7 @@ const curveFirst = [
 	},
 	{
 		label: "7 DON",
-		notes: "Your late game! See the next slide for the combo.",
+		notes: "Your late game. See the Tips section for the combo.",
 		cards: [
 			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
 			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
@@ -128,7 +128,7 @@ const curveSecond = [
 	},
 	{
 		label: "8 DON",
-		notes: "Your late game! See the next slide for the combo.",
+		notes: "Your late game. See the Tips section for the combo.",
 		cards: [
 			{ code: "OP15-020", name: "Fire Fist", img: "/Cards/OP15/OP15-020.jpg" },
 			{ code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
@@ -826,6 +826,31 @@ const matchups = [
 	@media (max-width: 900px) {
 		.guide-hero .hero-grid {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px;
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.guide-hero .hero-grid > :first-child {
+			min-width: 0;
+		}
+
+		.guide-icon {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: start;
+			justify-self: end;
+		}
+
+		.guide-icon img {
+			width: 96px;
+			max-width: 96px;
+			border-radius: 14px;
 		}
 	}
 

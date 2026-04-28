@@ -49,7 +49,7 @@ const options = [
 ];
 
 const optionsNote =
-	"The deck allows few changes. Law maximizes the searches while the spells are situational and depend on the meta. Gamma Knife helps against Kid Fortress, and Bullet String is a small tech that can steal games by reducing some 2K slots.";
+	"The deck allows few changes and in my opinion these are the best. Law allows you to maximize the searches while the spells are situational and depend a lot on how the meta is set. Gamma Knife helps against Kid Fortress, and the unblockable one is a small tech card that can help you steal some games. You can insert them by reducing some 2K.";
 
 const mulliganCards = [
 	{ code: "OP09-069", name: "Law", img: "/Cards/OP09/OP09-069.jpg" },
@@ -126,7 +126,7 @@ const matchups = [
 		label: "Slight Adv.",
 		icon: "↑",
 		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 2nd", "Manage your life", "Use the spell correctly"],
+		notes: ["Start 2nd", "Manage your lifes", "Use correctly the spell"],
 	},
 	{
 		label: "Positive MU",
@@ -248,7 +248,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>Searcher for missing curve + promo Law for ramp and establishing your board.</p>
+					<p>One of your searcher for missing curve + promo Law for ramp and establishing your board.</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -758,6 +758,31 @@ const matchups = [
 	@media (max-width: 900px) {
 		.guide-hero .hero-grid {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px;
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.guide-hero .hero-grid > :first-child {
+			min-width: 0;
+		}
+
+		.guide-icon {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: start;
+			justify-self: end;
+		}
+
+		.guide-icon img {
+			width: 96px;
+			max-width: 96px;
+			border-radius: 14px;
 		}
 	}
 

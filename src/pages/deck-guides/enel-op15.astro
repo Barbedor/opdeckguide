@@ -25,26 +25,17 @@ const decklist = [
 ];
 
 const options = [
-	{
-		code: "OP07-064",
-		name: "Sanji",
-		img: "/Cards/OP07/OP07-064.png",
-		note:
-			"Sanji is a valid alternative instead of the Varie spell and also increases the Pudding targets.",
-	},
-	{
-		code: "OP05-077",
-		name: "Gamma Knife",
-		img: "/Cards/OP05/OP05-077.png",
-		note:
-			"If you do not like Divine Departure, you can play 2x Gamma Knife in its place, but watch out for counter density.",
-	},
+	{ code: "OP07-064", name: "Sanji", img: "/Cards/OP07/OP07-064.png" },
+	{ code: "OP05-077", name: "Gamma Knife", img: "/Cards/OP05/OP05-077.png" },
 ];
 
+const optionsNote =
+	"If you don't like Divine Departure you can think about playing 2x Gamma Knives in their place, but watch out for the counters, while Sanji is a valid alternative instead of the \"Varie\" spell and also increases the Pudding targets.";
+
 const mulliganCards = [
-	{ code: "OP15-118", name: "Enel", img: "/Cards/OP15/OP15-118.jpg" },
 	{ code: "OP15-061", name: "Ohm", img: "/Cards/OP15/OP15-061.jpg" },
 	{ code: "OP15-071", name: "Holly", img: "/Cards/OP15/OP15-071.jpg" },
+	{ code: "OP15-118", name: "Enel", img: "/Cards/OP15/OP15-118.jpg" },
 ];
 
 const curve = [
@@ -80,7 +71,7 @@ const curve = [
 	{
 		label: "Late game",
 		notes:
-			"Spells are the best resources. They serve as 2k but also for the various combos, so use them carefully.",
+			"Spells are the best resources. They serve as 2K, but also fuel the combos in the Tips section, so use them carefully.",
 		cards: [
 			{ code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
 			{ code: "OP15-075", name: "El Thor", img: "/Cards/OP15/OP15-075.jpg" },
@@ -141,7 +132,7 @@ const matchups = [
 		label: "Positive MU",
 		icon: "↑",
 		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Go aggro with Holly", "6C Enel is too OP"],
+		notes: ["Start 2nd", "Go aggro with Holly", "6C Enel OP"],
 	},
 	{
 		label: "Negative MU",
@@ -219,7 +210,7 @@ const matchups = [
 					<p>Flexible slots to adapt the list.</p>
 				</div>
 			</div>
-			<div class="options-grid">
+			<div class="options-paired-grid">
 				{options.map((card) => (
 					<button
 						class="option-card"
@@ -232,12 +223,12 @@ const matchups = [
 						<div class="option-info">
 							<div class="deck-name">{card.name}</div>
 							<div class="deck-code">{card.code}</div>
-							<p class="option-note">{card.note}</p>
 						</div>
 					</button>
 				))}
 			</div>
-			<p class="section-note">These are the right ratios for the options package.</p>
+			<p class="section-note">{optionsNote}</p>
+			<p class="section-note">This is the right ratio of the cards.</p>
 		</div>
 	</section>
 
@@ -503,6 +494,14 @@ const matchups = [
 		gap: 1rem;
 	}
 
+	.options-paired-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 220px));
+		gap: 1rem;
+		justify-content: start;
+		align-items: start;
+	}
+
 	.option-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
@@ -761,8 +760,37 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px;
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.guide-hero .hero-grid > :first-child {
+			min-width: 0;
+		}
+
+		.guide-icon {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: start;
+			justify-self: end;
+		}
+
+		.guide-icon img {
+			width: 96px;
+			max-width: 96px;
+			border-radius: 14px;
+		}
+	}
+
+	@media (max-width: 640px) {
 		.deck-card img {
 			max-width: 120px;
+		}
+
+		.options-paired-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.option-card img {
