@@ -1,147 +1,183 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Jinbe OP14 Deck Guide";
+const title = "Portgas.D.Ace OP13 Deck Guide";
 const description =
-	"Jinbe OP14 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
+	"Portgas.D.Ace OP13 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
 
-const icon = "/assets/guides/jinbe-op14.png";
+const icon = "/assets/guides/portgas-d-ace-op13.png";
 
 const decklist = [
-	{ code: "OP14-040", name: "Jinbe", count: 1, img: "/Cards/OP14/OP14-040.jpg", role: "Leader" },
-	{ code: "OP14-042", name: "Arlong", count: 4, img: "/Cards/OP14/OP14-042.jpg", role: "Character" },
-	{ code: "OP14-050", name: "Chew", count: 4, img: "/Cards/OP14/OP14-050.jpg", role: "Character" },
-	{ code: "OP14-051", name: "Octy", count: 4, img: "/Cards/OP14/OP14-051.jpg", role: "Character" },
-	{ code: "OP03-044", name: "Kaya", count: 2, img: "/Cards/OP03/OP03-044.png", role: "Character" },
-	{ code: "OP14-046", name: "Koala", count: 4, img: "/Cards/OP14/OP14-046.jpg", role: "Character" },
-	{ code: "OP14-056", name: "Wadatsumi", count: 4, img: "/Cards/OP14/OP14-056.jpg", role: "Character" },
-	{ code: "OP06-047", name: "Charlotte Pudding", count: 3, img: "/Cards/OP06/OP06-047.png", role: "Character" },
-	{ code: "ST17-002", name: "Trafalgar Law", count: 4, img: "/Cards/ST17/ST17-002.png", role: "Character" },
-	{ code: "OP14-043", name: "Aladine", count: 4, img: "/Cards/OP14/OP14-043.jpg", role: "Character" },
+	{ code: "OP13-002", name: "Portgas.D.Ace", count: 1, img: "/Cards/OP13/OP13-002.jpg", role: "Leader" },
+	{ code: "ST15-004", name: "Thatch", count: 4, img: "/Cards/ST15/ST15-004.png", role: "Character" },
+	{ code: "OP13-043", name: "Otama", count: 4, img: "/Cards/OP13/OP13-043.jpg", role: "Character" },
+	{ code: "ST22-002", name: "Izo", count: 4, img: "/Cards/ST22/ST22-002.jpg", role: "Character" },
+	{ code: "OP13-016", name: "Monkey.D.Garp", count: 4, img: "/Cards/OP13/OP13-016.jpg", role: "Character" },
+	{ code: "OP08-040", name: "Atmos", count: 2, img: "/Cards/OP08/OP08-040.png", role: "Character" },
+	{ code: "PRB02-008", name: "Marco", count: 4, img: "/Cards/PRB02/PRB02-008.jpg", role: "Character" },
+	{ code: "OP13-054", name: "Yamato", count: 4, img: "/Cards/OP13/OP13-054.jpg", role: "Character" },
+	{ code: "ST23-001", name: "Uta", count: 2, img: "/Cards/ST23/ST23-001.jpg", role: "Character" },
 	{ code: "OP08-047", name: "Jozu", count: 4, img: "/Cards/OP08/OP08-047.png", role: "Character" },
-	{ code: "OP14-054", name: "Fisher Tiger", count: 4, img: "/Cards/OP14/OP14-054.jpg", role: "Character" },
-	{ code: "OP14-049", name: "Jinbe", count: 4, img: "/Cards/OP14/OP14-049.jpg", role: "Character" },
-	{ code: "OP07-057", name: "Perfume Femur", count: 2, img: "/Cards/OP07/OP07-057.png", role: "Event" },
-	{ code: "OP04-056", name: "Gum-Gum Red Roc", count: 3, img: "/Cards/OP04/OP04-056.png", role: "Event" },
+	{ code: "OP07-051", name: "Boa Hancock", count: 3, img: "/Cards/OP07/OP07-051.png", role: "Character" },
+	{ code: "EB04-007", name: "Roronoa Zoro", count: 3, img: "/Cards/EB04/EB04-007.jpg", role: "Character" },
+	{ code: "OP13-042", name: "Edward.Newgate", count: 4, img: "/Cards/OP13/OP13-042.jpg", role: "Character" },
+	{ code: "OP09-118", name: "Gol.D.Roger", count: 2, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
+	{ code: "EB04-008", name: "Distorted Future", count: 2, img: "/Cards/EB04/EB04-008.jpg", role: "Event" },
+	{ code: "ST22-015", name: "I Am Whitebeard!!", count: 4, img: "/Cards/ST22/ST22-015.jpg", role: "Event" },
 ];
 
 const optionsGroups = [
 	{
 		cards: [
-			{ code: "OP07-046", name: "Sengoku", img: "/Cards/OP07/OP07-046.png" },
-			{ code: "OP07-047", name: "Trafalgar Law", img: "/Cards/OP07/OP07-047.png" },
+			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
+			{ code: "OP08-043", name: "Edward.Newgate", img: "/Cards/OP08/OP08-043.png" },
+			{ code: "OP14-017", name: "Chambres", img: "/Cards/OP14/OP14-017.jpg" },
 		],
 		note:
-			"SW pack is a good option, Sengoku can search 8C and Perfume Law help vs Ace or Imu.",
-	},
-	{
-		cards: [
-			{ code: "OP14-045", name: "Kuroobi", img: "/Cards/OP14/OP14-045.jpg" },
-			{ code: "OP14-047", name: "Shirahoshi", img: "/Cards/OP14/OP14-047.jpg" },
-		],
-		note:
-			"Fish pack allows you to go more aggressive and cheat your Characters but the list is very short and this isn’t a good body.",
-	},
-	{
-		cards: [{ code: "OP06-058", name: "Gravity Blade Raging Tiger", img: "/Cards/OP06/OP06-058.png" }],
-		note:
-			"Very helpful option vs Boa or Mihawk and at 7 DON this deck don’t have a play on curve for increase your value. 1x is enough.",
+			"These are just some of the valid cards that can be inserted in the deck. Cavendish is a good option against Lucy where you need to see as many cards as possible, the problem is that it is removed in all ways such as Zeus, Nojiko, Barrier etc. Taxbeard and Shambles are useful to earn a turn or do control board against Enel P, they are not on the list because for me Boa is stronger and more versatile in this meta.",
 	},
 ];
 
 const mulliganCards = [
-	{ code: "OP14-042", name: "Arlong", img: "/Cards/OP14/OP14-042.jpg" },
-	{ code: "OP14-050", name: "Chew", img: "/Cards/OP14/OP14-050.jpg" },
-	{ code: "OP14-051", name: "Octy", img: "/Cards/OP14/OP14-051.jpg" },
-	{ code: "OP14-043", name: "Aladine", img: "/Cards/OP14/OP14-043.jpg" },
+	{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
+	{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
+	{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
+	{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
 ];
 
-const curve = [
+const curveFirst = [
 	{
-		label: "1/2 DON",
-		notes: "If you need to choose only one play Arlong for search missing Character, if you go 2nd spam body.",
+		label: "1 DON",
+		notes: "1C for the missing pieces in the curve.",
 		cards: [
-			{ code: "OP14-042", name: "Arlong", img: "/Cards/OP14/OP14-042.jpg" },
-			{ code: "OP14-050", name: "Chew", img: "/Cards/OP14/OP14-050.jpg" },
-			{ code: "OP14-051", name: "Octy", img: "/Cards/OP14/OP14-051.jpg" },
+			{ code: "OP13-043", name: "Otama", img: "/Cards/OP13/OP13-043.jpg" },
+			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
+			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
 		],
 	},
 	{
-		label: "3/4 DON",
-		notes: "3 DON for play 2K on curve? Meh. At 4 DON play Aladine for value or play Law for a little control board.",
+		label: "3 DON",
+		notes: "Repeat last turn and give one DON to your leader for the ability and swing 7 face.",
+		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
+	},
+	{
+		label: "5 DON",
+		notes: "Atmos/Marco + 1 DON to leader for decrease opponent's pressure or Yamato if you need card for next turn/combo.",
 		cards: [
-			{ code: "OP14-056", name: "Wadatsumi", img: "/Cards/OP14/OP14-056.jpg" },
-			{ code: "OP14-043", name: "Aladine", img: "/Cards/OP14/OP14-043.jpg" },
-			{ code: "ST17-002", name: "Trafalgar Law", img: "/Cards/ST17/ST17-002.png" },
+			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
+			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+			{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" },
 		],
 	},
 	{
-		label: "5/6 DON",
-		notes: "By now you will have understood, 1st curve is horrible but at 6 DON Jozu for board control or Fisher Tiger for discard extra cards for Leader is powerful.",
+		label: "7 DON",
+		notes: "Jozu bounces one of your 1C and removes a useful 6C to remove a threat, Boa makes you earn 1 turn against Enel P and Zoro brings the leader to 7K base but you don't have the DON assigned necessary for the ability. The choice depends a lot on the situation and against which deck we are.",
 		cards: [
-			{ code: "OP14-043", name: "Aladine", img: "/Cards/OP14/OP14-043.jpg" },
-			{ code: "ST17-002", name: "Trafalgar Law", img: "/Cards/ST17/ST17-002.png" },
 			{ code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" },
-			{ code: "OP14-054", name: "Fisher Tiger", img: "/Cards/OP14/OP14-054.jpg" },
+			{ code: "EB04-007", name: "Roronoa Zoro", img: "/Cards/EB04/EB04-007.jpg" },
+			{ code: "OP07-051", name: "Boa Hancock", img: "/Cards/OP07/OP07-051.png" },
 		],
 	},
 	{
-		label: "7/8 DON",
-		notes: "This is your 7/8 DON turn but also these guys are your late game body so play them with thrift and for finish the game. Perfume on 8C 20K unblockable face!",
+		label: "9 DON",
+		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you are playing for Roger.",
 		cards: [
-			{ code: "OP14-054", name: "Fisher Tiger", img: "/Cards/OP14/OP14-054.jpg" },
-			{ code: "OP14-049", name: "Jinbe", img: "/Cards/OP14/OP14-049.jpg" },
+			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
 		],
+	},
+	{
+		label: "Late game",
+		notes: "You can repeat your last turn or if you are in the right setup Roger is the card needed to finish the match saying goodbye to the opposing blockers.",
+		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON",
+		notes: "1C for the missing pieces in the curve + 1 DON to leader for the ability.",
+		cards: [
+			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
+			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		],
+	},
+	{
+		label: "4 DON",
+		notes: "Atmos/Marco for decrease opponent's pressure but you don't have DON assigned to leader.",
+		cards: [
+			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
+			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+		],
+	},
+	{
+		label: "6 DON",
+		notes: "Many options in this turn and all valid, Jozu and Boa help you but they don't let you draw any DON. If you don't have the DON assigned, Yamato instead does the exact opposite and maybe it's the option I would choose but it depends on the situations.",
+		cards: [
+			{ code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" },
+			{ code: "OP07-051", name: "Boa Hancock", img: "/Cards/OP07/OP07-051.png" },
+			{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" },
+		],
+	},
+	{
+		label: "8 DON",
+		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you are playing for Roger.",
+		cards: [
+			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
+	},
+	{
+		label: "Late game",
+		notes: "You can repeat your last turn or if you are in the right setup Roger is the card needed to finish the match saying goodbye to the opposing blockers.",
+		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
 	},
 ];
 
 const tips = [
 	{
 		title:
-			"The deck don’t have particular combos, but remember: to overcome the effect of Fisher Tiger you can use Leader ability for reduce your hand size to 5. 8C effect is very strong vs blocker and for go to lethal with 20K but remember to setup your board and go aggro all game.",
-		cards: [
-			{ code: "OP14-054", name: "Fisher Tiger", img: "/Cards/OP14/OP14-054.jpg" },
-			{ code: "OP14-049", name: "Jinbe", img: "/Cards/OP14/OP14-049.jpg" },
-		],
+			"The deck doesn't have great tips or special combos, you have to remember which cards the searchers have seen to know when or what will arrive once you have turned the whole deck because it will happen. Another suggestion is not to be afraid to discard for the Leader's ability but to do it with intelligence because in late game you also have to prepare for an opponent Roger.",
+		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
 	},
 ];
 
 const matchups = [
 	{
-		label: "Even/Slight Disadv.",
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP13-001", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-001.jpg" },
+		notes: ["Start 2nd", "Atmos/Jozu key cards", "You win in late game"],
+	},
+	{
+		label: "Negative MU",
+		icon: "↓",
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: ["Start 1st", "Control oppo board", "Boa key card"],
+	},
+	{
+		label: "Positive MU",
+		icon: "↑",
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: ["Start 2nd", "Manage your live", "Control oppo board"],
+	},
+	{
+		label: "Even",
 		icon: "≈",
-		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 2nd", "Manage your life", "Push"],
+		leader: { code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: ["Start 2nd", "Manage your board", "Spam your Jozu"],
+	},
+	{
+		label: "Slight Adv.",
+		icon: "↑",
+		leader: { code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
+		notes: ["Start 2nd", "Force Leader ability", "Go only face"],
 	},
 	{
 		label: "Negative MU",
 		icon: "↓",
-		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
-		notes: ["Start 2nd", "Manage your board", "Dice dependent"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
-		notes: ["Start 2nd", "Go aggro"],
-	},
-	{
-		label: "Negative MU",
-		icon: "↓",
-		leader: { code: "OP14-060", name: "Donquixote Doflamingo", img: "/Cards/OP14/OP14-060.jpg" },
-		notes: ["Start 1st", "Manage your board"],
-	},
-	{
-		label: "Slight Disadv.",
-		icon: "↓",
-		leader: { code: "OP13-002", name: "Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Manage your board", "Dice dependent"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP11-040", name: "Monkey.D.Luffy", img: "/Cards/OP11/OP11-040.jpg" },
-		notes: ["Start 2nd", "Play on curve"],
+		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
+		notes: ["Start 2nd", "Go aggro", "Control oppo board"],
 	},
 ];
 ---
@@ -150,11 +186,11 @@ const matchups = [
 	<section class="hero guide-hero">
 		<div class="container hero-grid">
 			<div>
-				<span class="hero-badge">March Guide</span>
-				<h1>Jinbe OP14 Deck Guide</h1>
+				<span class="hero-badge">May Guide</span>
+				<h1>Portgas.D.Ace OP13 Deck Guide</h1>
 				<p>
-					Complete reference guide for Jinbe OP14: decklist, curve checkpoints, mulligan priorities,
-					tech options, and matchup focus leaders. Built for fast reading between rounds.
+					Complete reference guide for Portgas.D.Ace OP13: decklist, curve checkpoints, mulligan
+					priorities, tech options, and matchup focus leaders. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -162,7 +198,7 @@ const matchups = [
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Jinbe OP14 guide icon" loading="lazy" />
+				<img src={icon} alt="Portgas.D.Ace OP13 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -172,7 +208,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>Main list for Jinbe OP14.</p>
+					<p>Main list for Portgas.D.Ace OP13.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -239,7 +275,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1st or 2nd this deck need to see 1C push from second turn plus 4C for cheat your Characters and have more pressure.</p>
+					<p>1C searcher to look for the missing pieces in the curve + one of your 4C Character depending on the situation.</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -264,14 +300,38 @@ const matchups = [
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Curve</h2>
-					<p>Turn checkpoints and curve reminders.</p>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn curve reminders for going first or second.</p>
 				</div>
 			</div>
 			<div class="curve-block">
-				<h3>Curve</h3>
+				<h3>Curve 1st</h3>
 				<div class="curve-rows">
-					{curve.map((slot) => (
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 2nd</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
 						<div class="curve-row">
 							<div class="curve-label">{slot.label}</div>
 							<div class="curve-cards">
@@ -300,7 +360,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
-					<p>Key reminders and play patterns.</p>
+					<p>Key reminders and late game setup notes.</p>
 				</div>
 			</div>
 			<div class="tips-grid">
@@ -337,7 +397,7 @@ const matchups = [
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
 					<div class="matchup-card">
-						<div class={`matchup-badge ${matchup.label === "Negative MU" || matchup.label === "Slight Disadv." || matchup.label === "Even/Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+						<div class={`matchup-badge ${matchup.label.includes("Negative") || matchup.label.includes("Disadv") ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
 							<span class="badge-icon">{matchup.icon}</span>
 							<span>{matchup.label}</span>
 						</div>
@@ -487,26 +547,20 @@ const matchups = [
 		letter-spacing: 1px;
 	}
 
-	.options-grid {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: flex-start;
-		gap: 1rem;
-	}
-
 	.options-stack {
 		display: grid;
-		gap: 1.2rem;
+		gap: 1.4rem;
 	}
 
 	.option-group {
 		display: grid;
+		gap: 0.8rem;
+	}
+
+	.options-grid {
+		display: flex;
+		flex-wrap: wrap;
 		gap: 1rem;
-		padding: 1rem;
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		background: rgba(12, 17, 30, 0.55);
 	}
 
 	.option-card {
@@ -533,7 +587,7 @@ const matchups = [
 
 	.option-card img {
 		width: 100%;
-		max-width: 220px;
+		max-width: 200px;
 		margin: 0 auto;
 		border-radius: 10px;
 	}
@@ -542,19 +596,6 @@ const matchups = [
 		display: grid;
 		gap: 0.2rem;
 		text-align: center;
-	}
-
-	.option-note {
-		margin: 0.4rem 0 0;
-		color: var(--text-300);
-		font-size: 0.9rem;
-	}
-
-	.note-block {
-		background: rgba(14, 18, 30, 0.7);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1.2rem 1.4rem;
 	}
 
 	.mulligan-grid {
@@ -566,12 +607,6 @@ const matchups = [
 
 	.mulligan-text {
 		color: var(--text-200);
-	}
-
-	.curve-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		gap: 1.2rem;
 	}
 
 	.curve-block {
@@ -708,17 +743,8 @@ const matchups = [
 		font-weight: 600;
 	}
 
-	.curve-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1.2rem;
-	}
-
 	.section-note {
 		color: var(--text-300);
-		max-width: 68ch;
-		margin: 0 auto;
 		text-align: center;
 		line-height: 1.65;
 		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
@@ -776,10 +802,6 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
-		.option-group {
-			padding: 0.85rem;
-		}
-
 		.deck-card img {
 			max-width: 120px;
 		}
@@ -792,6 +814,7 @@ const matchups = [
 			width: 90px;
 		}
 	}
+
 	@media (max-width: 640px) {
 		.deck-grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));

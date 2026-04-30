@@ -608,9 +608,11 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 
 		.options-grid,
 		.options-paired-grid {
+			display: grid !important;
 			grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 			gap: 0.65rem !important;
 			align-items: start !important;
+			justify-content: stretch !important;
 		}
 
 		.options-stack {

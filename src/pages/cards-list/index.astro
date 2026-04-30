@@ -313,12 +313,18 @@ for (const item of extensionSummaries) {
 
 		const results = guideIndex
 			.map((guide, index) => {
+				const primaryText = normalizeSearch(guide.primaryText ?? "");
+				const secondaryText = normalizeSearch(guide.secondaryText ?? "");
 				const searchText = normalizeSearch(guide.searchText ?? "");
 				const title = normalizeSearch(guide.title);
 				const leader = normalizeSearch(guide.leader);
-				const guideTokens = [...new Set(tokenize(searchText))];
+				const primaryTokens = [...new Set(tokenize(primaryText))];
+				const secondaryTokens = [...new Set(tokenize(secondaryText))];
 				let score = 0;
 				let matchedTokens = 0;
+				let primaryMatchedTokens = 0;
+				let strongMatch = false;
+				let matchTier = 0;
 
 				if (genericGuideQuery) {
 					score += 40;
@@ -326,10 +332,19 @@ for (const item of extensionSummaries) {
 
 				if (title === normalizedQuery || leader === normalizedQuery) {
 					score += 120;
-				} else if (title.includes(normalizedQuery) || leader.includes(normalizedQuery)) {
+					strongMatch = true;
+					matchTier = 3;
+				} else if (
+					title.includes(normalizedQuery) ||
+					leader.includes(normalizedQuery) ||
+					primaryText.includes(normalizedQuery)
+				) {
 					score += 80;
+					strongMatch = true;
+					matchTier = 3;
 				} else if (searchText.includes(normalizedQuery)) {
 					score += 65;
+					matchTier = Math.max(matchTier, 1);
 				}
 
 				if (requestedSets.length > 0) {
@@ -343,40 +358,66 @@ for (const item of extensionSummaries) {
 				for (const token of meaningfulTokens) {
 					if (!token) continue;
 					let tokenMatched = false;
-					if (guideTokens.includes(token)) {
-						score += 28;
+					let tokenPrimaryMatched = false;
+					if (primaryTokens.includes(token)) {
+						score += 34;
 						tokenMatched = true;
-					} else if (guideTokens.some((candidate) => candidate.startsWith(token) || token.startsWith(candidate))) {
-						score += 18;
+						tokenPrimaryMatched = true;
+					} else if (primaryTokens.some((candidate) => candidate.startsWith(token) || token.startsWith(candidate))) {
+						score += 24;
 						tokenMatched = true;
+						tokenPrimaryMatched = true;
 					} else if (
 						token.length >= 4 &&
-						guideTokens.some((candidate) => {
+						primaryTokens.some((candidate) => {
 							const limit = token.length >= 7 ? 2 : 1;
 							return Math.abs(candidate.length - token.length) <= 2 && levenshtein(candidate, token) <= limit;
 						})
 					) {
-						score += 12;
+						score += 18;
+						tokenMatched = true;
+						tokenPrimaryMatched = true;
+					} else if (secondaryTokens.includes(token)) {
+						score += 10;
+						tokenMatched = true;
+					} else if (
+						secondaryTokens.some((candidate) => candidate.startsWith(token) || token.startsWith(candidate))
+					) {
+						score += 6;
 						tokenMatched = true;
 					}
 					if (tokenMatched) matchedTokens += 1;
+					if (tokenPrimaryMatched) primaryMatchedTokens += 1;
 				}
 
 				if (hasGuideIntent) score += 15;
 				if (meaningfulTokens.length > 0 && matchedTokens === meaningfulTokens.length) score += 16;
+				if (meaningfulTokens.length > 0 && primaryMatchedTokens === meaningfulTokens.length) {
+					score += 22;
+					strongMatch = true;
+					matchTier = Math.max(matchTier, 2);
+				} else if (meaningfulTokens.length > 0 && matchedTokens > 0) {
+					matchTier = Math.max(matchTier, 1);
+				}
 				if (!genericGuideQuery && meaningfulTokens.length > 0 && matchedTokens === 0 && score < 65) return null;
 				if (score < 25) return null;
 
-				return { ...guide, score, index };
+				return { ...guide, score, index, strongMatch, matchTier };
 			})
 			.filter(Boolean)
 			.sort((a, b) => {
 				if (b.score !== a.score) return b.score - a.score;
 				return a.index - b.index;
-			})
-			.slice(0, genericGuideQuery ? 12 : 8);
+			});
 
-		return results;
+		if (!genericGuideQuery) {
+			const highestTier = Math.max(0, ...results.map((guide) => guide.matchTier ?? 0));
+			if (highestTier >= 2) {
+				return results.filter((guide) => (guide.matchTier ?? 0) === highestTier).slice(0, 8);
+			}
+		}
+
+		return results.slice(0, genericGuideQuery ? 12 : 8);
 	};
 
 	const runSearch = async (query) => {

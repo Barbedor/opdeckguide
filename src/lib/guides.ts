@@ -7,7 +7,8 @@ export const deckGuides = [
 		href: "/deck-guides/enel-op15",
 		imageSrc: "/assets/guides/enel-op15.png",
 		imageAlt: "Enel OP15 guide icon",
-		searchTerms: ["enel", "op15", "yellow", "skypiea"],
+		aliases: ["enel"],
+		tags: ["op15", "yellow", "skypiea"],
 	},
 	{
 		title: "Lucy OP15 Deck Guide",
@@ -17,7 +18,8 @@ export const deckGuides = [
 		href: "/deck-guides/lucy-op15",
 		imageSrc: "/assets/guides/lucy-op15.png",
 		imageAlt: "Lucy OP15 guide icon",
-		searchTerms: ["lucy", "op15", "dressrosa", "sabo", "luffy", "ace"],
+		aliases: ["lucy"],
+		tags: ["op15", "dressrosa", "sabo"],
 	},
 	{
 		title: "Nami OP11 Deck Guide",
@@ -27,7 +29,8 @@ export const deckGuides = [
 		href: "/deck-guides/nami-op11",
 		imageSrc: "/assets/guides/nami-op11.png",
 		imageAlt: "Nami OP11 guide icon",
-		searchTerms: ["nami", "op11", "eb03", "blue", "straw hat"],
+		aliases: ["nami"],
+		tags: ["op11", "eb03", "blue", "straw hat"],
 	},
 	{
 		title: "Rosinante OP12 Deck Guide",
@@ -37,7 +40,8 @@ export const deckGuides = [
 		href: "/deck-guides/rosinante-op12",
 		imageSrc: "/assets/guides/rosinante-op12.png",
 		imageAlt: "Rosinante OP12 guide icon",
-		searchTerms: ["rosinante", "corazon", "op12", "green", "law"],
+		aliases: ["rosinante", "corazon"],
+		tags: ["op12", "green", "law"],
 	},
 	{
 		title: "Jinbe OP14 Deck Guide",
@@ -47,7 +51,8 @@ export const deckGuides = [
 		href: "/deck-guides/jinbe-op14",
 		imageSrc: "/assets/guides/jinbe-op14.png",
 		imageAlt: "Jinbe OP14 guide icon",
-		searchTerms: ["jinbe", "op14", "blue", "fishman", "fish-man"],
+		aliases: ["jinbe", "jinbei", "jimbei"],
+		tags: ["op14", "blue", "fishman", "fish-man"],
 	},
 	{
 		title: "Dracule Mihawk OP14 Deck Guide",
@@ -57,7 +62,8 @@ export const deckGuides = [
 		href: "/deck-guides/dracule-mihawk-op14",
 		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
 		imageAlt: "Dracule Mihawk OP14 guide icon",
-		searchTerms: ["mihawk", "dracule", "op14", "green", "slash", "freeze"],
+		aliases: ["dracule mihawk", "mihawk", "dracule"],
+		tags: ["op14", "green", "slash", "freeze"],
 	},
 	{
 		title: "Trafalgar Law OP14 Deck Guide",
@@ -67,7 +73,8 @@ export const deckGuides = [
 		href: "/deck-guides/trafalgar-law-op14",
 		imageSrc: "/assets/guides/trafalgar-law-op14.png",
 		imageAlt: "Trafalgar Law OP14 guide icon",
-		searchTerms: ["law", "trafalgar", "op14", "red", "supernova"],
+		aliases: ["trafalgar law", "trafalgar", "law", "traf law"],
+		tags: ["op14", "red", "supernova"],
 	},
 	{
 		title: "Monkey.D.Luffy ST29 Deck Guide",
@@ -77,7 +84,8 @@ export const deckGuides = [
 		href: "/deck-guides/monkey-d-luffy-st29",
 		imageSrc: "/assets/guides/monkey-d-luffy-st29.png",
 		imageAlt: "Monkey.D.Luffy ST29 guide icon",
-		searchTerms: ["luffy", "monkey d luffy", "monkeydluffy", "st29", "yellow", "trigger"],
+		aliases: ["monkey d luffy", "monkeydluffy", "luffy", "st29 luffy"],
+		tags: ["st29", "yellow", "trigger"],
 	},
 	{
 		title: "Crocodile OP14 Deck Guide",
@@ -87,7 +95,8 @@ export const deckGuides = [
 		href: "/deck-guides/crocodile-op14",
 		imageSrc: "/assets/guides/crocodile-op14.png",
 		imageAlt: "Crocodile OP14 guide icon",
-		searchTerms: ["crocodile", "op14", "black", "baroque works"],
+		aliases: ["crocodile"],
+		tags: ["op14", "black", "baroque works"],
 	},
 	{
 		title: "Boa Hancock OP14 Deck Guide",
@@ -97,11 +106,25 @@ export const deckGuides = [
 		href: "/deck-guides/boa-hancock-op14",
 		imageSrc: "/assets/guides/boa-hancock-op14.png",
 		imageAlt: "Boa Hancock OP14 guide icon",
-		searchTerms: ["boa", "hancock", "op14", "blue", "amazon lily"],
+		aliases: ["boa hancock", "boa", "hancock"],
+		tags: ["op14", "blue", "amazon lily"],
+	},
+	{
+		title: "Portgas.D.Ace OP13 Deck Guide",
+		leader: "Portgas.D.Ace",
+		code: "OP13",
+		month: "May",
+		href: "/deck-guides/portgas-d-ace-op13",
+		imageSrc: "/assets/guides/portgas-d-ace-op13.png",
+		imageAlt: "Portgas.D.Ace OP13 guide icon",
+		aliases: ["portgas d ace", "portgasdace", "portgas ace", "ace"],
+		tags: ["op13", "red", "whitebeard"],
 	},
 ] as const;
 
 export const guideSearchIndex = deckGuides.map((guide) => ({
 	...guide,
-	searchText: [guide.title, guide.leader, guide.code, guide.month, ...guide.searchTerms].join(" "),
+	primaryText: [guide.title, guide.leader, guide.code, ...(guide.aliases ?? [])].join(" "),
+	searchText: [guide.title, guide.leader, guide.code, guide.month, ...(guide.aliases ?? []), ...(guide.tags ?? [])].join(" "),
+	secondaryText: [guide.code, guide.month, ...(guide.tags ?? [])].join(" "),
 }));

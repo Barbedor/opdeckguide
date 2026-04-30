@@ -101,6 +101,7 @@ const curve = [
 
 const tips = [
 	{
+		label: "Tashigi 8K:",
 		title:
 			"Play Tashigi and use Leader ability on Stage. Restand 3 DON and use Tashigi effect on 2 DON (if you don’t have a searcher to rest). End of turn restand one DON for Stage, this help Character from removal.",
 		cards: [
@@ -110,6 +111,7 @@ const tips = [
 		],
 	},
 	{
+		label: "Rest in your turn:",
 		title:
 			"Remember that you can use Leader ability on this Characters and win in the same turn that you play them.",
 		cards: [
@@ -119,6 +121,7 @@ const tips = [
 		],
 	},
 	{
+		label: "Rest & Freeze:",
 		title:
 			"Use Asura main effect and rest 2 opponent Characters, next step: play Carrot if you rest one DON + one Character or use other spell main effect for freeze two opponent 7C.",
 		cards: [
@@ -262,7 +265,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1st or 2nd this deck need to see 1C search for Leader effect plus 5C for play at the best your curve (you can’t miss the curve).</p>
+					<p>1st or 2nd this deck need to see 1C search for Leader effect + 5C for play at the best your curve (you can’t miss the curve).</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -329,6 +332,7 @@ const matchups = [
 			<div class="tips-grid">
 				{tips.map((tip) => (
 					<div class="tip-card">
+						<div class="tip-label">{tip.label}</div>
 						<div class="tip-cards">
 							{tip.cards.map((card) => (
 								<button
@@ -667,6 +671,14 @@ const matchups = [
 		padding: 1rem 1.2rem;
 		display: grid;
 		gap: 0.8rem;
+	}
+
+	.tip-label {
+		font-size: 1rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--text-100);
 	}
 
 	.tip-cards {

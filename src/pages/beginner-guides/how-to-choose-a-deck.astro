@@ -1,0 +1,408 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "How to Choose a Deck?";
+const description = "A beginner guide to understand the main One Piece Card Game color identities and pick a deck style that fits the way you want to play.";
+
+const playstyles = [
+	{
+		label: "Red - Aggro",
+		accent: "red",
+		leaders: [
+			{
+				name: "Gol.D.Roger",
+				code: "OP13-003",
+				image: "/Cards/OP13/OP13-003.jpg",
+				text:
+					"Roger playstyle is simple: ramp to 10 DON as soon as possible. 7K leader base represents well the red color, a color based on power and his modification. Not many cards in hand but it's not you who has to defend yourself!"
+			},
+			{
+				name: "Trafalgar Law",
+				code: "OP14-001",
+				image: "/Cards/OP14/OP14-001.jpg",
+				text:
+					"Face is the place and Law knows it well! Play characters that have rush and that can attack immediately, it puts pressure right away but the power of its characters is not always strong enough. You have to know well when to defend your board and when to let it go."
+			}
+		]
+	},
+	{
+		label: "Green - Rest",
+		accent: "green",
+		leaders: [
+			{
+				name: "Monkey.D.Luffy",
+				code: "OP13-001",
+				image: "/Cards/OP13/OP13-001.jpg",
+				text:
+					"Luffy is a deck that not only uses his DON to play a character but also for defense, the same characters allow to restand your DON and start the cycle again. Don't touch my Straw Hat crew!"
+			},
+			{
+				name: "Dracule Mihawk",
+				code: "OP14-020",
+				image: "/Cards/OP14/OP14-020.jpg",
+				text:
+					"Mihawk now is the strongest green deck in the format, able to adapt according to his own build uses his ability to rest his own characters and freeze those opponents. If you like overstats body this is your way."
+			}
+		]
+	},
+	{
+		label: "Blue - Draw",
+		accent: "blue",
+		leaders: [
+			{
+				name: "Portgas.D.Ace",
+				code: "OP13-002",
+				image: "/Cards/OP13/OP13-002.jpg",
+				text:
+					"Ace the strongest deck of the previous format capable of playing with 14 cards in hand, his draw power is the strongest of the meta in mix with the characters he plays. If you like to play with a lot of cards in hand this is the right choice."
+			},
+			{
+				name: "Jinbe",
+				code: "OP14-040",
+				image: "/Cards/OP14/OP14-040.jpg",
+				text:
+					"Jinbe is a blue who behaves differently, he plays the strongest classic removals of the color such as Red Roc or Pudding but he does not always hold them in hand and therefore discards them to pump his characters. A mix between aggro and control."
+			}
+		]
+	},
+	{
+		label: "Purple - DON!!",
+		accent: "purple",
+		leaders: [
+			{
+				name: "Monkey.D.Luffy",
+				code: "OP11-040",
+				image: "/Cards/OP11/OP11-040.jpg",
+				text:
+					"You like ramp and spam big body on the field before your opponent? Up is the answer! 6K base power leader able to ramp DON and defend himself at same time, draw two card for turn with his effect and spam the best combo: Sanji+Roger."
+			},
+			{
+				name: "Donquixote Doflamingo",
+				code: "OP14-060",
+				image: "/Cards/OP14/OP14-060.jpg",
+				text:
+					"Manipulate your DONS like your board, direct the attacks on whoever you want and defend yourself mercilessly just like in the manga! Purple Doffy is this and much more, take advantage of the effects that DON minus/plus to have a varied gameplay in both curves because you can't always win the dice."
+			}
+		]
+	},
+	{
+		label: "Black - Control",
+		accent: "black",
+		leaders: [
+			{
+				name: "Imu",
+				code: "OP13-079",
+				image: "/Cards/OP13/OP13-079.jpg",
+				text:
+					"Imu is without a shadow of a doubt the strongest black deck in the format, the Empty Throne stage allows you to play practically almost for free your Gorosei that allow you to have control of the board and the game in addition to not being able to be removed, the odd curve suffers a little but the deck is really strong as well as really cheap. Do you like control? Imu!"
+			},
+			{
+				name: "Crocodile",
+				code: "OP14-079",
+				image: "/Cards/OP14/OP14-079.jpg",
+				text:
+					"Croco is an unusual black deck, he cannot remove any opposing character but he can break his own to start their effects and play with his own trash, he can afford a minimum of control thanks to Mr1 or 8C but it remains a different black deck with a unique gameplay. For those who don't want to adapt to the meta!"
+			}
+		]
+	},
+	{
+		label: "Yellow - Trigger",
+		accent: "yellow",
+		leaders: [
+			{
+				name: "Boa Hancock",
+				code: "OP14-041",
+				image: "/Cards/OP14/OP14-041.jpg",
+				text:
+					"Pirate Empress Boa Hancock he is able to manipulate the opponent's lives as much as his own and play characters even in the opponent's turn thanks to their triggers and draw a card for each piece played! A fair mix between blue and yellow, if you are lucky you could also trigger the event at 0 to the joy of your opponent."
+			},
+			{
+				name: "Monkey.D.Luffy",
+				code: "ST29-001",
+				image: "/Cards/ST29/ST29-001.jpg",
+				text:
+					"Luffy ST29 it is currently the most played and hated yellow single-color deck at the same time, the 6 lives increase the probability of triggering and beyond this it is able to burn the opponent's lives as if nothing had happened, a simple deck and a good investment in view of EB03."
+			}
+		]
+	}
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container rules-hero-grid">
+			<div class="rules-hero-copy">
+				<div class="rules-hero-header">
+					<div class="rules-hero-heading">
+						<span class="hero-badge">Beginner Guides</span>
+						<h1>How to Choose a Deck?</h1>
+					</div>
+					<div class="rules-hero-cover" aria-hidden="true">
+						<img src="/assets/beginner-guides/how-to-choose-a-deck.svg" alt="" loading="eager" />
+					</div>
+				</div>
+				<div class="rules-hero-body">
+					<p>
+						This guide is a first look at the main playstyle identities you can find across the different
+						colors. The goal is simple: help you understand what kind of deck you may enjoy before choosing
+						your first leader.
+					</p>
+					<p>
+						Each color below shows two leaders and a short description of how they play. If one of these
+						styles fits you, you can move next into the matching <a href="/deck-guides">Deck Guides</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container intro-strip">
+			<div class="intro-chip"><span class="swatch swatch-red"></span> Red = Aggro</div>
+			<div class="intro-chip"><span class="swatch swatch-green"></span> Green = Rest</div>
+			<div class="intro-chip"><span class="swatch swatch-blue"></span> Blue = Draw</div>
+			<div class="intro-chip"><span class="swatch swatch-purple"></span> Purple = DON!!</div>
+			<div class="intro-chip"><span class="swatch swatch-black"></span> Black = Control</div>
+			<div class="intro-chip"><span class="swatch swatch-yellow"></span> Yellow = Trigger</div>
+		</div>
+	</section>
+
+	{playstyles.map((group) => (
+		<section class={`list-section playstyle-section accent-${group.accent}`}>
+			<div class="container">
+				<div class="playstyle-header">
+					<h2>{group.label}</h2>
+				</div>
+				<div class="playstyle-grid">
+					{group.leaders.map((leader) => (
+						<article class="leader-card">
+							<div class="leader-visual">
+								<img src={leader.image} alt={`${leader.name} ${leader.code} leader card`} loading="lazy" />
+							</div>
+							<div class="leader-copy">
+								<h3>{leader.name}</h3>
+								<p class="leader-code">{leader.code}</p>
+								<p>{leader.text}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+	))}
+</MainLayout>
+
+<style>
+	.rules-hero-grid {
+		display: block;
+	}
+
+	.rules-hero-copy {
+		max-width: none;
+	}
+
+	.rules-hero-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+		gap: 1.5rem;
+		align-items: center;
+		max-width: 72rem;
+	}
+
+	.rules-hero-heading,
+	.rules-hero-copy {
+		min-width: 0;
+	}
+
+	.rules-hero-body {
+		margin-top: 1.5rem;
+		max-width: 70rem;
+	}
+
+	.rules-hero-cover {
+		justify-self: end;
+		width: 100%;
+		max-width: 240px;
+		border-radius: var(--radius-lg);
+		border: 1px solid rgba(255, 107, 61, 0.22);
+		background:
+			radial-gradient(circle at top, rgba(255, 122, 24, 0.16), transparent 58%),
+			rgba(12, 17, 30, 0.78);
+		padding: 0.75rem;
+		box-shadow: var(--shadow);
+	}
+
+	.rules-hero-cover img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		border-radius: 16px;
+	}
+
+	.intro-strip {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+
+	.intro-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.55rem 0.9rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		background: rgba(14, 19, 33, 0.72);
+		color: var(--text-200);
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.swatch {
+		width: 0.8rem;
+		height: 0.8rem;
+		border-radius: 999px;
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+	}
+
+	.swatch-red { background: #e84a4a; }
+	.swatch-green { background: #2ecc71; }
+	.swatch-blue { background: #34a4ff; }
+	.swatch-purple { background: #9b59ff; }
+	.swatch-black { background: #7f8c8d; }
+	.swatch-yellow { background: #f1c40f; }
+
+	.playstyle-section {
+		padding-top: 1.1rem;
+	}
+
+	.playstyle-header {
+		margin-bottom: 1rem;
+	}
+
+	.playstyle-header h2 {
+		margin: 0;
+		font-size: clamp(1.6rem, 2vw, 2.2rem);
+	}
+
+	.playstyle-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.leader-card {
+		display: grid;
+		grid-template-columns: 168px minmax(0, 1fr);
+		gap: 1.15rem;
+		padding: 1rem;
+		border-radius: var(--radius-lg);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+			rgba(10, 15, 28, 0.88);
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+	}
+
+	.leader-visual {
+		border-radius: 18px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.leader-visual img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 5 / 7;
+		object-fit: cover;
+	}
+
+	.leader-copy h3 {
+		margin: 0;
+		font-size: 1.25rem;
+	}
+
+	.leader-code {
+		margin: 0.2rem 0 0.9rem;
+		color: var(--text-300);
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.leader-copy p:last-child {
+		margin: 0;
+		color: var(--text-200);
+	}
+
+	.accent-red .playstyle-header h2 { color: #ff7b7b; }
+	.accent-green .playstyle-header h2 { color: #69df98; }
+	.accent-blue .playstyle-header h2 { color: #69bbff; }
+	.accent-purple .playstyle-header h2 { color: #c189ff; }
+	.accent-black .playstyle-header h2 { color: #d3d7de; }
+	.accent-yellow .playstyle-header h2 { color: #ffd457; }
+
+	.accent-red .leader-card { border-color: rgba(232, 74, 74, 0.28); }
+	.accent-green .leader-card { border-color: rgba(46, 204, 113, 0.24); }
+	.accent-blue .leader-card { border-color: rgba(52, 164, 255, 0.24); }
+	.accent-purple .leader-card { border-color: rgba(155, 89, 255, 0.24); }
+	.accent-black .leader-card { border-color: rgba(180, 190, 204, 0.22); }
+	.accent-yellow .leader-card { border-color: rgba(241, 196, 15, 0.26); }
+
+	@media (max-width: 900px) {
+		.playstyle-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 720px) {
+		.rules-hero-header {
+			grid-template-columns: minmax(0, 1fr) 104px;
+			gap: 0.85rem;
+			align-items: center;
+		}
+
+		.rules-hero-cover {
+			justify-self: end;
+			align-self: center;
+			width: 104px;
+			max-width: 104px;
+			margin-top: 0;
+		}
+
+		.rules-hero-body {
+			margin-top: 1rem;
+		}
+
+		.intro-strip {
+			gap: 0.55rem;
+		}
+
+		.intro-chip {
+			font-size: 0.82rem;
+			padding: 0.45rem 0.7rem;
+		}
+
+		.leader-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			gap: 0.8rem;
+			padding: 0.8rem;
+			align-items: start;
+		}
+
+		.leader-copy h3 {
+			font-size: 1.05rem;
+		}
+
+		.leader-code {
+			margin-bottom: 0.55rem;
+			font-size: 0.82rem;
+		}
+
+		.leader-copy p:last-child {
+			font-size: 0.93rem;
+			line-height: 1.55;
+		}
+	}
+</style>

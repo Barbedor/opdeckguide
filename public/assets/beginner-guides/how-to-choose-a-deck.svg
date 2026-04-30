@@ -1,0 +1,39 @@
+<svg width="960" height="1200" viewBox="0 0 960 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="860" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0B0F1A"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 240) rotate(90) scale(260 260)">
+      <stop stop-color="#FF9F1A" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FF9F1A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(740 960) rotate(90) scale(280 280)">
+      <stop stop-color="#FF6B3D" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FF6B3D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="960" height="1200" rx="72" fill="url(#bg)"/>
+  <rect width="960" height="1200" rx="72" fill="url(#glow1)"/>
+  <rect width="960" height="1200" rx="72" fill="url(#glow2)"/>
+  <rect x="68" y="68" width="824" height="1064" rx="48" stroke="rgba(255,107,61,0.22)" stroke-width="2"/>
+  <g transform="translate(480 355)">
+    <circle r="164" fill="#F3F5FA" fill-opacity="0.06"/>
+    <path d="M0 -138L110 -74L0 0Z" fill="#E84A4A"/>
+    <path d="M120 -68L120 68L0 0Z" fill="#34A4FF"/>
+    <path d="M110 74L0 138L0 0Z" fill="#9B59FF"/>
+    <path d="M0 138L-110 74L0 0Z" fill="#F1C40F"/>
+    <path d="M-120 68L-120 -68L0 0Z" fill="#2ECC71"/>
+    <path d="M-110 -74L0 -138L0 0Z" fill="#B0B6C4"/>
+    <polygon points="0,-86 74,-43 74,43 0,86 -74,43 -74,-43" fill="#0B0F1A"/>
+  </g>
+  <text x="480" y="640" text-anchor="middle" fill="#EEF2FF" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="88" font-weight="700">
+    HOW TO CHOOSE
+  </text>
+  <text x="480" y="734" text-anchor="middle" fill="#EEF2FF" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="88" font-weight="700">
+    A DECK?
+  </text>
+  <text x="480" y="840" text-anchor="middle" fill="#CBD5F5" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="34" font-weight="500">
+    Beginner guide to color identities and playstyles
+  </text>
+</svg>
