@@ -16,8 +16,8 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
 		/>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/favicon.png" />
 		<title>{metaTitle}</title>
 		<meta name="description" content={metaDescription} />
 		<meta name="theme-color" content="#0b0f1a" />
@@ -27,7 +27,10 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		<header class="site-header">
 			<div class="container header-inner">
 				<div class="header-top">
-					<a class="logo" href="/">OPDeckGuide</a>
+					<a class="logo" href="/" aria-label="OPDeckGuide home">
+						<img src="/assets/site-logo.png" alt="" aria-hidden="true" />
+						<span class="logo-text">OPDeckGuide</span>
+					</a>
 					<nav class="nav">
 						<a href="/deck-guides">Deck Guides</a>
 						<a href="/meta-analysis">Meta Analysis</a>
@@ -164,10 +167,29 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 	}
 
 	.logo {
-		font-size: 1.2rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		max-width: none;
+		flex-shrink: 0;
+	}
+
+	.logo img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-height: 68px;
+		object-fit: contain;
+		flex-shrink: 0;
+	}
+
+	.logo-text {
+		font-size: 1.9rem;
 		font-weight: 700;
-		letter-spacing: 0.5px;
+		letter-spacing: -0.03em;
 		color: var(--accent-2);
+		line-height: 1;
+		white-space: nowrap;
 	}
 
 	.nav {
@@ -496,20 +518,30 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		}
 
 		.header-inner {
-			gap: 0.45rem;
-			padding: 0.7rem 0;
+			gap: 0.35rem;
+			padding: 0.45rem 0;
 		}
 
 		.header-top {
-			gap: 0.55rem;
+			gap: 0.35rem;
 			justify-content: center;
 		}
 
 		.logo {
 			width: 100%;
-			text-align: center;
-			font-size: 1.05rem;
-			line-height: 1.1;
+			justify-content: center;
+			max-width: none;
+			gap: 0.35rem;
+		}
+
+		.logo img {
+			max-height: 56px;
+			width: auto;
+			max-width: none;
+		}
+
+		.logo-text {
+			font-size: 1.55rem;
 		}
 
 		.hero {

@@ -1,5 +1,6 @@
 export const deckGuides = [
 	{
+		kind: "deck",
 		title: "Enel OP15 Deck Guide",
 		leader: "Enel",
 		code: "OP15",
@@ -11,6 +12,7 @@ export const deckGuides = [
 		tags: ["op15", "yellow", "skypiea"],
 	},
 	{
+		kind: "deck",
 		title: "Lucy OP15 Deck Guide",
 		leader: "Lucy",
 		code: "OP15",
@@ -22,6 +24,7 @@ export const deckGuides = [
 		tags: ["op15", "dressrosa", "sabo"],
 	},
 	{
+		kind: "deck",
 		title: "Nami OP11 Deck Guide",
 		leader: "Nami",
 		code: "OP11",
@@ -33,6 +36,7 @@ export const deckGuides = [
 		tags: ["op11", "eb03", "blue", "straw hat"],
 	},
 	{
+		kind: "deck",
 		title: "Rosinante OP12 Deck Guide",
 		leader: "Rosinante",
 		code: "OP12",
@@ -44,6 +48,7 @@ export const deckGuides = [
 		tags: ["op12", "green", "law"],
 	},
 	{
+		kind: "deck",
 		title: "Jinbe OP14 Deck Guide",
 		leader: "Jinbe",
 		code: "OP14",
@@ -55,6 +60,7 @@ export const deckGuides = [
 		tags: ["op14", "blue", "fishman", "fish-man"],
 	},
 	{
+		kind: "deck",
 		title: "Dracule Mihawk OP14 Deck Guide",
 		leader: "Dracule Mihawk",
 		code: "OP14",
@@ -66,6 +72,7 @@ export const deckGuides = [
 		tags: ["op14", "green", "slash", "freeze"],
 	},
 	{
+		kind: "deck",
 		title: "Trafalgar Law OP14 Deck Guide",
 		leader: "Trafalgar Law",
 		code: "OP14",
@@ -77,6 +84,7 @@ export const deckGuides = [
 		tags: ["op14", "red", "supernova"],
 	},
 	{
+		kind: "deck",
 		title: "Monkey.D.Luffy ST29 Deck Guide",
 		leader: "Monkey.D.Luffy",
 		code: "ST29",
@@ -88,6 +96,7 @@ export const deckGuides = [
 		tags: ["st29", "yellow", "trigger"],
 	},
 	{
+		kind: "deck",
 		title: "Crocodile OP14 Deck Guide",
 		leader: "Crocodile",
 		code: "OP14",
@@ -99,6 +108,7 @@ export const deckGuides = [
 		tags: ["op14", "black", "baroque works"],
 	},
 	{
+		kind: "deck",
 		title: "Boa Hancock OP14 Deck Guide",
 		leader: "Boa Hancock",
 		code: "OP14",
@@ -110,6 +120,7 @@ export const deckGuides = [
 		tags: ["op14", "blue", "amazon lily"],
 	},
 	{
+		kind: "deck",
 		title: "Portgas.D.Ace OP13 Deck Guide",
 		leader: "Portgas.D.Ace",
 		code: "OP13",
@@ -122,9 +133,72 @@ export const deckGuides = [
 	},
 ] as const;
 
-export const guideSearchIndex = deckGuides.map((guide) => ({
-	...guide,
-	primaryText: [guide.title, guide.leader, guide.code, ...(guide.aliases ?? [])].join(" "),
-	searchText: [guide.title, guide.leader, guide.code, guide.month, ...(guide.aliases ?? []), ...(guide.tags ?? [])].join(" "),
-	secondaryText: [guide.code, guide.month, ...(guide.tags ?? [])].join(" "),
-}));
+export const beginnerGuides = [
+	{
+		kind: "beginner",
+		title: "How to Choose a Deck?",
+		leader: "Beginner Guides",
+		code: "Playstyle",
+		month: "Beginner",
+		href: "/beginner-guides/how-to-choose-a-deck",
+		imageSrc: "/assets/beginner-guides/how-to-choose-a-deck.svg",
+		imageAlt: "How to choose a deck guide cover",
+		aliases: [
+			"how to choose a deck",
+			"choose a deck",
+			"which deck should i play",
+			"deck colors",
+			"color guide",
+			"playstyle guide",
+		],
+		tags: [
+			"beginner",
+			"beginner guides",
+			"red aggro",
+			"green rest",
+			"blue draw",
+			"purple don",
+			"black control",
+			"yellow trigger",
+		],
+	},
+	{
+		kind: "beginner",
+		title: "Complete One Piece TCG Rules",
+		leader: "Beginner Guides",
+		code: "Rules",
+		month: "Beginner",
+		href: "/beginner-guides/complete-rules",
+		imageSrc: "/assets/beginner-guides/complete-rules.png",
+		imageAlt: "Complete rules guide cover",
+		aliases: ["complete rules", "full rules", "one piece rules", "tcg rules"],
+		tags: ["beginner", "rules", "official rules", "complete rulebook"],
+	},
+	{
+		kind: "beginner",
+		title: "Simplified Rules Overview",
+		leader: "Beginner Guides",
+		code: "Rules",
+		month: "Beginner",
+		href: "/beginner-guides/simplified-rules",
+		imageSrc: "/assets/beginner-guides/simplified-rules.png",
+		imageAlt: "Simplified rules guide cover",
+		aliases: ["simplified rules", "rules overview", "quick rules", "simple rules"],
+		tags: ["beginner", "rules", "summary", "quick start"],
+	},
+] as const;
+
+const buildGuideSearchIndex = (guides) =>
+	guides.map((guide) => ({
+		...guide,
+		primaryText: [guide.title, guide.leader, guide.code, ...(guide.aliases ?? [])].join(" "),
+		searchText: [guide.title, guide.leader, guide.code, guide.month, ...(guide.aliases ?? []), ...(guide.tags ?? [])].join(
+			" ",
+		),
+		secondaryText: [guide.code, guide.month, ...(guide.tags ?? [])].join(" "),
+	}));
+
+export const guideSearchIndex = [
+	...buildGuideSearchIndex(deckGuides),
+	...buildGuideSearchIndex(beginnerGuides),
+];

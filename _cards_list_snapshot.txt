@@ -1,11 +1,10 @@
-ï»¿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
 import { guideSearchIndex } from "../../lib/guides";
 
 const title = "One Piece Card Game Cards List";
-const description =
-	"Browse One Piece Card Game cards by extension, and search cards, deck guides, and beginner guides from one global bar.";
+const description = "Browse One Piece Card Game cards by extension, and search both cards and deck guides from one global bar.";
 
 const metadataAvailable = hasMetadata();
 
@@ -41,8 +40,8 @@ for (const item of extensionSummaries) {
 			<div class="hero-text" data-hero-text>
 				<p>
 					Search a card number, name, leader, or guide. Try queries like <strong>guides</strong>,
-					<strong>guides OP14</strong>, <strong>Mihawk</strong>, <strong>complete rules</strong>, or a
-					card code to jump straight to the right result.
+					<strong>guides OP14</strong>, <strong>Mihawk</strong>, or a card code to jump straight to the
+					right result.
 				</p>
 			</div>
 		</div>
@@ -87,8 +86,8 @@ for (const item of extensionSummaries) {
 			<p>
 				This library keeps every card organized by extension, with fast thumbnails and a full-size preview on
 				click. Use the search bar under the menu to jump straight to a card number, find cards by name, or
-				open matching deck guides and beginner guides from leader names and guide keywords. The layout is
-				optimized for mobile so you can reference cards between rounds without friction.
+				open matching deck guides from leader names and guide keywords. The layout is optimized for mobile so
+				you can reference cards between rounds without friction.
 			</p>
 			<p>
 				Click an extension to open its full card list. The previews show the most recent cards to help you
@@ -208,7 +207,7 @@ for (const item of extensionSummaries) {
 
 			const eyebrow = document.createElement("span");
 			eyebrow.className = "guide-result-eyebrow";
-			eyebrow.textContent = `${guide.month} â€¢ ${guide.code}`;
+			eyebrow.textContent = `${guide.month} • ${guide.code}`;
 
 			const media = document.createElement("div");
 			media.className = "guide-result-media";
@@ -222,7 +221,7 @@ for (const item of extensionSummaries) {
 			title.textContent = guide.title;
 
 			const meta = document.createElement("p");
-			meta.textContent = `${guide.leader} â€¢ ${guide.code}`;
+			meta.textContent = `${guide.leader} • ${guide.code}`;
 
 			card.append(eyebrow, media, title, meta);
 			grid.appendChild(card);
