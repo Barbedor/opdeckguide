@@ -1,7 +1,10 @@
 ﻿---
-const { title, description } = Astro.props;
+import { siteUrl } from "../lib/site";
+
+const { title, description, canonical } = Astro.props;
 const metaTitle = title ? `${title} | OPDeckGuide` : 'OPDeckGuide | One Piece Card Game Deck Guides & Meta Analysis';
 const metaDescription = description ?? 'Modern One Piece Card Game deck guides, matchup breakdowns, and meta analysis built for competitive players and new pirates alike.';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -18,6 +21,7 @@ const metaDescription = description ?? 'Modern One Piece Card Game deck guides, 
 		/>
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/favicon.png" />
+		<link rel="canonical" href={canonicalUrl} />
 		<title>{metaTitle}</title>
 		<meta name="description" content={metaDescription} />
 		<meta name="theme-color" content="#0b0f1a" />
