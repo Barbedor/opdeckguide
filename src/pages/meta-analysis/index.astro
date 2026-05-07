@@ -28,11 +28,52 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 			<figure class="tier-figure">
 				<img
 					loading="lazy"
-					src="/assets/tier-list/tier-list-opdeckguides.png"
+					src="/assets/tier-list/Nouvelle tier list .png"
 					alt="One Piece Card Game tier list snapshot"
 				/>
-				<figcaption>Updated tier list snapshot. New versions will replace this image over time.</figcaption>
+				<figcaption>Current tier list of decks.</figcaption>
 			</figure>
+			<div class="tier-article-links">
+				<a class="tier-article-card" href="/meta-analysis/monkey-d-luffy-eb02-stats-in-op15">
+					<div class="article-thumb" aria-hidden="true">
+						<img
+							loading="lazy"
+							src="/assets/guides/Monkey D. Luffy EB02-010.png"
+							alt=""
+						/>
+					</div>
+					<div class="tier-article-copy">
+						<strong>Monkey.D.Luffy EB02 Stats in OP15 Format</strong>
+						<p>Turn-order win rates for Green/Purple Monkey.D.Luffy in the OP15 format.</p>
+					</div>
+				</a>
+				<a class="tier-article-card" href="/meta-analysis/nami-op11-stats-in-op15">
+					<div class="article-thumb" aria-hidden="true">
+						<img
+							loading="lazy"
+							src="/assets/guides/nami-op11.png"
+							alt=""
+						/>
+					</div>
+					<div class="tier-article-copy">
+						<strong>Nami OP11 Stats in OP15 Format</strong>
+						<p>Turn-order win rates for Blue/Yellow Nami in the OP15 format.</p>
+					</div>
+				</a>
+				<a class="tier-article-card" href="/meta-analysis/portgas-d-ace-op15-stats">
+					<div class="article-thumb" aria-hidden="true">
+						<img
+							loading="lazy"
+							src="/assets/guides/portgas-d-ace-op13.png"
+							alt=""
+						/>
+					</div>
+					<div class="tier-article-copy">
+						<strong>Ace OP13 Stats in OP15 Format</strong>
+						<p>Turn-order win rates for Red/Blue Ace in the OP15 format.</p>
+					</div>
+				</a>
+			</div>
 		</div>
 	</section>
 
@@ -94,6 +135,64 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 		font-size: 0.95rem;
 	}
 
+	.tier-article-links {
+		margin-top: 18px;
+	}
+
+	.tier-article-card {
+		display: grid;
+		grid-template-columns: 76px minmax(0, 1fr);
+		gap: 0.95rem;
+		align-items: start;
+		padding: 16px 18px;
+		background: rgba(14, 18, 30, 0.78);
+		border: 1px solid rgba(255, 120, 52, 0.2);
+		border-radius: 18px;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+	}
+
+	.tier-article-card:hover {
+		transform: translateY(-2px);
+		border-color: rgba(255, 120, 52, 0.38);
+		background: rgba(18, 23, 38, 0.92);
+	}
+
+	.article-thumb {
+		width: 76px;
+		border-radius: 16px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 120, 52, 0.22);
+		background: rgba(8, 11, 19, 0.92);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+	}
+
+	.article-thumb img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		height: auto;
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.tier-article-copy {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.tier-article-copy strong {
+		font-size: 1rem;
+	}
+
+	.tier-article-copy p {
+		margin: 0;
+		color: rgba(234, 238, 255, 0.72);
+		line-height: 1.6;
+	}
+
 	@media (max-width: 720px) {
 		.tier-list {
 			padding-top: 24px;
@@ -101,6 +200,16 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 
 		.tier-figure {
 			padding: 12px;
+		}
+
+		.tier-article-card {
+			grid-template-columns: 62px minmax(0, 1fr);
+			padding: 14px;
+		}
+
+		.article-thumb {
+			width: 62px;
+			border-radius: 14px;
 		}
 	}
 </style>

@@ -1,6 +1,18 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Sanji OP12 Deck Guide",
+		leader: "Sanji",
+		code: "OP12",
+		month: "May",
+		href: "/deck-guides/sanji-op12",
+		imageSrc: "/assets/guides/sanji-op12.png",
+		imageAlt: "Sanji OP12 guide icon",
+		aliases: ["sanji"],
+		tags: ["op12", "blue", "yellow", "germa"],
+	},
+	{
+		kind: "deck",
 		title: "Enel OP15 Deck Guide",
 		leader: "Enel",
 		code: "OP15",

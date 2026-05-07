@@ -2,6 +2,7 @@
 import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
+const hiddenExtensions = new Set(["back_cards", "don"]);
 
 export const colorOrder = [
 	"Red",
@@ -78,7 +79,7 @@ export const getExtensions = () => {
 	return fs
 		.readdirSync(cardsRoot, { withFileTypes: true })
 		.filter((entry) => entry.isDirectory())
-		.filter((entry) => entry.name.toLowerCase() !== "don")
+		.filter((entry) => !hiddenExtensions.has(entry.name.toLowerCase()))
 		.map((entry) => entry.name)
 		.sort((a, b) => {
 			const aInfo = parse(a);
