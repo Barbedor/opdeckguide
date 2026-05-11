@@ -1,5 +1,5 @@
 import { getExtensions } from "./cards";
-import { beginnerGuides, deckGuides } from "./guides";
+import { beginnerGuides, visibleDeckGuides } from "./guides";
 
 export const siteUrl = "https://opdeckguide.com";
 
@@ -15,7 +15,7 @@ export const staticSitePaths = [
 	"/cards-list",
 ];
 
-export const guidePaths = [...deckGuides, ...beginnerGuides].map((guide) => guide.href);
+export const guidePaths = [...visibleDeckGuides, ...beginnerGuides].map((guide) => guide.href);
 
 export const cardsListPaths = getExtensions().map((extension) => `/cards-list/${extension}`);
 

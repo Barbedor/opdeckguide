@@ -30,6 +30,13 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 					loading="lazy"
 					src="/assets/tier-list/Nouvelle tier list .png"
 					alt="One Piece Card Game tier list snapshot"
+					class="tier-image-desktop"
+				/>
+				<img
+					loading="lazy"
+					src="/Tier liste version mobil.png"
+					alt="One Piece Card Game tier list snapshot"
+					class="tier-image-mobile"
 				/>
 				<figcaption>Current tier list of decks.</figcaption>
 			</figure>
@@ -73,6 +80,25 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 						<p>Turn-order win rates for Red/Blue Ace in the OP15 format.</p>
 					</div>
 				</a>
+			</div>
+			<div class="budget-tier-block">
+				<h3>Current Deck Budget Tier List</h3>
+				<p>Snapshot of current deck costs in dollars across the main competitive decks.</p>
+				<figure class="tier-figure">
+					<img
+						loading="lazy"
+						src="/deck guide budget desktop.png"
+						alt="One Piece Card Game deck budget tier list"
+						class="budget-image-desktop"
+					/>
+					<img
+						loading="lazy"
+						src="/deck budget mobile.png"
+						alt="One Piece Card Game deck budget tier list"
+						class="budget-image-mobile"
+					/>
+					<figcaption>Current deck budget tier list.</figcaption>
+				</figure>
 			</div>
 		</div>
 	</section>
@@ -129,6 +155,19 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 		border-radius: 12px;
 	}
 
+	.tier-figure .budget-image-desktop {
+		width: min(100%, 820px);
+		margin: 0 auto;
+	}
+
+	.tier-figure .tier-image-mobile {
+		display: none;
+	}
+
+	.tier-figure .budget-image-mobile {
+		display: none;
+	}
+
 	.tier-figure figcaption {
 		margin-top: 12px;
 		color: rgba(234, 238, 255, 0.7);
@@ -137,6 +176,20 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 
 	.tier-article-links {
 		margin-top: 18px;
+	}
+
+	.budget-tier-block {
+		margin-top: 24px;
+	}
+
+	.budget-tier-block h3 {
+		margin: 0 0 10px;
+		font-size: 1.35rem;
+	}
+
+	.budget-tier-block p {
+		margin: 0 0 18px;
+		color: rgba(234, 238, 255, 0.78);
 	}
 
 	.tier-article-card {
@@ -200,6 +253,22 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 
 		.tier-figure {
 			padding: 12px;
+		}
+
+		.tier-figure .tier-image-desktop {
+			display: none;
+		}
+
+		.tier-figure .tier-image-mobile {
+			display: block;
+		}
+
+		.tier-figure .budget-image-desktop {
+			display: none;
+		}
+
+		.tier-figure .budget-image-mobile {
+			display: block;
 		}
 
 		.tier-article-card {

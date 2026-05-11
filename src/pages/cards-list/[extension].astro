@@ -27,7 +27,7 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 			<p>
 				Browse every card from {extension}. Click any thumbnail to open the full-size image, then click
 				outside the image to return to the grid. Use the search bar under the menu to jump directly to a
-				card number or name across all extensions.
+				card by typing its exact card number across all extensions.
 			</p>
 			<p>
 				Need strategy context? Head back to <a href="/deck-guides">Deck Guides</a> or
@@ -154,8 +154,9 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 <style>
 	.cards-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
 		gap: 0.8rem;
+		justify-content: start;
 	}
 
 	:global(.card-thumb) {
@@ -165,6 +166,8 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 		background: transparent;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		cursor: pointer;
+		width: 120px;
+		max-width: 120px;
 	}
 
 	:global(.card-thumb img) {
@@ -236,7 +239,14 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 
 	@media (max-width: 600px) {
 		.cards-grid {
-			grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+			grid-template-columns: repeat(3, minmax(96px, 96px));
+			justify-content: center;
+			gap: 0.55rem;
+		}
+
+		:global(.card-thumb) {
+			width: 96px;
+			max-width: 96px;
 		}
 	}
 </style>

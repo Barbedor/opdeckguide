@@ -1,10 +1,42 @@
 ﻿---
 import { siteUrl } from "../lib/site";
 
-const { title, description, canonical } = Astro.props;
-const metaTitle = title ? `${title} | OPDeckGuide` : 'OPDeckGuide | One Piece Card Game Deck Guides & Meta Analysis';
+const { title: pageTitle, description, canonical, noindex = false, structuredData } = Astro.props;
+const metaTitle = pageTitle ? `${pageTitle} | OPDeckGuide` : 'OPDeckGuide | One Piece Card Game Deck Guides & Meta Analysis';
 const metaDescription = description ?? 'Modern One Piece Card Game deck guides, matchup breakdowns, and meta analysis built for competitive players and new pirates alike.';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const pathname = Astro.url.pathname;
+const isHomePage = pathname === "/";
+const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
+const defaultStructuredData = isHomePage
+	? {
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			name: "OPDeckGuide",
+			url: siteUrl,
+			description: metaDescription,
+			inLanguage: "en",
+			potentialAction: {
+				"@type": "SearchAction",
+				target: `${siteUrl}/cards-list?query={search_term_string}`,
+				"query-input": "required name=search_term_string",
+			},
+		}
+	: {
+			"@context": "https://schema.org",
+			"@type": isArticlePage ? "Article" : "WebPage",
+			headline: pageTitle ?? "OPDeckGuide",
+			name: metaTitle,
+			description: metaDescription,
+			url: canonicalUrl,
+			inLanguage: "en",
+		};
+const extraStructuredData = structuredData
+	? Array.isArray(structuredData)
+		? structuredData
+		: [structuredData]
+	: [];
+const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 ---
 
 <!doctype html>
@@ -25,6 +57,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString(
 		<title>{metaTitle}</title>
 		<meta name="description" content={metaDescription} />
 		<meta name="theme-color" content="#0b0f1a" />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		<script type="application/ld+json" set:html={JSON.stringify(structuredDataPayload)} />
 	</head>
 	<body>
 		<a class="skip-link" href="#content">Skip to content</a>

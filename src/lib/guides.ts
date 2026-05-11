@@ -10,6 +10,7 @@ export const deckGuides = [
 		imageAlt: "Sanji OP12 guide icon",
 		aliases: ["sanji"],
 		tags: ["op12", "blue", "yellow", "germa"],
+		hidden: true,
 	},
 	{
 		kind: "deck",
@@ -145,6 +146,8 @@ export const deckGuides = [
 	},
 ] as const;
 
+export const visibleDeckGuides = deckGuides.filter((guide) => !guide.hidden);
+
 export const beginnerGuides = [
 	{
 		kind: "beginner",
@@ -211,6 +214,6 @@ const buildGuideSearchIndex = (guides) =>
 	}));
 
 export const guideSearchIndex = [
-	...buildGuideSearchIndex(deckGuides),
+	...buildGuideSearchIndex(visibleDeckGuides),
 	...buildGuideSearchIndex(beginnerGuides),
 ];
