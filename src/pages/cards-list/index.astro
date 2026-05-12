@@ -63,7 +63,7 @@ for (const item of extensionSummaries) {
 							<span>{entry.group}</span>
 						</div>
 					) : (
-						<a class="extension-card" href={`/cards-list/${entry.item.extension}`}>
+						<a class="extension-card" href={`/cards-list/${entry.item.extension}/`}>
 							<div class="extension-card-header">
 								<h3>{entry.item.extension}</h3>
 								<span>{entry.item.count} cards</span>
@@ -92,8 +92,8 @@ for (const item of extensionSummaries) {
 			</p>
 			<p>
 				Click an extension to open its full card list. The previews show the most recent cards to help you
-				spot the right set quickly. Use the <a href="/deck-guides">Deck Guides</a> and
-				<a href="/meta-analysis">Meta Analysis</a> sections to see where these cards fit into competitive play.
+				spot the right set quickly. Use the <a href="/deck-guides/">Deck Guides</a> and
+				<a href="/meta-analysis/">Meta Analysis</a> sections to see where these cards fit into competitive play.
 			</p>
 		</div>
 	</section>

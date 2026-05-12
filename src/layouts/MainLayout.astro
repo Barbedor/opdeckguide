@@ -18,7 +18,7 @@ const defaultStructuredData = isHomePage
 			inLanguage: "en",
 			potentialAction: {
 				"@type": "SearchAction",
-				target: `${siteUrl}/cards-list?query={search_term_string}`,
+				target: `${siteUrl}/cards-list/?query={search_term_string}`,
 				"query-input": "required name=search_term_string",
 			},
 		}
@@ -74,15 +74,15 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 						<span class="logo-text">OPDeckGuide</span>
 					</a>
 					<nav class="nav">
-						<a href="/deck-guides">Deck Guides</a>
-						<a href="/meta-analysis">Meta Analysis</a>
-						<a href="/beginner-guides">Beginner Guides</a>
-						<a href="/banlist">Banlist</a>
-						<a href="/cards-list">Cards List</a>
+						<a href="/deck-guides/">Deck Guides</a>
+						<a href="/meta-analysis/">Meta Analysis</a>
+						<a href="/beginner-guides/">Beginner Guides</a>
+						<a href="/banlist/">Banlist</a>
+						<a href="/cards-list/">Cards List</a>
 					</nav>
 				</div>
 				<div class="header-search-row">
-					<form class="nav-search" action="/cards-list" method="get" role="search">
+					<form class="nav-search" action="/cards-list/" method="get" role="search">
 						<input
 							type="search"
 							name="query"
@@ -104,11 +104,11 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			<div class="container footer-inner">
 				<p>© 2026 OPDeckGuide. All rights reserved.</p>
 				<div class="footer-links">
-					<a href="/deck-guides">Deck Guides</a>
-					<a href="/meta-analysis">Meta Analysis</a>
-					<a href="/beginner-guides">Beginner Guides</a>
-					<a href="/banlist">Banlist</a>
-					<a href="/cards-list">Cards List</a>
+					<a href="/deck-guides/">Deck Guides</a>
+					<a href="/meta-analysis/">Meta Analysis</a>
+					<a href="/beginner-guides/">Beginner Guides</a>
+					<a href="/banlist/">Banlist</a>
+					<a href="/cards-list/">Cards List</a>
 				</div>
 			</div>
 		</footer>
