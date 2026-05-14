@@ -7,6 +7,7 @@ export default defineConfig({
 	site: "https://opdeckguide.com",
 	trailingSlash: "always",
 	vite: {
+		cacheDir: ".vite-cache",
 		resolve: {
 			preserveSymlinks: true,
 			alias: {
