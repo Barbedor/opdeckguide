@@ -7,12 +7,19 @@ export const staticSitePaths = [
 	"/",
 	"/deck-guides/",
 	"/meta-analysis/",
+	"/meta-analysis/dracule-mihawk-op14-stats-in-op15/",
+	"/meta-analysis/enel-op15-stats-in-op15/",
+	"/meta-analysis/lucy-op15-stats-in-op15/",
+	"/meta-analysis/monkey-d-luffy-op15-stats-in-op15/",
+	"/meta-analysis/enel-op05-stats-in-op15/",
 	"/meta-analysis/monkey-d-luffy-eb02-stats-in-op15/",
 	"/meta-analysis/nami-op11-stats-in-op15/",
 	"/meta-analysis/portgas-d-ace-op15-stats/",
 	"/beginner-guides/",
 	"/banlist/",
 	"/cards-list/",
+	"/privacy-policy/",
+	"/legal-notice/",
 ];
 
 export const guidePaths = [...visibleDeckGuides, ...beginnerGuides].map((guide) => guide.href);

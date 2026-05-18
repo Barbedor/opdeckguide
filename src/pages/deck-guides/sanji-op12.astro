@@ -38,7 +38,7 @@ const options = [
 		code: "EB01-039",
 		name: "Ragnarok",
 		img: "/Cards/EB01/EB01-039.png",
-		note: "Useful for answering larger 7-cost bodies such as Sabo or EB04 Zoro.",
+		note: "Useful for answering larger 7-cost bodies such as Sabo OP15-046 or Zoro EB04.",
 	},
 	{
 		code: "P-055",
@@ -50,13 +50,13 @@ const options = [
 		code: "OP10-060",
 		name: "Bari Bari Pistol",
 		img: "/Cards/OP10/OP10-060.jpg",
-		note: "Strong into larger bodies and also works well with Brochette Blow or Reiju.",
+		note: "Strong into larger bodies and also works well with Brochette Blow OP12-078 or Reiju EB03-031.",
 	},
 	{
 		code: "OP12-071",
 		name: "Charlotte Pudding",
 		img: "/Cards/OP12/OP12-071.jpg",
-		note: "Finds Sanji or an event and can also clean up 2000-power or lower bodies.",
+		note: "Finds Sanji OP12-070 or an event and can also clean up 2000-power or lower bodies.",
 	},
 	{
 		code: "OP07-076",
@@ -126,50 +126,108 @@ const curve = [
 			{ code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
 		],
 		notes:
-			"Brochette Blow and Divine Departure are the main answers to larger bodies. Sanji OP15-047 helps force through bigger blockers and is a good Stealth Black re-summon target. Gum Gum Giant keeps you safe while drawing, and Mamaragan clears blockers at 5000 power or less.",
+			"Brochette Blow and Divine Departure are the main answers to larger bodies. Sanji OP15-047 helps force through bigger blockers and is a good Stealth Black re-summon target. Gum-Gum Giant keeps you safe while drawing, and Mamaragan clears blockers at 5000 power or less.",
+	},
+];
+
+const tips = [
+	{
+		title: "Count your event total in trash before choosing the turn.",
+		text:
+			"Lady's Teardrops is the main tool for filling the trash and setting up stronger 3-cost Sanji turns. When the hand needs more flow, Boeuf Burst and Concasser are the events you can spend more freely.",
+		flow: [
+			{ type: "card", code: "EB04-029", name: "Lady's Teardrops", img: "/Cards/EB04/EB04-029.jpg" },
+			{ type: "arrow" },
+			{ type: "card", code: "OP12-060", name: "Boeuf Burst", img: "/Cards/OP12/OP12-060.jpg" },
+			{ type: "plus" },
+			{ type: "card", code: "OP12-059", name: "Concasser", img: "/Cards/OP12/OP12-059.jpg" },
+		],
+	},
+	{
+		title: "Answer big bodies with your two best removal events.",
+		text:
+			"Divine Departure handles large threats with the minus 8000 line, and Brochette Blow gives you the second removal angle when the board gets too big.",
+		flow: [
+			{ type: "card", code: "OP13-076", name: "Divine Departure", img: "/Cards/OP13/OP13-076.jpg" },
+			{ type: "arrow" },
+			{ type: "card", code: "OP12-078", name: "Brochette Blow", img: "/Cards/OP12/OP12-078.jpg" },
+		],
+	},
+	{
+		title: "Use the late-game combo to open the last attacks.",
+		text:
+			"Brochette Blow + Mamaragan is the main way to rest blockers and create the closing turn. Sanji OP15-047 is the follow-up attacker that helps finish the opponent through its unblockable effect once the lane is open.",
+		flow: [
+			{ type: "card", code: "OP12-078", name: "Brochette Blow", img: "/Cards/OP12/OP12-078.jpg" },
+			{ type: "arrow" },
+			{ type: "card", code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
+		],
 	},
 ];
 
 const matchups = [
 	{
-		label: "Go 1st",
-		icon: "1",
-		leader: { code: "OP13-079", name: "Sabo", img: "/Cards/OP13/OP13-079.jpg" },
+		label: "Slight Disadv.",
+		icon: "Ã¢â€ â€œ",
+		leader: { code: "OP15-046", name: "Sabo", img: "/Cards/OP15/OP15-046.jpg" },
 		notes: [
-			"Use Culverin and Boeuf Burst to keep the board under control.",
-			"Stealth Black plus Sanji OP15 is the main finishing line.",
+			"Use Boeuf Burst or Culverin to manage Cavendish.",
+			"Sanji unblockable is one of the cleanest ways to finish the game.",
+			"Boa Hancock can paralyze Sabo and also K.O. Rebecca.",
 		],
 	},
 	{
-		label: "Go 2nd",
-		icon: "2",
-		leader: { code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: [
-			"Stealth Black plus Sanji OP15 is also the main closing combo here.",
-			"Divine Departure matters for cards like Zoro.",
-		],
-	},
-	{
-		label: "Go 1st",
-		icon: "1",
+		label: "Slight Disadv.",
+		icon: "Ã¢â€ â€œ",
 		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
 		notes: [
-			"Gravity Blade lines matter against Nami, Borsalino, or OP15 Zoro.",
-			"Gum Gum Giant helps you survive longer while the game stretches.",
+			"Gravity Blade lines matter against Nami, Kizaru, Robin, and Thriller Bark cards.",
+			"Prepare for a long game by pushing your 3-cost Sanjis to 10k and leaning on Gum-Gum Giant.",
+			"Break through the defense with Sanji unblockable or Divine Departure on Whitebeard cost 10.",
+		],
+	},
+	{
+		label: "Negative MU",
+		icon: "Ã¢â€ â€œ",
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: [
+			"Boa Hancock matters a lot here because she can paralyze 6-cost Enel and K.O. a 1-cost body.",
+			"Manage the board as well as possible with Boeuf Burst, Culverin, and Brochette Blow.",
+			"Use Gum-Gum Giant to survive the long turns when pressure starts stacking.",
+		],
+	},
+	{
+		label: "Slight Disadv.",
+		icon: "Ã¢â€ â€œ",
+		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: [
+			"Sanji unblockable is one of the main late-game finishers in this matchup.",
+			"Expect a longer game and use Gum-Gum Giant to hold the tempo.",
+			"Keep boosting your Sanjis to push through Ace's defensive turns.",
+		],
+	},
+	{
+		label: "Slight Adv.",
+		icon: "Ã¢â€ â€˜",
+		leader: { code: "OP13-001", name: "Monkey D. Luffy", img: "/Cards/OP13/OP13-001.jpg" },
+		notes: [
+			"Brochette Blow is important to keep the board under control.",
+			"Push your 3-cost Sanjis as high as possible to keep pressure on.",
+			"Be ready for a longer game and use Gum-Gum Giant to stabilize key turns.",
 		],
 	},
 ];
 ---
 
-<MainLayout title={title} description={description} noindex={true}>
+<MainLayout title={title} description={description}>
 	<section class="hero guide-hero">
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Sanji OP12 Deck Guide</h1>
 				<p>
-					Reference guide for Sanji OP12 with the full list, mulligan priorities, curve checkpoints, event-heavy
-					midgame lines, and quick matchup plans. Built to stay easy to scan between rounds.
+					Reference guide for Sanji OP12 in the OP15 format with the full list, mulligan priorities, curve
+					checkpoints, event-heavy midgame lines, and quick matchup plans. Built to stay easy to scan between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -268,9 +326,9 @@ const matchups = [
 				))}
 			</div>
 			<p class="mulligan-text">
-				OP12-070 Sanji plus Lady&apos;s Teardrops is the clean start: it finds Sanji while also filling the trash.
-				Let&apos;s Crash This Wedding is another strong opener because it looks for OP12-070 Sanji, and Boeuf Burst
-				is the event you most want to have ready for the midgame or for the draw 2 line.
+				OP12-070 Sanji + Lady&apos;s Teardrops is the clean start: it finds Sanji while also filling the trash.
+				Let&apos;s Crash This Wedding is another strong opener because it searches for OP12-070 Sanji, and Boeuf Burst
+				is the event you most want to have ready for the midgame or for the draw 2 cards.
 			</p>
 		</div>
 	</section>
@@ -315,9 +373,34 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Tips</h2>
+					<p>Three key lines to keep in mind while piloting the deck.</p>
 				</div>
 			</div>
-			<div class="tips-grid tips-grid-empty"></div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-flow">
+							{tip.flow.map((item) =>
+								item.type === "card" ? (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={item.img}
+										data-name={`${item.code} ${item.name}`}
+									>
+										<img loading="lazy" src={item.img} alt={`${item.code} ${item.name}`} />
+									</button>
+								) : null
+							)}
+						</div>
+						<div class="tip-copy">
+							<h3>{tip.title}</h3>
+							<p>{tip.text}</p>
+						</div>
+					</div>
+				))}
+			</div>
 		</div>
 	</section>
 
@@ -326,14 +409,14 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Quick turn-order reminders and the main cards that matter in the pairing.</p>
+					<p>Quick matchup reminders and the main cards or finishers that matter in each pairing.</p>
 				</div>
 			</div>
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
 					<div class="matchup-card">
-						<div class="matchup-badge badge-plan">
-							<span class="badge-icon">{matchup.icon}</span>
+						<div class={`matchup-badge ${matchup.label.includes("Negative") || matchup.label.includes("Disadv") ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+							<span class={`badge-icon ${matchup.label.includes("Negative") || matchup.label.includes("Disadv") ? "badge-icon-down" : matchup.label === "Even" ? "badge-icon-even" : "badge-icon-up"}`} aria-hidden="true"></span>
 							<span>{matchup.label}</span>
 						</div>
 						<button
@@ -346,7 +429,6 @@ const matchups = [
 							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
 						</button>
 						<div class="matchup-name">{matchup.leader.name}</div>
-						<div class="deck-code">{matchup.leader.code}</div>
 						<ul>
 							{matchup.notes.map((note) => (
 								<li>{note}</li>
@@ -590,9 +672,6 @@ const matchups = [
 		text-align: center;
 	}
 
-	.tips-grid-empty {
-		min-height: 8px;
-	}
 
 	.matchups-grid {
 		display: grid;
@@ -634,12 +713,86 @@ const matchups = [
 		color: #0b0f1a;
 	}
 
-	.badge-plan .badge-icon {
-		background: linear-gradient(135deg, #60a5fa, #93c5fd);
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #4ade80, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #f87171, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #fbbf24, #fcd34d);
+	}
+
+	.badge-icon::before {
+		font-size: 1rem;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.badge-icon-up::before {
+		content: "↑";
+	}
+
+	.badge-icon-down::before {
+		content: "↓";
+	}
+
+	.badge-icon-even::before {
+		content: "↔";
+	}
+
+	.tips-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+	}
+
+	.tip-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.tip-flow {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.tip-arrow {
+		color: var(--accent);
+		font-size: 1.4rem;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.tip-copy {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.tip-copy h3 {
+		margin: 0;
+		font-size: 1rem;
+	}
+
+	.tip-copy p {
+		margin: 0;
+		color: var(--text-200);
 	}
 
 	.matchup-name {
 		font-weight: 600;
+		min-height: 2.8rem;
+		display: flex;
+		align-items: flex-start;
+		line-height: 1.3;
 	}
 
 	.card-modal {
@@ -770,6 +923,10 @@ const matchups = [
 
 		.mini-card img {
 			width: 90px;
+		}
+
+		.tip-card {
+			padding: 0.9rem;
 		}
 
 		.curve-row {

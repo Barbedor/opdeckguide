@@ -34,7 +34,7 @@ const optionsGroups = [
 			{ code: "OP14-017", name: "Chambres", img: "/Cards/OP14/OP14-017.jpg" },
 		],
 		note:
-			"These are just some of the valid cards that can be inserted in the deck. Cavendish is a good option against Lucy where you need to see as many cards as possible, the problem is that it is removed in all ways such as Zeus, Nojiko, Barrier etc. Taxbeard and Shambles are useful to earn a turn or do control board against Enel P, they are not on the list because for me Boa is stronger and more versatile in this meta.",
+			"These are just some of the valid cards that can be inserted in the deck. Cavendish is a good option against Lucy where you need to see as many cards as possible, but it's removed in all the usual ways such as Zeus, Nojiko, and Barrier. Taxbeard and Shambles are useful to buy a turn or control the board against Enel P, but they're not on the list because Boa is stronger and more versatile in this meta.",
 	},
 ];
 
@@ -80,7 +80,7 @@ const curveFirst = [
 	},
 	{
 		label: "9 DON",
-		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you are playing for Roger.",
+		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you're playing for Roger.",
 		cards: [
 			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
 			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
@@ -88,7 +88,7 @@ const curveFirst = [
 	},
 	{
 		label: "Late game",
-		notes: "You can repeat your last turn or if you are in the right setup Roger is the card needed to finish the match saying goodbye to the opposing blockers.",
+		notes: "You can repeat your last turn, or if you're in the right setup, Roger is the card you need to finish the match and say goodbye to the opposing blockers.",
 		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
 	},
 ];
@@ -121,7 +121,7 @@ const curveSecond = [
 	},
 	{
 		label: "8 DON",
-		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you are playing for Roger.",
+		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you're playing for Roger.",
 		cards: [
 			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
 			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
@@ -129,7 +129,7 @@ const curveSecond = [
 	},
 	{
 		label: "Late game",
-		notes: "You can repeat your last turn or if you are in the right setup Roger is the card needed to finish the match saying goodbye to the opposing blockers.",
+		notes: "You can repeat your last turn, or if you're in the right setup, Roger is the card you need to finish the match and say goodbye to the opposing blockers.",
 		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
 	},
 ];
@@ -137,7 +137,7 @@ const curveSecond = [
 const tips = [
 	{
 		title:
-			"The deck doesn't have great tips or special combos, you have to remember which cards the searchers have seen to know when or what will arrive once you have turned the whole deck because it will happen. Another suggestion is not to be afraid to discard for the Leader's ability but to do it with intelligence because in late game you also have to prepare for an opponent Roger.",
+			"The deck doesn't have major special combos, so you need to remember which cards your searchers have seen and what's still left in the deck, because going through the whole deck does happen. Another suggestion isn't to be afraid to discard for the Leader's ability, but do it carefully because in the late game you still need to prepare for an opposing Roger.",
 		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
 	},
 ];
@@ -189,8 +189,8 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Portgas.D.Ace OP13 Deck Guide</h1>
 				<p>
-					Complete reference guide for Portgas.D.Ace OP13: decklist, curve checkpoints, mulligan
-					priorities, tech options, and matchup focus leaders. Built for fast reading between rounds.
+					Complete reference guide for Portgas.D.Ace OP13 in the OP15 format: decklist, curve checkpoints,
+					mulligan priorities, tech options, and matchup focus leaders. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -275,7 +275,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1C searcher to look for the missing pieces in the curve + one of your 4C Character depending on the situation.</p>
+					<p>1C searcher to search for the missing pieces in the curve + one of your 4C Character depending on the situation.</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -805,6 +805,14 @@ const matchups = [
 	@media (max-width: 640px) {
 		.deck-card img {
 			max-width: 120px;
+		}
+
+		.section-header > a {
+			display: block;
+			width: 100%;
+			margin-top: 0.75rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
 		}
 
 		.option-card img {

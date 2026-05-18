@@ -47,7 +47,7 @@ const mulliganCards = [
 const curveFirst = [
 	{
 		label: "1 DON",
-		notes: "Use the event to look for the missing pieces in the curve.",
+		notes: "Use the event to search for the missing pieces in the curve.",
 		cards: [{ code: "EB03-060", name: "Will You Be My Servant?", img: "/Cards/EB03/EB03-060.jpg" }],
 	},
 	{
@@ -83,7 +83,7 @@ const curveFirst = [
 const curveSecond = [
 	{
 		label: "2 DON",
-		notes: "Use the event to look for the missing pieces in the curve or the promo if you have a Character to play next turn.",
+		notes: "Use the event to search for the missing pieces in the curve or the promo if you have a Character to play next turn.",
 		cards: [
 			{ code: "EB03-060", name: "Will You Be My Servant?", img: "/Cards/EB03/EB03-060.jpg" },
 			{ code: "P-096", name: "Girl", img: "/Cards/P/P-096.jpg" },
@@ -194,8 +194,8 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Nami OP11 Deck Guide</h1>
 				<p>
-					Complete reference guide for Nami OP11: decklist, curve checkpoints, mulligan priorities, tech
-					options, and matchup notes. Built for fast reading between rounds.
+					Complete reference guide for Nami OP11 in the OP15 format: decklist, curve checkpoints, mulligan
+					priorities, tech options, and matchup notes. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -274,7 +274,7 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1C searcher to look for the missing pieces in the curve or the 2C promo if you start second and have everything you need, plus one of your 4C Character depending on the situation.</p>
+					<p>1C searcher to search for the missing pieces in the curve or the 2C promo if you start second and have everything you need, + one of your 4C Character depending on the situation.</p>
 				</div>
 			</div>
 			<div class="mulligan-grid">
@@ -813,6 +813,14 @@ const matchups = [
 	@media (max-width: 640px) {
 		.deck-card img {
 			max-width: 120px;
+		}
+
+		.section-header > a {
+			display: block;
+			width: 100%;
+			margin-top: 0.75rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
 		}
 
 		.option-card img {

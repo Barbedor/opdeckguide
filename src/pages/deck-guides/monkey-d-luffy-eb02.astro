@@ -1,0 +1,1172 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Monkey.D.Luffy EB02 Deck Guide";
+const description =
+	"Monkey.D.Luffy EB02 deck guide for One Piece Card Game with decklist, mulligan priorities, first and second curve plans, tips, and matchup notes.";
+
+const icon = "/assets/guides/Monkey D. Luffy EB02-010.png";
+const longEventName = "I Know You're Strong... OP13-040";
+const longEventMarker = "[[IKNOW_EVENT]]";
+const splitSentences = (text) => text.split(/(?<=\.)\s+/).filter(Boolean);
+
+const decklist = [
+	{ code: "EB02-010", name: "Monkey.D.Luffy", count: 1, img: "/Cards/EB02/EB02-010.jpg", role: "Leader" },
+	{ code: "EB02-017", name: "Nami", count: 4, img: "/Cards/EB02/EB02-017.jpg", role: "Character" },
+	{ code: "PRB02-005", name: "Monkey.D.Luffy", count: 3, img: "/Cards/PRB02/PRB02-005.jpg", role: "Character" },
+	{ code: "OP13-118", name: "Monkey.D.Luffy", count: 2, img: "/Cards/OP13/OP13-118.jpg", role: "Character" },
+	{ code: "OP15-032", name: "Brook", count: 2, img: "/Cards/OP15/OP15-032.jpg", role: "Character" },
+	{ code: "OP14-031", name: "Nami", count: 2, img: "/Cards/OP14/OP14-031.jpg", role: "Character" },
+	{ code: "PRB02-012", name: "Nami", count: 4, img: "/Cards/PRB02/PRB02-012.jpg", role: "Character" },
+	{ code: "ST18-001", name: "Uso-Hachi", count: 4, img: "/Cards/ST18/ST18-001.png", role: "Character" },
+	{ code: "ST18-004", name: "Zoro-Juurou", count: 4, img: "/Cards/ST18/ST18-004.png", role: "Character" },
+	{ code: "EB02-035", name: "Sanji & Pudding", count: 4, img: "/Cards/EB02/EB02-035.jpg", role: "Character" },
+	{ code: "OP07-064", name: "Sanji", count: 4, img: "/Cards/OP07/OP07-064.png", role: "Character" },
+	{ code: "EB02-061", name: "Monkey.D.Luffy", count: 1, img: "/Cards/EB02/EB02-061.jpg", role: "Character" },
+	{ code: "OP08-036", name: "Electrical Luna", count: 2, img: "/Cards/OP08/OP08-036.png", role: "Event" },
+	{ code: "OP13-040", name: "I Know You're Strong... So I'll Go All Out from the Very Start!!!", count: 4, img: "/Cards/OP13/OP13-040.jpg", role: "Event" },
+	{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
+	{ code: "OP09-078", name: "Gum-Gum Giant", count: 4, img: "/Cards/OP09/OP09-078.jpg", role: "Event" },
+	{ code: "EB02-041", name: "Merry Go", count: 2, img: "/Cards/EB02/EB02-041.jpg", role: "Stage" },
+];
+
+const mulliganCards = [
+	{ code: "EB02-017", name: "Nami", img: "/Cards/EB02/EB02-017.jpg" },
+	{ code: "ST18-004", name: "Zoro-Juurou", img: "/Cards/ST18/ST18-004.png" },
+	{ code: "EB02-035", name: "Sanji & Pudding", img: "/Cards/EB02/EB02-035.jpg" },
+	{ code: "EB02-041", name: "Merry Go", img: "/Cards/EB02/EB02-041.jpg" },
+];
+
+const optionsGroups = [
+	{
+		cards: [{ code: "P-111", name: "Nico Robin", img: "/Cards/P/P-111.jpg" }],
+		note:
+			"In this deck, you only play Straw Hat Crew characters, so Nico Robin protects all of your characters from opposing removal effects. It's especially effective for protecting Sanji & Pudding, which you want to keep on the board for as long as possible.",
+	},
+	{
+		cards: [{ code: "OP12-037", name: "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", img: "/Cards/OP12/OP12-037.jpg" }],
+		note:
+			"This card is especially interesting because it helps prepare your late-game turn by resting up to 2 opposing characters or active DON!!. It fits the deck's aggressive game plan perfectly by making decisive attacks easier to finish the game. It also remains a useful defensive option.",
+	},
+	{
+		cards: [{ code: "OP05-076", name: "Awakening of the New Era - When You're at Sea You Fight against Pirates!!", img: "/Cards/OP05/OP05-076.png" }],
+		note:
+			"Another searcher to improve your chances of having the cards you want in hand.",
+	},
+];
+
+const curveFirst = [
+	{
+		label: "1 DON!!",
+		cards: [{ code: "EB02-017", name: "Nami", img: "/Cards/EB02/EB02-017.jpg" }],
+		notes: "Play Nami EB02-017 to search for Sanji & Pudding EB02-035.",
+	},
+	{
+		label: "3 DON!!",
+		cards: [
+			{ code: "EB02-017", name: "Nami", img: "/Cards/EB02/EB02-017.jpg" },
+			{ code: "EB02-041", name: "Merry Go", img: "/Cards/EB02/EB02-041.jpg" },
+		],
+		notes:
+			"Play Nami EB02-017 or Nami PRB02-012 to search for the cards you need for your combos. Then play Merry Go EB02-041 to protect the Sanji & Pudding you'll play next turn from your opponent's removal effects.",
+	},
+	{
+		label: "5 DON!!",
+		cards: [{ code: "EB02-035", name: "Sanji & Pudding", img: "/Cards/EB02/EB02-035.jpg" }],
+		notes:
+			"Play Sanji & Pudding EB02-035, the core card of the deck. Then use your leader effect + Sanji & Pudding's effect. This lets you launch a big attack, play another card, or keep active DON!! for your opponent's next turn. Your leader also goes up to 6k power until the end of your opponent's turn. After using Sanji & Pudding's effect, remember to use Merry Go's effect to raise its cost by +2. That helps protect it against cards like Gravity Blade. You can use Merry Go's effect this turn because your leader effect + Sanji & Pudding's effect lets you have the same number of DON!! as your opponent. If you don't have Sanji & Pudding in hand, you can play Monkey.D.Luffy PRB02-005 to slow your opponent down by resting one of their DON!! for their next turn. You can also play Zoro-Juurou ST18-004, which has 6k power and gives you another way to search for Sanji & Pudding.",
+	},
+	{
+		label: "7 DON!!",
+		cards: [{ code: "OP13-118", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-118.jpg" }],
+		notes:
+			"Play Monkey.D.Luffy OP13-118 to put a lot of pressure on the next turn with its double attack. Its effect also reactivates 4 rested DON!!, which lets you play another character such as Zoro-Juurou or blocker Nami. You can also play two Sanji & Pudding in the same turn thanks to the combined effects of Sanji & Pudding and your leader.",
+	},
+	{
+		label: "9 DON!!",
+		cards: [{ code: "OP08-036", name: "Electrical Luna", img: "/Cards/OP08/OP08-036.png" }],
+		notes:
+			"Play Electrical Luna OP08-036 to freeze the opposing board if the characters cost 7 or less. That lets you attack your opponent over two turns without worrying as much about their attacks.",
+	},
+	{
+		label: "Late Game",
+		cards: [
+			{ code: "OP09-078", name: "Gum-Gum Giant", img: "/Cards/OP09/OP09-078.jpg" },
+			{ code: "EB02-061", name: "Monkey.D.Luffy", img: "/Cards/EB02/EB02-061.jpg" },
+			{ code: "OP15-032", name: "Brook", img: "/Cards/OP15/OP15-032.jpg" },
+		],
+		notes:
+			"Gum-Gum Giant OP09-078 is one of the best defensive tools in the format right now, so it'll help you a lot in the late game. Keep attacking and defending until it goes through. Monkey.D.Luffy EB02-061 is an excellent finisher because it can attack twice. You can combo it with Brook OP15-032, which lets you rest a character such as a blocker, then trash Brook with its Activate: Main effect to restand a Straw Hat Crew character. That means Monkey.D.Luffy EB02-061 can attack a third time.",
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		cards: [
+			{ code: "EB02-017", name: "Nami", img: "/Cards/EB02/EB02-017.jpg" },
+			{ code: "EB02-041", name: "Merry Go", img: "/Cards/EB02/EB02-041.jpg" },
+		],
+		notes:
+			"Play Nami EB02-017 to search for Sanji & Pudding + play Merry Go to draw 1 card and prepare the protection for your Sanji & Pudding.",
+	},
+	{
+		label: "4 DON!!",
+		cards: [{ code: "ST18-004", name: "Zoro-Juurou", img: "/Cards/ST18/ST18-004.png" }],
+		notes:
+			"Play Zoro-Juurou ST18-004 to search again for whatever you're missing, whether it's a body, a counter, or an event, while also having a 6k body.",
+	},
+	{
+		label: "6 DON!!",
+		cards: [
+			{ code: "EB02-035", name: "Sanji & Pudding", img: "/Cards/EB02/EB02-035.jpg" },
+			{ code: "OP13-118", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-118.jpg" },
+			{ code: "ST18-004", name: "Zoro-Juurou", img: "/Cards/ST18/ST18-004.png" },
+		],
+		notes:
+			"Play Sanji & Pudding + leader effect + Sanji & Pudding effect. That puts you back to 5 active DON!!, which lets you play another Sanji & Pudding. Because you have the same number of DON!! as your opponent at that point, you also get to draw 1 card with its On Play effect. If you don't have Sanji & Pudding, the other option is to play Monkey.D.Luffy OP13-118 to put a lot of pressure on the next turn with its double attack while reactivating 4 rested DON!! + play Zoro-Juurou ST18-004 to have a 6k body that also searches.",
+	},
+	{
+		label: "8 DON!!",
+		cards: [
+			{ code: "OP08-036", name: "Electrical Luna", img: "/Cards/OP08/OP08-036.png" },
+			{ code: "OP15-032", name: "Brook", img: "/Cards/OP15/OP15-032.jpg" },
+		],
+		notes:
+			`Prepare your late game by playing Brook OP15-032, freeze the opposing board by playing Electrical Luna OP08-036, or use ${longEventMarker} so you don't take too much pressure from the opponent before your final turn. If you have it in hand, it's usually better to play Electrical Luna because it freezes every character on the opposing board that costs 7 or less, while ${longEventMarker} only freezes 2 opposing characters.`,
+	},
+	{
+		label: "Late Game",
+		cards: [
+			{ code: "EB02-061", name: "Monkey.D.Luffy", img: "/Cards/EB02/EB02-061.jpg" },
+		],
+		notes:
+			"Play Monkey.D.Luffy EB02-061, use the leader effect + your Sanji & Pudding effects to recover as much active DON!! as possible, then attack with all of your characters and your leader. Once Brook OP15-032 has attacked and Monkey.D.Luffy EB02-061 has used its When Attacking effect to attack twice, trash Brook with its Activate: Main effect to restand Monkey.D.Luffy EB02-061, then attack a third time.",
+	},
+];
+
+const tips = [
+	{
+		title: "Going second is usually the better side for this deck.",
+		text:
+			"Going second is better because on turn 3 you can do the Sanji & Pudding EB02-035 x2 combo, which lets you use the leader effect without losing DON!! each turn. You can also do the Sanji & Pudding EB02-035 + Zoro-Juurou ST18-004 combo, or Monkey.D.Luffy OP13-118 + Zoro-Juurou ST18-004. Going first isn't dramatic either. There are still a lot of things you can do.",
+		cards: [
+			{ code: "EB02-035", name: "Sanji & Pudding", img: "/Cards/EB02/EB02-035.jpg" },
+			{ code: "ST18-004", name: "Zoro-Juurou", img: "/Cards/ST18/ST18-004.png" },
+			{ code: "OP13-118", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-118.jpg" },
+		],
+	},
+	{
+		title: "Use the first two turns to stack your searchers.",
+		text:
+			"During the first two turns, your goal is to play searcher characters so you can prepare your turn 3 and the rest of the game. Because the deck runs a large number of search cards, it's usually fairly easy to get the cards you need in hand.",
+		cards: [
+			{ code: "EB02-017", name: "Nami", img: "/Cards/EB02/EB02-017.jpg" },
+			{ code: "PRB02-012", name: "Nami", img: "/Cards/PRB02/PRB02-012.jpg" },
+			{ code: "ST18-004", name: "Zoro-Juurou", img: "/Cards/ST18/ST18-004.png" },
+		],
+	},
+	{
+		title: "Don't be afraid to take an early life if it fixes your hand.",
+		text:
+			"Don't be afraid to take one of your lives early to have a strong hand. Starting from turn 3, your leader will constantly be 6k, so it becomes harder for your opponent to take your life.",
+		cards: [{ code: "EB02-010", name: "Monkey.D.Luffy", img: "/Cards/EB02/EB02-010.jpg" }],
+	},
+	{
+		title: "Use Mamaragan early if it protects your hand quality.",
+		text:
+			"If you have Mamaragan OP15-078 in hand early, don't hesitate to use it as a counter against small attacks at the start of the game. Use it until you have 6 DON!! total on your field. On top of giving you a free +1k counter, it also draws 1 card, which gives you even more chances to find what you want.",
+		cards: [{ code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" }],
+	},
+	{
+		title: "Blocker Nami can secure the final defensive turn.",
+		text:
+			"If you end up in a difficult late-game situation, you can play Nami OP14-031. She is a blocker that reactivates 5 rested DON!! at the end of the turn, which means you don't have to worry as much about how many DON!! you need to keep up to use Gum-Gum Giant OP09-078 and I Know You're Strong... OP13-040.",
+		cards: [
+			{ code: "OP14-031", name: "Nami", img: "/Cards/OP14/OP14-031.jpg" },
+			{ code: "OP09-078", name: "Gum-Gum Giant", img: "/Cards/OP09/OP09-078.jpg" },
+			{ code: "OP13-040", name: "I Know You're Strong... So I'll Go All Out from the Very Start!!!", img: "/Cards/OP13/OP13-040.jpg" },
+		],
+	},
+	{
+		title: "This deck punishes mistakes in sequencing.",
+		text:
+			"It's important to plan your actions carefully during your turn and do them in the right order. If you forget a step or mix up the order of your actions, you can lose a large part of your turn's value and put yourself in a very difficult position for the rest of the game. With this deck, everything is about timing. If you play it perfectly, you can beat almost any deck, but it's hard to play very well and even one mistake can put you in a very difficult spot.",
+		cards: [
+			{ code: "EB02-035", name: "Sanji & Pudding", img: "/Cards/EB02/EB02-035.jpg" },
+			{ code: "EB02-061", name: "Monkey.D.Luffy", img: "/Cards/EB02/EB02-061.jpg" },
+		],
+	},
+];
+
+const matchups = [
+	{
+		label: "Positive MU",
+		status: "up",
+		leader: { code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
+		notes: ["Go second.", "Freeze the board.", "Don't attack the board. It's useless here."],
+	},
+	{
+		label: "Positive MU",
+		status: "up",
+		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
+		notes: [
+			"Go second.",
+			"Force the opponent to attack with the 9k Sabo, then freeze the board.",
+			"Use Merry Go to protect your Sanji & Pudding from Gravity Blade.",
+		],
+	},
+	{
+		label: "Slight Disadv.",
+		status: "down",
+		leader: { code: "OP13-001", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-001.jpg" },
+		notes: ["Go first.", "Freeze the board and attack life.", "The opposing leader effect is a problem, but it's manageable."],
+	},
+	{
+		label: "Negative MU",
+		status: "down",
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: [
+			"Go first.",
+			"Attack the 1-cost and 2-cost characters to try to wear the opponent down.",
+			"Don't attack their Enels. You'll wear yourself out for nothing.",
+		],
+	},
+	{
+		label: "Negative MU",
+		status: "down",
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: [
+			"Go second.",
+			"Freeze the board and attack life.",
+			"Don't attack the board. Your opponent's characters have On K.O. effects, and it'll backfire on you if you K.O. them.",
+		],
+	},
+	{
+		label: "Slight Disadv.",
+		status: "down",
+		leader: { code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: [
+			"Go second.",
+			"Edward Newgate at 12k is a problem.",
+			"Freeze the board and attack life so your opponent doesn't have too many cards in hand by the late game.",
+		],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Monkey.D.Luffy EB02 Deck Guide</h1>
+				<p>
+					Reference guide for Monkey.D.Luffy EB02-010 in the OP15 format with the full list, mulligan priorities,
+					curve checkpoints for going first and second, late-game routes, and matchup plans.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Monkey.D.Luffy EB02 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Main list for Monkey.D.Luffy EB02.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Options & Tech Cards</h2>
+					<p>Alternative cards and tech options.</p>
+				</div>
+			</div>
+			<div class="options-stack">
+				{optionsGroups.map((group) => (
+					<div class="option-group">
+						<div class="options-grid">
+							{group.cards.map((card) => (
+								<button
+									class="option-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<p class="section-note">{group.note}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+				</div>
+			</div>
+			<div class="mulligan-grid">
+				{mulliganCards.map((card) => (
+					<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="mini-label">{card.name}</div>
+					</button>
+				))}
+			</div>
+			<p class="mulligan-text">
+				If you start with these cards, you're already in a very strong position.
+				If not, don't panic: having 1 or 2 searcher characters is usually enough for a good start.
+				This deck can find the cards it needs fairly easily thanks to the large number of search cards it runs.
+				Merry Go isn't mandatory in your opening hand, but it lets you cycle your hand by drawing 1 card while
+				also preparing protection for your board against opposing removal effects.
+			</p>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn curve reminders for going first or second.</p>
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 1st</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">
+								{splitSentences(slot.notes).map((sentence) => (
+									<span class="sentence-line">
+										{sentence.includes(longEventMarker) ? (
+											<>
+												{sentence.split(longEventMarker)[0]}
+												<span class="inline-nowrap">{longEventName}</span>
+												{sentence.split(longEventMarker)[1]}
+											</>
+										) : (
+											sentence
+										)}
+									</span>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 2nd</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">
+								{splitSentences(slot.notes).map((sentence) => (
+									<span class="sentence-line">
+										{sentence.includes(longEventMarker) ? (
+											<>
+												{sentence.split(longEventMarker)[0]}
+												<span class="inline-nowrap">{longEventName}</span>
+												{sentence.split(longEventMarker)[1]}
+											</>
+										) : (
+											sentence
+										)}
+									</span>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p class="single-line-copy">Important reminders for the sequencing and defensive turns.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-cards">
+							{tip.cards.map((card) => (
+								<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<h3>{tip.title}</h3>
+						<p>{tip.text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>
+						Key leaders for the matchup spread. The linked stats page shows Monkey.D.Luffy EB02 win rates
+						going 1st or 2nd into the main meta leaders, which helps frame when the deck wants pressure
+						versus stabilization.
+					</p>
+				</div>
+				<a href="/meta-analysis/monkey-d-luffy-eb02-stats-in-op15/">See Monkey.D.Luffy EB02 1st / 2nd matchup stats in OP15 format</a>
+			</div>
+			<div class="matchups-grid">
+				{matchups.map((matchup) => (
+					<div class="matchup-card">
+						<div class={`matchup-badge ${matchup.status === "down" ? "badge-down" : matchup.status === "up" ? "badge-up" : "badge-even"}`}>
+							<span class={`badge-icon ${matchup.status === "down" ? "badge-icon-down" : matchup.status === "up" ? "badge-icon-up" : "badge-icon-even"}`} aria-hidden="true"></span>
+							<span>{matchup.label}</span>
+						</div>
+						<button class="mini-card" type="button" data-card-preview data-full={matchup.leader.img} data-name={`${matchup.leader.code} ${matchup.leader.name}`}>
+							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+						</button>
+						<div class="matchup-name">{matchup.leader.name}</div>
+						<ul>
+							{matchup.notes.map((note) => (
+								<li>{note}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<div class="card-modal-frame">
+				<img src="" alt="" data-modal-image />
+			</div>
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalFrame = document.querySelector(".card-modal-frame");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	let lockedScrollY = 0;
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		lockedScrollY = window.scrollY;
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${lockedScrollY}px`;
+		document.body.style.left = "0";
+		document.body.style.right = "0";
+		document.body.style.width = "100%";
+		document.body.style.overflow = "hidden";
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		document.body.style.position = "";
+		document.body.style.top = "";
+		document.body.style.left = "";
+		document.body.style.right = "";
+		document.body.style.width = "";
+		document.body.style.overflow = "";
+		window.scrollTo(0, lockedScrollY);
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		const target = event.target;
+		if (!(target instanceof HTMLElement)) return;
+		if (target === modalImage) {
+			closeModal();
+			return;
+		}
+		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
+			closeModal();
+		}
+	});
+	modalImage?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.options-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.option-group {
+		display: grid;
+		gap: 1rem;
+		justify-items: center;
+	}
+
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.option-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		place-items: center;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		width: fit-content;
+		justify-self: center;
+	}
+
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 170px;
+		border-radius: 12px;
+		margin-inline: auto;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.15rem;
+	}
+
+	.section-note {
+		color: var(--text-200);
+		margin: 0;
+		max-width: 72ch;
+		text-align: center;
+	}
+
+	.single-line-copy {
+		display: block;
+		max-width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.mulligan-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.mulligan-text,
+	.curve-note,
+	.tip-card p {
+		color: var(--text-200);
+	}
+
+	.curve-note {
+		min-width: 0;
+		width: 100%;
+		max-width: 100%;
+		overflow: hidden;
+		word-break: break-word;
+		overflow-wrap: anywhere;
+	}
+
+	.sentence-line {
+		display: block;
+	}
+
+	.inline-nowrap {
+		display: inline-block;
+		max-width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		vertical-align: bottom;
+	}
+
+	.curve-block,
+	.tip-card,
+	.matchup-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.45fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards,
+	.tip-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.tips-grid,
+	.matchups-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.tip-card h3,
+	.matchup-name {
+		margin: 0;
+		font-weight: 600;
+	}
+
+	.matchups-grid {
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+
+	.matchup-card {
+		display: grid;
+		gap: 0.8rem;
+		align-content: start;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-icon-up::before {
+		content: "\2191";
+	}
+
+	.badge-icon-down::before {
+		content: "\2193";
+	}
+
+	.badge-icon-even::before {
+		content: "\2194";
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		min-height: 2.8rem;
+		display: flex;
+		align-items: flex-start;
+		line-height: 1.3;
+	}
+
+	.matchup-card ul {
+		margin: 0.35rem 0 0 1.15rem;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		width: fit-content;
+		max-width: 90vw;
+		max-height: 90vh;
+		margin: 0 auto;
+	}
+
+	.card-modal-frame {
+		width: fit-content;
+		max-width: 100%;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		display: block;
+		width: auto;
+		max-width: min(520px, calc(90vw - 2rem));
+		max-height: 80vh;
+		object-fit: contain;
+		margin: 0 auto;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.25rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-icon {
+			margin-top: 2.6rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px !important;
+			gap: 1rem !important;
+			align-items: start !important;
+		}
+
+		.guide-hero .guide-icon {
+			grid-column: 2 !important;
+			grid-row: 1 !important;
+			align-self: start !important;
+			justify-self: end !important;
+			margin-top: 9.2rem !important;
+		}
+
+		.guide-hero .guide-icon img {
+			margin-top: 0 !important;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.curve-block .curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			overflow: hidden;
+		}
+
+		.curve-block .curve-cards {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.45rem;
+			justify-items: center;
+			align-items: start;
+			width: 100%;
+		}
+
+		.curve-cards .mini-card {
+			width: 100%;
+		}
+
+		.curve-cards .mini-card img {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.list-section .options-grid.options-grid {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: center !important;
+			justify-content: center !important;
+			width: 100% !important;
+		}
+
+		.list-section .option-group.option-group {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: center !important;
+			justify-content: center !important;
+			width: 100% !important;
+			padding-inline: 0 !important;
+		}
+
+		.list-section .option-card.option-card {
+			display: grid !important;
+			place-items: center !important;
+			width: fit-content !important;
+			max-width: 100% !important;
+			margin-inline: auto !important;
+			justify-self: center !important;
+		}
+
+		.list-section .option-card.option-card img {
+			margin-inline: auto !important;
+		}
+
+		.curve-block .curve-note {
+			font-size: 0.97rem !important;
+			padding-right: 0.1rem !important;
+			width: 100% !important;
+			max-width: 100% !important;
+			overflow: hidden !important;
+			word-break: break-word !important;
+			overflow-wrap: anywhere !important;
+			box-sizing: border-box !important;
+		}
+
+		.list-section .single-line-copy {
+			width: 100% !important;
+			max-width: 100% !important;
+			font-size: 0.9rem !important;
+			white-space: normal !important;
+			overflow: visible !important;
+			text-overflow: clip !important;
+			overflow-wrap: anywhere !important;
+			display: block !important;
+		}
+
+		.section-header > a {
+			display: block !important;
+			width: 100% !important;
+			margin-top: 0.75rem !important;
+			white-space: normal !important;
+			overflow-wrap: anywhere !important;
+		}
+
+		.deck-card {
+			padding: 0.35rem;
+			gap: 0.4rem;
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.deck-card img {
+			max-width: 94px;
+			border-radius: 8px;
+		}
+
+		.deck-info {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.28rem;
+		}
+
+		.deck-count {
+			padding: 0.18rem 0.45rem;
+			font-size: 0.68rem;
+			line-height: 1;
+		}
+
+		.deck-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.deck-code {
+			font-size: 0.66rem;
+			line-height: 1.1;
+		}
+
+		.deck-role {
+			display: none;
+		}
+
+		.matchup-card {
+			gap: 0.35rem;
+		}
+
+		.matchup-name {
+			min-height: 0;
+			margin-top: -0.15rem;
+			margin-bottom: 0;
+		}
+
+		.matchup-card ul {
+			margin-top: 0;
+			margin-left: 1rem;
+		}
+
+		.card-modal {
+			padding: 0 !important;
+			align-items: center !important;
+			justify-content: center !important;
+		}
+
+		.card-modal-inner {
+			position: fixed !important;
+			inset: 0 !important;
+			width: 100vw !important;
+			height: 100dvh !important;
+			max-width: none !important;
+			max-height: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			display: grid !important;
+			place-items: center !important;
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.card-modal-frame {
+			padding: 0.75rem !important;
+			max-width: calc(100vw - 1.5rem) !important;
+			max-height: calc(100dvh - 1.5rem) !important;
+		}
+
+		.card-modal-inner img {
+			display: block !important;
+			width: auto !important;
+			max-width: min(78vw, 320px) !important;
+			height: auto !important;
+			max-height: 78vh !important;
+			object-fit: contain !important;
+			margin: 0 auto !important;
+		}
+
+		.modal-close {
+			position: fixed !important;
+			top: 0.75rem !important;
+			right: 0.75rem !important;
+			z-index: 2 !important;
+		}
+	}
+</style>

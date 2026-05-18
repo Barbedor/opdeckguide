@@ -5,6 +5,7 @@ const { title: pageTitle, description, canonical, noindex = false, structuredDat
 const metaTitle = pageTitle ? `${pageTitle} | OPDeckGuide` : 'OPDeckGuide | One Piece Card Game Deck Guides & Meta Analysis';
 const metaDescription = description ?? 'Modern One Piece Card Game deck guides, matchup breakdowns, and meta analysis built for competitive players and new pirates alike.';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
@@ -62,6 +63,19 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		/>
 		<meta name="theme-color" content="#0b0f1a" />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{
+			gaMeasurementId && (
+				<>
+					<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+					<script is:inline define:vars={{ gaMeasurementId }}>
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', gaMeasurementId);
+					</script>
+				</>
+			)
+		}
 		<script type="application/ld+json" set:html={JSON.stringify(structuredDataPayload)} />
 	</head>
 	<body>
@@ -109,6 +123,8 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 					<a href="/beginner-guides/">Beginner Guides</a>
 					<a href="/banlist/">Banlist</a>
 					<a href="/cards-list/">Cards List</a>
+					<a href="/privacy-policy/">Privacy Policy</a>
+					<a href="/legal-notice/">Legal Notice</a>
 				</div>
 			</div>
 		</footer>

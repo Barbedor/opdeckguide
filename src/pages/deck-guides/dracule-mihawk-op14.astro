@@ -43,7 +43,7 @@ const optionsGroups = [
 			{ code: "OP13-031", name: "Trafalgar Law", img: "/Cards/OP13/OP13-031.jpg" },
 		],
 		note:
-			"The Supernova package is very strong, more consistent than the Wano package, and opens the deck to options like Law or a triple-searcher setup. Do not underestimate it.",
+			"The Supernova package is very strong, more consistent than the Wano package, and opens the deck to options like Law or a triple-searcher setup. Don't underestimate it.",
 	},
 ];
 
@@ -91,7 +91,7 @@ const curve = [
 	},
 	{
 		label: "9/10 DON",
-		notes: "Your late game is very strong, especially if you chain these two threats. The Leader can rest Mihawk the turn you play him to activate his effect immediately, and you can also rest Law & Bepo if you are low on counter. An 11K Character applies much more pressure than a 7K Leader, but always try to leave DON open for your counter event.",
+		notes: "Your late game is very strong, especially if you chain these two threats. The Leader can rest Mihawk the turn you play him to activate his effect immediately, and you can also rest Law & Bepo if you're low on counter. An 11K Character applies much more pressure than a 7K Leader, but always try to leave DON open for your counter event.",
 		cards: [
 			{ code: "OP14-119", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-119.jpg" },
 			{ code: "ST24-004", name: "Law & Bepo", img: "/Cards/ST24/ST24-004.jpg" },
@@ -179,8 +179,8 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Dracule Mihawk OP14 Deck Guide</h1>
 				<p>
-					Complete reference guide for Dracule Mihawk OP14: decklist, curve checkpoints, mulligan priorities,
-					tech options, and matchup focus leaders. Built for fast reading between rounds.
+					Complete reference guide for Dracule Mihawk OP14 in the OP14 format: decklist, curve checkpoints,
+					mulligan priorities, tech options, and matchup focus leaders. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -358,8 +358,13 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Key leaders for the matchup spread.</p>
+					<p>
+						Key leaders for the matchup spread. The linked stats page shows Dracule Mihawk OP14 win rates
+						going 1st or 2nd into the main meta leaders, which helps frame when the deck wants pressure
+						versus stabilization.
+					</p>
 				</div>
+				<a href="/meta-analysis/dracule-mihawk-op14-stats-in-op15/">See Dracule Mihawk OP14 1st / 2nd matchup stats in OP15 format</a>
 			</div>
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
@@ -813,6 +818,14 @@ const matchups = [
 	@media (max-width: 640px) {
 		.option-group {
 			padding: 0.85rem;
+		}
+
+		.section-header > a {
+			display: block;
+			width: 100%;
+			margin-top: 0.75rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
 		}
 
 		.deck-card img {

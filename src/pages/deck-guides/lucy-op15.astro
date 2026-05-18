@@ -31,7 +31,7 @@ const options = [
 		name: "Sanji",
 		img: "/Cards/OP15/OP15-047.jpg",
 		note:
-			"New Sanji OP15 is a good card option if you do not have Roger or if you do not want to spend too much to buy them. Play it to make your Sabo unblockable and steal some games.",
+			"New Sanji OP15 is a good card option if you don't have Roger or if you don't want to spend too much to buy them. Play it to make your Sabo unblockable and steal some games.",
 	},
 	{
 		code: "OP15-014",
@@ -213,8 +213,8 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Lucy OP15 Deck Guide</h1>
 				<p>
-					Complete reference guide for Lucy OP15: decklist, curve checkpoints, mulligan priorities, tech
-					options, and matchup notes. Built for fast reading between rounds.
+					Complete reference guide for Lucy OP15 in the OP15 format: decklist, curve checkpoints, mulligan
+					priorities, tech options, and matchup notes. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -311,7 +311,7 @@ const matchups = [
 				))}
 			</div>
 			<p class="mulligan-text">
-				1C searcher to look for the missing pieces in the curve + 4C Cavendish or spell to build your board
+				1C searcher to search for the missing pieces in the curve + 4C Cavendish or spell to build your board
 				and draw 3 cards. If you don't see this combo, mulligan is the way.
 			</p>
 		</div>
@@ -412,8 +412,13 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Quick matchup snapshot for the key leaders.</p>
+					<p>
+						Quick matchup snapshot for the key leaders. The linked stats page shows Lucy OP15 win rates
+						going 1st or 2nd into the main meta leaders, which helps frame when the deck wants pressure
+						versus stabilization.
+					</p>
 				</div>
+				<a href="/meta-analysis/lucy-op15-stats-in-op15/">See Lucy OP15 1st / 2nd matchup stats in OP15 format</a>
 			</div>
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
@@ -855,6 +860,14 @@ const matchups = [
 	}
 
 	@media (max-width: 640px) {
+		.section-header > a {
+			display: block;
+			width: 100%;
+			margin-top: 0.75rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
+		}
+
 		.deck-card img {
 			max-width: 120px;
 		}

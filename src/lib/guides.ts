@@ -1,6 +1,18 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Monkey.D.Luffy EB02 Deck Guide",
+		leader: "Monkey.D.Luffy",
+		code: "EB02",
+		month: "May",
+		href: "/deck-guides/monkey-d-luffy-eb02/",
+		imageSrc: "/assets/guides/Monkey D. Luffy EB02-010.png",
+		imageAlt: "Monkey.D.Luffy EB02 guide icon",
+		aliases: ["monkey d luffy", "monkeydluffy", "luffy", "eb02 luffy", "green purple luffy"],
+		tags: ["eb02", "green", "purple", "straw hat"],
+	},
+	{
+		kind: "deck",
 		title: "Sanji OP12 Deck Guide",
 		leader: "Sanji",
 		code: "OP12",
@@ -10,7 +22,6 @@ export const deckGuides = [
 		imageAlt: "Sanji OP12 guide icon",
 		aliases: ["sanji"],
 		tags: ["op12", "blue", "yellow", "germa"],
-		hidden: true,
 	},
 	{
 		kind: "deck",

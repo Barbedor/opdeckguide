@@ -156,8 +156,8 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Enel OP15 Deck Guide</h1>
 				<p>
-					Complete reference guide for Enel OP15: decklist, curve checkpoints, mulligan priorities, tech
-					options, and matchup notes. Built for fast reading between rounds.
+					Complete reference guide for Enel OP15 in the OP15 format: decklist, curve checkpoints, mulligan
+					priorities, tech options, and matchup notes. Built for fast reading between rounds.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -255,7 +255,7 @@ const matchups = [
 				))}
 			</div>
 			<p class="mulligan-text">
-				1C vassal + Holly for more aggression, or 1C vassal + Enel 6C for consistency. If you do not see this
+				1C vassal + Holly for more aggression, or 1C vassal + Enel 6C for consistency. If you don't see this
 				combo, mulligan is the way.
 			</p>
 		</div>
@@ -332,8 +332,12 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Quick matchup snapshot for the key leaders.</p>
+					<p>
+						Quick matchup snapshot for the key leaders. The linked stats page shows Enel OP15 win rates going
+						1st or 2nd into the main meta leaders, which helps frame when the deck wants play versus draw.
+					</p>
 				</div>
+				<a href="/meta-analysis/enel-op15-stats-in-op15/">See Enel OP15 1st / 2nd matchup stats in OP15 format</a>
 			</div>
 			<div class="matchups-grid">
 				{matchups.map((matchup) => (
@@ -787,6 +791,14 @@ const matchups = [
 	@media (max-width: 640px) {
 		.deck-card img {
 			max-width: 120px;
+		}
+
+		.section-header > a {
+			display: block;
+			width: 100%;
+			margin-top: 0.75rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
 		}
 
 		.options-paired-grid {
