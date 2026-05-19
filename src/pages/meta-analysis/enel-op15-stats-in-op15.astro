@@ -20,6 +20,8 @@ const summary = {
 	losses: "10993",
 };
 
+const leaderHeroArt = "/assets/leader-art/enel-op15-art.png";
+
 const featuredTurnOrderStats = [
 	{ label: "Lucy", code: "OP15-002", art: "/assets/leader-art/lucy-op15-art.png", first: "66.5%", second: "53.2%" },
 	{ label: "Enel", code: "OP15-058", art: "/assets/leader-art/enel-op15-art.png", first: "61.3%", second: "38.7%" },
@@ -58,6 +60,9 @@ const featuredTurnOrderStats = [
 			<div>
 				<span class="hero-badge">Meta Article</span>
 				<h1>Enel OP15 Stats in OP15 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Enel OP15 leader art" loading="eager" />
+				</div>
 				<p class="article-kicker">
 					This page focuses on OP15 Enel stats in the OP15 format. If you want the full list, curve, and
 					matchup plan, the <a href={deckGuideHref}>Enel deck guide</a> is available separately.
@@ -160,12 +165,32 @@ const featuredTurnOrderStats = [
 		color: var(--accent);
 	}
 
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 107, 61, 0.2), transparent 36%),
+			radial-gradient(circle at right, rgba(255, 159, 26, 0.16), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 50% 18%;
+	}
+
 	.hero-summary-card {
 		background:
-			radial-gradient(circle at top left, rgba(250, 204, 21, 0.24), transparent 46%),
-			radial-gradient(circle at top right, rgba(255, 120, 52, 0.24), transparent 44%),
-			linear-gradient(135deg, rgba(250, 204, 21, 0.12), rgba(255, 120, 52, 0.1) 58%, rgba(12, 17, 30, 0.94));
-		border: 1px solid rgba(255, 200, 60, 0.2);
+			radial-gradient(circle at top left, rgba(168, 85, 247, 0.26), transparent 46%),
+			radial-gradient(circle at top right, rgba(124, 58, 237, 0.24), transparent 44%),
+			linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(124, 58, 237, 0.11) 58%, rgba(12, 17, 30, 0.94));
+		border: 1px solid rgba(168, 85, 247, 0.22);
 		border-radius: 20px;
 		padding: 1rem 1.1rem;
 		display: grid;
@@ -340,6 +365,16 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 640px) {
+		.article-leader-hero {
+			margin: 0.95rem 0 1rem;
+			border-radius: 16px;
+		}
+
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 18%;
+		}
+
 		.summary-metrics {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}

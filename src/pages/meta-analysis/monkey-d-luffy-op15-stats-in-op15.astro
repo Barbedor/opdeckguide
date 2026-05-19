@@ -19,6 +19,8 @@ const summary = {
 	losses: "12354",
 };
 
+const leaderHeroArt = "/assets/leader-art/luffy-op15-art.png";
+
 const featuredTurnOrderStats = [
 	{ label: "Enel", code: "OP15-058", art: "/assets/leader-art/enel-op15-art.png", first: "66.9%", second: "48.8%" },
 	{ label: "Lucy", code: "OP15-002", art: "/assets/leader-art/lucy-op15-art.png", first: "68%", second: "67.5%" },
@@ -57,6 +59,9 @@ const featuredTurnOrderStats = [
 			<div>
 				<span class="hero-badge">Meta Article</span>
 				<h1>Monkey.D.Luffy OP15 Stats in OP15 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Monkey.D.Luffy OP15 leader art" loading="eager" />
+				</div>
 				<p class="article-kicker">
 					This page focuses on Yellow Monkey D. Luffy stats in the OP15 format.
 				</p>
@@ -152,6 +157,26 @@ const featuredTurnOrderStats = [
 	.article-kicker {
 		color: var(--text-200);
 		font-weight: 600;
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 107, 61, 0.2), transparent 36%),
+			radial-gradient(circle at right, rgba(255, 159, 26, 0.16), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 76% 72%;
 	}
 
 	.hero-summary-card {
@@ -334,6 +359,16 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 640px) {
+		.article-leader-hero {
+			margin: 0.95rem 0 1rem;
+			border-radius: 16px;
+		}
+
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 18%;
+		}
+
 		.summary-metrics {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}

@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 const title = "Dracule Mihawk OP14 Stats in OP15 Format";
 const description =
-	"Green Dracule Mihawk OP15 format stats article covering turn-order win rates in the OP15 / EB04 field.";
+	"Green Dracule Mihawk OP15 format stats article covering turn-order win rates in the OP15 field.";
 
 const deckGuideHref = "/deck-guides/dracule-mihawk-op14/";
 const getRateTone = (value: string) => {
@@ -19,6 +19,8 @@ const summary = {
 	wins: "7143",
 	losses: "6687",
 };
+
+const leaderHeroArt = "/assets/leader-art/mihawk-op14-art.png";
 
 const featuredTurnOrderStats = [
 	{ label: "Lucy", code: "OP15-002", art: "/assets/leader-art/lucy-op15-art.png", first: "31.7%", second: "36%" },
@@ -58,13 +60,16 @@ const featuredTurnOrderStats = [
 			<div>
 				<span class="hero-badge">Meta Article</span>
 				<h1>Dracule Mihawk OP14 Stats in OP15 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Dracule Mihawk OP14 leader art" loading="eager" />
+				</div>
 				<p class="article-kicker">
 					This page focuses on Green Dracule Mihawk stats in the OP15 format. If you want the full list,
 					curve, and matchup plan, the <a href={deckGuideHref}>Dracule Mihawk deck guide</a> is available
 					separately.
 				</p>
 				<p>
-					This week, we’re taking a closer look at OP14 Mihawk in the OP15 / EB04 meta, where the deck has
+					This week, we’re taking a closer look at OP14 Mihawk in the OP15 meta, where the deck has
 					started to establish itself as a consistent contender. With a larger sample size from ranked play,
 					we now have a more reliable view of how Green Mihawk performs in the current metagame.
 				</p>
@@ -75,7 +80,7 @@ const featuredTurnOrderStats = [
 					enabling smooth transitions from early defensive setups into impactful, tempo-swinging turns.
 				</p>
 				<p>
-					In the OP15 / EB04 environment, Mihawk has proven it’s more than just a fringe option—it’s a
+					In the OP15 environment, Mihawk has proven it’s more than just a fringe option—it’s a
 					legitimately competitive choice. The deck rewards players who can think ahead, sequence cleanly, and
 					identify the right windows to pivot from control into aggression. Once it finds its footing, Mihawk
 					can quickly seize control of the game and punish opponents who fall behind on board or resources.
@@ -88,7 +93,7 @@ const featuredTurnOrderStats = [
 			<div class="article-hero-side">
 				<div class="hero-summary-card">
 					<div class="hero-summary-label">Format</div>
-					<strong>OP15 / EB04</strong>
+					<strong>OP15</strong>
 					<div class="hero-summary-divider"></div>
 					<div class="hero-summary-label">Source Sample</div>
 					<strong>{summary.totalGames} Games</strong>
@@ -174,6 +179,26 @@ const featuredTurnOrderStats = [
 
 	.article-kicker a {
 		color: var(--accent);
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 107, 61, 0.2), transparent 36%),
+			radial-gradient(circle at right, rgba(255, 159, 26, 0.16), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 52% 44%;
 	}
 
 	.hero-summary-card {
@@ -362,6 +387,16 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 640px) {
+		.article-leader-hero {
+			margin: 0.95rem 0 1rem;
+			border-radius: 16px;
+		}
+
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 18%;
+		}
+
 		.stats-panel {
 			padding: 1rem;
 		}

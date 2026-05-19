@@ -20,6 +20,8 @@ const summary = {
 	losses: "6635",
 };
 
+const leaderHeroArt = "/assets/leader-art/lucy-op15-art.png";
+
 const featuredTurnOrderStats = [
 	{ label: "Lucy", code: "OP15-002", art: "/assets/leader-art/lucy-op15-art.png", first: "49.1%", second: "50.9%" },
 	{ label: "Nami", code: "OP11-041", art: "/assets/leader-art/nami-op11-art.png", first: "60.4%", second: "60.2%" },
@@ -58,6 +60,9 @@ const featuredTurnOrderStats = [
 			<div>
 				<span class="hero-badge">Meta Article</span>
 				<h1>Lucy OP15 Stats in OP15 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Lucy OP15 leader art" loading="eager" />
+				</div>
 				<p class="article-kicker">
 					This page focuses on Red/Blue Lucy stats in the OP15 format. If you want the full list, curve, and matchup plan, the <a href={deckGuideHref}>Lucy deck guide</a> is available separately.
 				</p>
@@ -135,8 +140,74 @@ const featuredTurnOrderStats = [
 </MainLayout>
 
 <style>
+	.meta-article-hero {
+		padding-bottom: 34px;
+	}
+
+	.article-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) 260px;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.article-kicker {
+		color: var(--text-200);
+		font-weight: 600;
+	}
+
 	.article-kicker a {
 		color: var(--accent);
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 107, 61, 0.2), transparent 36%),
+			radial-gradient(circle at right, rgba(255, 159, 26, 0.16), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 50% 18%;
+	}
+
+	.hero-summary-card {
+		background:
+			radial-gradient(circle at top left, rgba(239, 68, 68, 0.28), transparent 48%),
+			radial-gradient(circle at top right, rgba(59, 130, 246, 0.24), transparent 46%),
+			linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(59, 130, 246, 0.1) 58%, rgba(12, 17, 30, 0.94));
+		border: 1px solid rgba(255, 120, 40, 0.22);
+		border-radius: 20px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.45rem;
+		box-shadow: var(--shadow);
+	}
+
+	.hero-summary-label {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.hero-summary-divider {
+		height: 1px;
+		background: rgba(255, 255, 255, 0.08);
+		margin: 0.2rem 0 0.15rem;
+	}
+
+	.stats-section {
+		padding: 0 0 56px;
 	}
 
 	.stats-stack {
@@ -282,6 +353,10 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 900px) {
+		.article-hero-grid {
+			grid-template-columns: 1fr;
+		}
+
 		.summary-metrics {
 			grid-template-columns: 1fr;
 		}
@@ -292,6 +367,16 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 640px) {
+		.article-leader-hero {
+			margin: 0.95rem 0 1rem;
+			border-radius: 16px;
+		}
+
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 18%;
+		}
+
 		.stats-panel {
 			padding: 1rem;
 		}

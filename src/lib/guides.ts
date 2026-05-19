@@ -1,6 +1,18 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Monkey.D.Luffy ST14 Deck Guide",
+		leader: "Monkey.D.Luffy",
+		code: "ST14",
+		month: "May",
+		href: "/deck-guides/monkey-d-luffy-st14/",
+		imageSrc: "/assets/guides/Luffy%20st14.png",
+		imageAlt: "Monkey.D.Luffy ST14 guide icon",
+		aliases: ["monkey d luffy", "monkeydluffy", "luffy", "st14 luffy", "black luffy", "trash luffy"],
+		tags: ["st14", "black", "straw hat", "trash", "op15"],
+	},
+	{
+		kind: "deck",
 		title: "Monkey.D.Luffy EB02 Deck Guide",
 		leader: "Monkey.D.Luffy",
 		code: "EB02",

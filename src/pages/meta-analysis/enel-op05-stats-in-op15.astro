@@ -18,6 +18,8 @@ const summary = {
 	losses: "6641",
 };
 
+const leaderHeroArt = "/assets/guides/New%20op05%20enel.png";
+
 const featuredTurnOrderStats = [
 	{ label: "Enel", code: "OP15-058", art: "/assets/leader-art/enel-op15-art.png", first: "58.9%", second: "63.2%" },
 	{ label: "Nami", code: "OP11-041", art: "/assets/leader-art/nami-op11-art.png", first: "39.9%", second: "55.8%" },
@@ -56,6 +58,9 @@ const featuredTurnOrderStats = [
 			<div>
 				<span class="hero-badge">Meta Article</span>
 				<h1>Enel OP05 Stats in OP15 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Enel OP05 leader art" loading="eager" />
+				</div>
 				<p class="article-kicker">This page focuses on Yellow Enel OP05 stats in the OP15 format.</p>
 				<p>
 					If you want a leader full of high-impact boss cards, strong healing tools, solid ways to reduce
@@ -159,6 +164,26 @@ const featuredTurnOrderStats = [
 
 	.article-kicker a {
 		color: var(--accent);
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 107, 61, 0.2), transparent 36%),
+			radial-gradient(circle at right, rgba(255, 159, 26, 0.16), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 48% 12%;
 	}
 
 	.hero-summary-card {
@@ -341,6 +366,16 @@ const featuredTurnOrderStats = [
 	}
 
 	@media (max-width: 640px) {
+		.article-leader-hero {
+			margin: 0.95rem 0 1rem;
+			border-radius: 16px;
+		}
+
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 18%;
+		}
+
 		.summary-metrics {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
