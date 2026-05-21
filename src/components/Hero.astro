@@ -1,5 +1,17 @@
 ---
-const { title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
+const {
+	title,
+	description,
+	primaryHref,
+	primaryLabel,
+	secondaryHref,
+	secondaryLabel,
+	newsHref,
+	newsLabel,
+	newsTitle,
+	newsImageSrc,
+	newsImageAlt,
+} = Astro.props;
 
 const cardPool = [
 	"/Cards/OP14/OP14-001.jpg",
@@ -89,6 +101,28 @@ const cardPool = [
 	<div class="container">
 		<div class="hero-shell" data-hero-shell>
 			<div class="hero-center">
+				{
+					newsHref && newsTitle && newsLabel && (
+						<a class="hero-news-banner" href={newsHref}>
+							<span class="hero-news-pill">{newsLabel}</span>
+							<div class="hero-news-copy">
+								<strong>{newsTitle}</strong>
+								<span>Latest article</span>
+							</div>
+							{
+								newsImageSrc && (
+									<img
+										class="hero-news-thumb"
+										src={newsImageSrc}
+										alt={newsImageAlt ?? ""}
+										loading="eager"
+										decoding="async"
+									/>
+								)
+							}
+						</a>
+					)
+				}
 				<div class="hero-copy">
 					<span class="hero-badge">OPTCG Strategy Hub</span>
 					<h1 class="hero-title">{title}</h1>
@@ -305,7 +339,75 @@ const cardPool = [
 		text-align: center;
 	}
 
+	.hero-news-banner {
+		position: absolute;
+		top: -1rem;
+		left: 50%;
+		transform: translateX(-50%);
+		width: min(100%, 560px);
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0.55rem 0.8rem;
+		border-radius: 18px;
+		border: 1px solid rgba(255, 122, 46, 0.28);
+		background: linear-gradient(135deg, rgba(36, 16, 23, 0.9), rgba(73, 34, 22, 0.82));
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+		color: var(--text-primary);
+		text-decoration: none;
+		transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+	}
+
+	.hero-news-banner:hover {
+		transform: translateX(-50%) translateY(-2px);
+		border-color: rgba(255, 140, 69, 0.44);
+		box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+	}
+
+	.hero-news-pill {
+		flex: 0 0 auto;
+		padding: 0.45rem 0.7rem;
+		border-radius: 999px;
+		background: linear-gradient(135deg, #ff7b2f, #ff9b24);
+		color: #16110f;
+		font-size: 0.7rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.hero-news-copy {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.hero-news-copy strong {
+		font-size: 0.94rem;
+		line-height: 1.2;
+		color: var(--text-primary);
+	}
+
+	.hero-news-copy span {
+		font-size: 0.74rem;
+		line-height: 1.2;
+		color: rgba(232, 237, 255, 0.74);
+	}
+
+	.hero-news-thumb {
+		flex: 0 0 auto;
+		width: 48px;
+		height: 48px;
+		object-fit: cover;
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 12px 20px rgba(0, 0, 0, 0.24);
+	}
+
 	.hero-copy {
+		margin-top: 2.2rem;
 		padding: 2rem 2.4rem;
 	}
 
@@ -519,6 +621,10 @@ const cardPool = [
 			min-height: 360px;
 			max-width: 640px;
 		}
+
+		.hero-news-banner {
+			width: min(100%, 500px);
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -532,11 +638,40 @@ const cardPool = [
 
 		.hero-center {
 			min-height: auto;
-			padding: 1.2rem 0;
+			padding: 1.2rem 0 1.2rem;
 		}
 
 		.hero-copy {
+			margin-top: 1.65rem;
 			padding: 1.4rem 1rem;
+		}
+
+		.hero-news-banner {
+			top: -1.05rem;
+			width: calc(100% - 1rem);
+			gap: 0.55rem;
+			padding: 0.48rem 0.6rem;
+			border-radius: 16px;
+		}
+
+		.hero-news-pill {
+			padding: 0.38rem 0.56rem;
+			font-size: 0.62rem;
+		}
+
+		.hero-news-copy strong {
+			font-size: 0.78rem;
+			line-height: 1.15;
+		}
+
+		.hero-news-copy span {
+			font-size: 0.66rem;
+		}
+
+		.hero-news-thumb {
+			width: 40px;
+			height: 40px;
+			border-radius: 10px;
 		}
 
 		.hero-title::before {

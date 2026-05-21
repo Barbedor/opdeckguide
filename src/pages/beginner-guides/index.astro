@@ -22,8 +22,6 @@ const description = "Beginner-friendly One Piece Card Game guides covering rules
 	<Section
 		title="Start Here"
 		description="Rules references and first deck orientation for new players."
-		linkHref="/beginner-guides/"
-		linkLabel="All beginner guides"
 	>
 		<Card
 			eyebrow="Playstyle"
@@ -74,3 +72,20 @@ const description = "Beginner-friendly One Piece Card Game guides covering rules
 		</div>
 	</section>
 </MainLayout>
+
+<style>
+	:global(.section-header) {
+		margin-bottom: 1rem;
+	}
+
+	@media (max-width: 640px) {
+		:global(.hero + .section) {
+			margin-top: -2.1rem;
+			padding-top: 0.2rem;
+		}
+
+		:global(.section-header) {
+			margin-bottom: 0.6rem;
+		}
+	}
+</style>

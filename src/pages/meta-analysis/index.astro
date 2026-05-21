@@ -45,7 +45,7 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 					<div class="article-thumb" aria-hidden="true">
 						<img
 							loading="lazy"
-							src="/Cards/OP13/OP13-001.jpg"
+							src="/assets/leader-art/luffy-op13-art.png"
 							alt=""
 						/>
 					</div>
@@ -325,8 +325,13 @@ const description = "Weekly One Piece Card Game meta analysis covering top leade
 	}
 
 	@media (max-width: 720px) {
+		:global(.hero + .tier-list) {
+			margin-top: -3.35rem;
+			padding-top: 0.15rem;
+		}
+
 		.tier-list {
-			padding-top: 8px;
+			padding-top: 4px;
 		}
 
 		.tier-figure {

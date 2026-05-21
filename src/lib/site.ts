@@ -13,6 +13,7 @@ export const staticSitePaths = [
 	"/meta-analysis/monkey-d-luffy-op15-stats-in-op15/",
 	"/meta-analysis/enel-op05-stats-in-op15/",
 	"/meta-analysis/monkey-d-luffy-eb02-stats-in-op15/",
+	"/meta-analysis/monkey-d-luffy-op13-stats-in-op15/",
 	"/meta-analysis/nami-op11-stats-in-op15/",
 	"/meta-analysis/portgas-d-ace-op15-stats/",
 	"/beginner-guides/",

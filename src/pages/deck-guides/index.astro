@@ -22,8 +22,6 @@ const description = "Leader-focused One Piece Card Game deck guides with game pl
 	<Section
 		title="Featured Guides"
 		description="Popular leaders with clear game plans and matchup angles."
-		linkHref="/deck-guides/"
-		linkLabel="All guides"
 		gridClass="mobile-double-grid"
 	>
 		<Card
@@ -167,7 +165,20 @@ const description = "Leader-focused One Piece Card Game deck guides with game pl
 </MainLayout>
 
 <style>
+	:global(.section-header) {
+		margin-bottom: 1rem;
+	}
+
 	@media (max-width: 640px) {
+		:global(.hero + .section) {
+			margin-top: -2.1rem;
+			padding-top: 0.2rem;
+		}
+
+		:global(.section-header) {
+			margin-bottom: 0.6rem;
+		}
+
 		:global(.card-grid.mobile-double-grid) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 0.55rem;
