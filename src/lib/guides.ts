@@ -1,6 +1,27 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Monkey.D.Luffy OP15 Deck Guide",
+		leader: "Monkey.D.Luffy",
+		code: "OP15",
+		month: "May",
+		hidden: true,
+		href: "/deck-guides/monkey-d-luffy-op15/",
+		imageSrc: "/assets/guides/monkey-d-luffy-op15.png",
+		imageAlt: "Monkey.D.Luffy OP15 guide icon",
+		aliases: [
+			"monkey d luffy",
+			"monkeydluffy",
+			"luffy",
+			"op15 luffy",
+			"yellow luffy",
+			"campaign luffy",
+			"campana luffy",
+		],
+		tags: ["op15", "yellow", "sky island", "campaign", "heal", "trigger"],
+	},
+	{
+		kind: "deck",
 		title: "Monkey.D.Luffy ST14 Deck Guide",
 		leader: "Monkey.D.Luffy",
 		code: "ST14",

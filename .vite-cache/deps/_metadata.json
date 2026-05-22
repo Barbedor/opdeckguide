@@ -1,0 +1,31 @@
+{
+  "hash": "19dd35f7",
+  "configHash": "9b34a2ee",
+  "lockfileHash": "7317145a",
+  "browserHash": "0dd3cc2c",
+  "optimized": {
+    "astro > aria-query": {
+      "src": "../../node_modules/aria-query/lib/index.js",
+      "file": "astro___aria-query.js",
+      "fileHash": "2102adc8",
+      "needsInterop": true
+    },
+    "astro > axobject-query": {
+      "src": "../../node_modules/axobject-query/lib/index.js",
+      "file": "astro___axobject-query.js",
+      "fileHash": "b7bcd46f",
+      "needsInterop": true
+    },
+    "astro > html-escaper": {
+      "src": "../../node_modules/html-escaper/esm/index.js",
+      "file": "astro___html-escaper.js",
+      "fileHash": "93fe2bc9",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-BUSYA2B4": {
+      "file": "chunk-BUSYA2B4.js"
+    }
+  }
+}
