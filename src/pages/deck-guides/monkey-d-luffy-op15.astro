@@ -1,0 +1,1115 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Monkey.D.Luffy OP15 Deck Guide";
+const description =
+	"Monkey.D.Luffy OP15 deck guide for One Piece Card Game with decklist, replacement options, mulligan priorities, curve plans, tips, and matchup notes for the OP15 format.";
+
+const icon = "/assets/guides/monkey-d-luffy-op15.png";
+
+const decklist = [
+	{ code: "OP15-098", name: "Monkey.D.Luffy", count: 1, img: "/Cards/OP15/OP15-098.jpg", role: "Leader" },
+	{ code: "OP15-108", name: "Nami", count: 4, img: "/Cards/OP15/OP15-108.jpg", role: "Character" },
+	{ code: "OP05-106", name: "Shura", count: 4, img: "/Cards/OP05/OP05-106.png", role: "Character" },
+	{ code: "OP11-106", name: "Zeus", count: 4, img: "/Cards/OP11/OP11-106.jpg", role: "Character" },
+	{ code: "EB03-056", name: "Belo Betty", count: 3, img: "/Cards/EB03/EB03-056.jpg", role: "Character" },
+	{ code: "OP15-113", name: "Roronoa Zoro", count: 4, img: "/Cards/OP15/OP15-113.jpg", role: "Character" },
+	{ code: "ST29-009", name: "Nico Robin", count: 4, img: "/Cards/ST29/ST29-009.jpg", role: "Character" },
+	{ code: "EB04-058", name: "Borsalino", count: 4, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
+	{ code: "OP05-102", name: "Gedatsu", count: 2, img: "/Cards/OP05/OP05-102.png", role: "Character" },
+	{ code: "OP12-099", name: "Kalgara", count: 3, img: "/Cards/OP12/OP12-099.jpg", role: "Character" },
+	{ code: "OP15-114", name: "Wyper", count: 4, img: "/Cards/OP15/OP15-114.jpg", role: "Character" },
+	{ code: "OP15-119", name: "Monkey.D.Luffy", count: 4, img: "/Cards/OP15/OP15-119.jpg", role: "Character" },
+	{ code: "OP15-109", name: "Nico Robin", count: 4, img: "/Cards/OP15/OP15-109.jpg", role: "Character" },
+	{ code: "EB02-052", name: "Enel", count: 2, img: "/Cards/EB02/EB02-052.jpg", role: "Character" },
+	{ code: "OP15-116", name: "Gum-Gum Golden Rifle", count: 4, img: "/Cards/OP15/OP15-116.jpg", role: "Event" },
+];
+
+const optionsGroups = [
+	{
+		cards: [{ code: "EB04-054", name: "Bartholomew Kuma", img: "/Cards/EB04/EB04-054.jpg" }],
+		note:
+			"If you don't have Borsalino (EB04-058), Bartholomew Kuma is the cleanest replacement because he keeps the low-Life heal effect. You lose the Blocker utility, but Kuma gives you a bigger body and turns a K.O. into extra pressure.",
+	},
+	{
+		cards: [{ code: "OP05-105", name: "Satori", img: "/Cards/OP05/OP05-105.png" }],
+		note:
+			"If you're missing the Zeus (OP11-106) and Belo Betty (EB03-056) package, Satori is the safer fallback if you want to keep the Sky Island core intact. He doesn't replace their removal, but the 2k counter and Trigger body give you a more defensive, consistent option.",
+	},
+];
+
+const mulliganCards = [
+	{ code: "OP15-108", name: "Nami", img: "/Cards/OP15/OP15-108.jpg" },
+	{ code: "OP05-106", name: "Shura", img: "/Cards/OP05/OP05-106.png" },
+	{ code: "OP12-099", name: "Kalgara", img: "/Cards/OP12/OP12-099.jpg" },
+];
+
+const mulliganNotes = [
+	{
+		title: "Nami (OP15-108)",
+		text: "Your best clean opener. It starts the board right away and looks at the top 3 cards to find another Sky Island piece, which helps smooth the rest of your curve. It's the kind of keep that makes your early turns much more consistent.",
+	},
+	{
+		title: "Shura (OP05-106)",
+		text: "One of your strongest keeps because it digs 5 cards deep for a Sky Island card. It gives you better access to your core pieces and makes your early development much more reliable than keeping a random midgame hand.",
+	},
+	{
+		title: "Kalgara (OP12-099)",
+		text: "A strong keep only if the rest of your opener already works. Kalgara isn't your setup piece, but once your early turns are covered, he's one of the best cards for keeping hand size up while still applying pressure.",
+	},
+];
+
+const curveFirst = [
+	{
+		label: "1 DON!!",
+		cards: [{ code: "OP15-108", name: "Nami", img: "/Cards/OP15/OP15-108.jpg" }],
+		notes:
+			"Start with Nami (OP15-108). Its job is to add an important piece to your hand and prepare your next turns, usually by finding Roronoa Zoro (OP15-113) or Wyper (OP15-114).",
+	},
+	{
+		label: "3 DON!!",
+		cards: [
+			{ code: "OP15-108", name: "Nami", img: "/Cards/OP15/OP15-108.jpg" },
+			{ code: "OP05-106", name: "Shura", img: "/Cards/OP05/OP05-106.png" },
+		],
+		notes:
+			"Keep building with Nami (OP15-108) and Shura (OP05-106). Prioritize Nico Robin (OP15-109) and Monkey.D.Luffy (OP15-119) to set up the combo.",
+	},
+	{
+		label: "5 DON!!",
+		cards: [
+			{ code: "OP05-102", name: "Gedatsu", img: "/Cards/OP05/OP05-102.png" },
+			{ code: "OP12-099", name: "Kalgara", img: "/Cards/OP12/OP12-099.jpg" },
+			{ code: "OP15-114", name: "Wyper", img: "/Cards/OP15/OP15-114.jpg" },
+		],
+		notes:
+			"This is your first flexible turn. Gedatsu (OP05-102) gives you removal, Kalgara (OP12-099) helps you keep resources flowing, and Wyper (OP15-114) lets you pressure while still pushing your main game plan.",
+	},
+	{
+		label: "7 DON!!",
+		cards: [
+			{ code: "OP15-109", name: "Nico Robin", img: "/Cards/OP15/OP15-109.jpg" },
+			{ code: "OP15-119", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-119.jpg" },
+		],
+		notes:
+			"Nico Robin (OP15-109) + Monkey.D.Luffy (OP15-119) is still your priority power line. Play Robin to bring out Luffy for free with her On Play effect. Once this core setup sticks, the deck becomes much harder to cleanly answer and your protected board starts taking over the game.",
+	},
+	{
+		label: "9 DON!!",
+		cards: [
+			{ code: "OP15-119", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-119.jpg" },
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+		],
+		notes:
+			"Keep stacking Monkey.D.Luffy (OP15-119) and support your leader with Roronoa Zoro (OP15-113). To keep your board alive with your leader effect, you have to take one of your own Life cards. Zoro lets you add a Life card back, which makes it much easier to stay in control of the game.",
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		cards: [
+			{ code: "OP15-108", name: "Nami", img: "/Cards/OP15/OP15-108.jpg" },
+			{ code: "OP05-106", name: "Shura", img: "/Cards/OP05/OP05-106.png" },
+		],
+		notes:
+			"Start with Nami (OP15-108) or Shura (OP05-106). Their job is to add an important piece to your hand and prepare your next turns, usually by finding Roronoa Zoro (OP15-113), Wyper (OP15-114), Nico Robin (OP15-109), or Monkey.D.Luffy (OP15-119).",
+	},
+	{
+		label: "4 DON!!",
+		cards: [
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+			{ code: "EB03-056", name: "Belo Betty", img: "/Cards/EB03/EB03-056.jpg" },
+		],
+		notes:
+			"Roronoa Zoro (OP15-113) adds a Life card so your bigger bodies on the following turn can be protected by your leader effect without really putting you behind on Life, while Belo Betty (EB03-056) K.O.s an opposing Character so you do not get overwhelmed by your opponent's early board.",
+	},
+	{
+		label: "6 DON!!",
+		cards: [
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+			{ code: "OP11-106", name: "Zeus", img: "/Cards/OP11/OP11-106.jpg" },
+			{ code: "OP15-114", name: "Wyper", img: "/Cards/OP15/OP15-114.jpg" },
+			{ code: "OP12-099", name: "Kalgara", img: "/Cards/OP12/OP12-099.jpg" },
+			{ code: "OP05-102", name: "Gedatsu", img: "/Cards/OP05/OP05-102.png" },
+		],
+		notes:
+			"This is your most flexible mid-game turn. Zoro adds a Life card, Zeus and Gedatsu clear problem bodies, Wyper keeps pressure on, and Kalgara helps you stay comfortable on resources. Choose the line that either stabilizes the board or prepares your next turn.",
+	},
+	{
+		label: "8 DON!!",
+		cards: [
+			{ code: "OP15-109", name: "Nico Robin", img: "/Cards/OP15/OP15-109.jpg" },
+			{ code: "OP15-119", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-119.jpg" },
+		],
+		notes:
+			"Nico Robin (OP15-109) + Monkey.D.Luffy (OP15-119) is still your priority power line. Play Robin to bring out Luffy for free with her On Play effect. If this turn lands cleanly, your opponent usually has to overcommit to every removal sequence.",
+	},
+	{
+		label: "10 DON!!",
+		cards: [{ code: "EB02-052", name: "Enel", img: "/Cards/EB02/EB02-052.jpg" }],
+		notes:
+			"At 10 DON!!, Enel (EB02-052) gives you the huge heal turn that pushes this deck over the top. Combined with the leader, Zoro, Borsalino, and your 1-cost event, these are the turns where the deck starts feeling almost impossible to kill.",
+	},
+];
+
+const tips = [
+	{
+		title: "In most matchups, you want to go first.",
+		text:
+			"Going first is usually preferred. It helps you control the game better and set up your key plays more comfortably, especially because the 7-DON!! turn lines up perfectly for the Nico Robin (OP15-109) + Monkey.D.Luffy (OP15-119) combo.",
+		cards: [
+			{ code: "OP15-109", name: "Nico Robin", img: "/Cards/OP15/OP15-109.jpg" },
+			{ code: "OP15-119", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-119.jpg" },
+		],
+	},
+	{
+		title: "This deck turns life into board protection.",
+		text:
+			"The leader is what makes the deck so hard to deal with. Whenever one of your 6000-power-or-more Sky Island characters would leave the field, you can take 1 life to hand instead. That makes your board much harder to clear and lets you create turns where your opponent feels like they never truly removed anything important.",
+		cards: [
+			{ code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
+			{ code: "EB02-052", name: "Enel", img: "/Cards/EB02/EB02-052.jpg" },
+		],
+	},
+	{
+		title: "Prioritize the Robin + Luffy core.",
+		text:
+			"Always prioritize the Nico Robin (OP15-109) + Monkey.D.Luffy (OP15-119) setup when the game allows it. Robin lets you play Luffy for free with her effect, and once that core is online, Luffy puts huge pressure on your opponent because every Blocker or Event they use gives him more power.",
+		cards: [
+			{ code: "OP15-109", name: "Nico Robin", img: "/Cards/OP15/OP15-109.jpg" },
+			{ code: "OP15-119", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-119.jpg" },
+		],
+	},
+	{
+		title: "Your healing turns matter more than your flashy swings.",
+		text:
+			"This deck can pressure hard, but a lot of your best DON!! turns are spent keeping your life total and board stable instead of simply attacking bigger. Your life will disappear quickly between the leader effect and direct pressure, so you need to recognize when the correct line is to heal and stay safe instead of overcommitting to damage.",
+		cards: [
+			{ code: "OP15-113", name: "Roronoa Zoro", img: "/Cards/OP15/OP15-113.jpg" },
+			{ code: "EB04-058", name: "Kizaru", img: "/Cards/EB04/EB04-058.jpg" },
+		],
+	},
+	{
+		title: "Know exactly what the deck is good at and bad at.",
+		text:
+			"The strengths are clear: character spam, protected bodies that feel immortal, and turns where you can heal 2 or more life in one sequence. The weaknesses are just as real: leaders that gain a lot of power can be hard to deal with, your DON!! often gets used for healing instead of attacking, and some games become very predictable because your opponent knows when your big safe turns are coming. Electrical Luna is also a major problem because it locks down your board, which is especially punishing for this deck.",
+		cards: [
+			{ code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
+			{ code: "OP08-036", name: "Electrical Luna", img: "/Cards/OP08/OP08-036.png" },
+		],
+	},
+];
+
+const matchups = [
+	{
+		label: "Positive MU",
+		status: "up",
+		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
+		notes: [
+			"Go first and clear the board.",
+			"Prioritize Cavendish.",
+			"Try to play 1 or 2 copies of Monkey.D.Luffy (OP15-119) before 10 DON!!.",
+			"Heal while you keep applying pressure with your board.",
+		],
+	},
+	{
+		label: "Slight Adv.",
+		status: "up",
+		leader: { code: "OP14-079", name: "Crocodile", img: "/Cards/OP14/OP14-079.jpg" },
+		notes: [
+			"Go first and flood the board.",
+			"Prioritize Kalgara (OP12-099) to keep your hand size up.",
+			"Clearing their board is very important so Crocodile does not reach its second turn with too many attacks.",
+		],
+	},
+	{
+		label: "Positive MU",
+		status: "up",
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: [
+			"Go first.",
+			"Your priority is to clear every 1-cost body and Holy.",
+			"Remember that Wyper (OP15-114) helps a lot with that.",
+			"Try to keep 2 copies of Monkey.D.Luffy (OP15-119) on board before you go for lethal, because that makes the turn almost impossible to defend.",
+		],
+	},
+	{
+		label: "Slight Disadv.",
+		status: "down",
+		leader: { code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
+		notes: [
+			"Go second and prioritize Kalgara (OP12-099) and Monkey.D.Luffy (OP15-119).",
+			"On 10 DON!!, set up Enel (EB02-052).",
+			"The matchup gets much harder when Ace chains too many SR Zoro EB04 lines or Event + 10-cost Newgate lines.",
+		],
+	},
+	{
+		label: "Negative MU",
+		status: "down",
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: [
+			"You have to go first.",
+			"Kalgara (OP12-099) and Wyper (OP15-114) are mandatory so you can keep your hand size up and attack for 7k without using active DON!!.",
+			"The Nico Robin (OP15-109) + Monkey.D.Luffy (OP15-119) combo is mandatory in this matchup.",
+			"Defend your Life aggressively so you can stay in control and reach your Enel turn safely.",
+		],
+	},
+	{
+		label: "Slight Disadv.",
+		status: "down",
+		leader: { code: "EB02-010", name: "Monkey.D.Luffy", img: "/Cards/EB02/EB02-010.jpg" },
+		notes: [
+			"Go second to break their curve.",
+			"If they flood the board too hard, they do not leave you safe turns for Enel (EB02-052).",
+			"Clearing Sanji & Pudding with Zeus (OP11-106) helps a lot in this matchup.",
+			"If they land 2 Electrical Lunas, the game is basically lost.",
+		],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Monkey.D.Luffy OP15 Deck Guide</h1>
+				<p>
+					Reference guide for Yellow Monkey.D.Luffy OP15-098 in the OP15 format with the full list, replacement
+					options, mulligan priorities, curve plans, and matchup notes. If you want the turn-order numbers and
+					stat breakdown, the <a href="/meta-analysis/monkey-d-luffy-op15-stats-in-op15/">Monkey.D.Luffy OP15
+					stats article</a> is available separately.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Monkey.D.Luffy OP15 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Main list for Monkey.D.Luffy OP15 in the OP15 format.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Options & Tech Cards</h2>
+					<p>Replacement options if you are missing parts of the main shell.</p>
+				</div>
+			</div>
+			<div class="options-stack">
+				{optionsGroups.map((group) => (
+					<div class="option-group">
+						<div class="options-grid">
+							{group.cards.map((card) => (
+								<button
+									class="option-card"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<p class="section-note">{group.note}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>Recommended opening hand.</p>
+				</div>
+			</div>
+			<div class="mulligan-grid">
+				{mulliganNotes.map((note, index) => (
+					<div class="mulligan-item">
+						<button class="mini-card" type="button" data-card-preview data-full={mulliganCards[index].img} data-name={`${mulliganCards[index].code} ${mulliganCards[index].name}`}>
+							<img loading="lazy" src={mulliganCards[index].img} alt={`${mulliganCards[index].code} ${mulliganCards[index].name}`} />
+							<div class="mini-label">{mulliganCards[index].name}</div>
+						</button>
+						<div class="text-card">
+							<h3>{note.title}</h3>
+							<p>{note.text}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Your turn-by-turn curve for going first or second.</p>
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 1st</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block">
+				<h3>Curve 2nd</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Important reminders for your sequencing, healing turns, and matchup approach.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card">
+						<div class="tip-cards">
+							{tip.cards.map((card) => (
+								<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								</button>
+							))}
+						</div>
+						<h3>{tip.title}</h3>
+						<p>{tip.text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+				<div class="section-header">
+					<div>
+						<h2>Matchups</h2>
+						<p>
+							Main matchup notes for the OP15 field. For the turn-order win rates behind these matchups, see the
+							<a href="/meta-analysis/monkey-d-luffy-op15-stats-in-op15/">Monkey.D.Luffy OP15 stats article</a>.
+						</p>
+					</div>
+				</div>
+			<div class="matchups-grid">
+				{matchups.map((matchup) => (
+					<div class="matchup-card">
+						<div class={`matchup-badge ${matchup.status === "down" ? "badge-down" : matchup.status === "up" ? "badge-up" : "badge-even"}`}>
+							<span class={`badge-icon ${matchup.status === "down" ? "badge-icon-down" : matchup.status === "up" ? "badge-icon-up" : "badge-icon-even"}`} aria-hidden="true"></span>
+							<span>{matchup.label}</span>
+						</div>
+						<button class="mini-card" type="button" data-card-preview data-full={matchup.leader.img} data-name={`${matchup.leader.code} ${matchup.leader.name}`}>
+							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+						</button>
+						<div class="matchup-name">{matchup.leader.name}</div>
+						<ul>
+							{matchup.notes.map((note) => (
+								<li>{note}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<div class="card-modal-frame">
+				<img src="" alt="" data-modal-image />
+			</div>
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalFrame = document.querySelector(".card-modal-frame");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	let lockedScrollY = 0;
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		lockedScrollY = window.scrollY;
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${lockedScrollY}px`;
+		document.body.style.left = "0";
+		document.body.style.right = "0";
+		document.body.style.width = "100%";
+		document.body.style.overflow = "hidden";
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		document.body.style.position = "";
+		document.body.style.top = "";
+		document.body.style.left = "";
+		document.body.style.right = "";
+		document.body.style.width = "";
+		document.body.style.overflow = "";
+		window.scrollTo(0, lockedScrollY);
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		const target = event.target;
+		if (!(target instanceof HTMLElement)) return;
+		if (target === modalImage) {
+			closeModal();
+			return;
+		}
+		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
+			closeModal();
+		}
+	});
+	modalImage?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible,
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.options-stack,
+	.tips-grid,
+	.matchups-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.options-stack {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		align-items: start;
+	}
+
+	.option-group,
+	.text-card,
+	.curve-block,
+	.tip-card,
+	.matchup-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 1.2rem;
+	}
+
+	.options-grid {
+		display: flex;
+		justify-content: center;
+	}
+
+	.option-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 170px;
+		border-radius: 12px;
+		margin-inline: auto;
+	}
+
+	.option-group .section-note {
+		margin-top: 1rem;
+	}
+
+	.section-note,
+	.curve-note,
+	.tip-card p,
+	.text-card p {
+		color: var(--text-200);
+	}
+
+	.text-card h3,
+	.tip-card h3,
+	.matchup-name {
+		margin: 0 0 0.45rem;
+		font-weight: 600;
+	}
+
+	.mulligan-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+		margin-bottom: 0;
+	}
+
+	.mulligan-item {
+		display: grid;
+		gap: 0.85rem;
+		align-content: start;
+	}
+
+	.curve-block {
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.45fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards,
+	.tip-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-grid {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.matchup-card {
+		grid-column: span 2;
+		display: grid;
+		gap: 0.8rem;
+		align-content: start;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-icon-up::before {
+		content: "\2191";
+	}
+
+	.badge-icon-down::before {
+		content: "\2193";
+	}
+
+	.badge-icon-even::before {
+		content: "\2194";
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-card ul {
+		margin: 0.35rem 0 0 1.15rem;
+	}
+
+	@media (min-width: 901px) {
+		#options .section-header p,
+		#tips .section-header p,
+		#matchups .section-header p {
+			white-space: nowrap;
+		}
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		width: fit-content;
+		max-width: 90vw;
+		max-height: 90vh;
+		margin: 0 auto;
+	}
+
+	.card-modal-frame {
+		width: fit-content;
+		max-width: 100%;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		display: block;
+		width: auto;
+		max-width: min(520px, calc(90vw - 2rem));
+		max-height: 80vh;
+		object-fit: contain;
+		margin: 0 auto;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.25rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-icon {
+			margin-top: 1.35rem;
+		}
+
+		.options-stack {
+			grid-template-columns: 1fr;
+		}
+
+		.matchups-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.matchup-card {
+			grid-column: auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px !important;
+			gap: 1rem !important;
+			align-items: start !important;
+		}
+
+		.guide-hero .guide-icon {
+			grid-column: 2 !important;
+			grid-row: 1 !important;
+			align-self: start !important;
+			justify-self: end !important;
+			margin-top: 5.2rem !important;
+		}
+
+		.guide-hero .guide-icon img {
+			margin-top: 0 !important;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.curve-block .curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			overflow: hidden;
+		}
+
+		.curve-block .curve-cards {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.45rem;
+			justify-items: center;
+			align-items: start;
+			width: 100%;
+		}
+
+		.curve-cards .mini-card {
+			width: 100%;
+		}
+
+		.curve-cards .mini-card img {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.mulligan-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.mulligan-item {
+			grid-template-columns: 96px minmax(0, 1fr);
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-item .mini-card {
+			width: 96px;
+		}
+
+		.mulligan-item .mini-card img {
+			width: 96px;
+		}
+
+		.mulligan-item .mini-label {
+			display: none;
+		}
+
+		.mulligan-item .text-card {
+			padding: 0;
+			border: none;
+			background: transparent;
+		}
+
+		.mulligan-item .text-card h3 {
+			margin-top: 0;
+		}
+
+		.list-section .options-grid {
+			display: block !important;
+			width: auto !important;
+		}
+
+		.option-group {
+			display: grid;
+			grid-template-columns: 96px minmax(0, 1fr);
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.option-group .section-note {
+			margin: 0;
+			text-align: left;
+		}
+
+		.option-card {
+			padding: 0 !important;
+			border: none !important;
+			background: transparent !important;
+			box-shadow: none !important;
+			transform: none !important;
+		}
+
+		.option-card img {
+			max-width: 96px !important;
+			border-radius: 10px;
+		}
+
+		.deck-card {
+			padding: 0.35rem;
+			gap: 0.4rem;
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.deck-card img {
+			max-width: 94px;
+			border-radius: 8px;
+		}
+
+		.deck-info {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.28rem;
+		}
+
+		.deck-count {
+			padding: 0.18rem 0.45rem;
+			font-size: 0.68rem;
+			line-height: 1;
+		}
+
+		.deck-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.deck-code {
+			font-size: 0.66rem;
+			line-height: 1.1;
+		}
+
+		.deck-role {
+			display: none;
+		}
+
+		.card-modal {
+			padding: 0 !important;
+		}
+
+		.card-modal-inner {
+			position: fixed !important;
+			inset: 0 !important;
+			width: 100vw !important;
+			height: 100dvh !important;
+			max-width: none !important;
+			max-height: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			display: grid !important;
+			place-items: center !important;
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.card-modal-frame {
+			padding: 0.75rem !important;
+			max-width: calc(100vw - 1.5rem) !important;
+			max-height: calc(100dvh - 1.5rem) !important;
+		}
+
+		.card-modal-inner img {
+			display: block !important;
+			width: auto !important;
+			max-width: min(78vw, 320px) !important;
+			height: auto !important;
+			max-height: 78vh !important;
+			object-fit: contain !important;
+			margin: 0 auto !important;
+		}
+
+		.modal-close {
+			position: fixed !important;
+			top: 0.75rem !important;
+			right: 0.75rem !important;
+			z-index: 2 !important;
+		}
+	}
+</style>

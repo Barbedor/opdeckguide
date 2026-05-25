@@ -5,7 +5,6 @@ export const deckGuides = [
 		leader: "Monkey.D.Luffy",
 		code: "OP15",
 		month: "May",
-		hidden: true,
 		href: "/deck-guides/monkey-d-luffy-op15/",
 		imageSrc: "/assets/guides/monkey-d-luffy-op15.png",
 		imageAlt: "Monkey.D.Luffy OP15 guide icon",

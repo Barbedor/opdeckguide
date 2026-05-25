@@ -4,6 +4,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 const title = "Monkey.D.Luffy OP15 Stats in OP15 Format";
 const description =
 	"Yellow Monkey.D.Luffy OP15 format stats article covering turn-order win rates.";
+const deckGuideHref = "/deck-guides/monkey-d-luffy-op15/";
 
 const getRateTone = (value: string) => {
 	const numeric = Number.parseFloat(value.replace("%", "").trim());
@@ -70,6 +71,10 @@ const featuredTurnOrderStats = [
 					effects, OP15 Yellow Luffy is a strong contender. Built around board protection, life gain, and
 					explosive finishing potential, the deck leverages its leader ability to keep key characters in play
 					while setting up for powerful late-game swings through high-impact threats.
+				</p>
+				<p>
+					For the full list, mulligan plan, curve reference, and matchup notes, see the
+					<a href={deckGuideHref}> Monkey.D.Luffy OP15 deck guide</a>.
 				</p>
 			</div>
 			<div class="article-hero-side">
@@ -158,6 +163,14 @@ const featuredTurnOrderStats = [
 	.article-kicker {
 		color: var(--text-200);
 		font-weight: 600;
+	}
+
+	.article-kicker a {
+		color: var(--accent);
+	}
+
+	.meta-article-hero p a {
+		color: var(--accent);
 	}
 
 	.article-leader-hero {
