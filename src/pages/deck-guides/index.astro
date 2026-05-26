@@ -2,6 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import Section from "../../components/Section.astro";
 import Card from "../../components/Card.astro";
+import { visibleDeckGuides } from "../../lib/guides";
 
 const title = "Deck Guides for One Piece Card Game";
 const description = "Leader-focused One Piece Card Game deck guides with game plans, mulligans, upgrade paths, and matchup tips.";
@@ -24,118 +25,18 @@ const description = "Leader-focused One Piece Card Game deck guides with game pl
 		description="Popular leaders with clear game plans and matchup angles."
 		gridClass="mobile-double-grid"
 	>
-		<Card
-			eyebrow="OP15 Format"
-			title="Monkey.D.Luffy OP15 Deck Guide"
-			description="Decklist, replacement options, mulligan priorities, curve plans, tips, and matchup notes."
-			imageSrc="/assets/guides/monkey-d-luffy-op15.png"
-			imageAlt="Monkey.D.Luffy OP15 guide icon"
-			href="/deck-guides/monkey-d-luffy-op15/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Monkey.D.Luffy EB02 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, tips, and matchup notes."
-			imageSrc="/assets/guides/Monkey D. Luffy EB02-010.png"
-			imageAlt="Monkey.D.Luffy EB02 guide icon"
-			href="/deck-guides/monkey-d-luffy-eb02/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Sanji OP12 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/sanji-op12.png"
-			imageAlt="Sanji OP12 guide icon"
-			href="/deck-guides/sanji-op12/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Portgas.D.Ace OP13 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/portgas-d-ace-op13.png"
-			imageAlt="Portgas.D.Ace OP13 guide icon"
-			href="/deck-guides/portgas-d-ace-op13/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Enel OP15 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/enel-op15.png"
-			imageAlt="Enel OP15 guide icon"
-			href="/deck-guides/enel-op15/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Lucy OP15 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/lucy-op15.png"
-			imageAlt="Lucy OP15 guide icon"
-			href="/deck-guides/lucy-op15/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Nami OP11 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/nami-op11.png"
-			imageAlt="Nami OP11 guide icon"
-			href="/deck-guides/nami-op11/"
-		/>
-		<Card
-			eyebrow="OP15 Format"
-			title="Rosinante OP12 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/rosinante-op12.png"
-			imageAlt="Rosinante OP12 guide icon"
-			href="/deck-guides/rosinante-op12/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Jinbe OP14 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/jinbe-op14.png"
-			imageAlt="Jinbe OP14 guide icon"
-			href="/deck-guides/jinbe-op14/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Dracule Mihawk OP14 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/dracule-mihawk-op14.png"
-			imageAlt="Dracule Mihawk OP14 guide icon"
-			href="/deck-guides/dracule-mihawk-op14/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Trafalgar Law OP14 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/trafalgar-law-op14.png"
-			imageAlt="Trafalgar Law OP14 guide icon"
-			href="/deck-guides/trafalgar-law-op14/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Monkey.D.Luffy ST29 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/monkey-d-luffy-st29.png"
-			imageAlt="Monkey.D.Luffy ST29 guide icon"
-			href="/deck-guides/monkey-d-luffy-st29/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Crocodile OP14 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/crocodile-op14.png"
-			imageAlt="Crocodile OP14 guide icon"
-			href="/deck-guides/crocodile-op14/"
-		/>
-		<Card
-			eyebrow="OP14 Format"
-			title="Boa Hancock OP14 Deck Guide"
-			description="Decklist, curve checkpoints, mulligan priorities, options, and matchup notes."
-			imageSrc="/assets/guides/boa-hancock-op14.png"
-			imageAlt="Boa Hancock OP14 guide icon"
-			href="/deck-guides/boa-hancock-op14/"
-		/>
+		{
+			visibleDeckGuides.map((guide) => (
+				<Card
+					eyebrow={guide.formatLabel}
+					title={guide.title}
+					description={guide.summary}
+					imageSrc={guide.imageSrc}
+					imageAlt={guide.imageAlt}
+					href={guide.href}
+				/>
+			))
+		}
 	</Section>
 
 	<section class="seo-block">

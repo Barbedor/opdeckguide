@@ -3,9 +3,9 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
 import { guideSearchIndex } from "../../lib/guides";
 
-const title = "One Piece Card Game Cards List";
+const title = "One Piece Card List | One Piece Card Game";
 const description =
-	"Browse One Piece Card Game cards by extension, and search cards, deck guides, and beginner guides from one global bar.";
+	"Browse One Piece Card Game cards by extension, search exact card numbers, and jump from cards to related deck guides from one global hub.";
 
 const metadataAvailable = hasMetadata();
 
@@ -30,19 +30,23 @@ for (const item of extensionSummaries) {
 	groupedExtensions.push({ type: "extension", item, group });
 	lastGroup = group;
 }
+
+const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
 		<div class="container">
 			<span class="hero-badge">Cards List</span>
-			<h1>One Piece Card Game Cards List</h1>
+			<h1>One Piece Card List</h1>
 			<div class="search-results" data-search-results></div>
 			<div class="hero-text" data-hero-text>
 				<p>
-					Search a card number, leader, or guide. Try queries like <strong>guides</strong>,
-					<strong>guides OP14</strong>, <strong>Mihawk</strong>, <strong>complete rules</strong>, or a
-					card code to jump straight to the right result.
+					Browse every set from one hub, open the extension you want to see in full, and use the search
+					bar only when you want to jump straight to an exact card number.
+				</p>
+				<p class="hero-links">
+					Need deck context? Head back to <a class="internal-link" href="/deck-guides/">Deck Guides</a>.
 				</p>
 			</div>
 		</div>
@@ -65,7 +69,7 @@ for (const item of extensionSummaries) {
 					) : (
 						<a class="extension-card" href={`/cards-list/${entry.item.extension}/`}>
 							<div class="extension-card-header">
-								<h3>{entry.item.extension}</h3>
+								<h3>{extensionLabel(entry.item.extension)}</h3>
 								<span>{entry.item.count} cards</span>
 							</div>
 							<div class="extension-previews">
@@ -85,16 +89,38 @@ for (const item of extensionSummaries) {
 		<div class="container">
 			<h2>About the Cards List</h2>
 			<p>
-				This library keeps every card organized by extension, with fast thumbnails and a full-size preview on
-				click. Use the search bar under the menu to jump straight to an exact card number, or open matching
-				deck guides and beginner guides from leader names and guide keywords. The layout is
-				optimized for mobile so you can reference cards between rounds without friction.
+				This hub organizes every set by extension so you can open the exact card pool you want without
+				guessing where to start. If you already know a card code, the search bar gets you there faster.
 			</p>
 			<p>
-				Click an extension to open its full card list. The previews show the most recent cards to help you
-				spot the right set quickly. Use the <a href="/deck-guides/">Deck Guides</a> and
-				<a href="/meta-analysis/">Meta Analysis</a> sections to see where these cards fit into competitive play.
+				Once you have the card or leader you want, <a class="internal-link" href="/deck-guides/">Deck Guides</a> helps you move
+				from raw card lookup to actual competitive context.
 			</p>
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="container">
+			<div class="section-header faq-header">
+				<div>
+					<h2>Cards List FAQ</h2>
+					<p>Quick answers for the most common card search questions.</p>
+				</div>
+			</div>
+			<div class="faq-grid">
+				<article class="faq-card">
+					<h3>Can I search every set from one page?</h3>
+					<p>Yes. Use the global search bar to look up cards, leaders, and guides from one place.</p>
+				</article>
+				<article class="faq-card">
+					<h3>Can I search exact card numbers?</h3>
+					<p>Yes. Type the exact code to jump straight to the matching result.</p>
+				</article>
+				<article class="faq-card">
+					<h3>Where can I find deck context?</h3>
+					<p>Open <a class="internal-link" href="/deck-guides/">Deck Guides</a> to see how those cards show up in real lists.</p>
+				</article>
+			</div>
 		</div>
 	</section>
 
@@ -536,6 +562,19 @@ for (const item of extensionSummaries) {
 		color: var(--text-300);
 	}
 
+	.hero-links {
+		margin-top: 1rem;
+	}
+
+	.internal-link,
+	.hero-links a,
+	.seo-block a,
+	.faq-card a {
+		color: var(--accent) !important;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
 	.search-results {
 		margin-top: 1.5rem;
 		display: grid;
@@ -786,7 +825,56 @@ for (const item of extensionSummaries) {
 		font-size: 0.85rem;
 	}
 
+	.faq-section {
+		padding: 0 0 3.5rem;
+	}
+
+	.faq-header {
+		margin-bottom: 1rem;
+	}
+
+	.faq-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.faq-card {
+		padding: 1.1rem 1.15rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.faq-card h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
+	}
+
+	.faq-card p {
+		margin: 0;
+		color: var(--text-300);
+		font-size: 0.96rem;
+	}
+
 	@media (max-width: 600px) {
+		.hero {
+			padding-bottom: 1.5rem;
+		}
+
+		.list-section {
+			padding-top: 0.75rem;
+		}
+
+		.seo-block {
+			padding-top: 1.25rem;
+		}
+
+		.faq-section {
+			padding-top: 1.25rem;
+			padding-bottom: 2.5rem;
+		}
+
 		:global(.results-heading) {
 			align-items: flex-start;
 			flex-direction: column;
@@ -836,6 +924,10 @@ for (const item of extensionSummaries) {
 
 		.extension-previews {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.faq-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

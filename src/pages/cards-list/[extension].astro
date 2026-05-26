@@ -14,24 +14,23 @@ const cards = getCardsForExtension(extension);
 const initialBatch = 96;
 const initialCards = cards.slice(0, initialBatch);
 const remainingCards = cards.slice(initialBatch);
+const extensionLabel = extension === "P" ? "Promo" : extension;
 
-const title = `One Piece Card Game ${extension} Cards`;
-const description = `Browse every One Piece Card Game card from ${extension} with fast thumbnails and full-size previews.`;
+const title = `${extensionLabel} Card List | One Piece Card Game`;
+const description = `Browse the full ${extensionLabel} card list, search exact card numbers, and open full-size One Piece Card Game previews instantly.`;
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
 		<div class="container">
-			<span class="hero-badge">{extension}</span>
-			<h1>{extension} Card List</h1>
+			<span class="hero-badge">{extensionLabel}</span>
+			<h1>{extensionLabel} Card List</h1>
 			<p>
-				Browse every card from {extension}. Click any thumbnail to open the full-size image, then click
-				outside the image to return to the grid. Use the search bar under the menu to jump directly to a
-				card by typing its exact card number across all extensions.
+				Every {extensionLabel} card is listed on this page. Open any card for the full-size image, or
+				use search if you want to jump straight to an exact card number.
 			</p>
-			<p>
-				Need strategy context? Head back to <a href="/deck-guides/">Deck Guides</a> or
-				<a href="/meta-analysis/">Meta Analysis</a> to see how cards show up in competitive lists.
+			<p class="hero-links">
+				Need deck context? Head back to <a href="/deck-guides/">Deck Guides</a>.
 			</p>
 		</div>
 	</section>
@@ -40,7 +39,7 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>{extension} Cards</h2>
+					<h2>{extensionLabel} Cards</h2>
 					<p>{cards.length} cards available in this extension.</p>
 				</div>
 				<a href="/cards-list/">Back to all extensions</a>
@@ -64,6 +63,31 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 					<p>{remainingCards.length} more cards available</p>
 				</div>
 			)}
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="container">
+			<div class="section-header faq-header">
+				<div>
+					<h2>{extensionLabel} FAQ</h2>
+					<p>Quick answers for the most common card list questions.</p>
+				</div>
+			</div>
+			<div class="faq-grid">
+				<article class="faq-card">
+					<h3>Can I browse every {extensionLabel} card here?</h3>
+					<p>Yes. This page lists the full {extensionLabel} card pool in one place.</p>
+				</article>
+				<article class="faq-card">
+					<h3>Can I search by exact card number?</h3>
+					<p>Yes. Use the global search bar under the menu to jump straight to a code.</p>
+				</article>
+				<article class="faq-card">
+					<h3>Where can I find deck context?</h3>
+					<p>Use <a href="/deck-guides/">Deck Guides</a> to see how cards show up in real lists.</p>
+				</article>
+			</div>
 		</div>
 	</section>
 
@@ -152,6 +176,16 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 </script>
 
 <style>
+	.hero-links {
+		margin-top: 1rem;
+	}
+
+	.hero-links a {
+		color: var(--accent) !important;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
 	.cards-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
@@ -237,7 +271,52 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 		font-size: 0.9rem;
 	}
 
+	.faq-section {
+		padding: 0 0 3.5rem;
+	}
+
+	.faq-header {
+		margin-bottom: 1rem;
+	}
+
+	.faq-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.faq-card {
+		padding: 1.1rem 1.15rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.faq-card h3 {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.faq-card p {
+		margin: 0;
+		color: var(--text-300);
+		font-size: 0.96rem;
+	}
+
 	@media (max-width: 600px) {
+		.hero {
+			padding-bottom: 1.5rem;
+		}
+
+		.list-section {
+			padding-top: 0.75rem;
+		}
+
+		.faq-section {
+			padding-top: 1.25rem;
+			padding-bottom: 2.5rem;
+		}
+
 		.cards-grid {
 			grid-template-columns: repeat(3, minmax(96px, 96px));
 			justify-content: center;
@@ -247,6 +326,10 @@ const description = `Browse every One Piece Card Game card from ${extension} wit
 		:global(.card-thumb) {
 			width: 96px;
 			max-width: 96px;
+		}
+
+		.faq-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>
