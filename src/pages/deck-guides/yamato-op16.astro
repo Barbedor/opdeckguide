@@ -1,0 +1,1053 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Yamato OP16 Preview Deck Guide";
+const description =
+	"Yamato OP16 preview deck guide for One Piece Card Game with the first sample list, the Yamato loop, the old-set shell, and early strengths and weaknesses.";
+
+const icon = "/assets/guides/yamato-op16.png";
+
+const decklist = [
+	{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
+	{ code: "OP05-082", name: "Shirahoshi", count: 2, img: "/Cards/OP05/OP05-082.png", role: "Character" },
+	{ code: "OP15-083", name: "Spoil", count: 4, img: "/Cards/OP15/OP15-083.jpg", role: "Character" },
+	{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
+	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
+	{ code: "OP16-094", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
+	{ code: "OP05-087", name: "Hakuba", count: 4, img: "/Cards/OP05/OP05-087.png", role: "Character" },
+	{ code: "OP16-083", name: "Kouzuki Oden", count: 4, img: "/Cards/OP16/OP16-083.jpg", role: "Character" },
+	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
+	{ code: "PRB02-014", name: "Sabo", count: 4, img: "/Cards/PRB02/PRB02-014.jpg", role: "Character" },
+	{ code: "OP16-096", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-096.jpg", role: "Character" },
+	{ code: "OP16-097", name: "Yamato", count: 2, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
+	{ code: "OP07-085", name: "Stussy", count: 2, img: "/Cards/OP07/OP07-085.png", role: "Character" },
+	{ code: "OP16-085", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
+	{ code: "OP14-096", name: "Ground Death", count: 4, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+];
+
+const leaderCard = { code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" };
+
+const spoilerCards = [
+	{
+		code: "OP16-098",
+		name: "Yamato",
+		img: "/Cards/OP16/OP16-098.jpg",
+		points: [
+			"On Play: draw 1 card and trash 1 card from your hand.",
+			"Activate: Main: trash this character to play up to 1 black Yamato character with a cost of 8 from your trash.",
+		],
+	},
+	{
+		code: "OP16-085",
+		name: "Kouzuki Momonosuke",
+		img: "/Cards/OP16/OP16-085.jpg",
+		points: [
+			"Blocker.",
+			"On Play: play up to 1 Land of Wano character with a cost of 6 or less from your trash, other than Kouzuki Momonosuke.",
+		],
+	},
+];
+
+const prepPackage = [
+	{ count: 2, code: "OP05-082", name: "Shirahoshi", img: "/Cards/OP05/OP05-082.png" },
+	{ count: 4, code: "OP15-083", name: "Spoil", img: "/Cards/OP15/OP15-083.jpg" },
+	{ count: 2, code: "OP13-087", name: "Saint Charlos", img: "/Cards/OP13/OP13-087.jpg" },
+	{ count: 4, code: "OP09-088", name: "Shiryu", img: "/Cards/OP09/OP09-088.jpg" },
+	{ count: 4, code: "OP14-089", name: "Ryuma", img: "/Cards/OP14/OP14-089.jpg" },
+	{ count: 4, code: "OP13-089", name: "Saint.Topman.Warcury", img: "/Cards/OP13/OP13-089.jpg" },
+	{ count: 4, code: "OP10-094", name: "Ryuma", img: "/Cards/OP10/OP10-094.jpg" },
+	{ count: 4, code: "OP08-091", name: "Who's Who", img: "/Cards/OP08/OP08-091.png" },
+	{ count: 4, code: "OP05-087", name: "Hakuba", img: "/Cards/OP05/OP05-087.png" },
+	{ count: 4, code: "PRB02-014", name: "Sabo", img: "/Cards/PRB02/PRB02-014.jpg" },
+	{ count: 2, code: "OP15-092", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-092.jpg" },
+	{ count: 2, code: "OP07-085", name: "Stussy", img: "/Cards/OP07/OP07-085.png" },
+	{ count: 4, code: "OP14-096", name: "Ground Death", img: "/Cards/OP14/OP14-096.jpg" },
+	{ count: 2, code: "EB04-049", name: "Finger Pistol Yellow Lotus", img: "/Cards/EB04/EB04-049.jpg" },
+];
+
+const strengths = ["Good leader ability", "Yamato loop", "Unique playstyle", "Good for new players"];
+
+const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to green freeze"];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Yamato OP16 Preview Deck Guide</h1>
+				<p>
+					First look at Yamato OP16 in the OP16 format. This preview focuses on the leader effect, the Yamato
+					loop, an early decklist idea, and the early read on the black Land of Wano shell.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Yamato OP16 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>An early decklist idea for Yamato OP16 in the OP16 format.</p>
+				</div>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((card) => (
+					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{card.count}x</span>
+							<div>
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{card.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="leader" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Leader</h2>
+					<p>Core identity and leader effect for Yamato OP16-079.</p>
+				</div>
+			</div>
+			<div class="leader-card">
+				<button
+					class="leader-preview"
+					type="button"
+					data-card-preview
+					data-full={leaderCard.img}
+					data-name={`${leaderCard.code} ${leaderCard.name}`}
+				>
+					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
+				</button>
+				<div class="leader-copy">
+					<div class="fact-grid">
+						<div class="fact-box">
+							<span class="fact-label">Color</span>
+							<p>Black</p>
+						</div>
+						<div class="fact-box">
+							<span class="fact-label">Type</span>
+							<p>Land of Wano</p>
+						</div>
+					</div>
+					<div class="text-card">
+						<h3>Leader Effect</h3>
+						<p class="effect-copy">
+							When a Land of Wano type character is played from your trash, that character
+							<span class="effect-inline">
+								<span>gains</span>
+								<img class="keyword-badge" src="/assets/keywords/rush.png" alt="Rush" />
+								<span>during this turn.</span>
+							</span>
+							The leader effect turns trash recursion into immediate pressure.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="spoiler" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Spoiler</h2>
+					<p>Main cards that define the Yamato loop package.</p>
+				</div>
+			</div>
+			<div class="loop-grid">
+				{spoilerCards.map((card) => (
+					<div class="loop-card">
+						<button
+							class="option-card"
+							type="button"
+							data-card-preview
+							data-full={card.img}
+							data-name={`${card.code} ${card.name}`}
+						>
+							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						</button>
+						<div class="text-card">
+							<h3>{card.name}</h3>
+							<div class="ability-stack">
+								{card.code === "OP16-098" ? (
+									<>
+										<div class="ability-line">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
+												<span>draw 1 card and trash 1 card from your hand.</span>
+											</span>
+										</div>
+										<div class="ability-line">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
+												<span>
+													You may trash this character: play up to 1 black Yamato character with a cost
+													of 8 from your trash.
+												</span>
+											</span>
+										</div>
+									</>
+								) : (
+									<>
+										<div class="ability-line ability-line-tag-only">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />
+											</span>
+										</div>
+										<div class="ability-line">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
+												<span>
+													play up to 1 Land of Wano character with a cost of 6 or less from your trash,
+													other than Kouzuki Momonosuke.
+												</span>
+											</span>
+										</div>
+									</>
+								)}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="prep" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Prep</h2>
+					<p>Old-set support that helps hold the shell together.</p>
+				</div>
+			</div>
+			<div class="prep-card">
+				<p class="prep-intro">The list still leans on a sizable older shell for consistency and utility.</p>
+				<div class="prep-grid">
+					{prepPackage.map((entry) => (
+						<button
+							class="prep-chip"
+							type="button"
+							data-card-preview
+							data-full={entry.img}
+							data-name={entry.code}
+						>
+							<img loading="lazy" src={entry.img} alt={entry.code} />
+							<div class="prep-copy">
+								<span class="prep-count">{entry.count}x</span>
+								<span class="prep-code">{entry.code}</span>
+								<span class="prep-name">{entry.name}</span>
+							</div>
+						</button>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="thoughts" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Thoughts</h2>
+					<p>Early strengths, weaknesses, and the current overall read on the deck.</p>
+				</div>
+			</div>
+			<div class="thoughts-grid">
+				<div class="thought-card">
+					<div class="thought-head thought-up">
+						<span class="thought-icon" aria-hidden="true">+</span>
+						<h3>Strengths</h3>
+					</div>
+					<ul>
+						{strengths.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+				<div class="thought-card">
+					<div class="thought-head thought-down">
+						<span class="thought-icon" aria-hidden="true">-</span>
+						<h3>Weaknesses</h3>
+					</div>
+					<ul>
+						{weaknesses.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			</div>
+			<div class="conclusion-card">
+				<div class="conclusion-head">
+					<div>
+						<h3>Conclusion</h3>
+						<p class="conclusion-subtitle">Current preview grade</p>
+					</div>
+					<div class="score-badge">5.5/10</div>
+				</div>
+				<p>
+					The deck is black but at one point in the game it will seem to play red, the Yamato loop is very
+					strong combined with the leader's ability but requires setup, it's a combo that lacks base cards like
+					the 2k counter but it's not to be underestimated and that's why for me it's a 5.5/10.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<div class="card-modal-frame">
+				<img src="" alt="" data-modal-image />
+			</div>
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalFrame = document.querySelector(".card-modal-frame");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	let lockedScrollY = 0;
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		lockedScrollY = window.scrollY;
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${lockedScrollY}px`;
+		document.body.style.left = "0";
+		document.body.style.right = "0";
+		document.body.style.width = "100%";
+		document.body.style.overflow = "hidden";
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		document.body.style.position = "";
+		document.body.style.top = "";
+		document.body.style.left = "";
+		document.body.style.right = "";
+		document.body.style.width = "";
+		document.body.style.overflow = "";
+		window.scrollTo(0, lockedScrollY);
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		const target = event.target;
+		if (!(target instanceof HTMLElement)) return;
+		if (target === modalImage) {
+			closeModal();
+			return;
+		}
+		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
+			closeModal();
+		}
+	});
+	modalImage?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.leader-card,
+	.prep-card,
+	.thought-card,
+	.conclusion-card,
+	.loop-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+	}
+
+	.leader-card {
+		display: grid;
+		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.leader-preview,
+	.option-card {
+		border: none;
+		background: transparent;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.leader-preview img,
+	.option-card img {
+		width: 100%;
+		border-radius: 14px;
+		display: block;
+	}
+
+	.leader-copy,
+	.loop-grid,
+	.thoughts-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.fact-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+	}
+
+	.fact-box,
+	.text-card,
+	.prep-card,
+	.thought-card,
+	.conclusion-card,
+	.deck-card {
+		padding: 1rem;
+	}
+
+	.fact-box {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid var(--border);
+		border-radius: 14px;
+	}
+
+	.fact-label {
+		display: block;
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--accent);
+		margin-bottom: 0.45rem;
+	}
+
+	.fact-box p,
+	.text-card p,
+	.prep-intro,
+	.section-note {
+		margin: 0;
+		color: var(--text-200);
+	}
+
+	.text-card h3,
+	.thought-card h3,
+	.conclusion-card h3 {
+		margin-top: 0;
+		margin-bottom: 0.6rem;
+	}
+
+	.text-card ul,
+	.thought-card ul {
+		margin: 0;
+		padding-left: 1.15rem;
+	}
+
+	.effect-copy {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.keyword-badge {
+		height: 24px;
+		width: auto;
+		vertical-align: middle;
+		flex: 0 0 auto;
+		transform: translateY(4px);
+		margin: 0 0.12rem;
+	}
+
+	.effect-inline {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		white-space: nowrap;
+	}
+
+	.keyword-line {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		flex-wrap: wrap;
+	}
+
+	.ability-inline {
+		display: inline;
+	}
+
+	.ability-inline .keyword-badge {
+		display: inline-block;
+		height: 18px;
+		margin-right: 0.35rem;
+		vertical-align: middle;
+		transform: translateY(0px);
+	}
+
+	.effect-copy .keyword-badge {
+		height: 18px;
+	}
+
+	.ability-stack {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.ability-line {
+		margin: 0;
+		color: var(--text-100);
+	}
+
+	.ability-line-tag-only {
+		margin-bottom: -0.15rem;
+	}
+
+	.loop-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-bottom: 1rem;
+	}
+
+	.loop-card {
+		display: grid;
+		grid-template-columns: 160px minmax(0, 1fr);
+		gap: 1rem;
+		padding: 1rem;
+		align-items: start;
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible,
+	.leader-preview:hover,
+	.leader-preview:focus-visible,
+	.option-card:hover,
+	.option-card:focus-visible {
+		transform: translateY(-4px);
+		outline: none;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code,
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.prep-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.prep-chip {
+		border: 1px solid var(--border);
+		border-radius: 16px;
+		padding: 0.75rem;
+		background: rgba(255, 255, 255, 0.03);
+		text-align: left;
+		display: grid;
+		gap: 0.65rem;
+		align-content: start;
+		color: var(--text-100);
+		cursor: pointer;
+	}
+
+	.prep-chip img {
+		width: 100%;
+		max-width: 110px;
+		height: auto;
+		border-radius: 10px;
+		margin: 0 auto;
+	}
+
+	.prep-copy {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.prep-count,
+	.prep-code {
+		font-weight: 700;
+	}
+
+	.prep-code {
+		color: var(--text-100);
+	}
+
+	.prep-name {
+		color: var(--text-300);
+		font-size: 0.92rem;
+		line-height: 1.25;
+	}
+
+	.thoughts-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-bottom: 1rem;
+	}
+
+	.thought-card {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.thought-card::before {
+		content: "";
+		position: absolute;
+		inset: 0 auto auto 0;
+		width: 100%;
+		height: 4px;
+		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
+	}
+
+	.thought-head,
+	.conclusion-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.thought-head {
+		margin-bottom: 0.8rem;
+		justify-content: flex-start;
+	}
+
+	.thought-head h3 {
+		margin: 0;
+	}
+
+	.thought-icon {
+		width: 36px;
+		height: 36px;
+		display: grid;
+		place-items: center;
+		border-radius: 999px;
+		font-size: 1.2rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.thought-up .thought-icon {
+		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	}
+
+	.thought-down .thought-icon {
+		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	}
+
+	.conclusion-subtitle {
+		margin: 0.2rem 0 0;
+		color: var(--text-300);
+		font-size: 0.9rem;
+	}
+
+	.score-badge {
+		border-radius: 999px;
+		padding: 0.55rem 0.9rem;
+		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
+		border: 1px solid rgba(255, 107, 61, 0.35);
+		color: var(--accent);
+		font-weight: 800;
+		font-size: 1rem;
+		letter-spacing: 0.04em;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		width: fit-content;
+		max-width: 90vw;
+		max-height: 90vh;
+		margin: 0 auto;
+	}
+
+	.card-modal-frame {
+		width: fit-content;
+		max-width: 100%;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		display: block;
+		width: auto;
+		max-width: min(520px, calc(90vw - 2rem));
+		max-height: 80vh;
+		object-fit: contain;
+		margin: 0 auto;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.25rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid,
+		.leader-card,
+		.loop-grid,
+		.thoughts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-icon {
+			margin-top: 1.35rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.guide-hero.guide-hero .hero-grid {
+			grid-template-columns: minmax(0, 1fr) 96px !important;
+			gap: 1rem !important;
+			align-items: start !important;
+		}
+
+		.guide-hero .guide-icon {
+			grid-column: 2 !important;
+			grid-row: 1 !important;
+			align-self: start !important;
+			justify-self: end !important;
+			margin-top: 5.2rem !important;
+		}
+
+		.guide-hero .guide-icon img {
+			width: 96px;
+			max-width: 96px;
+			border-radius: 14px;
+		}
+
+		.loop-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			gap: 0.9rem;
+		}
+
+		.loop-card .text-card,
+		.leader-card .text-card {
+			padding: 0;
+			background: transparent;
+			border: none;
+		}
+
+		.leader-card {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			gap: 0.8rem;
+			padding: 0.8rem;
+			align-items: start;
+		}
+
+		.leader-copy {
+			display: contents;
+		}
+
+		.leader-preview {
+			grid-column: 1;
+			grid-row: 1;
+			align-self: start;
+		}
+
+		.leader-preview img {
+			width: 100%;
+			max-width: none;
+			border-radius: 10px;
+		}
+
+		.fact-grid {
+			grid-column: 2;
+			grid-row: 1;
+			grid-template-columns: 1fr;
+			gap: 0.6rem;
+		}
+
+		.fact-box {
+			padding: 0.7rem 0.75rem;
+			border-radius: 12px;
+		}
+
+		.fact-label {
+			font-size: 0.68rem;
+			margin-bottom: 0.3rem;
+		}
+
+		.text-card {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
+
+		.keyword-badge {
+			height: 21px;
+		}
+
+		.effect-copy {
+			display: block;
+		}
+
+		.effect-copy .keyword-badge {
+			display: inline-block;
+			height: 18px;
+			margin: 0;
+			vertical-align: middle;
+			transform: translateY(4px);
+		}
+
+		.keyword-line {
+			gap: 0.5rem;
+		}
+
+		.keyword-line .keyword-badge {
+			height: 18px;
+			margin: 0;
+			transform: translateY(4px);
+		}
+
+		.ability-inline .keyword-badge {
+			height: 18px;
+			margin-right: 0.4rem;
+			transform: translateY(0px);
+		}
+
+		.prep-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.prep-chip {
+			padding: 0.5rem;
+			gap: 0.45rem;
+			border-radius: 12px;
+		}
+
+		.prep-chip img {
+			max-width: 82px;
+			border-radius: 8px;
+		}
+
+		.prep-copy {
+			gap: 0.12rem;
+		}
+
+		.prep-count,
+		.prep-code,
+		.prep-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.deck-card {
+			padding: 0.35rem;
+			gap: 0.4rem;
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.deck-card img {
+			max-width: 94px;
+			border-radius: 8px;
+		}
+
+		.deck-info {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.28rem;
+		}
+
+		.deck-count {
+			padding: 0.18rem 0.45rem;
+			font-size: 0.68rem;
+			line-height: 1;
+		}
+
+		.deck-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.deck-code {
+			font-size: 0.66rem;
+			line-height: 1.1;
+		}
+
+		.deck-role {
+			display: none;
+		}
+
+		.card-modal {
+			padding: 0 !important;
+		}
+
+		.card-modal-inner {
+			position: fixed !important;
+			inset: 0 !important;
+			width: 100vw !important;
+			height: 100dvh !important;
+			max-width: none !important;
+			max-height: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			display: grid !important;
+			place-items: center !important;
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.card-modal-frame {
+			padding: 0.75rem !important;
+			max-width: calc(100vw - 1.5rem) !important;
+			max-height: calc(100dvh - 1.5rem) !important;
+		}
+
+		.card-modal-inner img {
+			display: block !important;
+			width: auto !important;
+			max-width: min(78vw, 320px) !important;
+			height: auto !important;
+			max-height: 78vh !important;
+			object-fit: contain !important;
+			margin: 0 auto !important;
+		}
+
+		.modal-close {
+			position: fixed !important;
+			top: 0.75rem !important;
+			right: 0.75rem !important;
+			z-index: 2 !important;
+		}
+
+		.conclusion-head {
+			align-items: flex-start;
+		}
+	}
+</style>

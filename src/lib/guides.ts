@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Yamato OP16 Preview Deck Guide",
+		leader: "Yamato",
+		code: "OP16",
+		formatLabel: "OP16 Format",
+		summary: "Preview guide with an early decklist idea, the Yamato loop, the old-set shell, and early strengths and weaknesses.",
+		month: "May",
+		href: "/deck-guides/yamato-op16/",
+		imageSrc: "/assets/guides/yamato-op16.png",
+		imageAlt: "Yamato OP16 guide icon",
+		aliases: ["yamato", "op16 yamato", "black yamato", "wano yamato"],
+		tags: ["op16", "black", "land of wano", "wano", "preview"],
+	},
+	{
+		kind: "deck",
 		title: "Monkey.D.Luffy OP15 Deck Guide",
 		leader: "Monkey.D.Luffy",
 		code: "OP15",
