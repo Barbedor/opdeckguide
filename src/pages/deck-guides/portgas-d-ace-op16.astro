@@ -1,73 +1,59 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Yamato OP16 Preview Deck Guide";
+const title = "Portgas.D.Ace OP16 Preview Deck Guide";
 const description =
-	"Yamato OP16 preview deck guide for One Piece Card Game with the first sample list, the Yamato loop, the old-set shell, and early strengths and weaknesses.";
+	"Portgas.D.Ace OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Ace spoilers, the old-set shell, and early strengths and weaknesses.";
 
-const icon = "/assets/guides/yamato-op16.png";
+const icon = "/assets/guides/Ace-op16.png";
 
 const decklist = [
-	{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
-	{ code: "OP05-082", name: "Shirahoshi", count: 2, img: "/Cards/OP05/OP05-082.png", role: "Character" },
-	{ code: "OP15-083", name: "Spoil", count: 4, img: "/Cards/OP15/OP15-083.jpg", role: "Character" },
-	{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
-	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
-	{ code: "OP16-094", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
-	{ code: "OP05-087", name: "Hakuba", count: 4, img: "/Cards/OP05/OP05-087.png", role: "Character" },
-	{ code: "OP16-083", name: "Kouzuki Oden", count: 4, img: "/Cards/OP16/OP16-083.jpg", role: "Character" },
-	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
-	{ code: "PRB02-014", name: "Sabo", count: 4, img: "/Cards/PRB02/PRB02-014.jpg", role: "Character" },
-	{ code: "OP16-096", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-096.jpg", role: "Character" },
-	{ code: "OP16-097", name: "Yamato", count: 2, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
-	{ code: "OP07-085", name: "Stussy", count: 2, img: "/Cards/OP07/OP07-085.png", role: "Character" },
-	{ code: "OP16-085", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
-	{ code: "OP14-096", name: "Ground Death", count: 4, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+	{ code: "OP16-001", name: "Portgas.D.Ace", count: 1, img: "/Cards/OP16/OP16-001.jpg", role: "Leader" },
+	{ code: "OP13-016", name: "Monkey.D.Garp", count: 4, img: "/Cards/OP13/OP13-016.jpg", role: "Character" },
+	{ code: "OP16-002", name: "Izo", count: 4, img: "/Cards/OP16/OP16-002.jpg", role: "Character" },
+	{ code: "ST15-004", name: "Thatch", count: 4, img: "/Cards/ST15/ST15-004.png", role: "Character" },
+	{ code: "OP16-015", name: "Monkey.D.Luffy", count: 4, img: "/Cards/OP16/OP16-015.jpg", role: "Character" },
+	{ code: "OP16-017", name: "LittleOars.Jr", count: 4, img: "/Cards/OP16/OP16-017.jpg", role: "Character" },
+	{ code: "OP16-118", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-118.jpg", role: "Character" },
+	{ code: "OP16-011", name: "Vista", count: 4, img: "/Cards/OP16/OP16-011.jpg", role: "Character" },
+	{ code: "OP16-014", name: "Marco", count: 4, img: "/Cards/OP16/OP16-014.jpg", role: "Character" },
+	{ code: "ST23-001", name: "Uta", count: 4, img: "/Cards/ST23/ST23-001.jpg", role: "Character" },
+	{ code: "OP16-003", name: "Edward.Newgate", count: 4, img: "/Cards/OP16/OP16-003.jpg", role: "Character" },
+	{ code: "OP16-005", name: "Thatch", count: 4, img: "/Cards/OP16/OP16-005.jpg", role: "Character" },
+	{ code: "OP09-118", name: "Gol.D.Roger", count: 2, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
+	{ code: "OP16-021", name: "Moby Dick", count: 4, img: "/Cards/OP16/OP16-021.jpg", role: "Stage" },
 ];
 
-const leaderCard = { code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" };
+const leaderCard = { code: "OP16-001", name: "Portgas.D.Ace", img: "/Cards/OP16/OP16-001.jpg" };
 
 const spoilerCards = [
 	{
-		code: "OP16-098",
-		name: "Yamato",
-		img: "/Cards/OP16/OP16-098.jpg",
-		points: [
-			"On Play: draw 1 card and trash 1 card from your hand.",
-			"Activate: Main: trash this character to play up to 1 black Yamato character with a cost of 8 from your trash.",
-		],
+		code: "OP16-003",
+		name: "Edward.Newgate",
+		img: "/Cards/OP16/OP16-003.jpg",
 	},
 	{
-		code: "OP16-085",
-		name: "Kouzuki Momonosuke",
-		img: "/Cards/OP16/OP16-085.jpg",
-		points: [
-			"Blocker.",
-			"On Play: play up to 1 Land of Wano character with a cost of 6 or less from your trash, other than Kouzuki Momonosuke.",
-		],
+		code: "OP16-118",
+		name: "Portgas.D.Ace",
+		img: "/Cards/OP16/OP16-118.jpg",
 	},
 ];
 
 const prepPackage = [
-	{ count: 2, code: "OP05-082", name: "Shirahoshi", img: "/Cards/OP05/OP05-082.png" },
-	{ count: 4, code: "OP15-083", name: "Spoil", img: "/Cards/OP15/OP15-083.jpg" },
-	{ count: 2, code: "OP13-087", name: "Saint Charlos", img: "/Cards/OP13/OP13-087.jpg" },
-	{ count: 4, code: "OP09-088", name: "Shiryu", img: "/Cards/OP09/OP09-088.jpg" },
-	{ count: 4, code: "OP14-089", name: "Ryuma", img: "/Cards/OP14/OP14-089.jpg" },
-	{ count: 4, code: "OP13-089", name: "Saint.Topman.Warcury", img: "/Cards/OP13/OP13-089.jpg" },
-	{ count: 4, code: "OP10-094", name: "Ryuma", img: "/Cards/OP10/OP10-094.jpg" },
-	{ count: 4, code: "OP08-091", name: "Who's Who", img: "/Cards/OP08/OP08-091.png" },
-	{ count: 4, code: "OP05-087", name: "Hakuba", img: "/Cards/OP05/OP05-087.png" },
-	{ count: 4, code: "PRB02-014", name: "Sabo", img: "/Cards/PRB02/PRB02-014.jpg" },
-	{ count: 2, code: "OP15-092", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-092.jpg" },
-	{ count: 2, code: "OP07-085", name: "Stussy", img: "/Cards/OP07/OP07-085.png" },
-	{ count: 4, code: "OP14-096", name: "Ground Death", img: "/Cards/OP14/OP14-096.jpg" },
-	{ count: 2, code: "EB04-049", name: "Finger Pistol Yellow Lotus", img: "/Cards/EB04/EB04-049.jpg" },
+	{ count: 4, code: "OP13-007", name: "Ace & Sabo & Luffy", img: "/Cards/OP13/OP13-007.jpg" },
+	{ count: 4, code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
+	{ count: 4, code: "ST15-004", name: "Thatch", img: "/Cards/ST15/ST15-004.png" },
+	{ count: 4, code: "ST23-001", name: "Uta", img: "/Cards/ST23/ST23-001.jpg" },
+	{ count: 2, code: "EB02-006", name: "Yamato", img: "/Cards/EB02/EB02-006.jpg" },
+	{ count: 2, code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" },
 ];
 
-const strengths = ["Good leader ability", "Yamato loop", "Unique playstyle", "Good for new players"];
+const strengths = ["Decent late game", "Powerful SEC", "Good consistency", "Aggro playstyle"];
 
-const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to green freeze"];
+const weaknesses = ["No counter cards", "Mid 8K body", "SEC dependent", "Lose to control"];
+
+const conclusion =
+	'The deck best represents the philosophy of the red playstyle "face is the place" but it has too few valid pieces, some moments seem to go well while others struggle to survive, the new SEC and Luffy improve the situation. For these reasons for me it\'s a 6.5 / 10';
 ---
 
 <MainLayout title={title} description={description}>
@@ -75,10 +61,10 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Yamato OP16 Preview Deck Guide</h1>
+				<h1>Portgas.D.Ace OP16 Preview Deck Guide</h1>
 				<p>
-					First look at Yamato OP16 in the OP16 format. This preview focuses on the leader effect, the Yamato
-					loop, an early decklist idea, and the early read on the black Land of Wano shell.
+					First look at Portgas.D.Ace OP16 in the OP16 format. This preview focuses on the leader effect, the key
+					spoilers, an early decklist idea, and the early read on the red Whitebeard Pirates shell.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -86,7 +72,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Yamato OP16 guide icon" loading="lazy" />
+				<img src={icon} alt="Portgas.D.Ace OP16 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -96,7 +82,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>An early decklist idea for Yamato OP16 in the OP16 format.</p>
+					<p class="decklist-intro">An early decklist idea for Portgas.D.Ace OP16 in the OP16 format.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -122,7 +108,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Leader</h2>
-					<p>Core identity and leader effect for Yamato OP16-079.</p>
+					<p>Core identity and leader effect for Portgas.D.Ace OP16-001.</p>
 				</div>
 			</div>
 			<div class="leader-card">
@@ -139,23 +125,25 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 					<div class="fact-grid">
 						<div class="fact-box">
 							<span class="fact-label">Color</span>
-							<p>Black</p>
+							<p>Red</p>
 						</div>
 						<div class="fact-box">
 							<span class="fact-label">Type</span>
-							<p>Land of Wano</p>
+							<p>Whitebeard Pirates</p>
 						</div>
 					</div>
 					<div class="text-card">
 						<h3>Leader Effect</h3>
 						<p class="effect-copy">
-							When a Land of Wano type character is played from your trash, that character
+							<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
+							<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
+							up to 1 of your [Monkey.D.Luffy] Characters or up to 1 of your Characters with a type including
+							"Whitebeard Pirates", with 8000 power or more,
 							<span class="effect-inline">
 								<span>gains</span>
 								<img class="keyword-badge" src="/assets/keywords/rush.png" alt="Rush" />
 								<span>during this turn.</span>
 							</span>
-							The leader effect turns trash recursion into immediate pressure.
 						</p>
 					</div>
 				</div>
@@ -168,7 +156,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Key preview cards</h2>
-					<p>Main cards that define the Yamato loop package.</p>
+					<p>Main cards that define the Ace package.</p>
 				</div>
 			</div>
 			<div class="loop-grid">
@@ -186,37 +174,40 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 						<div class="text-card">
 							<h3>{card.name}</h3>
 							<div class="ability-stack">
-								{card.code === "OP16-098" ? (
+								{card.code === "OP16-003" ? (
 									<>
 										<div class="ability-line">
 											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>draw 1 card and trash 1 card from your hand.</span>
+												<img class="keyword-badge" src="/assets/keywords/your-turn.png" alt="Your Turn" />
+												<span>
+													Your Leader gains <img class="keyword-badge" src="/assets/keywords/double-attack.png" alt="Double Attack" />
+													and +2000 power.
+												</span>
 											</span>
 										</div>
 										<div class="ability-line">
 											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
+												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
 												<span>
-													You may trash this character: play up to 1 black Yamato character with a cost
-													of 8 from your trash.
+													You may reveal 2 Character cards with 8000 power from your hand: Give up to 1
+													of your opponent's Characters -6000 power during this turn.
 												</span>
 											</span>
 										</div>
 									</>
 								) : (
 									<>
-										<div class="ability-line ability-line-tag-only">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />
-											</span>
+										<div class="ability-line">
+											<span>All Character cards in your hand with 8000 power become +2000 counter.</span>
 										</div>
 										<div class="ability-line">
 											<span class="ability-inline">
 												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
+												<img class="keyword-badge" src="/assets/keywords/on-ko.png" alt="On K.O." />
 												<span>
-													play up to 1 Land of Wano character with a cost of 6 or less from your trash,
-													other than Kouzuki Momonosuke.
+													look at 5 cards from the top of your deck, reveal up to 1 [Monkey.D.Luffy] or
+													1 card with "Whitebeard Pirates" in its types and add it to your hand. Then,
+													place the rest at the bottom of your deck in any order.
 												</span>
 											</span>
 										</div>
@@ -266,7 +257,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Thoughts</h2>
-					<p>Early strengths, weaknesses, and the current overall read on the deck.</p>
+					<p>Strengths, weaknesses, and conclusion.</p>
 				</div>
 			</div>
 			<div class="thoughts-grid">
@@ -297,15 +288,10 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 				<div class="conclusion-head">
 					<div>
 						<h3>Conclusion</h3>
-						<p class="conclusion-subtitle">Current preview grade</p>
 					</div>
-					<div class="score-badge">5.5/10</div>
+					<div class="score-badge">6.5 / 10</div>
 				</div>
-				<p>
-					The deck is black but at one point in the game it will seem to play red, the Yamato loop is
-						strong combined with the leader's ability but requires setup, it's a combo that lacks base cards like
-					the 2k counter but it's not to be underestimated and that's why for me it's a 5.5/10.
-				</p>
+				<p>{conclusion}</p>
 			</div>
 		</div>
 	</section>
@@ -564,6 +550,12 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
+	}
+
+	@media (min-width: 901px) {
+		.decklist-intro {
+			white-space: nowrap;
+		}
 	}
 
 	.deck-card {

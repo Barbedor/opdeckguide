@@ -1,73 +1,60 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Yamato OP16 Preview Deck Guide";
+const title = "Marshall.D.Teach OP16 Preview Deck Guide";
 const description =
-	"Yamato OP16 preview deck guide for One Piece Card Game with the first sample list, the Yamato loop, the old-set shell, and early strengths and weaknesses.";
+	"Marshall.D.Teach OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Blackbeard spoilers, the old-set shell, and early strengths and weaknesses.";
 
-const icon = "/assets/guides/yamato-op16.png";
+const icon = "/assets/guides/Teach-op16.png";
 
 const decklist = [
-	{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
-	{ code: "OP05-082", name: "Shirahoshi", count: 2, img: "/Cards/OP05/OP05-082.png", role: "Character" },
-	{ code: "OP15-083", name: "Spoil", count: 4, img: "/Cards/OP15/OP15-083.jpg", role: "Character" },
-	{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
-	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
-	{ code: "OP16-094", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
-	{ code: "OP05-087", name: "Hakuba", count: 4, img: "/Cards/OP05/OP05-087.png", role: "Character" },
-	{ code: "OP16-083", name: "Kouzuki Oden", count: 4, img: "/Cards/OP16/OP16-083.jpg", role: "Character" },
-	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
-	{ code: "PRB02-014", name: "Sabo", count: 4, img: "/Cards/PRB02/PRB02-014.jpg", role: "Character" },
-	{ code: "OP16-096", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-096.jpg", role: "Character" },
-	{ code: "OP16-097", name: "Yamato", count: 2, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
-	{ code: "OP07-085", name: "Stussy", count: 2, img: "/Cards/OP07/OP07-085.png", role: "Character" },
-	{ code: "OP16-085", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
-	{ code: "OP14-096", name: "Ground Death", count: 4, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+	{ code: "OP16-080", name: "Marshall.D.Teach", count: 1, img: "/Cards/OP16/OP16-080.jpg", role: "Leader" },
+	{ code: "OP09-095", name: "Laffitte", count: 4, img: "/Cards/OP09/OP09-095.jpg", role: "Character" },
+	{ code: "OP16-102", name: "Avalo Pizarro", count: 2, img: "/Cards/OP16/OP16-102.jpg", role: "Character" },
+	{ code: "OP16-103", name: "Van Augur", count: 4, img: "/Cards/OP16/OP16-103.jpg", role: "Character" },
+	{ code: "OP16-109", name: "Doc Q", count: 4, img: "/Cards/OP16/OP16-109.jpg", role: "Character" },
+	{ code: "OP16-107", name: "Jesus Burgess", count: 4, img: "/Cards/OP16/OP16-107.jpg", role: "Character" },
+	{ code: "OP09-086", name: "Jesus Burgess", count: 4, img: "/Cards/OP09/OP09-086.jpg", role: "Character" },
+	{ code: "OP16-104", name: "Catarina Devon", count: 4, img: "/Cards/OP16/OP16-104.jpg", role: "Character" },
+	{ code: "EB04-058", name: "Borsalino", count: 3, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
+	{ code: "OP16-108", name: "Shiryu", count: 4, img: "/Cards/OP16/OP16-108.jpg", role: "Character" },
+	{ code: "OP09-093", name: "Marshall.D.Teach", count: 2, img: "/Cards/OP09/OP09-093.jpg", role: "Character" },
+	{ code: "OP16-119", name: "Marshall.D.Teach", count: 2, img: "/Cards/OP16/OP16-119.jpg", role: "Character" },
+	{ code: "OP06-115", name: "You’re the One Who Should Disappear!", count: 2, img: "/Cards/OP06/OP06-115.png", role: "Event" },
+	{ code: "OP09-096", name: "This is MY AGE!!!!", count: 4, img: "/Cards/OP09/OP09-096.jpg", role: "Event" },
+	{ code: "OP16-116", name: "ZEHAHAHAHAH", count: 3, img: "/Cards/OP16/OP16-116.jpg", role: "Event" },
+	{ code: "OP09-099", name: "Fullalead", count: 4, img: "/Cards/OP09/OP09-099.jpg", role: "Stage" },
 ];
 
-const leaderCard = { code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" };
+const leaderCard = { code: "OP16-080", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-080.jpg" };
 
 const spoilerCards = [
-	{
-		code: "OP16-098",
-		name: "Yamato",
-		img: "/Cards/OP16/OP16-098.jpg",
-		points: [
-			"On Play: draw 1 card and trash 1 card from your hand.",
-			"Activate: Main: trash this character to play up to 1 black Yamato character with a cost of 8 from your trash.",
-		],
-	},
-	{
-		code: "OP16-085",
-		name: "Kouzuki Momonosuke",
-		img: "/Cards/OP16/OP16-085.jpg",
-		points: [
-			"Blocker.",
-			"On Play: play up to 1 Land of Wano character with a cost of 6 or less from your trash, other than Kouzuki Momonosuke.",
-		],
-	},
+	{ code: "OP16-119", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-119.jpg" },
+	{ code: "OP16-116", name: "ZEHAHAHAHAH", img: "/Cards/OP16/OP16-116.jpg" },
 ];
 
 const prepPackage = [
-	{ count: 2, code: "OP05-082", name: "Shirahoshi", img: "/Cards/OP05/OP05-082.png" },
-	{ count: 4, code: "OP15-083", name: "Spoil", img: "/Cards/OP15/OP15-083.jpg" },
-	{ count: 2, code: "OP13-087", name: "Saint Charlos", img: "/Cards/OP13/OP13-087.jpg" },
-	{ count: 4, code: "OP09-088", name: "Shiryu", img: "/Cards/OP09/OP09-088.jpg" },
-	{ count: 4, code: "OP14-089", name: "Ryuma", img: "/Cards/OP14/OP14-089.jpg" },
-	{ count: 4, code: "OP13-089", name: "Saint.Topman.Warcury", img: "/Cards/OP13/OP13-089.jpg" },
-	{ count: 4, code: "OP10-094", name: "Ryuma", img: "/Cards/OP10/OP10-094.jpg" },
-	{ count: 4, code: "OP08-091", name: "Who's Who", img: "/Cards/OP08/OP08-091.png" },
-	{ count: 4, code: "OP05-087", name: "Hakuba", img: "/Cards/OP05/OP05-087.png" },
-	{ count: 4, code: "PRB02-014", name: "Sabo", img: "/Cards/PRB02/PRB02-014.jpg" },
-	{ count: 2, code: "OP15-092", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-092.jpg" },
-	{ count: 2, code: "OP07-085", name: "Stussy", img: "/Cards/OP07/OP07-085.png" },
-	{ count: 4, code: "OP14-096", name: "Ground Death", img: "/Cards/OP14/OP14-096.jpg" },
-	{ count: 2, code: "EB04-049", name: "Finger Pistol Yellow Lotus", img: "/Cards/EB04/EB04-049.jpg" },
+	{ count: 2, code: "OP09-091", name: "Vasco Shot", img: "/Cards/OP09/OP09-091.jpg" },
+	{ count: 4, code: "OP09-086", name: "Jesus Burgess", img: "/Cards/OP09/OP09-086.jpg" },
+	{ count: 2, code: "OP10-086", name: "Shiryu", img: "/Cards/OP10/OP10-086.jpg" },
+	{ count: 4, code: "OP12-112", name: "Baby 5", img: "/Cards/OP12/OP12-112.jpg" },
+	{ count: 2, code: "PRB02-015", name: "Shiryu", img: "/Cards/PRB02/PRB02-015.jpg" },
+	{ count: 4, code: "OP10-082", name: "Kuzan", img: "/Cards/OP10/OP10-082.jpg" },
+	{ count: 4, code: "ST27-003", name: "Kuzan", img: "/Cards/ST27/ST27-003.jpg" },
+	{ count: 2, code: "OP14-112", name: "Boa Hancock", img: "/Cards/OP14/OP14-112.jpg" },
+	{ count: 4, code: "OP09-093", name: "Marshall.D.Teach", img: "/Cards/OP09/OP09-093.jpg" },
+	{ count: 2, code: "OP06-115", name: "You’re the One Who Should Disappear!", img: "/Cards/OP06/OP06-115.png" },
+	{ count: 4, code: "OP09-096", name: "This is MY AGE!!!!", img: "/Cards/OP09/OP09-096.jpg" },
+	{ count: 2, code: "OP09-098", name: "Black Hole", img: "/Cards/OP09/OP09-098.jpg" },
+	{ count: 4, code: "OP09-099", name: "Fullalead", img: "/Cards/OP09/OP09-099.jpg" },
 ];
 
-const strengths = ["Good leader ability", "Yamato loop", "Unique playstyle", "Good for new players"];
+const strengths = ["Board control", "Consistency", "Good leader type", "10C powerful blocker"];
 
-const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to green freeze"];
+const weaknesses = ["Too defensive", "Skill player gap", "Lose to aggro spam", "BB type cards are limiting"];
+
+const conclusion =
+	"The deck has a lot of very good cards, especially now that the two spoiler cards are in the mix, but it still looks complex to make work cleanly. Teach still has strong control tools and a solid shell, but for me it's a little overrated right now because the deck still needs everything to line up well. For now, I'd put it at 7.5 / 10.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -75,10 +62,10 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Yamato OP16 Preview Deck Guide</h1>
+				<h1>Marshall.D.Teach OP16 Preview Deck Guide</h1>
 				<p>
-					First look at Yamato OP16 in the OP16 format. This preview focuses on the leader effect, the Yamato
-					loop, an early decklist idea, and the early read on the black Land of Wano shell.
+					First look at Marshall.D.Teach OP16 in the OP16 format. This preview focuses on the leader effect, the
+					key spoilers, an early decklist idea, and the early read on the black-yellow Blackbeard shell.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -86,7 +73,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Yamato OP16 guide icon" loading="lazy" />
+				<img src={icon} alt="Marshall.D.Teach OP16 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
@@ -96,7 +83,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Decklist</h2>
-					<p>An early decklist idea for Yamato OP16 in the OP16 format.</p>
+					<p class="decklist-intro">An early decklist idea for Marshall.D.Teach OP16 in the OP16 format.</p>
 				</div>
 			</div>
 			<div class="deck-grid">
@@ -122,7 +109,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Leader</h2>
-					<p>Core identity and leader effect for Yamato OP16-079.</p>
+					<p>Core identity and leader effect for Marshall.D.Teach OP16-080.</p>
 				</div>
 			</div>
 			<div class="leader-card">
@@ -139,23 +126,24 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 					<div class="fact-grid">
 						<div class="fact-box">
 							<span class="fact-label">Color</span>
-							<p>Black</p>
+							<p>Black - Yellow</p>
 						</div>
 						<div class="fact-box">
 							<span class="fact-label">Type</span>
-							<p>Land of Wano</p>
+							<p>The Seven Warlords of the Sea / Blackbeard Pirates</p>
 						</div>
 					</div>
 					<div class="text-card">
 						<h3>Leader Effect</h3>
 						<p class="effect-copy">
-							When a Land of Wano type character is played from your trash, that character
-							<span class="effect-inline">
-								<span>gains</span>
-								<img class="keyword-badge" src="/assets/keywords/rush.png" alt="Rush" />
-								<span>during this turn.</span>
-							</span>
-							The leader effect turns trash recursion into immediate pressure.
+							<img class="keyword-badge" src="/assets/keywords/opponents-turn.png" alt="Opponent's Turn" />
+							All of your Characters gain +1 cost.
+							<img class="keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />
+							<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
+							You may trash 1 card with a
+							<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
+							from your hand: change the target of that attack to this Leader or to one of your
+							{"{Blackbeard Pirates}"} type Character cards.
 						</p>
 					</div>
 				</div>
@@ -168,7 +156,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Key preview cards</h2>
-					<p>Main cards that define the Yamato loop package.</p>
+					<p>Main cards that push the Teach shell forward.</p>
 				</div>
 			</div>
 			<div class="loop-grid">
@@ -186,38 +174,43 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 						<div class="text-card">
 							<h3>{card.name}</h3>
 							<div class="ability-stack">
-								{card.code === "OP16-098" ? (
+								{card.code === "OP16-119" ? (
 									<>
 										<div class="ability-line">
 											<span class="ability-inline">
 												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>draw 1 card and trash 1 card from your hand.</span>
+												<span>
+													look at 3 cards from the top of your deck and add up to 1 card to the top of
+													your Life cards. Then, place the rest at the bottom of your deck in any order.
+												</span>
 											</span>
 										</div>
 										<div class="ability-line">
 											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
+												<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
 												<span>
-													You may trash this character: play up to 1 black Yamato character with a cost
-													of 8 from your trash.
+													Negate the effect of up to 1 of your opponent's Characters during this turn.
+													Then, K.O. up to 1 of your opponent's Characters with a cost of 5 or less.
 												</span>
 											</span>
 										</div>
 									</>
 								) : (
 									<>
-										<div class="ability-line ability-line-tag-only">
+										<div class="ability-line">
 											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />
+												<img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />
+												<span>
+													If you have 10 DON!! cards on your field, play up to 1 [Marshall.D.Teach] from
+													your hand. Then, your opponent adds 1 card from the top of their Life to their
+													hand.
+												</span>
 											</span>
 										</div>
 										<div class="ability-line">
 											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													play up to 1 Land of Wano character with a cost of 6 or less from your trash,
-													other than Kouzuki Momonosuke.
-												</span>
+												<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
+												<span>Draw 2 cards and trash 1 card from your hand.</span>
 											</span>
 										</div>
 									</>
@@ -266,7 +259,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			<div class="section-header">
 				<div>
 					<h2>Thoughts</h2>
-					<p>Early strengths, weaknesses, and the current overall read on the deck.</p>
+					<p>Strengths, weaknesses, and conclusion.</p>
 				</div>
 			</div>
 			<div class="thoughts-grid">
@@ -297,15 +290,10 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 				<div class="conclusion-head">
 					<div>
 						<h3>Conclusion</h3>
-						<p class="conclusion-subtitle">Current preview grade</p>
 					</div>
-					<div class="score-badge">5.5/10</div>
+					<div class="score-badge">7.5 / 10</div>
 				</div>
-				<p>
-					The deck is black but at one point in the game it will seem to play red, the Yamato loop is
-						strong combined with the leader's ability but requires setup, it's a combo that lacks base cards like
-					the 2k counter but it's not to be underestimated and that's why for me it's a 5.5/10.
-				</p>
+				<p>{conclusion}</p>
 			</div>
 		</div>
 	</section>
@@ -503,20 +491,6 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		margin: 0 0.12rem;
 	}
 
-	.effect-inline {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		white-space: nowrap;
-	}
-
-	.keyword-line {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		flex-wrap: wrap;
-	}
-
 	.ability-inline {
 		display: inline;
 	}
@@ -526,11 +500,16 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		height: 18px;
 		margin-right: 0.35rem;
 		vertical-align: middle;
-		transform: translateY(0px);
+		transform: translateY(-1px);
 	}
 
 	.effect-copy .keyword-badge {
 		height: 18px;
+	}
+
+	.effect-copy > .keyword-badge {
+		transform: translateY(-2px);
+		margin-right: 0.35rem;
 	}
 
 	.ability-stack {
@@ -541,10 +520,6 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 	.ability-line {
 		margin: 0;
 		color: var(--text-100);
-	}
-
-	.ability-line-tag-only {
-		margin-bottom: -0.15rem;
 	}
 
 	.loop-grid {
@@ -564,6 +539,12 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
+	}
+
+	@media (min-width: 901px) {
+		.decklist-intro {
+			white-space: nowrap;
+		}
 	}
 
 	.deck-card {
@@ -645,6 +626,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		background: rgba(255, 255, 255, 0.03);
 		text-align: left;
 		display: grid;
+		grid-template-rows: auto 1fr;
 		gap: 0.65rem;
 		align-content: start;
 		color: var(--text-100);
@@ -677,6 +659,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		color: var(--text-300);
 		font-size: 0.92rem;
 		line-height: 1.25;
+		overflow-wrap: anywhere;
 	}
 
 	.thoughts-grid {
@@ -732,12 +715,6 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 
 	.thought-down .thought-icon {
 		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
-	}
-
-	.conclusion-subtitle {
-		margin: 0.2rem 0 0;
-		color: var(--text-300);
-		font-size: 0.9rem;
 	}
 
 	.score-badge {
@@ -910,23 +887,18 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 			height: 18px;
 			margin: 0;
 			vertical-align: middle;
-			transform: translateY(4px);
+			transform: translateY(-3px);
 		}
 
-		.keyword-line {
-			gap: 0.5rem;
-		}
-
-		.keyword-line .keyword-badge {
-			height: 18px;
-			margin: 0;
-			transform: translateY(4px);
+		.effect-copy > .keyword-badge {
+			margin-right: 0.45rem;
 		}
 
 		.ability-inline .keyword-badge {
 			height: 18px;
-			margin-right: 0.4rem;
-			transform: translateY(0px);
+			margin-right: 0.5rem;
+			vertical-align: middle;
+			transform: translateY(-1px);
 		}
 
 		.prep-grid {
@@ -946,6 +918,7 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 
 		.prep-copy {
 			gap: 0.12rem;
+			align-content: start;
 		}
 
 		.prep-count,
@@ -953,6 +926,10 @@ const weaknesses = ["No support cards", "Too slow", "No auto removal", "Loses to
 		.prep-name {
 			font-size: 0.68rem;
 			line-height: 1.15;
+		}
+
+		.prep-name {
+			min-height: 2.3em;
 		}
 
 		.deck-grid {
