@@ -9,17 +9,16 @@ const icon = "/assets/guides/Buggy%20op16.png";
 
 const decklist = [
 	{ code: "OP16-041", name: "Buggy", count: 1, img: "/Cards/OP16/OP16-041.jpg", role: "Leader" },
-	{ code: "OP16-044", name: "Emporio.Ivankov", count: 4, img: "/Cards/OP16/OP16-044.jpg", role: "Character" },
 	{ code: "OP16-054", name: "Mr.1(Daz.Bonez)", count: 4, img: "/Cards/OP16/OP16-054.jpg", role: "Character" },
 	{ code: "OP16-055", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/OP16/OP16-055.jpg", role: "Character" },
-	{ code: "OP16-049", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-049.jpg", role: "Character" },
-	{ code: "OP14-045", name: "Crocodile", count: 4, img: "/Cards/OP14/OP14-045.jpg", role: "Character" },
+	{ code: "OP16-045", name: "Crocodile", count: 4, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
 	{ code: "OP16-056", name: "Mr.3(Galdino)", count: 4, img: "/Cards/OP16/OP16-056.jpg", role: "Character" },
-	{ code: "OP14-052", name: "Hannyabal", count: 2, img: "/Cards/OP14/OP14-052.jpg", role: "Character" },
+	{ code: "OP16-048", name: "Buggy", count: 4, img: "/Cards/OP16/OP16-048.jpg", role: "Character" },
 	{ code: "OP16-050", name: "Miss Olive", count: 4, img: "/Cards/OP16/OP16-050.jpg", role: "Character" },
 	{ code: "OP08-047", name: "Jozu", count: 4, img: "/Cards/OP08/OP08-047.png", role: "Character" },
-	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 12, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
-	{ code: "OP07-056", name: "Slave Arrow", count: 4, img: "/Cards/OP07/OP07-056.png", role: "Event" },
+	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 18, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
+	{ code: "OP05-057", name: "Hound Blaze", count: 2, img: "/Cards/OP05/OP05-057.png", role: "Event" },
+	{ code: "OP06-058", name: "Gravity Blade Raging Tiger", count: 2, img: "/Cards/OP06/OP06-058.png", role: "Event" },
 ];
 
 const leaderCard = { code: "OP16-041", name: "Buggy", img: "/Cards/OP16/OP16-041.jpg" };
@@ -29,6 +28,11 @@ const spoilerCards = [
 		code: "OP16-042",
 		name: "Prisoner of Impel Down",
 		img: "/Cards/OP16/OP16-042.jpg",
+	},
+	{
+		code: "OP16-048",
+		name: "Buggy",
+		img: "/Cards/OP16/OP16-048.jpg",
 	},
 	{
 		code: "OP16-056",
@@ -46,9 +50,19 @@ const prepPackage = [
 	{ count: 4, code: "OP07-056", name: "Slave Arrow", img: "/Cards/OP07/OP07-056.png" },
 ];
 
-const strengths = ["Strong leader ability", "Good spam combo", "Aggro power", "Cheap deck"];
+const strengths = [
+	"Very strong at swarming the board",
+	"Excellent tempo thanks to blue",
+	"Constant pressure",
+	"Very good into slower decks",
+];
 
-const weaknesses = ["Need a searcher", "No big body", "Lose to purple deck", "Few Impel Down cards"];
+const weaknesses = [
+	"Low raw power on its characters",
+	"Too dependent on keeping a full board",
+	"Loses to purple decks",
+	"Does not have many instant-win finishers",
+];
 
 const conclusion =
 	"The deck looks very fun, but it's clearly not in the running to become the new BDIF. That said, you can still lean into the meme and play 50 copies of the same card. For me, it's still missing some cards, like a 7-cost or higher character or a searcher. For those reasons, I'd put the deck at 5.5 / 10.";
@@ -152,9 +166,9 @@ const conclusion =
 					<p>Main cards that define the clown package.</p>
 				</div>
 			</div>
-			<div class="loop-grid">
+			<div class="loop-grid loop-grid-three">
 				{spoilerCards.map((card) => (
-					<div class="loop-card">
+					<div class="loop-card spoiler-three-card">
 						<button
 							class="option-card"
 							type="button"
@@ -171,6 +185,27 @@ const conclusion =
 									<div class="ability-line">
 										<span>Under the rules of this game, you may have any number of this card in your deck.</span>
 									</div>
+								) : card.code === "OP16-048" ? (
+									<>
+										<div class="ability-line">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
+												<span>
+													If your Leader has the {"{Impel Down}"} type, draw 1 card and play up to 1 [Prisoner
+													of Impel Down] from your hand.
+												</span>
+											</span>
+										</div>
+										<div class="ability-line">
+											<span class="ability-inline">
+												<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
+												<span>
+													This effect can be activated when your opponent attacks. Up to 1 of your [Prisoner of
+													Impel Down] cards gains Blocker during this turn.
+												</span>
+											</span>
+										</div>
+									</>
 								) : (
 									<div class="ability-line">
 										<span class="ability-inline">
@@ -495,12 +530,43 @@ const conclusion =
 		margin-bottom: 1rem;
 	}
 
+	#spoiler .loop-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
 	.loop-card {
 		display: grid;
 		grid-template-columns: 160px minmax(0, 1fr);
 		gap: 1rem;
 		padding: 1rem;
 		align-items: start;
+	}
+
+	.spoiler-three-card {
+		grid-template-columns: 1fr;
+	}
+
+	.spoiler-three-card .option-card {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		height: 300px;
+	}
+
+	.spoiler-three-card .option-card img {
+		max-width: 200px;
+		max-height: 280px;
+		margin: 0 auto;
+	}
+
+	.spoiler-three-card .text-card {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.spoiler-three-card .text-card h3 {
+		min-height: 2.8em;
+		margin-bottom: 0.85rem;
 	}
 
 	.deck-grid {
@@ -754,8 +820,22 @@ const conclusion =
 		.guide-hero .hero-grid,
 		.leader-card,
 		.loop-grid,
-		.thoughts-grid {
+		.thoughts-grid,
+		.loop-grid-three {
 			grid-template-columns: 1fr;
+		}
+
+		#spoiler .loop-grid-three {
+			grid-template-columns: 1fr !important;
+		}
+
+		#spoiler .spoiler-three-card .option-card {
+			height: auto;
+			align-items: flex-start;
+		}
+
+		#spoiler .spoiler-three-card .text-card h3 {
+			min-height: 0;
 		}
 
 		.guide-icon {
@@ -784,7 +864,8 @@ const conclusion =
 			border-radius: 14px;
 		}
 
-		.loop-card {
+		.loop-card,
+		.spoiler-three-card {
 			grid-template-columns: 96px minmax(0, 1fr);
 			gap: 0.9rem;
 		}

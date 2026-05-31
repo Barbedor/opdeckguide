@@ -11,17 +11,19 @@ const decklist = [
 	{ code: "OP16-060", name: "Sengoku", count: 1, img: "/Cards/OP16/OP16-060.jpg", role: "Leader" },
 	{ code: "OP16-064", name: "Koby", count: 4, img: "/Cards/OP16/OP16-064.jpg", role: "Character" },
 	{ code: "OP16-067", name: "Tsuru", count: 4, img: "/Cards/OP16/OP16-067.jpg", role: "Character" },
-	{ code: "OP08-074", name: "Black Maria", count: 4, img: "/Cards/OP08/OP08-074.png", role: "Character" },
-	{ code: "ST18-001", name: "Usohachi", count: 4, img: "/Cards/ST18/ST18-001.png", role: "Character" },
-	{ code: "EB01-061", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/EB01/EB01-061.jpg", role: "Character" },
+	{ code: "ST18-001", name: "Usohachi", count: 2, img: "/Cards/ST18/ST18-001.png", role: "Character" },
+	{ code: "OP16-070", name: "Donquixote Rosinante", count: 4, img: "/Cards/OP16/OP16-070.jpg", role: "Character" },
+	{ code: "OP16-071", name: "Benevolent King of the Waves", count: 2, img: "/Cards/OP16/OP16-071.jpg", role: "Character" },
 	{ code: "OP16-066", name: "Sengoku", count: 4, img: "/Cards/OP16/OP16-066.jpg", role: "Character" },
-	{ code: "EB04-038", name: "Rosinante & Law", count: 4, img: "/Cards/EB04/EB04-038.jpg", role: "Character" },
-	{ code: "OP16-063", name: "Kuzan", count: 4, img: "/Cards/OP16/OP16-063.jpg", role: "Character" },
+	{ code: "OP16-063", name: "Kuzan", count: 3, img: "/Cards/OP16/OP16-063.jpg", role: "Character" },
 	{ code: "OP16-065", name: "Sakazuki", count: 4, img: "/Cards/OP16/OP16-065.jpg", role: "Character" },
+	{ code: "OP09-065", name: "Sanji", count: 3, img: "/Cards/OP09/OP09-065.jpg", role: "Character" },
+	{ code: "OP16-075", name: "Monkey.D.Garp", count: 2, img: "/Cards/OP16/OP16-075.jpg", role: "Character" },
 	{ code: "OP16-073", name: "Borsalino", count: 4, img: "/Cards/OP16/OP16-073.jpg", role: "Character" },
+	{ code: "OP16-078", name: "Marineford", count: 4, img: "/Cards/OP16/OP16-078.jpg", role: "Stage" },
 	{ code: "OP13-076", name: "Divine Departure", count: 2, img: "/Cards/OP13/OP13-076.jpg", role: "Event" },
-	{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
-	{ code: "OP08-076", name: "It’s to Die For♡", count: 4, img: "/Cards/OP08/OP08-076.png", role: "Event" },
+	{ code: "OP16-076", name: "Three Admirals!", count: 4, img: "/Cards/OP16/OP16-076.jpg", role: "Event" },
+	{ code: "OP16-077", name: "\"Buddha\" Sengoku", count: 4, img: "/Cards/OP16/OP16-077.jpg", role: "Event" },
 ];
 
 const leaderCard = { code: "OP16-060", name: "Sengoku", img: "/Cards/OP16/OP16-060.jpg" };
@@ -46,9 +48,14 @@ const prepPackage = [
 	{ count: 4, code: "OP08-076", name: "It’s to Die For♡", img: "/Cards/OP08/OP08-076.png" },
 ];
 
-const strengths = ["Fast ramp", "Powerful admiral", "Simple gameplay", "Space for deck building"];
+const strengths = ["Fast ramp", "Strong late game", "Simple gameplay", "Space for deck building"];
 
-const weaknesses = ["No draw power", "No mid game", "Lose to aggro", "Need archetype 10C"];
+const weaknesses = [
+	"Lack of draw means your hand runs dry and your answers get thinner",
+	"Too dependent on ramp, so the deck gets unstable if the setup misses",
+	"Weak early game, so it has to absorb pressure",
+	"Struggles against aggro decks",
+];
 
 const conclusion =
 	"The deck has real strengths with its fast ramp, powerful admirals, and a game plan that is easy to pick up. It also leaves room to tune the list. That said, the lack of draw power, the missing mid game, and the matchup pressure from aggro keep it from being a truly solid top deck right now. It still needs a better archetype piece, especially a real 10-cost card, to take the next step. For now, I would put it at 6 / 10.";
