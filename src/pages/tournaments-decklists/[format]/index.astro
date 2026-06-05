@@ -1,0 +1,33 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import TournamentDecklistsView from "../../../components/TournamentDecklistsView.astro";
+import {
+	getTournamentEntriesByFormat,
+	tournamentFormats,
+} from "../../../lib/tournamentDecklists";
+
+export const getStaticPaths = () =>
+	tournamentFormats
+		.filter((format) => format.slug !== "op16-east")
+		.map((format) => ({
+		params: { format: format.slug },
+		props: { format },
+	}));
+
+const { format } = Astro.props;
+const entries = getTournamentEntriesByFormat(format.slug);
+const title = "One Piece TCG Tournament Decklists | Winning Decks by Eastern (OP16) and Western (OP16)";
+const description =
+	"Updated OPTCG meta decklists and winning tournament decklists for Eastern (OP16) and Western (OP16) formats.";
+---
+
+<MainLayout title={title} description={description}>
+	<TournamentDecklistsView
+		currentFormat={format.slug}
+		entries={entries}
+		formatConfig={format}
+		heroTitle="One Piece TCG Tournament Decklists OP16"
+		heroIntro="Recent tournament-winning decklists for Eastern (OP16) and Western (OP16) formats."
+		showSeoContent={true}
+	/>
+</MainLayout>

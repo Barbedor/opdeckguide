@@ -1,0 +1,520 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
+
+export const getStaticPaths = () =>
+	tournamentDecklistEntries.map((entry) => ({
+		params: { format: entry.viewSlug, slug: entry.slug },
+		props: { entry },
+	}));
+
+const { entry } = Astro.props;
+
+const title = `${entry.title} - ${entry.eventName}`;
+const description = `${entry.title} tournament decklist page with event metadata and full card grid.`;
+const leaderFormat = entry.leader.code.split("-")[0];
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
+const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
+---
+
+<MainLayout title={title} description={description} noindex={true}>
+	<section class="hero tournament-detail-hero">
+		<div class="container detail-hero-grid">
+			<div>
+				<span class="hero-badge">Tournament Decklist</span>
+				<h1>{entry.title}</h1>
+				<p>{entry.summary}</p>
+				<div class="detail-badges">
+					<span class="detail-badge">{entry.eventType}</span>
+					<span class="detail-badge">{entry.placement}</span>
+					{entry.record && <span class="detail-badge">{entry.record}</span>}
+					{entry.players && <span class="detail-badge">{entry.players} players</span>}
+				</div>
+				<div class="detail-links">
+					<a class="btn btn-primary" href={`/tournaments-decklists/${entry.viewSlug}/`}>Back to {entry.viewLabel}</a>
+					{entry.leader.code.startsWith("OP16-") && <a class="btn btn-secondary" href={entry.leader.href}>Read the deck guide</a>}
+					<button class="btn btn-secondary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+			</div>
+			<div class="detail-sidecard">
+				<img src={entry.leader.imageSrc} alt={`${entry.leader.name} icon`} loading="lazy" />
+				<div class="detail-sidecopy">
+					<strong>{entry.leader.name}</strong>
+					<span>{entry.leader.code}</span>
+					<span>{entry.formattedDate}</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="detail-meta">
+		<div class="container detail-meta-grid">
+			<div class="detail-meta-card">
+				<span class="meta-label">Tournament</span>
+				<strong>{entry.eventType}</strong>
+			</div>
+			<div class="detail-meta-card">
+				<span class="meta-label">Format</span>
+				<strong>{entry.viewLabel}</strong>
+			</div>
+			<div class="detail-meta-card">
+				<span class="meta-label">Leader</span>
+				<strong>{entry.leader.name} {leaderFormat}</strong>
+			</div>
+			<div class="detail-meta-card">
+				<span class="meta-label">Location</span>
+				<strong>{entry.location}</strong>
+			</div>
+			{
+				entry.author && (
+					<div class="detail-meta-card">
+						<span class="meta-label">Author</span>
+						<strong>{entry.author}</strong>
+					</div>
+				)
+			}
+			{
+				entry.host && (
+					<div class="detail-meta-card">
+						<span class="meta-label">Host</span>
+						<strong>{entry.host}</strong>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="detail-decklist">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Decklist</h2>
+					<p>Complete tournament decklist.</p>
+				</div>
+			</div>
+			<div class="detail-grid">
+				{entry.cards.map((card) => (
+					<button class="detail-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
+						<img src={card.img} alt={`${card.code} ${card.name}`} loading="lazy" />
+						<div class="detail-card-copy">
+							<span class="detail-card-count">{card.count}x</span>
+							<div class="detail-card-name">{card.name}</div>
+							<div class="detail-card-code">{card.code}</div>
+						</div>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<div class="card-modal-frame">
+				<img src="" alt="" data-modal-image />
+			</div>
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalFrame = document.querySelector(".card-modal-frame");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	let lockedScrollY = 0;
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		lockedScrollY = window.scrollY;
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${lockedScrollY}px`;
+		document.body.style.left = "0";
+		document.body.style.right = "0";
+		document.body.style.width = "100%";
+		document.body.style.overflow = "hidden";
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		document.body.style.position = "";
+		document.body.style.top = "";
+		document.body.style.left = "";
+		document.body.style.right = "";
+		document.body.style.width = "";
+		document.body.style.overflow = "";
+		window.scrollTo(0, lockedScrollY);
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		const target = event.target;
+		if (!(target instanceof HTMLElement)) return;
+		if (target === modalImage) {
+			closeModal();
+			return;
+		}
+		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
+			closeModal();
+		}
+	});
+	modalImage?.addEventListener("click", closeModal);
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
+</script>
+
+<style>
+	.tournament-detail-hero,
+	.detail-meta,
+	.detail-decklist {
+		padding: 0 0 22px;
+	}
+
+	.detail-hero-grid,
+	.detail-meta-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.detail-badges,
+	.detail-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+		margin-top: 1rem;
+	}
+
+	.detail-badge,
+	.detail-sidecard,
+	.detail-meta-card,
+	.detail-card {
+		border-radius: 20px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(10, 14, 24, 0.88);
+	}
+
+	.detail-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.55rem 0.85rem;
+		font-weight: 700;
+		color: var(--text-200);
+		line-height: 1;
+	}
+
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.detail-sidecard {
+		padding: 1rem;
+		display: grid;
+		grid-template-columns: 88px minmax(0, 1fr);
+		align-items: center;
+		gap: 0.85rem;
+		background:
+			radial-gradient(circle at top left, rgba(255, 147, 60, 0.18), transparent 36%),
+			rgba(10, 14, 24, 0.94);
+	}
+
+	.detail-sidecard img {
+		width: 100%;
+		border-radius: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+	}
+
+	.detail-sidecopy {
+		display: grid;
+		gap: 0.24rem;
+		color: var(--text-200);
+	}
+
+	.detail-meta-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.detail-meta-card {
+		padding: 0.68rem 0.75rem;
+		display: grid;
+		gap: 0.12rem;
+	}
+
+	.meta-label {
+		font-size: 0.64rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.detail-meta-card strong {
+		font-size: 0.82rem;
+	}
+
+	.detail-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.55rem;
+	}
+
+	.detail-card {
+		padding: 0.45rem;
+		text-align: left;
+		cursor: pointer;
+		display: grid;
+		grid-template-rows: auto 1fr;
+		align-content: start;
+		gap: 0.4rem;
+		min-width: 0;
+	}
+
+	.detail-card img {
+		width: 100%;
+		height: clamp(132px, 38vw, 190px);
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		aspect-ratio: 0.72 / 1;
+		object-fit: contain;
+		object-position: center top;
+		background: rgba(3, 6, 12, 0.82);
+	}
+
+	.detail-card-copy {
+		display: grid;
+		gap: 0.16rem;
+		align-content: start;
+	}
+
+	.detail-card-count {
+		color: #ffb36a;
+		font-weight: 800;
+		font-size: 0.78rem;
+	}
+
+	.detail-card-name {
+		font-weight: 700;
+		font-size: 0.76rem;
+	}
+
+	.detail-card-code {
+		font-size: 0.72rem;
+		color: var(--text-300);
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		width: fit-content;
+		max-width: 90vw;
+		max-height: 90vh;
+		margin: 0 auto;
+	}
+
+	.card-modal-frame {
+		width: fit-content;
+		max-width: 100%;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		display: block;
+		width: auto;
+		max-width: min(520px, calc(90vw - 2rem));
+		max-height: 80vh;
+		object-fit: contain;
+		margin: 0 auto;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.25rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.card-modal {
+			padding: 0 !important;
+		}
+
+		.card-modal-inner {
+			position: fixed !important;
+			inset: 0 !important;
+			width: 100vw !important;
+			height: 100dvh !important;
+			max-width: none !important;
+			max-height: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			display: grid !important;
+			place-items: center !important;
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.card-modal-frame {
+			padding: 0.75rem !important;
+			max-width: calc(100vw - 1.5rem) !important;
+			max-height: calc(100dvh - 1.5rem) !important;
+		}
+
+		.card-modal-inner img {
+			display: block !important;
+			width: auto !important;
+			max-width: min(78vw, 320px) !important;
+			height: auto !important;
+			max-height: 78vh !important;
+			object-fit: contain !important;
+			margin: 0 auto !important;
+		}
+
+		.modal-close {
+			position: fixed !important;
+			top: 0.75rem !important;
+			right: 0.75rem !important;
+			z-index: 2 !important;
+		}
+	}
+
+	@media (min-width: 760px) {
+		.detail-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.detail-card img {
+			height: clamp(210px, 25vw, 280px);
+		}
+	}
+
+	@media (min-width: 980px) {
+		.detail-hero-grid {
+			grid-template-columns: minmax(0, 1.25fr) 320px;
+			align-items: start;
+		}
+
+		.detail-sidecard {
+			grid-template-columns: 1fr;
+			align-items: stretch;
+		}
+
+		.detail-sidecard img {
+			aspect-ratio: 1.1 / 1;
+		}
+
+		.detail-meta-grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+
+		.detail-grid {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+
+		.detail-card {
+			padding: 0.7rem;
+		}
+
+		.detail-card img {
+			height: clamp(250px, 20vw, 320px);
+		}
+
+		.detail-card-copy {
+			padding-top: 0.55rem;
+		}
+
+		.detail-card-count {
+			font-size: inherit;
+		}
+
+		.detail-card-name {
+			font-size: inherit;
+		}
+
+		.detail-card-code {
+			font-size: 0.88rem;
+		}
+	}
+</style>

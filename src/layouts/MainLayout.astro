@@ -87,12 +87,20 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 						<img src="/assets/site-logo.png" alt="" aria-hidden="true" />
 						<span class="logo-text">OPDeckGuide</span>
 					</a>
-					<nav class="nav">
+					<nav class="nav" aria-label="Primary navigation">
+						<a href="/tournaments-decklists/"><span class="nav-two-line"><span>Tournaments</span><br /><span>Decklists</span></span></a>
+						<a href="/meta-analysis/"><span class="nav-two-line"><span>Meta</span><br /><span>Analysis</span></span></a>
 						<a href="/deck-guides/">Deck Guides</a>
-						<a href="/meta-analysis/">Meta Analysis</a>
-						<a href="/beginner-guides/">Beginner Guides</a>
-						<a href="/banlist/">Banlist</a>
-						<a href="/cards-list/">Cards List</a>
+						<a class="nav-mobile-visible" href="/cards-list/">Cards List</a>
+						<a class="nav-secondary" href="/beginner-guides/">Beginner Guides</a>
+						<a class="nav-secondary" href="/banlist/">Banlist</a>
+						<details class="mobile-more">
+							<summary aria-label="More sections">☰</summary>
+							<div class="mobile-more-menu">
+								<a href="/beginner-guides/">Beginner Guides</a>
+								<a href="/banlist/">Banlist</a>
+							</div>
+						</details>
 					</nav>
 				</div>
 				<div class="header-search-row">
@@ -119,6 +127,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 				<p>© 2026 OPDeckGuide. All rights reserved.</p>
 				<div class="footer-links">
 					<a href="/deck-guides/">Deck Guides</a>
+					<a href="/tournaments-decklists/">Tournaments Decklists</a>
 					<a href="/meta-analysis/">Meta Analysis</a>
 					<a href="/beginner-guides/">Beginner Guides</a>
 					<a href="/banlist/">Banlist</a>
@@ -214,7 +223,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		width: 100%;
 	}
 
@@ -236,13 +245,13 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		display: block;
 		width: auto;
 		height: auto;
-		max-height: 82px;
+		max-height: 64px;
 		object-fit: contain;
 		flex-shrink: 0;
 	}
 
 	.logo-text {
-		font-size: 1.9rem;
+		font-size: 1.75rem;
 		font-weight: 700;
 		letter-spacing: -0.03em;
 		color: var(--accent-2);
@@ -252,24 +261,57 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 	.nav {
 		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
+		gap: 0.55rem;
+		flex: 1;
+		flex-wrap: nowrap;
 		justify-content: flex-end;
-		font-size: 0.95rem;
+		font-size: 0.92rem;
 		color: var(--text-200);
 	}
 
-	.nav a {
+	.nav a,
+	.mobile-more summary {
 		padding: 0.4rem 0.6rem;
 		border-radius: 999px;
 		transition: all 0.2s ease;
 	}
 
+	.nav-two-line {
+		white-space: nowrap;
+	}
+
+	.nav-two-line > span {
+		display: inline;
+	}
+
+	.nav-two-line br {
+		display: none;
+	}
+
 	.nav a:hover,
-	.nav a:focus-visible {
+	.nav a:focus-visible,
+	.mobile-more summary:hover,
+	.mobile-more summary:focus-visible {
 		background: rgba(255, 107, 61, 0.15);
 		color: var(--text-100);
 		outline: none;
+	}
+
+	.mobile-more summary {
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.mobile-more {
+		display: none !important;
+	}
+
+	.mobile-more summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.mobile-more-menu {
+		display: none;
 	}
 
 	.nav-search {
@@ -570,7 +612,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 900px) {
 		.container {
 			width: min(100% - 1.2rem, 1120px);
 		}
@@ -583,6 +625,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		.header-top {
 			gap: 0.35rem;
 			justify-content: center;
+			flex-wrap: wrap;
 		}
 
 		.logo {
@@ -608,19 +651,83 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 		.nav {
 			width: 100%;
-			display: grid;
+			display: grid !important;
 			grid-template-columns: repeat(5, minmax(0, 1fr));
 			gap: 0.2rem;
 			font-size: 0.72rem;
 			line-height: 1.15;
-			justify-content: stretch;
 			text-align: center;
 		}
 
-		.nav a {
+		.nav-secondary {
+			display: none !important;
+		}
+
+		.mobile-more {
+			display: block !important;
+		}
+
+		.nav > a,
+		.mobile-more > summary {
 			padding: 0.35rem 0.15rem;
 			border-radius: 10px;
 			white-space: normal;
+		}
+
+		.nav-two-line {
+			display: inline-block;
+			line-height: 1.05;
+			white-space: normal;
+		}
+
+		.nav-two-line > span {
+			display: block;
+		}
+
+		.nav-two-line > span:first-child {
+			margin-right: 0;
+		}
+
+		.nav-two-line br {
+			display: none;
+		}
+
+		.mobile-more > summary {
+			font-size: 1.1rem;
+			font-weight: 700;
+			line-height: 1;
+		}
+
+		.mobile-more {
+			position: relative;
+		}
+
+		.mobile-more[open] > summary {
+			background: rgba(255, 107, 61, 0.15);
+			color: var(--text-100);
+		}
+
+		.mobile-more-menu {
+			position: absolute;
+			top: calc(100% + 0.45rem);
+			right: 0;
+			z-index: 30;
+			display: grid;
+			width: max-content;
+			min-width: 164px;
+			gap: 0.2rem;
+			padding: 0.45rem;
+			border: 1px solid rgba(255, 107, 61, 0.45);
+			border-radius: 12px;
+			background: rgba(11, 15, 26, 0.98);
+			box-shadow: var(--shadow);
+			text-align: left;
+		}
+
+		.mobile-more-menu a {
+			padding: 0.55rem 0.7rem;
+			border-radius: 8px;
+			white-space: nowrap;
 		}
 
 		.nav-search {
@@ -644,6 +751,12 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 		.btn {
 			width: 100%;
+		}
+	}
+
+	@media (min-width: 901px) {
+		.nav-two-line > span:first-child {
+			margin-right: 0.32em;
 		}
 	}
 
