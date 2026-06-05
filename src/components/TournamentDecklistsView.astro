@@ -267,9 +267,13 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 	showSeoContent && (
 		<section class="tournament-seo">
 			<div class="container">
+				<div class="tournament-seo-header">
+					<h2>Tournament Decklists FAQ</h2>
+					<p>Quick answers about how these tournament decklists are tracked and how to use them.</p>
+				</div>
 				<div class="tournament-seo-grid">
 					<article class="seo-card">
-						<h2>How to use these tournament decklists</h2>
+						<h2>How to use these tournament decklists?</h2>
 						<p>
 							Use this page as the main hub for One Piece TCG tournament results. Start with the
 							format tabs, check the top leader share, then open the winning decklists that match the
@@ -278,7 +282,7 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 					</article>
 
 					<article class="seo-card">
-						<h2>What counts as a winning decklist on OPDeckGuide</h2>
+						<h2>What counts as a winning decklist on OPDeckGuide?</h2>
 						<p>
 							OPDeckGuide tracks real tournament results and featured winning lists from supported
 							event types. The goal is to show the decks that actually performed, not theory-only test
@@ -287,7 +291,7 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 					</article>
 
 					<article class="seo-card">
-						<h2>How East and West formats differ</h2>
+						<h2>How do East and West formats differ?</h2>
 						<p>
 							East and West formats can diverge in release timing, legal card pool, and leader
 							popularity. Splitting the data by region makes it easier to compare the active meta
@@ -296,7 +300,7 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 					</article>
 
 					<article class="seo-card">
-						<h2>Find top-performing leaders and recent winners</h2>
+						<h2>How do I find top-performing leaders and recent winners?</h2>
 						<p>
 							The leader ranking highlights which decks are winning the most events in the selected
 							format, while the results table helps you track the most recent finishes. This makes the
@@ -305,7 +309,7 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 					</article>
 
 					<article class="seo-card">
-						<h2>Tournament types tracked</h2>
+						<h2>Which tournament types are tracked?</h2>
 						<p>
 							This section currently tracks Shop Events, Standard Battles, Flagship Battles, Treasure
 							Cups, and Championships. Each tournament type gives a different signal, from local
@@ -785,6 +789,19 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 
 	.tournament-seo {
 		padding: 0 0 32px;
+	}
+
+	.tournament-seo-header {
+		margin-bottom: 1rem;
+	}
+
+	.tournament-seo-header h2 {
+		margin-bottom: 0.35rem;
+	}
+
+	.tournament-seo-header p {
+		margin: 0;
+		color: var(--text-200);
 	}
 
 	.tournament-seo-grid {
