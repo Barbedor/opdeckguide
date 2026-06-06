@@ -9,9 +9,9 @@ import {
 const defaultFormat = "op16-east";
 const formatConfig = tournamentFormats.find((format) => format.slug === defaultFormat);
 
-const title = "One Piece TCG Tournament Decklists | Winning Decks by Eastern (OP16) and Western (OP16)";
+const title = "One Piece TCG Tournament Decklists OP16 | East and West Winners";
 const description =
-	"Updated OPTCG meta decklists and winning tournament decklists for Eastern (OP16) and Western (OP16) formats.";
+	"Browse winning One Piece TCG tournament decklists for OP16 across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -19,8 +19,8 @@ const description =
 		currentFormat={defaultFormat}
 		entries={getTournamentEntriesByFormat(defaultFormat)}
 		formatConfig={formatConfig}
-		heroTitle="One Piece TCG Tournament Decklists OP16"
-		heroIntro="Recent tournament-winning decklists for Eastern (OP16) and Western (OP16) formats."
+		heroTitle="One Piece TCG OP16 Tournament Decklists"
+		heroIntro="Track winning One Piece TCG tournament decklists for the OP16 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
 		showSeoContent={true}
 	/>
 </MainLayout>
