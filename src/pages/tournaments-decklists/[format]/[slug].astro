@@ -47,9 +47,9 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 					{entry.players && <span class="detail-badge">{entry.players} players</span>}
 				</div>
 				<div class="detail-links">
-					<a class="btn btn-primary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
+					<a class="btn btn-secondary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
 					{entry.leader.code.startsWith("OP16-") && <a class="btn btn-secondary" href={entry.leader.href}>Read the deck guide</a>}
-					<button class="btn btn-secondary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
 						Copy for Sim
 					</button>
 				</div>
@@ -270,6 +270,22 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 		.tournament-detail-hero {
 			padding-top: 14px;
 		}
+
+		.detail-links {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+			gap: 0.7rem;
+			align-items: stretch;
+		}
+
+		.detail-links > * {
+			min-width: 0;
+			padding: 0.8rem 0.55rem;
+			font-size: 0.86rem;
+			line-height: 1.2;
+			min-height: 0;
+			border-radius: 18px;
+		}
 	}
 
 	.copy-sim-button {
@@ -355,6 +371,7 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 		display: grid;
 		gap: 0.16rem;
 		align-content: start;
+		min-width: 0;
 	}
 
 	.detail-card-count {
@@ -366,6 +383,9 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	.detail-card-name {
 		font-weight: 700;
 		font-size: 0.76rem;
+		min-width: 0;
+		overflow-wrap: anywhere;
+		word-break: break-word;
 	}
 
 	.detail-card-code {
@@ -471,6 +491,12 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 			right: 0.75rem !important;
 			z-index: 2 !important;
 		}
+
+		.detail-card-name {
+			min-height: 2.5em;
+			line-height: 1.2;
+		}
+
 	}
 
 	@media (min-width: 760px) {
