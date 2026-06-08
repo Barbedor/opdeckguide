@@ -6,6 +6,21 @@ const description =
 	"Buggy OP16 preview deck guide for One Piece Card Game with an early decklist idea, the clown package, the old-set shell, and early strengths and weaknesses.";
 
 const icon = "/assets/guides/Buggy%20op16.png";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP16-041", name: "Buggy", count: 1, img: "/Cards/OP16/OP16-041.jpg", role: "Leader" },
@@ -13,13 +28,14 @@ const decklist = [
 	{ code: "OP16-055", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/OP16/OP16-055.jpg", role: "Character" },
 	{ code: "OP16-045", name: "Crocodile", count: 4, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
 	{ code: "OP16-056", name: "Mr.3(Galdino)", count: 4, img: "/Cards/OP16/OP16-056.jpg", role: "Character" },
+	{ code: "OP16-044", name: "Emporio.Ivankov", count: 4, img: "/Cards/OP16/OP16-044.jpg", role: "Character" },
 	{ code: "OP16-048", name: "Buggy", count: 4, img: "/Cards/OP16/OP16-048.jpg", role: "Character" },
 	{ code: "OP16-050", name: "Miss Olive", count: 4, img: "/Cards/OP16/OP16-050.jpg", role: "Character" },
-	{ code: "OP08-047", name: "Jozu", count: 4, img: "/Cards/OP08/OP08-047.png", role: "Character" },
 	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 18, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
-	{ code: "OP05-057", name: "Hound Blaze", count: 2, img: "/Cards/OP05/OP05-057.png", role: "Event" },
-	{ code: "OP06-058", name: "Gravity Blade Raging Tiger", count: 2, img: "/Cards/OP06/OP06-058.png", role: "Event" },
+	{ code: "OP16-058", name: "The Prisoners Are Rioting!!", count: 2, img: "/Cards/OP16/OP16-058.jpg", role: "Event" },
+	{ code: "EB01-028", name: "Gum-Gum Champion Rifle", count: 2, img: "/Cards/EB01/EB01-028.png", role: "Event" },
 ];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-041", name: "Buggy", img: "/Cards/OP16/OP16-041.jpg" };
 
@@ -92,8 +108,13 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="section-heading-row">
 					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<div>
 					<p class="decklist-intro">An early decklist idea for Buggy OP16 in the OP16 format.</p>
 				</div>
 			</div>
@@ -369,9 +390,51 @@ const conclusion =
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.section-heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-row h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -1067,6 +1130,20 @@ const conclusion =
 
 		.conclusion-head {
 			align-items: flex-start;
+		}
+
+		.section-heading-row .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			white-space: nowrap;
 		}
 	}
 </style>

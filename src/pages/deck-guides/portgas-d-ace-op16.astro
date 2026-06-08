@@ -6,23 +6,39 @@ const description =
 	"Portgas.D.Ace OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Ace spoilers, the old-set shell, and early strengths and weaknesses.";
 
 const icon = "/assets/guides/Ace-op16.png";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP16-001", name: "Portgas.D.Ace", count: 1, img: "/Cards/OP16/OP16-001.jpg", role: "Leader" },
 	{ code: "OP13-016", name: "Monkey.D.Garp", count: 4, img: "/Cards/OP13/OP13-016.jpg", role: "Character" },
 	{ code: "OP16-002", name: "Izo", count: 4, img: "/Cards/OP16/OP16-002.jpg", role: "Character" },
-	{ code: "ST15-004", name: "Thatch", count: 4, img: "/Cards/ST15/ST15-004.png", role: "Character" },
+	{ code: "OP16-009", name: "Speed Jil", count: 4, img: "/Cards/OP16/OP16-009.jpg", role: "Character" },
+	{ code: "OP16-004", name: "Curiel", count: 4, img: "/Cards/OP16/OP16-004.jpg", role: "Character" },
 	{ code: "OP16-015", name: "Monkey.D.Luffy", count: 4, img: "/Cards/OP16/OP16-015.jpg", role: "Character" },
 	{ code: "OP16-017", name: "LittleOars.Jr", count: 4, img: "/Cards/OP16/OP16-017.jpg", role: "Character" },
 	{ code: "OP16-118", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-118.jpg", role: "Character" },
 	{ code: "OP16-011", name: "Vista", count: 4, img: "/Cards/OP16/OP16-011.jpg", role: "Character" },
 	{ code: "OP16-014", name: "Marco", count: 4, img: "/Cards/OP16/OP16-014.jpg", role: "Character" },
-	{ code: "ST23-001", name: "Uta", count: 4, img: "/Cards/ST23/ST23-001.jpg", role: "Character" },
 	{ code: "OP16-003", name: "Edward.Newgate", count: 4, img: "/Cards/OP16/OP16-003.jpg", role: "Character" },
 	{ code: "OP16-005", name: "Thatch", count: 4, img: "/Cards/OP16/OP16-005.jpg", role: "Character" },
 	{ code: "OP09-118", name: "Gol.D.Roger", count: 2, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
 	{ code: "OP16-021", name: "Moby Dick", count: 4, img: "/Cards/OP16/OP16-021.jpg", role: "Stage" },
 ];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-001", name: "Portgas.D.Ace", img: "/Cards/OP16/OP16-001.jpg" };
 
@@ -48,9 +64,19 @@ const prepPackage = [
 	{ count: 2, code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" },
 ];
 
-const strengths = ["Decent late game", "Powerful SEC", "Good consistency", "Aggro playstyle"];
+const strengths = [
+	"Very strong offensive pressure",
+	"Strong Whitebeard Pirates synergy",
+	"Threats at every stage of the game",
+	"Excellent at punishing slow starts",
+];
 
-const weaknesses = ["No counter cards", "Mid 8K body", "SEC dependent", "Lose to control"];
+const weaknesses = [
+	"Heavily reliant on strong curves",
+	"Weak into control decks",
+	"Limited answers to large threats",
+	"The deck is fairly predictable",
+];
 
 const conclusion =
 	'The deck best represents the philosophy of the red playstyle "face is the place" but it has too few valid pieces, some moments seem to go well while others struggle to survive, the new SEC and Luffy improve the situation. For these reasons for me it\'s a 5.5 / 10';
@@ -80,8 +106,13 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="section-heading-row">
 					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<div>
 					<p class="decklist-intro">An early decklist idea for Portgas.D.Ace OP16 in the OP16 format.</p>
 				</div>
 			</div>
@@ -364,9 +395,51 @@ const conclusion =
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.section-heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-row h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -808,6 +881,20 @@ const conclusion =
 
 		.guide-icon {
 			margin-top: 1.35rem;
+		}
+
+		.section-heading-row .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			white-space: nowrap;
 		}
 	}
 

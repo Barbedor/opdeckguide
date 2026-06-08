@@ -6,24 +6,40 @@ const description =
 	"Yamato OP16 preview deck guide for One Piece Card Game with the first sample list, the Yamato loop, the old-set shell, and early strengths and weaknesses.";
 
 const icon = "/assets/guides/yamato-op16.png";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
-	{ code: "OP05-082", name: "Shirahoshi", count: 2, img: "/Cards/OP05/OP05-082.png", role: "Character" },
-	{ code: "OP15-083", name: "Spoil", count: 4, img: "/Cards/OP15/OP15-083.jpg", role: "Character" },
+	{ code: "OP16-088", name: "Shimotsuki Ushimaru", count: 2, img: "/Cards/OP16/OP16-088.jpg", role: "Character" },
 	{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
+	{ code: "OP16-092", name: "Nico Robin", count: 4, img: "/Cards/OP16/OP16-092.jpg", role: "Character" },
+	{ code: "OP16-081", name: "Otama", count: 4, img: "/Cards/OP16/OP16-081.jpg", role: "Character" },
 	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
-	{ code: "OP16-094", name: "Portgas.D.Ace", count: 4, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
+	{ code: "OP16-094", name: "Portgas.D.Ace", count: 2, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
 	{ code: "OP16-084", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-084.jpg", role: "Character" },
-	{ code: "OP16-083", name: "Kouzuki Oden", count: 4, img: "/Cards/OP16/OP16-083.jpg", role: "Character" },
 	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
 	{ code: "OP16-087", name: "Shinobu", count: 4, img: "/Cards/OP16/OP16-087.jpg", role: "Character" },
 	{ code: "OP16-096", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-096.jpg", role: "Character" },
-	{ code: "OP16-097", name: "Yamato", count: 2, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
-	{ code: "OP07-085", name: "Stussy", count: 2, img: "/Cards/OP07/OP07-085.png", role: "Character" },
+	{ code: "OP16-097", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
 	{ code: "OP16-085", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
-	{ code: "OP14-096", name: "Ground Death", count: 4, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+	{ code: "OP14-096", name: "Ground Death", count: 2, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
+	{ code: "OP16-099", name: "I've Come Here To Cut Those Chains!", count: 4, img: "/Cards/OP16/OP16-099.jpg", role: "Event" },
 ];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" };
 
@@ -65,13 +81,18 @@ const prepPackage = [
 	{ count: 2, code: "EB04-049", name: "Finger Pistol Yellow Lotus", img: "/Cards/EB04/EB04-049.jpg" },
 ];
 
-const strengths = ["Good leader ability", "Yamato loop", "Unique playstyle", "Good for new players"];
+const strengths = [
+	"The Yamato loop is extremely powerful",
+	"Very hard to grind out over the long game",
+	"Capable of explosive turns",
+	"Much more aggressive than a typical black deck",
+];
 
 const weaknesses = [
-	"Extremely dependent on the Yamato loop",
-	"Lack of support",
-	"Too slow against aggro",
-	"Vulnerable to control and freeze",
+	"Extremely reliant on the Yamato loop",
+	"Support is still limited",
+	"Tough matchups into very aggressive decks",
+	"Struggles against control and board-freeze decks",
 ];
 ---
 
@@ -99,8 +120,13 @@ const weaknesses = [
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="section-heading-row">
 					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<div>
 					<p>An early aggro-rush decklist idea for Yamato OP16 in the OP16 format.</p>
 				</div>
 			</div>
@@ -304,13 +330,13 @@ const weaknesses = [
 						<h3>Conclusion</h3>
 						<p class="conclusion-subtitle">Current preview grade</p>
 					</div>
-					<div class="score-badge">6.5/10</div>
+					<div class="score-badge">8 / 10</div>
 				</div>
 				<p>
-					The deck looks better when it leans into an aggro-rush plan instead of trying to sit behind blockers.
-					The Yamato loop is strong with the leader's ability, and the Momonosuke and Shinobu package gives the
-					deck a cleaner way to build pressure with more bodies. Nami and Kin'emon already help the trash setup,
-					so the list makes more sense when it focuses on pushing first. For now, I'd still put it at 6.5/10.
+					The deck looks much stronger when it fully leans into the Yamato loop and pushes a proactive black aggro plan.
+					With the updated shell, it has more explosive turns, better long-game staying power, and a more coherent way
+					to convert trash setup into pressure. It still has clear weaknesses, especially when the loop is disrupted,
+					but the overall ceiling is high enough that I would put it at 8 / 10 for now.
 				</p>
 			</div>
 		</div>
@@ -384,9 +410,51 @@ const weaknesses = [
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.section-heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-row h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -822,6 +890,20 @@ const weaknesses = [
 
 		.guide-icon {
 			margin-top: 1.35rem;
+		}
+
+		.section-heading-row .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			white-space: nowrap;
 		}
 	}
 

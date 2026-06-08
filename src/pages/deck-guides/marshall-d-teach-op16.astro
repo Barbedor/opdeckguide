@@ -6,26 +6,40 @@ const description =
 	"Marshall.D.Teach OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Blackbeard spoilers, the old-set shell, and early strengths and weaknesses.";
 
 const icon = "/assets/guides/Teach-op16.png";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP16-080", name: "Marshall.D.Teach", count: 1, img: "/Cards/OP16/OP16-080.jpg", role: "Leader" },
 	{ code: "OP16-103", name: "Van Augur", count: 2, img: "/Cards/OP16/OP16-103.jpg", role: "Character" },
 	{ code: "OP16-109", name: "Doc Q", count: 4, img: "/Cards/OP16/OP16-109.jpg", role: "Character" },
 	{ code: "OP16-110", name: "Vasco Shot", count: 4, img: "/Cards/OP16/OP16-110.jpg", role: "Character" },
-	{ code: "OP12-112", name: "Baby 5", count: 3, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
+	{ code: "OP12-112", name: "Baby 5", count: 4, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
 	{ code: "OP16-104", name: "Catarina Devon", count: 4, img: "/Cards/OP16/OP16-104.jpg", role: "Character" },
-	{ code: "OP16-106", name: "Sanjuan.Wolf", count: 2, img: "/Cards/OP16/OP16-106.jpg", role: "Character" },
 	{ code: "EB04-058", name: "Borsalino", count: 4, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
 	{ code: "OP16-108", name: "Shiryu", count: 4, img: "/Cards/OP16/OP16-108.jpg", role: "Character" },
-	{ code: "OP09-093", name: "Marshall.D.Teach", count: 2, img: "/Cards/OP09/OP09-093.jpg", role: "Character" },
-	{ code: "OP09-095", name: "Laffitte", count: 4, img: "/Cards/OP09/OP09-095.jpg", role: "Character" },
+	{ code: "OP09-093", name: "Marshall.D.Teach", count: 4, img: "/Cards/OP09/OP09-093.jpg", role: "Character" },
 	{ code: "OP09-086", name: "Jesus Burgess", count: 4, img: "/Cards/OP09/OP09-086.jpg", role: "Character" },
 	{ code: "OP16-119", name: "Marshall.D.Teach", count: 4, img: "/Cards/OP16/OP16-119.jpg", role: "Character" },
-	{ code: "OP16-115", name: "Black Vortex", count: 3, img: "/Cards/OP16/OP16-115.jpg", role: "Event" },
-	{ code: "OP16-116", name: "Zehahahahaha!!!", count: 1, img: "/Cards/OP16/OP16-116.jpg", role: "Event" },
-	{ code: "OP09-099", name: "Honeycomb", count: 4, img: "/Cards/OP09/OP09-099.jpg", role: "Stage" },
-	{ code: "OP09-098", name: "Liberation", count: 1, img: "/Cards/OP09/OP09-098.jpg", role: "Event" },
+	{ code: "OP09-096", name: "This is MY AGE!!!!", count: 4, img: "/Cards/OP09/OP09-096.jpg", role: "Event" },
+	{ code: "OP09-097", name: "Black Vortex", count: 2, img: "/Cards/OP09/OP09-097.jpg", role: "Event" },
+	{ code: "OP16-116", name: "ZEHAHAHAHAH", count: 2, img: "/Cards/OP16/OP16-116.jpg", role: "Event" },
+	{ code: "OP09-099", name: "Fullalead", count: 4, img: "/Cards/OP09/OP09-099.jpg", role: "Stage" },
 ];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-080", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-080.jpg" };
 
@@ -65,7 +79,7 @@ const weaknesses = [
 ];
 
 const conclusion =
-	"The deck has a lot of very good cards, especially now that the two spoiler cards are in the mix, but it still looks complex to make work cleanly. Teach still has strong control tools and a solid shell, but for me it's a little overrated right now because the deck still needs everything to line up well. For now, I'd put it at 7.5 / 10.";
+	"The deck has a lot of very good cards, especially now that the two spoiler cards are in the mix, and the updated list looks cleaner and more stable than the first draft. Teach still has strong control tools and a solid shell, and this version does a better job of trimming the clunkier pieces. For now, I'd put it at 8 / 10.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -92,8 +106,13 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="section-heading-row">
 					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<div>
 					<p class="decklist-intro">An early decklist idea for Marshall.D.Teach OP16 in the OP16 format.</p>
 				</div>
 			</div>
@@ -302,7 +321,7 @@ const conclusion =
 					<div>
 						<h3>Conclusion</h3>
 					</div>
-					<div class="score-badge">7.5 / 10</div>
+					<div class="score-badge">8 / 10</div>
 				</div>
 				<p>{conclusion}</p>
 			</div>
@@ -377,9 +396,51 @@ const conclusion =
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.section-heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-row h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -1035,6 +1096,20 @@ const conclusion =
 
 		.conclusion-head {
 			align-items: flex-start;
+		}
+
+		.section-heading-row .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			white-space: nowrap;
 		}
 	}
 </style>

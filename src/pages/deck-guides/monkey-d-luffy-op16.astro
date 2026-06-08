@@ -6,6 +6,21 @@ const description =
 	"Monkey.D.Luffy OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Impel Down spoilers, the old-set shell, and early strengths and weaknesses.";
 
 const icon = "/assets/guides/Luffy%20op16.png";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP16-022", name: "Monkey.D.Luffy", count: 1, img: "/Cards/OP16/OP16-022.jpg", role: "Leader" },
@@ -15,20 +30,21 @@ const decklist = [
 	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 8, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
 	{ code: "OP16-026", name: "Emporio.Ivankov", count: 4, img: "/Cards/OP16/OP16-026.jpg", role: "Character" },
 	{ code: "OP16-048", name: "Buggy", count: 4, img: "/Cards/OP16/OP16-048.jpg", role: "Character" },
-	{ code: "OP16-045", name: "Crocodile", count: 2, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
+	{ code: "OP16-045", name: "Crocodile", count: 4, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
 	{ code: "OP16-056", name: "Mr.3(Galdino)", count: 4, img: "/Cards/OP16/OP16-056.jpg", role: "Character" },
-	{ code: "OP16-050", name: "Miss Olive", count: 2, img: "/Cards/OP16/OP16-050.jpg", role: "Character" },
-	{ code: "ST30-010", name: "Crocodile", count: 4, img: "/Cards/ST30/ST30-010.jpg", role: "Character" },
+	{ code: "ST30-012", name: "Monkey.D.Luffy", count: 2, img: "/Cards/ST30/ST30-012.jpg", role: "Character" },
+	{ code: "ST30-014", name: "Mr.3(Galdino)", count: 4, img: "/Cards/ST30/ST30-014.jpg", role: "Character" },
 	{ code: "OP16-032", name: "Boa Hancock", count: 4, img: "/Cards/OP16/OP16-032.jpg", role: "Character" },
-	{ code: "EB01-028", name: "Gum Gum Champion Rifle", count: 3, img: "/Cards/EB01/EB01-028.png", role: "Event" },
+	{ code: "OP16-038", name: "Let's Go!! To the Navy Headquarters!!", count: 2, img: "/Cards/OP16/OP16-038.jpg", role: "Event" },
 	{
 		code: "OP13-040",
 		name: "I Know You're Strong...So I'll Go All Out From the Start!!!",
-		count: 3,
+		count: 2,
 		img: "/Cards/OP13/OP13-040.jpg",
 		role: "Event",
 	},
 ];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-022", name: "Monkey.D.Luffy", img: "/Cards/OP16/OP16-022.jpg" };
 
@@ -74,7 +90,7 @@ const weaknesses = [
 ];
 
 const conclusion =
-	"The deck is a bit strange to play as Ivankov of OP02 was, playing many small pieces is strange but they are helped by being able to rest or freeze the opponent's board. For me, it will be very good in the meta and that's why for me it's a 8 / 10";
+	"The deck is a bit unusual to pilot, much like the old OP02 Ivankov shells, because it leans on a swarm of smaller pieces. That said, the rest and freeze effects give it real tempo swings, and the updated build looks legitimately strong in the right meta. For now, I would put it at 7.5 / 10.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -101,8 +117,13 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="section-heading-row">
 					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<div>
 					<p class="decklist-intro">An early decklist idea for Monkey.D.Luffy OP16 in the OP16 format.</p>
 				</div>
 			</div>
@@ -295,7 +316,7 @@ const conclusion =
 					<div>
 						<h3>Conclusion</h3>
 					</div>
-					<div class="score-badge">8 / 10</div>
+					<div class="score-badge">7.5 / 10</div>
 				</div>
 				<p>{conclusion}</p>
 			</div>
@@ -370,9 +391,51 @@ const conclusion =
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.section-heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-row h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -819,6 +882,20 @@ const conclusion =
 
 		.guide-icon {
 			margin-top: 1.35rem;
+		}
+
+		.section-heading-row .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			white-space: nowrap;
 		}
 	}
 
