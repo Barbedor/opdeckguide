@@ -99,16 +99,14 @@ const conclusion =
 
 	<section id="decklist" class="list-section">
 		<div class="container">
-			<div class="section-header">
-				<div class="section-heading-row">
+			<div class="section-header decklist-header">
+				<div class="section-heading-copy">
 					<h2>Decklist</h2>
-					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-						Copy for Sim
-					</button>
-				</div>
-				<div>
 					<p class="decklist-intro">An early decklist idea for Sengoku OP16 in the OP16 format.</p>
 				</div>
+				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+					Copy for Sim
+				</button>
 			</div>
 			<div class="deck-grid">
 				{decklist.map((card) => (
@@ -441,16 +439,27 @@ const conclusion =
 		font-weight: 700;
 	}
 
-	.section-heading-row {
+	.decklist-header {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-between;
 		gap: 0.75rem;
 		width: 100%;
 	}
 
-	.section-heading-row h2 {
+	.section-heading-copy {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.section-heading-copy h2 {
 		margin: 0;
+	}
+
+	@media (min-width: 901px) {
+		.decklist-intro {
+			white-space: nowrap;
+		}
 	}
 
 	.guide-hero .hero-grid {
@@ -654,12 +663,6 @@ const conclusion =
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
-	}
-
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
 	}
 
 	.deck-card {
@@ -905,6 +908,30 @@ const conclusion =
 	}
 
 	@media (max-width: 900px) {
+		.decklist-header {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: start;
+			gap: 0.6rem 0.75rem;
+		}
+
+		.decklist-header .section-heading-copy {
+			display: contents;
+		}
+
+		.decklist-header h2 {
+			grid-column: 1;
+			grid-row: 1;
+			align-self: center;
+			line-height: 1;
+		}
+
+		.decklist-header .decklist-intro {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			margin-top: 0;
+		}
+
 		.guide-hero .hero-grid,
 		.leader-card,
 		.loop-grid,
@@ -917,7 +944,7 @@ const conclusion =
 			margin-top: 1.35rem;
 		}
 
-		.section-heading-row .copy-sim-button {
+		.decklist-header .copy-sim-button {
 			display: inline-flex;
 			width: auto;
 			min-width: 0;
@@ -928,6 +955,8 @@ const conclusion =
 			border-radius: 12px;
 			flex: 0 0 auto;
 			margin-left: auto;
+			margin-top: 0;
+			align-self: center;
 			white-space: nowrap;
 		}
 	}
