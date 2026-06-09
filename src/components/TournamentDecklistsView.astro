@@ -8,13 +8,14 @@ const leaderStats = getTournamentLeaderStats(currentFormat);
 const totalDecklists = entries.length;
 
 const eventTypeMeta = {
-	"Shop Event": { short: "SE", color: "#ff7a2f", soft: "rgba(255, 122, 47, 0.18)" },
-	"Standard Battle": { short: "SB", color: "#5db7ff", soft: "rgba(93, 183, 255, 0.18)" },
+	"Grand Asia Open": { short: "GAO", color: "#f5c451", soft: "rgba(245, 196, 81, 0.18)" },
+	"Area Qualifiers": { short: "AQ", color: "#a06eff", soft: "rgba(160, 110, 255, 0.18)" },
+	"Treasure Cup": { short: "TB", color: "#4fbaff", soft: "rgba(79, 186, 255, 0.18)" },
 	"Flagship Battle": { short: "FS", color: "#ff6b6b", soft: "rgba(255, 107, 107, 0.18)" },
-	"Treasure Cup": { short: "TB", color: "#a06eff", soft: "rgba(160, 110, 255, 0.18)" },
-	"5vs5": { short: "5V5", color: "#52d6a3", soft: "rgba(82, 214, 163, 0.18)" },
-	"3vs3": { short: "3V3", color: "#ff78c8", soft: "rgba(255, 120, 200, 0.18)" },
-	"Area Qualifiers": { short: "AQ", color: "#ffd166", soft: "rgba(255, 209, 102, 0.18)" },
+	"5vs5": { short: "5V5", color: "#7ee081", soft: "rgba(126, 224, 129, 0.18)" },
+	"3vs3": { short: "3V3", color: "#2f9e5b", soft: "rgba(47, 158, 91, 0.18)" },
+	"Standard Battle": { short: "SB", color: "#c9ced8", soft: "rgba(201, 206, 216, 0.18)" },
+	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
 	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)" },
 };
 
@@ -261,6 +262,18 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 						</div>
 					)
 				}
+				<div class="results-empty results-empty-filtered" data-results-empty hidden>
+					No tournament decklists match the current filters.
+				</div>
+			</div>
+			<div class="results-pagination" data-results-pagination hidden>
+				<button type="button" class="pagination-arrow" data-page-prev aria-label="Previous decklist page">
+					&#8249;
+				</button>
+				<span class="pagination-status" data-page-status>1 / 1</span>
+				<button type="button" class="pagination-arrow" data-page-next aria-label="Next decklist page">
+					&#8250;
+				</button>
 			</div>
 		</div>
 	</div>
@@ -328,6 +341,7 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 <script is:inline>
 	const setupTournamentView = () => {
 		const rows = [...document.querySelectorAll("[data-entry]")];
+		const resultsTable = document.querySelector(".results-table");
 		const leaderSearch = document.querySelector('[data-tournament-filter="leader-search"]');
 		const visibleCount = document.querySelector("[data-visible-count]");
 		const eventFilter = document.querySelector("[data-event-filter]");
@@ -338,10 +352,17 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 		const leaderNameToggles = [...document.querySelectorAll("[data-leader-name-toggle]")];
 		const extraLeadersDetails = document.querySelector(".extra-leaders-details");
 		const closeExtraButton = document.querySelector("[data-close-extra]");
+		const paginationWrap = document.querySelector("[data-results-pagination]");
+		const prevPageButton = document.querySelector("[data-page-prev]");
+		const nextPageButton = document.querySelector("[data-page-next]");
+		const pageStatus = document.querySelector("[data-page-status]");
+		const filteredEmptyState = document.querySelector("[data-results-empty]");
 
 		if (!leaderSearch || !visibleCount || !eventFilter || !eventFilterButton || !eventFilterMenu || !eventFilterLabel) return;
 
 		let selectedEvent = "";
+		let currentPage = 1;
+		const pageSize = 50;
 
 		const syncEventLabel = (option) => {
 			if (!option || !selectedEvent) {
@@ -358,17 +379,48 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 
 		const applyFilters = () => {
 			const leaderValue = leaderSearch.value.trim().toLowerCase();
-			let count = 0;
-
-			for (const row of rows) {
+			const filteredRows = rows.filter((row) => {
 				const matchLeader = !leaderValue || (row.dataset.leaderName || "").includes(leaderValue);
 				const matchEvent = !selectedEvent || row.dataset.event === selectedEvent;
-				const visible = matchLeader && matchEvent;
-				row.style.display = visible ? "" : "none";
-				if (visible) count += 1;
+				return matchLeader && matchEvent;
+			});
+			const totalFiltered = filteredRows.length;
+			const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
+
+			currentPage = Math.min(currentPage, totalPages);
+
+			const start = (currentPage - 1) * pageSize;
+			const end = start + pageSize;
+			const visibleRows = new Set(filteredRows.slice(start, end));
+
+			for (const row of rows) {
+				row.style.display = visibleRows.has(row) ? "" : "none";
 			}
 
-			visibleCount.textContent = String(count);
+			visibleCount.textContent = String(totalFiltered);
+
+			if (filteredEmptyState) {
+				filteredEmptyState.hidden = totalFiltered !== 0 || rows.length === 0;
+			}
+
+			if (paginationWrap && prevPageButton && nextPageButton && pageStatus) {
+				const shouldShowPagination = totalFiltered > pageSize;
+				paginationWrap.hidden = !shouldShowPagination;
+				pageStatus.textContent = `${currentPage} / ${totalPages}`;
+				prevPageButton.disabled = currentPage === 1;
+				nextPageButton.disabled = currentPage === totalPages;
+			}
+		};
+
+		const resetAndApplyFilters = () => {
+			currentPage = 1;
+			applyFilters();
+		};
+
+		const scrollToResultsTop = () => {
+			if (!resultsTable) return;
+			const top = resultsTable.getBoundingClientRect().top + window.scrollY - 180;
+			window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
 		};
 
 		eventFilterButton.addEventListener("click", () => {
@@ -391,11 +443,28 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 				syncEventLabel(option);
 				eventFilterButton.setAttribute("aria-expanded", "false");
 				eventFilterMenu.hidden = true;
-				applyFilters();
+				resetAndApplyFilters();
 			});
 		}
 
-		leaderSearch.addEventListener("input", applyFilters);
+		leaderSearch.addEventListener("input", resetAndApplyFilters);
+
+		if (prevPageButton) {
+			prevPageButton.addEventListener("click", () => {
+				if (currentPage === 1) return;
+				currentPage -= 1;
+				applyFilters();
+				scrollToResultsTop();
+			});
+		}
+
+		if (nextPageButton) {
+			nextPageButton.addEventListener("click", () => {
+				currentPage += 1;
+				applyFilters();
+				scrollToResultsTop();
+			});
+		}
 
 		for (const toggle of leaderNameToggles) {
 			toggle.onclick = () => {
@@ -410,6 +479,8 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 				extraLeadersDetails.open = false;
 			};
 		}
+
+		applyFilters();
 	};
 
 	if (document.readyState === "loading") {
@@ -751,6 +822,46 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 
 	.results-table {
 		overflow: hidden;
+	}
+
+	.results-pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.85rem;
+		padding: 1rem 0.9rem 1.1rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.pagination-arrow {
+		width: 40px;
+		height: 40px;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(17, 21, 34, 0.95);
+		color: var(--text-100);
+		font-size: 1.25rem;
+		font-weight: 800;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.pagination-arrow:hover:not(:disabled) {
+		border-color: rgba(255, 147, 60, 0.4);
+		background: rgba(255, 147, 60, 0.08);
+	}
+
+	.pagination-arrow:disabled {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+
+	.pagination-status {
+		min-width: 56px;
+		text-align: center;
+		font-size: 0.88rem;
+		font-weight: 800;
+		color: var(--text-200);
 	}
 
 	.results-head,
