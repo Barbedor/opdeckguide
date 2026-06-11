@@ -1,163 +1,180 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Rosinante OP12 Deck Guide";
+const title = "Donquixote Rosinante OP12 Deck Guide";
 const description =
-	"Rosinante OP12 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup notes.";
+	"Donquixote Rosinante OP12 deck guide for One Piece Card Game with decklist, combos, options, matchup notes, mirror tips, and closing thoughts.";
 
 const icon = "/assets/guides/rosinante-op12.png";
+const metaArticleHref = "/meta-analysis/Purple-Yellow-Rosinante-op12-stats/";
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
 
 const decklist = [
 	{ code: "OP12-061", name: "Donquixote Rosinante", count: 1, img: "/Cards/OP12/OP12-061.jpg", role: "Leader" },
-	{ code: "OP09-069", name: "Trafalgar Law", count: 4, img: "/Cards/OP09/OP09-069.jpg", role: "Character" },
-	{ code: "OP12-108", name: "Donquixote Rosinante", count: 4, img: "/Cards/OP12/OP12-108.jpg", role: "Character" },
-	{ code: "OP10-065", name: "Sugar", count: 4, img: "/Cards/OP10/OP10-065.jpg", role: "Character" },
-	{ code: "ST18-001", name: "Usohachi", count: 4, img: "/Cards/ST18/ST18-001.png", role: "Character" },
-	{ code: "OP12-112", name: "Baby 5", count: 4, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
-	{ code: "ST10-010", name: "Trafalgar Law", count: 1, img: "/Cards/ST10/ST10-010.png", role: "Character" },
-	{ code: "P-088", name: "Trafalgar Law", count: 4, img: "/Cards/P/P-088.jpg", role: "Character" },
+	{ code: "OP16-078", name: "Marineford", count: 4, img: "/Cards/OP16/OP16-078.jpg", role: "Stage" },
+	{ code: "OP16-064", name: "Koby", count: 4, img: "/Cards/OP16/OP16-064.jpg", role: "Character" },
+	{ code: "OP12-108", name: "Donquixote Rosinante", count: 2, img: "/Cards/OP12/OP12-108.jpg", role: "Character" },
+	{ code: "OP10-114", name: "X.Drake", count: 4, img: "/Cards/OP10/OP10-114.jpg", role: "Character" },
 	{ code: "P-093", name: "Trafalgar Law", count: 4, img: "/Cards/P/P-093.jpg", role: "Character" },
-	{ code: "OP14-061", name: "Vergo", count: 3, img: "/Cards/OP14/OP14-061.jpg", role: "Character" },
+	{ code: "ST10-010", name: "Trafalgar Law", count: 4, img: "/Cards/ST10/ST10-010.png", role: "Character" },
+	{ code: "P-088", name: "Trafalgar Law", count: 4, img: "/Cards/P/P-088.jpg", role: "Character" },
+	{ code: "EB04-058", name: "Borsalino", count: 4, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
 	{ code: "EB04-038", name: "Rosinante & Law", count: 4, img: "/Cards/EB04/EB04-038.jpg", role: "Character" },
-	{ code: "EB03-062", name: "Trafalgar Law", count: 4, img: "/Cards/EB03/EB03-062.jpg", role: "Character" },
-	{ code: "OP12-073", name: "Trafalgar Law", count: 4, img: "/Cards/OP12/OP12-073.jpg", role: "Event" },
-	{ code: "OP13-076", name: "Divine Departure", count: 2, img: "/Cards/OP13/OP13-076.jpg", role: "Event" },
+	{ code: "OP16-065", name: "Sakazuki", count: 4, img: "/Cards/OP16/OP16-065.jpg", role: "Character" },
+	{ code: "EB03-062", name: "Trafalgar Law", count: 2, img: "/Cards/EB03/EB03-062.jpg", role: "Character" },
+	{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
 	{ code: "OP12-115", name: "I Love You!!", count: 4, img: "/Cards/OP12/OP12-115.jpg", role: "Event" },
+	{ code: "OP07-076", name: "Slow-Slow Beam Sword", count: 2, img: "/Cards/OP07/OP07-076.png", role: "Event" },
+];
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
+
+const comboLineOne = [
+	{
+		code: "OP12-061",
+		name: "Donquixote Rosinante",
+		img: "/Cards/OP12/OP12-061.jpg",
+		text: 'Use Leader effect to play "Law" for -2 Cost.',
+	},
+	{
+		code: "P-093",
+		name: "Trafalgar Law",
+		img: "/Cards/P/P-093.jpg",
+		text: "Drop 4-Cost Law on Turn 2.",
+	},
+	{
+		code: "EB04-038",
+		name: "Rosinante & Law",
+		img: "/Cards/EB04/EB04-038.jpg",
+		text: "Drop 6-Cost Rosinante & Law on Turn 3.",
+		extra: "Result: Board pressure + solid Blocker defense.",
+	},
+];
+
+const comboLineTwoCards = [
+	{
+		code: "OP16-065",
+		name: "Sakazuki",
+		img: "/Cards/OP16/OP16-065.jpg",
+	},
+	{
+		code: "OP15-078",
+		name: "Mamaragan",
+		img: "/Cards/OP15/OP15-078.jpg",
+	},
+];
+
+const comboLineTwoText = [
+	"Combine Sakazuki's -6000 power ability with Mamaragan to rest a character up to 11K power!",
+	"Tip: Only play Sakazuki at 8+ DON!! to use his 2-for-1 ramp ability. If you're at 7 DON!!, dropping a second 6-cost Rosinante is your best play.",
 ];
 
 const options = [
 	{
-		code: "OP05-069",
+		code: "OP09-077",
+		name: "Gum-Gum Lightning",
+		img: "/Cards/OP09/OP09-077.jpg",
+		lines: ["K.O.", "UP TO 12K POWER"],
+	},
+	{
+		code: "OP15-077",
+		name: "Lightning Dragon",
+		img: "/Cards/OP15/OP15-077.jpg",
+		lines: ["FREEZE", "UP TO 12K POWER"],
+	},
+	{
+		code: "OP16-067",
+		name: "Tsuru",
+		img: "/Cards/OP16/OP16-067.jpg",
+		lines: ["COUNTER +2K", "SEARCHER"],
+	},
+	{
+		code: "OP16-068",
 		name: "Trafalgar Law",
-		img: "/Cards/OP05/OP05-069.png",
+		img: "/Cards/OP16/OP16-068.jpg",
+		lines: ["FOR ANOTHER", "4-COST OPTION"],
 	},
 	{
-		code: "OP12-077",
-		name: "OP12-077",
-		img: "/Cards/OP12/OP12-077.jpg",
+		code: "OP13-076",
+		name: "Divine Departure",
+		img: "/Cards/OP13/OP13-076.jpg",
+		lines: ["-8K POWER", "0-COST EVENT"],
 	},
 	{
-		code: "OP05-077",
-		name: "OP05-077",
-		img: "/Cards/OP05/OP05-077.png",
-	},
-	{
-		code: "OP14-078",
-		name: "OP14-078",
-		img: "/Cards/OP14/OP14-078.jpg",
-	},
-];
-
-const optionsNote =
-	"The deck allows few changes and in my opinion these are the best. Law allows you to maximize the searches while the spells are situational and depend a lot on how the meta is set. Gamma Knife helps against Kid Fortress, and the unblockable one is a small tech card that can help you steal some games. You can insert them by reducing some 2K.";
-
-const mulliganCards = [
-	{ code: "OP09-069", name: "Law", img: "/Cards/OP09/OP09-069.jpg" },
-	{ code: "OP12-108", name: "Rosinante", img: "/Cards/OP12/OP12-108.jpg" },
-	{ code: "OP10-065", name: "Sugar", img: "/Cards/OP10/OP10-065.jpg" },
-	{ code: "P-093", name: "Law", img: "/Cards/P/P-093.jpg" },
-];
-
-const curve = [
-	{
-		label: "1/2 DON",
-		notes: "Search for missing character.",
-		cards: [
-			{ code: "OP09-069", name: "Law", img: "/Cards/OP09/OP09-069.jpg" },
-			{ code: "OP12-108", name: "Rosinante", img: "/Cards/OP12/OP12-108.jpg" },
-			{ code: "OP10-065", name: "Sugar", img: "/Cards/OP10/OP10-065.jpg" },
-		],
-	},
-	{
-		label: "3/4 DON",
-		notes:
-			"Promo Law is the best choice because it allows you to play in the curve without going negative of DON. Law blocker instead is a valid option for a tempo play against decks like Ace.",
-		cards: [
-			{ code: "P-093", name: "Law", img: "/Cards/P/P-093.jpg" },
-			{ code: "ST10-010", name: "Law", img: "/Cards/ST10/ST10-010.png" },
-		],
-	},
-	{
-		label: "5/6 DON",
-		notes:
-			"Vergo is essential against blue deck or based removal. Your choice is always the new Rosinante to start growing your board and putting pressure.",
-		cards: [
-			{ code: "OP14-061", name: "Vergo", img: "/Cards/OP14/OP14-061.jpg" },
-			{ code: "EB04-038", name: "EB04-038", img: "/Cards/EB04/EB04-038.jpg" },
-		],
-	},
-	{
-		label: "7/8 DON",
-		notes:
-			"Law 7C allows you to bring the Leader to 6k base and make your blockers even more problematic for the opponent. Against decks like ST29 or Boa, the new Law 6C allows you to push and heal yourself so as to ruin their plans.",
-		cards: [
-			{ code: "EB03-062", name: "EB03-062", img: "/Cards/EB03/EB03-062.jpg" },
-			{ code: "OP12-073", name: "OP12-073", img: "/Cards/OP12/OP12-073.jpg" },
-		],
-	},
-	{
-		label: "Late game",
-		notes:
-			"This card allows you not only to counter, but also to take a Law from the trash so you can use a 2K against a 5k base attack. Use it carefully to resume Laws like 8c, but remember you only have 4x.",
-		cards: [{ code: "OP12-115", name: "OP12-115", img: "/Cards/OP12/OP12-115.jpg" }],
-	},
-];
-
-const tips = [
-	{
-		title:
-			"Leader ability allows you to play on any curve, so choose the most annoying one for the opponent and force them to play by your rules. Saving your whole board from K.O. doesn't always work against removal like Red Roc, so be careful.",
-		cards: [{ code: "OP12-061", name: "Rosinante", img: "/Cards/OP12/OP12-061.jpg" }],
-	},
-	{
-		title:
-			"Vergo is indispensable for protecting your Doffy Family pieces, but you don't need all four copies. That's why we only play 3x. The card is strong, but it isn't searchable by Sugar, so think carefully about which searcher to play so you don't miss an important character in curve.",
-		cards: [{ code: "OP14-061", name: "Vergo", img: "/Cards/OP14/OP14-061.jpg" }],
-	},
-	{
-		title:
-			"As we have seen this spell allows you to make absurd ticks and we would like to play another 4x but you can't. Sometimes it's better to let go of a piece of your board and play it the next turn, even if we don't have a play for the next round it can be useful.",
-		cards: [{ code: "OP12-115", name: "OP12-115", img: "/Cards/OP12/OP12-115.jpg" }],
+		code: "OP15-114",
+		name: "Wyper",
+		img: "/Cards/OP15/OP15-114.jpg",
+		lines: ["-2K ALL OPP BOARD", "K.O. ALL 0-POWER"],
 	},
 ];
 
 const matchups = [
+	{ code: "OP16-080", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-080.jpg", first: "even", second: "favored" },
+	{ code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg", first: "favored", second: "favored" },
+	{ code: "OP16-022", name: "Monkey.D.Luffy", img: "/Cards/OP16/OP16-022.jpg", first: "favored", second: "even" },
+	{ code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg", first: "unfavored", second: "pray" },
+	{ code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg", first: "even", second: "pray" },
+	{ code: "OP09-001", name: "Shanks", img: "/Cards/OP09/OP09-001.jpg", first: "favored", second: "favored" },
+	{ code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg", first: "even", second: "even" },
+	{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", first: "unfavored", second: "unfavored" },
+];
+
+const mirrorCard = { code: "OP12-061", name: "Donquixote Rosinante", img: "/Cards/OP12/OP12-061.jpg" };
+
+const badMatchups = [
 	{
-		label: "Slight Adv.",
-		icon: "↑",
-		leader: { code: "OP14-041", name: "Boa Hancock", img: "/Cards/OP14/OP14-041.jpg" },
-		notes: ["Start 2nd", "Manage your life", "Use the event carefully"],
+		code: "OP15-058",
+		name: "Enel",
+		img: "/Cards/OP15/OP15-058.jpg",
+		bullets: [
+			{ label: "Dice roll", text: "Always go first." },
+			{
+				label: "Turn 2",
+				text: "Avoid the 4-drop, especially if your opponent went DON!! -1 (you won't ramp). Your ideal play is the 3-cost X-Drake to trade into his 1-drops.",
+			},
+			{ label: "Manage 1-drops", text: "Set up your 1-cost searchers to swing at his 1-cost drops." },
+			{ label: "Rest & Trade Combo", text: "Use Sakazuki + Mamaragan to rest and trade into his Enel & Reiju." },
+			{
+				label: "Rosinante Warning",
+				text: "If your first Rosinante gets hit by Gamma Knife + El Thor, use your Leader effect to take a life (and pray he doesn't drop Mamaragan!).",
+			},
+		],
 	},
 	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP13-079", name: "Imu", img: "/Cards/OP13/OP13-079.jpg" },
-		notes: ["Start 2nd", "Manage your board", "Ramp fast"],
+		code: "OP11-041",
+		name: "Nami",
+		img: "/Cards/OP11/OP11-041.jpg",
+		bullets: [
+			{ label: "Keep life high", text: "Counter and block as much as possible." },
+			{ label: "Clear the board", text: "Use Sakazuki + Mamaragan on her 7-cost Robin." },
+			{ label: "Play on curve", text: "4-drop into 6-drop. These blockers stop attacks and deny her card draws ability." },
+			{ label: "Manage Whitebeard", text: "Use Sakazuki to drop the 10-cost's power down to 6k." },
+			{
+				label: "Dice roll",
+				text: "Always go first to mess up her curve, but her triggers can always flip the game upside down!",
+			},
+		],
 	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP14-020", name: "Dracule Mihawk", img: "/Cards/OP14/OP14-020.jpg" },
-		notes: ["Start 1st", "Board control", "Spam your board"],
-	},
-	{
-		label: "Negative MU",
-		icon: "↓",
-		leader: { code: "OP13-002", name: "Portgas D. Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Manage your board", "Blue is a problem"],
-	},
-	{
-		label: "Slight Disadv.",
-		icon: "↓",
-		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
-		notes: ["Start 1st", "Manage your board", "Blue is a problem"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "ST29-001", name: "Monkey D. Luffy", img: "/Cards/ST29/ST29-001.jpg" },
-		notes: ["Start 1st", "Go aggro", "Add life as much as possible"],
-	},
+];
+
+const matchupLegend = [
+	{ tone: "favored", label: "Favored" },
+	{ tone: "even", label: "Even" },
+	{ tone: "unfavored", label: "Unfavored" },
+	{ tone: "pray", label: "Pray" },
 ];
 ---
 
@@ -166,10 +183,10 @@ const matchups = [
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Rosinante OP12 Deck Guide</h1>
+				<h1>Donquixote Rosinante OP12 Deck Guide</h1>
 				<p>
-					Complete reference guide for Rosinante OP12 in the OP15 format: decklist, curve checkpoints, mulligan
-					priorities, tech options, and matchup notes. Built for fast reading between rounds.
+					Decklist, combos, tech options, matchup spread, mirror advice, and the closing notes for Donquixote
+					Rosinante in the OP16 format.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -177,18 +194,20 @@ const matchups = [
 				</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Rosinante OP12 guide icon" loading="lazy" />
+				<img src={icon} alt="Donquixote Rosinante OP12 guide icon" loading="lazy" />
 			</div>
 		</div>
 	</section>
 
 	<section id="decklist" class="list-section">
 		<div class="container">
-			<div class="section-header">
-				<div>
+			<div class="section-header decklist-header">
+				<div class="section-heading-copy">
 					<h2>Decklist</h2>
-					<p>Main list for Rosinante OP12.</p>
 				</div>
+				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+					Copy for Sim
+				</button>
 			</div>
 			<div class="deck-grid">
 				{decklist.map((card) => (
@@ -214,123 +233,82 @@ const matchups = [
 		</div>
 	</section>
 
+	<section id="combos" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Combos</h2>
+				</div>
+			</div>
+			<div class="feature-panel combo-panel">
+				<div class="combo-line combo-line-three">
+					{comboLineOne.map((card, index) => (
+						<div class:list={["combo-stack", index < comboLineOne.length - 1 && "combo-stack-arrow"]}>
+							<button
+								class="mini-card combo-card"
+								type="button"
+								data-card-preview
+								data-full={card.img}
+								data-name={`${card.code} ${card.name}`}
+							>
+								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							</button>
+							<div class="combo-copy">
+								<p class="combo-text">{card.text}</p>
+								{card.extra && <p class="combo-text combo-result">{card.extra}</p>}
+							</div>
+						</div>
+					))}
+				</div>
+				<div class="combo-line combo-line-two">
+					<div class="combo-pair-cards">
+						{comboLineTwoCards.map((card) => (
+							<button
+								class="mini-card combo-card"
+								type="button"
+								data-card-preview
+								data-full={card.img}
+								data-name={`${card.code} ${card.name}`}
+							>
+								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							</button>
+						))}
+					</div>
+					<div class="combo-copy combo-copy-wide">
+						{comboLineTwoText.map((line) => (
+							<p class="combo-text">{line}</p>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section id="options" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Options & Tech Cards</h2>
-					<p>Flexible slots to adapt the list.</p>
+					<h2>Options &amp; Tech Cards</h2>
 				</div>
 			</div>
 			<div class="options-grid">
 				{options.map((card) => (
-					<button
-						class="option-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-					<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="option-info">
-							<div class="deck-name">{card.name}</div>
-							<div class="deck-code">{card.code}</div>
-						</div>
-					</button>
-				))}
-			</div>
-			<p class="section-note">{optionsNote}</p>
-		</div>
-	</section>
-
-	<section id="mulligan" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Mulligan</h2>
-					<p>One of your searcher for missing curve + promo Law for ramp and establishing your board.</p>
-				</div>
-			</div>
-			<div class="mulligan-grid">
-				{mulliganCards.map((card) => (
-					<button
-						class="mini-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="mini-label">{card.name}</div>
-					</button>
-				))}
-			</div>
-			<p class="mulligan-text">
-				If you don't see this combo, mulligan is the way.
-			</p>
-		</div>
-	</section>
-
-	<section id="curve" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Curve Guide</h2>
-					<p>Turn-by-turn curve reminders.</p>
-				</div>
-			</div>
-			<div class="curve-block">
-				<h3>Curve</h3>
-				<div class="curve-rows">
-					{curve.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((card) => (
-									<button
-										class="mini-card"
-										type="button"
-										data-card-preview
-										data-full={card.img}
-										data-name={`${card.code} ${card.name}`}
-									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-									</button>
-								))}
-							</div>
-							<div class="curve-note">{slot.notes}</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="tips" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Tips</h2>
-					<p>Key reminders and timing notes.</p>
-				</div>
-			</div>
-			<div class="tips-grid">
-				{tips.map((tip) => (
-					<div class="tip-card">
-						<div class="tip-cards">
-							{tip.cards.map((card) => (
-								<button
-									class="mini-card"
-									type="button"
-									data-card-preview
-									data-full={card.img}
-									data-name={`${card.code} ${card.name}`}
-								>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-								</button>
+					<div class="option-card">
+						<button
+							class="option-card-button"
+							type="button"
+							data-card-preview
+							data-full={card.img}
+							data-name={`${card.code} ${card.name}`}
+						>
+							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						</button>
+						<div class="option-name">{card.name}</div>
+						<div class="option-lines">
+							{card.lines.map((line) => (
+								<div>{line}</div>
 							))}
 						</div>
-						<p>{tip.title}</p>
 					</div>
 				))}
 			</div>
@@ -342,33 +320,137 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Quick matchup snapshot for the key leaders.</p>
+					<p class="matchup-link-line">
+						See the full turn-order data in
+						<a class="matchup-article-link" href={metaArticleHref}>OP12 Purple/Yellow Rosinante stats in OP16 Format</a>.
+					</p>
 				</div>
 			</div>
-			<div class="matchups-grid">
-				{matchups.map((matchup) => (
-					<div class="matchup-card">
-						<div class={`matchup-badge ${matchup.label === "Negative MU" ? "badge-down" : matchup.label === "Slight Disadv." ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
-							<span class="badge-icon">{matchup.icon}</span>
-							<span>{matchup.label}</span>
+			<div class="feature-panel">
+				<div class="matchup-legend">
+					{matchupLegend.map((entry) => (
+						<div class="legend-row">
+							<span class={`legend-dot ${entry.tone}`}></span>
+							<span>{entry.label}</span>
 						</div>
+					))}
+				</div>
+				<div class="matchups-grid">
+					{matchups.map((matchup) => (
+						<div class="matchup-card">
+							<button
+								class="mini-card matchup-image"
+								type="button"
+								data-card-preview
+								data-full={matchup.img}
+								data-name={`${matchup.code} ${matchup.name}`}
+							>
+								<img loading="lazy" src={matchup.img} alt={`${matchup.code} ${matchup.name}`} />
+							</button>
+							<div class="matchup-name">{matchup.name}</div>
+							<div class="turn-lines">
+								<div class="turn-line">
+									<span class={`legend-dot ${matchup.first}`}></span>
+									<span>1ST</span>
+								</div>
+								<div class="turn-line">
+									<span class={`legend-dot ${matchup.second}`}></span>
+									<span>2ND</span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="mirror" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mirror advice</h2>
+				</div>
+			</div>
+			<div class="feature-panel text-panel">
+				<button
+					class="mini-card large-mini-card"
+					type="button"
+					data-card-preview
+					data-full={mirrorCard.img}
+					data-name={`${mirrorCard.code} ${mirrorCard.name}`}
+				>
+					<img loading="lazy" src={mirrorCard.img} alt={`${mirrorCard.code} ${mirrorCard.name}`} />
+				</button>
+				<ul class="bullet-list">
+					<li><strong>Dice roll:</strong> Always go first (it's a huge advantage).</li>
+					<li><strong>Perfect curve:</strong> 4-drop (T2) into 6-drop (T3) into 6-drop (T4).</li>
+					<li><strong>Turn 5:</strong> Sakazuki + Mamaragan combo on their Rosinante, then swing.</li>
+					<li><strong>DON!! Management:</strong> Stay at fewer DON!! than your opponent to gain advantage.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="bad-matchup" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Bads Machtups</h2>
+				</div>
+			</div>
+			<div class="bad-matchups-stack">
+				{badMatchups.map((matchup) => (
+					<div class="feature-panel text-panel">
 						<button
-							class="mini-card"
+							class="mini-card large-mini-card"
 							type="button"
 							data-card-preview
-							data-full={matchup.leader.img}
-							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+							data-full={matchup.img}
+							data-name={`${matchup.code} ${matchup.name}`}
 						>
-							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+							<img loading="lazy" src={matchup.img} alt={`${matchup.code} ${matchup.name}`} />
 						</button>
-						<div class="matchup-name">{matchup.leader.name}</div>
-						<ul>
-							{matchup.notes.map((note) => (
-								<li>{note}</li>
+						<ul class="bullet-list">
+							{matchup.bullets.map((bullet) => (
+								<li><strong>{bullet.label}:</strong> {bullet.text}</li>
 							))}
 						</ul>
 					</div>
 				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="conclusion" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Conclusion</h2>
+				</div>
+			</div>
+			<div class="conclusion-shell">
+				<div class="conclusion-lead">
+					<p>
+						The deck is very strong and consistent, thanks also to the new 1-cost Navy searchers from OP16, and
+						the Sakazuki card is an incredible addition.
+					</p>
+				</div>
+				<div class="conclusion-grid">
+					<div class="conclusion-panel">
+						<p>
+							It's a deck that performs very well in a 'jungle meta'; however, if the OP16 meta remains similar
+							to that of OP15, with Nami and Enel dominating, it becomes difficult for Rosinante to prove its
+							worth.
+						</p>
+					</div>
+					<div class="conclusion-panel">
+						<p>
+							Against Enel, in fact, it's an immense struggle, and against Nami, if you go second and don't draw
+							well, you're likely going to lose the game.
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -414,9 +496,56 @@ const matchups = [
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	const copySimButton = document.querySelector("[data-copy-sim]");
+
+	copySimButton?.addEventListener("click", async () => {
+		const deckCode = copySimButton.getAttribute("data-sim-deck");
+		if (!deckCode) return;
+
+		try {
+			await navigator.clipboard.writeText(deckCode);
+		} catch {
+			const textarea = document.createElement("textarea");
+			textarea.value = deckCode;
+			textarea.style.position = "fixed";
+			textarea.style.opacity = "0";
+			document.body.append(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			textarea.remove();
+		}
+
+		copySimButton.textContent = "Copied!";
+		window.setTimeout(() => {
+			copySimButton.textContent = "Copy for Sim";
+		}, 1800);
+	});
 </script>
 
 <style>
+	.copy-sim-button {
+		font-family: inherit;
+		font-weight: 700;
+	}
+
+	.decklist-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.section-heading-copy {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.section-heading-copy h2 {
+		margin: 0;
+	}
+
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -439,10 +568,18 @@ const matchups = [
 		gap: 1.2rem;
 	}
 
-	.deck-card {
+	.deck-card,
+	.option-card,
+	.feature-panel,
+	.conclusion-panel,
+	.conclusion-lead {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-card {
 		padding: 0.9rem;
 		display: grid;
 		gap: 0.75rem;
@@ -452,11 +589,18 @@ const matchups = [
 	}
 
 	.deck-card:hover,
-	.deck-card:focus-visible {
+	.deck-card:focus-visible,
+	.option-card-button:hover,
+	.option-card-button:focus-visible,
+	.mini-card:hover,
+	.mini-card:focus-visible {
 		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
-		box-shadow: var(--shadow);
 		outline: none;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		border-color: rgba(255, 107, 61, 0.4);
 	}
 
 	.deck-card img {
@@ -482,8 +626,10 @@ const matchups = [
 		font-size: 0.9rem;
 	}
 
-	.deck-name {
-		font-weight: 600;
+	.deck-name,
+	.matchup-name,
+	.option-name {
+		font-weight: 700;
 	}
 
 	.deck-code {
@@ -498,107 +644,223 @@ const matchups = [
 		letter-spacing: 1px;
 	}
 
+	.feature-panel {
+		padding: 1.3rem;
+	}
+
+	.combo-panel,
+	.text-panel {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.text-panel {
+		grid-template-columns: 220px minmax(0, 1fr);
+		align-items: center;
+	}
+
+	.combo-line {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.combo-line-three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.combo-line-two {
+		grid-template-columns: 320px minmax(0, 1fr);
+		align-items: center;
+	}
+
+	.combo-stack {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.85rem;
+		align-items: start;
+		justify-items: center;
+		position: relative;
+		background: rgba(8, 11, 19, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 18px;
+		padding: 0.95rem;
+	}
+
+	.combo-stack-arrow::after {
+		content: "\2192";
+		position: absolute;
+		top: 5.5rem;
+		right: -1.5rem;
+		font-size: 2rem;
+		line-height: 1;
+		font-weight: 900;
+		color: #ff8a2a;
+		text-shadow: 0 0 16px rgba(255, 138, 42, 0.38);
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.combo-pair-cards {
+		display: grid;
+		grid-template-columns: repeat(2, max-content);
+		gap: 1rem;
+		justify-content: start;
+		align-items: start;
+		background: rgba(8, 11, 19, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 18px;
+		padding: 0.95rem;
+	}
+
+	.combo-copy {
+		display: grid;
+		gap: 0.45rem;
+		align-content: start;
+		justify-items: center;
+		text-align: center;
+	}
+
+	.combo-copy-wide {
+		background: rgba(8, 11, 19, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 18px;
+		padding: 1rem 1.05rem;
+	}
+
+	.combo-text,
+	.bullet-list,
+	.conclusion-panel p,
+	.conclusion-lead p {
+		margin: 0;
+		color: var(--text-100);
+		font-size: 1.05rem;
+		line-height: 1.6;
+	}
+
+	.combo-result {
+		font-weight: 700;
+	}
+
 	.options-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1rem;
 	}
 
 	.option-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 0.8rem;
+		padding: 1rem 0.9rem 1.1rem;
 		display: grid;
-		gap: 0.6rem;
-		cursor: pointer;
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+		justify-items: center;
+		align-content: start;
+		gap: 0.7rem;
+		text-align: center;
 	}
 
-	.option-card:hover,
-	.option-card:focus-visible {
-		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
-		box-shadow: var(--shadow);
-		outline: none;
+	.option-card-button {
+		border: none;
+		background: transparent;
+		padding: 0;
+		cursor: pointer;
+		transition: transform 0.2s ease;
 	}
 
 	.option-card img {
-		width: 100%;
-		max-width: 220px;
+		width: min(180px, 100%);
+		border-radius: 12px;
+		display: block;
 		margin: 0 auto;
-		border-radius: 10px;
 	}
 
-	.option-info {
+	.option-name,
+	.option-lines {
+		width: 100%;
+		text-align: center;
+		justify-self: center;
+	}
+
+	.option-lines {
+		font-weight: 800;
+		text-transform: uppercase;
+		line-height: 1.3;
+	}
+
+	.matchup-link-line {
+		display: block;
+		max-width: 100%;
+		line-height: 1.6;
+	}
+
+	.matchup-article-link {
+		color: #ff8b3d;
+		font-weight: 700;
+	}
+
+	.matchup-article-link:hover {
+		color: #ffb06f;
+	}
+
+	.matchup-legend {
 		display: grid;
-		gap: 0.2rem;
-	}
-
-	.option-note {
-		margin: 0.4rem 0 0;
-		color: var(--text-300);
-		font-size: 0.9rem;
-	}
-
-	.note-block {
-		background: rgba(14, 18, 30, 0.7);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1.2rem 1.4rem;
-	}
-
-	.mulligan-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		grid-template-columns: repeat(4, minmax(0, max-content));
 		gap: 1rem;
-		margin-bottom: 1rem;
-	}
-
-	.mulligan-text {
-		color: var(--text-200);
-	}
-
-	.curve-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		gap: 1.2rem;
-	}
-
-	.curve-block {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1.2rem;
 		margin-bottom: 1.2rem;
 	}
 
-	.curve-rows {
-		display: grid;
-		gap: 1rem;
-		margin-top: 0.8rem;
-	}
-
-	.curve-row {
-		display: grid;
-		grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr);
-		gap: 1rem;
+	.legend-row,
+	.turn-line {
+		display: inline-flex;
 		align-items: center;
-	}
-
-	.curve-label {
+		gap: 0.55rem;
 		font-weight: 700;
-		color: var(--accent);
+		text-transform: uppercase;
 	}
 
-	.curve-cards {
-		display: flex;
-		flex-wrap: wrap;
+	.legend-dot {
+		width: 14px;
+		height: 14px;
+		border-radius: 999px;
+		display: inline-block;
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+	}
+
+	.favored {
+		background: #73dc63;
+	}
+
+	.even {
+		background: #f4c13b;
+	}
+
+	.unfavored {
+		background: #ff9f2f;
+	}
+
+	.pray {
+		background: #ff5a52;
+	}
+
+	.matchups-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1.4rem 1rem;
+	}
+
+	.matchup-card {
+		display: grid;
+		justify-items: center;
+		align-content: start;
 		gap: 0.6rem;
+		text-align: center;
 	}
 
-	.curve-note {
-		color: var(--text-300);
+	.matchup-name {
+		font-size: 0.95rem;
+		line-height: 1.2;
+	}
+
+	.turn-lines {
+		display: grid;
+		gap: 0.35rem;
 	}
 
 	.mini-card {
@@ -607,6 +869,7 @@ const matchups = [
 		cursor: pointer;
 		padding: 0;
 		border-radius: 10px;
+		transition: transform 0.2s ease;
 	}
 
 	.mini-card img {
@@ -616,98 +879,53 @@ const matchups = [
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 	}
 
-	.mini-label {
-		margin-top: 0.4rem;
-		font-size: 0.85rem;
-		color: var(--text-300);
-		text-align: center;
+	.large-mini-card img {
+		width: 220px;
 	}
 
-	.tips-grid {
+	.bullet-list {
+		padding-left: 1.25rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.bad-matchups-stack {
 		display: grid;
 		gap: 1.2rem;
 	}
 
-	.tip-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1rem 1.2rem;
+	.conclusion-shell {
 		display: grid;
-		gap: 0.8rem;
-	}
-
-	.tip-cards {
-		display: flex;
-		gap: 0.8rem;
-		flex-wrap: wrap;
-	}
-
-	.matchups-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 1rem;
 	}
 
-	.matchup-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1rem;
+	.conclusion-lead {
+		padding: 1.2rem 1.35rem;
+		background:
+			radial-gradient(circle at top left, rgba(255, 144, 92, 0.28), transparent 44%),
+			linear-gradient(135deg, rgba(255, 107, 61, 0.12), rgba(12, 17, 30, 0.96));
+		border-color: rgba(255, 139, 61, 0.22);
+	}
+
+	.conclusion-grid {
 		display: grid;
-		gap: 0.6rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
 	}
 
-	.matchup-badge {
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		font-weight: 700;
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		padding: 0.25rem 0.6rem;
-		border-radius: 999px;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		background: rgba(12, 17, 30, 0.8);
+	.conclusion-panel {
+		padding: 1.4rem 1.5rem;
+		background:
+			radial-gradient(circle at top left, rgba(144, 92, 255, 0.24), transparent 42%),
+			linear-gradient(135deg, rgba(95, 57, 180, 0.16), rgba(12, 17, 30, 0.96));
+		border-color: rgba(168, 125, 255, 0.18);
 	}
 
-	.badge-icon {
-		width: 26px;
-		height: 26px;
-		border-radius: 999px;
-		display: grid;
-		place-items: center;
-		font-size: 1.1rem;
-		font-weight: 800;
-		color: #0b0f1a;
-	}
-
-	.badge-up .badge-icon {
-		background: linear-gradient(135deg, #22c55e, #86efac);
-	}
-
-	.badge-down .badge-icon {
-		background: linear-gradient(135deg, #ef4444, #fca5a5);
-	}
-
-	.badge-even .badge-icon {
-		background: linear-gradient(135deg, #f59e0b, #fbbf24);
-	}
-
-	.matchup-name {
-		font-weight: 600;
-	}
-
-	.curve-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1.2rem;
-	}
-
-	.section-note {
-		color: var(--text-300);
+	.conclusion-panel:last-child {
+		background:
+			radial-gradient(circle at top right, rgba(255, 211, 87, 0.22), transparent 42%),
+			linear-gradient(135deg, rgba(255, 204, 70, 0.12), rgba(12, 17, 30, 0.96));
+		border-color: rgba(255, 211, 87, 0.18);
 	}
 
 	.card-modal {
@@ -756,8 +974,51 @@ const matchups = [
 	}
 
 	@media (max-width: 900px) {
-		.guide-hero .hero-grid {
+		.decklist-header {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: start;
+			gap: 0.6rem 0.75rem;
+		}
+
+		.decklist-header .section-heading-copy {
+			display: contents;
+		}
+
+		.decklist-header h2 {
+			grid-column: 1;
+			grid-row: 1;
+			align-self: center;
+			line-height: 1;
+		}
+
+		.decklist-header .copy-sim-button {
+			display: inline-flex;
+			width: auto;
+			min-width: 0;
+			max-width: fit-content;
+			padding: 0.52rem 0.8rem;
+			font-size: 0.78rem;
+			line-height: 1;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			margin-left: auto;
+			margin-top: 0;
+			align-self: center;
+			white-space: nowrap;
+		}
+
+		.guide-hero .hero-grid,
+		.text-panel,
+		.combo-line-three,
+		.combo-line-two,
+		.conclusion-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.options-grid,
+		.matchups-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -783,46 +1044,6 @@ const matchups = [
 			width: 96px;
 			max-width: 96px;
 			border-radius: 14px;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.deck-card img {
-			max-width: 120px;
-		}
-
-		.option-card img {
-			max-width: 200px;
-			margin: 0 auto;
-		}
-
-		.mini-card img {
-			width: 90px;
-		}
-	}
-	@media (max-width: 640px) {
-		.curve-row {
-			display: flex;
-			flex-direction: column;
-			align-items: stretch;
-			gap: 0.55rem;
-		}
-
-		.curve-cards {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 0.45rem;
-			justify-items: start;
-			align-items: start;
-		}
-
-		.curve-cards .mini-card {
-			width: 100%;
-		}
-
-		.curve-cards .mini-card img {
-			width: 100%;
-			max-width: 88px;
 		}
 
 		.deck-grid {
@@ -863,13 +1084,145 @@ const matchups = [
 			overflow: hidden;
 		}
 
-		.deck-code {
+		.deck-code,
+		.deck-role {
 			font-size: 0.66rem;
 			line-height: 1.1;
 		}
 
-		.deck-role {
+		.feature-panel,
+		.conclusion-panel,
+		.conclusion-lead {
+			padding: 1rem;
+		}
+
+		.combo-stack {
+			grid-template-columns: 86px 1fr;
+			gap: 0.7rem;
+			padding: 0.7rem;
+			justify-items: start;
+		}
+
+		.combo-stack-arrow::after {
 			display: none;
+		}
+
+		.combo-copy {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.combo-pair-cards {
+			grid-template-columns: repeat(2, max-content);
+			justify-content: center;
+			padding: 0.7rem;
+		}
+
+		.combo-text,
+		.bullet-list,
+		.conclusion-panel p,
+		.conclusion-lead p {
+			font-size: 0.98rem;
+		}
+
+		.options-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.45rem;
+		}
+
+		.option-card {
+			padding: 0.55rem 0.2rem 0.7rem;
+			gap: 0.35rem;
+		}
+
+		.option-card img {
+			width: min(66px, 100%);
+		}
+
+		.option-name {
+			font-size: 0.58rem;
+			line-height: 1.15;
+		}
+
+		.option-lines {
+			font-size: 0.5rem;
+			line-height: 1.2;
+		}
+
+		.matchup-link-line {
+			display: block;
+			white-space: normal;
+			overflow-wrap: normal;
+			word-break: normal;
+			line-height: 1.45;
+			padding-right: 1rem;
+			font-size: 0.94rem;
+			letter-spacing: -0.01em;
+		}
+
+		.matchup-article-link {
+			display: inline;
+			overflow-wrap: normal;
+			word-break: normal;
+			max-width: none;
+		}
+
+		.matchup-legend {
+			grid-template-columns: repeat(4, max-content);
+			justify-content: center;
+			gap: 0.55rem;
+			font-size: 0.7rem;
+		}
+
+		.matchups-grid {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			column-gap: 0.8rem;
+			row-gap: 1.35rem;
+		}
+
+		.mini-card img {
+			width: 92px;
+		}
+
+		.matchup-card {
+			width: calc((100% - 1.6rem) / 3);
+		}
+
+		.matchup-card .mini-card img {
+			width: 74px;
+		}
+
+		.matchup-name {
+			font-size: 0.78rem;
+			line-height: 1.15;
+		}
+
+		.turn-line {
+			font-size: 0.7rem;
+			gap: 0.35rem;
+		}
+
+		.text-panel {
+			grid-template-columns: 84px 1fr;
+			align-items: start;
+			gap: 0.8rem;
+		}
+
+		.large-mini-card img {
+			width: 84px;
+		}
+
+		.bullet-list {
+			padding-left: 1rem;
+			gap: 0.55rem;
+		}
+	}
+
+	@media (min-width: 641px) {
+		.matchup-link-line {
+			white-space: nowrap;
 		}
 	}
 </style>

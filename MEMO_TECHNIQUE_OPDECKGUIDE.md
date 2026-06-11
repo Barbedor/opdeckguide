@@ -1,34 +1,57 @@
 # Memo Technique OPDeckGuide
 
-Derniere mise a jour du memo : 2026-05-12
+Derniere mise a jour du memo : 2026-06-03
 
-## 1. Projet
+## 1. Objet du projet
 
-- Site Astro sur le One Piece Card Game.
+- Site Astro statique sur le One Piece Card Game.
 - Langue du site : anglais.
-- Echanges avec l'assistant : francais.
-- Positionnement principal :
-  - Deck Guides
-  - Meta Analysis
-  - Beginner Guides
-  - Banlist
-  - Cards List
-- Direction visuelle :
-  - dark / gaming / propre
-  - accent orange / rouge
-  - responsive important, surtout mobile
+- Echanges de travail avec l'assistant : francais.
+- Positionnement actuel :
+  - `Deck Guides`
+  - `Meta Analysis`
+  - `Beginner Guides`
+  - `Banlist`
+  - `Cards List`
+  - `Tournament Decklists`
 
-## 2. Regles de travail
+Direction generale :
 
-- Pour le code du site, modifier uniquement `src/` sauf cas explicites d'assets publics ou fichiers de config necessaires au site (`public/`, `astro.config.mjs`, etc.).
-- Ne pas recreer le projet Astro.
-- Ne pas toucher `node_modules`.
-- Ne pas inventer les conseils strategiques des deck guides.
-- Si des screenshots relient cartes <-> notes, il faut respecter cette logique.
-- Ne pas ecrire dans le site des formulations du type `from your notes`, `from your slides`, etc.
-- Si un doute existe sur une interpretation strategique, il faut demander ou s'abstenir.
+- design sombre
+- accent orange
+- mobile tres important
+- contenu lisible vite, sans pavés inutiles
+- pas de SEO artificiel ou de bourrage de mots-cles
 
-## 3. Structure du site
+## 2. Regles editoriales importantes
+
+- Ne pas inventer la strategie des deck guides.
+- Si une strategie n'est pas ecrite explicitement dans les screens, on peut l'expliquer seulement si on comprend vraiment le role et l'effet des cartes.
+- Si une inference strategique est trop incertaine, rester sobre.
+- Garder un anglais US naturel.
+- Garder le jargon TCG / One Piece TCG quand il est logique.
+- Eviter les formulations trop litterales ou trop scolaires.
+- Eviter la redite entre paragraphes et bullet points.
+- Pour les pages utilitaires (`cards-list`, `banlist`, hubs), preferer un texte court, scannable, et oriente usage reel.
+
+## 3. Stack et structure
+
+Stack :
+
+- Astro
+- pages statiques
+- assets dans `public/`
+- logique de contenu/data dans `src/lib/`
+
+Fichiers structurants :
+
+- `src/layouts/MainLayout.astro`
+- `src/components/Hero.astro`
+- `src/components/Section.astro`
+- `src/components/Card.astro`
+- `src/lib/guides.ts`
+- `src/lib/cards.ts`
+- `src/lib/site.ts`
 
 Routes principales :
 
@@ -39,451 +62,814 @@ Routes principales :
 - `/banlist/`
 - `/cards-list/`
 - `/cards-list/[extension]/`
+- `/tournament-decklists/`
+- `/tournament-decklists/[format]/`
+- `/tournament-decklists/[format]/[slug]/`
 
-Guides actuellement visibles dans le sitemap/listings :
+## 4. Source de verite pour les deck guides
 
-- `enel-op15`
-- `lucy-op15`
-- `nami-op11`
-- `rosinante-op12`
-- `jinbe-op14`
-- `dracule-mihawk-op14`
-- `trafalgar-law-op14`
-- `monkey-d-luffy-st29`
-- `crocodile-op14`
-- `boa-hancock-op14`
-- `portgas-d-ace-op13`
+Le fichier central est :
 
-Guide cache :
+- `src/lib/guides.ts`
 
-- `sanji-op12`
-  - existe en route
-  - retire des listings
-  - retire du sitemap
-  - retire de la recherche guides
-  - meta robots `noindex, nofollow`
+Ce fichier contient les deck guides publies avec :
 
-Beginner guides :
-
-- `complete-rules`
-- `simplified-rules`
-- `how-to-choose-a-deck`
-
-Meta articles stats :
-
-- `monkey-d-luffy-eb02-stats-in-op15`
-- `nami-op11-stats-in-op15`
-- `portgas-d-ace-op15-stats`
-
-## 4. Layout et composants
-
-Fichiers importants :
-
-- `src/layouts/MainLayout.astro`
-- `src/components/Card.astro`
-- `src/components/Hero.astro`
-- `src/components/Section.astro`
-
-Header :
-
-- logo custom
-- texte `OPDeckGuide`
-- menu
-- barre de recherche globale
-- pas de bouton `Home` dans le menu, car le logo renvoie deja a `/`
-
-Footer :
-
-- liens vers les sections principales
-
-## 5. Logo / favicon
-
-- Le header utilise un logo custom.
-- Le texte `OPDeckGuide` est bien affiche a cote du logo.
-- Le favicon utilise un PNG.
-- Le favicon a ete recadre au maximum pour supprimer les marges transparentes et paraitre plus grand.
-- Limite connue : la taille visuelle reelle dans l'onglet depend toujours du navigateur.
-
-## 6. Home page
-
-Etat actuel :
-
-- Hero anime avec cartes flottantes.
-- Le centre du hero doit rester lisible.
-- Les cartes animees doivent vivre surtout sur les cotes.
-- Le bloc `Welcome to OPDeckGuide` est conserve.
-- L'ancienne section Meta Analysis sur la home a ete retiree.
-
-Cartes de deck guides sur la home :
-
-- les badges mensuels ont ete remplaces par une logique de format :
-  - `OP15 Format`
-  - `OP14 Format`
-
-## 7. Recherche
-
-Barre de recherche globale :
-
-- elle ne sert plus uniquement aux cartes
-- elle cherche :
-  - cartes
-  - deck guides
-  - beginner guides
-
-Etat actuel :
-
-- la recherche guides a ete resserree pour limiter les faux positifs
-- la recherche cartes n'est pas une vraie recherche par nom libre
-- le texte du site a ete aligne pour ne pas promettre une recherche carte par nom si ce n'est pas reellement supporte
+- `title`
+- `leader`
+- `code`
+- `formatLabel`
+- `summary`
+- `href`
+- `imageSrc`
+- `imageAlt`
+- `aliases`
+- `tags`
 
 Important :
 
-- Sur les pages d'extension cards list, le texte dit maintenant que les cartes sont recherchables via leur numero exact de carte.
-
-## 8. Deck guides : logique editoriale
-
-Principes :
-
-- ne jamais inventer la strategie
-- reformuler en anglais natif si besoin, mais sans changer le sens
-- conserver le jargon TCG / One Piece TCG
-- ne pas modifier la logique des plans de jeu, mulligans, matchups, curves, ratios ou techs
-
-Ce qui a deja ete fait sur plusieurs guides :
-
-- correction de phrases en anglais trop maladroites
-- sans changer l'intention strategique
-
-Guides avec maillage interne ajoute vers les stats `1st / 2nd` :
-
-- `portgas-d-ace-op13`
-- `nami-op11`
-
-## 9. Sanji OP12
-
-Etat :
-
-- guide cree
-- route existe
-- decklist / options / mulligan / curve / matchups integres
-- section `Tips` presente mais volontairement vide
-- doit rester invisible pour l'instant
-
-Invisibilite appliquee par :
-
-- `hidden: true` dans `src/lib/guides.ts`
-- retrait des listings
-- retrait de la recherche guides
-- retrait du sitemap
-- `noindex, nofollow` sur la page
-
-## 10. Meta Analysis
+- `visibleDeckGuides = deckGuides.filter((guide) => !guide.hidden)`
+- c'est cette liste qui doit servir pour les listings publics
 
 Etat actuel :
 
-- page principale active
-- tier list principale avec :
-  - image desktop
-  - image mobile differente
-- budget tier list ajoutee sous les 3 articles stats :
-  - image desktop
-  - image mobile differente
+- la home et `/deck-guides/` sont maintenant **data-driven depuis `guides.ts`**
+- cela a ete fait pour eviter qu'un guide publie disparaisse d'un listing alors que sa route existe encore
 
-Meta articles existants :
+Consequence pratique :
 
-- `Ace OP13 Stats in OP15 Format`
-- `Nami OP11 Stats in OP15 Format`
-- `Monkey.D.Luffy EB02 Stats in OP15 Format`
+- pour publier ou mettre en avant un deck guide, verifier en priorite `src/lib/guides.ts`
+- eviter de rehardscoder des cartes manuellement dans plusieurs pages
 
-Structure commune voulue pour ces articles :
+## 5. Home page
 
-- intro courte expliquant le role du deck
-- precision explicite sur le leader d'origine et le format des stats
-- lien vers le deck guide correspondant quand il existe
-- section `1st / 2nd Win Rate Stats`
-- pas de section mulligan / card usage si retiree
-- visuels leaders en mode `art only`, sans la carte complete
+Fichier principal :
 
-Regles d'affichage des stats :
+- `src/pages/index.astro`
 
-- une stat `< 50%` = rouge
-- une stat `> 50%` = vert
-- `wins` = vert
-- `losses` = rouge
+Fonctionnement actuel :
+
+- le hero affiche un bouton `new`
+- ce bouton prend automatiquement le guide le plus recent depuis `visibleDeckGuides[0]`
+- les cartes `Deck Guides` affichees sur la home viennent de `visibleDeckGuides`
+- en mobile, la home affiche 2 deck guides visibles dans la section `Deck Guides`
+- le bloc `Beginner Guides` de la home affiche 2 articles en mobile et garde une presentation desktop adaptee
+
+Donc :
+
+- si l'ordre change dans `guides.ts`, la home change automatiquement
+
+Mobile :
+
+- la home a une grille `mobile-triple-grid` pour les sections `Deck Guides` et `Beginner Guides`
+
+## 6. Page Deck Guides
+
+Fichier principal :
+
+- `src/pages/deck-guides/index.astro`
+
+Fonctionnement actuel :
+
+- la liste visible des cartes est generee depuis `visibleDeckGuides`
+- le bloc `Featured Guides` n'est plus hardcode
+
+Mobile :
+
+- grille en 2 colonnes
+- espacement hero -> premiere section reduit sur mobile
+
+## 7. Guides publies importants
+
+Guides actuellement publies dans `guides.ts` :
+
+- `Yamato OP16`
+- `Portgas.D.Ace OP16`
+- `Monkey.D.Luffy OP16`
+- `Sengoku OP16`
+- `Marshall.D.Teach OP16`
+- `Buggy OP16`
+- `Monkey.D.Luffy OP15`
+- `Monkey.D.Luffy ST14`
+- `Monkey.D.Luffy EB02`
+- `Sanji OP12`
+- `Enel OP15`
+- `Lucy OP15`
+- `Nami OP11`
+- `Rosinante OP12`
+- `Jinbe OP14`
+- `Dracule Mihawk OP14`
+- `Trafalgar Law OP14`
+- `Monkey.D.Luffy ST29`
+- `Crocodile OP14`
+- `Boa Hancock OP14`
+- `Portgas.D.Ace OP13`
+
+Important :
+
+- `Monkey.D.Luffy OP15` est **publie**
+- sa route publique est :
+  - `/deck-guides/monkey-d-luffy-op15/`
+- les preview deck guides OP16 sont publics :
+  - `/deck-guides/yamato-op16/`
+  - `/deck-guides/portgas-d-ace-op16/`
+  - `/deck-guides/monkey-d-luffy-op16/`
+  - `/deck-guides/sengoku-op16/`
+  - `/deck-guides/marshall-d-teach-op16/`
+  - `/deck-guides/buggy-op16/`
+
+Le doublon draft ancien a ete supprime :
+
+- `src/drafts/deck-guides/monkey-d-luffy-op15.astro` n'existe plus
+
+## 8. Meta Analysis
+
+Structure :
+
+- page hub : `src/pages/meta-analysis/index.astro`
+- articles individuels dans `src/pages/meta-analysis/`
+
+Point important :
+
+- les deck guides et articles stats doivent etre relies entre eux quand c'est logique
+- exemple important actuellement :
+  - `Monkey.D.Luffy OP15 deck guide`
+  - `Monkey.D.Luffy OP15 Stats in OP15 Format`
+
+Fichier OP15 stats :
+
+- `src/pages/meta-analysis/monkey-d-luffy-op15-stats-in-op15.astro`
+
+Etat actuel :
+
+- le lien vers le deck guide OP15 est bien present dans le texte
+- le texte du stats article a ete nettoye et rendu lisible
+
+Autre article cree :
+
+- `src/pages/meta-analysis/imu-op13-stats-in-op15.astro`
+- route publique :
+  - `/meta-analysis/imu-op13-stats-in-op15/`
+- article base sur les stats 1st/2nd fournies par screen
+- correction importante appliquee : `Jewelry Bonney OP07-019` est a `100%` en 2nd, pas `0%`
+- correction importante appliquee dans l'ordre/identite de certaines cartes :
+  - `Gecko Moria OP14-080` et `Crocodile OP14-079` ont ete inverses plusieurs fois pendant le travail ; ne pas les reinverser sans verification visuelle
+  - `Jinbe OP14` et `Moria OP14` doivent etre places aux endroits demandes sur le screen utilisateur
+
+## 9. Cards List : logique actuelle
+
+Fichiers principaux :
+
+- `src/pages/cards-list/index.astro`
+- `src/pages/cards-list/[extension].astro`
+- `src/lib/cards.ts`
+
+### 9.1 Hub `Cards List`
+
+Page :
+
+- `/cards-list/`
+
+Etat actuel :
+
+- intro courte
+- pas de bullet points redondants
+- lien de maillage vers `Deck Guides`
+- lien de maillage force en orange avec classe `internal-link`
+- mini FAQ compacte
+
+La page sert a :
+
+- ouvrir un set/une extension
+- utiliser la search bar globale si on connait deja un code exact
+- basculer ensuite vers `Deck Guides` pour le contexte competitif
+
+### 9.2 Pages d'extension
+
+Page type :
+
+- `/cards-list/OP16/`
+
+Etat actuel :
+
+- le texte dit clairement que toutes les cartes de l'extension sont consultables sur la page
+- la search bar n'est presentee que comme raccourci pour aller plus vite vers un code exact
+- pas de mention Banlist dans l'intro
+- lien de maillage vers `Deck Guides`
+- mot `already` retire
+- mot `thumbnail` remplace par `card`
+
+Cas special :
+
+- extension `P` s'affiche comme `Promo`
+- cela vaut pour :
+  - badge
+  - titres
+  - tuiles du hub
+  - texte des pages d'extension
+- l'URL reste :
+  - `/cards-list/P/`
+
+### 9.3 Logique d'assets cartes
+
+Fichier :
+
+- `src/lib/cards.ts`
+
+Comportement actuel :
+
+- les fichiers `_small` servent a detecter quelles cartes existent
+- mais l'affichage visuel utilise le fichier normal via `fullUrl`
+- les cartes affichees sur le site ne montrent donc pas les fichiers `_small` comme rendu final
+
+Cas important verifie :
+
+- `public/Cards/ST30` a ete remplace par de nouvelles cartes
+- aucun changement de code n'etait necessaire
+
+### 9.4 Caches d'extensions
+
+Dans `src/lib/cards.ts` :
+
+- `hiddenExtensions = new Set(["back_cards", "don"])`
+
+Donc :
+
+- `back_cards` n'est pas publie
+- `don` n'est pas publie
+
+## 10. Banlist
+
+Fichier :
+
+- `src/pages/banlist/index.astro`
+
+Etat actuel :
+
+- page texte, sans image humoristique inseree dans le hero
+- plusieurs essais ont ete faits puis retires
+
+Note pratique :
+
+- ne pas remettre une image lourde ou dominante sans validation, l'utilisateur prefere que cette page reste lisible et compacte
 
 ## 11. Beginner Guides
 
-Pages :
+Routes principales :
 
-- `complete-rules`
-- `simplified-rules`
-- `how-to-choose-a-deck`
+- `/beginner-guides/how-to-choose-a-deck/`
+- `/beginner-guides/complete-rules/`
+- `/beginner-guides/simplified-rules/`
 
-Simplified Rules :
+Page hub :
 
-- suppression de `Illustrations`
-- clarification de `DON!!`
-- correction du combat du premier tour
-- ajout d'un vrai board stylise
-- responsive mobile retravaille
+- `src/pages/beginner-guides/index.astro`
 
-Complete Rules :
+Etat actuel de la hub :
 
-- intro alignee avec le guide simplifie
-- lien vers le guide simplifie
-- suppression de formulations redondantes
-- retrait de la mention `Blocker` dans la section concernee
+- bouton `All beginner guides` retire
+- espacement hero -> premiere section reduit en mobile
 
-How to Choose a Deck :
+## 12. SEO : principes actuels du projet
 
-- article actif
-- leaders / couleurs valides integres
-- erreurs d'images deja corrigees :
-  - `Red - Aggro` -> `Gol.D.Roger OP13-003`
-  - `Green - Rest` -> `Monkey.D.Luffy OP13-001`
+Le projet est deja sain sur les bases :
 
-## 12. Banlist
+- `canonical`
+- `sitemap.xml`
+- `robots`
+- structure de hubs claire
+- maillage interne logique
 
-- page active
-- `Policy for Ban & Limited Revisions` doit etre place a la fin
+Position actuelle retenue :
 
-## 13. Cards List
+- ne pas sur-optimiser
+- ne pas ajouter du texte juste pour avoir plus de texte
+- ne pas dupliquer la meme idee sous forme de paragraphe + bullets
+- clarifier l'intention utilisateur avant tout
 
-Etat :
+Exemples de decisions recentes dans ce sens :
 
-- moteur cards list actif
-- pages d'extension generees
-- `Back_cards` retire completement
-- `P` existe encore dans le sitemap / cards list
-
-Responsive mobile :
-
-- cartes affichees 3 par 3
-- taille uniformisee pour eviter le cas d'une seule carte trop grande
-- `PRB01` corrige dans ce sens
-
-Texte cards list :
-
-- ne plus promettre une recherche par nom si ce n'est pas vrai
-- mention actuelle : recherche via le numero exact de carte
-
-## 14. Responsive mobile
-
-Points deja retravailles :
-
-- header compact
-- logo visible mais contenu
-- menu resserre
-- search bar compacte
-- decklists en 3 colonnes
-- options si possible en 2 colonnes
-- hero mobile sensible
-
-Curve Guide mobile :
-
-- les labels `DON!!` ont ete deplaces au-dessus des cartes sur mobile pour gagner de la largeur
-- applique sur les deck guides qui ne le faisaient pas deja
-
-## 15. SEO technique
-
-Etat actuel :
-
-- domaine principal : `https://opdeckguide.com`
-- HTTPS actif via Netlify
-- `site` configure dans `astro.config.mjs`
-- canonical globale en place dans `MainLayout.astro`
-- `robots.txt` en place
-- `sitemap.xml` en place
-- verification Google Search Console ajoutee dans le `<head>`
-- JSON-LD de base present :
-  - `WebSite` sur la home
-  - `Article` sur les pages article/guides
-  - `WebPage` ailleurs
-
-Pas ajoutes volontairement :
-
-- pas de balises Open Graph / Twitter
-- pas d'Analytics
-- pas de page legal/privacy pour l'instant
-
-Decision prise :
-
-- pas d'Analytics tant que le site reste simple et sans collecte/cookies/formulaires
-
-## 16. URLs et trailing slash
-
-Probleme recontre :
-
-- Google Search Console remontait une erreur de redirection sur certaines pages de section
-- cause : incoherence entre URLs exposees sans slash et URLs canoniques / servies avec slash final
-
-Correction appliquee :
-
-- `trailingSlash: "always"` dans `astro.config.mjs`
-- liens internes alignes en slash final
-- sitemap aligne en slash final
-- nav / footer / search action alignes
-
-Exemples de formes canoniques voulues :
-
-- `https://opdeckguide.com/deck-guides/`
-- `https://opdeckguide.com/meta-analysis/`
-- `https://opdeckguide.com/beginner-guides/`
-- `https://opdeckguide.com/banlist/`
-- `https://opdeckguide.com/cards-list/`
-
-## 17. Etat Search Console / indexation
-
-Faits constates :
-
-- le sitemap a ete soumis
-- Search Console a detecte `76` pages decouvertes au moment de la soumission
-- la home a ete inspectee comme indexee
-- apres correction des trailing slashes, les pages suivantes ont ete inspectees comme indexees :
-  - `/deck-guides/`
-  - `/meta-analysis/`
-  - `/beginner-guides/`
-  - `/banlist/`
-  - `/cards-list/`
+- simplification des intros `cards-list`
+- suppression des redondances
+- maillage vers `Deck Guides` quand c'est utile
+- pas de lien Banlist force la ou ce n'est pas utile
 
 Important :
 
-- l'onglet `Indexation > Pages` pouvait rester vide / en traitement meme si des inspections URL individuelles indiquaient deja `La page est indexee`
-- des messages du type :
-  - `Erreur de traitement temporaire`
-  - `Aucun sitemap referent detecte`
-  ne bloquaient pas necessairement l'indexation reelle des URLs inspectees
+- les ameliorations SEO recentes sur `cards-list` sont **modestes mais reelles**
+- ce ne sont pas des changements "magiques"
+- elles clarifient surtout l'usage de la page pour l'utilisateur et pour Google
 
-Ce qui comptait dans les inspections :
+## 13. Sitemap et indexation
 
-- `Cette URL est sur Google`
-- `La page est indexee`
-- `Recuperation de page : Reussie`
-- `Indexation autorisee : Oui`
-- `URL canonique selectionnee par Google : URL inspectee`
+Fichiers utiles :
 
-## 18. Netlify
+- `src/lib/site.ts`
+- `src/pages/sitemap.xml.ts`
 
-Etat d'hebergement :
+Point important deja corrige :
 
-- site deploye sur Netlify
-- repo GitHub connecte
-- domaine custom branche
-- SSL actif
+- a un moment, un article OP13 n'etait pas inclus dans le sitemap
+- cela a ete corrige
 
-Incidents deja rencontres :
+Situation actuelle a surveiller :
 
-1. erreur Netlify Extensions `403`
-   - probleme de permission / extension cote Netlify
-   - pas lie au code du site
+- toute nouvelle route importante doit etre verifiee dans le sitemap
+- mais le vrai risque recent etait surtout les **listings hardcodes**, desormais corriges pour les deck guides
 
-2. erreur `Failed to prepare repo`
-   - log GitHub/Netlify :
-   - `fatal: unable to access 'https://github.com/Barbedor/opdeckguide/': The requested URL returned error: 500`
-   - incident transitoire cote preparation repo
-   - un retry a fini par publier correctement
+## 14. Build / verification
 
-Lecon :
+Commande standard :
 
-- si Netlify echoue mais que le build local est OK, il faut verifier d'abord les logs Netlify avant d'incriminer le code
+- `npm run build`
 
-## 19. Etat du contenu pour le referencement
+Etat recent verifie :
 
-Base actuelle :
+- le build passe
+- dernier build verifie : `100 page(s) built`
 
-- niche claire et coherente
-- pages principales propres
-- maillage interne de base deja present
-- deck guides + meta + beginner guides + banlist + cards list
+Routes importantes verifiees recemment :
 
-Limites SEO restantes :
+- `/deck-guides/monkey-d-luffy-op15/`
+- `/deck-guides/monkey-d-luffy-st14/`
+- `/cards-list/OP16/`
+- `/cards-list/P/`
+- `/tournament-decklists/op16-east/`
+- `/tournament-decklists/op16-west/`
+- `/tournament-decklists/op16-east/black-yamato-shumaicup-japan-june-2026/`
 
-- domaine tres recent
-- peu ou pas d'autorite externe / backlinks
-- plusieurs pages cards list restent fines editorialement
-- le ranking sur des requetes larges comme `one piece tcg deck guide` prendra du temps
+## 15. Git / multi-PC / environnement Codex
 
-Conclusion raisonnable :
+Le projet est travaille sur 2 PC.
 
-- site techniquement pret a etre indexe
-- pas de garantie de ranking rapide sur des requetes competitives
+Points verifies :
 
-## 20. Maillage interne
+- le `git pull` ne cassait pas le projet
+- les differences vues etaient de vraies differences de contenu, pas un probleme Git
+- le doublon draft/public du guide OP15 a ete nettoye
 
-Ce qui existe deja :
+Important :
 
-- header / footer
-- liens home -> sections
-- listings de sections
-- liens deck guides <-> articles stats pour Ace et Nami
-- liens meta articles -> deck guides correspondants
+- les blocages lors de `build`, `git add`, `git commit`, `git push` dans Codex venaient surtout du sandbox de l'environnement, pas du projet
 
-Ce qui peut encore etre renforce plus tard :
+Blocages deja rencontres dans Codex :
 
-- plus de liens contextuels depuis chaque deck guide vers :
-  - meta stats
-  - beginner guides
-  - banlist
-- plus de liens depuis meta analysis vers guides leaders cites
+- `spawn EPERM` sur `npm run build`
+- `.git/index.lock permission denied`
+- reseau bloque vers GitHub dans le sandbox
 
-## 21. Recherche utilisateur / Google
+Cela ne veut pas dire que le projet est casse.
 
-Rappels importants :
+## 16. Points de vigilance pour une future conversation
 
-- soumettre le sitemap != garantir l'indexation de toutes les pages
-- Google decide ensuite quelles pages il crawl et indexe
-- pas besoin de resoumettre le sitemap a chaque mise a jour normale du site
-- le sitemap garde la meme URL, Google le relit
-- une nouvelle page importante peut etre poussee plus vite via `Demander une indexation`
+1. Toujours verifier `src/lib/guides.ts` avant de toucher :
+   - la home
+   - `/deck-guides/`
+   - le bouton `new`
 
-## 22. Decisions prises sur le juridique / analytics
+2. Ne pas rehardscoder de listings de guides si on peut les lire depuis `guides.ts`.
+
+3. Sur `cards-list`, ne pas reintroduire :
+   - de redite paragraphe + bullets
+   - de texte artificiel
+   - des liens Banlist non demandes
+
+4. Sur les guides strategiques, distinguer clairement :
+   - ce qui vient des screens
+   - ce qui vient d'une vraie comprehension des effets de cartes
+
+5. Si une section `Options / Tech` ou `Mulligan` n'est pas detaillee dans les screens, rester concis et expliquer la strategie seulement si les effets des cartes sont compris.
+
+## 17. Fichiers les plus utiles a ouvrir en premier
+
+Si une nouvelle conversation doit reprendre le projet, ouvrir d'abord :
+
+- `MEMO_TECHNIQUE_OPDECKGUIDE.md`
+- `src/lib/guides.ts`
+- `src/pages/index.astro`
+- `src/pages/deck-guides/index.astro`
+- `src/pages/cards-list/index.astro`
+- `src/pages/cards-list/[extension].astro`
+- `src/lib/cards.ts`
+- `src/pages/meta-analysis/monkey-d-luffy-op15-stats-in-op15.astro`
+
+## 18. Resume ultra court
+
+- les deck guide listings publics sont maintenant pilotes par `guides.ts`
+- `Monkey.D.Luffy OP15` est publie et public
+- le doublon draft OP15 a ete supprime
+- `cards-list` a ete simplifie pour rester utile, lisible et non artificiel
+- `P` s'affiche comme `Promo`
+- `ST30` utilise bien les nouveaux visuels du dossier `public/Cards/ST30`
+- le projet est sain, le build passe, les blocages precedents venaient du sandbox Codex et non du site
+
+## 19. Section `Tournament Decklists`
+
+Nouvelle section structurelle creee pendant la conversation.
+
+Routes :
+
+- `/tournament-decklists/`
+- `/tournament-decklists/op16-east/`
+- `/tournament-decklists/op16-west/`
+- `/tournament-decklists/[format]/[slug]/`
+
+Fichiers principaux :
+
+- `src/lib/tournamentDecklists.ts`
+- `src/components/TournamentDecklistsView.astro`
+- `src/pages/tournament-decklists/index.astro`
+- `src/pages/tournament-decklists/[format]/index.astro`
+- `src/pages/tournament-decklists/[format]/[slug].astro`
 
 Etat actuel :
 
-- pas de formulaire
-- pas d'analytics
-- pas de newsletter
-- pas de collecte volontaire de donnees
+- `/tournament-decklists/` affiche par defaut `op16-east`
+- `tournamentFormats` contient actuellement :
+  - `op16-east` avec label `OP16 East`
+  - `op16-west` avec label `OP16 West`
+- `op16-east` contient actuellement une vraie decklist :
+  - `Black Yamato OP16 Shop Event Winner`
+  - auteur : `Randori`
+  - date affichee : `01/06`
+  - pays/location : `Japan`
+  - tournoi/event name : `ShumaiCup`
+  - tournament type : `Shop Event`
+  - placement : `1st Place`
+  - route detail :
+    - `/tournament-decklists/op16-east/black-yamato-shumaicup-japan-june-2026/`
+- `op16-west` ne doit plus contenir de fausses decklists visibles ; le message doit indiquer en anglais natif US :
+  - `No tournament decklists for this format yet, but they are coming very soon.`
 
-Conclusion pratique prise jusqu'ici :
+Important SEO / indexation :
 
-- pas de page `mentions legales` / `privacy policy` ajoutee pour l'instant
-- cela n'est pas traite comme un blocage SEO direct a ce stade
+- `tournamentDecklistSampleMode = true` dans `src/lib/tournamentDecklists.ts`
+- les pages format utilisent `noindex={tournamentDecklistSampleMode}`
+- les pages detail decklist utilisent actuellement `noindex={true}`
+- objectif retenu : les pages detail decklist ne sont pas le coeur SEO ; elles servent surtout a consulter/copier une liste precise
+- l'idee discutee : garder le hub/format comme page principale utile pour Google, et eviter d'indexer massivement des centaines ou milliers de pages detail decklist
+- quand les vraies donnees seront pretes et que la section devra etre indexee, il faudra revoir explicitement `tournamentDecklistSampleMode` et la strategie `noindex`
 
-## 23. Fichiers techniques centraux
+## 20. Structure data `Tournament Decklists`
 
-- `astro.config.mjs`
+Fichier central :
+
+- `src/lib/tournamentDecklists.ts`
+
+Objets importants :
+
+- `tournamentFormats`
+- `leaderIndex`
+- `deckTemplates`
+- `entrySeeds`
+- `tournamentDecklistEntries`
+- `getTournamentEntriesByFormat(format)`
+- `getTournamentEntry(viewSlug, slug)`
+- `getTournamentLeaderStats(format)`
+- `getTournamentSummary(format)`
+
+Regle pratique pour ajouter une nouvelle decklist :
+
+- ajouter ou verifier le leader dans `leaderIndex`
+- ajouter ou verifier la liste de cartes dans `deckTemplates`
+- ajouter l'entree de tournoi dans `entrySeeds`
+- l'entree doit avoir au minimum les informations utiles :
+  - `format`
+  - `region`
+  - `slug`
+  - `leaderSlug`
+  - `deckTemplate`
+  - `title`
+  - `eventName`
+  - `eventType`
+  - `placement`
+  - `date`
+  - `location`
+  - `author` si connu
+  - `host` si connu
+  - `summary`
+
+Regle importante :
+
+- pour qu'une entree apparaisse dans `OP16 East` ou `OP16 West`, elle doit avoir un `region` coherent avec le format :
+  - `region: "east"`
+  - ou `region: "west"`
+- les anciennes entrees sample sans `region` ne sont pas publiees dans les vues actuelles a cause du filtre :
+  - `.filter((entry) => publishedTournamentFormats.has(entry.format) && entry.region)`
+
+Formats / regions actuels :
+
+- `op16-east` :
+  - `entryFormat: "op16"`
+  - `region: "east"`
+- `op16-west` :
+  - `entryFormat: "op16"`
+  - `region: "west"`
+
+Noms de tournois actuels :
+
+- `Shop Event`
+- `Standard Battle`
+- `Treasure Cup`
+- `Championship`
+
+Abreviations affichees :
+
+- `Shop Event` -> `SE`
+- `Standard Battle` -> `SB`
+- `Treasure Cup` -> `TB`
+- `Championship` -> `CS`
+
+Important :
+
+- dans les grilles avec les decklists, afficher les abreviations quand l'espace est reduit, notamment mobile
+- dans le menu de filtre, afficher le nom complet + la pastille abregee
+- dans la grille desktop, la colonne doit etre `Tournament`, pas `Type`
+- ne pas remettre `Flagship`, `Regional`, `Store Trial` comme libelles finaux sans validation ; ces anciens noms ont ete remplaces
+
+## 21. UI `Tournament Decklists` : hub et formats
+
+Composant principal :
+
+- `src/components/TournamentDecklistsView.astro`
+
+Structure de la page format :
+
+- hero court avec titre du format
+- boutons de format :
+  - `OP16 East`
+  - `OP16 West`
+- bloc `Top Leaders`
+- barre de recherche leader
+- menu de filtre tournoi
+- compteur de decks
+- grille/table des decklists
+
+Comportement `Top Leaders` :
+
+- afficher uniquement les 10 premiers leaders au depart
+- s'il y a plus de 10 leaders :
+  - bouton `Show more`
+  - au clic, afficher les leaders supplementaires
+  - bouton `Show less` a la suite des leaders supplementaires
+  - au clic sur `Show less`, refermer la liste et refaire apparaitre `Show more`
+- les noms de leader ne sont pas affiches par defaut dans le bloc `Top Leaders`
+- sur desktop et mobile, il faut cliquer sur l'icone du leader pour afficher son nom
+- quand le nom s'affiche, ajouter aussi l'extension/set du leader, par exemple `OP16`
+- les barres de stats sont colorees selon les couleurs du leader
+- pour les leaders bicolores, la barre utilise un degrade entre les deux couleurs
+- la largeur de la barre represente le pourcentage reel ; ne pas donner 100% de largeur a un leader qui a 30%
+- les barres doivent etre alignees horizontalement au niveau des icones
+
+Recherche et filtres :
+
+- recherche par nom de leader fonctionnelle
+- filtre tournoi via un bouton/menu `All tournaments`
+- le bouton doit afficher `All tournaments`, pas `All events`
+- les choix de tournoi doivent etre dans le menu deroulant, pas superposes sur la page
+- sur desktop, le menu de filtre doit rester dans la zone sous `Top Leaders`, pas flotter trop loin au-dessus de la grille
+
+Grille/table des decklists :
+
+- sur mobile, colonnes simplifiees :
+  - `Date`
+  - `Leader`
+  - `Tournament`
+- sur desktop :
+  - `Date`
+  - `Leader`
+  - `Tournament`
+  - `Place`
+- date affichee au format `dd/mm`, par exemple `01/06`
+- le nom du leader dans la grille doit afficher aussi l'extension/set, par exemple `Yamato OP16`
+- sur mobile, le nom du leader ne doit pas chevaucher la pastille tournoi
+- si necessaire, utiliser une taille de texte plus petite plutot que couper brutalement le layout
+- le compteur doit afficher `1 Decks`, `20 Decks`, etc. avec un espace entre le nombre et `Decks`
+
+## 22. Pages detail `Tournament Decklists`
+
+Fichier :
+
+- `src/pages/tournament-decklists/[format]/[slug].astro`
+
+Structure actuelle d'une page detail :
+
+- hero avec titre de la decklist
+- resume court
+- badges :
+  - type de tournoi
+  - placement
+  - record si present
+  - players si present
+- boutons :
+  - retour au format, par exemple `Back to OP16 East`
+  - `Read the deck guide` uniquement si le leader est OP16
+  - `Copy for Sim`
+- side card leader
+- meta cards :
+  - `Tournament`
+  - `Format`
+  - `Leader`
+  - `Location`
+  - `Author`
+  - `Host`
+- section `Decklist`
+- modal d'agrandissement des cartes au clic
+
+Regles visuelles page detail :
+
+- mobile :
+  - l'image leader dans le hero detail doit etre petite, positionnee a gauche
+  - les informations `Yamato`, `OP16-079`, `01/06` doivent etre a droite de l'image
+  - ne pas afficher le pays sous l'image leader car `Location` est affiche plus bas
+  - les meta cards sont compactes et en 2 colonnes
+  - la decklist affiche les cartes par ligne de 3
+- desktop :
+  - ne pas afficher le pays sous l'image leader dans la side card
+  - les meta cards doivent etre plus petites et sur une meme ligne quand possible
+  - la decklist affiche les cartes par ligne de 5
+- les cartes doivent etre cliquables sur desktop et mobile
+- au clic sur une carte, afficher sa version agrandie dans une modal, comme sur les deck guides
+- les cartes doivent rester bien alignees :
+  - chaque carte utilise un cadre d'image fixe par breakpoint
+  - `object-fit: contain`
+  - `object-position: center top`
+  - le texte commence sous un cadre image de meme hauteur
+  - cette regle vaut pour toutes les decklists, pas seulement Yamato
+
+Bouton `Copy for Sim` :
+
+- le bouton doit utiliser la meme police que le reste du site
+- il copie un texte au format OPTCGSim :
+  - une ligne par carte
+  - format exact : `NxCODE`
+  - exemple :
+    - `1xOP16-079`
+    - `4xOP16-091`
+    - `4xOP16-092`
+- ne pas copier un tableau JSON ou une liste de codes repetees
+- pour chaque nouvelle decklist, generer le code depuis les `cards` :
+  - `entry.cards.map((card) => `${card.count}x${card.code}`).join("\n")`
+
+Decklist Yamato OP16 East actuelle :
+
+- `1xOP16-079`
+- `4xOP16-091`
+- `4xOP16-092`
+- `4xOP16-081`
+- `4xOP16-087`
+- `2xOP16-095`
+- `4xOP16-082`
+- `4xOP16-084`
+- `4xOP16-098`
+- `4xOP16-096`
+- `4xOP16-097`
+- `4xOP16-085`
+- `4xOP14-096`
+- `4xOP16-099`
+
+## 23. Menu principal
+
+Fichier :
+
 - `src/layouts/MainLayout.astro`
-- `src/lib/site.ts`
+
+Etat actuel voulu :
+
+- desktop :
+  - logo et sections sur une seule ligne
+  - bandeau moins volumineux
+  - liens visibles :
+    - `Deck Guides`
+    - `Tournaments Decklists`
+    - `Meta Analysis`
+    - `Beginner Guides`
+    - `Banlist`
+    - `Cards List`
+- mobile :
+  - ne pas afficher tout le menu directement
+  - liens visibles :
+    - `Deck Guides`
+    - `Tournaments Decklists`
+    - `Meta Analysis`
+  - `More` contient :
+    - `Beginner Guides`
+    - `Banlist`
+    - `Cards List`
+
+Important :
+
+- ne pas supprimer `Banlist` du site
+- sur mobile, `Banlist` peut etre dans `More` pour eviter un menu surcharge
+- sur desktop, `Banlist` reste visible dans la navigation principale
+- le footer contient aussi les liens principaux, dont `Tournament Decklists`
+- attention a ne pas dupliquer la navigation desktop/mobile ; un bug a deja affiche deux menus en meme temps apres un `git pull` + reapplication de stash
+
+## 24. OP16 preview deck guides
+
+Guides OP16 publics :
+
+- `/deck-guides/yamato-op16/`
+- `/deck-guides/buggy-op16/`
+- `/deck-guides/sengoku-op16/`
+- `/deck-guides/monkey-d-luffy-op16/`
+- `/deck-guides/marshall-d-teach-op16/`
+- `/deck-guides/portgas-d-ace-op16/`
+
+Important :
+
+- ces pages sont des `preview deck guides`
+- elles ont ete beaucoup retravaillees pendant la conversation
+- l'utilisateur a ensuite fait un `git pull` pour recuperer la bonne version publiee depuis GitHub
+- ne pas modifier leurs textes, decklists ou conclusions sans demande explicite
+- si on remplace des visuels de cartes OP16, ne pas modifier la strategie, les conseils ou les decklists des guides
+- apres le dernier `git pull`, les fichiers de guides OP16 n'avaient plus de diff local
+
+Regles de structure OP16 preview guides :
+
+- structure commune inspiree de Yamato OP16
+- ordre des sections :
+  - `Decklist`
+  - `Leader`
+  - `Key preview cards`
+  - `Prep`
+  - `Thoughts`
+- ne plus utiliser le titre de section `Spoiler`; il a ete remplace par `Key preview cards`
+- section `Thoughts` :
+  - ne pas ecrire les forces/faiblesses/conclusion en majuscules
+  - ne pas reformuler une conclusion si l'utilisateur demande de reprendre le texte
+  - respecter les notes demandees
+- les badges de mots-clefs (`Rush`, `Blocker`, `On Play`, `Activate:Main`, `Once Per Turn`, etc.) utilisent les assets de `public/assets/keywords/`
+- l'alignement vertical des badges a ete ajuste manuellement ; ne pas le changer sans demande
+
+Notes finales demandees pendant la conversation :
+
+- `Yamato OP16` : `5.5/10`
+- `Buggy OP16` : `5.5/10`
+- `Sengoku OP16` : `6/10`
+- `Portgas.D.Ace OP16` : `6.5/10`
+- `Monkey.D.Luffy OP16` : `8/10`
+- `Marshall.D.Teach OP16` : `7.5/10`
+
+## 25. Assets OP16
+
+Etat actuel :
+
+- l'utilisateur a remplace le dossier `public/Cards/OP16` par les visuels definitifs
+- les codes des cartes n'ont pas change
+- les fichiers `_small` existent toujours pour les cartes OP16
+
+Regle :
+
+- utiliser les nouveaux visuels OP16 partout ou les cartes OP16 apparaissent
+- ne pas revenir aux anciens visuels
+- ne pas modifier les icones leaders (`public/assets/guides/...`) sauf demande explicite
+- ne pas confondre changement de visuel et changement de contenu strategique
+
+## 26. Git / pull recent important
+
+Evenement important de la conversation :
+
+- un `git pull` a ete fait apres que l'utilisateur a precise que les bonnes versions publiees des deck guides OP16 etaient sur GitHub
+- avant le pull, les fichiers de la nouvelle section `Tournament Decklists`, le menu et les assets OP16 ont ete proteges par stash
+- le pull a recupere les bonnes versions des guides OP16
+- le stash a ensuite ete reapplique pour restaurer le travail local `Tournament Decklists`, menu et assets OP16
+- verification faite ensuite :
+  - `git diff -- src/pages/deck-guides` etait vide
+  - le build passait
+
+Stash :
+
+- un stash de securite peut encore exister :
+  - `stash@{0}: On main: protect tournament decklists and op16 assets before pull`
+- ne pas le supprimer sans validation si la situation n'est pas claire
+
+## 27. Fichiers a ouvrir en premier maintenant
+
+Pour reprendre le projet dans une nouvelle conversation, ouvrir d'abord :
+
+- `MEMO_TECHNIQUE_OPDECKGUIDE.md`
 - `src/lib/guides.ts`
-- `src/pages/robots.txt.ts`
-- `src/pages/sitemap.xml.ts`
+- `src/lib/tournamentDecklists.ts`
+- `src/components/TournamentDecklistsView.astro`
+- `src/pages/tournament-decklists/index.astro`
+- `src/pages/tournament-decklists/[format]/index.astro`
+- `src/pages/tournament-decklists/[format]/[slug].astro`
+- `src/layouts/MainLayout.astro`
 - `src/pages/index.astro`
 - `src/pages/deck-guides/index.astro`
-- `src/pages/meta-analysis/index.astro`
-- `src/pages/cards-list/index.astro`
-- `src/pages/cards-list/[extension].astro`
+- `src/lib/cards.ts`
 
-## 24. Points de vigilance pour une nouvelle conversation
+## 28. Resume ultra court mis a jour
 
-- Ne pas reinventer la strategie des deck guides.
-- Toujours demander les screenshots si une association cartes <-> texte est douteuse.
-- Si un changement touche SEO / indexation / redirections, verifier les URLs exactes, canonicals et slashes avant d'affirmer que tout est propre.
-- Sanji OP12 doit rester cache tant que l'utilisateur ne demande pas de le rendre visible.
-- Les images meta tier list ont une version desktop et une version mobile distinctes.
-- La recherche cartes ne doit pas etre presentee comme une vraie recherche par nom libre si ce n'est pas supporte.
-- Quand Search Console affiche une incoherence, distinguer :
-  - vraie erreur bloquante
-  - simple statut de decouverte / traitement temporaire
-
-## 25. Resume ultra court pour reprise rapide
-
-- Site Astro `opdeckguide.com`, anglais, niche One Piece TCG.
-- Sections : home, deck guides, meta analysis, beginner guides, banlist, cards list.
-- SEO de base en place : canonical, robots, sitemap, JSON-LD, Search Console verification.
-- URLs sections harmonisees en trailing slash final.
-- Sanji OP12 cache + noindex.
-- 3 articles meta stats : Ace OP13 en OP15, Nami OP11 en OP15, Luffy EB02 en OP15.
-- Search Console : home + sections principales inspectees comme indexees.
-- Pas d'analytics, pas de legal/privacy pages pour l'instant.
-- Regle editoriale critique : ne jamais inventer les conseils strategiques.
+- nouvelle section `Tournament Decklists` creee
+- `OP16 East` est la vue par defaut
+- `OP16 East` contient actuellement la vraie decklist `Black Yamato OP16 Shop Event Winner`
+- `OP16 West` doit afficher un etat vide propre pour l'instant
+- les pages detail decklist sont actuellement `noindex`
+- les cartes des pages detail decklist sont cliquables et agrandissables
+- `Copy for Sim` copie au format `NxCODE`, une ligne par carte
+- le menu desktop garde toutes les sections visibles
+- le menu mobile garde `Deck Guides`, `Tournaments Decklists`, `Meta Analysis` visibles et met `Beginner Guides`, `Banlist`, `Cards List` dans `More`
+- les guides OP16 preview publics ont ete recuperes depuis GitHub apres `git pull`; ne pas les modifier sans demande explicite
+- les visuels OP16 definitifs sont dans `public/Cards/OP16`
+- dernier build verifie : `100 page(s) built`
