@@ -1,0 +1,96 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const title = "About OPDeckGuide";
+const description =
+	"Learn more about OPDeckGuide, an independent One Piece Card Game resource for tournament decklists, deck guides, meta analysis, card lists, beginner guides, and banlist updates.";
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero">
+		<div class="container">
+			<span class="hero-badge">About</span>
+			<h1>About OPDeckGuide</h1>
+			<p>
+				OPDeckGuide is an independent One Piece Card Game resource focused on tournament decklists, deck
+				guides, meta analysis, card databases, beginner guides, and banlist updates.
+			</p>
+			<p>
+				Our goal is to help players understand the evolving competitive meta, discover new decks, improve
+				their gameplay, and make better deckbuilding decisions.
+			</p>
+			<p>
+				OPDeckGuide tracks tournament results and deck performance to help players understand emerging
+				trends and competitive strategies in the One Piece Card Game.
+			</p>
+		</div>
+	</section>
+
+	<section class="list-section">
+		<div class="container legal-copy">
+			<h2>What We Publish</h2>
+			<p>
+				OPDeckGuide publishes editorial and educational content about the One Piece Card Game, including:
+			</p>
+			<ul>
+				<li>Tournament decklists</li>
+				<li>Deck guides</li>
+				<li>Meta analysis</li>
+				<li>Card lists</li>
+				<li>Beginner resources</li>
+				<li>Banlist information</li>
+			</ul>
+
+			<h2>Who It Is For</h2>
+			<p>
+				OPDeckGuide is designed for players of all levels, from beginners learning the basics to
+				competitive players looking for tournament results, matchup information, and meta trends.
+			</p>
+			<p>
+				Our goal is to become a trusted resource for the global One Piece Card Game community.
+			</p>
+
+			<h2>Independence</h2>
+			<p>
+				OPDeckGuide is an independent fan-made website. It is not affiliated with, endorsed by, or
+				sponsored by Bandai, Shueisha, Toei Animation, or any official One Piece Card Game entity.
+			</p>
+
+			<h2>Contact</h2>
+			<p>
+				For questions, feedback, corrections, or partnership inquiries, contact:
+			</p>
+			<p><a href="mailto:opdeckguide@gmail.com">opdeckguide@gmail.com</a></p>
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	.legal-copy {
+		max-width: 760px;
+	}
+
+	.legal-copy h2 {
+		margin: 2rem 0 0.75rem;
+		font-size: 1.5rem;
+	}
+
+	.legal-copy p {
+		margin: 0.75rem 0;
+		color: var(--text-200);
+	}
+
+	.legal-copy ul {
+		margin: 0.75rem 0 0.75rem 1.2rem;
+		padding: 0;
+		color: var(--text-200);
+	}
+
+	.legal-copy li + li {
+		margin-top: 0.35rem;
+	}
+
+	.legal-copy a {
+		color: var(--accent-2);
+	}
+ </style>

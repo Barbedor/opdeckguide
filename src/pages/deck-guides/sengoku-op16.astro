@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Sengoku OP16 Preview Deck Guide";
+const title = "Sengoku OP16 Deck Guide";
 const description =
-	"Sengoku OP16 preview deck guide for One Piece Card Game with an early decklist idea, the three admiral manga package, the old-set shell, and early strengths and weaknesses.";
+	"Sengoku OP16 deck guide for One Piece Card Game with decklist, key cards, turn curve, matchup spread, replacement options, and full deck fundamentals.";
 
 const icon = "/assets/guides/Sengoku-op16.png";
+
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -24,71 +25,180 @@ const expandSimLines = (count, code) => {
 
 const decklist = [
 	{ code: "OP16-060", name: "Sengoku", count: 1, img: "/Cards/OP16/OP16-060.jpg", role: "Leader" },
+	{ code: "OP16-066", name: "Sengoku", count: 4, img: "/Cards/OP16/OP16-066.jpg", role: "Character" },
 	{ code: "OP16-064", name: "Koby", count: 4, img: "/Cards/OP16/OP16-064.jpg", role: "Character" },
 	{ code: "OP16-067", name: "Tsuru", count: 4, img: "/Cards/OP16/OP16-067.jpg", role: "Character" },
 	{ code: "OP16-070", name: "Donquixote Rosinante", count: 4, img: "/Cards/OP16/OP16-070.jpg", role: "Character" },
-	{ code: "OP16-066", name: "Sengoku", count: 4, img: "/Cards/OP16/OP16-066.jpg", role: "Character" },
-	{ code: "EB03-036", name: "Baby 5", count: 2, img: "/Cards/EB03/EB03-036.jpg", role: "Character" },
-	{ code: "EB04-038", name: "Rosinante & Law", count: 2, img: "/Cards/EB04/EB04-038.jpg", role: "Character" },
-	{ code: "OP16-063", name: "Kuzan", count: 4, img: "/Cards/OP16/OP16-063.jpg", role: "Character" },
-	{ code: "OP16-065", name: "Sakazuki", count: 4, img: "/Cards/OP16/OP16-065.jpg", role: "Character" },
-	{ code: "OP16-075", name: "Monkey.D.Garp", count: 4, img: "/Cards/OP16/OP16-075.jpg", role: "Character" },
+	{ code: "OP16-075", name: "Monkey.D.Garp", count: 3, img: "/Cards/OP16/OP16-075.jpg", role: "Character" },
 	{ code: "OP16-073", name: "Borsalino", count: 4, img: "/Cards/OP16/OP16-073.jpg", role: "Character" },
-	{ code: "OP16-078", name: "Marineford", count: 4, img: "/Cards/OP16/OP16-078.jpg", role: "Stage" },
+	{ code: "OP16-065", name: "Sakazuki", count: 4, img: "/Cards/OP16/OP16-065.jpg", role: "Character" },
+	{ code: "OP16-063", name: "Kuzan", count: 3, img: "/Cards/OP16/OP16-063.jpg", role: "Character" },
+	{ code: "ST18-001", name: "Uso-Hachi", count: 2, img: "/Cards/ST18/ST18-001.png", role: "Character" },
+	{ code: "OP11-067", name: "Charlotte Katakuri", count: 1, img: "/Cards/OP11/OP11-067.jpg", role: "Character" },
 	{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
-	{ code: "OP16-076", name: "Three Admirals!", count: 2, img: "/Cards/OP16/OP16-076.jpg", role: "Event" },
-	{ code: "OP16-077", name: "\"Buddha\" Sengoku", count: 4, img: "/Cards/OP16/OP16-077.jpg", role: "Event" },
+	{ code: "OP15-077", name: "Lightning Dragon", count: 2, img: "/Cards/OP15/OP15-077.jpg", role: "Event" },
+	{ code: "OP07-076", name: "Slow-Slow Beam Sword", count: 2, img: "/Cards/OP07/OP07-076.png", role: "Event" },
+	{ code: "OP16-076", name: "The Three Admirals!!", count: 2, img: "/Cards/OP16/OP16-076.jpg", role: "Event" },
+	{ code: "OP16-077", name: '"Buddha" Sengoku', count: 4, img: "/Cards/OP16/OP16-077.jpg", role: "Event" },
+	{ code: "OP16-078", name: "Marineford", count: 3, img: "/Cards/OP16/OP16-078.jpg", role: "Stage" },
 ];
+
 const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
 const leaderCard = { code: "OP16-060", name: "Sengoku", img: "/Cards/OP16/OP16-060.jpg" };
-
-const spoilerCards = [
-	{ code: "OP16-063", name: "Kuzan", img: "/Cards/OP16/OP16-063.jpg" },
-	{ code: "OP16-065", name: "Sakazuki", img: "/Cards/OP16/OP16-065.jpg" },
+const admiralCards = [
 	{ code: "OP16-073", name: "Borsalino", img: "/Cards/OP16/OP16-073.jpg" },
+	{ code: "OP16-065", name: "Sakazuki", img: "/Cards/OP16/OP16-065.jpg" },
+	{ code: "OP16-063", name: "Kuzan", img: "/Cards/OP16/OP16-063.jpg" },
+];
+const garpCard = { code: "OP16-075", name: "Monkey.D.Garp", img: "/Cards/OP16/OP16-075.jpg" };
+
+const keyCards = [
+	{
+		code: "OP15-078",
+		name: "Mamaragan",
+		img: "/Cards/OP15/OP15-078.jpg",
+		copy: "An incredible counter that doesn't cost you hand cards. It also works perfectly with Sakazuki, letting you rest characters all the way up to 11K power.",
+	},
+	{
+		code: "OP15-077",
+		name: "Lightning Dragon",
+		img: "/Cards/OP15/OP15-077.jpg",
+		copy: "It fills a similar role to Mamaragan, but it also slows the opponent down by freezing attackers, especially in matchups like Nami.",
+	},
+	{
+		code: "ST18-001",
+		name: "Uso-Hachi",
+		img: "/Cards/ST18/ST18-001.png",
+		copy: "A reliable generic 2K counter that helps stabilize early and can also help you close games.",
+	},
+	{
+		code: "OP07-076",
+		name: "Slow-Slow Beam Sword",
+		img: "/Cards/OP07/OP07-076.png",
+		copy: "A very strong counter that helps rest large bodies such as Edward Newgate or Sabo from the Lucy deck.",
+	},
+	{
+		code: "OP11-067",
+		name: "Charlotte Katakuri",
+		img: "/Cards/OP11/OP11-067.jpg",
+		copy: "A very strong fallback option for turns where you still cannot activate the leader effect.",
+	},
 ];
 
-const prepPackage = [
-	{ count: 4, code: "OP08-074", name: "Black Maria", img: "/Cards/OP08/OP08-074.png" },
-	{ count: 4, code: "ST18-001", name: "Usohachi", img: "/Cards/ST18/ST18-001.png" },
-	{ count: 4, code: "OP08-067", name: "Charlotte Pudding", img: "/Cards/OP08/OP08-067.png" },
-	{ count: 4, code: "EB01-061", name: "Mr.2.Bon.Kurei(Bentham)", img: "/Cards/EB01/EB01-061.jpg" },
-	{ count: 4, code: "EB04-038", name: "Rosinante & Law", img: "/Cards/EB04/EB04-038.jpg" },
-	{ count: 4, code: "OP06-074", name: "Zephyr", img: "/Cards/OP06/OP06-074.png" },
-	{ count: 2, code: "OP13-076", name: "Divine Departure", img: "/Cards/OP13/OP13-076.jpg" },
-	{ count: 4, code: "OP15-077", name: "Lightning Dragon", img: "/Cards/OP15/OP15-077.jpg" },
-	{ count: 4, code: "OP15-078", name: "Mamaragan", img: "/Cards/OP15/OP15-078.jpg" },
-	{ count: 4, code: "OP07-076", name: "NoroNoro Beam Sword", img: "/Cards/OP07/OP07-076.png" },
-	{ count: 4, code: "OP08-076", name: "It’s to Die For♡", img: "/Cards/OP08/OP08-076.png" },
+const curveFirst = [
+	{
+		don: "1 DON!!",
+		cards: [
+			{ code: "OP16-078", name: "Marineford", img: "/Cards/OP16/OP16-078.jpg" },
+			{ code: "OP16-077", name: '"Buddha" Sengoku', img: "/Cards/OP16/OP16-077.jpg" },
+			{ code: "OP16-067", name: "Tsuru", img: "/Cards/OP16/OP16-067.jpg" },
+			{ code: "OP16-064", name: "Koby", img: "/Cards/OP16/OP16-064.jpg" },
+		],
+	},
+	{
+		don: "3 DON!!",
+		cards: [
+			{ code: "OP16-078", name: "Marineford", img: "/Cards/OP16/OP16-078.jpg" },
+			{ code: "OP16-067", name: "Tsuru", img: "/Cards/OP16/OP16-067.jpg" },
+			{ code: "OP16-064", name: "Koby", img: "/Cards/OP16/OP16-064.jpg" },
+		],
+	},
+	{
+		don: "5 DON!!",
+		cards: [{ code: "OP16-075", name: "Monkey.D.Garp", img: "/Cards/OP16/OP16-075.jpg" }],
+	},
+	{
+		don: "7 DON!!",
+		cards: admiralCards,
+	},
+	{
+		don: "9 DON!!",
+		cards: admiralCards,
+	},
 ];
 
-const strengths = ["Fast ramp", "Strong mid-to-late game", "Good board control", "Excellent long-game value"];
+const curveSecond = [
+	{
+		don: "2 DON!!",
+		cards: [
+			{ code: "OP16-078", name: "Marineford", img: "/Cards/OP16/OP16-078.jpg" },
+			{ code: "OP16-077", name: '"Buddha" Sengoku', img: "/Cards/OP16/OP16-077.jpg" },
+			{ code: "OP16-067", name: "Tsuru", img: "/Cards/OP16/OP16-067.jpg" },
+			{ code: "OP16-064", name: "Koby", img: "/Cards/OP16/OP16-064.jpg" },
+		],
+	},
+	{
+		don: "4 DON!!",
+		cards: [{ code: "OP16-070", name: "Donquixote Rosinante", img: "/Cards/OP16/OP16-070.jpg" }],
+	},
+	{
+		don: "6 DON!!",
+		cards: [{ code: "OP16-075", name: "Monkey.D.Garp", img: "/Cards/OP16/OP16-075.jpg" }],
+	},
+	{
+		don: "8 DON!!",
+		cards: admiralCards,
+	},
+	{
+		don: "10 DON!!",
+		cards: admiralCards,
+	},
+];
+
+const matchups = [
+	{ code: "OP16-080", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-080.jpg", first: "favored", second: "even" },
+	{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", first: "favored", second: "favored" },
+	{ code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg", first: "even", second: "bad" },
+	{ code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg", first: "even", second: "bad" },
+	{ code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg", first: "favored", second: "bad" },
+	{ code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg", first: "favored", second: "even" },
+	{ code: "OP16-022", name: "Monkey.D.Luffy", img: "/Cards/OP16/OP16-022.jpg", first: "unfavored", second: "bad" },
+	{ code: "OP09-001", name: "Shanks", img: "/Cards/OP09/OP09-001.jpg", first: "favored", second: "unfavored" },
+];
+
+const matchupLegend = [
+	{ tone: "favored", label: "Favored" },
+	{ tone: "even", label: "Even" },
+	{ tone: "unfavored", label: "Unfavored" },
+	{ tone: "bad", label: "Bad" },
+];
+
+const optionCards = [
+	{ code: "OP13-076", name: "Divine Departure", img: "/Cards/OP13/OP13-076.jpg" },
+	{ code: "EB03-036", name: "Baby 5", img: "/Cards/EB03/EB03-036.jpg" },
+	{ code: "EB04-038", name: "Rosinante & Law", img: "/Cards/EB04/EB04-038.jpg" },
+	{ code: "OP07-064", name: "Sanji", img: "/Cards/OP07/OP07-064.png" },
+	{ code: "EB01-061", name: "Mr.2.Bon.Kurei(Bentham)", img: "/Cards/EB01/EB01-061.jpg" },
+	{ code: "OP09-077", name: "Gum-Gum Thunder", img: "/Cards/OP09/OP09-077.jpg" },
+];
+
+const strengths = [
+	"A huge number of searchers, so it's hard to miss your core pieces.",
+	"You can drop three 8-cost bodies as early as turn 4.",
+	"The deck can shut off blockers and force damage through.",
+];
 
 const weaknesses = [
-	"Lack of draw means your hand runs dry and your answers get thinner",
-	"Too dependent on ramp, so the deck gets unstable if the setup misses",
-	"Weak early game, so it has to absorb pressure",
-	"Struggles against aggro decks",
+	"It's a slower deck and needs time to comfortably reach its key turn.",
+	"That makes it vulnerable to aggressive decks.",
+	"It can brick because it plays a lot of heavy cards.",
 ];
-
-const conclusion =
-	"The deck has real strengths with its fast ramp, powerful admirals, and a stronger mid to late game profile than the first draft suggested. It also gains better long-term value and better board control with the updated shell. That said, the lack of draw power and the matchup pressure from aggro still keep it from being a truly solid top deck right now. It still needs a better archetype piece, especially a real 10-cost card, to take the next step. For now, I would put it at 6.5 / 10.";
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero guide-hero">
 		<div class="container hero-grid">
-			<div>
+			<div class="hero-copy">
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Sengoku OP16 Preview Deck Guide</h1>
+				<h1>Sengoku OP16 Deck Guide</h1>
 				<p>
-					First look at Sengoku OP16 in the OP16 format. This preview focuses on the leader effect, the key
-					spoilers, an early decklist idea, and the early read on the purple Navy shell.
+					This guide covers a new and innovative OP16 deck led by Sengoku. The leader gives you explosive ramp
+					and attack turns your opponent won't expect, with a board-spam pattern that can remind you of Imu.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
-					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
 			<div class="guide-icon">
@@ -102,7 +212,7 @@ const conclusion =
 			<div class="section-header decklist-header">
 				<div class="section-heading-copy">
 					<h2>Decklist</h2>
-					<p class="decklist-intro">An early decklist idea for Sengoku OP16 in the OP16 format.</p>
+					<p class="decklist-intro">The current OP16 Sengoku list built around the Admiral curve and event support.</p>
 				</div>
 				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
 					Copy for Sim
@@ -130,13 +240,12 @@ const conclusion =
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Leader</h2>
-					<p>Core identity and leader effect for Sengoku OP16-060.</p>
+					<h2>Leader Sengoku</h2>
 				</div>
 			</div>
-			<div class="leader-card">
+			<div class="feature-card leader-panel">
 				<button
-					class="leader-preview"
+					class="card-button leader-card-button"
 					type="button"
 					data-card-preview
 					data-full={leaderCard.img}
@@ -145,42 +254,25 @@ const conclusion =
 					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
 				</button>
 				<div class="leader-copy">
-					<div class="fact-grid">
-						<div class="fact-box">
-							<span class="fact-label">Color</span>
-							<p>Purple</p>
-						</div>
-						<div class="fact-box">
-							<span class="fact-label">Type</span>
-							<p>Navy</p>
-						</div>
-					</div>
-					<div class="text-card">
-						<h3>Leader Effect</h3>
-						<p class="effect-copy">
-							<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-							You may return 8 of your active DON!! cards to your DON!! deck: Play up to 3 {"{Admiral}"} type
-							Character cards with different card names from your hand.
-						</p>
-					</div>
+					<p class="leader-lead">
+						Sengoku's leader effect will remind a lot of players of Imu. It's not the same, but it follows a
+						similar idea.
+					</p>
+					<p class="leader-effect-box">
+						On <strong>Activate: Main</strong>, you return 8 active DON!! cards from the field to the DON!! deck,
+						then play 3 Admirals with different names from your hand. It sounds crazy at first, but when the
+						Admirals leave the field they refund DON!!, so the real loss isn't as brutal as it looks.
+					</p>
+					<p class="leader-closing">
+						In practice, after using the effect and letting the Admirals cycle back DON!!, you still get to keep a
+						strong board of three 8K bodies while staying on a playable amount of DON!! for the next turn.
+					</p>
+					<div class="leader-note">Goal: reach your 8-DON!! effect turn cleanly, then flood the board with 3 different Admirals.</div>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="spoiler" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Key preview cards</h2>
-					<p>Main cards that define the three admiral package.</p>
-				</div>
-			</div>
-			<div class="loop-grid loop-grid-three">
-				{spoilerCards.map((card) => (
-					<div class="loop-card spoiler-three-card">
+				<div class="admiral-strip">
+					{admiralCards.map((card) => (
 						<button
-							class="option-card"
+							class="card-button admiral-chip"
 							type="button"
 							data-card-preview
 							data-full={card.img}
@@ -188,74 +280,104 @@ const conclusion =
 						>
 							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
 						</button>
-						<div class="text-card">
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="fundamentals" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Deck Fundamentals</h2>
+				</div>
+			</div>
+			<div class="feature-card fundamentals-panel">
+				<div class="text-block">
+					<ul class="bullet-list">
+						<li>This deck mixes ramp with powerful board spam.</li>
+						<li>It plays so many searchers that missing the 3 Admirals is uncommon.</li>
+						<li>You should always search first and prioritize finding the 3 Admirals and Monkey.D.Garp.</li>
+						<li>
+							Garp is the most important card because he turns your 5 DON!! turn into 7 DON!!, with 1 DON!! still
+							active. That lets you use another searcher, the stage effect, and still set up the following turn
+							for the triple-Admiral drop.
+						</li>
+					</ul>
+				</div>
+				<div class="spotlight-card">
+					<button
+						class="card-button spotlight-button"
+						type="button"
+						data-card-preview
+						data-full={garpCard.img}
+						data-name={`${garpCard.code} ${garpCard.name}`}
+					>
+						<img loading="lazy" src={garpCard.img} alt={`${garpCard.code} ${garpCard.name}`} />
+					</button>
+					<p class="spotlight-copy">The most important bridge card in the deck.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="pros-cons" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Strengths & Weaknesses</h2>
+				</div>
+			</div>
+			<div class="split-grid">
+				<div class="info-card info-card-good">
+					<div class="info-head">
+						<span class="info-icon" aria-hidden="true">+</span>
+						<h3>Strengths</h3>
+					</div>
+					<ul class="bullet-list">
+						{strengths.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+				<div class="info-card info-card-bad">
+					<div class="info-head">
+						<span class="info-icon" aria-hidden="true">-</span>
+						<h3>Weaknesses</h3>
+					</div>
+					<ul class="bullet-list">
+						{weaknesses.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="key-cards" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Important Cards</h2>
+				</div>
+			</div>
+			<div class="key-grid">
+				{keyCards.map((card) => (
+					<div class="feature-card key-card">
+						<button
+							class="card-button key-card-button"
+							type="button"
+							data-card-preview
+							data-full={card.img}
+							data-name={`${card.code} ${card.name}`}
+						>
+							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						</button>
+						<div class="key-copy">
 							<h3>{card.name}</h3>
-							<div class="ability-stack">
-								{card.code === "OP16-063" ? (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>add up to 2 DON!! cards from your DON!! deck and rest them.</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-												<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-												<span>
-													DON!! -1: up to 1 of your opponent's Characters cannot activate blocker during
-													this turn.
-												</span>
-											</span>
-										</div>
-									</>
-								) : card.code === "OP16-065" ? (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													DON!! -1: give up to 1 of your opponent's Characters -6000 power until the end of
-													your opponent's next End Phase.
-												</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-												<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-												<span>
-													You may rest 1 of your DON!! cards: if your Leader has the {"{Navy}"} type, add
-													up to 2 DON!! cards from your DON!! deck and set them as active.
-												</span>
-											</span>
-										</div>
-									</>
-								) : (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													add up to 1 DON!! card from your DON!! deck and set it as active, and add up to
-													1 additional DON!! card and rest it.
-												</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/end-of-your-turn.png" alt="End of Your Turn" />
-												<span>
-													DON!! -2: set this Character as active. Then, this Character gains
-													<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />
-													until the end of your opponent's next End Phase.
-												</span>
-											</span>
-										</div>
-									</>
-								)}
-							</div>
+							<p>{card.copy}</p>
 						</div>
 					</div>
 				))}
@@ -263,77 +385,131 @@ const conclusion =
 		</div>
 	</section>
 
-	<section id="prep" class="list-section">
+	<section id="curve" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Prep</h2>
-					<p>Old-set support that helps hold the shell together.</p>
+					<h2>Curve</h2>
+					<p>Priority lines going first and going second.</p>
 				</div>
 			</div>
-			<div class="prep-card">
-				<p class="prep-intro">The list still leans on a sizable older shell for consistency and utility.</p>
-				<div class="prep-grid">
-					{prepPackage.map((entry) => (
-						<button
-							class="prep-chip"
-							type="button"
-							data-card-preview
-							data-full={entry.img}
-							data-name={entry.code}
-						>
-							<img loading="lazy" src={entry.img} alt={entry.code} />
-							<div class="prep-copy">
-								<span class="prep-code">{entry.code}</span>
-								<span class="prep-name">{entry.name}</span>
+			<div class="split-grid curve-layout">
+				<div class="curve-column">
+					<div class="curve-title">Going First</div>
+					<div class="curve-stack">
+						{curveFirst.map((step) => (
+							<div class="feature-card curve-step">
+								<div class="curve-don">{step.don}</div>
+								<div class="curve-cards">
+									{step.cards.map((card) => (
+										<button
+											class="card-button mini-curve-card"
+											type="button"
+											data-card-preview
+											data-full={card.img}
+											data-name={`${card.code} ${card.name}`}
+										>
+											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										</button>
+									))}
+								</div>
 							</div>
-						</button>
+						))}
+					</div>
+				</div>
+				<div class="curve-column">
+					<div class="curve-title">Going Second</div>
+					<div class="curve-stack">
+						{curveSecond.map((step) => (
+							<div class="feature-card curve-step">
+								<div class="curve-don">{step.don}</div>
+								<div class="curve-cards">
+									{step.cards.map((card) => (
+										<button
+											class="card-button mini-curve-card"
+											type="button"
+											data-card-preview
+											data-full={card.img}
+											data-name={`${card.code} ${card.name}`}
+										>
+											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										</button>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+				</div>
+			</div>
+			<div class="feature-card matchups-panel">
+				<div class="matchup-legend">
+					{matchupLegend.map((item) => (
+						<div class="legend-item">
+							<span class:list={["legend-dot", item.tone]}></span>
+							<span>{item.label}</span>
+						</div>
+					))}
+				</div>
+				<div class="matchups-grid">
+					{matchups.map((entry) => (
+						<div class="matchup-card">
+							<button
+								class="card-button matchup-card-button"
+								type="button"
+								data-card-preview
+								data-full={entry.img}
+								data-name={`${entry.code} ${entry.name}`}
+							>
+								<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+							</button>
+							<div class="matchup-name">{entry.name}</div>
+							<div class="turn-line">
+								<span>1st</span>
+								<span class:list={["legend-dot", entry.first]}></span>
+							</div>
+							<div class="turn-line">
+								<span>2nd</span>
+								<span class:list={["legend-dot", entry.second]}></span>
+							</div>
+						</div>
 					))}
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="thoughts" class="list-section">
+	<section id="options" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Thoughts</h2>
-					<p>Strengths, weaknesses, and conclusion.</p>
+					<h2>Good Options</h2>
 				</div>
 			</div>
-			<div class="thoughts-grid">
-				<div class="thought-card">
-					<div class="thought-head thought-up">
-						<span class="thought-icon" aria-hidden="true">+</span>
-						<h3>Strengths</h3>
+			<div class="options-grid">
+				{optionCards.map((card) => (
+					<div class="feature-card option-card-shell">
+						<button
+							class="card-button option-card-button"
+							type="button"
+							data-card-preview
+							data-full={card.img}
+							data-name={`${card.code} ${card.name}`}
+						>
+							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						</button>
+						<div class="option-name">{card.name}</div>
 					</div>
-					<ul>
-						{strengths.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div class="thought-card">
-					<div class="thought-head thought-down">
-						<span class="thought-icon" aria-hidden="true">-</span>
-						<h3>Weaknesses</h3>
-					</div>
-					<ul>
-						{weaknesses.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-			<div class="conclusion-card">
-				<div class="conclusion-head">
-					<div>
-						<h3>Conclusion</h3>
-					</div>
-					<div class="score-badge">6.5 / 10</div>
-				</div>
-				<p>{conclusion}</p>
+				))}
 			</div>
 		</div>
 	</section>
@@ -439,249 +615,267 @@ const conclusion =
 		font-weight: 700;
 	}
 
-	.decklist-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
-		width: 100%;
-	}
-
-	.section-heading-copy {
+	.hero-grid,
+	.deck-grid,
+	.key-grid,
+	.options-grid,
+	.matchups-grid,
+	.split-grid,
+	.admiral-strip {
 		display: grid;
-		gap: 0.35rem;
+		gap: 1rem;
 	}
 
-	.section-heading-copy h2 {
+	.hero-grid,
+	.key-grid,
+	.options-grid,
+	.split-grid,
+	.admiral-strip,
+	.matchups-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-copy {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.hero-copy p,
+	.decklist-intro,
+	.leader-copy p,
+	.key-copy p,
+	.spotlight-copy {
 		margin: 0;
+		color: var(--text-200);
 	}
 
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
-	}
-
-	.guide-hero .hero-grid {
-		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.15rem;
+		color: var(--text-100);
+		display: grid;
+		gap: 0.45rem;
 	}
 
 	.guide-icon {
 		display: grid;
-		place-items: center;
+		justify-items: center;
 	}
 
 	.guide-icon img {
-		width: min(320px, 90%);
+		width: min(110px, 100%);
 		border-radius: 18px;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		box-shadow: var(--shadow);
 	}
 
-	.leader-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.loop-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		gap: 0.6rem 0.75rem;
+		width: 100%;
 	}
 
-	.leader-card {
-		display: grid;
-		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-		gap: 1rem;
+	.section-heading-copy {
+		display: contents;
+	}
+
+	.decklist-header h2 {
+		grid-column: 1;
+		grid-row: 1;
+		margin: 0;
+		line-height: 1;
+	}
+
+	.decklist-header .decklist-intro {
+		grid-column: 1 / -1;
+		grid-row: 2;
+	}
+
+	.decklist-header .copy-sim-button {
+		display: inline-flex;
+		width: auto;
+		min-width: 0;
+		max-width: fit-content;
+		padding: 0.52rem 0.8rem;
+		font-size: 0.78rem;
+		line-height: 1;
+		border-radius: 12px;
+		flex: 0 0 auto;
+		margin-left: auto;
+		align-self: center;
+		white-space: nowrap;
+	}
+
+	.feature-card,
+	.deck-card,
+	.info-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.28);
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.feature-card::before,
+	.deck-card::before,
+	.info-card::before {
+		content: "";
+		position: absolute;
+		inset: -1px;
+		border-radius: inherit;
+		pointer-events: none;
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.18),
+			0 0 22px rgba(255, 138, 42, 0.12),
+			0 0 46px rgba(255, 138, 42, 0.05);
+	}
+
+	.feature-card,
+	.info-card {
 		padding: 1rem;
 	}
 
-	.leader-preview,
-	.option-card {
+	.card-button {
 		border: none;
 		background: transparent;
 		padding: 0;
 		cursor: pointer;
 	}
 
-	.leader-preview img,
-	.option-card img {
+	.card-button img {
+		display: block;
 		width: 100%;
 		border-radius: 14px;
-		display: block;
 	}
 
-	.leader-copy,
-	.loop-grid,
-	.thoughts-grid {
+	.leader-panel,
+	.fundamentals-panel,
+	.key-card {
 		display: grid;
 		gap: 1rem;
 	}
 
-	.fact-grid {
+	.leader-copy {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.8rem;
+		gap: 0.9rem;
+		align-content: start;
 	}
 
-	.fact-box,
-	.text-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.deck-card {
-		padding: 1rem;
-	}
-
-	.fact-box {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid var(--border);
-		border-radius: 14px;
-	}
-
-	.fact-label {
-		display: block;
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--accent);
-		margin-bottom: 0.45rem;
-	}
-
-	.fact-box p,
-	.text-card p,
-	.prep-intro,
-	.section-note {
-		margin: 0;
-		color: var(--text-200);
-	}
-
-	.text-card h3,
-	.thought-card h3,
-	.conclusion-card h3 {
-		margin-top: 0;
-		margin-bottom: 0.6rem;
-	}
-
-	.text-card ul,
-	.thought-card ul {
-		margin: 0;
-		padding-left: 1.15rem;
-	}
-
-	.effect-copy {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-	}
-
-	.keyword-badge {
-		height: 24px;
-		width: auto;
-		vertical-align: middle;
-		flex: 0 0 auto;
-		transform: translateY(4px);
-		margin: 0 0.12rem;
-	}
-
-	.effect-inline {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		white-space: nowrap;
-	}
-
-	.keyword-line {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		flex-wrap: wrap;
-	}
-
-	.ability-inline {
-		display: inline;
-	}
-
-	.ability-inline .keyword-badge {
-		display: inline-block;
-		height: 18px;
-		margin-right: 0.35rem;
-		vertical-align: middle;
-		transform: translateY(-1px);
-	}
-
-	.effect-copy .keyword-badge {
-		height: 18px;
-	}
-
-	.effect-copy > .keyword-badge {
-		transform: translateY(-2px);
-		margin-right: 0.35rem;
-	}
-
-	.ability-stack {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.ability-line {
-		margin: 0;
+	.leader-lead {
+		font-size: 1.02rem;
 		color: var(--text-100);
 	}
 
-	.ability-line-tag-only {
-		margin-bottom: -0.15rem;
+	.leader-effect-box {
+		padding: 0.9rem 1rem;
+		border-radius: 16px;
+		background: linear-gradient(135deg, rgba(255, 138, 42, 0.12), rgba(126, 79, 255, 0.08));
+		border: 1px solid rgba(255, 138, 42, 0.2);
 	}
 
-	.loop-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
+	.leader-closing {
+		color: var(--text-100);
 	}
 
-	.loop-grid-three {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+	.leader-note {
+		padding: 0.75rem 0.9rem;
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.035);
+		border: 1px solid rgba(255, 138, 42, 0.14);
+		color: var(--text-200);
+		font-size: 0.94rem;
 	}
 
-	.loop-card {
-		display: grid;
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-		align-items: start;
-	}
-
-	.spoiler-three-card {
-		grid-template-columns: 1fr;
-	}
-
-	.spoiler-three-card .option-card img {
-		max-width: 200px;
+	.leader-card-button img {
+		max-width: 170px;
 		margin: 0 auto;
 	}
 
-	.deck-grid {
+	.admiral-strip {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.admiral-chip img {
+		max-width: 92px;
+		margin: 0 auto;
+	}
+
+	.spotlight-card {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1.2rem;
+		gap: 0.75rem;
+		align-content: start;
+	}
+
+	.spotlight-button img {
+		max-width: 170px;
+		margin: 0 auto;
+	}
+
+	.spotlight-copy {
+		text-align: center;
+		font-size: 0.92rem;
+	}
+
+	.info-card-good {
+		background: linear-gradient(180deg, rgba(18, 30, 26, 0.96), rgba(12, 17, 30, 0.94));
+	}
+
+	.info-card-bad {
+		background: linear-gradient(180deg, rgba(38, 22, 22, 0.96), rgba(12, 17, 30, 0.94));
+	}
+
+	.info-head {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin-bottom: 0.85rem;
+	}
+
+	.info-head h3,
+	.key-copy h3 {
+		margin: 0;
+	}
+
+	.info-icon {
+		width: 34px;
+		height: 34px;
+		display: grid;
+		place-items: center;
+		border-radius: 999px;
+		font-size: 1.1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.info-card-good .info-icon {
+		background: linear-gradient(135deg, #7ddf64, #f0b233);
+	}
+
+	.info-card-bad .info-icon {
+		background: linear-gradient(135deg, #ff9040, #ff5e5e);
+	}
+
+	.deck-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.35rem;
 	}
 
 	.deck-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
+		padding: 0.35rem;
 		display: grid;
-		gap: 0.75rem;
-		text-align: left;
+		gap: 0.4rem;
+		text-align: center;
 		cursor: pointer;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	.deck-card:hover,
 	.deck-card:focus-visible,
-	.leader-preview:hover,
-	.leader-preview:focus-visible,
-	.option-card:hover,
-	.option-card:focus-visible {
+	.card-button:hover,
+	.card-button:focus-visible {
 		transform: translateY(-4px);
 		outline: none;
 	}
@@ -689,21 +883,20 @@ const conclusion =
 	.deck-card:hover,
 	.deck-card:focus-visible {
 		border-color: rgba(255, 107, 61, 0.4);
-		box-shadow: var(--shadow);
 	}
 
 	.deck-card img {
 		width: 100%;
-		max-width: 150px;
+		max-width: 94px;
 		margin: 0 auto;
-		border-radius: 12px;
+		border-radius: 8px;
 	}
 
 	.deck-info {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0.6rem;
-		align-items: center;
+		grid-template-columns: 1fr;
+		justify-items: center;
+		gap: 0.28rem;
 	}
 
 	.deck-count {
@@ -711,139 +904,192 @@ const conclusion =
 		color: var(--accent);
 		font-weight: 700;
 		border-radius: 999px;
-		padding: 0.3rem 0.7rem;
-		font-size: 0.9rem;
+		padding: 0.18rem 0.45rem;
+		font-size: 0.68rem;
+		line-height: 1;
 	}
 
 	.deck-name {
 		font-weight: 600;
+		font-size: 0.68rem;
+		line-height: 1.15;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	.deck-code,
 	.deck-role {
 		color: var(--text-300);
-		font-size: 0.85rem;
+		font-size: 0.66rem;
+		line-height: 1.1;
 	}
 
 	.deck-role {
-		text-transform: uppercase;
-		letter-spacing: 1px;
+		display: none;
 	}
 
-	.prep-grid {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
+	.key-grid {
+		gap: 0.85rem;
 	}
 
-	.prep-chip {
-		border: 1px solid var(--border);
-		border-radius: 16px;
-		padding: 0.75rem;
-		background: rgba(255, 255, 255, 0.03);
-		text-align: left;
-		display: grid;
-		grid-template-rows: auto 1fr;
-		gap: 0.65rem;
-		align-content: start;
-		color: var(--text-100);
-		cursor: pointer;
+	.key-card {
+		grid-template-columns: 88px minmax(0, 1fr);
+		align-items: start;
+		gap: 0.85rem;
 	}
 
-	.prep-chip img {
-		width: 100%;
-		max-width: 110px;
-		height: auto;
-		border-radius: 10px;
+	.key-card-button img {
+		max-width: 88px;
 		margin: 0 auto;
 	}
 
-	.prep-copy {
+	.key-copy {
 		display: grid;
-		gap: 0.2rem;
+		gap: 0.45rem;
 	}
 
-	.prep-count,
-	.prep-code {
-		font-weight: 700;
-	}
-
-	.prep-code {
-		color: var(--text-100);
-	}
-
-	.prep-name {
-		color: var(--text-300);
-		font-size: 0.92rem;
-		line-height: 1.25;
-		overflow-wrap: anywhere;
-	}
-
-	.thoughts-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.thought-card {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.thought-card::before {
-		content: "";
-		position: absolute;
-		inset: 0 auto auto 0;
-		width: 100%;
-		height: 4px;
-		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
-	}
-
-	.thought-head,
-	.conclusion-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+	.curve-layout {
 		gap: 1rem;
 	}
 
-	.thought-head {
-		margin-bottom: 0.8rem;
-		justify-content: flex-start;
-	}
-
-	.thought-head h3 {
-		margin: 0;
-	}
-
-	.thought-icon {
-		width: 36px;
-		height: 36px;
+	.curve-column {
 		display: grid;
-		place-items: center;
-		border-radius: 999px;
-		font-size: 1.2rem;
+		gap: 0.8rem;
+	}
+
+	.curve-title {
+		font-size: 1.1rem;
 		font-weight: 800;
-		color: #0b0f1a;
+		color: var(--text-100);
 	}
 
-	.thought-up .thought-icon {
-		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	.curve-stack {
+		display: grid;
+		gap: 0.75rem;
 	}
 
-	.thought-down .thought-icon {
-		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	.curve-step {
+		display: grid;
+		gap: 0.75rem;
 	}
 
-	.score-badge {
-		border-radius: 999px;
-		padding: 0.55rem 0.9rem;
-		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
-		border: 1px solid rgba(255, 107, 61, 0.35);
+	.curve-don {
+		font-size: 0.95rem;
+		font-weight: 800;
 		color: var(--accent);
-		font-weight: 800;
-		font-size: 1rem;
+		text-transform: uppercase;
 		letter-spacing: 0.04em;
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.mini-curve-card img {
+		width: 78px;
+	}
+
+	.matchups-panel {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-legend {
+		display: grid;
+		grid-template-columns: repeat(2, max-content);
+		justify-content: center;
+		gap: 0.55rem 0.85rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	.legend-item,
+	.turn-line {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.legend-dot {
+		width: 15px;
+		height: 15px;
+		border-radius: 999px;
+		display: inline-block;
+	}
+
+	.legend-dot.favored {
+		background: #1db954;
+	}
+
+	.legend-dot.even {
+		background: #f4d03f;
+	}
+
+	.legend-dot.unfavored {
+		background: #ff8c2f;
+	}
+
+	.legend-dot.bad {
+		background: #ff4d5a;
+	}
+
+	.matchups-grid {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		column-gap: 0.8rem;
+		row-gap: 1.25rem;
+	}
+
+	.matchup-card {
+		width: calc((100% - 1.6rem) / 3);
+		display: grid;
+		justify-items: center;
+		gap: 0.35rem;
+		text-align: center;
+	}
+
+	.matchup-card-button img {
+		width: 84px;
+	}
+
+	.matchup-name {
+		font-weight: 700;
+		font-size: 0.8rem;
+		line-height: 1.15;
+	}
+
+	.turn-line {
+		font-size: 0.76rem;
+		font-weight: 700;
+	}
+
+	.options-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.7rem;
+	}
+
+	.option-card-shell {
+		display: grid;
+		justify-items: center;
+		gap: 0.7rem;
+		text-align: center;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	.option-card-button img {
+		width: min(100%, 130px);
+		margin: 0 auto;
+	}
+
+	.option-name {
+		font-weight: 700;
+		overflow-wrap: anywhere;
 	}
 
 	.card-modal {
@@ -853,7 +1099,7 @@ const conclusion =
 		display: none;
 		align-items: center;
 		justify-content: center;
-		padding: 2rem;
+		padding: 0;
 		z-index: 40;
 	}
 
@@ -862,36 +1108,43 @@ const conclusion =
 	}
 
 	.card-modal-inner {
-		position: relative;
-		width: fit-content;
-		max-width: 90vw;
-		max-height: 90vh;
-		margin: 0 auto;
+		position: fixed;
+		inset: 0;
+		width: 100vw;
+		height: 100dvh;
+		max-width: none;
+		max-height: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		place-items: center;
 	}
 
 	.card-modal-frame {
-		width: fit-content;
-		max-width: 100%;
+		padding: 0.75rem;
+		max-width: calc(100vw - 1.5rem);
+		max-height: calc(100dvh - 1.5rem);
 		background: rgba(10, 14, 24, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
-		padding: 1rem 1rem 1.5rem;
 		box-shadow: var(--shadow);
 	}
 
 	.card-modal-inner img {
 		display: block;
 		width: auto;
-		max-width: min(520px, calc(90vw - 2rem));
-		max-height: 80vh;
+		max-width: min(78vw, 320px);
+		height: auto;
+		max-height: 78vh;
 		object-fit: contain;
 		margin: 0 auto;
 	}
 
 	.modal-close {
-		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
+		position: fixed;
+		top: 0.75rem;
+		right: 0.75rem;
+		z-index: 2;
 		background: rgba(255, 255, 255, 0.05);
 		border: 1px solid var(--border);
 		color: var(--text-100);
@@ -901,305 +1154,234 @@ const conclusion =
 		font-size: 0.85rem;
 	}
 
-	@media (max-width: 1024px) {
-		.loop-grid-three {
+	@media (min-width: 641px) {
+		.guide-icon img {
+			width: min(300px, 100%);
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1.2rem;
+		}
+
+		.deck-card {
+			padding: 0.9rem;
+			gap: 0.75rem;
+			text-align: left;
+		}
+
+		.deck-card img {
+			max-width: 150px;
+			border-radius: 12px;
+		}
+
+		.deck-info {
+			grid-template-columns: auto 1fr;
+			justify-items: start;
+			gap: 0.6rem;
+			align-items: center;
+		}
+
+		.deck-count {
+			padding: 0.3rem 0.7rem;
+			font-size: 0.9rem;
+		}
+
+		.deck-name {
+			font-size: 1rem;
+			line-height: 1.3;
+			display: block;
+		}
+
+		.deck-code,
+		.deck-role {
+			font-size: 0.85rem;
+		}
+
+		.deck-role {
+			display: inline;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.hero-grid,
+		.split-grid,
+		.key-grid,
+		.options-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
-	}
 
-	@media (max-width: 900px) {
+		.hero-grid {
+			grid-template-columns: minmax(0, 1.08fr) minmax(250px, 0.92fr);
+			align-items: center;
+		}
+
 		.decklist-header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 0.75rem;
+		}
+
+		.section-heading-copy {
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: start;
-			gap: 0.6rem 0.75rem;
-		}
-
-		.decklist-header .section-heading-copy {
-			display: contents;
-		}
-
-		.decklist-header h2 {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: center;
-			line-height: 1;
+			gap: 0.35rem;
 		}
 
 		.decklist-header .decklist-intro {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 0;
+			grid-column: auto;
+			grid-row: auto;
 		}
 
-		.guide-hero .hero-grid,
-		.leader-card,
-		.loop-grid,
-		.thoughts-grid,
-		.loop-grid-three {
+		.leader-panel {
+			grid-template-columns: 230px minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.leader-card-button img,
+		.spotlight-button img {
+			max-width: 220px;
+		}
+
+		.admiral-strip {
+			grid-column: 2;
+			grid-template-columns: repeat(3, max-content);
+			justify-content: start;
+			padding-top: 0.1rem;
+		}
+
+		.admiral-chip img {
+			max-width: 120px;
+		}
+
+		.fundamentals-panel {
+			grid-template-columns: minmax(0, 1fr) 280px;
+			align-items: start;
+		}
+
+		.text-block {
+			padding: 0.6rem 0.15rem;
+		}
+
+		.key-grid {
 			grid-template-columns: 1fr;
 		}
 
-		.guide-icon {
-			margin-top: 1.35rem;
+		.key-card {
+			grid-template-columns: 150px minmax(0, 1fr);
+			gap: 1rem;
 		}
 
-		.decklist-header .copy-sim-button {
-			display: inline-flex;
-			width: auto;
-			min-width: 0;
-			max-width: fit-content;
-			padding: 0.52rem 0.8rem;
-			font-size: 0.78rem;
-			line-height: 1;
-			border-radius: 12px;
-			flex: 0 0 auto;
-			margin-left: auto;
-			margin-top: 0;
-			align-self: center;
-			white-space: nowrap;
+		.key-card-button img {
+			max-width: 150px;
+		}
+
+		.curve-layout {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.mini-curve-card img {
+			width: 96px;
+		}
+
+		.matchup-legend {
+			grid-template-columns: repeat(4, max-content);
+		}
+
+		.matchup-card {
+			width: calc((100% - 3rem) / 4);
+		}
+
+		.matchup-card-button img {
+			width: 110px;
+		}
+
+		.option-card-shell {
+			padding: 1rem 0.9rem 1.1rem;
+		}
+
+		.option-card-button img {
+			width: min(100%, 190px);
+		}
+
+		.card-modal {
+			padding: 2rem;
+		}
+
+		.card-modal-inner {
+			position: relative;
+			width: fit-content;
+			max-width: 90vw;
+			max-height: 90vh;
+			margin: 0 auto;
+		}
+
+		.card-modal-frame {
+			width: fit-content;
+			max-width: 100%;
+			padding: 1rem 1rem 1.5rem;
+		}
+
+		.card-modal-inner img {
+			max-width: min(520px, calc(90vw - 2rem));
+			max-height: 80vh;
+		}
+
+		.modal-close {
+			position: absolute;
+			top: 0.25rem;
+			right: 0.25rem;
+		}
+	}
+
+	@media (min-width: 1025px) {
+		.options-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.key-grid {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		.key-card {
+			width: min(100%, calc((100% - 2rem) / 3));
+			max-width: 360px;
+			grid-template-columns: 1fr;
+			justify-items: center;
+			text-align: center;
+		}
+
+		.key-copy {
+			text-align: center;
+		}
+
+		.matchup-card {
+			width: calc((100% - 5.6rem) / 4);
 		}
 	}
 
 	@media (max-width: 640px) {
-		.guide-hero.guide-hero .hero-grid {
-			grid-template-columns: minmax(0, 1fr) 96px !important;
-			gap: 1rem !important;
-			align-items: start !important;
+		.section-header h2 {
+			white-space: nowrap;
+			font-size: clamp(2rem, 7vw, 2.4rem);
 		}
 
-		.guide-hero .guide-icon {
-			grid-column: 2 !important;
-			grid-row: 1 !important;
-			align-self: start !important;
-			justify-self: end !important;
-			margin-top: 5.2rem !important;
-		}
-
-		.guide-hero .guide-icon img {
-			width: 96px;
-			max-width: 96px;
-			border-radius: 14px;
-		}
-
-		.loop-card,
-		.spoiler-three-card {
-			grid-template-columns: 96px minmax(0, 1fr);
-			gap: 0.9rem;
-		}
-
-		.loop-card .text-card,
-		.leader-card .text-card {
-			padding: 0;
-			background: transparent;
-			border: none;
-		}
-
-		.leader-card {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-			gap: 0.8rem;
-			padding: 0.8rem;
-			align-items: start;
-		}
-
-		.leader-copy {
-			display: contents;
-		}
-
-		.leader-preview {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: start;
-		}
-
-		.leader-preview img {
-			width: 100%;
-			max-width: none;
-			border-radius: 10px;
-		}
-
-		.fact-grid {
-			grid-column: 2;
-			grid-row: 1;
-			grid-template-columns: 1fr;
-			gap: 0.6rem;
-		}
-
-		.fact-box {
-			padding: 0.7rem 0.75rem;
-			border-radius: 12px;
-		}
-
-		.fact-label {
-			font-size: 0.68rem;
-			margin-bottom: 0.3rem;
-		}
-
-		.text-card {
-			grid-column: 1 / -1;
-			grid-row: 2;
-		}
-
-		.keyword-badge {
-			height: 21px;
-		}
-
-		.effect-copy {
-			display: block;
-		}
-
-		.effect-copy .keyword-badge {
-			display: inline-block;
-			height: 18px;
-			margin: 0;
-			vertical-align: middle;
-			transform: translateY(-3px);
-		}
-
-		.effect-copy > .keyword-badge {
-			margin-right: 0.45rem;
-		}
-
-		.keyword-line {
-			gap: 0.5rem;
-		}
-
-		.keyword-line .keyword-badge {
-			height: 18px;
-			margin: 0;
-			transform: translateY(4px);
-		}
-
-		.ability-inline .keyword-badge {
-			height: 18px;
-			margin-right: 0.5rem;
-			vertical-align: middle;
-			transform: translateY(-1px);
-		}
-
-		.prep-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.prep-chip {
-			padding: 0.5rem;
-			gap: 0.45rem;
-			border-radius: 12px;
-		}
-
-		.prep-chip img {
-			max-width: 82px;
-			border-radius: 8px;
-		}
-
-		.prep-copy {
-			gap: 0.12rem;
-			align-content: start;
-		}
-
-		.prep-count,
-		.prep-code,
-		.prep-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
-		}
-
-		.prep-name {
-			min-height: 2.3em;
-		}
-
-		.deck-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 0.35rem;
-		}
-
-		.deck-card {
-			padding: 0.35rem;
-			gap: 0.4rem;
-			border-radius: 12px;
-			text-align: center;
-		}
-
-		.deck-card img {
-			max-width: 94px;
-			border-radius: 8px;
-		}
-
-		.deck-info {
-			grid-template-columns: 1fr;
-			justify-items: center;
-			gap: 0.28rem;
-		}
-
-		.deck-count {
-			padding: 0.18rem 0.45rem;
-			font-size: 0.68rem;
-			line-height: 1;
-		}
-
-		.deck-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
-		}
-
-		.deck-code {
-			font-size: 0.66rem;
-			line-height: 1.1;
-		}
-
-		.deck-role {
-			display: none;
-		}
-
-		.card-modal {
-			padding: 0 !important;
-		}
-
-		.card-modal-inner {
-			position: fixed !important;
-			inset: 0 !important;
-			width: 100vw !important;
-			height: 100dvh !important;
-			max-width: none !important;
-			max-height: none !important;
-			margin: 0 !important;
-			padding: 0 !important;
+		.guide-hero .hero-actions {
+			grid-column: 1 / -1 !important;
+			justify-self: stretch !important;
+			width: 100% !important;
 			display: grid !important;
-			place-items: center !important;
-			background: transparent !important;
-			border: 0 !important;
-			box-shadow: none !important;
+			justify-items: center !important;
+			align-items: center !important;
+			row-gap: 0.8rem !important;
 		}
 
-		.card-modal-frame {
-			padding: 0.75rem !important;
-			max-width: calc(100vw - 1.5rem) !important;
-			max-height: calc(100dvh - 1.5rem) !important;
-		}
-
-		.card-modal-inner img {
-			display: block !important;
-			width: auto !important;
-			max-width: min(78vw, 320px) !important;
-			height: auto !important;
-			max-height: 78vh !important;
-			object-fit: contain !important;
-			margin: 0 auto !important;
-		}
-
-		.modal-close {
-			position: fixed !important;
-			top: 0.75rem !important;
-			right: 0.75rem !important;
-			z-index: 2 !important;
-		}
-
-		.conclusion-head {
-			align-items: flex-start;
+		.guide-hero .hero-actions .btn {
+			width: min(100%, 280px) !important;
+			margin-inline: auto !important;
 		}
 	}
 </style>
