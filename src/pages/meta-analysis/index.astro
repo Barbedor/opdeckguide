@@ -30,19 +30,32 @@ const description =
 			<figure class="tier-figure">
 				<img
 					loading="lazy"
-					src="/assets/tier-list/tier list Desktop V.2.png"
+					src="/assets/tier-list/tier list Desktop.png"
 					alt="One Piece Card Game tier list snapshot"
 					class="tier-image-desktop"
 				/>
 				<img
 					loading="lazy"
-					src="/assets/tier-list/Tier list mobil V.2.png"
+					src="/assets/tier-list/Tier list mobil.png"
 					alt="One Piece Card Game tier list snapshot"
 					class="tier-image-mobile"
 				/>
 				<figcaption>Current tier list of decks.</figcaption>
 			</figure>
 			<div class="tier-article-links">
+				<a class="tier-article-card" href="/meta-analysis/Green-Blue-Luffy-op16-stats/">
+					<div class="article-thumb" aria-hidden="true">
+						<img
+							loading="lazy"
+							src="/assets/guides/Luffy op16.png"
+							alt=""
+						/>
+					</div>
+					<div class="tier-article-copy">
+						<strong>OP16 Green/Blue Luffy stats in OP16 Format</strong>
+						<p>Turn-order win rates for Green/Blue Luffy in the OP16 format.</p>
+					</div>
+				</a>
 				<a class="tier-article-card" href="/meta-analysis/Purple-Yellow-Rosinante-op12-stats/">
 					<div class="article-thumb" aria-hidden="true">
 						<img
@@ -305,17 +318,31 @@ const description =
 		align-items: start;
 		padding: 16px 18px;
 		background: rgba(14, 18, 30, 0.78);
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 138, 42, 0.2);
 		border-radius: 18px;
 		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
 		text-decoration: none;
 		color: inherit;
+		position: relative;
+		overflow: hidden;
 		transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+	}
+
+	.tier-article-card::before {
+		content: "";
+		position: absolute;
+		inset: -1px;
+		border-radius: inherit;
+		pointer-events: none;
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.14),
+			0 0 20px rgba(255, 138, 42, 0.1),
+			0 0 40px rgba(255, 138, 42, 0.04);
 	}
 
 	.tier-article-card:hover {
 		transform: translateY(-2px);
-		border-color: rgba(255, 255, 255, 0.14);
+		border-color: rgba(255, 138, 42, 0.28);
 		background: rgba(18, 23, 38, 0.92);
 	}
 
