@@ -3,17 +3,33 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 const title = "Portgas.D.Ace OP13 Deck Guide";
 const description =
-	"Portgas.D.Ace OP13 deck guide for One Piece Card Game with decklist, curve reference, mulligan targets, options, and matchup focus leaders.";
+	"Portgas.D.Ace OP13 deck guide for One Piece Card Game with decklist, mulligan priorities, curve reference, tech cards, matchup notes, and OP16 gameplay tips.";
 
 const icon = "/assets/guides/portgas-d-ace-op13.png";
 
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
 const decklist = [
 	{ code: "OP13-002", name: "Portgas.D.Ace", count: 1, img: "/Cards/OP13/OP13-002.jpg", role: "Leader" },
-	{ code: "ST15-004", name: "Thatch", count: 4, img: "/Cards/ST15/ST15-004.png", role: "Character" },
+	{ code: "ST15-004", name: "Thatch", count: 2, img: "/Cards/ST15/ST15-004.png", role: "Character" },
 	{ code: "OP13-043", name: "Otama", count: 4, img: "/Cards/OP13/OP13-043.jpg", role: "Character" },
 	{ code: "ST22-002", name: "Izo", count: 4, img: "/Cards/ST22/ST22-002.jpg", role: "Character" },
 	{ code: "OP13-016", name: "Monkey.D.Garp", count: 4, img: "/Cards/OP13/OP13-016.jpg", role: "Character" },
-	{ code: "OP08-040", name: "Atmos", count: 2, img: "/Cards/OP08/OP08-040.png", role: "Character" },
+	{ code: "OP08-040", name: "Atmos", count: 3, img: "/Cards/OP08/OP08-040.png", role: "Character" },
 	{ code: "PRB02-008", name: "Marco", count: 4, img: "/Cards/PRB02/PRB02-008.jpg", role: "Character" },
 	{ code: "OP13-054", name: "Yamato", count: 4, img: "/Cards/OP13/OP13-054.jpg", role: "Character" },
 	{ code: "ST23-001", name: "Uta", count: 2, img: "/Cards/ST23/ST23-001.jpg", role: "Character" },
@@ -21,66 +37,101 @@ const decklist = [
 	{ code: "OP07-051", name: "Boa Hancock", count: 3, img: "/Cards/OP07/OP07-051.png", role: "Character" },
 	{ code: "EB04-007", name: "Roronoa Zoro", count: 3, img: "/Cards/EB04/EB04-007.jpg", role: "Character" },
 	{ code: "OP13-042", name: "Edward.Newgate", count: 4, img: "/Cards/OP13/OP13-042.jpg", role: "Character" },
-	{ code: "OP09-118", name: "Gol.D.Roger", count: 2, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
-	{ code: "EB04-008", name: "Distorted Future", count: 2, img: "/Cards/EB04/EB04-008.jpg", role: "Event" },
+	{ code: "OP09-118", name: "Gol.D.Roger", count: 1, img: "/Cards/OP09/OP09-118.jpg", role: "Character" },
+	{
+		code: "OP13-057",
+		name: "If I Bowed Down to Power, What's the Point in Living?",
+		count: 1,
+		img: "/Cards/OP13/OP13-057.jpg",
+		role: "Event",
+	},
+	{ code: "OP14-018", name: "Time for the Counterattack", count: 1, img: "/Cards/OP14/OP14-018.jpg", role: "Event" },
 	{ code: "ST22-015", name: "I Am Whitebeard!!", count: 4, img: "/Cards/ST22/ST22-015.jpg", role: "Event" },
+	{ code: "OP16-021", name: "Moby Dick", count: 2, img: "/Cards/OP16/OP16-021.jpg", role: "Stage" },
 ];
 
-const optionsGroups = [
+const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
+
+const mulliganKeeps = [
 	{
-		cards: [
-			{ code: "OP10-045", name: "Cavendish", img: "/Cards/OP10/OP10-045.jpg" },
-			{ code: "OP08-043", name: "Edward.Newgate", img: "/Cards/OP08/OP08-043.png" },
-			{ code: "OP14-017", name: "Chambres", img: "/Cards/OP14/OP14-017.jpg" },
-		],
-		note:
-			"These are just some of the valid cards that can be inserted in the deck. Cavendish is a good option against Lucy where you need to see as many cards as possible, but it's removed in all the usual ways such as Zeus, Nojiko, and Barrier. Taxbeard and Shambles are useful to buy a turn or control the board against Enel P, but they're not on the list because Boa is stronger and more versatile in this meta.",
+		copy:
+			"Izo is one of the best cards to see early. It improves your opening hand by finding the important pieces while still moving your game plan forward.",
+		cards: [{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" }],
+	},
+	{
+		copy:
+			"Monkey.D.Garp is also a priority. It helps stabilize the first turns and sets up your midgame threats efficiently.",
+		cards: [{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" }],
+	},
+	{
+		copy:
+			"Marco is often an excellent keep because of his defensive value. He forces the opponent to spend resources while buying you time to develop your plan.",
+		cards: [{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" }],
+	},
+	{
+		copy:
+			"Yamato is a very good keep once your early game is already covered. She helps bridge into the midgame while keeping pressure on the opponent.",
+		cards: [{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" }],
 	},
 ];
 
-const mulliganCards = [
-	{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
-	{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
-	{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
-	{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+const mulliganSendBackCards = [
+	{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" },
+	{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+	{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
+	{ code: "OP14-018", name: "Time for the Counterattack", img: "/Cards/OP14/OP14-018.jpg" },
+	{
+		code: "OP13-057",
+		name: "If I Bowed Down to Power, What's the Point in Living?",
+		img: "/Cards/OP13/OP13-057.jpg",
+	},
 ];
 
 const curveFirst = [
 	{
 		label: "1 DON",
-		notes: "1C for the missing pieces in the curve.",
+		notes:
+			"Look for the missing pieces. The goal isn't to be aggressive right away, but to build a functional hand.",
 		cards: [
-			{ code: "OP13-043", name: "Otama", img: "/Cards/OP13/OP13-043.jpg" },
 			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
+			{ code: "OP13-043", name: "Otama", img: "/Cards/OP13/OP13-043.jpg" },
 			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
 		],
 	},
 	{
 		label: "3 DON",
-		notes: "Repeat last turn and give one DON to your leader for the ability and swing 7 face.",
-		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
+		notes:
+			"Attach 1 DON!! to Ace whenever possible. Drawing on damage is one of the main reasons the deck exists.",
+		cards: [
+			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.jpg" },
+			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
+			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
+		],
 	},
 	{
 		label: "5 DON",
-		notes: "Atmos/Marco + 1 DON to leader for decrease opponent's pressure or Yamato if you need card for next turn/combo.",
+		notes:
+			"Marco locks down your defense. Atmos slows the opponent down. Yamato is better if you're setting up your next big turn.",
 		cards: [
-			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
 			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
 			{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" },
 		],
 	},
 	{
 		label: "7 DON",
-		notes: "Jozu bounces one of your 1C and removes a useful 6C to remove a threat, Boa makes you earn 1 turn against Enel P and Zoro brings the leader to 7K base but you don't have the DON assigned necessary for the ability. The choice depends a lot on the situation and against which deck we are.",
+		notes:
+			"Jozu controls the board. Boa buys time. Zoro is the pressure option when you want to push harder.",
 		cards: [
 			{ code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" },
-			{ code: "EB04-007", name: "Roronoa Zoro", img: "/Cards/EB04/EB04-007.jpg" },
 			{ code: "OP07-051", name: "Boa Hancock", img: "/Cards/OP07/OP07-051.png" },
+			{ code: "EB04-007", name: "Roronoa Zoro", img: "/Cards/EB04/EB04-007.jpg" },
 		],
 	},
 	{
 		label: "9 DON",
-		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you're playing for Roger.",
+		notes:
+			"This is your best stabilization turn: huge body, blocker, pressure, and protection all at once.",
 		cards: [
 			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
 			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
@@ -88,96 +139,182 @@ const curveFirst = [
 	},
 	{
 		label: "Late game",
-		notes: "You can repeat your last turn, or if you're in the right setup, Roger is the card you need to finish the match and say goodbye to the opposing blockers.",
-		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
+		notes:
+			"Roger is your finisher, not a card you play just because you drew it. Otherwise, keep looping Newgate when that's the cleaner line.",
+		cards: [
+			{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
 	},
 ];
 
 const curveSecond = [
 	{
 		label: "2 DON",
-		notes: "1C for the missing pieces in the curve + 1 DON to leader for the ability.",
+		notes: "This turn matters a lot. You want to turn Ace on as early as possible.",
 		cards: [
 			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
-			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
+			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
+			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.jpg" },
 		],
 	},
 	{
 		label: "4 DON",
-		notes: "Atmos/Marco for decrease opponent's pressure but you don't have DON assigned to leader.",
+		notes: "You slow the opponent down without emptying your hand.",
 		cards: [
-			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
 			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+			{ code: "OP08-040", name: "Atmos", img: "/Cards/OP08/OP08-040.png" },
 		],
 	},
 	{
 		label: "6 DON",
-		notes: "Many options in this turn and all valid, Jozu and Boa help you but they don't let you draw any DON. If you don't have the DON assigned, Yamato instead does the exact opposite and maybe it's the option I would choose but it depends on the situations.",
+		notes:
+			"Yamato is often the best value line. Jozu and Boa are better when an opposing threat has to disappear.",
 		cards: [
+			{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" },
 			{ code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" },
 			{ code: "OP07-051", name: "Boa Hancock", img: "/Cards/OP07/OP07-051.png" },
-			{ code: "OP13-054", name: "Yamato", img: "/Cards/OP13/OP13-054.jpg" },
 		],
 	},
 	{
 		label: "8 DON",
-		notes: "There's the strongest combo for the strongest Character, the father! Or take life if you need more time or if you're playing for Roger.",
+		notes: "You should be starting to lock the game down here.",
 		cards: [
-			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
 			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+			{ code: "ST22-015", name: "I Am Whitebeard!!", img: "/Cards/ST22/ST22-015.jpg" },
 		],
 	},
 	{
-		label: "Late game",
-		notes: "You can repeat your last turn, or if you're in the right setup, Roger is the card you need to finish the match and say goodbye to the opposing blockers.",
-		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
+		label: "10 DON",
+		notes: "The best turn isn't always Roger. Double action turns and Newgate loops are often stronger.",
+		cards: [
+			{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" },
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+		],
 	},
 ];
 
-const tips = [
+const optionsCards = [
 	{
-		title:
-			"The deck doesn't have major special combos, so you need to remember which cards your searchers have seen and what's still left in the deck, because going through the whole deck does happen. Another suggestion isn't to be afraid to discard for the Leader's ability, but do it carefully because in the late game you still need to prepare for an opposing Roger.",
-		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
+		code: "OP10-045",
+		name: "Cavendish",
+		img: "/Cards/OP10/OP10-045.jpg",
+		copy:
+			"Play it if you want to see more cards against control decks or the mirror. It's worse if the format removes small bodies too easily.",
+	},
+	{
+		code: "OP08-043",
+		name: 'Edward.Newgate / "Taxbeard"',
+		img: "/Cards/OP08/OP08-043.png",
+		copy:
+			"It's good into decks that need to play multiple cards in the same turn. It's useful against some control decks, but it's still more situational than Boa.",
+	},
+	{
+		code: "OP14-017",
+		name: "Chambres",
+		img: "/Cards/OP14/OP14-017.jpg",
+		copy: "A tempo card that can buy you a turn.",
+	},
+	{
+		code: "OP06-058",
+		name: "Gravity Blade Raging Tiger",
+		img: "/Cards/OP06/OP06-058.png",
+		copy:
+			"An option if the format becomes more board-based. It's less important if the main threats are too big or protected.",
 	},
 ];
 
 const matchups = [
 	{
-		label: "Positive MU",
+		label: "Favored to Slightly Favored",
+		tone: "up",
 		icon: "↑",
-		leader: { code: "OP13-001", name: "Monkey.D.Luffy", img: "/Cards/OP13/OP13-001.jpg" },
-		notes: ["Start 2nd", "Atmos/Jozu key cards", "You win in late game"],
+		leader: { code: "OP16-060", name: "Purple Sengoku", img: "/Cards/OP16/OP16-060.jpg" },
+		notes: [
+			"Your card advantage helps you keep pace.",
+			"Save your removal for their value pieces.",
+			"Don't over-invest into a single character.",
+		],
 	},
 	{
-		label: "Negative MU",
+		label: "Difficult",
+		tone: "down",
 		icon: "↓",
-		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
-		notes: ["Start 1st", "Control oppo board", "Boa key card"],
-	},
-	{
-		label: "Positive MU",
-		icon: "↑",
-		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
-		notes: ["Start 2nd", "Manage your live", "Control oppo board"],
+		leader: { code: "OP16-080", name: "Black Yellow Teach", img: "/Cards/OP16/OP16-080.jpg" },
+		notes: [
+			"You need to make the most of your early game.",
+			"Keep steady pressure on before their late game turns on.",
+			"Teach's big 10-DON!! turns get hard to manage.",
+		],
 	},
 	{
 		label: "Even",
+		tone: "even",
 		icon: "≈",
-		leader: { code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" },
-		notes: ["Start 2nd", "Manage your board", "Spam your Jozu"],
+		leader: { code: "OP16-079", name: "Black Yamato", img: "/Cards/OP16/OP16-079.jpg" },
+		notes: [
+			"Marco is excellent here.",
+			"Protecting your resources matters more than protecting your life.",
+		],
 	},
 	{
-		label: "Slight Adv.",
+		label: "Favored",
+		tone: "up",
 		icon: "↑",
-		leader: { code: "OP15-098", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-098.jpg" },
-		notes: ["Start 2nd", "Force Leader ability", "Go only face"],
+		leader: { code: "OP11-041", name: "Nami", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: [
+			"Attack the leader constantly.",
+			"Don't waste time clearing the board if it doesn't matter.",
+			"Force Nami to spend defensive resources.",
+		],
 	},
 	{
-		label: "Negative MU",
+		label: "Slightly Unfavorable",
+		tone: "down",
 		icon: "↓",
-		leader: { code: "OP15-002", name: "Lucy", img: "/Cards/OP15/OP15-002.jpg" },
-		notes: ["Start 2nd", "Go aggro", "Control oppo board"],
+		leader: { code: "OP15-058", name: "Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: [
+			"You need to keep pressure on throughout the game.",
+			"Roger and the big Newgate turns are usually your most important cards.",
+		],
+	},
+];
+
+const tips = [
+	{
+		copy: "Only take damage when your leader has a DON attached whenever possible.",
+		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
+	},
+	{
+		copy: "Marco is often your best resource generator.",
+		cards: [{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" }],
+	},
+	{
+		copy: "Don't waste the leader's -2000 effect on low-impact attacks.",
+		cards: [{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg" }],
+	},
+	{
+		copy: "Against aggressive OP16 decks, managing your hand is often more important than managing your life total.",
+		cards: [
+			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
+		],
+	},
+	{
+		copy: "The format has more protection effects than OP15, so plan around them before using your removal.",
+		cards: [{ code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" }],
+	},
+	{
+		copy: "Roger is a finisher, not the deck's main game plan.",
+		cards: [{ code: "OP09-118", name: "Gol.D.Roger", img: "/Cards/OP09/OP09-118.jpg" }],
+	},
+	{
+		copy:
+			"Most wins come from building resource advantage over the course of the game, not from a single explosive turn.",
+		cards: [
+			{ code: "OP13-042", name: "Edward.Newgate", img: "/Cards/OP13/OP13-042.jpg" },
+			{ code: "PRB02-008", name: "Marco", img: "/Cards/PRB02/PRB02-008.jpg" },
+		],
 	},
 ];
 ---
@@ -189,8 +326,9 @@ const matchups = [
 				<span class="hero-badge">Deck Guide</span>
 				<h1>Portgas.D.Ace OP13 Deck Guide</h1>
 				<p>
-					Complete reference guide for Portgas.D.Ace OP13 in the OP15 format: decklist, curve checkpoints,
-					mulligan priorities, tech options, and matchup focus leaders. Built for fast reading between rounds.
+					Portgas.D.Ace is still one of the better value-oriented leaders in OP16, but this version has to be
+					less greedy, more defensive, and less dependent on Roger. The goal is to keep the midrange value core
+					intact while making the list smoother and safer across the format.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
@@ -205,11 +343,14 @@ const matchups = [
 
 	<section id="decklist" class="list-section">
 		<div class="container">
-			<div class="section-header">
-				<div>
+			<div class="section-header decklist-header">
+				<div class="decklist-title-row">
 					<h2>Decklist</h2>
-					<p>Main list for Portgas.D.Ace OP13.</p>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
 				</div>
+				<p>Main list for Portgas.D.Ace OP13 in the OP16 format.</p>
 			</div>
 			<div class="deck-grid">
 				{decklist.map((card) => (
@@ -235,64 +376,74 @@ const matchups = [
 		</div>
 	</section>
 
-	<section id="options" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Options & Tech Cards</h2>
-					<p>Alternative cards and tech options.</p>
-				</div>
-			</div>
-			<div class="options-stack">
-				{optionsGroups.map((group) => (
-					<div class="option-group">
-						<div class="options-grid">
-							{group.cards.map((card) => (
-								<button
-									class="option-card"
-									type="button"
-									data-card-preview
-									data-full={card.img}
-									data-name={`${card.code} ${card.name}`}
-								>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-									<div class="option-info">
-										<div class="deck-name">{card.name}</div>
-										<div class="deck-code">{card.code}</div>
-									</div>
-								</button>
-							))}
-						</div>
-						<p class="section-note">{group.note}</p>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
-
 	<section id="mulligan" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
 					<h2>Mulligan</h2>
-					<p>1C searcher to search for the missing pieces in the curve + one of your 4C Character depending on the situation.</p>
+					<p>
+						Portgas.D.Ace is one of the best value-oriented leaders in the format, but starting with only 3
+						life makes your opening hand stability essential. A good mulligan should set up your resource
+						engine while still giving you a clean path into the midgame.
+					</p>
 				</div>
 			</div>
-			<div class="mulligan-grid">
-				{mulliganCards.map((card) => (
-					<button
-						class="mini-card"
-						type="button"
-						data-card-preview
-						data-full={card.img}
-						data-name={`${card.code} ${card.name}`}
-					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						<div class="mini-label">{card.name}</div>
-					</button>
-				))}
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>Cards to Prioritize</h3>
+					<div class="mulligan-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((card) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={card.img}
+											data-name={`${card.code} ${card.name}`}
+										>
+											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<div class="mini-label">{card.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Cards to Send Back</h3>
+					<div class="sendback-grid">
+						{mulliganSendBackCards.map((card) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={card.img}
+								data-name={`${card.code} ${card.name}`}
+							>
+								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<div class="mini-label sendback-label">{card.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>Roger</li>
+						<li>Multiple Newgate copies</li>
+						<li>Too many late-game cards</li>
+						<li>Too many events</li>
+						<li>No setup card</li>
+					</ul>
+					<p class="mulligan-text">
+						Ace can't afford a slow start when the leader only has 3 life. A balanced hand with a clean curve
+						will usually perform better than a hand full of powerful cards you can't play for several turns.
+					</p>
+				</div>
 			</div>
-			<p class="mulligan-text">If you don’t see this combo mulligan is the way.</p>
 		</div>
 	</section>
 
@@ -301,11 +452,11 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Curve Guide</h2>
-					<p>Turn-by-turn curve reminders for going first or second.</p>
+					<p>Turn-by-turn reminders for going first and going second.</p>
 				</div>
 			</div>
-			<div class="curve-block">
-				<h3>Curve 1st</h3>
+			<div class="curve-block glow-block">
+				<h3>Going First</h3>
 				<div class="curve-rows">
 					{curveFirst.map((slot) => (
 						<div class="curve-row">
@@ -313,13 +464,17 @@ const matchups = [
 							<div class="curve-cards">
 								{slot.cards.map((card) => (
 									<button
-										class="mini-card"
+										class={`mini-card curve-card ${card.badgeCard ? "has-badge" : ""}`}
 										type="button"
 										data-card-preview
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
+										</span>
+										<div class="mini-label">{card.name}</div>
 									</button>
 								))}
 							</div>
@@ -328,8 +483,8 @@ const matchups = [
 					))}
 				</div>
 			</div>
-			<div class="curve-block">
-				<h3>Curve 2nd</h3>
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
 				<div class="curve-rows">
 					{curveSecond.map((slot) => (
 						<div class="curve-row">
@@ -337,13 +492,17 @@ const matchups = [
 							<div class="curve-cards">
 								{slot.cards.map((card) => (
 									<button
-										class="mini-card"
+										class={`mini-card curve-card ${card.badgeCard ? "has-badge" : ""}`}
 										type="button"
 										data-card-preview
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
+										</span>
+										<div class="mini-label">{card.name}</div>
 									</button>
 								))}
 							</div>
@@ -355,31 +514,31 @@ const matchups = [
 		</div>
 	</section>
 
-	<section id="tips" class="list-section">
+	<section id="options" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Tips</h2>
-					<p>Key reminders and late game setup notes.</p>
+					<h2>Options & Tech Cards</h2>
+					<p>Alternative cards and flex slots for different OP16 rooms.</p>
 				</div>
 			</div>
-			<div class="tips-grid">
-				{tips.map((tip) => (
-					<div class="tip-card">
-						<div class="tip-cards">
-							{tip.cards.map((card) => (
-								<button
-									class="mini-card"
-									type="button"
-									data-card-preview
-									data-full={card.img}
-									data-name={`${card.code} ${card.name}`}
-								>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-								</button>
-							))}
-						</div>
-						<p>{tip.title}</p>
+			<div class="options-rich-grid">
+				{optionsCards.map((card) => (
+					<div class="option-note-card glow-block">
+						<button
+							class="option-card"
+							type="button"
+							data-card-preview
+							data-full={card.img}
+							data-name={`${card.code} ${card.name}`}
+						>
+							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
+							</div>
+						</button>
+						<p>{card.copy}</p>
 					</div>
 				))}
 			</div>
@@ -391,32 +550,69 @@ const matchups = [
 			<div class="section-header">
 				<div>
 					<h2>Matchups</h2>
-					<p>Key leaders for the matchup spread. The linked stats page shows Ace OP13 win rates going 1st or 2nd into the main meta leaders, so you can read the pairing before the round starts.</p>
+					<p>How the main OP16 leaders line up against Ace.</p>
 				</div>
-				<a href="/meta-analysis/portgas-d-ace-op15-stats/">See Ace OP13 1st / 2nd matchup stats in OP15 format</a>
 			</div>
-			<div class="matchups-grid">
+			<div class="matchups-stack">
 				{matchups.map((matchup) => (
-					<div class="matchup-card">
-						<div class={`matchup-badge ${matchup.label.includes("Negative") || matchup.label.includes("Disadv") ? "badge-down" : matchup.label === "Even" ? "badge-even" : "badge-up"}`}>
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
 							<span class="badge-icon">{matchup.icon}</span>
 							<span>{matchup.label}</span>
 						</div>
-						<button
-							class="mini-card"
-							type="button"
-							data-card-preview
-							data-full={matchup.leader.img}
-							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
-						>
-							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
-						</button>
-						<div class="matchup-name">{matchup.leader.name}</div>
-						<ul>
-							{matchup.notes.map((note) => (
-								<li>{note}</li>
-							))}
-						</ul>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips OP16</h2>
+					<p>Core reminders for the updated OP16 version of Ace.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card glow-block">
+						<div class="tip-row">
+							<div class="tip-cards">
+								{tip.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<div class="mini-label">{card.name}</div>
+									</button>
+								))}
+							</div>
+							<p>{tip.copy}</p>
+						</div>
 					</div>
 				))}
 			</div>
@@ -436,6 +632,7 @@ const matchups = [
 	const modal = document.querySelector("[data-modal]");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
@@ -464,6 +661,26 @@ const matchups = [
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
+	});
 </script>
 
 <style>
@@ -487,6 +704,55 @@ const matchups = [
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
+	}
+
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.18),
+			0 0 18px rgba(255, 138, 42, 0.1),
+			0 0 40px rgba(255, 138, 42, 0.04);
 	}
 
 	.deck-card {
@@ -548,72 +814,85 @@ const matchups = [
 		letter-spacing: 1px;
 	}
 
-	.options-stack {
-		display: grid;
-		gap: 1.4rem;
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
 	}
 
-	.option-group {
+	.tip-card {
+		padding: 1rem 1.2rem;
 		display: grid;
 		gap: 0.8rem;
 	}
 
-	.options-grid {
+	.tip-card h3,
+	.mulligan-copy h4 {
+		margin: 0;
+	}
+
+	.tip-cards {
 		display: flex;
+		gap: 0.8rem;
 		flex-wrap: wrap;
-		gap: 1rem;
 	}
 
-	.option-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 0.8rem;
+	.tip-row,
+	.matchup-row {
 		display: grid;
-		gap: 0.6rem;
-		width: min(220px, 100%);
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
 		justify-items: center;
-		text-align: center;
-		cursor: pointer;
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
 
-	.option-card:hover,
-	.option-card:focus-visible {
-		transform: translateY(-4px);
-		border-color: rgba(255, 107, 61, 0.4);
-		box-shadow: var(--shadow);
-		outline: none;
-	}
-
-	.option-card img {
-		width: 100%;
-		max-width: 200px;
-		margin: 0 auto;
-		border-radius: 10px;
-	}
-
-	.option-info {
-		display: grid;
-		gap: 0.2rem;
+	.sendback-card {
 		text-align: center;
 	}
 
-	.mulligan-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-		gap: 1rem;
-		margin-bottom: 1rem;
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
 	}
 
-	.mulligan-text {
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
 		color: var(--text-200);
 	}
 
 	.curve-block {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
 		padding: 1.2rem;
 		margin-bottom: 1.2rem;
 	}
@@ -626,7 +905,7 @@ const matchups = [
 
 	.curve-row {
 		display: grid;
-		grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr);
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
 		gap: 1rem;
 		align-items: center;
 	}
@@ -642,8 +921,71 @@ const matchups = [
 		gap: 0.6rem;
 	}
 
-	.curve-note {
-		color: var(--text-300);
+	.curve-card {
+		text-align: center;
+	}
+
+	.card-wrap {
+		position: relative;
+		display: inline-block;
+	}
+
+	.curve-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.curve-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.card-badge-image {
+		position: absolute;
+		right: 0.2rem;
+		bottom: 0.2rem;
+		width: 28px !important;
+		max-width: 28px !important;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
 	}
 
 	.mini-card {
@@ -668,36 +1010,12 @@ const matchups = [
 		text-align: center;
 	}
 
-	.tips-grid {
+	.matchups-stack {
 		display: grid;
-		gap: 1.2rem;
-	}
-
-	.tip-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 1rem 1.2rem;
-		display: grid;
-		gap: 0.8rem;
-	}
-
-	.tip-cards {
-		display: flex;
-		gap: 0.8rem;
-		flex-wrap: wrap;
-	}
-
-	.matchups-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 1rem;
 	}
 
 	.matchup-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
 		padding: 1rem;
 		display: grid;
 		gap: 0.6rem;
@@ -711,7 +1029,7 @@ const matchups = [
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
-		padding: 0.25rem 0.6rem;
+		padding: 0.35rem 0.7rem;
 		border-radius: 999px;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		background: rgba(12, 17, 30, 0.8);
@@ -723,17 +1041,29 @@ const matchups = [
 		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		font-size: 1.1rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #0b0f1a;
+	}
+
+	.badge-up {
+		color: #7ef29a;
 	}
 
 	.badge-up .badge-icon {
 		background: linear-gradient(135deg, #22c55e, #86efac);
 	}
 
+	.badge-down {
+		color: #ff8a8a;
+	}
+
 	.badge-down .badge-icon {
 		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
 	}
 
 	.badge-even .badge-icon {
@@ -744,11 +1074,80 @@ const matchups = [
 		font-weight: 600;
 	}
 
-	.section-note {
-		color: var(--text-300);
-		text-align: center;
-		line-height: 1.65;
-		font-size: clamp(0.95rem, 0.88rem + 0.18vw, 1rem);
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
 	}
 
 	.card-modal {
@@ -797,39 +1196,138 @@ const matchups = [
 	}
 
 	@media (max-width: 900px) {
-		.guide-hero .hero-grid {
+		.guide-hero .hero-grid,
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
 			grid-template-columns: 1fr;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 640px) {
-		.deck-card img {
-			max-width: 120px;
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
 		}
 
-		.section-header > a {
-			display: block;
-			width: 100%;
-			margin-top: 0.75rem;
-			white-space: normal;
-			overflow-wrap: anywhere;
+		.section-header {
+			gap: 0.8rem;
 		}
 
-		.option-card img {
-			max-width: 170px;
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
 		}
 
 		.mini-card img {
 			width: 90px;
 		}
-	}
 
-	@media (max-width: 640px) {
-		.curve-row {
-			display: flex;
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-card {
+			grid-column: span 2;
+		}
+
+		.sendback-card:nth-child(4),
+		.sendback-card:nth-child(5) {
+			grid-column: span 3;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
+		}
+
+		.tip-row .tip-cards {
 			flex-direction: column;
-			align-items: stretch;
+			align-items: flex-start;
 			gap: 0.55rem;
+		}
+
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
+		}
+
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
 		}
 
 		.curve-cards {
@@ -840,13 +1338,44 @@ const matchups = [
 			align-items: start;
 		}
 
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+		}
+
 		.curve-cards .mini-card {
 			width: 100%;
 		}
 
-		.curve-cards .mini-card img {
+		.curve-cards .mini-card .card-wrap {
 			width: 100%;
 			max-width: 88px;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 
 		.deck-grid {
