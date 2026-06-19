@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Yamato OP16 Preview Deck Guide";
+const title = "Yamato OP16 Deck Guide";
 const description =
-	"Yamato OP16 preview deck guide for One Piece Card Game with the first sample list, the Yamato loop, the old-set shell, and early strengths and weaknesses.";
+	"Yamato OP16 deck guide for One Piece Card Game with decklist, mulligan priorities, curve guide, tech cards, matchup notes, and OP16 gameplay tips.";
 
 const icon = "/assets/guides/yamato-op16.png";
+
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -24,75 +25,284 @@ const expandSimLines = (count, code) => {
 
 const decklist = [
 	{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
-	{ code: "OP16-088", name: "Shimotsuki Ushimaru", count: 2, img: "/Cards/OP16/OP16-088.jpg", role: "Character" },
 	{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
 	{ code: "OP16-092", name: "Nico Robin", count: 4, img: "/Cards/OP16/OP16-092.jpg", role: "Character" },
 	{ code: "OP16-081", name: "Otama", count: 4, img: "/Cards/OP16/OP16-081.jpg", role: "Character" },
-	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
-	{ code: "OP16-094", name: "Portgas.D.Ace", count: 2, img: "/Cards/OP16/OP16-094.jpg", role: "Character" },
-	{ code: "OP16-084", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-084.jpg", role: "Character" },
-	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
 	{ code: "OP16-087", name: "Shinobu", count: 4, img: "/Cards/OP16/OP16-087.jpg", role: "Character" },
+	{ code: "OP16-088", name: "Shimotsuki Ushimaru", count: 2, img: "/Cards/OP16/OP16-088.jpg", role: "Character" },
+	{ code: "OP16-082", name: "Kin'emon", count: 4, img: "/Cards/OP16/OP16-082.jpg", role: "Character" },
+	{ code: "OP16-084", name: "Kozuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-084.jpg", role: "Character" },
+	{ code: "OP16-098", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-098.jpg", role: "Character" },
+	{ code: "OP16-089", name: "Sanji", count: 2, img: "/Cards/OP16/OP16-089.jpg", role: "Character" },
 	{ code: "OP16-096", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-096.jpg", role: "Character" },
 	{ code: "OP16-097", name: "Yamato", count: 4, img: "/Cards/OP16/OP16-097.jpg", role: "Character" },
-	{ code: "OP16-085", name: "Kouzuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
+	{ code: "OP16-085", name: "Kozuki Momonosuke", count: 4, img: "/Cards/OP16/OP16-085.jpg", role: "Character" },
 	{ code: "OP14-096", name: "Ground Death", count: 2, img: "/Cards/OP14/OP14-096.jpg", role: "Event" },
 	{ code: "OP16-099", name: "I've Come Here To Cut Those Chains!", count: 4, img: "/Cards/OP16/OP16-099.jpg", role: "Event" },
 ];
+
 const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
-const leaderCard = { code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" };
-
-const spoilerCards = [
+const mulliganKeeps = [
 	{
-		code: "OP16-098",
-		name: "Yamato",
-		img: "/Cards/OP16/OP16-098.jpg",
-		points: [
-			"On Play: draw 1 card and trash 1 card from your hand.",
-			"Activate: Main: trash this character to play up to 1 black Yamato character with a cost of 8 from your trash.",
-		],
+		copy:
+			"Nami is the best opening card in the deck. She finds a Land of Wano card from the top four cards while sending the rest to the trash, which smooths out your hand and sets up your future recursion turns right away.",
+		cards: [{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" }],
 	},
 	{
-		code: "OP16-085",
-		name: "Kouzuki Momonosuke",
-		img: "/Cards/OP16/OP16-085.jpg",
-		points: [
-			"Blocker.",
-			"On Play: play up to 1 Land of Wano character with a cost of 6 or less from your trash, other than Kouzuki Momonosuke.",
-		],
+		copy:
+			"Kin'emon is the deck's best 4- or 5-DON!! play. He finds a Land of Wano card from the top five cards while loading the trash with the rest, which is exactly what this deck wants to do.",
+		cards: [{ code: "OP16-082", name: "Kin'emon", img: "/Cards/OP16/OP16-082.jpg" }],
+	},
+	{
+		copy:
+			"Nico Robin upgrades your hand quality. She lets you discard a character you want to play from the trash later while drawing two cards to help you find the missing pieces.",
+		cards: [{ code: "OP16-092", name: "Nico Robin", img: "/Cards/OP16/OP16-092.jpg" }],
 	},
 ];
 
-const prepPackage = [
-	{ count: 2, code: "OP05-082", name: "Shirahoshi", img: "/Cards/OP05/OP05-082.png" },
-	{ count: 4, code: "OP15-083", name: "Spoil", img: "/Cards/OP15/OP15-083.jpg" },
-	{ count: 2, code: "OP13-087", name: "Saint Charlos", img: "/Cards/OP13/OP13-087.jpg" },
-	{ count: 4, code: "OP09-088", name: "Shiryu", img: "/Cards/OP09/OP09-088.jpg" },
-	{ count: 4, code: "OP14-089", name: "Ryuma", img: "/Cards/OP14/OP14-089.jpg" },
-	{ count: 4, code: "OP13-089", name: "Saint.Topman.Warcury", img: "/Cards/OP13/OP13-089.jpg" },
-	{ count: 4, code: "OP10-094", name: "Ryuma", img: "/Cards/OP10/OP10-094.jpg" },
-	{ count: 4, code: "OP08-091", name: "Who's Who", img: "/Cards/OP08/OP08-091.png" },
-	{ count: 4, code: "OP05-087", name: "Hakuba", img: "/Cards/OP05/OP05-087.png" },
-	{ count: 4, code: "PRB02-014", name: "Sabo", img: "/Cards/PRB02/PRB02-014.jpg" },
-	{ count: 2, code: "OP15-092", name: "Monkey.D.Luffy", img: "/Cards/OP15/OP15-092.jpg" },
-	{ count: 2, code: "OP07-085", name: "Stussy", img: "/Cards/OP07/OP07-085.png" },
-	{ count: 4, code: "OP14-096", name: "Ground Death", img: "/Cards/OP14/OP14-096.jpg" },
-	{ count: 2, code: "EB04-049", name: "Finger Pistol Yellow Lotus", img: "/Cards/EB04/EB04-049.jpg" },
+const mulliganSendBackCards = [
+	{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+	{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+	{ code: "OP16-085", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-085.jpg" },
+	{ code: "OP14-096", name: "Ground Death", img: "/Cards/OP14/OP14-096.jpg" },
 ];
 
-const strengths = [
-	"The Yamato loop is extremely powerful",
-	"Very hard to grind out over the long game",
-	"Capable of explosive turns",
-	"Much more aggressive than a typical black deck",
+const curveFirst = [
+	{
+		label: "1 DON",
+		notes: "Nami is your best possible start. The goal is to begin filling the trash immediately.",
+		cards: [{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" }],
+	},
+	{
+		label: "3 DON",
+		notes: "Keep playing Nami or Robin while attacking with your leader.",
+		cards: [
+			{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" },
+			{ code: "OP16-092", name: "Nico Robin", img: "/Cards/OP16/OP16-092.jpg" },
+		],
+	},
+	{
+		label: "5 DON",
+		notes:
+			"Kin'emon is the ideal play here. He fills the trash, finds the next pieces you need, and still gives you a body that can attack.",
+		cards: [{ code: "OP16-082", name: "Kin'emon", img: "/Cards/OP16/OP16-082.jpg" }],
+	},
+	{
+		label: "7 DON",
+		notes:
+			"Your main lines are Yamato OP16-098 from hand or I've Come Here To Cut Those Chains!. Both lines help you reach the 8-cost Yamatos quickly.",
+		cards: [
+			{ code: "OP16-098", name: "Yamato", img: "/Cards/OP16/OP16-098.jpg" },
+			{ code: "OP16-099", name: "I've Come Here To Cut Those Chains!", img: "/Cards/OP16/OP16-099.jpg" },
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
+	{
+		label: "9 DON",
+		notes:
+			"Your two main lines are dropping the 9-cost Momonosuke directly or playing 5-cost Momonosuke plus Shinobu. The second line gives you almost the same result for less DON!!.",
+		cards: [
+			{ code: "OP16-085", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-085.jpg" },
+			{ code: "OP16-084", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-084.jpg" },
+			{ code: "OP16-087", name: "Shinobu", img: "/Cards/OP16/OP16-087.jpg" },
+		],
+	},
+	{
+		label: "Late game",
+		notes:
+			"The Yamato loop is your late-game engine. Keep chaining your trash plays into more pressure and force the opponent to keep answering wave after wave.",
+		cards: [
+			{ code: "OP16-098", name: "Yamato", img: "/Cards/OP16/OP16-098.jpg" },
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
 ];
 
-const weaknesses = [
-	"Extremely reliant on the Yamato loop",
-	"Support is still limited",
-	"Tough matchups into very aggressive decks",
-	"Struggles against control and board-freeze decks",
+const curveSecond = [
+	{
+		label: "2 DON",
+		notes:
+			"Nami or Robin are your best plays here. Look for useful midgame and endgame cards while loading the trash for your recursion turns.",
+		cards: [
+			{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" },
+			{ code: "OP16-092", name: "Nico Robin", img: "/Cards/OP16/OP16-092.jpg" },
+		],
+	},
+	{
+		label: "4 DON",
+		notes:
+			"Kin'emon is the ideal line. He fills the trash, finds the next cards you need, and still gives you an attacker.",
+		cards: [{ code: "OP16-082", name: "Kin'emon", img: "/Cards/OP16/OP16-082.jpg" }],
+	},
+	{
+		label: "6 DON",
+		notes: "Yamato OP16-098 is your main play here so you can bring back an 8-cost Yamato from the trash.",
+		cards: [
+			{ code: "OP16-098", name: "Yamato", img: "/Cards/OP16/OP16-098.jpg" },
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
+	{
+		label: "8 DON",
+		notes: "I've Come Here To Cut Those Chains! and the Yamato loop are your main lines here.",
+		cards: [
+			{ code: "OP16-099", name: "I've Come Here To Cut Those Chains!", img: "/Cards/OP16/OP16-099.jpg" },
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
+	{
+		label: "10 DON",
+		notes:
+			"The Momonosuke plus Shinobu lines come online here and lead to the deck's most explosive turns.",
+		cards: [
+			{ code: "OP16-085", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-085.jpg" },
+			{ code: "OP16-084", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-084.jpg" },
+			{ code: "OP16-087", name: "Shinobu", img: "/Cards/OP16/OP16-087.jpg" },
+		],
+	},
+];
+
+const optionsCards = [
+	{
+		code: "OP16-095",
+		name: "Monkey.D.Luffy",
+		img: "/Cards/OP16/OP16-095.jpg",
+		copy:
+			"An alternative to Sanji. He can give Unblockable to a Land of Wano character. I prefer Sanji, but I still think Luffy is a completely viable option.",
+	},
+	{
+		code: "OP16-094",
+		name: "Portgas.D.Ace",
+		img: "/Cards/OP16/OP16-094.jpg",
+		copy:
+			"Some lists play him to strengthen the turn-4 setup. I don't like that option very much and would rather keep those slots for the deck's main game plan.",
+	},
+	{
+		code: "OP05-091",
+		name: "Rebecca",
+		img: "/Cards/OP05/OP05-091.png",
+		copy:
+			"An interesting defensive option. She can give you an extra blocker in some aggressive matchups.",
+	},
+	{
+		code: "OP07-085",
+		name: "Stussy",
+		img: "/Cards/OP07/OP07-085.png",
+		copy:
+			"A tech choice for decks that play very large threats. She helps answer some characters that are otherwise hard to remove efficiently.",
+	},
+];
+
+const matchups = [
+	{
+		label: "Favored",
+		tone: "up",
+		icon: "↑",
+		leader: { code: "OP16-080", name: "Teach OP16", img: "/Cards/OP16/OP16-080.jpg" },
+		notes: [
+			"Yamato's high number of attacks forces Teach to spend a huge amount of defensive resources.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: { code: "OP15-058", name: "Purple Enel", img: "/Cards/OP15/OP15-058.jpg" },
+		notes: [
+			"Games often come down to whether you can keep constant pressure going.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: { code: "OP12-061", name: "Rosinante OP12", img: "/Cards/OP12/OP12-061.jpg" },
+		notes: [
+			"Choosing between the two 8-cost Yamatos matters a lot depending on which removal tools the opponent has access to.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: { code: "OP11-041", name: "Nami OP11", img: "/Cards/OP11/OP11-041.jpg" },
+		notes: [
+			"Yamato's extra attacks matter less here than they do against most other leaders in the format.",
+		],
+	},
+	{
+		label: "Mirror Match",
+		tone: "even",
+		icon: "≈",
+		leader: { code: "OP16-079", name: "Yamato OP16", img: "/Cards/OP16/OP16-079.jpg" },
+		notes: [
+			"Going second gives you a slight edge in the mirror.",
+		],
+	},
+];
+
+const tips = [
+	{
+		copy: "Going second is usually the better seat for this deck.",
+		cards: [{ code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" }],
+	},
+	{
+		copy: "Filling the trash correctly is the top priority in the early turns.",
+		cards: [
+			{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" },
+			{ code: "OP16-082", name: "Kin'emon", img: "/Cards/OP16/OP16-082.jpg" },
+		],
+	},
+	{
+		copy: "Nami and Kin'emon are your best setup cards in the deck.",
+		cards: [
+			{ code: "OP16-091", name: "Nami", img: "/Cards/OP16/OP16-091.jpg" },
+			{ code: "OP16-082", name: "Kin'emon", img: "/Cards/OP16/OP16-082.jpg" },
+		],
+	},
+	{
+		copy: "Always think through the exact order of your combos before you start the turn.",
+		cards: [
+			{ code: "OP16-084", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-084.jpg" },
+			{ code: "OP16-087", name: "Shinobu", img: "/Cards/OP16/OP16-087.jpg" },
+			{ code: "OP16-085", name: "Kozuki Momonosuke", img: "/Cards/OP16/OP16-085.jpg" },
+		],
+	},
+	{
+		copy:
+			"If the opponent can remove your characters easily, prioritize the 8-cost Yamato that can bring back the 6-cost Yamato when it's KO'd.",
+		cards: [
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+			{ code: "OP16-098", name: "Yamato", img: "/Cards/OP16/OP16-098.jpg" },
+		],
+	},
+	{
+		copy:
+			"If the opponent doesn't have much interaction with your board, prioritize the 8-cost Yamato that generates more value.",
+		cards: [
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
+	{
+		copy:
+			"Most of your wins come from explosive turns where multiple characters are played from the trash and attack immediately thanks to the leader effect.",
+		cards: [
+			{ code: "OP16-098", name: "Yamato", img: "/Cards/OP16/OP16-098.jpg" },
+			{ code: "OP16-096", name: "Yamato", img: "/Cards/OP16/OP16-096.jpg" },
+			{ code: "OP16-097", name: "Yamato", img: "/Cards/OP16/OP16-097.jpg" },
+		],
+	},
+	{
+		copy: "The deck is aggressive, but it rewards precise sequencing more than raw pressure.",
+		cards: [{ code: "OP16-079", name: "Yamato", img: "/Cards/OP16/OP16-079.jpg" }],
+	},
 ];
 ---
 
@@ -101,14 +311,15 @@ const weaknesses = [
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Yamato OP16 Preview Deck Guide</h1>
+				<h1>Yamato OP16 Deck Guide</h1>
 				<p>
-					First look at Yamato OP16 in the OP16 format. This preview focuses on the leader effect, the Yamato
-					loop, an early aggro-rush decklist idea, and the early read on the black Land of Wano shell.
+					Yamato OP16 is built around loading the trash quickly, then converting that setup into explosive Land
+					of Wano turns. The deck is aggressive, but its real edge comes from how cleanly you sequence your
+					recursion and pressure turns.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
-					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
 			<div class="guide-icon">
@@ -120,13 +331,13 @@ const weaknesses = [
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header decklist-header">
-				<div class="section-heading-copy">
+				<div class="decklist-title-row">
 					<h2>Decklist</h2>
-					<p class="decklist-intro">An early aggro-rush decklist idea for Yamato OP16 in the OP16 format.</p>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
 				</div>
-				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-					Copy for Sim
-				</button>
+				<p>Main list for Yamato OP16 in the OP16 format.</p>
 			</div>
 			<div class="deck-grid">
 				{decklist.map((card) => (
@@ -146,63 +357,150 @@ const weaknesses = [
 		</div>
 	</section>
 
-	<section id="leader" class="list-section">
+	<section id="mulligan" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Leader</h2>
-					<p>Core identity and leader effect for Yamato OP16-079.</p>
+					<h2>Mulligan</h2>
+					<p>
+						The mulligan plan is simple: find the cards that fill the trash and set up the turns where you'll
+						start playing characters back from the trash.
+					</p>
 				</div>
 			</div>
-			<div class="leader-card">
-				<button
-					class="leader-preview"
-					type="button"
-					data-card-preview
-					data-full={leaderCard.img}
-					data-name={`${leaderCard.code} ${leaderCard.name}`}
-				>
-					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
-				</button>
-				<div class="leader-copy">
-					<div class="fact-grid">
-						<div class="fact-box">
-							<span class="fact-label">Color</span>
-							<p>Black</p>
+			<div class="tip-card glow-block mulligan-stack">
+				<h3>Absolute Priority</h3>
+				<div class="mulligan-rows">
+					{mulliganKeeps.map((entry) => (
+						<div class="mulligan-row">
+							<div class="tip-cards">
+								{entry.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<div class="mini-label">{card.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="mulligan-copy">
+								<p>{entry.copy}</p>
+							</div>
 						</div>
-						<div class="fact-box">
-							<span class="fact-label">Type</span>
-							<p>Land of Wano</p>
+					))}
+				</div>
+			</div>
+			<div class="tip-card glow-block">
+				<h3>Cards to Send Back</h3>
+				<div class="sendback-grid">
+					{mulliganSendBackCards.map((card) => (
+						<div class="sendback-card">
+							<button
+								class="mini-card"
+								type="button"
+								data-card-preview
+								data-full={card.img}
+								data-name={`${card.code} ${card.name}`}
+							>
+								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							</button>
+							<div class="mini-label sendback-label">{card.name}</div>
 						</div>
-					</div>
-					<div class="text-card">
-						<h3>Leader Effect</h3>
-						<p class="effect-copy">
-							When a Land of Wano type character is played from your trash, that character
-							<span class="effect-inline">
-								<span>gains</span>
-								<img class="keyword-badge" src="/assets/keywords/rush.png" alt="Rush" />
-								<span>during this turn.</span>
-							</span>
-							The leader effect turns trash recursion into immediate pressure.
-						</p>
-					</div>
+					))}
+				</div>
+				<ul class="bullet-list">
+					<li>The 8-cost Yamatos.</li>
+					<li>The 9-cost Momonosuke.</li>
+					<li>Ground Death.</li>
+					<li>Too many late-game cards.</li>
+					<li>No cards that help fill the trash.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>Turn-by-turn reminders for going first and going second.</p>
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going First</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class={`mini-card curve-card ${card.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
+										</span>
+										<div class="mini-label">{card.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((card) => (
+									<button
+										class={`mini-card curve-card ${card.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
+										</span>
+										<div class="mini-label">{card.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="spoiler" class="list-section">
+	<section id="options" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Key preview cards</h2>
-					<p>Main cards that define the pressure package around the Yamato loop.</p>
+					<h2>Options & Tech Cards</h2>
+					<p>Alternative cards and flex slots for different OP16 rooms.</p>
 				</div>
 			</div>
-			<div class="loop-grid">
-				{spoilerCards.map((card) => (
-					<div class="loop-card">
+			<div class="options-rich-grid">
+				{optionsCards.map((card) => (
+					<div class="option-note-card glow-block">
 						<button
 							class="option-card"
 							type="button"
@@ -211,47 +509,51 @@ const weaknesses = [
 							data-name={`${card.code} ${card.name}`}
 						>
 							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						</button>
-						<div class="text-card">
-							<h3>{card.name}</h3>
-							<div class="ability-stack">
-								{card.code === "OP16-098" ? (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>draw 1 card and trash 1 card from your hand.</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-												<span>
-													You may trash this character: play up to 1 black Yamato character with a cost
-													of 8 from your trash.
-												</span>
-											</span>
-										</div>
-									</>
-								) : (
-									<>
-										<div class="ability-line ability-line-tag-only">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													play up to 1 Land of Wano character with a cost of 6 or less from your trash,
-													other than Kouzuki Momonosuke.
-												</span>
-											</span>
-										</div>
-									</>
-								)}
+							<div class="option-info">
+								<div class="deck-name">{card.name}</div>
+								<div class="deck-code">{card.code}</div>
 							</div>
+						</button>
+						<p>{card.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>How the main OP16 leaders line up against Yamato.</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				))}
@@ -259,83 +561,36 @@ const weaknesses = [
 		</div>
 	</section>
 
-	<section id="prep" class="list-section">
+	<section id="tips" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Prep</h2>
-					<p>Old-set support that helps keep the shell fast and consistent.</p>
+					<h2>Tips</h2>
+					<p>Core reminders for the OP16 version of Yamato.</p>
 				</div>
 			</div>
-			<div class="prep-card">
-				<p class="prep-intro">The list still leans on a sizable older shell for consistency while keeping the pressure high.</p>
-				<div class="prep-grid">
-					{prepPackage.map((entry) => (
-						<button
-							class="prep-chip"
-							type="button"
-							data-card-preview
-							data-full={entry.img}
-							data-name={entry.code}
-						>
-							<img loading="lazy" src={entry.img} alt={entry.code} />
-							<div class="prep-copy">
-								<span class="prep-code">{entry.code}</span>
-								<span class="prep-name">{entry.name}</span>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class="tip-card glow-block">
+						<div class="tip-row">
+							<div class="tip-cards">
+								{tip.cards.map((card) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={card.img}
+										data-name={`${card.code} ${card.name}`}
+									>
+										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<div class="mini-label">{card.name}</div>
+									</button>
+								))}
 							</div>
-						</button>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="thoughts" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Thoughts</h2>
-					<p>Early strengths, weaknesses, and the current overall read on the deck.</p>
-				</div>
-			</div>
-			<div class="thoughts-grid">
-				<div class="thought-card">
-					<div class="thought-head thought-up">
-						<span class="thought-icon" aria-hidden="true">+</span>
-						<h3>Strengths</h3>
+							<p>{tip.copy}</p>
+						</div>
 					</div>
-					<ul>
-						{strengths.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div class="thought-card">
-					<div class="thought-head thought-down">
-						<span class="thought-icon" aria-hidden="true">-</span>
-						<h3>Weaknesses</h3>
-					</div>
-					<ul>
-						{weaknesses.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-			<div class="conclusion-card">
-				<div class="conclusion-head">
-					<div>
-						<h3>Conclusion</h3>
-						<p class="conclusion-subtitle">Current preview grade</p>
-					</div>
-					<div class="score-badge">8 / 10</div>
-				</div>
-				<p>
-					The deck looks much stronger when it fully leans into the Yamato loop and pushes a proactive black aggro plan.
-					With the updated shell, it has more explosive turns, better long-game staying power, and a more coherent way
-					to convert trash setup into pressure. It still has clear weaknesses, especially when the loop is disrupted,
-					but the overall ceiling is high enough that I would put it at 8 / 10 for now.
-				</p>
+				))}
 			</div>
 		</div>
 	</section>
@@ -343,9 +598,7 @@ const weaknesses = [
 	<div class="card-modal" data-modal aria-hidden="true">
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
-			<div class="card-modal-frame">
-				<img src="" alt="" data-modal-image />
-			</div>
+			<img src="" alt="" data-modal-image />
 		</div>
 	</div>
 </MainLayout>
@@ -353,10 +606,9 @@ const weaknesses = [
 <script>
 	const previewButtons = document.querySelectorAll("[data-card-preview]");
 	const modal = document.querySelector("[data-modal]");
-	const modalFrame = document.querySelector(".card-modal-frame");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
-	let lockedScrollY = 0;
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
@@ -364,28 +616,16 @@ const weaknesses = [
 		const name = button.getAttribute("data-name") || "Card preview";
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
-		lockedScrollY = window.scrollY;
-		document.body.style.position = "fixed";
-		document.body.style.top = `-${lockedScrollY}px`;
-		document.body.style.left = "0";
-		document.body.style.right = "0";
-		document.body.style.width = "100%";
-		document.body.style.overflow = "hidden";
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
 	};
 
 	const closeModal = () => {
 		if (!modal) return;
 		modal.classList.remove("is-open");
 		modal.setAttribute("aria-hidden", "true");
-		document.body.style.position = "";
-		document.body.style.top = "";
-		document.body.style.left = "";
-		document.body.style.right = "";
-		document.body.style.width = "";
 		document.body.style.overflow = "";
-		window.scrollTo(0, lockedScrollY);
 	};
 
 	previewButtons.forEach((button) => {
@@ -394,44 +634,31 @@ const weaknesses = [
 
 	closeButton?.addEventListener("click", closeModal);
 	modal?.addEventListener("click", (event) => {
-		const target = event.target;
-		if (!(target instanceof HTMLElement)) return;
-		if (target === modalImage) {
-			closeModal();
-			return;
-		}
-		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
-			closeModal();
-		}
+		if (event.target === modal) closeModal();
 	});
-	modalImage?.addEventListener("click", closeModal);
+
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
 
-	const copySimButton = document.querySelector("[data-copy-sim]");
-
-	copySimButton?.addEventListener("click", async () => {
-		const deckCode = copySimButton.getAttribute("data-sim-deck");
-		if (!deckCode) return;
-
-		try {
-			await navigator.clipboard.writeText(deckCode);
-		} catch {
-			const textarea = document.createElement("textarea");
-			textarea.value = deckCode;
-			textarea.style.position = "fixed";
-			textarea.style.opacity = "0";
-			document.body.append(textarea);
-			textarea.select();
-			document.execCommand("copy");
-			textarea.remove();
-		}
-
-		copySimButton.textContent = "Copied!";
-		window.setTimeout(() => {
-			copySimButton.textContent = "Copy for Sim";
-		}, 1800);
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
 	});
 </script>
 
@@ -441,31 +668,9 @@ const weaknesses = [
 		font-weight: 700;
 	}
 
-	.decklist-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
-		width: 100%;
-	}
-
-	.section-heading-copy {
-		display: grid;
-		gap: 0.35rem;
-	}
-
-	.section-heading-copy h2 {
-		margin: 0;
-	}
-
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
-	}
-
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+		align-items: center;
 	}
 
 	.guide-icon {
@@ -480,369 +685,502 @@ const weaknesses = [
 		box-shadow: var(--shadow);
 	}
 
-	.leader-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.loop-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-	}
-
-	.leader-card {
+	.section-header {
 		display: grid;
-		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
+		gap: 1.2rem;
+		margin-bottom: 1.2rem;
 	}
 
-	.leader-preview,
-	.option-card {
-		border: none;
-		background: transparent;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.leader-preview img,
-	.option-card img {
-		width: 100%;
-		border-radius: 14px;
-		display: block;
-	}
-
-	.leader-copy,
-	.loop-grid,
-	.thoughts-grid {
+	.decklist-header {
 		display: grid;
-		gap: 1rem;
-	}
-
-	.fact-grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.8rem;
-	}
-
-	.fact-box,
-	.text-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.deck-card {
-		padding: 1rem;
-	}
-
-	.fact-box {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid var(--border);
-		border-radius: 14px;
-	}
-
-	.fact-label {
-		display: block;
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--accent);
-		margin-bottom: 0.45rem;
-	}
-
-	.fact-box p,
-	.text-card p,
-	.prep-intro,
-	.section-note {
-		margin: 0;
-		color: var(--text-200);
-	}
-
-	.text-card h3,
-	.thought-card h3,
-	.conclusion-card h3 {
-		margin-top: 0;
-		margin-bottom: 0.6rem;
-	}
-
-	.text-card ul,
-	.thought-card ul {
-		margin: 0;
-		padding-left: 1.15rem;
-	}
-
-	.effect-copy {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-	}
-
-	.keyword-badge {
-		height: 24px;
-		width: auto;
-		vertical-align: middle;
-		flex: 0 0 auto;
-		transform: translateY(4px);
-		margin: 0 0.12rem;
-	}
-
-	.effect-inline {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		white-space: nowrap;
-	}
-
-	.keyword-line {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		flex-wrap: wrap;
-	}
-
-	.ability-inline {
-		display: inline;
-	}
-
-	.ability-inline .keyword-badge {
-		display: inline-block;
-		height: 18px;
-		margin-right: 0.35rem;
-		vertical-align: middle;
-		transform: translateY(0px);
-	}
-
-	.effect-copy .keyword-badge {
-		height: 18px;
-	}
-
-	.ability-stack {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.ability-line {
-		margin: 0;
-		color: var(--text-100);
-	}
-
-	.ability-line-tag-only {
-		margin-bottom: -0.15rem;
-	}
-
-	.loop-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.loop-card {
-		display: grid;
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
+		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.18),
+			0 0 18px rgba(255, 138, 42, 0.1),
+			0 0 40px rgba(255, 138, 42, 0.04);
 	}
 
 	.deck-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1.2rem;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 0.85rem;
 	}
 
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
+		padding: 0.7rem;
 		display: grid;
-		gap: 0.75rem;
-		text-align: left;
+		gap: 0.6rem;
 		cursor: pointer;
+		text-align: left;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	.deck-card:hover,
 	.deck-card:focus-visible,
-	.leader-preview:hover,
-	.leader-preview:focus-visible,
+	.mini-card:hover,
+	.mini-card:focus-visible,
 	.option-card:hover,
 	.option-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.deck-card:hover,
-	.deck-card:focus-visible {
+		transform: translateY(-3px);
 		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
+		outline: none;
 	}
 
 	.deck-card img {
 		width: 100%;
-		max-width: 150px;
+		max-width: 132px;
 		margin: 0 auto;
-		border-radius: 12px;
+		border-radius: 10px;
 	}
 
 	.deck-info {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		gap: 0.6rem;
-		align-items: center;
+		gap: 0.55rem;
+		align-items: start;
 	}
 
 	.deck-count {
-		background: rgba(255, 107, 61, 0.15);
-		color: var(--accent);
-		font-weight: 700;
+		background: rgba(255, 107, 61, 0.12);
+		color: var(--accent-2);
+		border: 1px solid rgba(255, 107, 61, 0.25);
+		padding: 0.25rem 0.55rem;
 		border-radius: 999px;
-		padding: 0.3rem 0.7rem;
-		font-size: 0.9rem;
+		font-size: 0.78rem;
+		font-weight: 800;
+		line-height: 1;
 	}
 
 	.deck-name {
-		font-weight: 600;
+		font-weight: 700;
 	}
 
-	.deck-code,
-	.deck-role {
-		color: var(--text-300);
-		font-size: 0.85rem;
+	.deck-code {
+		font-size: 0.82rem;
+		color: var(--text-400);
 	}
 
 	.deck-role {
+		font-size: 0.7rem;
+		color: var(--text-500);
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
 
-	.prep-grid {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
-	}
-
-	.prep-chip {
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
-		border-radius: 16px;
-		padding: 0.75rem;
-		background: rgba(255, 255, 255, 0.03);
-		text-align: left;
+		border-radius: var(--radius-md);
+	}
+
+	.tip-card {
+		padding: 1rem 1.2rem;
 		display: grid;
-		gap: 0.65rem;
-		align-content: start;
-		color: var(--text-100);
-		cursor: pointer;
+		gap: 0.8rem;
 	}
 
-	.prep-chip img {
-		width: 100%;
-		max-width: 110px;
-		height: auto;
-		border-radius: 10px;
-		margin: 0 auto;
-	}
-
-	.prep-copy {
-		display: grid;
-		gap: 0.2rem;
-	}
-
-	.prep-count,
-	.prep-code {
-		font-weight: 700;
-	}
-
-	.prep-code {
-		color: var(--text-100);
-	}
-
-	.prep-name {
-		color: var(--text-300);
-		font-size: 0.92rem;
-		line-height: 1.25;
-	}
-
-	.thoughts-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.thought-card {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.thought-card::before {
-		content: "";
-		position: absolute;
-		inset: 0 auto auto 0;
-		width: 100%;
-		height: 4px;
-		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
-	}
-
-	.thought-head,
-	.conclusion-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-
-	.thought-head {
-		margin-bottom: 0.8rem;
-		justify-content: flex-start;
-	}
-
-	.thought-head h3 {
+	.tip-card h3,
+	.mulligan-copy h4 {
 		margin: 0;
 	}
 
-	.thought-icon {
-		width: 36px;
-		height: 36px;
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-block h3 {
+		margin: 0 0 1rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+		padding-bottom: 0.9rem;
+		border-bottom: 1px solid rgba(255, 107, 61, 0.25);
+	}
+
+	.curve-row:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.curve-label {
+		font-weight: 800;
+		color: var(--accent-2);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.curve-cards .mini-card {
+		width: 120px;
+	}
+
+	.card-wrap {
+		position: relative;
+		display: inline-block;
+	}
+
+	.curve-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.curve-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.card-badge-image {
+		position: absolute;
+		right: 0.2rem;
+		bottom: 0.2rem;
+		width: 28px !important;
+		max-width: 28px !important;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mini-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: grid;
+		gap: 0.45rem;
+		justify-items: center;
+	}
+
+	.mini-card img {
+		width: 120px;
+		max-width: 120px;
+		border-radius: 10px;
+		display: block;
+	}
+
+	.mini-label {
+		font-weight: 600;
+		color: var(--text-200);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-weight: 800;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		font-size: 0.78rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		border-radius: 999px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #0b0f1a;
 	}
 
-	.thought-up .thought-icon {
-		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	.badge-up {
+		color: #7ef29a;
 	}
 
-	.thought-down .thought-icon {
-		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
 	}
 
-	.conclusion-subtitle {
-		margin: 0.2rem 0 0;
-		color: var(--text-300);
-		font-size: 0.9rem;
+	.badge-down {
+		color: #ff8a8a;
 	}
 
-	.score-badge {
-		border-radius: 999px;
-		padding: 0.55rem 0.9rem;
-		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
-		border: 1px solid rgba(255, 107, 61, 0.35);
-		color: var(--accent);
-		font-weight: 800;
-		font-size: 1rem;
-		letter-spacing: 0.04em;
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.tip-row .mini-card {
+			width: 120px;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: start;
+		}
+
+		.tip-card {
+			align-content: start;
+		}
 	}
 
 	.card-modal {
 		position: fixed;
 		inset: 0;
-		background: rgba(6, 8, 14, 0.85);
+		background: rgba(5, 8, 14, 0.82);
 		display: none;
 		align-items: center;
 		justify-content: center;
-		padding: 2rem;
-		z-index: 40;
+		padding: 1rem;
+		z-index: 1000;
 	}
 
 	.card-modal.is-open {
@@ -850,36 +1188,26 @@ const weaknesses = [
 	}
 
 	.card-modal-inner {
-		position: relative;
-		width: fit-content;
-		max-width: 90vw;
+		max-width: min(520px, 90vw);
 		max-height: 90vh;
-		margin: 0 auto;
-	}
-
-	.card-modal-frame {
-		width: fit-content;
-		max-width: 100%;
 		background: rgba(10, 14, 24, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
 		padding: 1rem 1rem 1.5rem;
+		position: relative;
 		box-shadow: var(--shadow);
 	}
 
 	.card-modal-inner img {
-		display: block;
-		width: auto;
-		max-width: min(520px, calc(90vw - 2rem));
+		width: 100%;
 		max-height: 80vh;
 		object-fit: contain;
-		margin: 0 auto;
 	}
 
 	.modal-close {
 		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
+		top: 0.75rem;
+		right: 0.75rem;
 		background: rgba(255, 255, 255, 0.05);
 		border: 1px solid var(--border);
 		color: var(--text-100);
@@ -890,192 +1218,191 @@ const weaknesses = [
 	}
 
 	@media (max-width: 900px) {
-		.decklist-header {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: start;
-			gap: 0.6rem 0.75rem;
-		}
-
-		.decklist-header .section-heading-copy {
-			display: contents;
-		}
-
-		.decklist-header h2 {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: center;
-			line-height: 1;
-		}
-
-		.decklist-header .decklist-intro {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 0;
-		}
-
 		.guide-hero .hero-grid,
-		.leader-card,
-		.loop-grid,
-		.thoughts-grid {
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
 			grid-template-columns: 1fr;
 		}
 
-		.guide-icon {
-			margin-top: 1.35rem;
-		}
-
-		.decklist-header .copy-sim-button {
-			display: inline-flex;
-			width: auto;
-			min-width: 0;
-			max-width: fit-content;
-			padding: 0.52rem 0.8rem;
-			font-size: 0.78rem;
-			line-height: 1;
-			border-radius: 12px;
-			flex: 0 0 auto;
-			margin-left: auto;
-			margin-top: 0;
-			align-self: center;
-			white-space: nowrap;
+		.sendback-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 640px) {
-		.guide-hero.guide-hero .hero-grid {
-			grid-template-columns: minmax(0, 1fr) 96px !important;
-			gap: 1rem !important;
-			align-items: start !important;
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
 		}
 
-		.guide-hero .guide-icon {
-			grid-column: 2 !important;
-			grid-row: 1 !important;
-			align-self: start !important;
-			justify-self: end !important;
-			margin-top: 5.2rem !important;
-		}
-
-		.guide-hero .guide-icon img {
-			width: 96px;
-			max-width: 96px;
-			border-radius: 14px;
-		}
-
-		.loop-card {
-			grid-template-columns: 96px minmax(0, 1fr);
-			gap: 0.9rem;
-		}
-
-		.loop-card .text-card,
-		.leader-card .text-card {
-			padding: 0;
-			background: transparent;
-			border: none;
-		}
-
-		.leader-card {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		.section-header {
 			gap: 0.8rem;
-			padding: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-card {
+			grid-column: span 2;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
 			align-items: start;
 		}
 
-		.leader-copy {
-			display: contents;
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
 		}
 
-		.leader-preview {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: start;
+		.tip-row .tip-cards {
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-start;
+			gap: 0.55rem;
 		}
 
-		.leader-preview img {
-			width: 100%;
-			max-width: none;
-			border-radius: 10px;
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
 		}
 
-		.fact-grid {
-			grid-column: 2;
-			grid-row: 1;
+		.tip-row {
 			grid-template-columns: 1fr;
-			gap: 0.6rem;
+			gap: 0.8rem;
 		}
 
-		.fact-box {
-			padding: 0.7rem 0.75rem;
-			border-radius: 12px;
+		.tip-row p {
+			grid-column: 1;
 		}
 
-		.fact-label {
-			font-size: 0.68rem;
-			margin-bottom: 0.3rem;
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
 		}
 
-		.text-card {
-			grid-column: 1 / -1;
-			grid-row: 2;
-		}
-
-		.keyword-badge {
-			height: 21px;
-		}
-
-		.effect-copy {
-			display: block;
-		}
-
-		.effect-copy .keyword-badge {
-			display: inline-block;
-			height: 18px;
-			margin: 0;
-			vertical-align: middle;
-			transform: translateY(4px);
-		}
-
-		.keyword-line {
-			gap: 0.5rem;
-		}
-
-		.keyword-line .keyword-badge {
-			height: 18px;
-			margin: 0;
-			transform: translateY(4px);
-		}
-
-		.ability-inline .keyword-badge {
-			height: 18px;
-			margin-right: 0.4rem;
-			transform: translateY(0px);
-		}
-
-		.prep-grid {
+		.curve-cards {
+			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.prep-chip {
-			padding: 0.5rem;
 			gap: 0.45rem;
-			border-radius: 12px;
+			justify-items: start;
+			align-items: start;
 		}
 
-		.prep-chip img {
-			max-width: 82px;
-			border-radius: 8px;
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
 		}
 
-		.prep-copy {
-			gap: 0.12rem;
+		.curve-cards .mini-card {
+			width: 100%;
 		}
 
-		.prep-count,
-		.prep-code,
-		.prep-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
+		.curve-cards .mini-card .card-wrap {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 
 		.deck-grid {
@@ -1123,53 +1450,6 @@ const weaknesses = [
 
 		.deck-role {
 			display: none;
-		}
-
-		.card-modal {
-			padding: 0 !important;
-		}
-
-		.card-modal-inner {
-			position: fixed !important;
-			inset: 0 !important;
-			width: 100vw !important;
-			height: 100dvh !important;
-			max-width: none !important;
-			max-height: none !important;
-			margin: 0 !important;
-			padding: 0 !important;
-			display: grid !important;
-			place-items: center !important;
-			background: transparent !important;
-			border: 0 !important;
-			box-shadow: none !important;
-		}
-
-		.card-modal-frame {
-			padding: 0.75rem !important;
-			max-width: calc(100vw - 1.5rem) !important;
-			max-height: calc(100dvh - 1.5rem) !important;
-		}
-
-		.card-modal-inner img {
-			display: block !important;
-			width: auto !important;
-			max-width: min(78vw, 320px) !important;
-			height: auto !important;
-			max-height: 78vh !important;
-			object-fit: contain !important;
-			margin: 0 auto !important;
-		}
-
-		.modal-close {
-			position: fixed !important;
-			top: 0.75rem !important;
-			right: 0.75rem !important;
-			z-index: 2 !important;
-		}
-
-		.conclusion-head {
-			align-items: flex-start;
 		}
 	}
 </style>
