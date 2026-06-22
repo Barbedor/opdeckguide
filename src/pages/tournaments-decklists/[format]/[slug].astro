@@ -10,8 +10,9 @@ export const getStaticPaths = () =>
 
 const { entry } = Astro.props;
 
-const title = `${entry.title} - ${entry.eventName}`;
-const description = `${entry.title} tournament decklist page with event metadata and full card grid.`;
+const displayTitle = entry.title.replace(/\s+(OP\d+|EB\d+|ST\d+)\s+/, (_, code) => ` (Format ${code}) `);
+const title = `${displayTitle} - ${entry.eventName}`;
+const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
 const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
@@ -38,7 +39,7 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 		<div class="container detail-hero-grid">
 			<div>
 				<span class="hero-badge">Tournament Decklist</span>
-				<h1>{entry.title}</h1>
+				<h1>{displayTitle}</h1>
 				<p>{entry.summary}</p>
 				<div class="detail-badges">
 					<span class="detail-badge">{entry.eventType}</span>
