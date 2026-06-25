@@ -9,6 +9,7 @@ export const staticSitePaths = [
 	"/deck-guides/",
 	"/meta-analysis/",
 	"/meta-analysis/Purple-Yellow-Rosinante-op12-stats/",
+	"/meta-analysis/Green-Blue-Luffy-op16-stats/",
 	"/meta-analysis/dracule-mihawk-op14-stats-in-op15/",
 	"/meta-analysis/enel-op15-stats-in-op15/",
 	"/meta-analysis/lucy-op15-stats-in-op15/",
@@ -19,11 +20,10 @@ export const staticSitePaths = [
 	"/meta-analysis/nami-op11-stats-in-op15/",
 	"/meta-analysis/portgas-d-ace-op15-stats/",
 	"/meta-analysis/imu-op13-stats-in-op15/",
+	"/meta-analysis/Black-Yamato-op16-stats/",
 	"/beginner-guides/",
 	"/banlist/",
 	"/cards-list/",
-	"/privacy-policy/",
-	"/legal-notice/",
 ];
 
 export const guidePaths = [...visibleDeckGuides, ...beginnerGuides].map((guide) => guide.href);
