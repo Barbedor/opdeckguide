@@ -3,6 +3,30 @@ import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
 const hiddenExtensions = new Set(["back_cards", "don"]);
+const manualCardOverrides = {
+	OP17: {
+		"op17-001 edward newgate": {
+			code: "OP17-001",
+			name: "Edward Newgate",
+			color: "Red",
+		},
+		"op17-079 monkey.d.luffy": {
+			code: "OP17-079",
+			name: "Monkey D. Luffy",
+			color: "Black",
+		},
+		"op17-093monkey.d.luffy": {
+			code: "OP17-093",
+			name: "Monkey D. Luffy",
+			color: "Black",
+		},
+		"op17-119-loki": {
+			code: "OP17-119",
+			name: "Loki",
+			color: "Black",
+		},
+	},
+};
 
 export const colorOrder = [
 	"Red",
@@ -99,10 +123,18 @@ export const getCardsForExtension = (extension) => {
 	if (!fs.existsSync(extensionPath)) return [];
 	const files = fs.readdirSync(extensionPath);
 	const fullByBase = new Map();
+	const smallByBase = new Map();
 	const isPromoDon = (base) => extension.toUpperCase() === "P" && base.toLowerCase() === "don";
+	const overrides = manualCardOverrides[extension.toUpperCase()] ?? {};
 
 	for (const file of files) {
-		if (file.toLowerCase().includes("_small")) continue;
+		if (/_small\.(png|jpg|jpeg|webp)$/i.test(file)) {
+			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
+			if (isPromoDon(base)) continue;
+			smallByBase.set(base, `/Cards/${extension}/${file}`);
+			continue;
+		}
+		if (!/\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
 		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
 		if (isPromoDon(base)) continue;
 		fullByBase.set(base, `/Cards/${extension}/${file}`);
@@ -110,18 +142,16 @@ export const getCardsForExtension = (extension) => {
 
 	const metadataIndex = buildMetadataIndex();
 
-	return files
-		.filter((file) => /_small\.(png|jpg|jpeg|webp)$/i.test(file))
-		.map((file) => {
-			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
-			if (isPromoDon(base)) return null;
-			const fullUrl = fullByBase.get(base);
-			const meta = metadataIndex.get(base) ?? {};
+	return [...fullByBase.entries()]
+		.map(([base, fullUrl]) => {
+			const override = overrides[base.toLowerCase()] ?? {};
+			const code = override.code ?? base.toUpperCase();
+			const meta = metadataIndex.get(code) ?? metadataIndex.get(base) ?? {};
 			return {
-				code: base,
-				name: meta.name ?? base,
-				color: meta.color ?? "Other",
-				smallUrl: fullUrl,
+				code,
+				name: override.name ?? meta.name ?? code,
+				color: override.color ?? meta.color ?? "Other",
+				smallUrl: smallByBase.get(base) ?? fullUrl,
 				fullUrl,
 			};
 		})
@@ -132,31 +162,7 @@ export const getCardsForExtension = (extension) => {
 export const getExtensionSummary = (extension) => {
 	const extensionPath = path.join(cardsRoot, extension);
 	if (!fs.existsSync(extensionPath)) return { extension, count: 0, previews: [] };
-	const files = fs.readdirSync(extensionPath);
-	const fullByBase = new Map();
-	const isPromoDon = (base) => extension.toUpperCase() === "P" && base.toLowerCase() === "don";
-
-	for (const file of files) {
-		if (file.toLowerCase().includes("_small")) continue;
-		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
-		if (isPromoDon(base)) continue;
-		fullByBase.set(base, `/Cards/${extension}/${file}`);
-	}
-
-	const smallFiles = files.filter((file) => /_small\.(png|jpg|jpeg|webp)$/i.test(file));
-	const cards = smallFiles
-		.map((file) => {
-			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
-			if (isPromoDon(base)) return null;
-			const fullUrl = fullByBase.get(base);
-			return {
-				code: base,
-				smallUrl: fullUrl,
-				fullUrl,
-			};
-		})
-		.filter((card) => card && Boolean(card.fullUrl))
-		.sort((a, b) => a.code.localeCompare(b.code, "en"));
+	const cards = getCardsForExtension(extension);
 
 	return {
 		extension,

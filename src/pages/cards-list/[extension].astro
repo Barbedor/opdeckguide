@@ -15,20 +15,106 @@ const initialBatch = 96;
 const initialCards = cards.slice(0, initialBatch);
 const remainingCards = cards.slice(initialBatch);
 const extensionLabel = extension === "P" ? "Promo" : extension;
+const isLeakPage = extension.toUpperCase() === "OP17";
+const releaseDateLabel = "August 28, 2026";
+const keywordAssetBase = "/assets/keywords";
+const leakCardDetails = {
+	"OP17-001": {
+		rarity: "Leader Card",
+		edition: "Regular Edition",
+		stats: "Red / Life 5 / Special / Power 5000 / Emperor",
+		traits: "Whitebeard Pirates",
+		effectLines: [
+			[
+				{ icon: "on-your-opponents-attack", alt: "On Your Opponent's Attack" },
+				" ",
+				{ icon: "once-per-turn", alt: "Once Per Turn" },
+				" ",
+				"You can discard 1 card from your hand: Up to 1 of your leaders or characters gets +4000 Power for the rest of this battle.",
+			],
+		],
+	},
+	"OP17-079": {
+		rarity: "Leader Card",
+		edition: "Parallel Version",
+		notes: ["Regular version"],
+		stats: "Black / Life 5 / Attack / Power 5000 / Elbaf, Four Emperors, Straw Hat Pirates",
+		effectLines: [
+			[
+				"All of your characters with a cost of 12 or more gain ",
+				{ icon: "blocker", alt: "Blocker" },
+				".",
+			],
+			["(After your opponent attacks, you can rest this card and target this card for the next attack.)"],
+		],
+	},
+	"OP17-093": {
+		rarity: "Super Rare",
+		stats: "Black / Cost 8 / Attack / Power 8000 / Elbaf, Four Emperors, Straw Hat Pirates",
+		effectLines: [
+			[
+				"If there is a character with a cost of 12 or more, this character gains ",
+				{ icon: "rush", alt: "Rush" },
+				".",
+			],
+			[
+				{ icon: "on-play", alt: "On Play" },
+				"Draw one card, and play up to one character card with a cost of 2 or less from your trash.",
+			],
+		],
+	},
+	"OP17-119": {
+		rarity: "Secret Rare",
+		stats: "Black / Cost 6 / Attack / Power 8000 / Giant - Elbaf",
+		effectLines: [
+			["This character's cost increases by 12, and if it's your opponent's turn, this character's power increases by 3000."],
+			[
+				{ icon: "on-play", alt: "On Play" },
+				"Knock out your opponent's characters so that their total cost is 4 or less.",
+			],
+		],
+	},
+};
+const leakCards = isLeakPage
+	? cards
+			.map((card) => {
+				const details = leakCardDetails[card.code];
+				return details ? { ...card, ...details } : null;
+			})
+			.filter(Boolean)
+	: [];
 
-const title = `${extensionLabel} Card List | One Piece Card Game`;
-const description = `Browse the full ${extensionLabel} card list, search exact card numbers, and open full-size One Piece Card Game previews instantly.`;
+const title = isLeakPage
+	? `${extensionLabel} Leaks Card List | One Piece Card Game`
+	: `${extensionLabel} Card List | One Piece Card Game`;
+const description = isLeakPage
+	? `Browse the latest ${extensionLabel} leaks for the One Piece Card Game before the set releases on ${releaseDateLabel}. This page updates with each newly revealed card while the URL stays the same.`
+	: `Browse the full ${extensionLabel} card list, search exact card numbers, and open full-size One Piece Card Game previews instantly.`;
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
 		<div class="container">
 			<span class="hero-badge">{extensionLabel}</span>
-			<h1>{extensionLabel} Card List</h1>
-			<p>
-				Every {extensionLabel} card is listed on this page. Open any card for the full-size image, or
-				use search if you want to jump straight to an exact card number.
-			</p>
+			<h1>{isLeakPage ? `${extensionLabel} Leaks Card List` : `${extensionLabel} Card List`}</h1>
+			{isLeakPage ? (
+				<>
+					<p>
+						This page tracks the currently revealed {extensionLabel} leaks for the One Piece Card Game ahead
+						of the official release on {releaseDateLabel}. New cards will be added here as they are
+						revealed, and the URL will stay unchanged.
+					</p>
+					<p class="leak-note">
+						Only the currently revealed cards are shown for now. Once the full set is out, this page can
+						switch back to the standard extension format without changing its URL.
+					</p>
+				</>
+			) : (
+				<p>
+					Every {extensionLabel} card is listed on this page. Open any card for the full-size image, or
+					use search if you want to jump straight to an exact card number.
+				</p>
+			)}
 			<p class="hero-links">
 				Need deck context? Head back to <a href="/deck-guides/">Deck Guides</a>.
 			</p>
@@ -39,29 +125,83 @@ const description = `Browse the full ${extensionLabel} card list, search exact c
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>{extensionLabel} Cards</h2>
-					<p>{cards.length} cards available in this extension.</p>
+					<h2>{isLeakPage ? `${extensionLabel} Revealed Cards` : `${extensionLabel} Cards`}</h2>
+					<p>
+						{isLeakPage
+							? `${cards.length} revealed leak cards currently available on this page.`
+							: `${cards.length} cards available in this extension.`}
+					</p>
 				</div>
 				<a href="/cards-list/">Back to all extensions</a>
 			</div>
-			<div class="cards-grid" data-card-grid>
-				{initialCards.map((card) => (
-					<button
-						class="card-thumb"
-						type="button"
-						data-card
-						data-full={card.fullUrl}
-						data-name={card.code}
-					>
-						<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
-					</button>
-				))}
-			</div>
-			{remainingCards.length > 0 && (
-				<div class="load-more">
-					<button type="button" class="btn btn-secondary" data-load-more>Load more cards</button>
-					<p>{remainingCards.length} more cards available</p>
+			{isLeakPage ? (
+				<div class="leak-cards-grid">
+					{leakCards.map((card) => (
+						<article class="leak-card">
+							<button
+								class="card-thumb leak-card-thumb"
+								type="button"
+								data-card
+								data-full={card.fullUrl}
+								data-name={card.code}
+							>
+								<img loading="lazy" src={card.smallUrl} alt={`${card.code} ${card.name} card`} />
+							</button>
+							<div class="leak-card-copy">
+								<div class="leak-card-header">
+									<p class="leak-card-code">{card.code}</p>
+									<p class="leak-card-rarity">{card.rarity}</p>
+								</div>
+								<h3>{card.name}</h3>
+								<div class="leak-card-meta">
+									{card.edition && <p class="leak-chip leak-chip-solid">{card.edition}</p>}
+									{card.notes?.map((note) => <p class="leak-chip">{note}</p>)}
+								</div>
+								<p class="leak-card-stats">{card.stats}</p>
+								{card.traits && <p class="leak-card-traits">{card.traits}</p>}
+								<div class="leak-card-effects">
+									{card.effectLines.map((line) => (
+										<p class="leak-effect-line">
+											{line.map((part) =>
+												typeof part === "string" ? (
+													<span>{part}</span>
+												) : (
+													<img
+														class="keyword-badge"
+														src={`${keywordAssetBase}/${part.icon}.png`}
+														alt={part.alt}
+													/>
+												)
+											)}
+										</p>
+									))}
+								</div>
+							</div>
+						</article>
+					))}
 				</div>
+			) : (
+				<>
+					<div class="cards-grid" data-card-grid>
+						{initialCards.map((card) => (
+							<button
+								class="card-thumb"
+								type="button"
+								data-card
+								data-full={card.fullUrl}
+								data-name={card.code}
+							>
+								<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+							</button>
+						))}
+					</div>
+					{remainingCards.length > 0 && (
+						<div class="load-more">
+							<button type="button" class="btn btn-secondary" data-load-more>Load more cards</button>
+							<p>{remainingCards.length} more cards available</p>
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	</section>
@@ -71,21 +211,35 @@ const description = `Browse the full ${extensionLabel} card list, search exact c
 			<div class="section-header faq-header">
 				<div>
 					<h2>{extensionLabel} FAQ</h2>
-					<p>Quick answers for the most common card list questions.</p>
+					<p>{isLeakPage ? "Quick answers about the current OP17 leak page." : "Quick answers for the most common card list questions."}</p>
 				</div>
 			</div>
 			<div class="faq-grid">
 				<article class="faq-card">
-					<h3>Can I browse every {extensionLabel} card here?</h3>
-					<p>Yes. This page lists the full {extensionLabel} card pool in one place.</p>
+					<h3>{isLeakPage ? `Can I browse every ${extensionLabel} card here?` : `Can I browse every ${extensionLabel} card here?`}</h3>
+					<p>
+						{isLeakPage
+							? `Not yet. This page currently lists only the revealed ${extensionLabel} leaks and will grow as more cards are officially shown.`
+							: `Yes. This page lists the full ${extensionLabel} card pool in one place.`}
+					</p>
 				</article>
 				<article class="faq-card">
-					<h3>Can I search by exact card number?</h3>
-					<p>Yes. Use the global search bar under the menu to jump straight to a code.</p>
+					<h3>{isLeakPage ? "Will this URL change when OP17 is complete?" : "Can I search by exact card number?"}</h3>
+					<p>
+						{isLeakPage
+							? "No. This page keeps the same URL while the set is incomplete, then can switch back to the standard full-extension format later."
+							: "Yes. Use the global search bar under the menu to jump straight to a code."}
+					</p>
 				</article>
 				<article class="faq-card">
-					<h3>Where can I find deck context?</h3>
-					<p>Use <a href="/deck-guides/">Deck Guides</a> to see how cards show up in real lists.</p>
+					<h3>{isLeakPage ? "When is OP17 scheduled to release?" : "Where can I find deck context?"}</h3>
+					<p>
+						{isLeakPage ? (
+							<>The current target release date is {releaseDateLabel}. Until then, this page is intentionally framed as leaks.</>
+						) : (
+							<>Use <a href="/deck-guides/">Deck Guides</a> to see how cards show up in real lists.</>
+						)}
+					</p>
 				</article>
 			</div>
 		</div>
@@ -180,6 +334,15 @@ const description = `Browse the full ${extensionLabel} card list, search exact c
 		margin-top: 1rem;
 	}
 
+	.leak-note {
+		margin-top: 0.9rem;
+		padding: 0.9rem 1rem;
+		border: 1px solid rgba(255, 107, 61, 0.24);
+		border-radius: var(--radius-md);
+		background: rgba(255, 107, 61, 0.08);
+		color: var(--text-200);
+	}
+
 	.hero-links a {
 		color: var(--accent) !important;
 		font-weight: 600;
@@ -191,6 +354,168 @@ const description = `Browse the full ${extensionLabel} card list, search exact c
 		grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
 		gap: 0.8rem;
 		justify-content: start;
+	}
+
+	.leak-cards-grid {
+		display: grid;
+		gap: 1.15rem;
+	}
+
+	.leak-card {
+		display: grid;
+		grid-template-columns: minmax(148px, 188px) minmax(0, 1fr);
+		gap: 1.2rem;
+		align-items: stretch;
+		padding: 1.1rem;
+		border-radius: 18px;
+		border: 1px solid rgba(255, 138, 42, 0.42);
+		background:
+			linear-gradient(135deg, rgba(255, 149, 56, 0.34), rgba(255, 122, 26, 0.18) 28%, rgba(255, 122, 26, 0.07) 52%, rgba(10, 14, 24, 0.92) 78%),
+			linear-gradient(180deg, rgba(255, 190, 120, 0.08), rgba(255, 255, 255, 0.02));
+		box-shadow:
+			0 0 0 1px rgba(255, 168, 76, 0.08),
+			inset 0 1px 0 rgba(255, 255, 255, 0.03),
+			0 18px 40px rgba(0, 0, 0, 0.22);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.leak-card::before {
+		content: "";
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 4px;
+		background: linear-gradient(180deg, #ffb347, #ff7a1a 55%, #ff5a1f);
+	}
+
+	.leak-card-thumb {
+		width: 100%;
+		max-width: 188px;
+		align-self: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	.leak-card-thumb img {
+		border: 1px solid rgba(255, 138, 42, 0.28);
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+	}
+
+	.leak-card-copy {
+		min-width: 0;
+		display: grid;
+		gap: 0.7rem;
+		align-content: start;
+		position: relative;
+		z-index: 1;
+	}
+
+	.leak-card-header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.leak-card-copy h3 {
+		margin: 0;
+		font-size: clamp(1.2rem, 1rem + 0.55vw, 1.55rem);
+		line-height: 1.08;
+		color: var(--text-100);
+	}
+
+	.leak-card-copy p {
+		margin: 0;
+		line-height: 1.45;
+		color: var(--text-200);
+	}
+
+	.leak-card-code {
+		color: var(--accent) !important;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.8rem;
+	}
+
+	.leak-card-rarity {
+		color: #ffd6b0 !important;
+		font-weight: 700;
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.28rem 0.55rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 138, 42, 0.4);
+		background: linear-gradient(135deg, rgba(255, 179, 71, 0.24), rgba(255, 122, 26, 0.16));
+	}
+
+	.leak-card-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.leak-chip {
+		padding: 0.35rem 0.65rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 138, 42, 0.3);
+		background: rgba(255, 149, 56, 0.1);
+		font-size: 0.82rem;
+		color: var(--text-200);
+	}
+
+	.leak-chip-solid {
+		background: linear-gradient(135deg, rgba(255, 179, 71, 0.34), rgba(255, 122, 26, 0.24));
+		color: #ffe6cf;
+	}
+
+	.leak-card-stats {
+		font-weight: 600;
+		color: var(--text-100) !important;
+	}
+
+	.leak-card-traits {
+		color: #ffd6b0 !important;
+	}
+
+	.leak-card-effects {
+		display: grid;
+		gap: 0.55rem;
+		padding-top: 0.15rem;
+	}
+
+	.leak-card-effects p {
+		padding-left: 0.9rem;
+		position: relative;
+		line-height: 1.5;
+	}
+
+	.leak-effect-line {
+		display: block;
+	}
+
+	.keyword-badge {
+		height: 1em;
+		width: auto;
+		max-width: none;
+		vertical-align: middle;
+		display: inline-block;
+		flex: 0 0 auto;
+		transform: translateY(-0.02em);
+		margin: 0 0.12em;
+	}
+
+	.leak-card-effects p::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0.58rem;
+		width: 0.42rem;
+		height: 0.42rem;
+		border-radius: 999px;
+		background: linear-gradient(135deg, #ffb347, #ff7a1a);
+		box-shadow: 0 0 12px rgba(255, 122, 26, 0.28);
 	}
 
 	:global(.card-thumb) {
@@ -321,6 +646,60 @@ const description = `Browse the full ${extensionLabel} card list, search exact c
 			grid-template-columns: repeat(3, minmax(96px, 96px));
 			justify-content: center;
 			gap: 0.55rem;
+		}
+
+		.leak-card {
+			grid-template-columns: minmax(92px, 108px) minmax(0, 1fr);
+			padding: 0.85rem;
+			gap: 0.8rem;
+			align-items: start;
+		}
+
+		.leak-card-thumb {
+			width: 100%;
+			max-width: 108px;
+			justify-self: start;
+		}
+
+		.leak-card-copy {
+			gap: 0.45rem;
+		}
+
+		.leak-card-copy h3 {
+			font-size: 1.02rem;
+		}
+
+		.leak-card-code {
+			font-size: 0.72rem;
+		}
+
+		.leak-card-rarity,
+		.leak-chip {
+			font-size: 0.7rem;
+		}
+
+		.leak-card-copy p {
+			font-size: 0.84rem;
+			line-height: 1.36;
+		}
+
+		.leak-card-effects {
+			gap: 0.42rem;
+		}
+
+		.leak-card-effects p {
+			padding-left: 0.75rem;
+		}
+
+		.leak-card-effects p::before {
+			top: 0.5rem;
+			width: 0.36rem;
+			height: 0.36rem;
+		}
+
+		.keyword-badge {
+			height: 1em;
+			margin: 0 0.1em;
 		}
 
 		:global(.card-thumb) {
