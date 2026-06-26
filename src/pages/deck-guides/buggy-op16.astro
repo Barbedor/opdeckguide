@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Buggy OP16 Preview Deck Guide";
+const title = "Buggy OP16 Deck Guide";
 const description =
-	"Buggy OP16 preview deck guide for One Piece Card Game with an early decklist idea, the clown package, the old-set shell, and early strengths and weaknesses.";
+	"Buggy OP16 deck guide for One Piece Card Game with decklist, mulligan priorities, a going-second curve guide, tech cards, matchup notes, and gameplay tips.";
 
 const icon = "/assets/guides/Buggy%20op16.png";
+
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -22,66 +23,242 @@ const expandSimLines = (count, code) => {
 	return lines;
 };
 
+const card = (code, name, img) => ({ code, name, img });
+
+const buggyLeader = card("OP16-041", "Buggy", "/Cards/OP16/OP16-041.jpg");
+const mr1 = card("OP16-054", "Mr.1 (Daz Bonez)", "/Cards/OP16/OP16-054.jpg");
+const mr2 = card("OP16-055", "Mr.2 Bon Clay (Bentham)", "/Cards/OP16/OP16-055.jpg");
+const crocodile = card("OP16-045", "Crocodile", "/Cards/OP16/OP16-045.jpg");
+const mr3 = card("OP16-056", "Mr.3 (Galdino)", "/Cards/OP16/OP16-056.jpg");
+const buggyCharacter = card("OP16-048", "Buggy", "/Cards/OP16/OP16-048.jpg");
+const missOlive = card("OP16-050", "Miss Olive", "/Cards/OP16/OP16-050.jpg");
+const prisoner = card("OP16-042", "Prisoner of Impel Down", "/Cards/OP16/OP16-042.jpg");
+const slaveArrow = card("OP07-056", "Slave Arrow", "/Cards/OP07/OP07-056.png");
+const gravityBlade = card("OP06-058", "Gravity Blade Raging Tiger", "/Cards/OP06/OP06-058.png");
+const ivankov = card("OP16-044", "Emporio Ivankov", "/Cards/OP16/OP16-044.jpg");
+const sanji = card("OP15-047", "Sanji", "/Cards/OP15/OP15-047.jpg");
+const jozu = card("OP08-047", "Jozu", "/Cards/OP08/OP08-047.png");
+const prisonersRioting = card("OP16-058", "The Prisoners Are Rioting!!", "/Cards/OP16/OP16-058.jpg");
+
+const teach16 = card("OP16-080", "Marshall.D.Teach OP16", "/Cards/OP16/OP16-080.jpg");
+const rosinante12 = card("OP12-061", "Donquixote Rosinante OP12", "/Cards/OP12/OP12-061.jpg");
+const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
+const luffy16 = card("OP16-022", "Monkey.D.Luffy OP16", "/Cards/OP16/OP16-022.jpg");
+const enel15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg");
+
 const decklist = [
-	{ code: "OP16-041", name: "Buggy", count: 1, img: "/Cards/OP16/OP16-041.jpg", role: "Leader" },
-	{ code: "OP16-054", name: "Mr.1(Daz.Bonez)", count: 4, img: "/Cards/OP16/OP16-054.jpg", role: "Character" },
-	{ code: "OP16-055", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/OP16/OP16-055.jpg", role: "Character" },
-	{ code: "OP16-045", name: "Crocodile", count: 4, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
-	{ code: "OP16-056", name: "Mr.3(Galdino)", count: 4, img: "/Cards/OP16/OP16-056.jpg", role: "Character" },
-	{ code: "OP16-044", name: "Emporio.Ivankov", count: 4, img: "/Cards/OP16/OP16-044.jpg", role: "Character" },
-	{ code: "OP16-048", name: "Buggy", count: 4, img: "/Cards/OP16/OP16-048.jpg", role: "Character" },
-	{ code: "OP16-050", name: "Miss Olive", count: 4, img: "/Cards/OP16/OP16-050.jpg", role: "Character" },
-	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 18, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
-	{ code: "OP16-058", name: "The Prisoners Are Rioting!!", count: 2, img: "/Cards/OP16/OP16-058.jpg", role: "Event" },
-	{ code: "EB01-028", name: "Gum-Gum Champion Rifle", count: 2, img: "/Cards/EB01/EB01-028.png", role: "Event" },
+	{ ...buggyLeader, count: 1, role: "Leader" },
+	{ ...mr1, count: 4, role: "Character" },
+	{ ...mr2, count: 4, role: "Character" },
+	{ ...crocodile, count: 4, role: "Character" },
+	{ ...mr3, count: 4, role: "Character" },
+	{ ...buggyCharacter, count: 4, role: "Character" },
+	{ ...missOlive, count: 4, role: "Character" },
+	{ ...prisoner, count: 20, role: "Character" },
+	{ ...slaveArrow, count: 4, role: "Event" },
+	{ ...gravityBlade, count: 2, role: "Event" },
 ];
-const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
-const leaderCard = { code: "OP16-041", name: "Buggy", img: "/Cards/OP16/OP16-041.jpg" };
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
-const spoilerCards = [
+const mulliganKeeps = [
 	{
-		code: "OP16-042",
-		name: "Prisoner of Impel Down",
-		img: "/Cards/OP16/OP16-042.jpg",
+		copy:
+			"One of the best starts in the deck. It draws a card on play, swings at 6000 with just 1 DON!! attached, and once Crocodile removes it from your board, the leader turns that exchange into a Prisoner of Impel Down.",
+		cards: [mr1],
 	},
 	{
-		code: "OP16-048",
-		name: "Buggy",
-		img: "/Cards/OP16/OP16-048.jpg",
+		copy:
+			"It plays the same early role as Mr.1. It draws a card on play, often attacks at 6000, 7000, or even 8000 depending on the matchup, and still turns into a Prisoner of Impel Down once Crocodile bounces it.",
+		cards: [mr2],
 	},
 	{
-		code: "OP16-056",
-		name: "Mr.3(Galdino)",
-		img: "/Cards/OP16/OP16-056.jpg",
+		copy:
+			"Even with 20 copies in the deck, having one in your opener is still great because it guarantees your leader effect is online the moment one of your characters gets removed from the board.",
+		cards: [prisoner],
 	},
 ];
 
-const prepPackage = [
-	{ count: 4, code: "ST12-010", name: "Emporio Ivankov", img: "/Cards/ST12/ST12-010.png" },
-	{ count: 4, code: "OP14-052", name: "Hannyabal", img: "/Cards/OP14/OP14-052.jpg" },
-	{ count: 4, code: "EB01-022", name: "Inazuma", img: "/Cards/EB01/EB01-022.png" },
-	{ count: 4, code: "OP08-047", name: "Jozu", img: "/Cards/OP08/OP08-047.png" },
-	{ count: 4, code: "EB01-028", name: "Gum Gum Champion Rifle", img: "/Cards/EB01/EB01-028.png" },
-	{ count: 4, code: "OP07-056", name: "Slave Arrow", img: "/Cards/OP07/OP07-056.png" },
+const idealHandCards = [mr1, mr2, prisoner, crocodile];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		notes: "Play Mr.1 or Mr.2. These are your best opening plays.",
+		cards: [mr1, mr2],
+	},
+	{
+		label: "4 DON!!",
+		notes:
+			"You either deploy two more 2-cost characters or start attacking while keeping 1 DON!! on the leader so the effect stays live. If one of your characters gets removed, it immediately turns into a Prisoner of Impel Down.",
+		cards: [
+			mr1,
+			mr2,
+			{ ...buggyLeader, badgeCard: "/Cards/P/Don_small.jpg" },
+		],
+	},
+	{
+		label: "6 DON!!",
+		notes:
+			"Crocodile is usually the best play here: bounce one of your 2-cost characters, play a Prisoner of Impel Down, replay the bounced character, and draw again. That's where the deck really starts snowballing.",
+		cards: [crocodile, prisoner, mr1],
+	},
+	{
+		label: "8 DON!!",
+		notes:
+			"Miss Olive lets you bounce a character, create a Prisoner of Impel Down, then draw two and trash one. From there, the deck keeps stacking 6000-power swings while staying ahead on board and in hand.",
+		cards: [missOlive, prisoner, mr2],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"At this point your board is usually full. Keep attacking with everything and try to leave DON!! up for your defensive events whenever the game state allows it.",
+		cards: [prisoner, mr1, slaveArrow],
+	},
+	{
+		label: "Late game",
+		notes:
+			"Buggy usually closes games by repeating wide attack turns. Once the board is built, the deck wins through volume and pressure more than through a single giant finisher.",
+		cards: [prisoner, buggyCharacter, crocodile],
+	},
 ];
 
-const strengths = [
-	"Very strong at swarming the board",
-	"Excellent tempo thanks to blue",
-	"Constant pressure",
-	"Very good into slower decks",
+const optionsCards = [
+	{
+		...ivankov,
+		copy:
+			"A good defensive option. It works as a blocker first, then turns into a Prisoner of Impel Down when it leaves the field. I still prefer the more aggressive version of the deck.",
+	},
+	{
+		...sanji,
+		copy:
+			"It gives unblockable to one of your characters while also being a blocker itself. It's very useful into decks that lean heavily on blockers, and very few opponents expect to see it here.",
+	},
+	{
+		...jozu,
+		copy:
+			"An excellent tempo option. By returning one of your own characters, you trigger a Prisoner of Impel Down and still bounce an opposing cost 6 or lower character. It's especially strong against big curve plays.",
+	},
+	{
+		...prisonersRioting,
+		copy:
+			"An interesting alternative. At 10 DON!!, all of your Prisoners of Impel Down become 7000-power characters. In counter, it also gives your leader +4000 power for just 1 DON!!.",
+	},
 ];
 
-const weaknesses = [
-	"Low raw power on its characters",
-	"Too dependent on keeping a full board",
-	"Loses to purple decks",
-	"Does not have many instant-win finishers",
+const matchups = [
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: teach16,
+		notes: [
+			"The matchup gets harder the better Teach players understand their deck.",
+			"Your results are better when Buggy goes second.",
+			"Go second whenever you can.",
+			"Develop your board quickly before Teach gets full control online.",
+			"Use your repeated 6000-power attacks to drain their hand before the blockers start stacking up.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: rosinante12,
+		notes: [
+			"Rosinante protects its characters well, which makes Buggy's repeated attacks less efficient.",
+			"Gravity Blade is especially strong in this matchup.",
+			"Save Gravity Blade for key characters like Rosinante or Law.",
+			"Keep developing multiple Prisoners of Impel Down so the pressure never disappears.",
+			"Don't waste resources on character exchanges that don't actually improve the board state.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: nami11,
+		notes: [
+			"Nami is tricky because Buggy leans on repeated 6000-power attacks while Nami can raise the leader's power and drag the game out.",
+			"Go second.",
+			"Keep the pressure high from the very first turns.",
+			"Push for 7000-power attacks whenever the window is there.",
+			"Use Gravity Blade Raging Tiger to remove the opposing cards that would snowball too much value.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: luffy16,
+		notes: [
+			"The matchup is very balanced overall, but Buggy's numbers improve when it goes second.",
+			"Go second.",
+			"Pressure the game quickly with your 2-cost characters.",
+			"Try to keep a wide board so you can multiply the number of attacks each turn.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: enel15,
+		notes: [
+			"Purple Enel can develop huge threats while generating a lot of value over time.",
+			"If Buggy can't keep the pressure on right away, Enel usually takes over the pace of the game.",
+			"Go first.",
+			"Put Enel under pressure before their setup is fully online.",
+			"Build a wide board so you can keep throwing multiple attacks every turn.",
+			"Use Gravity Blade Raging Tiger to answer the most annoying characters and hold tempo.",
+		],
+	},
 ];
 
-const conclusion =
-	"The deck looks very fun, but it's clearly not in the running to become the new BDIF. That said, you can still lean into the meme and play 50 copies of the same card. For me, it's still missing some cards, like a 7-cost or higher character or a searcher. For those reasons, I'd put the deck at 6.5 / 10.";
+const tips = [
+	{
+		copy: "Go second whenever you have the choice.",
+		cards: [buggyLeader],
+	},
+	{
+		copy: "Always keep 1 DON!! on your leader so the effect stays available.",
+		cards: [{ ...buggyLeader, badgeCard: "/Cards/P/Don_small.jpg" }],
+	},
+	{
+		copy:
+			"Don't be afraid to see your characters leave the board. They'll often be replaced immediately by Prisoners of Impel Down.",
+		cards: [prisoner],
+	},
+	{
+		copy:
+			"Your 2-cost characters are the real engine of the deck, so keep replaying them as often as you can in the early turns.",
+		cards: [mr1, mr2],
+	},
+	{
+		copy:
+			"Use Crocodile and Miss Olive to recycle your characters while putting more Prisoners of Impel Down onto the field.",
+		cards: [crocodile, missOlive],
+	},
+	{
+		copy:
+			"Slave Arrow is one of the best defensive tools in the deck because it protects you while also helping keep the leader effect active.",
+		cards: [slaveArrow],
+	},
+	{
+		copy:
+			"Gravity Blade is a great answer into several current meta decks, especially Rosinante, Red/Green Luffy & Ace, and Teach.",
+		cards: [gravityBlade],
+	},
+	{
+		copy:
+			"The deck wins mostly through repeated 6000- and 7000-power attacks, not through one oversized finisher.",
+		cards: [mr1, mr2, prisoner],
+	},
+	{
+		copy:
+			"If your board is already full, shift your focus to pressuring opposing Life instead of adding more characters.",
+		cards: [prisoner, buggyCharacter],
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -89,14 +266,15 @@ const conclusion =
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Buggy OP16 Preview Deck Guide</h1>
+				<h1>Buggy OP16 Deck Guide</h1>
 				<p>
-					First look at Buggy OP16 in the OP16 format. This preview focuses on the leader effect, the key
-					spoilers, an early decklist idea, and the early read on the blue Impel Down shell.
+					Buggy OP16 is a wide-board blue deck that turns every removal exchange into more pressure. The list
+					wins by looping value off its 2-cost starters, flooding Prisoners of Impel Down, and attacking over
+					and over with a board that never really stays empty.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
-					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
 			<div class="guide-icon">
@@ -108,136 +286,211 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header decklist-header">
-				<div class="section-heading-copy">
+				<div class="decklist-title-row">
 					<h2>Decklist</h2>
-					<p class="decklist-intro">An early decklist idea for Buggy OP16 in the OP16 format.</p>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
 				</div>
-				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-					Copy for Sim
-				</button>
+				<p>Main list for Buggy OP16 in the OP16 format.</p>
 			</div>
 			<div class="deck-grid">
-				{decklist.map((card) => (
-					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+				{decklist.map((entry) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={entry.img}
+						data-name={`${entry.code} ${entry.name}`}
+					>
+						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
 						<div class="deck-info">
-							<span class="deck-count">{card.count}x</span>
+							<span class="deck-count">{entry.count}x</span>
 							<div>
-								<div class="deck-name">{card.name}</div>
-								<div class="deck-code">{card.code}</div>
+								<div class="deck-name">{entry.name}</div>
+								<div class="deck-code">{entry.code}</div>
 							</div>
 						</div>
-						<span class="deck-role">{card.role}</span>
+						<span class="deck-role">{entry.role}</span>
 					</button>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section id="leader" class="list-section">
+	<section id="mulligan" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Leader</h2>
-					<p>Core identity and leader effect for Buggy OP16-041.</p>
+					<h2>Mulligan</h2>
+					<p>
+						The mulligan is very simple. More than anything else, the deck wants to see its 2-cost characters,
+						because they're the most important cards in the first turns.
+					</p>
 				</div>
 			</div>
-			<div class="leader-card">
-				<button
-					class="leader-preview"
-					type="button"
-					data-card-preview
-					data-full={leaderCard.img}
-					data-name={`${leaderCard.code} ${leaderCard.name}`}
-				>
-					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
-				</button>
-				<div class="leader-copy">
-					<div class="fact-grid">
-						<div class="fact-box">
-							<span class="fact-label">Color</span>
-							<p>Blue</p>
-						</div>
-						<div class="fact-box">
-							<span class="fact-label">Type</span>
-							<p>Impel Down / Buggy Pirates</p>
-						</div>
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>Cards to Prioritize</h3>
+					<div class="mulligan-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((entryCard) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
 					</div>
-					<div class="text-card">
-						<h3>Leader Effect</h3>
-						<p class="effect-copy">
-							<img class="keyword-badge" src="/assets/keywords/don-x1.png" alt="DON!! x1" />
-							<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-							This effect can be activated when your {"{Impel Down}"} type Character card is removed from the
-							field. Play up to 1 [Prisoner of Impel Down] card from your hand.
-						</p>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Ideal Hand</h3>
+					<div class="sendback-grid ideal-grid">
+						{idealHandCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
 					</div>
+					<ul class="bullet-list">
+						<li>At least one Mr.1 or Mr.2</li>
+						<li>A Prisoner of Impel Down</li>
+						<li>Enough follow-up to keep developing the board on the next turns</li>
+					</ul>
+					<p class="mulligan-text">
+						The deck isn't looking for big cards early. It only wants to get its game plan online as quickly as
+						possible.
+					</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="spoiler" class="list-section">
+	<section id="curve" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Key preview cards</h2>
-					<p>Main cards that define the clown package.</p>
+					<h2>Curve Guide</h2>
+					<p>Going second is the recommended seat because Buggy has better results in that setup.</p>
 				</div>
 			</div>
-			<div class="loop-grid loop-grid-three">
-				{spoilerCards.map((card) => (
-					<div class="loop-card spoiler-three-card">
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class={`mini-card curve-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tech Cards</h2>
+					<p>Alternative cards and flex slots for different OP16 rooms.</p>
+				</div>
+			</div>
+			<div class="options-rich-grid">
+				{optionsCards.map((entryCard) => (
+					<div class="option-note-card glow-block">
 						<button
 							class="option-card"
 							type="button"
 							data-card-preview
-							data-full={card.img}
-							data-name={`${card.code} ${card.name}`}
+							data-full={entryCard.img}
+							data-name={`${entryCard.code} ${entryCard.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						</button>
-						<div class="text-card">
-							<h3>{card.name}</h3>
-							<div class="ability-stack">
-								{card.code === "OP16-042" ? (
-									<div class="ability-line">
-										<span>Under the rules of this game, you may have any number of this card in your deck.</span>
-									</div>
-								) : card.code === "OP16-048" ? (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													If your Leader has the {"{Impel Down}"} type, draw 1 card and play up to 1 [Prisoner
-													of Impel Down] from your hand.
-												</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-												<span>
-													This effect can be activated when your opponent attacks. Up to 1 of your [Prisoner of
-													Impel Down] cards gains Blocker during this turn.
-												</span>
-											</span>
-										</div>
-									</>
-								) : (
-									<div class="ability-line">
-										<span class="ability-inline">
-											<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-											<span>
-												You may trash this Character: draw 2 cards, and up to 1 of your opponent's
-												Characters with a cost of 9 or less cannot attack until the end of your opponent's
-												next End Phase.
-											</span>
-										</span>
-									</div>
-								)}
+							<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{entryCard.name}</div>
+								<div class="deck-code">{entryCard.code}</div>
 							</div>
+						</button>
+						<p>{entryCard.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>How the main OP16 leaders line up against Buggy.</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				))}
@@ -245,77 +498,41 @@ const conclusion =
 		</div>
 	</section>
 
-	<section id="prep" class="list-section">
+	<section id="tips" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Prep</h2>
-					<p>Old-set support that helps hold the shell together.</p>
+					<h2>Tips</h2>
+					<p>Core reminders for Buggy in the OP16 format.</p>
 				</div>
 			</div>
-			<div class="prep-card">
-				<p class="prep-intro">The list still leans on a sizable older shell for consistency and utility.</p>
-				<div class="prep-grid">
-					{prepPackage.map((entry) => (
-						<button
-							class="prep-chip"
-							type="button"
-							data-card-preview
-							data-full={entry.img}
-							data-name={entry.code}
-						>
-							<img loading="lazy" src={entry.img} alt={entry.code} />
-							<div class="prep-copy">
-								<span class="prep-code">{entry.code}</span>
-								<span class="prep-name">{entry.name}</span>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""}`}>
+						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
+							<div class="tip-cards">
+								{tip.cards.map((entryCard) => (
+									<button
+										class={`mini-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
 							</div>
-						</button>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="thoughts" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Thoughts</h2>
-					<p>Strengths, weaknesses, and conclusion.</p>
-				</div>
-			</div>
-			<div class="thoughts-grid">
-				<div class="thought-card">
-					<div class="thought-head thought-up">
-						<span class="thought-icon" aria-hidden="true">+</span>
-						<h3>Strengths</h3>
+							<p>{tip.copy}</p>
+						</div>
 					</div>
-					<ul>
-						{strengths.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div class="thought-card">
-					<div class="thought-head thought-down">
-						<span class="thought-icon" aria-hidden="true">-</span>
-						<h3>Weaknesses</h3>
-					</div>
-					<ul>
-						{weaknesses.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-			<div class="conclusion-card">
-				<div class="conclusion-head">
-					<div>
-						<h3>Conclusion</h3>
-					</div>
-					<div class="score-badge">6.5 / 10</div>
-				</div>
-				<p>{conclusion}</p>
+				))}
 			</div>
 		</div>
 	</section>
@@ -323,9 +540,7 @@ const conclusion =
 	<div class="card-modal" data-modal aria-hidden="true">
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
-			<div class="card-modal-frame">
-				<img src="" alt="" data-modal-image />
-			</div>
+			<img src="" alt="" data-modal-image />
 		</div>
 	</div>
 </MainLayout>
@@ -333,10 +548,9 @@ const conclusion =
 <script>
 	const previewButtons = document.querySelectorAll("[data-card-preview]");
 	const modal = document.querySelector("[data-modal]");
-	const modalFrame = document.querySelector(".card-modal-frame");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
-	let lockedScrollY = 0;
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
@@ -344,13 +558,6 @@ const conclusion =
 		const name = button.getAttribute("data-name") || "Card preview";
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
-		lockedScrollY = window.scrollY;
-		document.body.style.position = "fixed";
-		document.body.style.top = `-${lockedScrollY}px`;
-		document.body.style.left = "0";
-		document.body.style.right = "0";
-		document.body.style.width = "100%";
-		document.body.style.overflow = "hidden";
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
 	};
@@ -359,13 +566,6 @@ const conclusion =
 		if (!modal) return;
 		modal.classList.remove("is-open");
 		modal.setAttribute("aria-hidden", "true");
-		document.body.style.position = "";
-		document.body.style.top = "";
-		document.body.style.left = "";
-		document.body.style.right = "";
-		document.body.style.width = "";
-		document.body.style.overflow = "";
-		window.scrollTo(0, lockedScrollY);
 	};
 
 	previewButtons.forEach((button) => {
@@ -374,76 +574,34 @@ const conclusion =
 
 	closeButton?.addEventListener("click", closeModal);
 	modal?.addEventListener("click", (event) => {
-		const target = event.target;
-		if (!(target instanceof HTMLElement)) return;
-		if (target === modalImage) {
-			closeModal();
-			return;
-		}
-		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
-			closeModal();
-		}
+		if (event.target === modal) closeModal();
 	});
-	modalImage?.addEventListener("click", closeModal);
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
 
-	const copySimButton = document.querySelector("[data-copy-sim]");
-
-	copySimButton?.addEventListener("click", async () => {
-		const deckCode = copySimButton.getAttribute("data-sim-deck");
-		if (!deckCode) return;
-
-		try {
-			await navigator.clipboard.writeText(deckCode);
-		} catch {
-			const textarea = document.createElement("textarea");
-			textarea.value = deckCode;
-			textarea.style.position = "fixed";
-			textarea.style.opacity = "0";
-			document.body.append(textarea);
-			textarea.select();
-			document.execCommand("copy");
-			textarea.remove();
-		}
-
-		copySimButton.textContent = "Copied!";
-		window.setTimeout(() => {
-			copySimButton.textContent = "Copy for Sim";
-		}, 1800);
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
 	});
 </script>
 
 <style>
-	.copy-sim-button {
-		font-family: inherit;
-		font-weight: 700;
-	}
-
-	.decklist-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
-		width: 100%;
-	}
-
-	.section-heading-copy {
-		display: grid;
-		gap: 0.35rem;
-	}
-
-	.section-heading-copy h2 {
-		margin: 0;
-	}
-
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
-	}
-
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -460,197 +618,66 @@ const conclusion =
 		box-shadow: var(--shadow);
 	}
 
-	.leader-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.loop-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-	}
-
-	.leader-card {
-		display: grid;
-		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-	}
-
-	.leader-preview,
-	.option-card {
-		border: none;
-		background: transparent;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.leader-preview img,
-	.option-card img {
-		width: 100%;
-		border-radius: 14px;
-		display: block;
-	}
-
-	.leader-copy,
-	.loop-grid,
-	.thoughts-grid {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.fact-grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.8rem;
-	}
-
-	.fact-box,
-	.text-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.deck-card {
-		padding: 1rem;
-	}
-
-	.fact-box {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid var(--border);
-		border-radius: 14px;
-	}
-
-	.fact-label {
-		display: block;
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--accent);
-		margin-bottom: 0.45rem;
-	}
-
-	.fact-box p,
-	.text-card p,
-	.prep-intro,
-	.section-note {
-		margin: 0;
-		color: var(--text-200);
-	}
-
-	.text-card h3,
-	.thought-card h3,
-	.conclusion-card h3 {
-		margin-top: 0;
-		margin-bottom: 0.6rem;
-	}
-
-	.text-card ul,
-	.thought-card ul {
-		margin: 0;
-		padding-left: 1.15rem;
-	}
-
-	.effect-copy {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-	}
-
-	.keyword-badge {
-		height: 24px;
-		width: auto;
-		vertical-align: middle;
-		flex: 0 0 auto;
-		transform: translateY(4px);
-		margin: 0 0.12rem;
-	}
-
-	.ability-inline {
-		display: inline;
-	}
-
-	.ability-inline .keyword-badge {
-		display: inline-block;
-		height: 18px;
-		margin-right: 0.35rem;
-		vertical-align: middle;
-		transform: translateY(-1px);
-	}
-
-	.effect-copy .keyword-badge {
-		height: 18px;
-	}
-
-	.effect-copy > .keyword-badge {
-		transform: translateY(-2px);
-		margin-right: 0.35rem;
-	}
-
-	.ability-stack {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.ability-line {
-		margin: 0;
-		color: var(--text-100);
-	}
-
-	.loop-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	#spoiler .loop-grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-	}
-
-	.loop-card {
-		display: grid;
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-		align-items: start;
-	}
-
-	.spoiler-three-card {
-		grid-template-columns: 1fr;
-	}
-
-	.spoiler-three-card .option-card {
-		display: flex;
-		align-items: flex-end;
-		justify-content: center;
-		height: 300px;
-	}
-
-	.spoiler-three-card .option-card img {
-		max-width: 200px;
-		max-height: 280px;
-		margin: 0 auto;
-	}
-
-	.spoiler-three-card .text-card {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.spoiler-three-card .text-card h3 {
-		min-height: 2.8em;
-		margin-bottom: 0.85rem;
-	}
-
 	.deck-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
 	}
 
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
+	}
+
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
+		padding: 0.9rem;
 		display: grid;
 		gap: 0.75rem;
 		text-align: left;
@@ -659,19 +686,11 @@ const conclusion =
 	}
 
 	.deck-card:hover,
-	.deck-card:focus-visible,
-	.leader-preview:hover,
-	.leader-preview:focus-visible,
-	.option-card:hover,
-	.option-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.deck-card:hover,
 	.deck-card:focus-visible {
+		transform: translateY(-4px);
 		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
+		outline: none;
 	}
 
 	.deck-card img {
@@ -701,130 +720,352 @@ const conclusion =
 		font-weight: 600;
 	}
 
-	.deck-code,
-	.deck-role {
+	.deck-code {
 		color: var(--text-300);
 		font-size: 0.85rem;
 	}
 
 	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
 
-	.prep-grid {
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: var(--radius-md);
+	}
+
+	.tip-card {
+		padding: 1rem 1.2rem;
 		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
+		gap: 0.8rem;
 	}
 
-	.prep-chip {
-		border: 1px solid var(--border);
-		border-radius: 16px;
-		padding: 0.75rem;
-		background: rgba(255, 255, 255, 0.03);
-		text-align: left;
-		display: grid;
-		gap: 0.65rem;
-		align-content: start;
-		color: var(--text-100);
-		cursor: pointer;
-	}
-
-	.prep-chip img {
-		width: 100%;
-		max-width: 110px;
-		height: auto;
-		border-radius: 10px;
-		margin: 0 auto;
-	}
-
-	.prep-copy {
-		display: grid;
-		gap: 0.2rem;
-	}
-
-	.prep-count,
-	.prep-code {
-		font-weight: 700;
-	}
-
-	.prep-code {
-		color: var(--text-100);
-	}
-
-	.prep-name {
-		color: var(--text-300);
-		font-size: 0.92rem;
-		line-height: 1.25;
-		overflow-wrap: anywhere;
-	}
-
-	.thoughts-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.thought-card {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.thought-card::before {
-		content: "";
-		position: absolute;
-		inset: 0 auto auto 0;
-		width: 100%;
-		height: 4px;
-		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
-	}
-
-	.thought-head,
-	.conclusion-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-
-	.thought-head {
-		margin-bottom: 0.8rem;
-		justify-content: flex-start;
-	}
-
-	.thought-head h3 {
+	.tip-card h3,
+	.mulligan-copy h4 {
 		margin: 0;
 	}
 
-	.thought-icon {
-		width: 36px;
-		height: 36px;
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.card-wrap {
+		position: relative;
+		display: inline-block;
+	}
+
+	.curve-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.curve-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.card-badge-image {
+		position: absolute;
+		right: 0.2rem;
+		bottom: 0.2rem;
+		width: 28px !important;
+		max-width: 28px !important;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		border-radius: 999px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #0b0f1a;
 	}
 
-	.thought-up .thought-icon {
-		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	.badge-up {
+		color: #7ef29a;
 	}
 
-	.thought-down .thought-icon {
-		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
 	}
 
-	.score-badge {
-		border-radius: 999px;
-		padding: 0.55rem 0.9rem;
-		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
-		border: 1px solid rgba(255, 107, 61, 0.35);
-		color: var(--accent);
-		font-weight: 800;
-		font-size: 1rem;
-		letter-spacing: 0.04em;
+	.badge-down {
+		color: #ff8a8a;
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
 	}
 
 	.card-modal {
@@ -843,36 +1084,26 @@ const conclusion =
 	}
 
 	.card-modal-inner {
-		position: relative;
-		width: fit-content;
-		max-width: 90vw;
+		max-width: min(520px, 90vw);
 		max-height: 90vh;
-		margin: 0 auto;
-	}
-
-	.card-modal-frame {
-		width: fit-content;
-		max-width: 100%;
 		background: rgba(10, 14, 24, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
 		padding: 1rem 1rem 1.5rem;
+		position: relative;
 		box-shadow: var(--shadow);
 	}
 
 	.card-modal-inner img {
-		display: block;
-		width: auto;
-		max-width: min(520px, calc(90vw - 2rem));
+		width: 100%;
 		max-height: 80vh;
 		object-fit: contain;
-		margin: 0 auto;
 	}
 
 	.modal-close {
 		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
+		top: 0.75rem;
+		right: 0.75rem;
 		background: rgba(255, 255, 255, 0.05);
 		border: 1px solid var(--border);
 		color: var(--text-100);
@@ -883,186 +1114,195 @@ const conclusion =
 	}
 
 	@media (max-width: 900px) {
-		.decklist-header {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: start;
-			gap: 0.6rem 0.75rem;
-		}
-
-		.decklist-header .section-heading-copy {
-			display: contents;
-		}
-
-		.decklist-header h2 {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: center;
-			line-height: 1;
-		}
-
-		.decklist-header .decklist-intro {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 0;
-		}
-
 		.guide-hero .hero-grid,
-		.leader-card,
-		.loop-grid,
-		.thoughts-grid,
-		.loop-grid-three {
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
 			grid-template-columns: 1fr;
 		}
 
-		#spoiler .loop-grid-three {
-			grid-template-columns: 1fr !important;
-		}
-
-		#spoiler .spoiler-three-card .option-card {
-			height: auto;
-			align-items: flex-start;
-		}
-
-		#spoiler .spoiler-three-card .text-card h3 {
-			min-height: 0;
-		}
-
-		.guide-icon {
-			margin-top: 1.35rem;
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 640px) {
-		.guide-hero.guide-hero .hero-grid {
-			grid-template-columns: minmax(0, 1fr) 96px !important;
-			gap: 1rem !important;
-			align-items: start !important;
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
 		}
 
-		.guide-hero .guide-icon {
-			grid-column: 2 !important;
-			grid-row: 1 !important;
-			align-self: start !important;
-			justify-self: end !important;
-			margin-top: 5.2rem !important;
-		}
-
-		.guide-hero .guide-icon img {
-			width: 96px;
-			max-width: 96px;
-			border-radius: 14px;
-		}
-
-		.loop-card,
-		.spoiler-three-card {
-			grid-template-columns: 96px minmax(0, 1fr);
-			gap: 0.9rem;
-		}
-
-		.loop-card .text-card,
-		.leader-card .text-card {
-			padding: 0;
-			background: transparent;
-			border: none;
-		}
-
-		.leader-card {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		.section-header {
 			gap: 0.8rem;
-			padding: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
 			align-items: start;
 		}
 
-		.leader-copy {
-			display: contents;
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
 		}
 
-		.leader-preview {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: start;
+		.tip-row .tip-cards {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
 		}
 
-		.leader-preview img {
-			width: 100%;
-			max-width: none;
-			border-radius: 10px;
-		}
-
-		.fact-grid {
-			grid-column: 2;
-			grid-row: 1;
+		.tip-card.multi-card-tip .tip-row {
 			grid-template-columns: 1fr;
-			gap: 0.6rem;
+			gap: 0.75rem;
 		}
 
-		.fact-box {
-			padding: 0.7rem 0.75rem;
-			border-radius: 12px;
+		.tip-card.multi-card-tip .tip-cards {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: 0.55rem;
+			flex-wrap: nowrap;
 		}
 
-		.fact-label {
-			font-size: 0.68rem;
-			margin-bottom: 0.3rem;
+		.tip-card.multi-card-tip p {
+			grid-column: 1;
+			margin-top: 0;
 		}
 
-		.text-card {
-			grid-column: 1 / -1;
-			grid-row: 2;
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
 		}
 
-		.keyword-badge {
-			height: 21px;
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
 		}
 
-		.effect-copy {
-			display: block;
-		}
-
-		.effect-copy .keyword-badge {
-			display: inline-block;
-			height: 18px;
-			margin: 0;
-			vertical-align: middle;
-			transform: translateY(-3px);
-		}
-
-		.effect-copy > .keyword-badge {
-			margin-right: 0.45rem;
-		}
-
-		.ability-inline .keyword-badge {
-			height: 18px;
-			margin-right: 0.5rem;
-			vertical-align: middle;
-			transform: translateY(-1px);
-		}
-
-		.prep-grid {
+		.curve-cards {
+			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.prep-chip {
-			padding: 0.5rem;
 			gap: 0.45rem;
-			border-radius: 12px;
+			justify-items: start;
+			align-items: start;
 		}
 
-		.prep-chip img {
-			max-width: 82px;
-			border-radius: 8px;
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
 		}
 
-		.prep-copy {
-			gap: 0.12rem;
+		.curve-cards .mini-card {
+			width: 100%;
 		}
 
-		.prep-count,
-		.prep-code,
-		.prep-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
+		.curve-cards .mini-card .card-wrap {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 
 		.deck-grid {
@@ -1110,69 +1350,6 @@ const conclusion =
 
 		.deck-role {
 			display: none;
-		}
-
-		.card-modal {
-			padding: 0 !important;
-		}
-
-		.card-modal-inner {
-			position: fixed !important;
-			inset: 0 !important;
-			width: 100vw !important;
-			height: 100dvh !important;
-			max-width: none !important;
-			max-height: none !important;
-			margin: 0 !important;
-			padding: 0 !important;
-			display: grid !important;
-			place-items: center !important;
-			background: transparent !important;
-			border: 0 !important;
-			box-shadow: none !important;
-		}
-
-		.card-modal-frame {
-			padding: 0.75rem !important;
-			max-width: calc(100vw - 1.5rem) !important;
-			max-height: calc(100dvh - 1.5rem) !important;
-		}
-
-		.card-modal-inner img {
-			display: block !important;
-			width: auto !important;
-			max-width: min(78vw, 320px) !important;
-			height: auto !important;
-			max-height: 78vh !important;
-			object-fit: contain !important;
-			margin: 0 auto !important;
-		}
-
-		.modal-close {
-			position: fixed !important;
-			top: 0.75rem !important;
-			right: 0.75rem !important;
-			z-index: 2 !important;
-		}
-
-		.conclusion-head {
-			align-items: flex-start;
-		}
-
-		.decklist-header .copy-sim-button {
-			display: inline-flex;
-			width: auto;
-			min-width: 0;
-			max-width: fit-content;
-			padding: 0.52rem 0.8rem;
-			font-size: 0.78rem;
-			line-height: 1;
-			border-radius: 12px;
-			flex: 0 0 auto;
-			margin-left: auto;
-			margin-top: 0;
-			align-self: center;
-			white-space: nowrap;
 		}
 	}
 </style>
