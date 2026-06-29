@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Marshall.D.Teach OP16 Preview Deck Guide";
+const title = "Marshall.D.Teach OP16 Deck Guide";
 const description =
-	"Marshall.D.Teach OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Blackbeard spoilers, the old-set shell, and early strengths and weaknesses.";
+	"Marshall.D.Teach OP16 deck guide for One Piece Card Game with decklist, mulligan priorities, a curve guide, tech cards, matchup notes, and gameplay tips.";
 
 const icon = "/assets/guides/Teach-op16.png";
+
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -22,64 +23,322 @@ const expandSimLines = (count, code) => {
 	return lines;
 };
 
+const card = (code, name, img) => ({ code, name, img });
+
+const teachLeader = card("OP16-080", "Marshall D. Teach", "/Cards/OP16/OP16-080.jpg");
+const vanAugur = card("OP16-103", "Van Augur", "/Cards/OP16/OP16-103.jpg");
+const docQ = card("OP16-109", "Doc Q", "/Cards/OP16/OP16-109.jpg");
+const vascoShot = card("OP16-110", "Vasco Shot", "/Cards/OP16/OP16-110.jpg");
+const burgess = card("OP09-086", "Jesus Burgess", "/Cards/OP09/OP09-086.jpg");
+const shiryu = card("OP16-108", "Shiryu", "/Cards/OP16/OP16-108.jpg");
+const catarinaDevon = card("OP16-104", "Catarina Devon", "/Cards/OP16/OP16-104.jpg");
+const teach8 = card("OP16-119", "Marshall D. Teach", "/Cards/OP16/OP16-119.jpg");
+const teach10 = card("OP09-093", "Marshall D. Teach", "/Cards/OP09/OP09-093.jpg");
+const borsalino = card("EB04-058", "Borsalino", "/Cards/EB04/EB04-058.jpg");
+const sanjuanWolf = card("OP16-106", "Sanjuan Wolf", "/Cards/OP16/OP16-106.jpg");
+const myEraBegins = card("OP09-096", "My Era Begins!!", "/Cards/OP09/OP09-096.jpg");
+const zehahaha = card("OP16-116", "Zehahaha", "/Cards/OP16/OP16-116.jpg");
+const fullalead = card("OP09-099", "Fullalead", "/Cards/OP09/OP09-099.jpg");
+
+const lafitte = card("OP16-114", "Lafitte", "/Cards/OP16/OP16-114.jpg");
+const baby5 = card("OP12-112", "Baby 5", "/Cards/OP12/OP12-112.jpg");
+const shiryuAlt = card("PRB02-015", "Shiryu", "/Cards/PRB02/PRB02-015.jpg");
+const wyper = card("OP15-114", "Wyper", "/Cards/OP15/OP15-114.jpg");
+const boaHancockTech = card("OP14-112", "Boa Hancock", "/Cards/OP14/OP14-112.jpg");
+const youllFrightenMe = card("OP14-118", "You'll Frighten Me!!", "/Cards/OP14/OP14-118.jpg");
+const blackVortex = card("OP16-115", "Black Vortex", "/Cards/OP16/OP16-115.jpg");
+
+const yamato16 = card("OP16-079", "Yamato OP16", "/Cards/OP16/OP16-079.jpg");
+const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
+const enel15 = card("OP15-058", "Purple Enel OP15", "/Cards/OP15/OP15-058.jpg");
+const luffy16 = card("OP16-022", "Green/Blue Luffy OP16", "/Cards/OP16/OP16-022.jpg");
+const rosinante12 = card("OP12-061", "Rosinante OP12", "/Cards/OP12/OP12-061.jpg");
+const shanks = card("OP09-001", "Shanks OP16", "/Cards/OP09/OP09-001.jpg");
+const ace16 = card("OP16-001", "Ace OP16", "/Cards/OP16/OP16-001.jpg");
+const boaLeader = card("OP14-041", "Boa OP16", "/Cards/OP14/OP14-041.jpg");
+const lucy15 = card("OP15-002", "Lucy OP15", "/Cards/OP15/OP15-002.jpg");
+
 const decklist = [
-	{ code: "OP16-080", name: "Marshall.D.Teach", count: 1, img: "/Cards/OP16/OP16-080.jpg", role: "Leader" },
-	{ code: "OP16-103", name: "Van Augur", count: 2, img: "/Cards/OP16/OP16-103.jpg", role: "Character" },
-	{ code: "OP16-109", name: "Doc Q", count: 4, img: "/Cards/OP16/OP16-109.jpg", role: "Character" },
-	{ code: "OP16-110", name: "Vasco Shot", count: 4, img: "/Cards/OP16/OP16-110.jpg", role: "Character" },
-	{ code: "OP12-112", name: "Baby 5", count: 4, img: "/Cards/OP12/OP12-112.jpg", role: "Character" },
-	{ code: "OP16-104", name: "Catarina Devon", count: 4, img: "/Cards/OP16/OP16-104.jpg", role: "Character" },
-	{ code: "EB04-058", name: "Borsalino", count: 4, img: "/Cards/EB04/EB04-058.jpg", role: "Character" },
-	{ code: "OP16-108", name: "Shiryu", count: 4, img: "/Cards/OP16/OP16-108.jpg", role: "Character" },
-	{ code: "OP09-093", name: "Marshall.D.Teach", count: 4, img: "/Cards/OP09/OP09-093.jpg", role: "Character" },
-	{ code: "OP09-086", name: "Jesus Burgess", count: 4, img: "/Cards/OP09/OP09-086.jpg", role: "Character" },
-	{ code: "OP16-119", name: "Marshall.D.Teach", count: 4, img: "/Cards/OP16/OP16-119.jpg", role: "Character" },
-	{ code: "OP09-096", name: "This is MY AGE!!!!", count: 4, img: "/Cards/OP09/OP09-096.jpg", role: "Event" },
-	{ code: "OP09-097", name: "Black Vortex", count: 2, img: "/Cards/OP09/OP09-097.jpg", role: "Event" },
-	{ code: "OP16-116", name: "ZEHAHAHAHAH", count: 2, img: "/Cards/OP16/OP16-116.jpg", role: "Event" },
-	{ code: "OP09-099", name: "Fullalead", count: 4, img: "/Cards/OP09/OP09-099.jpg", role: "Stage" },
-];
-const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
-
-const leaderCard = { code: "OP16-080", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-080.jpg" };
-
-const spoilerCards = [
-	{ code: "OP16-119", name: "Marshall.D.Teach", img: "/Cards/OP16/OP16-119.jpg" },
-	{ code: "OP16-116", name: "ZEHAHAHAHAH", img: "/Cards/OP16/OP16-116.jpg" },
+	{ ...teachLeader, count: 1, role: "Leader" },
+	{ ...vanAugur, count: 4, role: "Character" },
+	{ ...docQ, count: 4, role: "Character" },
+	{ ...vascoShot, count: 4, role: "Character" },
+	{ ...burgess, count: 4, role: "Character" },
+	{ ...shiryu, count: 4, role: "Character" },
+	{ ...catarinaDevon, count: 4, role: "Character" },
+	{ ...teach8, count: 4, role: "Character" },
+	{ ...teach10, count: 4, role: "Character" },
+	{ ...borsalino, count: 4, role: "Character" },
+	{ ...sanjuanWolf, count: 4, role: "Character" },
+	{ ...myEraBegins, count: 4, role: "Event" },
+	{ ...zehahaha, count: 2, role: "Event" },
+	{ ...fullalead, count: 4, role: "Stage" },
 ];
 
-const prepPackage = [
-	{ count: 2, code: "OP09-091", name: "Vasco Shot", img: "/Cards/OP09/OP09-091.jpg" },
-	{ count: 4, code: "OP09-086", name: "Jesus Burgess", img: "/Cards/OP09/OP09-086.jpg" },
-	{ count: 2, code: "OP10-086", name: "Shiryu", img: "/Cards/OP10/OP10-086.jpg" },
-	{ count: 4, code: "OP12-112", name: "Baby 5", img: "/Cards/OP12/OP12-112.jpg" },
-	{ count: 2, code: "PRB02-015", name: "Shiryu", img: "/Cards/PRB02/PRB02-015.jpg" },
-	{ count: 4, code: "OP10-082", name: "Kuzan", img: "/Cards/OP10/OP10-082.jpg" },
-	{ count: 4, code: "ST27-003", name: "Kuzan", img: "/Cards/ST27/ST27-003.jpg" },
-	{ count: 2, code: "OP14-112", name: "Boa Hancock", img: "/Cards/OP14/OP14-112.jpg" },
-	{ count: 4, code: "OP09-093", name: "Marshall.D.Teach", img: "/Cards/OP09/OP09-093.jpg" },
-	{ count: 2, code: "OP06-115", name: "You’re the One Who Should Disappear!", img: "/Cards/OP06/OP06-115.png" },
-	{ count: 4, code: "OP09-096", name: "This is MY AGE!!!!", img: "/Cards/OP09/OP09-096.jpg" },
-	{ count: 2, code: "OP09-098", name: "Black Hole", img: "/Cards/OP09/OP09-098.jpg" },
-	{ count: 4, code: "OP09-099", name: "Fullalead", img: "/Cards/OP09/OP09-099.jpg" },
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const mulliganKeeps = [
+	{
+		copy:
+			"One of the two most important mulligan cards in the deck. It helps filter your hand and makes it much easier to find the missing pieces that keep your curve intact.",
+		cards: [myEraBegins],
+	},
+	{
+		copy:
+			"The other key keep. Fullalead smooths out your opener and helps you find the next step of your curve faster. I'd rather keep a searcher plus Fullalead than a hand that already has Burgess but no setup.",
+		cards: [fullalead],
+	},
 ];
 
-const strengths = [
-	"Very strong board control",
-	"Excellent midgame and late-game stability",
-	"Very good at breaking up the opponent's game plan",
-	"High value from key cards",
+const idealHandCards = [myEraBegins, fullalead, burgess, shiryu, teach8, teach10];
+const searchPriorityCards = [vanAugur, docQ, vascoShot];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		notes:
+			"Your priority is to play My Era Begins!! and Fullalead. These cards set up the rest of your curve, and if your hand is already fine, you can instead search for the most relevant 1-cost character for the matchup.",
+		cards: [myEraBegins, fullalead],
+	},
+	{
+		label: "4 DON!!",
+		notes:
+			"Jesus Burgess is the best play in the deck here. I almost always want Burgess on this turn because it starts controlling the pace while setting up your later power turns. If you don't have it, just keep developing cleanly without breaking your curve.",
+		cards: [burgess],
+	},
+	{
+		label: "6 DON!!",
+		notes:
+			"This turn belongs to Shiryu. It's the key bridge into the midgame and keeps your plan moving without forcing awkward sequencing before the double-Teach turns.",
+		cards: [shiryu],
+	},
+	{
+		label: "8 DON!!",
+		notes:
+			"Your priority is 8-cost Marshall D. Teach. This is where the lock starts to come together, and I really value respecting this curve more than filling the turn with multiple smaller plays.",
+		cards: [teach8],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"The 10-DON!! turn is all about the blocker Marshall D. Teach. This is your main win condition. Once it lands, the opponent's offensive options shrink hard and most games swing permanently in Teach's favor.",
+		cards: [teach10],
+	},
+	{
+		label: "Late game",
+		notes:
+			"Once 10-cost Teach is in play, the goal is to keep full control of the game's pace. Keep leaning on your triggers and control effects so the opponent never gets a clean way back into the game.",
+		cards: [teach10, myEraBegins, zehahaha],
+	},
 ];
 
-const weaknesses = [
-	"Slow to set up",
-	"Dependence on good management cards",
-	"Not much early pressure",
-	"Weak against aggro decks",
+const optionsCards = [
+	{
+		...lafitte,
+		copy:
+			"A very good option against decks that flood the board early. It buys time and improves your control of the game's pace. I'd look at it first if the format gets more aggressive.",
+	},
+	{
+		...baby5,
+		copy:
+			"It adds more consistency by making the deck's key cards easier to find. Even so, I prefer the current list because the search package already feels sufficient to me.",
+	},
+	{
+		...shiryuAlt,
+		copy:
+			"This Shiryu is a real option depending on the meta. It offers more control into certain boards, but I still prefer the main version because it lines up better with the overall game plan.",
+	},
+	{
+		...wyper,
+		copy:
+			"Wyper is a meta call for very aggressive rooms. I think it's a good removal card, but not versatile enough for the main list right now.",
+	},
+	{
+		...boaHancockTech,
+		copy:
+			"Boa Hancock can improve slower matchups by adding more value. Even then, I think the current list is already stable enough, and I'd rather not change the curve.",
+	},
+	{
+		...youllFrightenMe,
+		copy:
+			"It's another defensive option that can help your survivability in a few difficult matchups. I still prefer keeping a higher character count instead of loading up on extra defensive events.",
+	},
+	{
+		...blackVortex,
+		copy:
+			"Black Vortex is worth considering into decks that rely heavily on their effects. The card has real upside, but I don't think it's mandatory in the current build.",
+	},
 ];
 
-const conclusion =
-	"The deck has a lot of very good cards, especially now that the two spoiler cards are in the mix, and the updated list looks cleaner and more stable than the first draft. Teach still has strong control tools and a solid shell, and this version does a better job of trimming the clunkier pieces. For now, I'd put it at 8 / 10.";
+const matchups = [
+	{
+		label: "Mirror Match",
+		tone: "even",
+		icon: "≈",
+		leader: teachLeader,
+		notes: [
+			"The mirror is mostly about resource management and trigger management.",
+			"Choosing the right cards to put back into Life matters a lot.",
+			"Respect your curve all the way to 10-cost Teach.",
+			"Don't rush 10-cost Teach if waiting one more turn gives you a cleaner, higher-value setup.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: yamato16,
+		notes: [
+			"Teach can slow the game down and redirect attacks well, but Yamato's ultra-explosive turns are still very hard to handle.",
+			"Slow the game down as much as possible.",
+			"Prioritize your curve over aggressive plays.",
+			"Save your resources for Yamato's biggest threats.",
+		],
+	},
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: nami11,
+		notes: [
+			"Teach has a lot of control tools that make Nami's game plan much harder to execute.",
+			"Don't rush.",
+			"Keep developing your board while controlling the opposing threats.",
+			"Use your triggers to keep the resource lead.",
+		],
+	},
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: enel15,
+		notes: [
+			"Enel is a positive matchup for Teach.",
+			"If you control the pace of the game, Teach naturally limits Enel's strongest turns.",
+			"Play around your curve.",
+			"Save your control effects for the most important threats.",
+			"Don't let Enel take the tempo back.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: luffy16,
+		notes: [
+			"Luffy is extremely fast, which is a real problem for Teach early on.",
+			"Teach still has tools to stop Luffy from fully developing, but only if your curve stays intact.",
+			"Keep advancing your curve.",
+			"Don't waste your control cards too early.",
+			"Get to 10-cost Teach quickly so the explosive Luffy turns become harder to convert.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: rosinante12,
+		notes: [
+			"Rosinante isn't easy, but the matchup is very winnable.",
+			"I especially like Vasco Shot here because it slows their development efficiently.",
+			"Search Vasco Shot early.",
+			"Don't let Rosinante settle into a comfortable board state.",
+			"Respect your curve all the way to 10-cost Teach.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: shanks,
+		notes: [
+			"The numbers favor Teach, mostly because the deck is good at slowing Shanks down.",
+			"Control the pace of the game.",
+			"Preserve your resources for the late game.",
+			"Make 10-cost Teach your top priority.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: ace16,
+		notes: [
+			"Teach can slow Ace's aggressive plan down well if it survives long enough to reach the late game.",
+			"Don't get dragged into a damage race.",
+			"Stabilize first, then take over with Teach.",
+			"Manage the early threats instead of trying to fire back immediately.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: boaLeader,
+		notes: [
+			"Teach has enough control to limit the value Boa generates and slowly pull ahead.",
+			"Don't over-invest into your board.",
+			"Save your key cards for the important turns.",
+			"Build toward your late-game lock one step at a time.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: lucy15,
+		notes: [
+			"Lucy is tough because it pressures quickly while also building a wide board that Teach struggles to contain in the early turns.",
+			"If Teach doesn't find the right stabilizing cards fast, Lucy often closes the game before the control plan is fully online.",
+			"Slow the pace down however you can.",
+			"Answer the threats one by one.",
+			"Respect your curve all the way to 10-cost Teach.",
+		],
+	},
+];
+
+const tips = [
+	{
+		copy:
+			"Don't try to win quickly. Teach is built to slow the game down first, then take permanent control once 10-cost Marshall D. Teach comes online.",
+		cards: [teach10],
+	},
+	{
+		copy:
+			"Respect your curve whenever possible. The deck is designed to chain Jesus Burgess into Shiryu into 8-cost Teach into 10-cost Teach. Missing one of those checkpoints makes the deck much weaker.",
+		cards: [burgess, shiryu, teach8, teach10],
+	},
+	{
+		copy:
+			"Adapt your searches to the matchup. Van Augur, Doc Q, and Vasco Shot all do different jobs, so always take the one that answers the opposing deck best.",
+		cards: [vanAugur, docQ, vascoShot],
+	},
+	{
+		copy:
+			"Manage your trigger cards intelligently. The cards you put back into Life can completely change a game, so think carefully about which trigger gives you the highest-value setup.",
+		cards: [teach8, zehahaha],
+	},
+	{
+		copy:
+			"Don't waste your control effects. Your resources are limited, so save them for the characters that actually threaten your game plan.",
+		cards: [vascoShot, shiryu],
+	},
+	{
+		copy:
+			"Learn when to starve your opponent. In some matchups, it's better not to attack Life so you can delay opposing triggers and keep control of the pace.",
+		cards: [teachLeader],
+	},
+	{
+		copy:
+			"10-cost Marshall D. Teach is your main win condition. Don't slam it down too early if waiting one more turn gives you a much stronger setup.",
+		cards: [teach10],
+	},
+	{
+		copy:
+			"Resource management is what separates solid Teach play from excellent Teach play. The deck rewards sequencing, restraint, and good Life management more than flashy turns.",
+		cards: [myEraBegins, fullalead, teach10],
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -87,14 +346,15 @@ const conclusion =
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Marshall.D.Teach OP16 Preview Deck Guide</h1>
+				<h1>Marshall.D.Teach OP16 Deck Guide</h1>
 				<p>
-					First look at Marshall.D.Teach OP16 in the OP16 format. This preview focuses on the leader effect, the
-					key spoilers, an early decklist idea, and the early read on the black-yellow Blackbeard shell.
+					Marshall.D.Teach OP16 is a late-game control deck that cares far more about hitting its curve than
+					pushing early damage. The list wins by sequencing Jesus Burgess into Shiryu into both Teach bodies,
+					then locking the game down once 10-cost Teach hits the field.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
-					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
 			<div class="guide-icon">
@@ -106,144 +366,246 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header decklist-header">
-				<div class="section-heading-copy">
+				<div class="decklist-title-row">
 					<h2>Decklist</h2>
-					<p class="decklist-intro">An early decklist idea for Marshall.D.Teach OP16 in the OP16 format.</p>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
 				</div>
-				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-					Copy for Sim
-				</button>
+				<p>Main list for Marshall.D.Teach OP16 in the OP16 format.</p>
 			</div>
 			<div class="deck-grid">
-				{decklist.map((card) => (
-					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+				{decklist.map((entry) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={entry.img}
+						data-name={`${entry.code} ${entry.name}`}
+					>
+						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
 						<div class="deck-info">
-							<span class="deck-count">{card.count}x</span>
+							<span class="deck-count">{entry.count}x</span>
 							<div>
-								<div class="deck-name">{card.name}</div>
-								<div class="deck-code">{card.code}</div>
+								<div class="deck-name">{entry.name}</div>
+								<div class="deck-code">{entry.code}</div>
 							</div>
 						</div>
-						<span class="deck-role">{card.role}</span>
+						<span class="deck-role">{entry.role}</span>
 					</button>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section id="leader" class="list-section">
+	<section id="mulligan" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Leader</h2>
-					<p>Core identity and leader effect for Marshall.D.Teach OP16-080.</p>
+					<h2>Mulligan</h2>
+					<p>
+						The mulligan is very simple: more than anything else, the deck wants to make sure its curve is
+						covered.
+					</p>
 				</div>
 			</div>
-			<div class="leader-card">
-				<button
-					class="leader-preview"
-					type="button"
-					data-card-preview
-					data-full={leaderCard.img}
-					data-name={`${leaderCard.code} ${leaderCard.name}`}
-				>
-					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
-				</button>
-				<div class="leader-copy">
-					<div class="fact-grid">
-						<div class="fact-box">
-							<span class="fact-label">Color</span>
-							<p>Black - Yellow</p>
-						</div>
-						<div class="fact-box">
-							<span class="fact-label">Type</span>
-							<p>The Seven Warlords of the Sea / Blackbeard Pirates</p>
-						</div>
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>Cards to Prioritize</h3>
+					<div class="mulligan-rows two-column-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((entryCard) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
 					</div>
-					<div class="text-card">
-						<h3>Leader Effect</h3>
-						<p class="effect-copy">
-							<img class="keyword-badge" src="/assets/keywords/opponents-turn.png" alt="Opponent's Turn" />
-							All of your Characters gain +1 cost.
-							<img class="keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />
-							<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-							You may trash 1 card with a
-							<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
-							from your hand: change the target of that attack to this Leader or to one of your
-							{"{Blackbeard Pirates}"} type Character cards.
-						</p>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Ideal Hand & Search Priorities</h3>
+					<div class="sendback-grid ideal-grid six-card-grid">
+						{idealHandCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
 					</div>
+					<ul class="bullet-list">
+						<li>My Era Begins!! and Fullalead</li>
+						<li>Jesus Burgess for the 4-DON!! turn</li>
+						<li>Enough setup to lead into Shiryu and then both Teach bodies</li>
+					</ul>
+					<p class="mulligan-text">
+						The goal is simply to make sure your curve is covered all the way into the late game.
+					</p>
+					<h4>Hands to Send Back</h4>
+					<ul class="bullet-list">
+						<li>No My Era Begins!! and no Fullalead</li>
+						<li>No realistic way to hit your curve</li>
+						<li>A hand made up mostly of late-game cards</li>
+					</ul>
+					<p class="mulligan-text">
+						The deck works because of its consistency. Missing a DON!! checkpoint slows your whole plan down.
+					</p>
+					<h4>Search Priorities</h4>
+					<p class="mulligan-text">
+						What you search depends directly on the matchup. Your searchers are there both to complete your
+						curve and to find the right 1-cost character for the spot.
+					</p>
+					<div class="sendback-grid ideal-grid">
+						{searchPriorityCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>Van Augur when power reduction matters most</li>
+						<li>Doc Q to remove certain low-cost characters</li>
+						<li>Vasco Shot when you need to slow specific threats, especially Rosinante</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="spoiler" class="list-section">
+	<section id="curve" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Key preview cards</h2>
-					<p>Main cards that push the Teach shell forward.</p>
+					<h2>Curve Guide</h2>
+					<p>
+						Going second is the recommended seat in most matchups. It gives you faster access to the key cards
+						in your curve and lets Teach set up the full game plan without falling behind.
+					</p>
 				</div>
 			</div>
-			<div class="loop-grid">
-				{spoilerCards.map((card) => (
-					<div class="loop-card">
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class={`mini-card curve-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tech Cards</h2>
+					<p>Alternative cards and flex slots for different OP16 rooms.</p>
+				</div>
+			</div>
+			<div class="options-rich-grid">
+				{optionsCards.map((entryCard) => (
+					<div class="option-note-card glow-block">
 						<button
 							class="option-card"
 							type="button"
 							data-card-preview
-							data-full={card.img}
-							data-name={`${card.code} ${card.name}`}
+							data-full={entryCard.img}
+							data-name={`${entryCard.code} ${entryCard.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						</button>
-						<div class="text-card">
-							<h3>{card.name}</h3>
-							<div class="ability-stack">
-								{card.code === "OP16-119" ? (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													look at 3 cards from the top of your deck and add up to 1 card to the top of
-													your Life cards. Then, place the rest at the bottom of your deck in any order.
-												</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
-												<span>
-													Negate the effect of up to 1 of your opponent's Characters during this turn.
-													Then, K.O. up to 1 of your opponent's Characters with a cost of 5 or less.
-												</span>
-											</span>
-										</div>
-									</>
-								) : (
-									<>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />
-												<span>
-													If you have 10 DON!! cards on your field, play up to 1 [Marshall.D.Teach] from
-													your hand. Then, your opponent adds 1 card from the top of their Life to their
-													hand.
-												</span>
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />
-												<span>Draw 2 cards and trash 1 card from your hand.</span>
-											</span>
-										</div>
-									</>
-								)}
+							<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{entryCard.name}</div>
+								<div class="deck-code">{entryCard.code}</div>
 							</div>
+						</button>
+						<p>{entryCard.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>How the main OP16 leaders line up against Teach.</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				))}
@@ -251,77 +613,41 @@ const conclusion =
 		</div>
 	</section>
 
-	<section id="prep" class="list-section">
+	<section id="tips" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Prep</h2>
-					<p>Old-set support that helps hold the shell together.</p>
+					<h2>Tips</h2>
+					<p>Core reminders for playing Teach well in the OP16 format.</p>
 				</div>
 			</div>
-			<div class="prep-card">
-				<p class="prep-intro">The list still leans on a sizable older shell for consistency and utility.</p>
-				<div class="prep-grid">
-					{prepPackage.map((entry) => (
-						<button
-							class="prep-chip"
-							type="button"
-							data-card-preview
-							data-full={entry.img}
-							data-name={entry.code}
-						>
-							<img loading="lazy" src={entry.img} alt={entry.code} />
-							<div class="prep-copy">
-								<span class="prep-code">{entry.code}</span>
-								<span class="prep-name">{entry.name}</span>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""}`}>
+						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
+							<div class="tip-cards">
+								{tip.cards.map((entryCard) => (
+									<button
+										class={`mini-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
 							</div>
-						</button>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="thoughts" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Thoughts</h2>
-					<p>Strengths, weaknesses, and conclusion.</p>
-				</div>
-			</div>
-			<div class="thoughts-grid">
-				<div class="thought-card">
-					<div class="thought-head thought-up">
-						<span class="thought-icon" aria-hidden="true">+</span>
-						<h3>Strengths</h3>
+							<p>{tip.copy}</p>
+						</div>
 					</div>
-					<ul>
-						{strengths.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div class="thought-card">
-					<div class="thought-head thought-down">
-						<span class="thought-icon" aria-hidden="true">-</span>
-						<h3>Weaknesses</h3>
-					</div>
-					<ul>
-						{weaknesses.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-			<div class="conclusion-card">
-				<div class="conclusion-head">
-					<div>
-						<h3>Conclusion</h3>
-					</div>
-					<div class="score-badge">8 / 10</div>
-				</div>
-				<p>{conclusion}</p>
+				))}
 			</div>
 		</div>
 	</section>
@@ -329,9 +655,7 @@ const conclusion =
 	<div class="card-modal" data-modal aria-hidden="true">
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
-			<div class="card-modal-frame">
-				<img src="" alt="" data-modal-image />
-			</div>
+			<img src="" alt="" data-modal-image />
 		</div>
 	</div>
 </MainLayout>
@@ -339,10 +663,9 @@ const conclusion =
 <script>
 	const previewButtons = document.querySelectorAll("[data-card-preview]");
 	const modal = document.querySelector("[data-modal]");
-	const modalFrame = document.querySelector(".card-modal-frame");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
-	let lockedScrollY = 0;
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
@@ -350,13 +673,6 @@ const conclusion =
 		const name = button.getAttribute("data-name") || "Card preview";
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
-		lockedScrollY = window.scrollY;
-		document.body.style.position = "fixed";
-		document.body.style.top = `-${lockedScrollY}px`;
-		document.body.style.left = "0";
-		document.body.style.right = "0";
-		document.body.style.width = "100%";
-		document.body.style.overflow = "hidden";
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
 	};
@@ -365,13 +681,6 @@ const conclusion =
 		if (!modal) return;
 		modal.classList.remove("is-open");
 		modal.setAttribute("aria-hidden", "true");
-		document.body.style.position = "";
-		document.body.style.top = "";
-		document.body.style.left = "";
-		document.body.style.right = "";
-		document.body.style.width = "";
-		document.body.style.overflow = "";
-		window.scrollTo(0, lockedScrollY);
 	};
 
 	previewButtons.forEach((button) => {
@@ -380,76 +689,34 @@ const conclusion =
 
 	closeButton?.addEventListener("click", closeModal);
 	modal?.addEventListener("click", (event) => {
-		const target = event.target;
-		if (!(target instanceof HTMLElement)) return;
-		if (target === modalImage) {
-			closeModal();
-			return;
-		}
-		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
-			closeModal();
-		}
+		if (event.target === modal) closeModal();
 	});
-	modalImage?.addEventListener("click", closeModal);
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
 
-	const copySimButton = document.querySelector("[data-copy-sim]");
-
-	copySimButton?.addEventListener("click", async () => {
-		const deckCode = copySimButton.getAttribute("data-sim-deck");
-		if (!deckCode) return;
-
-		try {
-			await navigator.clipboard.writeText(deckCode);
-		} catch {
-			const textarea = document.createElement("textarea");
-			textarea.value = deckCode;
-			textarea.style.position = "fixed";
-			textarea.style.opacity = "0";
-			document.body.append(textarea);
-			textarea.select();
-			document.execCommand("copy");
-			textarea.remove();
-		}
-
-		copySimButton.textContent = "Copied!";
-		window.setTimeout(() => {
-			copySimButton.textContent = "Copy for Sim";
-		}, 1800);
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
 	});
 </script>
 
 <style>
-	.copy-sim-button {
-		font-family: inherit;
-		font-weight: 700;
-	}
-
-	.decklist-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
-		width: 100%;
-	}
-
-	.section-heading-copy {
-		display: grid;
-		gap: 0.35rem;
-	}
-
-	.section-heading-copy h2 {
-		margin: 0;
-	}
-
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
-	}
-
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 	}
@@ -466,166 +733,66 @@ const conclusion =
 		box-shadow: var(--shadow);
 	}
 
-	.leader-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.loop-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-	}
-
-	.leader-card {
-		display: grid;
-		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-	}
-
-	.leader-preview,
-	.option-card {
-		border: none;
-		background: transparent;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.leader-preview img,
-	.option-card img {
-		width: 100%;
-		border-radius: 14px;
-		display: block;
-	}
-
-	.leader-copy,
-	.loop-grid,
-	.thoughts-grid {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.fact-grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.8rem;
-	}
-
-	.fact-box,
-	.text-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.deck-card {
-		padding: 1rem;
-	}
-
-	.fact-box {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid var(--border);
-		border-radius: 14px;
-	}
-
-	.fact-label {
-		display: block;
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--accent);
-		margin-bottom: 0.45rem;
-	}
-
-	.fact-box p,
-	.text-card p,
-	.prep-intro,
-	.section-note {
-		margin: 0;
-		color: var(--text-200);
-	}
-
-	.text-card h3,
-	.thought-card h3,
-	.conclusion-card h3 {
-		margin-top: 0;
-		margin-bottom: 0.6rem;
-	}
-
-	.text-card ul,
-	.thought-card ul {
-		margin: 0;
-		padding-left: 1.15rem;
-	}
-
-	.effect-copy {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-	}
-
-	.keyword-badge {
-		height: 24px;
-		width: auto;
-		vertical-align: middle;
-		flex: 0 0 auto;
-		transform: translateY(4px);
-		margin: 0 0.12rem;
-	}
-
-	.ability-inline {
-		display: inline;
-	}
-
-	.ability-inline .keyword-badge {
-		display: inline-block;
-		height: 18px;
-		margin-right: 0.35rem;
-		vertical-align: middle;
-		transform: translateY(-1px);
-	}
-
-	.effect-copy .keyword-badge {
-		height: 18px;
-	}
-
-	.effect-copy > .keyword-badge {
-		transform: translateY(-2px);
-		margin-right: 0.35rem;
-	}
-
-	.ability-stack {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.ability-line {
-		margin: 0;
-		color: var(--text-100);
-	}
-
-	.loop-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.loop-card {
-		display: grid;
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-		align-items: start;
-	}
-
 	.deck-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
 	}
 
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
+	}
+
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
+		padding: 0.9rem;
 		display: grid;
 		gap: 0.75rem;
 		text-align: left;
@@ -634,19 +801,11 @@ const conclusion =
 	}
 
 	.deck-card:hover,
-	.deck-card:focus-visible,
-	.leader-preview:hover,
-	.leader-preview:focus-visible,
-	.option-card:hover,
-	.option-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.deck-card:hover,
 	.deck-card:focus-visible {
+		transform: translateY(-4px);
 		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
+		outline: none;
 	}
 
 	.deck-card img {
@@ -676,131 +835,356 @@ const conclusion =
 		font-weight: 600;
 	}
 
-	.deck-code,
-	.deck-role {
+	.deck-code {
 		color: var(--text-300);
 		font-size: 0.85rem;
 	}
 
 	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
 
-	.prep-grid {
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: var(--radius-md);
+	}
+
+	.tip-card {
+		padding: 1rem 1.2rem;
 		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
+		gap: 0.8rem;
 	}
 
-	.prep-chip {
-		border: 1px solid var(--border);
-		border-radius: 16px;
-		padding: 0.75rem;
-		background: rgba(255, 255, 255, 0.03);
-		text-align: left;
-		display: grid;
-		grid-template-rows: auto 1fr;
-		gap: 0.65rem;
-		align-content: start;
-		color: var(--text-100);
-		cursor: pointer;
-	}
-
-	.prep-chip img {
-		width: 100%;
-		max-width: 110px;
-		height: auto;
-		border-radius: 10px;
-		margin: 0 auto;
-	}
-
-	.prep-copy {
-		display: grid;
-		gap: 0.2rem;
-	}
-
-	.prep-count,
-	.prep-code {
-		font-weight: 700;
-	}
-
-	.prep-code {
-		color: var(--text-100);
-	}
-
-	.prep-name {
-		color: var(--text-300);
-		font-size: 0.92rem;
-		line-height: 1.25;
-		overflow-wrap: anywhere;
-	}
-
-	.thoughts-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.thought-card {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.thought-card::before {
-		content: "";
-		position: absolute;
-		inset: 0 auto auto 0;
-		width: 100%;
-		height: 4px;
-		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
-	}
-
-	.thought-head,
-	.conclusion-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-
-	.thought-head {
-		margin-bottom: 0.8rem;
-		justify-content: flex-start;
-	}
-
-	.thought-head h3 {
+	.tip-card h3,
+	.tip-card h4,
+	.mulligan-copy h4 {
 		margin: 0;
 	}
 
-	.thought-icon {
-		width: 36px;
-		height: 36px;
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.card-wrap {
+		position: relative;
+		display: inline-block;
+	}
+
+	.curve-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.curve-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.card-badge-image {
+		position: absolute;
+		right: 0.2rem;
+		bottom: 0.2rem;
+		width: 28px !important;
+		max-width: 28px !important;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		border-radius: 999px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #0b0f1a;
 	}
 
-	.thought-up .thought-icon {
-		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	.badge-up {
+		color: #7ef29a;
 	}
 
-	.thought-down .thought-icon {
-		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
 	}
 
-	.score-badge {
-		border-radius: 999px;
-		padding: 0.55rem 0.9rem;
-		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
-		border: 1px solid rgba(255, 107, 61, 0.35);
-		color: var(--accent);
-		font-weight: 800;
-		font-size: 1rem;
-		letter-spacing: 0.04em;
+	.badge-down {
+		color: #ff8a8a;
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.two-column-rows {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.six-card-grid {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
 	}
 
 	.card-modal {
@@ -819,36 +1203,26 @@ const conclusion =
 	}
 
 	.card-modal-inner {
-		position: relative;
-		width: fit-content;
-		max-width: 90vw;
+		max-width: min(520px, 90vw);
 		max-height: 90vh;
-		margin: 0 auto;
-	}
-
-	.card-modal-frame {
-		width: fit-content;
-		max-width: 100%;
 		background: rgba(10, 14, 24, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
 		padding: 1rem 1rem 1.5rem;
+		position: relative;
 		box-shadow: var(--shadow);
 	}
 
 	.card-modal-inner img {
-		display: block;
-		width: auto;
-		max-width: min(520px, calc(90vw - 2rem));
+		width: 100%;
 		max-height: 80vh;
 		object-fit: contain;
-		margin: 0 auto;
 	}
 
 	.modal-close {
 		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
+		top: 0.75rem;
+		right: 0.75rem;
 		background: rgba(255, 255, 255, 0.05);
 		border: 1px solid var(--border);
 		color: var(--text-100);
@@ -859,176 +1233,197 @@ const conclusion =
 	}
 
 	@media (max-width: 900px) {
-		.decklist-header {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: start;
-			gap: 0.6rem 0.75rem;
-		}
-
-		.decklist-header .section-heading-copy {
-			display: contents;
-		}
-
-		.decklist-header h2 {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: center;
-			line-height: 1;
-		}
-
-		.decklist-header .decklist-intro {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 0;
-		}
-
 		.guide-hero .hero-grid,
-		.leader-card,
-		.loop-grid,
-		.thoughts-grid {
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
 			grid-template-columns: 1fr;
 		}
 
-		.guide-icon {
-			margin-top: 1.35rem;
+		.sendback-grid,
+		.six-card-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 640px) {
-		.guide-hero.guide-hero .hero-grid {
-			grid-template-columns: minmax(0, 1fr) 96px !important;
-			gap: 1rem !important;
-			align-items: start !important;
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
 		}
 
-		.guide-hero .guide-icon {
-			grid-column: 2 !important;
-			grid-row: 1 !important;
-			align-self: start !important;
-			justify-self: end !important;
-			margin-top: 5.2rem !important;
-		}
-
-		.guide-hero .guide-icon img {
-			width: 96px;
-			max-width: 96px;
-			border-radius: 14px;
-		}
-
-		.loop-card {
-			grid-template-columns: 96px minmax(0, 1fr);
-			gap: 0.9rem;
-		}
-
-		.loop-card .text-card,
-		.leader-card .text-card {
-			padding: 0;
-			background: transparent;
-			border: none;
-		}
-
-		.leader-card {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		.section-header {
 			gap: 0.8rem;
-			padding: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid,
+		.six-card-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
 			align-items: start;
 		}
 
-		.leader-copy {
-			display: contents;
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
 		}
 
-		.leader-preview {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: start;
+		.tip-row .tip-cards {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
 		}
 
-		.leader-preview img {
-			width: 100%;
-			max-width: none;
-			border-radius: 10px;
-		}
-
-		.fact-grid {
-			grid-column: 2;
-			grid-row: 1;
+		.tip-card.multi-card-tip .tip-row {
 			grid-template-columns: 1fr;
-			gap: 0.6rem;
+			gap: 0.75rem;
 		}
 
-		.fact-box {
-			padding: 0.7rem 0.75rem;
-			border-radius: 12px;
+		.tip-card.multi-card-tip .tip-cards {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: 0.55rem;
+			flex-wrap: nowrap;
 		}
 
-		.fact-label {
-			font-size: 0.68rem;
-			margin-bottom: 0.3rem;
+		.tip-card.multi-card-tip p {
+			grid-column: 1;
+			margin-top: 0;
 		}
 
-		.text-card {
-			grid-column: 1 / -1;
-			grid-row: 2;
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
 		}
 
-		.keyword-badge {
-			height: 21px;
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
 		}
 
-		.effect-copy {
-			display: block;
-		}
-
-		.effect-copy .keyword-badge {
-			display: inline-block;
-			height: 18px;
-			margin: 0;
-			vertical-align: middle;
-			transform: translateY(-3px);
-		}
-
-		.effect-copy > .keyword-badge {
-			margin-right: 0.45rem;
-		}
-
-		.ability-inline .keyword-badge {
-			height: 18px;
-			margin-right: 0.5rem;
-			vertical-align: middle;
-			transform: translateY(-1px);
-		}
-
-		.prep-grid {
+		.curve-cards {
+			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.prep-chip {
-			padding: 0.5rem;
 			gap: 0.45rem;
-			border-radius: 12px;
+			justify-items: start;
+			align-items: start;
 		}
 
-		.prep-chip img {
-			max-width: 82px;
-			border-radius: 8px;
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
 		}
 
-		.prep-copy {
-			gap: 0.12rem;
-			align-content: start;
+		.curve-cards .mini-card {
+			width: 100%;
 		}
 
-		.prep-count,
-		.prep-code,
-		.prep-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
+		.curve-cards .mini-card .card-wrap {
+			width: 100%;
+			max-width: 88px;
 		}
 
-		.prep-name {
-			min-height: 2.3em;
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 
 		.deck-grid {
@@ -1076,69 +1471,6 @@ const conclusion =
 
 		.deck-role {
 			display: none;
-		}
-
-		.card-modal {
-			padding: 0 !important;
-		}
-
-		.card-modal-inner {
-			position: fixed !important;
-			inset: 0 !important;
-			width: 100vw !important;
-			height: 100dvh !important;
-			max-width: none !important;
-			max-height: none !important;
-			margin: 0 !important;
-			padding: 0 !important;
-			display: grid !important;
-			place-items: center !important;
-			background: transparent !important;
-			border: 0 !important;
-			box-shadow: none !important;
-		}
-
-		.card-modal-frame {
-			padding: 0.75rem !important;
-			max-width: calc(100vw - 1.5rem) !important;
-			max-height: calc(100dvh - 1.5rem) !important;
-		}
-
-		.card-modal-inner img {
-			display: block !important;
-			width: auto !important;
-			max-width: min(78vw, 320px) !important;
-			height: auto !important;
-			max-height: 78vh !important;
-			object-fit: contain !important;
-			margin: 0 auto !important;
-		}
-
-		.modal-close {
-			position: fixed !important;
-			top: 0.75rem !important;
-			right: 0.75rem !important;
-			z-index: 2 !important;
-		}
-
-		.conclusion-head {
-			align-items: flex-start;
-		}
-
-		.decklist-header .copy-sim-button {
-			display: inline-flex;
-			width: auto;
-			min-width: 0;
-			max-width: fit-content;
-			padding: 0.52rem 0.8rem;
-			font-size: 0.78rem;
-			line-height: 1;
-			border-radius: 12px;
-			flex: 0 0 auto;
-			margin-left: auto;
-			margin-top: 0;
-			align-self: center;
-			white-space: nowrap;
 		}
 	}
 </style>
