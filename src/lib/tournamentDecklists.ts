@@ -6942,7 +6942,7 @@ const entrySeeds = [
 		format: "op16",
 		region: "west",
 		slug: "red-ace-standard-battle-australia-june25-2026-keylia",
-		leaderSlug: "ace-op13",
+		leaderSlug: "ace-op16",
 		deckTemplate: "red-ace-op16-west-beyond-odyssey-games45-june25-keylia",
 		title: "Red Ace OP16 Standard Battle Winner",
 		eventName: "Beyond Odyssey Games(45)",
