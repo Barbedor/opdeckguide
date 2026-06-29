@@ -90,7 +90,7 @@ const mulliganKeeps = [
 	},
 ];
 
-const idealHandCards = [myEraBegins, fullalead, burgess, shiryu, teach8, teach10];
+const idealHandCards = [myEraBegins, fullalead, burgess];
 const searchPriorityCards = [vanAugur, docQ, vascoShot];
 
 const curveSecond = [
@@ -1280,6 +1280,10 @@ const tips = [
 			justify-self: end;
 		}
 
+		.two-column-rows {
+			grid-template-columns: 1fr;
+		}
+
 		.mini-card img {
 			width: 90px;
 		}
@@ -1294,6 +1298,10 @@ const tips = [
 		.six-card-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-grid.ideal-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
 		.sendback-label {

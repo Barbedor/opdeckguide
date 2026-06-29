@@ -49,7 +49,7 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 				</div>
 				<div class="detail-links">
 					<a class="btn btn-secondary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
-					{(entry.leader.code.startsWith("OP16-") || entry.leader.slug === "ace-op13") && <a class="btn btn-secondary" href={entry.leader.href}>Read the deck guide</a>}
+					{(entry.leader.code.startsWith("OP16-") || entry.leader.slug === "ace-op13" || entry.leader.slug === "rosinante-sample-op16") && <a class="btn btn-secondary" href={entry.leader.href}>Read the deck guide</a>}
 					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
 						Copy for Sim
 					</button>
