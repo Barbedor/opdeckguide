@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Monkey.D.Luffy OP16 Preview Deck Guide";
+const title = "Monkey.D.Luffy OP16 Deck Guide";
 const description =
-	"Monkey.D.Luffy OP16 preview deck guide for One Piece Card Game with an early decklist idea, key Impel Down spoilers, the old-set shell, and early strengths and weaknesses.";
+	"Monkey.D.Luffy OP16 deck guide for One Piece Card Game with decklist, mulligan priorities, a curve guide, tech cards, matchup notes, and gameplay tips.";
 
 const icon = "/assets/guides/Luffy%20op16.png";
+
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -22,75 +23,308 @@ const expandSimLines = (count, code) => {
 	return lines;
 };
 
+const card = (code, name, img) => ({ code, name, img });
+
+const luffyLeader = card("OP16-022", "Monkey D. Luffy", "/Cards/OP16/OP16-022.jpg");
+const luffySearcher = card("OP16-034", "Monkey D. Luffy", "/Cards/OP16/OP16-034.jpg");
+const jinbe = card("OP16-027", "Jinbe", "/Cards/OP16/OP16-027.jpg");
+const mr1 = card("OP16-054", "Mr.1 (Daz Bonez)", "/Cards/OP16/OP16-054.jpg");
+const mr2 = card("OP16-055", "Mr.2 Bon Clay (Bentham)", "/Cards/OP16/OP16-055.jpg");
+const mr3 = card("OP16-056", "Mr.3 (Galdino)", "/Cards/OP16/OP16-056.jpg");
+const ivankov = card("OP16-026", "Emporio Ivankov", "/Cards/OP16/OP16-026.jpg");
+const mr3St30 = card("ST30-014", "Mr.3 (Galdino)", "/Cards/ST30/ST30-014.jpg");
+const buggy = card("OP16-048", "Buggy", "/Cards/OP16/OP16-048.jpg");
+const brook = card("OP15-032", "Brook", "/Cards/OP15/OP15-032.jpg");
+const prisoner = card("OP16-042", "Prisoner of Impel Down", "/Cards/OP16/OP16-042.jpg");
+const boaHancock = card("OP16-032", "Boa Hancock", "/Cards/OP16/OP16-032.jpg");
+const iKnowYoureStrong = card("OP13-040", "I Know You're Strong!!!", "/Cards/OP13/OP13-040.jpg");
+const letsGoNavy = card("OP16-038", "Let's Go to the Navy Headquarters!!", "/Cards/OP16/OP16-038.jpg");
+const houndBlaze = card("OP05-057", "Hound Blaze", "/Cards/OP05/OP05-057.png");
+const gumGumJetCulverin = card("OP11-061", "Gum-Gum Jet Culverin", "/Cards/OP11/OP11-061.jpg");
+const crocodile = card("OP16-045", "Crocodile", "/Cards/OP16/OP16-045.jpg");
+const luffySt30 = card("ST30-012", "Monkey D. Luffy", "/Cards/ST30/ST30-012.jpg");
+const demonAura = card("OP12-037", "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", "/Cards/OP12/OP12-037.jpg");
+
+const teach16 = card("OP16-080", "Marshall.D.Teach OP16", "/Cards/OP16/OP16-080.jpg");
+const yamato16 = card("OP16-079", "Yamato OP16", "/Cards/OP16/OP16-079.jpg");
+const rosinante12 = card("OP12-061", "Donquixote Rosinante OP12", "/Cards/OP12/OP12-061.jpg");
+const shanks09 = card("OP09-001", "Shanks OP09", "/Cards/OP09/OP09-001.jpg");
+const enel15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg");
+const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
+const ace16 = card("OP16-001", "Portgas.D.Ace OP16", "/Cards/OP16/OP16-001.jpg");
+const boa14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg");
+const lucy15 = card("OP15-002", "Lucy OP15", "/Cards/OP15/OP15-002.jpg");
+const metaArticleHref = "/meta-analysis/Green-Blue-Luffy-op16-stats/";
+
 const decklist = [
-	{ code: "OP16-022", name: "Monkey.D.Luffy", count: 1, img: "/Cards/OP16/OP16-022.jpg", role: "Leader" },
-	{ code: "OP16-034", name: "Monkey.D.Luffy", count: 4, img: "/Cards/OP16/OP16-034.jpg", role: "Character" },
-	{ code: "OP16-054", name: "Mr.1(Daz.Bonez)", count: 4, img: "/Cards/OP16/OP16-054.jpg", role: "Character" },
-	{ code: "OP16-055", name: "Mr.2.Bon.Kurei(Bentham)", count: 4, img: "/Cards/OP16/OP16-055.jpg", role: "Character" },
-	{ code: "OP16-042", name: "Prisoner of Impel Down", count: 8, img: "/Cards/OP16/OP16-042.jpg", role: "Character" },
-	{ code: "OP16-026", name: "Emporio.Ivankov", count: 4, img: "/Cards/OP16/OP16-026.jpg", role: "Character" },
-	{ code: "OP16-048", name: "Buggy", count: 4, img: "/Cards/OP16/OP16-048.jpg", role: "Character" },
-	{ code: "OP16-045", name: "Crocodile", count: 4, img: "/Cards/OP16/OP16-045.jpg", role: "Character" },
-	{ code: "OP16-056", name: "Mr.3(Galdino)", count: 4, img: "/Cards/OP16/OP16-056.jpg", role: "Character" },
-	{ code: "ST30-012", name: "Monkey.D.Luffy", count: 2, img: "/Cards/ST30/ST30-012.jpg", role: "Character" },
-	{ code: "ST30-014", name: "Mr.3(Galdino)", count: 4, img: "/Cards/ST30/ST30-014.jpg", role: "Character" },
-	{ code: "OP16-032", name: "Boa Hancock", count: 4, img: "/Cards/OP16/OP16-032.jpg", role: "Character" },
-	{ code: "OP16-038", name: "Let's Go!! To the Navy Headquarters!!", count: 2, img: "/Cards/OP16/OP16-038.jpg", role: "Event" },
-	{
-		code: "OP13-040",
-		name: "I Know You're Strong...So I'll Go All Out From the Start!!!",
-		count: 2,
-		img: "/Cards/OP13/OP13-040.jpg",
-		role: "Event",
-	},
+	{ ...luffyLeader, count: 1, role: "Leader" },
+	{ ...luffySearcher, count: 4, role: "Character" },
+	{ ...jinbe, count: 2, role: "Character" },
+	{ ...mr1, count: 4, role: "Character" },
+	{ ...mr2, count: 4, role: "Character" },
+	{ ...mr3, count: 2, role: "Character" },
+	{ ...ivankov, count: 3, role: "Character" },
+	{ ...mr3St30, count: 4, role: "Character" },
+	{ ...buggy, count: 4, role: "Character" },
+	{ ...brook, count: 2, role: "Character" },
+	{ ...prisoner, count: 8, role: "Character" },
+	{ ...boaHancock, count: 4, role: "Character" },
+	{ ...iKnowYoureStrong, count: 4, role: "Event" },
+	{ ...letsGoNavy, count: 3, role: "Event" },
+	{ ...houndBlaze, count: 2, role: "Event" },
+	{ ...gumGumJetCulverin, count: 2, role: "Event" },
 ];
-const simDeckCode = decklist.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
 
-const leaderCard = { code: "OP16-022", name: "Monkey.D.Luffy", img: "/Cards/OP16/OP16-022.jpg" };
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
-const spoilerCards = [
+const mulliganKeeps = [
 	{
-		code: "OP16-026",
-		name: "Emporio.Ivankov",
-		img: "/Cards/OP16/OP16-026.jpg",
+		copy:
+			"The best opener in the deck. It searches an Impel Down character, can even chain into another Luffy to keep digging, and quickly becomes a 6000-power attacker once your board starts covering multiple names.",
+		cards: [luffySearcher],
 	},
 	{
-		code: "OP16-032",
-		name: "Boa Hancock",
-		img: "/Cards/OP16/OP16-032.jpg",
+		copy:
+			"An excellent turn-1 play. It replaces itself by drawing a card and attacks for 6000 with just 1 DON!! attached as long as you stay at five cards or more in hand.",
+		cards: [mr1],
 	},
-];
-
-const prepPackage = [
-	{ count: 4, code: "ST12-010", name: "Emporio Ivankov", img: "/Cards/ST12/ST12-010.png" },
-	{ count: 2, code: "OP14-052", name: "Hannyabal", img: "/Cards/OP14/OP14-052.jpg" },
-	{ count: 4, code: "EB01-022", name: "Inazuma", img: "/Cards/EB01/EB01-022.png" },
-	{ count: 4, code: "EB01-028", name: "Gum Gum Champion Rifle", img: "/Cards/EB01/EB01-028.png" },
 	{
-		count: 4,
-		code: "OP13-040",
-		name: "I Know You're Strong...So I'll Go All Out From the Start!!!",
-		img: "/Cards/OP13/OP13-040.jpg",
+		copy:
+			"One of the best characters in the deck. Its power automatically scales 1000 above the opposing leader, which means it cleanly attacks over most leaders with only 1 DON!! attached.",
+		cards: [mr2],
 	},
-	{ count: 4, code: "OP08-036", name: "Electrical Luna", img: "/Cards/OP08/OP08-036.png" },
+	{
+		copy:
+			"A great card to keep. It searches an Impel Down character and immediately puts a cost-2-or-lower character into play, which gives your board development a huge push right away.",
+		cards: [ivankov],
+	},
 ];
 
-const strengths = [
-	"Very powerful DON!! gain",
-	"Very strong midgame",
-	"Fast snowball potential",
-	"Good mix of offense and DON!! efficiency",
+const idealHandCards = [luffySearcher, ivankov, mr1, mr2];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		notes:
+			"Your priority is to play a low-cost character. Monkey D. Luffy, Mr.1, and Mr.2 are all excellent openers because they build the board immediately while setting up your next turns.",
+		cards: [luffySearcher, mr1, mr2],
+	},
+	{
+		label: "4 DON!!",
+		notes:
+			"Keep developing your board. Emporio Ivankov is the best play here because it searches an Impel Down character and drops a cost 2 or lower straight into play, which lets you cash in on the leader effect even faster.",
+		cards: [ivankov, prisoner, { ...luffyLeader, badgeCard: "/Cards/P/Don_small.jpg" }],
+	},
+	{
+		label: "6 DON!!",
+		notes:
+			"This is where the deck really starts taking over. You want five characters in play so you can set up Let's Go to the Navy Headquarters!! while still throwing multiple 6000-power attacks and restanding 2 DON!! with the leader.",
+		cards: [letsGoNavy, luffySearcher, mr2],
+	},
+	{
+		label: "8 DON!!",
+		notes:
+			"You now have two real game plans. If your board is already strong, keep pressing with the swarm and set up your lethal turn. If your board is weaker, start preparing the Boa Hancock + Brook line as your backup win condition.",
+		cards: [letsGoNavy, boaHancock, brook],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"You have two endgame routes here. If the board is already full, play Let's Go to the Navy Headquarters!! to maximize damage and close the game. If the board got controlled, chain Boa Hancock into Brook so you can create two unblockable attacks through blockers.",
+		cards: [letsGoNavy, boaHancock, brook],
+	},
+	{
+		label: "Late game",
+		notes:
+			"Once you know which win condition matters, commit to it. If your wide board survives, finish with Let's Go to the Navy Headquarters!!. If it doesn't, pivot immediately into Boa Hancock + Brook instead of forcing the wrong line.",
+		cards: [letsGoNavy, boaHancock, brook],
+	},
 ];
 
-const weaknesses = [
-	"The Impel Down-only condition is very restrictive",
-	"Too dependent on keeping a board",
-	"Not very stable into removal and control",
-	"Lacks overall flexibility",
+const optionsCards = [
+	{
+		...crocodile,
+		copy:
+			"Crocodile gives you more control-oriented lines and can be worth considering in some matchups. Even so, I think it slows the aggressive core of the deck a little too much, so I still prefer the more explosive build.",
+	},
+	{
+		...luffySt30,
+		copy:
+			"An interesting alternative for longer games, but I don't think it hits as hard as the cards already occupying the main curve.",
+	},
+	{
+		...demonAura,
+		copy:
+			"A defensive option you can test depending on the meta. I still prefer cards that build more board and keep pushing the aggressive plan harder.",
+	},
 ];
 
-const conclusion =
-	"The deck is a bit unusual to pilot, much like the old OP02 Ivankov shells, because it leans on a swarm of smaller pieces. That said, the rest and freeze effects give it real tempo swings, and the updated build looks legitimately strong in the right meta. For now, I would put it at 7.5 / 10.";
+const matchups = [
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: teach16,
+		notes: [
+			"Luffy can build a wide board very quickly, which forces Teach to have the right answers right away.",
+			"Go second.",
+			"Put on as much pressure as possible before Teach reaches the late game.",
+			"If your board gets controlled, pivot quickly into the Boa Hancock + Brook plan.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: yamato16,
+		notes: [
+			"The matchup is mostly about tempo. If Luffy keeps its board, it takes over. If Yamato chains its big threats quickly, it can steal the pace back.",
+			"Develop your board as hard as possible in the first turns.",
+			"Find Let's Go to the Navy Headquarters!! quickly.",
+			"Force Yamato to defend instead of setting up its combo turns.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: rosinante12,
+		notes: [
+			"Rosinante can slow your plan down, but Luffy usually creates more pressure if the board gets established correctly.",
+			"Keep filling your board.",
+			"Exploit your tempo edge through the leader effect.",
+			"Set up your lethal turn with Let's Go to the Navy Headquarters!!.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: shanks09,
+		notes: [
+			"Shanks has a lot of tools to control Luffy's board and limit its development.",
+			"Develop your board quickly.",
+			"Don't let Shanks reach the late game comfortably.",
+			"Try to finish before the big threats start landing.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: enel15,
+		notes: [
+			"Enel can answer Luffy's small characters well while scaling into threats that are hard to push through.",
+			"Multiply your attacks from the first turns.",
+			"Get the most out of the leader effect to preserve tempo.",
+			"Prepare your lethal turn quickly.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: nami11,
+		notes: [
+			"Nami controls Luffy's small characters very well, which makes it harder to keep a wide enough board to maximize the leader effect.",
+			"Pressure the leader immediately.",
+			"Keep developing your board instead of trying to control theirs.",
+			"Try to finish before Nami gets the tempo back.",
+			"Hit Life, not the board.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: ace16,
+		notes: [
+			"Ace keeps constant pressure through 8000-power Whitebeard Pirate rush threats, and Vista is one of the worst cards for Luffy to see.",
+			"Take the board early.",
+			"Force Ace to defend instead of extending its own plan.",
+			"Keep enough resources for your lethal turn.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: boa14,
+		notes: [
+			"Boa can control some threats, but Luffy usually creates more characters than Boa can answer over time.",
+			"Keep developing your board.",
+			"Don't rely only on the Boa Hancock + Brook combo.",
+			"Look to finish with Let's Go to the Navy Headquarters!!.",
+			"Hit Life, not the board.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: lucy15,
+		notes: [
+			"Luffy usually has the edge because it develops the board faster than Lucy.",
+			"Use your early turns to take the initiative.",
+			"Keep the pressure high without slowing your development.",
+			"Try to finish before Lucy stabilizes.",
+		],
+	},
+	{
+		label: "Mirror Match",
+		tone: "even",
+		icon: "≈",
+		leader: luffyLeader,
+		notes: [
+			"The mirror usually goes to the player who develops the board more efficiently and times Let's Go to the Navy Headquarters!! better.",
+			"Preserve your small characters.",
+			"Don't fire off your late-game event too early.",
+			"Keep Hound Blaze available when you need to create a board edge.",
+		],
+	},
+];
+const tips = [
+	{
+		copy:
+			"Build your board quickly. The deck works when it stacks several Impel Down characters that can attack for 6000 with just 1 DON!! attached, so don't sit on characters in hand for too long.",
+		cards: [luffySearcher, mr1, mr2],
+	},
+	{
+		copy:
+			"Use the leader effect every turn when you can. Re-standing 2 DON!! is what lets the deck chain multiple plays together while keeping pressure high.",
+		cards: [{ ...luffyLeader, badgeCard: "/Cards/P/Don_small.jpg" }],
+	},
+	{
+		copy:
+			"Don't tunnel only on Let's Go to the Navy Headquarters!!. Even though it's your main finisher, the Boa Hancock + Brook package is a very real backup win condition when your board gets controlled.",
+		cards: [letsGoNavy, boaHancock, brook],
+	},
+	{
+		copy:
+			"Attack with your small characters first, then keep extending the board. Thanks to the leader effect, you get DON!! back and can still keep attacking after playing more characters.",
+		cards: [mr1, mr2, { ...luffyLeader, badgeCard: "/Cards/P/Don_small.jpg" }],
+	},
+	{
+		copy:
+			"Don't be afraid to play multiple copies of the same character early. Different names matter later, but in the opening turns the priority is simply to pressure as hard as possible.",
+		cards: [luffySearcher, luffySearcher, mr1],
+	},
+	{
+		copy:
+			"Set up your lethal turn one turn in advance. Let's Go to the Navy Headquarters!! can still be strong with only four characters in play because the leader effect gives back the DON!! you need to finish building the board that same turn.",
+		cards: [letsGoNavy, { ...luffyLeader, badgeCard: "/Cards/P/Don_small.jpg" }],
+	},
+	{
+		copy:
+			"Figure out your win condition quickly. If your board stays intact, lean into Let's Go to the Navy Headquarters!!. If the opponent is controlling your board well, switch immediately to the Boa Hancock + Brook plan instead of forcing the wrong route.",
+		cards: [letsGoNavy, boaHancock, brook],
+	},
+	{
+		copy:
+			"The deck rewards timing. Knowing when to attack and when not to attack matters a lot, and a well-prepared lethal turn is usually worth more than pushing a few extra points too early.",
+		cards: [houndBlaze, gumGumJetCulverin],
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -98,17 +332,16 @@ const conclusion =
 		<div class="container hero-grid">
 			<div>
 				<span class="hero-badge">Deck Guide</span>
-				<h1>Monkey.D.Luffy OP16 Preview Deck Guide</h1>
+				<h1>Monkey.D.Luffy OP16 Deck Guide</h1>
 				<p>
-					First look at Monkey.D.Luffy OP16 in the OP16 format. This preview focuses on the leader effect, the key
-					spoilers, an early decklist idea, and the early read on the green-blue Impel Down shell.
-				</p>
-				<p>
-					To see how Green/Blue Luffy performs going first and going second against the other top leaders, see <a class="guide-inline-link" href="/meta-analysis/Green-Blue-Luffy-op16-stats/">OP16 Green/Blue Luffy stats in OP16 Format</a>.
+					Monkey.D.Luffy OP16 is an Impel Down go-wide deck that snowballs through the leader's DON!! refund,
+					constant board development, and relentless tempo. The list wins either by flooding the board into
+					Let's Go to the Navy Headquarters!! or by pivoting into the Boa Hancock + Brook finish when the board
+					gets controlled.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
-					<a class="btn btn-secondary" href="#thoughts">Early Thoughts</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
 			<div class="guide-icon">
@@ -120,128 +353,214 @@ const conclusion =
 	<section id="decklist" class="list-section">
 		<div class="container">
 			<div class="section-header decklist-header">
-				<div class="section-heading-copy">
+				<div class="decklist-title-row">
 					<h2>Decklist</h2>
-					<p class="decklist-intro">An early decklist idea for Monkey.D.Luffy OP16 in the OP16 format.</p>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
 				</div>
-				<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-					Copy for Sim
-				</button>
+				<p>Main list for Monkey.D.Luffy OP16 in the OP16 format.</p>
 			</div>
 			<div class="deck-grid">
-				{decklist.map((card) => (
-					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+				{decklist.map((entry) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={entry.img}
+						data-name={`${entry.code} ${entry.name}`}
+					>
+						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
 						<div class="deck-info">
-							<span class="deck-count">{card.count}x</span>
+							<span class="deck-count">{entry.count}x</span>
 							<div>
-								<div class="deck-name">{card.name}</div>
-								<div class="deck-code">{card.code}</div>
+								<div class="deck-name">{entry.name}</div>
+								<div class="deck-code">{entry.code}</div>
 							</div>
 						</div>
-						<span class="deck-role">{card.role}</span>
+						<span class="deck-role">{entry.role}</span>
 					</button>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section id="leader" class="list-section">
+	<section id="mulligan" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Leader</h2>
-					<p>Core identity and leader effect for Monkey.D.Luffy OP16-022.</p>
+					<h2>Mulligan</h2>
+					<p>
+						The mulligan is fairly flexible, but you absolutely need your small characters early. The deck works because it fills the board quickly and starts cashing in on the leader effect right away.
+					</p>
 				</div>
 			</div>
-			<div class="leader-card">
-				<button
-					class="leader-preview"
-					type="button"
-					data-card-preview
-					data-full={leaderCard.img}
-					data-name={`${leaderCard.code} ${leaderCard.name}`}
-				>
-					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
-				</button>
-				<div class="leader-copy">
-					<div class="fact-grid">
-						<div class="fact-box">
-							<span class="fact-label">Color</span>
-							<p>Green - Blue</p>
-						</div>
-						<div class="fact-box">
-							<span class="fact-label">Type</span>
-							<p>Impel Down / Straw Hat Crew</p>
-						</div>
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>Cards to Prioritize</h3>
+					<div class="mulligan-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((entryCard) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
 					</div>
-					<div class="text-card">
-						<h3>Leader Effect</h3>
-						<p class="effect-copy">
-							<img class="keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate Main" />
-							<img class="keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-							If the only Characters on your field are {"{Impel Down}"} type Characters, set up to 2 of your
-							DON!! cards as active.
-						</p>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Ideal Hand</h3>
+					<div class="sendback-grid ideal-grid">
+						{idealHandCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
 					</div>
+					<ul class="bullet-list">
+						<li>One or more 1- or 2-cost characters</li>
+						<li>A way to keep filling the board, usually Luffy or Ivankov</li>
+						<li>Enough small characters to start exploiting the leader effect quickly</li>
+					</ul>
+					<p class="mulligan-text">
+						It's completely fine to open on multiple copies of the same character. Different names matter later, but early on your priority is just to pressure as hard as possible.
+					</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="spoiler" class="list-section">
+	<section id="curve" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Key preview cards</h2>
-					<p>Main cards that define the Impel Down package.</p>
+					<h2>Curve Guide</h2>
+					<p>
+						Going second is the recommended seat. The leader gets huge value from restanding 2 rested DON!!, which makes the 4-, 6-, and 8-DON!! turns especially powerful. The goal is to build a wide board while keeping enough DON!! available to keep attacking every turn. If you go first, your curve shifts, so you really want Monkey D. Luffy OP16-034 in your opener because it costs 1 DON!!. That way you aren't passing the first turn and can start building your board immediately.
+					</p>
 				</div>
 			</div>
-			<div class="loop-grid">
-				{spoilerCards.map((card) => (
-					<div class="loop-card">
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class={`mini-card curve-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tech Cards</h2>
+					<p>Alternative cards and flex slots for different OP16 rooms.</p>
+				</div>
+			</div>
+			<div class="options-rich-grid">
+				{optionsCards.map((entryCard) => (
+					<div class="option-note-card glow-block">
 						<button
 							class="option-card"
 							type="button"
 							data-card-preview
-							data-full={card.img}
-							data-name={`${card.code} ${card.name}`}
+							data-full={entryCard.img}
+							data-name={`${entryCard.code} ${entryCard.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
-						</button>
-						<div class="text-card">
-							<h3>{card.name}</h3>
-							<div class="ability-stack">
-								{card.code === "OP16-026" ? (
-									<div class="ability-line">
-										<span class="ability-inline">
-											<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-											<span>
-												look at 3 cards from the top of your deck, reveal up to 1 {"{Impel Down}"} type
-												card, add it to your hand and place the rest at the bottom of your deck in any
-												order. Then, play up to 1 Character card with a cost of 2 or less from your hand.
-											</span>
-										</span>
-									</div>
-								) : (
-									<>
-										<div class="ability-line ability-line-tag-only">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/unblockable.png" alt="Unblockable" />
-											</span>
-										</div>
-										<div class="ability-line">
-											<span class="ability-inline">
-												<img class="keyword-badge" src="/assets/keywords/on-play.png" alt="On Play" />
-												<span>
-													up to 1 of your opponent's Characters other than [Monkey.D.Luffy] cannot be
-													rested until the end of your opponent's next End Phase.
-												</span>
-											</span>
-										</div>
-									</>
-								)}
+							<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{entryCard.name}</div>
+								<div class="deck-code">{entryCard.code}</div>
 							</div>
+						</button>
+						<p>{entryCard.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p class="matchup-link-line">
+						See the full turn-order data in
+						<a class="matchup-article-link" href={metaArticleHref}>OP16 Green/Blue Luffy stats in OP16 Format</a>.
+					</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				))}
@@ -249,77 +568,41 @@ const conclusion =
 		</div>
 	</section>
 
-	<section id="prep" class="list-section">
+	<section id="tips" class="list-section">
 		<div class="container">
 			<div class="section-header">
 				<div>
-					<h2>Prep</h2>
-					<p>Old-set support that helps hold the shell together.</p>
+					<h2>Tips</h2>
+					<p>Core reminders for Monkey.D.Luffy in the OP16 format.</p>
 				</div>
 			</div>
-			<div class="prep-card">
-				<p class="prep-intro">The list still leans on a sizable older shell for consistency and utility.</p>
-				<div class="prep-grid">
-					{prepPackage.map((entry) => (
-						<button
-							class="prep-chip"
-							type="button"
-							data-card-preview
-							data-full={entry.img}
-							data-name={entry.code}
-						>
-							<img loading="lazy" src={entry.img} alt={entry.code} />
-							<div class="prep-copy">
-								<span class="prep-code">{entry.code}</span>
-								<span class="prep-name">{entry.name}</span>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""}`}>
+						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
+							<div class="tip-cards">
+								{tip.cards.map((entryCard) => (
+									<button
+										class={`mini-card ${entryCard.badgeCard ? "has-badge" : ""}`}
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<span class="card-wrap">
+											<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											{entryCard.badgeCard && (
+												<img class="card-badge-image" src={entryCard.badgeCard} alt="1 DON!! attached" loading="lazy" />
+											)}
+										</span>
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
 							</div>
-						</button>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="thoughts" class="list-section">
-		<div class="container">
-			<div class="section-header">
-				<div>
-					<h2>Thoughts</h2>
-					<p>Strengths, weaknesses, and conclusion.</p>
-				</div>
-			</div>
-			<div class="thoughts-grid">
-				<div class="thought-card">
-					<div class="thought-head thought-up">
-						<span class="thought-icon" aria-hidden="true">+</span>
-						<h3>Strengths</h3>
+							<p>{tip.copy}</p>
+						</div>
 					</div>
-					<ul>
-						{strengths.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div class="thought-card">
-					<div class="thought-head thought-down">
-						<span class="thought-icon" aria-hidden="true">-</span>
-						<h3>Weaknesses</h3>
-					</div>
-					<ul>
-						{weaknesses.map((item) => (
-							<li>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-			<div class="conclusion-card">
-				<div class="conclusion-head">
-					<div>
-						<h3>Conclusion</h3>
-					</div>
-					<div class="score-badge">7.5 / 10</div>
-				</div>
-				<p>{conclusion}</p>
+				))}
 			</div>
 		</div>
 	</section>
@@ -327,9 +610,7 @@ const conclusion =
 	<div class="card-modal" data-modal aria-hidden="true">
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
-			<div class="card-modal-frame">
-				<img src="" alt="" data-modal-image />
-			</div>
+			<img src="" alt="" data-modal-image />
 		</div>
 	</div>
 </MainLayout>
@@ -337,10 +618,9 @@ const conclusion =
 <script>
 	const previewButtons = document.querySelectorAll("[data-card-preview]");
 	const modal = document.querySelector("[data-modal]");
-	const modalFrame = document.querySelector(".card-modal-frame");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
-	let lockedScrollY = 0;
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
@@ -348,13 +628,6 @@ const conclusion =
 		const name = button.getAttribute("data-name") || "Card preview";
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
-		lockedScrollY = window.scrollY;
-		document.body.style.position = "fixed";
-		document.body.style.top = `-${lockedScrollY}px`;
-		document.body.style.left = "0";
-		document.body.style.right = "0";
-		document.body.style.width = "100%";
-		document.body.style.overflow = "hidden";
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
 	};
@@ -363,13 +636,6 @@ const conclusion =
 		if (!modal) return;
 		modal.classList.remove("is-open");
 		modal.setAttribute("aria-hidden", "true");
-		document.body.style.position = "";
-		document.body.style.top = "";
-		document.body.style.left = "";
-		document.body.style.right = "";
-		document.body.style.width = "";
-		document.body.style.overflow = "";
-		window.scrollTo(0, lockedScrollY);
 	};
 
 	previewButtons.forEach((button) => {
@@ -378,88 +644,36 @@ const conclusion =
 
 	closeButton?.addEventListener("click", closeModal);
 	modal?.addEventListener("click", (event) => {
-		const target = event.target;
-		if (!(target instanceof HTMLElement)) return;
-		if (target === modalImage) {
-			closeModal();
-			return;
-		}
-		if (modalFrame && !modalFrame.contains(target) && target !== closeButton) {
-			closeModal();
-		}
+		if (event.target === modal) closeModal();
 	});
-	modalImage?.addEventListener("click", closeModal);
 	window.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
 	});
 
-	const copySimButton = document.querySelector("[data-copy-sim]");
-
-	copySimButton?.addEventListener("click", async () => {
-		const deckCode = copySimButton.getAttribute("data-sim-deck");
-		if (!deckCode) return;
-
-		try {
-			await navigator.clipboard.writeText(deckCode);
-		} catch {
-			const textarea = document.createElement("textarea");
-			textarea.value = deckCode;
-			textarea.style.position = "fixed";
-			textarea.style.opacity = "0";
-			document.body.append(textarea);
-			textarea.select();
-			document.execCommand("copy");
-			textarea.remove();
-		}
-
-		copySimButton.textContent = "Copied!";
-		window.setTimeout(() => {
-			copySimButton.textContent = "Copy for Sim";
-		}, 1800);
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
 	});
 </script>
 
 <style>
-	.copy-sim-button {
-		font-family: inherit;
-		font-weight: 700;
-	}
-
-	.decklist-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
-		width: 100%;
-	}
-
-	.section-heading-copy {
-		display: grid;
-		gap: 0.35rem;
-	}
-
-	.section-heading-copy h2 {
-		margin: 0;
-	}
-
-	@media (min-width: 901px) {
-		.decklist-intro {
-			white-space: nowrap;
-		}
-	}
-
 	.guide-hero .hero-grid {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-	}
-
-	.guide-inline-link {
-		color: var(--accent);
-		font-weight: 700;
-	}
-
-	.guide-inline-link:hover,
-	.guide-inline-link:focus-visible {
-		color: var(--accent-2);
 	}
 
 	.guide-icon {
@@ -474,184 +688,66 @@ const conclusion =
 		box-shadow: var(--shadow);
 	}
 
-	.leader-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.loop-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-	}
-
-	.leader-card {
-		display: grid;
-		grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-	}
-
-	.leader-preview,
-	.option-card {
-		border: none;
-		background: transparent;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.leader-preview img,
-	.option-card img {
-		width: 100%;
-		border-radius: 14px;
-		display: block;
-	}
-
-	.leader-copy,
-	.loop-grid,
-	.thoughts-grid {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.fact-grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.8rem;
-	}
-
-	.fact-box,
-	.text-card,
-	.prep-card,
-	.thought-card,
-	.conclusion-card,
-	.deck-card {
-		padding: 1rem;
-	}
-
-	.fact-box {
-		background: rgba(255, 255, 255, 0.03);
-		border: 1px solid var(--border);
-		border-radius: 14px;
-	}
-
-	.fact-label {
-		display: block;
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--accent);
-		margin-bottom: 0.45rem;
-	}
-
-	.fact-box p,
-	.text-card p,
-	.prep-intro,
-	.section-note {
-		margin: 0;
-		color: var(--text-200);
-	}
-
-	.text-card h3,
-	.thought-card h3,
-	.conclusion-card h3 {
-		margin-top: 0;
-		margin-bottom: 0.6rem;
-	}
-
-	.text-card ul,
-	.thought-card ul {
-		margin: 0;
-		padding-left: 1.15rem;
-	}
-
-	.effect-copy {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.45rem;
-	}
-
-	.keyword-badge {
-		height: 24px;
-		width: auto;
-		vertical-align: middle;
-		flex: 0 0 auto;
-		transform: translateY(4px);
-		margin: 0 0.12rem;
-	}
-
-	.effect-inline {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		white-space: nowrap;
-	}
-
-	.keyword-line {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 0.45rem;
-		flex-wrap: wrap;
-	}
-
-	.ability-inline {
-		display: inline;
-	}
-
-	.ability-inline .keyword-badge {
-		display: inline-block;
-		height: 18px;
-		margin-right: 0.35rem;
-		vertical-align: middle;
-		transform: translateY(-1px);
-	}
-
-	.effect-copy .keyword-badge {
-		height: 18px;
-	}
-
-	.effect-copy > .keyword-badge {
-		transform: translateY(-2px);
-		margin-right: 0.35rem;
-	}
-
-	.ability-stack {
-		display: grid;
-		gap: 0.55rem;
-	}
-
-	.ability-line {
-		margin: 0;
-		color: var(--text-100);
-	}
-
-	.ability-line-tag-only {
-		margin-bottom: -0.15rem;
-	}
-
-	.loop-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.loop-card {
-		display: grid;
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: 1rem;
-		padding: 1rem;
-		align-items: start;
-	}
-
 	.deck-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.2rem;
 	}
 
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
+	}
+
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-md);
+		padding: 0.9rem;
 		display: grid;
 		gap: 0.75rem;
 		text-align: left;
@@ -660,19 +756,11 @@ const conclusion =
 	}
 
 	.deck-card:hover,
-	.deck-card:focus-visible,
-	.leader-preview:hover,
-	.leader-preview:focus-visible,
-	.option-card:hover,
-	.option-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.deck-card:hover,
 	.deck-card:focus-visible {
+		transform: translateY(-4px);
 		border-color: rgba(255, 107, 61, 0.4);
 		box-shadow: var(--shadow);
+		outline: none;
 	}
 
 	.deck-card img {
@@ -702,135 +790,378 @@ const conclusion =
 		font-weight: 600;
 	}
 
-	.deck-code,
-	.deck-role {
+	.deck-code {
 		color: var(--text-300);
 		font-size: 0.85rem;
 	}
 
 	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
 
-	.prep-grid {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: var(--radius-md);
 	}
 
-	.prep-chip {
-		border: 1px solid var(--border);
-		border-radius: 16px;
-		padding: 0.75rem;
-		background: rgba(255, 255, 255, 0.03);
-		text-align: left;
-		display: grid;
-		gap: 0.65rem;
-		align-content: start;
-		color: var(--text-100);
-		cursor: pointer;
+	.matchup-link-line {
+		display: block;
+		max-width: 100%;
+		line-height: 1.6;
 	}
 
-	.prep-chip img {
-		width: 100%;
-		max-width: 110px;
-		height: auto;
-		border-radius: 10px;
-		margin: 0 auto;
-	}
-
-	.prep-copy {
-		display: grid;
-		gap: 0.2rem;
-	}
-
-	.prep-count,
-	.prep-code {
+	.matchup-article-link {
+		color: #ff8b3d;
 		font-weight: 700;
 	}
 
-	.prep-code {
-		color: var(--text-100);
+	.matchup-article-link:hover {
+		color: #ffb06f;
 	}
 
-	.prep-name {
-		color: var(--text-300);
-		font-size: 0.92rem;
-		line-height: 1.25;
+	.tip-card {
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
 	}
 
-	.thoughts-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		margin-bottom: 1rem;
-	}
-
-	.thought-card {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.thought-card::before {
-		content: "";
-		position: absolute;
-		inset: 0 auto auto 0;
-		width: 100%;
-		height: 4px;
-		background: linear-gradient(90deg, rgba(255, 107, 61, 0.95), rgba(255, 171, 92, 0.55));
-	}
-
-	.thought-head,
-	.conclusion-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-
-	.thought-head {
-		margin-bottom: 0.8rem;
-		justify-content: flex-start;
-	}
-
-	.thought-head h3 {
+	.tip-card h3,
+	.mulligan-copy h4 {
 		margin: 0;
 	}
 
-	.thought-icon {
-		width: 36px;
-		height: 36px;
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.card-wrap {
+		position: relative;
+		display: inline-block;
+	}
+
+	.mini-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.mini-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.curve-card.has-badge .card-wrap {
+		width: 100%;
+		max-width: 120px;
+	}
+
+	.curve-card.has-badge .card-main-image {
+		width: 100%;
+		max-width: 120px;
+		display: block;
+	}
+
+	.mini-card img.card-badge-image {
+		position: absolute;
+		right: 0.2rem;
+		bottom: 0.2rem;
+		width: 28px !important;
+		max-width: 28px !important;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		border-radius: 999px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #0b0f1a;
 	}
 
-	.thought-up .thought-icon {
-		background: linear-gradient(135deg, #f59e0b, #fb923c);
+	.badge-up {
+		color: #7ef29a;
 	}
 
-	.thought-down .thought-icon {
-		background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
 	}
 
-	.conclusion-subtitle {
-		margin: 0.2rem 0 0;
-		color: var(--text-300);
-		font-size: 0.9rem;
+	.badge-down {
+		color: #ff8a8a;
 	}
 
-	.score-badge {
-		border-radius: 999px;
-		padding: 0.55rem 0.9rem;
-		background: linear-gradient(135deg, rgba(255, 107, 61, 0.22), rgba(255, 171, 92, 0.14));
-		border: 1px solid rgba(255, 107, 61, 0.35);
-		color: var(--accent);
-		font-weight: 800;
-		font-size: 1rem;
-		letter-spacing: 0.04em;
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
 	}
 
 	.card-modal {
@@ -849,36 +1180,26 @@ const conclusion =
 	}
 
 	.card-modal-inner {
-		position: relative;
-		width: fit-content;
-		max-width: 90vw;
+		max-width: min(520px, 90vw);
 		max-height: 90vh;
-		margin: 0 auto;
-	}
-
-	.card-modal-frame {
-		width: fit-content;
-		max-width: 100%;
 		background: rgba(10, 14, 24, 0.9);
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
 		padding: 1rem 1rem 1.5rem;
+		position: relative;
 		box-shadow: var(--shadow);
 	}
 
 	.card-modal-inner img {
-		display: block;
-		width: auto;
-		max-width: min(520px, calc(90vw - 2rem));
+		width: 100%;
 		max-height: 80vh;
 		object-fit: contain;
-		margin: 0 auto;
 	}
 
 	.modal-close {
 		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
+		top: 0.75rem;
+		right: 0.75rem;
 		background: rgba(255, 255, 255, 0.05);
 		border: 1px solid var(--border);
 		color: var(--text-100);
@@ -889,197 +1210,195 @@ const conclusion =
 	}
 
 	@media (max-width: 900px) {
-		.decklist-header {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: start;
-			gap: 0.6rem 0.75rem;
-		}
-
-		.decklist-header .section-heading-copy {
-			display: contents;
-		}
-
-		.decklist-header h2 {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: center;
-			line-height: 1;
-		}
-
-		.decklist-header .decklist-intro {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 0;
-		}
-
 		.guide-hero .hero-grid,
-		.leader-card,
-		.loop-grid,
-		.thoughts-grid {
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
 			grid-template-columns: 1fr;
 		}
 
-		.guide-icon {
-			margin-top: 1.35rem;
-		}
-
-		.decklist-header .copy-sim-button {
-			display: inline-flex;
-			width: auto;
-			min-width: 0;
-			max-width: fit-content;
-			padding: 0.52rem 0.8rem;
-			font-size: 0.78rem;
-			line-height: 1;
-			border-radius: 12px;
-			flex: 0 0 auto;
-			margin-left: auto;
-			margin-top: 0;
-			align-self: center;
-			white-space: nowrap;
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 640px) {
-		.guide-hero.guide-hero .hero-grid {
-			grid-template-columns: minmax(0, 1fr) 96px !important;
-			gap: 1rem !important;
-			align-items: start !important;
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
 		}
 
-		.guide-hero .guide-icon {
-			grid-column: 2 !important;
-			grid-row: 1 !important;
-			align-self: start !important;
-			justify-self: end !important;
-			margin-top: 5.2rem !important;
-		}
-
-		.guide-hero .guide-icon img {
-			width: 96px;
-			max-width: 96px;
-			border-radius: 14px;
-		}
-
-		.loop-card {
-			grid-template-columns: 96px minmax(0, 1fr);
-			gap: 0.9rem;
-		}
-
-		.loop-card .text-card,
-		.leader-card .text-card {
-			padding: 0;
-			background: transparent;
-			border: none;
-		}
-
-		.leader-card {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		.section-header {
 			gap: 0.8rem;
-			padding: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
 			align-items: start;
 		}
 
-		.leader-copy {
-			display: contents;
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
 		}
 
-		.leader-preview {
-			grid-column: 1;
-			grid-row: 1;
-			align-self: start;
+		.tip-row .tip-cards {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
 		}
 
-		.leader-preview img {
-			width: 100%;
-			max-width: none;
-			border-radius: 10px;
-		}
-
-		.fact-grid {
-			grid-column: 2;
-			grid-row: 1;
+		.tip-card.multi-card-tip .tip-row {
 			grid-template-columns: 1fr;
-			gap: 0.6rem;
+			gap: 0.75rem;
 		}
 
-		.fact-box {
-			padding: 0.7rem 0.75rem;
-			border-radius: 12px;
+		.tip-card.multi-card-tip .tip-cards {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: 0.55rem;
+			flex-wrap: nowrap;
 		}
 
-		.fact-label {
-			font-size: 0.68rem;
-			margin-bottom: 0.3rem;
+		.tip-card.multi-card-tip p {
+			grid-column: 1;
+			margin-top: 0;
 		}
 
-		.text-card {
-			grid-column: 1 / -1;
-			grid-row: 2;
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
 		}
 
-		.keyword-badge {
-			height: 21px;
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
 		}
 
-		.effect-copy {
-			display: block;
-		}
-
-		.effect-copy .keyword-badge {
-			display: inline-block;
-			height: 18px;
-			margin: 0;
-			vertical-align: middle;
-			transform: translateY(-3px);
-		}
-
-		.effect-copy > .keyword-badge {
-			margin-right: 0.45rem;
-		}
-
-		.keyword-line {
-			gap: 0.5rem;
-		}
-
-		.keyword-line .keyword-badge {
-			height: 18px;
-			margin: 0;
-			transform: translateY(4px);
-		}
-
-		.ability-inline .keyword-badge {
-			height: 18px;
-			margin-right: 0.5rem;
-			vertical-align: middle;
-			transform: translateY(-1px);
-		}
-
-		.prep-grid {
+		.curve-cards {
+			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.prep-chip {
-			padding: 0.5rem;
 			gap: 0.45rem;
-			border-radius: 12px;
+			justify-items: start;
+			align-items: start;
 		}
 
-		.prep-chip img {
-			max-width: 82px;
-			border-radius: 8px;
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
 		}
 
-		.prep-copy {
-			gap: 0.12rem;
+		.curve-cards .mini-card {
+			width: 100%;
 		}
 
-		.prep-count,
-		.prep-code,
-		.prep-name {
-			font-size: 0.68rem;
-			line-height: 1.15;
+		.curve-cards .mini-card .card-wrap {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.mini-card img.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 
 		.deck-grid {
@@ -1128,52 +1447,6 @@ const conclusion =
 		.deck-role {
 			display: none;
 		}
-
-		.card-modal {
-			padding: 0 !important;
-		}
-
-		.card-modal-inner {
-			position: fixed !important;
-			inset: 0 !important;
-			width: 100vw !important;
-			height: 100dvh !important;
-			max-width: none !important;
-			max-height: none !important;
-			margin: 0 !important;
-			padding: 0 !important;
-			display: grid !important;
-			place-items: center !important;
-			background: transparent !important;
-			border: 0 !important;
-			box-shadow: none !important;
-		}
-
-		.card-modal-frame {
-			padding: 0.75rem !important;
-			max-width: calc(100vw - 1.5rem) !important;
-			max-height: calc(100dvh - 1.5rem) !important;
-		}
-
-		.card-modal-inner img {
-			display: block !important;
-			width: auto !important;
-			max-width: min(78vw, 320px) !important;
-			height: auto !important;
-			max-height: 78vh !important;
-			object-fit: contain !important;
-			margin: 0 auto !important;
-		}
-
-		.modal-close {
-			position: fixed !important;
-			top: 0.75rem !important;
-			right: 0.75rem !important;
-			z-index: 2 !important;
-		}
-
-		.conclusion-head {
-			align-items: flex-start;
-		}
 	}
 </style>
+
