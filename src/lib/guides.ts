@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Shanks OP09 Deck Guide",
+		leader: "Shanks",
+		code: "OP09",
+		formatLabel: "OP16 Format",
+		summary: "Decklist, mulligan priorities, curve guide, tech cards, matchup notes, and gameplay tips for Shanks OP09.",
+		month: "July",
+		href: "/deck-guides/shanks-op09/",
+		imageSrc: "/assets/guides/Shanks%20op09.png",
+		imageAlt: "Shanks OP09 guide icon",
+		aliases: ["shanks", "op09 shanks", "red hair pirates", "red shanks", "op16 shanks"],
+		tags: ["op09", "op16", "red", "red hair pirates"],
+	},
+	{
+		kind: "deck",
 		title: "Monkey.D.Luffy OP16 Deck Guide",
 		leader: "Monkey.D.Luffy",
 		code: "OP16",

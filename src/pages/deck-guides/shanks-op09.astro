@@ -1,0 +1,1440 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Shanks OP09 Deck Guide";
+const description =
+	"Shanks OP09 deck guide for One Piece Card Game with decklist, mulligan priorities, curve guide, tech cards, matchup notes, and gameplay tips for the OP16 format.";
+
+const icon = "/assets/guides/Shanks%20op09.png";
+
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
+const card = (code, name, img) => ({ code, name, img });
+
+const shanksLeader = card("OP09-001", "Shanks", "/Cards/OP09/OP09-001.jpg");
+const uta = card("OP09-002", "Uta", "/Cards/OP09/OP09-002.jpg");
+const asl = card("OP13-007", "Ace & Sabo & Luffy", "/Cards/OP13/OP13-007.jpg");
+const rockstar = card("OP16-018", "Rockstar", "/Cards/OP16/OP16-018.jpg");
+const hongo = card("OP09-011", "Hongo", "/Cards/OP09/OP09-011.jpg");
+const luckyRoux = card("OP09-015", "Lucky Roux", "/Cards/OP09/OP09-015.jpg");
+const chopper = card("OP10-011", "Tony Tony.Chopper", "/Cards/OP10/OP10-011.jpg");
+const shanksBlocker = card("OP12-008", "Shanks", "/Cards/OP12/OP12-008.jpg");
+const koby = card("PRB02-001", "Koby", "/Cards/PRB02/PRB02-001.jpg");
+const luckyRouxPrb = card("PRB02-003", "Lucky Roux", "/Cards/PRB02/PRB02-003.jpg");
+const beckmann16 = card("OP16-012", "Ben Beckmann", "/Cards/OP16/OP16-012.jpg");
+const zoro = card("EB04-007", "Roronoa Zoro", "/Cards/EB04/EB04-007.jpg");
+const beckmann09 = card("OP09-009", "Ben Beckmann", "/Cards/OP09/OP09-009.jpg");
+const shanksSt23 = card("ST23-002", "Shanks", "/Cards/ST23/ST23-002.jpg");
+const shanksOp06 = card("OP06-007", "Shanks", "/Cards/OP06/OP06-007.png");
+const shanksOp09 = card("OP09-004", "Shanks", "/Cards/OP09/OP09-004.jpg");
+const comeOn = card("OP09-020", "Come On!! We'll Fight You!!", "/Cards/OP09/OP09-020.jpg");
+
+const teach16 = card("OP16-080", "Marshall.D.Teach OP16", "/Cards/OP16/OP16-080.jpg");
+const enel15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg");
+const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
+const luffy16 = card("OP16-022", "Monkey.D.Luffy OP16", "/Cards/OP16/OP16-022.jpg");
+const lucy15 = card("OP15-002", "Lucy OP15", "/Cards/OP15/OP15-002.jpg");
+const yamato16 = card("OP16-079", "Yamato OP16", "/Cards/OP16/OP16-079.jpg");
+const ace16 = card("OP16-001", "Portgas.D.Ace OP16", "/Cards/OP16/OP16-001.jpg");
+const mihawk14 = card("OP14-001", "Dracule Mihawk OP14", "/Cards/OP14/OP14-001.jpg");
+const skyLuffy16 = card("OP16-020", "Sky Island Luffy OP16", "/Cards/OP16/OP16-020.jpg");
+
+const decklist = [
+	{ ...shanksLeader, count: 1, role: "Leader" },
+	{ ...uta, count: 4, role: "Character" },
+	{ ...asl, count: 3, role: "Character" },
+	{ ...rockstar, count: 2, role: "Character" },
+	{ ...hongo, count: 4, role: "Character" },
+	{ ...luckyRoux, count: 3, role: "Character" },
+	{ ...chopper, count: 3, role: "Character" },
+	{ ...shanksBlocker, count: 3, role: "Character" },
+	{ ...koby, count: 3, role: "Character" },
+	{ ...luckyRouxPrb, count: 2, role: "Character" },
+	{ ...beckmann16, count: 4, role: "Character" },
+	{ ...zoro, count: 3, role: "Character" },
+	{ ...beckmann09, count: 3, role: "Character" },
+	{ ...shanksSt23, count: 3, role: "Character" },
+	{ ...shanksOp06, count: 2, role: "Character" },
+	{ ...shanksOp09, count: 4, role: "Character" },
+	{ ...comeOn, count: 4, role: "Event" },
+];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const mulliganKeeps = [
+	{
+		copy:
+			"One of the best opening plays. It searches a Red Hair Pirates character while also leaving behind a body that can pressure smaller opposing characters later in the game.",
+		cards: [uta],
+	},
+	{
+		copy:
+			"The other essential search card. Even when the trigger could matter, it's often better not to fire it so you keep the search effect and raise your odds of finding Ben Beckmann OP16-012.",
+		cards: [comeOn],
+	},
+	{
+		copy:
+			"If you already have a searcher, keeping a 4-cost blocker is usually excellent. Lucky Roux PRB02-003, Lucky Roux OP09-015, and Shanks OP12-008 all help stabilize the opening and bridge you cleanly into the next turn.",
+		cards: [luckyRouxPrb, luckyRoux, shanksBlocker],
+	},
+];
+
+const idealHandCards = [uta, comeOn, shanksBlocker, beckmann16, shanksOp09];
+
+const sendBackCards = [shanksOp09, beckmann16, shanksOp06];
+
+const searchPriorityCards = [uta, comeOn, beckmann16, hongo];
+
+const curveFirst = [
+	{
+		label: "1 DON!!",
+		notes: "Play Uta or Come On!! We'll Fight You!! so you can start finding the important pieces right away.",
+		cards: [uta, comeOn],
+	},
+	{
+		label: "3 DON!!",
+		notes: "Keep using your searchers and keep smoothing your hand for the rest of the curve.",
+		cards: [uta, comeOn],
+	},
+	{
+		label: "5 DON!!",
+		notes:
+			"Play a 4-cost blocker. Shanks OP12-008, Lucky Roux OP09-015, Lucky Roux PRB02-003, and Tony Tony.Chopper OP10-011 all work here. Depending on the matchup, Koby PRB02-001 is also a strong option to slow down Luffy OP16's board.",
+		cards: [shanksBlocker, luckyRoux, luckyRouxPrb, chopper, koby],
+	},
+	{
+		label: "7 DON!!",
+		notes:
+			"Roronoa Zoro is the ideal play. It pushes your leader up to 7000 power through the end of the opponent's next turn while also giving you a Rush threat that pressures the opposing board.",
+		cards: [zoro],
+	},
+	{
+		label: "9 DON!!",
+		notes:
+			"Play Shanks ST23-002 if you want to keep protecting your leader, or go with a second Roronoa Zoro if the game asks for more pressure.",
+		cards: [shanksSt23, zoro],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"From here, the goal is to chain Ben Beckmann OP16-012 with the different 10-cost Shanks depending on the matchup.",
+		cards: [beckmann16, shanksOp09, shanksOp06],
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		notes: "Start with Uta OP09-002 or Come On!! We'll Fight You!! OP09-020 to search your key pieces.",
+		cards: [uta, comeOn],
+	},
+	{
+		label: "4 DON!!",
+		notes:
+			"The choice depends on the matchup. Koby PRB02-001 controls smaller characters, Shanks OP12-008 is great into aggressive decks, Lucky Roux OP09-015 is best when the KO effect matters, and Tony Tony.Chopper OP10-011 is the harder blocker to remove.",
+		cards: [koby, shanksBlocker, luckyRoux, chopper],
+	},
+	{
+		label: "6 DON!!",
+		notes:
+			"Play a second blocker or finish your setup with another searcher if you still need one. This turn is about getting safely to your big threats while cutting down the opponent's pressure.",
+		cards: [luckyRouxPrb, luckyRoux, chopper, uta],
+	},
+	{
+		label: "8 DON!!",
+		notes:
+			"Your two best options are Ben Beckmann OP09-009, which trashes annoying characters and sets up the late game, or Shanks ST23-002, which raises your leader and cuts down the opponent's attack windows. The matchup decides which one matters more.",
+		cards: [beckmann09, shanksSt23],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"Your priority is Ben Beckmann OP16-012 + a 10-cost Shanks. With the 4 DON!! left over, you can still deploy another blocker or use power-reduction support like Hongo and Ace & Sabo & Luffy to tighten your board control.",
+		cards: [beckmann16, shanksOp09, hongo, asl],
+	},
+];
+
+const lateGameCards = [beckmann16, shanksOp09, shanksOp06, shanksSt23];
+
+const optionsCards = [
+	{
+		...shanksOp06,
+		copy:
+			"Shanks OP06-007 has become extremely important in several matchups, especially Green/Blue Luffy, Nami, Teach, Rosinante, Ace, and Lucy. Being able to KO a large threat outright can completely swing the game. By comparison, Shanks ST23-002 is still excellent for keeping pressure up and protecting your leader, but the KO version can matter more depending on the room.",
+	},
+	{
+		...zoro,
+		copy:
+			"This card is mandatory. It fixes the deck's main weakness when it goes first by giving you a real 7-DON!! curve play. On top of raising your leader to 7000, it also gives you a Rush body that can help control the opposing board.",
+	},
+	{
+		...chopper,
+		copy:
+			"Right now I prefer Tony Tony.Chopper over Uta ST23. Even if Uta is cheaper in the late game, a lot of OP16 decks remove characters based on power rather than cost. Chopper's 6000 power makes it harder to clear and a stronger blocker against aggressive decks, especially Enel.",
+	},
+	{
+		...koby,
+		copy:
+			"An excellent card in the current metagame, especially into Green/Blue Luffy, Lucy, Teach, and Enel. On top of drawing a card every turn, Koby KOs a small opposing character every turn, which lowers pressure while improving your hand quality.",
+	},
+	{
+		...luckyRoux,
+		copy:
+			"The KO Lucky Roux is very strong. Its effect removes a lot of important threats depending on the matchup, especially against Yamato, Green/Blue Luffy, and Enel. It's more flexible than Lucky Roux PRB02-003, even if that version still has real draw value.",
+	},
+	{
+		...luckyRouxPrb,
+		copy:
+			"This version lets you trash a dead card to draw two fresh ones, but 2000 power makes it very easy to remove in the current metagame.",
+	},
+	{
+		...asl,
+		copy:
+			"One of the best support cards in the deck. It lowers opposing characters more than Hongo does, which lets Ben Beckmann OP09-009 trash opposing characters all the way up to 9000 power.",
+	},
+	{
+		...rockstar,
+		copy:
+			"A very narrow tech, mostly for Lucy and the Shanks mirror. It shuts off some very annoying KO effects and protects your 10-cost Shanks well. It matters much less into most of the other decks, but it's still a 2K counter you can tutor with your searchers.",
+	},
+	{
+		...beckmann09,
+		copy:
+			"This isn't just a tech card. It's one of the deck's real pillars. It's especially strong into characters with On KO effects because it trashes them directly, and once you pair it with Hongo or Ace & Sabo & Luffy, it becomes one of your cleanest answers to many large threats in the format.",
+	},
+];
+
+const matchups = [
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: teach16,
+		notes: [
+			"Your goal is to cut down the early pressure with your Shanks blockers.",
+			"Use Koby to remove Lafitte and the other small characters.",
+			"If Teach plays Shiryu, you can punish the window with Shanks ST23-002 into Roronoa Zoro to pressure the board back.",
+			"Save Shanks OP06-007 to KO their Marshall D. Teach bodies once they land.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: enel15,
+		notes: [
+			"This matchup is difficult, but it's very playable.",
+			"Go first.",
+			"Get to Shanks ST23-002 and Roronoa Zoro quickly so your leader stays at 7000 power.",
+			"Use Koby and Lucky Roux OP09-015 to handle their smaller characters.",
+			"Force Enel to spend removals before your 10-cost Shanks come down.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: nami11,
+		notes: [
+			"Nami runs a lot of On KO effects, which makes Ben Beckmann OP09-009 especially punishing.",
+			"Use Ben Beckmann OP09-009 to trash Nami, Marco, and other annoying characters.",
+			"Raise your leader to 7000 to cut down the pressure from opposing attacks.",
+			"Keep Shanks OP06-007 ready to KO Edward Newgate after a power drop from Hongo if needed.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: luffy16,
+		notes: [
+			"The matchup is easier when you go second.",
+			"Your blockers and 7000-power leader do a lot to cut down Luffy's smaller attacks.",
+			"Trash Boa Hancock quickly with Ben Beckmann OP09-009 or KO it with Shanks OP06-007.",
+			"Use Koby to pick off the small characters.",
+			"Keep attacking Life instead of trying to starve Luffy.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: lucy15,
+		notes: [
+			"This matchup depends heavily on how quickly you can remove Cavendish.",
+			"Make Cavendish your absolute top priority.",
+			"Use Koby to KO Leo and Rebecca before you play Ben Beckmann OP09-009.",
+			"Rockstar is one of the best tech cards you can have here.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: yamato16,
+		notes: [
+			"Yamato leans on repeated attack turns, which makes your 7000-power leader especially valuable.",
+			"Raise your leader to 7000 as quickly as possible.",
+			"If you can, use Lucky Roux OP09-015 to stop 6-cost Yamato from getting its effect.",
+			"If the opponent starts chaining unblockable Yamatos, turn the game into a damage race.",
+		],
+	},
+	{
+		label: "Slightly Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: ace16,
+		notes: [
+			"Shanks has enough tools to survive until its 10-cost Shanks take over the game.",
+			"Save Shanks OP06-007 to KO Edward Newgate.",
+			"Use your blockers to slow the opening turns.",
+			"Once your 10-cost Shanks are online, keep the pressure up without overcommitting.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: mihawk14,
+		notes: [
+			"Your game plan stays solid because of the blocker count and the size of your late-game threats.",
+			"Use Lucky Roux OP09-015 to KO opposing characters.",
+			"Keep raising your leader's power.",
+			"Save Shanks OP06-007 for Law & Bepo.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: skyLuffy16,
+		notes: [
+			"Turning your leader into a 7000-power leader cuts down a lot of the opponent's pressure.",
+			"Get to Shanks ST23-002 or Roronoa Zoro quickly.",
+			"Protect your blockers.",
+			"Wait for your 10-cost Shanks to take full control back.",
+		],
+	},
+];
+
+const tips = [
+	{
+		copy:
+			"Your goal is to survive to 10 DON!!. The deck isn't trying to win quickly. It wants to take over the game step by step by chaining Ben Beckmann OP16-012 into 10-cost Shanks, so every resource decision should serve that plan.",
+		cards: [beckmann16, shanksOp09],
+	},
+	{
+		copy:
+			"Consistency is everything here. That's why the list plays 8 search cards. Finding Ben Beckmann OP16-012 matters more than squeezing value out of a trigger, even if that means not using the trigger on Come On!! We'll Fight You!!.",
+		cards: [uta, comeOn],
+	},
+	{
+		copy:
+			"Always match your blocker to the matchup. Shanks OP12-008, Lucky Roux OP09-015, Lucky Roux PRB02-003, and Tony Tony.Chopper all do different jobs, and the right blocker at the right time often decides the game.",
+		cards: [shanksBlocker, luckyRoux, luckyRouxPrb, chopper],
+	},
+	{
+		copy:
+			"Take full advantage of your 7000-power leader. Shanks ST23-002 and Roronoa Zoro make the leader much harder to pressure in an OP16 format filled with 5000- and 6000-power swings.",
+		cards: [shanksSt23, zoro],
+	},
+	{
+		copy:
+			"Don't rush your biggest cards. In a lot of matchups, it's better to play Shanks ST23-002 or Roronoa Zoro before the 10-cost Shanks so the opponent has to spend their removals on those earlier threats first.",
+		cards: [shanksSt23, zoro, shanksOp09],
+	},
+	{
+		copy:
+			"Going first isn't nearly as punishing as it used to be. Roronoa Zoro gives the deck a real odd-DON!! curve and fixes what used to be one of Shanks' biggest structural problems.",
+		cards: [zoro],
+	},
+	{
+		copy:
+			"Think about power reduction before you go for the KO. Cards like Hongo and Ace & Sabo & Luffy let Ben Beckmann OP09-009 and Shanks OP06-007 reach the thresholds they need to answer much bigger characters.",
+		cards: [hongo, asl, beckmann09, shanksOp06],
+	},
+	{
+		copy:
+			"Shanks rewards strong decision-making. The deck doesn't really have free matchups or impossible matchups. Most of your wins come from picking the right card for the matchup and managing your resources cleanly all the way to the late game.",
+		cards: [shanksLeader],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Shanks OP09 Deck Guide</h1>
+				<p>
+					Shanks OP09 is a late-game red deck built to survive cleanly into 10 DON!!, then lock games up by
+					chaining Ben Beckmann and different 10-cost Shanks based on the matchup. The list doesn't race often,
+					but once the curve lines up, it becomes extremely hard to break through.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Shanks OP09 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header decklist-header">
+				<div class="decklist-title-row">
+					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<p>Main list for Shanks OP09 in the OP16 format.</p>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((entry) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={entry.img}
+						data-name={`${entry.code} ${entry.name}`}
+					>
+						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{entry.count}x</span>
+							<div>
+								<div class="deck-name">{entry.name}</div>
+								<div class="deck-code">{entry.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{entry.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>
+						The mulligan is mostly about consistency. You almost always want to start with at least one search
+						card so you can find Ben Beckmann OP16-012 quickly and line up the rest of your curve.
+					</p>
+				</div>
+			</div>
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>Cards to Prioritize</h3>
+					<div class="mulligan-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((entryCard) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Ideal Hand</h3>
+					<div class="sendback-grid ideal-grid five-up-grid">
+						{idealHandCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>A searcher: Uta or Come On!! We'll Fight You!!</li>
+						<li>A 4-cost blocker</li>
+						<li>A clean curve into Ben Beckmann and then 10-cost Shanks</li>
+					</ul>
+					<p class="mulligan-text">
+						This deck is built to survive cleanly into 10 DON!!. If the hand follows that curve well, you
+						should almost always keep it.
+					</p>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Hands to Send Back</h3>
+					<div class="sendback-grid">
+						{sendBackCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>No searcher at all</li>
+						<li>No realistic curve into your setup turns</li>
+						<li>Mostly late-game cards with no clean way to get there fast</li>
+					</ul>
+					<p class="mulligan-text">
+						The absolute priority is still consistency. Finding Ben Beckmann OP16-012 quickly matters a lot
+						more than starting with multiple expensive cards.
+					</p>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Search Priorities</h3>
+					<div class="sendback-grid">
+						{searchPriorityCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>Do I already have enough 8000-power characters?</li>
+						<li>Do I have a character that can attack with Rush next turn?</li>
+						<li>Do I have enough counters?</li>
+						<li>Have I already found Ben Beckmann OP16-012?</li>
+					</ul>
+					<p class="mulligan-text">
+						Once those boxes are checked, adjust your searches to the matchup and to the exact turn cycle
+						you're trying to build.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>
+						Going second is better in most matchups because it lets the deck follow its best curve cleanly:
+						2, 4, 6, 8, then 10 DON!!. That sequence gets your blockers online before Ben Beckmann and the
+						different 10-cost Shanks take over. Enel is the big exception where going first is usually better.
+					</p>
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going First</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Late Game</h3>
+				<div class="curve-rows">
+					<div class="curve-row">
+						<div class="curve-label">Loop</div>
+						<div class="curve-cards">
+							{lateGameCards.map((entryCard) => (
+								<button
+									class="mini-card curve-card"
+									type="button"
+									data-card-preview
+									data-full={entryCard.img}
+									data-name={`${entryCard.code} ${entryCard.name}`}
+								>
+									<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+									<div class="mini-label">{entryCard.name}</div>
+								</button>
+							))}
+						</div>
+						<div class="curve-note">
+							Once Ben Beckmann OP16-012 is down, the plan is simple: keep chaining 10-cost Shanks while your
+							blockers protect the board. The more Beckmanns and Shanks you stack, the harder it becomes for
+							the opponent to come back into the game.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tech Cards</h2>
+					<p>The list is tuned for consistency, but these slots matter a lot depending on the room.</p>
+				</div>
+			</div>
+			<div class="options-rich-grid">
+				{optionsCards.map((entryCard) => (
+					<div class="option-note-card glow-block">
+						<button
+							class="option-card"
+							type="button"
+							data-card-preview
+							data-full={entryCard.img}
+							data-name={`${entryCard.code} ${entryCard.name}`}
+						>
+							<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{entryCard.name}</div>
+								<div class="deck-code">{entryCard.code}</div>
+							</div>
+						</button>
+						<p>{entryCard.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>How the main OP16 leaders line up against Shanks.</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Core reminders for Shanks OP09 in the OP16 format.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""}`}>
+						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
+							<div class="tip-cards">
+								{tip.cards.map((entryCard) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<p>{tip.copy}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: var(--radius-md);
+	}
+
+	.tip-card {
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.tip-card h3,
+	.mulligan-copy h4 {
+		margin: 0;
+	}
+
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.five-up-grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-up {
+		color: #7ef29a;
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down {
+		color: #ff8a8a;
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	.matchup-name {
+		font-weight: 600;
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid,
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 1fr;
+		}
+
+		.sendback-grid,
+		.five-up-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
+		}
+
+		.section-header {
+			gap: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid,
+		.five-up-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
+		}
+
+		.tip-row .tip-cards {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
+		}
+
+		.tip-card.multi-card-tip .tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.tip-card.multi-card-tip .tip-cards {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: 0.55rem;
+			flex-wrap: nowrap;
+		}
+
+		.tip-card.multi-card-tip p {
+			grid-column: 1;
+			margin-top: 0;
+		}
+	}
+</style>

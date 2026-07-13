@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { getAffiliateCard } from "../../../lib/affiliateCards";
 import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
 
 export const getStaticPaths = () =>
@@ -32,6 +33,7 @@ const expandSimLines = (count, code) => {
 };
 
 const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, card.code)).join("\n");
+const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code));
 ---
 
 <MainLayout title={title} description={description} noindex={true}>
@@ -106,22 +108,65 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	<section class="detail-decklist">
 		<div class="container">
 			<div class="section-header">
-				<div>
+				<div class="detail-decklist-heading">
 					<h2>Decklist</h2>
 					<p>Complete tournament decklist.</p>
 				</div>
+				{
+					hasAffiliateCards && (
+						<button
+							class="price-toggle is-active"
+							type="button"
+							data-price-toggle
+							aria-pressed="true"
+							aria-label="Toggle affiliate price badges"
+						>
+							<span class="price-toggle-track" aria-hidden="true">
+								<span class="price-toggle-thumb"></span>
+							</span>
+							<span class="price-toggle-label">Show Prices</span>
+						</button>
+					)
+				}
 			</div>
 			<div class="detail-grid">
-				{entry.cards.map((card) => (
-					<button class="detail-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img src={card.img} alt={`${card.code} ${card.name}`} loading="lazy" />
-						<div class="detail-card-copy">
-							<span class="detail-card-count">{card.count}x</span>
-							<div class="detail-card-name">{card.name}</div>
-							<div class="detail-card-code">{card.code}</div>
+				{entry.cards.map((card) => {
+					const affiliateCard = getAffiliateCard(card.code);
+
+					return (
+						<div class="detail-card">
+							<div class="detail-card-media">
+								<button
+									class="detail-card-preview"
+									type="button"
+									data-card-preview
+									data-full={card.img}
+									data-name={`${card.code} ${card.name}`}
+								>
+									<img src={card.img} alt={`${card.code} ${card.name}`} loading="lazy" />
+								</button>
+								{
+									affiliateCard && (
+										<a
+											class="detail-affiliate-link"
+											href={affiliateCard.affiliateUrl}
+											target="_blank"
+											rel="nofollow sponsored noopener"
+											data-affiliate-badge
+										>
+											{affiliateCard.price}
+										</a>
+									)
+								}
+							</div>
+							<div class="detail-card-copy">
+								<span class="detail-card-count">{card.count}x</span>
+								<div class="detail-card-name">{card.name}</div>
+								<div class="detail-card-code">{card.code}</div>
+							</div>
 						</div>
-					</button>
-				))}
+					);
+				})}
 			</div>
 		</div>
 	</section>
@@ -196,6 +241,8 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	});
 
 	const copySimButton = document.querySelector("[data-copy-sim]");
+	const priceToggle = document.querySelector("[data-price-toggle]");
+	const affiliateBadges = document.querySelectorAll("[data-affiliate-badge]");
 
 	copySimButton?.addEventListener("click", async () => {
 		const deckCode = copySimButton.getAttribute("data-sim-deck");
@@ -219,6 +266,16 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 			copySimButton.textContent = "Copy for Sim";
 		}, 1800);
 	});
+
+	priceToggle?.addEventListener("click", () => {
+		const isActive = priceToggle.getAttribute("aria-pressed") !== "false";
+		const nextActive = !isActive;
+		priceToggle.setAttribute("aria-pressed", String(nextActive));
+		priceToggle.classList.toggle("is-active", nextActive);
+		affiliateBadges.forEach((badge) => {
+			badge.classList.toggle("is-hidden", !nextActive);
+		});
+	});
 </script>
 
 <style>
@@ -240,6 +297,17 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 		flex-wrap: wrap;
 		gap: 0.7rem;
 		margin-top: 1rem;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.detail-decklist-heading {
+		min-width: 0;
 	}
 
 	.detail-badge,
@@ -292,6 +360,52 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	.copy-sim-button {
 		font-family: inherit;
 		font-weight: 700;
+	}
+
+	.price-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: var(--text-100);
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.price-toggle-track {
+		position: relative;
+		width: 46px;
+		height: 28px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+		transition: background 160ms ease;
+	}
+
+	.price-toggle-thumb {
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: #ffffff;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+		transition: transform 160ms ease;
+	}
+
+	.price-toggle.is-active .price-toggle-track {
+		background: #1e90ff;
+	}
+
+	.price-toggle.is-active .price-toggle-thumb {
+		transform: translateX(18px);
+	}
+
+	.price-toggle-label {
+		white-space: nowrap;
 	}
 
 	.detail-sidecard {
@@ -349,12 +463,22 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	.detail-card {
 		padding: 0.45rem;
 		text-align: left;
-		cursor: pointer;
 		display: grid;
 		grid-template-rows: auto 1fr;
 		align-content: start;
 		gap: 0.4rem;
 		min-width: 0;
+	}
+
+	.detail-card-media {
+		position: relative;
+	}
+
+	.detail-card-preview {
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
 	}
 
 	.detail-card img {
@@ -392,6 +516,39 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	.detail-card-code {
 		font-size: 0.72rem;
 		color: var(--text-300);
+	}
+
+	.detail-affiliate-link {
+		position: absolute;
+		left: 0.38rem;
+		bottom: 1.05rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		max-width: calc(100% - 0.76rem);
+		padding: 0.22rem 0.42rem;
+		border-radius: 8px;
+		background: rgba(8, 18, 28, 0.92);
+		border: 1px solid rgba(120, 214, 255, 0.2);
+		color: #d7f2ff;
+		font-size: 0.68rem;
+		font-weight: 800;
+		text-decoration: none;
+		line-height: 1;
+		text-align: center;
+		backdrop-filter: blur(6px);
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		z-index: 2;
+	}
+
+	.detail-affiliate-link:hover {
+		background: rgba(12, 28, 42, 0.96);
+		color: #effbff;
+	}
+
+	.detail-affiliate-link.is-hidden {
+		display: none;
 	}
 
 	.card-modal {
@@ -450,6 +607,15 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 	}
 
 	@media (max-width: 900px) {
+		.section-header {
+			align-items: stretch;
+			flex-direction: column;
+		}
+
+		.price-toggle {
+			align-self: flex-start;
+		}
+
 		.card-modal {
 			padding: 0 !important;
 		}
