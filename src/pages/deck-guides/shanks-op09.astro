@@ -47,11 +47,11 @@ const teach16 = card("OP16-080", "Marshall.D.Teach OP16", "/Cards/OP16/OP16-080.
 const enel15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg");
 const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
 const luffy16 = card("OP16-022", "Monkey.D.Luffy OP16", "/Cards/OP16/OP16-022.jpg");
+const luffy15 = card("OP15-098", "Monkey.D.Luffy OP15", "/Cards/OP15/OP15-098.jpg");
 const lucy15 = card("OP15-002", "Lucy OP15", "/Cards/OP15/OP15-002.jpg");
 const yamato16 = card("OP16-079", "Yamato OP16", "/Cards/OP16/OP16-079.jpg");
 const ace16 = card("OP16-001", "Portgas.D.Ace OP16", "/Cards/OP16/OP16-001.jpg");
-const mihawk14 = card("OP14-001", "Dracule Mihawk OP14", "/Cards/OP14/OP14-001.jpg");
-const skyLuffy16 = card("OP16-020", "Sky Island Luffy OP16", "/Cards/OP16/OP16-020.jpg");
+const mihawk14 = card("OP14-020", "Dracule Mihawk OP14", "/Cards/OP14/OP14-020.jpg");
 
 const decklist = [
 	{ ...shanksLeader, count: 1, role: "Leader" },
@@ -321,7 +321,7 @@ const matchups = [
 		label: "Even",
 		tone: "even",
 		icon: "≈",
-		leader: skyLuffy16,
+		leader: luffy15,
 		notes: [
 			"Turning your leader into a 7000-power leader cuts down a lot of the opponent's pressure.",
 			"Get to Shanks ST23-002 or Roronoa Zoro quickly.",
@@ -520,33 +520,6 @@ const tips = [
 					<p class="mulligan-text">
 						The absolute priority is still consistency. Finding Ben Beckmann OP16-012 quickly matters a lot
 						more than starting with multiple expensive cards.
-					</p>
-				</div>
-				<div class="tip-card glow-block">
-					<h3>Search Priorities</h3>
-					<div class="sendback-grid">
-						{searchPriorityCards.map((entryCard) => (
-							<button
-								class="mini-card sendback-card"
-								type="button"
-								data-card-preview
-								data-full={entryCard.img}
-								data-name={`${entryCard.code} ${entryCard.name}`}
-							>
-								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-								<div class="mini-label sendback-label">{entryCard.name}</div>
-							</button>
-						))}
-					</div>
-					<ul class="bullet-list">
-						<li>Do I already have enough 8000-power characters?</li>
-						<li>Do I have a character that can attack with Rush next turn?</li>
-						<li>Do I have enough counters?</li>
-						<li>Have I already found Ben Beckmann OP16-012?</li>
-					</ul>
-					<p class="mulligan-text">
-						Once those boxes are checked, adjust your searches to the matchup and to the exact turn cycle
-						you're trying to build.
 					</p>
 				</div>
 			</div>
@@ -993,6 +966,17 @@ const tips = [
 		align-items: center;
 	}
 
+	.mulligan-row:nth-child(3) {
+		grid-template-columns: 1fr;
+		align-items: start;
+	}
+
+	.mulligan-row:nth-child(3) .tip-cards {
+		width: 100%;
+		justify-content: center;
+		flex-wrap: nowrap;
+	}
+
 	.mulligan-copy p,
 	.mulligan-text,
 	.curve-note,
@@ -1010,6 +994,16 @@ const tips = [
 
 	.five-up-grid {
 		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	@media (max-width: 640px) {
+		.ideal-grid.five-up-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		#mulligan .tip-card:nth-of-type(3) .sendback-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
 	}
 
 	.sendback-card {
@@ -1258,6 +1252,43 @@ const tips = [
 		}
 	}
 
+	@media (min-width: 980px) {
+		#mulligan .section-header p {
+			white-space: nowrap;
+		}
+
+		#curve .section-header > div {
+			width: 100%;
+			max-width: 980px;
+		}
+
+		#curve .section-header p {
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem 1.5rem;
+		}
+
+		.mulligan-row:nth-child(3) {
+			grid-column: 1 / -1;
+			grid-template-columns: 1fr;
+			align-items: start;
+			justify-items: center;
+		}
+
+		.mulligan-row:nth-child(3) .tip-cards {
+			width: 100%;
+			justify-content: center;
+			flex-wrap: nowrap;
+		}
+
+		.mulligan-row:nth-child(3) .mulligan-copy {
+			max-width: 820px;
+		}
+	}
+
 	.card-modal {
 		position: fixed;
 		inset: 0;
@@ -1435,6 +1466,61 @@ const tips = [
 		.tip-card.multi-card-tip p {
 			grid-column: 1;
 			margin-top: 0;
+		}
+
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
+		}
+
+		.curve-cards {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.45rem;
+			justify-items: start;
+			align-items: start;
+		}
+
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+		}
+
+		.curve-cards .mini-card {
+			width: 100%;
+		}
+
+		.curve-cards .mini-card .card-wrap {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-card.has-badge .card-wrap {
+			max-width: 96px;
+		}
+
+		.curve-card.has-badge .card-main-image {
+			max-width: 96px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.mini-card img.card-badge-image {
+			right: 0.18rem;
+			bottom: 0.18rem;
+			width: 22px !important;
+			max-width: 22px !important;
 		}
 	}
 </style>
