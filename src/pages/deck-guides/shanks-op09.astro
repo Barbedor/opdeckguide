@@ -498,20 +498,6 @@ const tips = [
 				</div>
 				<div class="tip-card glow-block">
 					<h3>Hands to Send Back</h3>
-					<div class="sendback-grid">
-						{sendBackCards.map((entryCard) => (
-							<button
-								class="mini-card sendback-card"
-								type="button"
-								data-card-preview
-								data-full={entryCard.img}
-								data-name={`${entryCard.code} ${entryCard.name}`}
-							>
-								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-								<div class="mini-label sendback-label">{entryCard.name}</div>
-							</button>
-						))}
-					</div>
 					<ul class="bullet-list">
 						<li>No searcher at all</li>
 						<li>No realistic curve into your setup turns</li>
