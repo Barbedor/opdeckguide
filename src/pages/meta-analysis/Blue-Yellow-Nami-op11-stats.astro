@@ -1,0 +1,406 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "OP11 Blue/Yellow Nami stats in OP16 Format";
+const description =
+	"Turn-order win rate article for Blue/Yellow Nami in the OP16 format, with a visual breakdown of first and second player performance.";
+
+const summary = {
+	totalGames: "33001",
+	winRate: "54.2%",
+	wins: "17901",
+	losses: "15100",
+};
+
+const leaderHeroArt = "/assets/guides/nami-op11.png";
+const getRateTone = (value: string) => {
+	const numeric = Number.parseFloat(value.replace("%", "").trim());
+	if (numeric < 50) return "turn-rate-negative";
+	if (numeric > 50) return "turn-rate-positive";
+	return "turn-rate-neutral";
+};
+
+const featuredTurnOrderStats = [
+	{ label: "Monkey D. Luffy", code: "OP16-022", art: "/assets/guides/Luffy op16.png", first: "60%", second: "58.8%" },
+	{ label: "Marshall D. Teach", code: "OP16-080", art: "/assets/guides/Teach-op16.png", first: "26.5%", second: "44.5%" },
+	{ label: "Nami", code: "OP11-041", art: "/assets/guides/nami-op11.png", first: "51.3%", second: "48.7%" },
+	{ label: "Enel", code: "OP15-058", art: "/assets/guides/enel-op15.png", first: "75.8%", second: "56.7%" },
+	{ label: "Donquixote Rosinante", code: "OP12-061", art: "/assets/guides/rosinante-op12.png", first: "56.6%", second: "45%" },
+	{ label: "Yamato", code: "OP16-079", art: "/assets/guides/yamato-op16.png", first: "74%", second: "75.6%" },
+	{ label: "Boa Hancock", code: "OP14-041", art: "/assets/guides/boa-hancock-op14.png", first: "62.1%", second: "66.1%" },
+	{ label: "Lucy", code: "OP15-002", art: "/assets/guides/lucy-op15.png", first: "34.5%", second: "35.6%" },
+	{ label: "Portgas D. Ace", code: "OP13-002", art: "/assets/guides/portgas-d-ace-op13.png", first: "53.8%", second: "64.1%" },
+	{ label: "Shanks", code: "OP09-001", art: "/assets/guides/Shanks op09.png", first: "50.5%", second: "51.3%" },
+	{ label: "Koby", code: "OP11-001", art: "/assets/guides/Koby OP11-001.png", first: "58.9%", second: "66.2%" },
+	{ label: "Portgas D. Ace", code: "OP13-002", art: "/assets/guides/portgas-d-ace-op13.png", first: "26.5%", second: "32.6%" },
+	{ label: "Monkey D. Luffy", code: "OP13-001", art: "/assets/guides/monkey-d-luffy-op13.png", first: "38.8%", second: "52.3%" },
+	{ label: "Monkey D. Luffy", code: "ST30-001", art: "/assets/guides/Luffy-st30.png", first: "77.2%", second: "69.7%" },
+	{ label: "Sengoku", code: "OP16-060", art: "/assets/guides/Sengoku-op16.png", first: "61.5%", second: "46.2%" },
+	{ label: "Crocodile", code: "OP14-079", art: "/assets/guides/crocodile-op14.png", first: "53%", second: "47.6%" },
+	{ label: "Dracule Mihawk", code: "OP14-020", art: "/assets/guides/dracule-mihawk-op14.png", first: "46.9%", second: "32.6%" },
+	{ label: "Kalgara", code: "OP08-098", art: "/assets/guides/Kalgara OP08-098.png", first: "78.5%", second: "59%" },
+	{ label: "Gol.D.Roger", code: "OP13-003", art: "/assets/guides/Gol.D.Roger OP13-003.png", first: "40.8%", second: "40.8%" },
+	{ label: "Monkey D. Luffy", code: "ST29-001", art: "/assets/guides/monkey-d-luffy-st29.png", first: "73.2%", second: "62.9%" },
+	{ label: "Krieg", code: "OP15-001", art: "/assets/guides/Krieg OP15-001.png", first: "51.2%", second: "59.5%" },
+	{ label: "Marshall D. Teach", code: "OP09-081", art: "/assets/guides/Marshall D. Teach OP09-081.png", first: "48.4%", second: "58.1%" },
+	{ label: "Nico Robin", code: "OP09-062", art: "/assets/guides/Nico-Robin-op09.png", first: "67.4%", second: "77.1%" },
+	{ label: "Jewelry Bonney", code: "EB04-001", art: "/assets/guides/Jewelry Bonney EB04-001.png", first: "52.7%", second: "39%" },
+	{ label: "Monkey D. Luffy", code: "OP11-040", art: "/assets/guides/luffy op11.png", first: "32.9%", second: "45.6%" },
+	{ label: "Enel", code: "OP05-098", art: "/assets/guides/Enel OP05-098.png", first: "29.7%", second: "44%" },
+	{ label: "Monkey D. Luffy", code: "OP15-098", art: "/assets/guides/monkey-d-luffy-op15.png", first: "66.7%", second: "72.6%" },
+	{ label: "Sabo", code: "OP13-004", art: "/assets/guides/Sabo OP13-004.png", first: "33.7%", second: "66.7%" },
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero meta-article-hero">
+		<div class="container article-hero-grid">
+			<div>
+				<span class="hero-badge">Meta Article</span>
+				<h1>OP11 Blue/Yellow Nami stats in OP16 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Blue and Yellow Nami leader art" loading="eager" />
+				</div>
+				<p class="article-kicker">Turn-order stats for Blue/Yellow Nami in the OP16 format.</p>
+				<p>
+					Blue/Yellow Nami remains one of the more resilient control leaders in the current meta. Her
+					self-protection tools, paired with a steady flow of healing effects, make her difficult to close out,
+					and the deck continues to reward patient, disciplined play.
+				</p>
+				<p>
+					By managing resources carefully and absorbing early pressure, Nami can outlast aggressive decks before
+					taking over through gradual advantage. This article presents a turn-order snapshot for the OP16 format
+					so you can see how Blue/Yellow Nami performs when going first or second across the visible matchups.
+				</p>
+				<p class="deck-guide-link-copy">
+					Need the full list and matchup notes? Read the
+					<a class="deck-guide-link" href="/deck-guides/nami-op11/">Nami OP11 Deck Guide</a>.
+				</p>
+			</div>
+			<div class="article-hero-side">
+				<div class="hero-summary-card">
+					<div class="hero-summary-label">Format</div>
+					<strong>OP16</strong>
+					<div class="hero-summary-divider"></div>
+					<div class="hero-summary-label">Source Sample</div>
+					<strong>{summary.totalGames} Games</strong>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats-section">
+		<div class="container stats-stack">
+			<article class="stats-panel">
+				<div class="section-header">
+					<div>
+						<h2>1st / 2nd Win Rate Stats</h2>
+						<p>
+							How does Blue/Yellow Nami perform going 1st vs. 2nd? These win rate stats break down how turn
+							order affects Blue/Yellow Nami&apos;s gameplay and provide crucial insight for deciding how to
+							approach specific matchups.
+						</p>
+					</div>
+				</div>
+
+				<div class="summary-metrics">
+					<div class="summary-metric">
+						<span class="summary-label">Total Games</span>
+						<strong>{summary.totalGames}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">Winrate</span>
+						<strong>{summary.winRate}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">W / L</span>
+						<strong class="wl-stat">
+							<span class="wl-win">{summary.wins}</span>/<span class="wl-loss">{summary.losses}</span>
+						</strong>
+					</div>
+				</div>
+
+				<div class="turn-order-grid">
+					{featuredTurnOrderStats.map((entry) => (
+						<div class="turn-order-card">
+							<div class="leader-art-frame">
+								<img src={entry.art} alt={`${entry.label} leader art`} loading="lazy" />
+							</div>
+							<div class="turn-order-meta">
+								<div class="turn-order-name">{entry.label}</div>
+								<div class="turn-order-code">{entry.code}</div>
+							</div>
+							<div class="turn-order-split">
+								<div class={`turn-rate ${getRateTone(entry.first)}`}>
+									<span class="turn-label">1st</span>
+									<strong>{entry.first}</strong>
+								</div>
+								<div class={`turn-rate ${getRateTone(entry.second)}`}>
+									<span class="turn-label">2nd</span>
+									<strong>{entry.second}</strong>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</article>
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	.meta-article-hero {
+		padding-bottom: 34px;
+	}
+
+	.article-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) 260px;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.article-kicker {
+		color: var(--text-200);
+		font-weight: 600;
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(255, 174, 60, 0.18), transparent 36%),
+			radial-gradient(circle at right, rgba(67, 132, 255, 0.18), transparent 38%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: 50% 16%;
+	}
+
+	.hero-summary-card {
+		background:
+			radial-gradient(circle at top left, rgba(250, 204, 21, 0.24), transparent 46%),
+			radial-gradient(circle at top right, rgba(59, 130, 246, 0.24), transparent 44%),
+			linear-gradient(135deg, rgba(250, 204, 21, 0.12), rgba(59, 130, 246, 0.1) 58%, rgba(12, 17, 30, 0.94));
+		border: 1px solid rgba(255, 200, 60, 0.2);
+		border-radius: 20px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.45rem;
+		box-shadow: var(--shadow);
+	}
+
+	.hero-summary-label {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.hero-summary-divider {
+		height: 1px;
+		background: rgba(255, 255, 255, 0.08);
+		margin: 0.2rem 0 0.15rem;
+	}
+
+	.stats-section {
+		padding: 0 0 56px;
+	}
+
+	.stats-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.stats-panel {
+		background: rgba(10, 14, 24, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 22px;
+		padding: 1.25rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.section-header h2 {
+		margin-bottom: 0.55rem;
+	}
+
+	.section-header p {
+		margin: 0;
+		max-width: 760px;
+		color: var(--text-200);
+	}
+
+	.summary-metrics {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.summary-metric {
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		padding: 0.95rem 0.9rem;
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.summary-label {
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #8fb3ff;
+	}
+
+	.summary-metric strong {
+		font-size: 1rem;
+	}
+
+	.wl-stat {
+		display: inline-flex;
+		gap: 0.05rem;
+		align-items: baseline;
+	}
+
+	.wl-win {
+		color: #57d18b;
+	}
+
+	.wl-loss {
+		color: #ff8d6f;
+	}
+
+	.turn-order-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.turn-order-card {
+		border: 1px solid var(--border);
+		border-radius: 18px;
+		padding: 0.8rem;
+		background: rgba(7, 10, 18, 0.92);
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.leader-art-frame img {
+		width: 100%;
+		aspect-ratio: 1.75 / 1;
+		border-radius: 14px;
+		display: block;
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.turn-order-meta {
+		display: grid;
+		gap: 0.18rem;
+	}
+
+	.turn-order-name {
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.turn-order-code {
+		color: #9fb7ff;
+		font-size: 0.82rem;
+	}
+
+	.turn-order-split {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem;
+	}
+
+	.turn-rate {
+		border-radius: 14px;
+		padding: 0.55rem 0.45rem;
+		display: grid;
+		justify-items: center;
+		gap: 0.2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.turn-rate-positive {
+		background: rgba(19, 76, 52, 0.36);
+		border-color: rgba(70, 200, 128, 0.28);
+	}
+
+	.turn-rate-negative {
+		background: rgba(82, 28, 38, 0.32);
+		border-color: rgba(215, 92, 122, 0.24);
+	}
+
+	.turn-rate-neutral {
+		background: rgba(55, 68, 95, 0.3);
+		border-color: rgba(149, 165, 195, 0.18);
+	}
+
+	.turn-label {
+		color: var(--text-300);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.turn-rate strong {
+		color: var(--text-100);
+		font-size: 0.94rem;
+	}
+
+	.deck-guide-link-copy {
+		margin-top: 0.2rem;
+	}
+
+	.deck-guide-link {
+		color: #ff8b3d;
+		font-weight: 700;
+	}
+
+	.deck-guide-link:hover {
+		color: #ffb06f;
+	}
+
+	@media (max-width: 900px) {
+		.article-hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.summary-metrics {
+			grid-template-columns: 1fr;
+		}
+
+		.turn-order-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.article-leader-hero img {
+			aspect-ratio: 1.85 / 1;
+			object-position: 50% 16%;
+		}
+
+		.turn-order-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.8rem;
+		}
+
+		.turn-order-card {
+			padding: 0.7rem;
+		}
+	}
+</style>

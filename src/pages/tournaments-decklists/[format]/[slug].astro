@@ -11,7 +11,12 @@ export const getStaticPaths = () =>
 
 const { entry } = Astro.props;
 
-const displayTitle = entry.title.replace(/\s+(OP\d+|EB\d+|ST\d+)\s+/, (_, code) => ` (Format ${code}) `);
+const forcedFormatCode =
+	entry.viewSlug === "op16-east" || entry.viewSlug === "op16-west" ? "OP16" : null;
+const displayTitle = entry.title.replace(
+	/\s+(OP\d+|EB\d+|ST\d+)\s+/,
+	(_, code) => ` (Format ${forcedFormatCode ?? code}) `,
+);
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];

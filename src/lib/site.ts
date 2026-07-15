@@ -10,6 +10,8 @@ export const staticSitePaths = [
 	"/meta-analysis/",
 	"/meta-analysis/Purple-Yellow-Rosinante-op12-stats/",
 	"/meta-analysis/Green-Blue-Luffy-op16-stats/",
+	"/meta-analysis/Blue-Yellow-Nami-op11-stats/",
+	"/meta-analysis/Purple-Enel-op15-stats/",
 	"/meta-analysis/dracule-mihawk-op14-stats-in-op15/",
 	"/meta-analysis/enel-op15-stats-in-op15/",
 	"/meta-analysis/lucy-op15-stats-in-op15/",
