@@ -3,12 +3,48 @@ import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
 const hiddenExtensions = new Set(["back_cards", "don"]);
+const variantPriority = ["base", "ALT", "MANGA", "ALT GOLD"];
 const manualCardOverrides = {
 	OP17: {
 		"op17-001 edward newgate": {
 			code: "OP17-001",
 			name: "Edward Newgate",
 			color: "Red",
+		},
+		"op17-005 edward newgate": {
+			code: "OP17-005",
+			name: "Edward Newgate",
+			color: "Red",
+		},
+		"shanks op17-020": {
+			code: "OP17-020",
+			name: "Shanks",
+			color: "Green",
+		},
+		"shanks op17-022": {
+			code: "OP17-022",
+			name: "Shanks",
+			color: "Green",
+		},
+		"yassop op17-031": {
+			code: "OP17-031",
+			name: "Yasopp",
+			color: "Green",
+		},
+		"kaido op17-058": {
+			code: "OP17-058",
+			name: "Kaido",
+			color: "Purple",
+		},
+		"kaido op17-062": {
+			code: "OP17-062",
+			name: "Kaido",
+			color: "Purple",
+		},
+		"kaido op17-063": {
+			code: "OP17-063",
+			name: "Kaido",
+			color: "Purple",
 		},
 		"op17-079 monkey.d.luffy": {
 			code: "OP17-079",
@@ -20,9 +56,74 @@ const manualCardOverrides = {
 			name: "Monkey D. Luffy",
 			color: "Black",
 		},
+		"charlottte linlin op17-099": {
+			code: "OP17-099",
+			name: "Charlotte.Linlin",
+			color: "Yellow",
+		},
+		"charlottte linlin op17-112": {
+			code: "OP17-112",
+			name: "Charlotte.Linlin",
+			color: "Yellow",
+		},
 		"op17-119-loki": {
 			code: "OP17-119",
 			name: "Loki",
+			color: "Black",
+		},
+		"usopp op17-080": {
+			code: "OP17-080",
+			name: "Usopp",
+			color: "Black",
+		},
+		"sp roronoa zoro eb04-007": {
+			code: "EB04-007",
+			name: "Roronoa Zoro",
+			color: "Red",
+		},
+		"sp monkey.d.garp op12-059": {
+			code: "OP12-056",
+			name: "Monkey.D.Garp",
+			color: "Blue",
+		},
+		"sp silvers rayleigh op14-108": {
+			code: "OP14-108",
+			name: "Silvers Rayleigh",
+			color: "Yellow",
+		},
+		"sp gol.d.roger p-107": {
+			code: "P-107",
+			name: "Gol.D.Roger",
+			color: "Purple",
+		},
+		"sp kouzouki oden st32-002": {
+			code: "ST32-002",
+			name: "Kouzuki Oden",
+			color: "Green",
+		},
+		"shanks op13-028": {
+			code: "OP13-028",
+			name: "Shanks",
+			color: "Green",
+		},
+		"buggy p-084": {
+			code: "P-084",
+			name: "Buggy",
+			color: "Blue",
+		},
+		"marshall.d.teach st27-005": {
+			code: "ST27-005",
+			name: "Marshall.D.Teach",
+			color: "Black",
+		},
+		"monkey.d.luffy st31-004": {
+			code: "ST31-004",
+			name: "Monkey.D.Luffy",
+			color: "Red",
+		},
+		"img_20260712_193630": {
+			code: "OP16-098",
+			name: "Yamato",
 			color: "Black",
 		},
 	},
@@ -89,6 +190,109 @@ const buildMetadataIndex = () => {
 	return map;
 };
 
+const normalizeOverrideKey = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
+
+const getOp17VariantLabel = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.endsWith(" alt gold")) return "ALT GOLD";
+	if (normalized.endsWith(" manga")) return "MANGA";
+	if (normalized.endsWith(" alt")) return "ALT";
+	return null;
+};
+
+const stripOp17VariantSuffix = (base) => {
+	const variant = getOp17VariantLabel(base);
+	if (!variant) return base.trim();
+	return base.slice(0, -variant.length).trim();
+};
+
+const extractCodeFromBase = (base) => {
+	const match = base.match(/(op\d{2}-\d{3}|eb\d{2}-\d{3}|st\d{2}-\d{3}|p-\d{3})/i);
+	return match ? match[1].toUpperCase() : null;
+};
+
+const fallbackNameFromBase = (base, code) => {
+	const withoutCode = code ? base.replace(new RegExp(code, "i"), " ") : base;
+	return withoutCode
+		.replace(/\bsp\b/gi, " ")
+		.replace(/\./g, ".")
+		.replace(/\s+/g, " ")
+		.trim();
+};
+
+const sortByVariantPriority = (entries) =>
+	[...entries].sort((a, b) => {
+		const aRank = variantPriority.indexOf(a.variant ?? "base");
+		const bRank = variantPriority.indexOf(b.variant ?? "base");
+		if (aRank !== bRank) return aRank - bRank;
+		return a.fullUrl.localeCompare(b.fullUrl, "en");
+	});
+
+const getOp17CardRank = (card) => {
+	if (card.code.startsWith("OP17-")) return 0;
+	if (["OP13-028", "P-084", "ST27-005", "ST31-004"].includes(card.code)) return 2;
+	return 1;
+};
+
+const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
+	const overrides = manualCardOverrides.OP17 ?? {};
+	const groups = new Map();
+
+	for (const file of files) {
+		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
+		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		const variant = getOp17VariantLabel(base);
+		const canonicalBase = stripOp17VariantSuffix(base);
+		const override = overrides[normalizeOverrideKey(canonicalBase)] ?? {};
+		const code = override.code ?? extractCodeFromBase(canonicalBase);
+		if (!code) continue;
+		const meta = metadataIndex.get(code) ?? {};
+		const name = override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code;
+		const cardColor = override.color ?? meta.color ?? "Other";
+		const fullUrl = `/Cards/OP17/${file}`;
+		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl;
+		const group = groups.get(code) ?? [];
+		group.push({
+			code,
+			name,
+			color: cardColor,
+			fullUrl,
+			smallUrl,
+			variant,
+		});
+		groups.set(code, group);
+	}
+
+	return [...groups.entries()]
+		.map(([code, entries]) => {
+			const sortedEntries = sortByVariantPriority(entries);
+			const primary = sortedEntries[0];
+			const variants = sortedEntries
+				.slice(1)
+				.map((entry) => ({
+					label: entry.variant,
+					fullUrl: entry.fullUrl,
+					smallUrl: entry.smallUrl,
+				}))
+				.filter((entry) => Boolean(entry.label));
+
+			return {
+				code,
+				name: primary.name,
+				color: primary.color,
+				smallUrl: primary.smallUrl,
+				fullUrl: primary.fullUrl,
+				edition: primary.variant ?? null,
+				variants,
+			};
+		})
+		.sort((a, b) => {
+			const rankDiff = getOp17CardRank(a) - getOp17CardRank(b);
+			if (rankDiff !== 0) return rankDiff;
+			return a.code.localeCompare(b.code, "en");
+		});
+};
+
 export const getExtensions = () => {
 	if (!fs.existsSync(cardsRoot)) return [];
 	const prefixOrder = ["OP", "EB", "PR", "ST"];
@@ -141,6 +345,9 @@ export const getCardsForExtension = (extension) => {
 	}
 
 	const metadataIndex = buildMetadataIndex();
+	if (extension.toUpperCase() === "OP17") {
+		return getCardsForOp17(files, smallByBase, metadataIndex);
+	}
 
 	return [...fullByBase.entries()]
 		.map(([base, fullUrl]) => {

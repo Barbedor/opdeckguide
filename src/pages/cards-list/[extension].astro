@@ -18,68 +18,371 @@ const extensionLabel = extension === "P" ? "Promo" : extension;
 const isLeakPage = extension.toUpperCase() === "OP17";
 const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
+const keyword = (icon, alt) => ({ icon, alt });
 const leakCardDetails = {
 	"OP17-001": {
 		rarity: "Leader Card",
-		stats: "Red / Life 5 / Special / Power 5000 / Emperor",
+		stats: "Red / Life 5 / Special / Power 5000",
 		traits: "Whitebeard Pirates",
 		effectLines: [
 			[
-				{ icon: "on-your-opponents-attack", alt: "On Your Opponent's Attack" },
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
 				" ",
-				{ icon: "once-per-turn", alt: "Once Per Turn" },
+				keyword("once-per-turn", "Once Per Turn"),
 				" ",
-				"You can discard 1 card from your hand: Up to 1 of your leaders or characters gets +4000 Power for the rest of this battle.",
+				"You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +4000 power during this battle.",
+			],
+		],
+	},
+	"OP17-005": {
+		rarity: "Super Rare",
+		stats: "Red / Cost 10 / Special / Power 12000",
+		traits: "The Four Emperors/Whitebeard Pirates",
+		effectLines: [
+			["If your opponent has a Character with 10000 power or more, give this card in your hand -4 cost."],
+			[
+				keyword("on-play", "On Play"),
+				" Set the base power of your monocolored Leader to 8000 until the end of your opponent's next End Phase.",
+			],
+		],
+	},
+	"OP17-020": {
+		rarity: "Leader Card",
+		stats: "Green / Life 5 / Slash / Power 5000",
+		traits: "The Four Emperors/Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand or rest 1 of your DON!! cards: Up to 1 of your opponent's rested Characters will not become active during your opponent's next Refresh Phase.",
+			],
+		],
+	},
+	"OP17-022": {
+		rarity: "Super Rare",
+		stats: "Green / Cost 10 / Special / Power 12000",
+		traits: "The Four Emperors/Red-Haired Pirates",
+		effectLines: [
+			[keyword("rush", "Rush")],
+			[
+				keyword("on-play", "On Play"),
+				" Set up to 2 of your DON!! cards as active. Then, rest all of your opponent's Characters.",
+			],
+		],
+	},
+	"OP17-031": {
+		rarity: "Super Rare",
+		stats: "Green / Cost 5 / Ranged / Power 6000 / Counter 1000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card and rest up to 1 of your opponent's Characters with a cost of 8 or less.",
+			],
+			[
+				keyword("end-of-your-turn", "End of Your Turn"),
+				" Set up to 1 of your {Red-Haired Pirates} type Characters as active.",
+			],
+		],
+	},
+	"OP17-058": {
+		rarity: "Leader Card",
+		stats: "Purple / Life 5 / Special / Power 5000",
+		notes: [],
+		traits: "The Four Emperors/Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("when-attacking", "When Attacking"),
+				" / ",
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" DON!! -1: Up to 1 of your opponent's Characters gets -2000 power during this turn.",
+			],
+		],
+	},
+	"OP17-062": {
+		rarity: "Super Rare",
+		stats: "Purple / Cost 10 / Strike / Power 12000",
+		notes: [],
+		traits: "The Four Emperors/Animal Kingdom Pirates",
+		effectLines: [
+			[keyword("blocker", "Blocker")],
+			[
+				keyword("your-turn", "Your Turn"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" When a DON!! card on your field is returned to your DON!! deck, add up to 1 DON!! card from your DON!! deck and set it as active. Then, set up to 1 of your DON!! cards as active.",
+			],
+		],
+	},
+	"OP17-063": {
+		rarity: "Super Rare",
+		stats: "Purple / Cost 10 / Strike / Power 12000",
+		notes: [],
+		traits: "The Four Emperors/Animal Kingdom Pirates",
+		effectLines: [
+			["All of your Character cards without a Counter in your hand have a +1000 Counter."],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" DON!! -1: If this Character was played on this turn, negate the effect of up to 1 of your opponent's Characters with a cost of 6 or less, and K.O. that Character.",
 			],
 		],
 	},
 	"OP17-079": {
 		rarity: "Leader Card",
-		stats: "Black / Life 5 / Attack / Power 5000 / Elbaf, Four Emperors, Straw Hat Pirates",
+		stats: "Black / Life 5 / Attack / Power 5000",
+		traits: "Elbaf/Four Emperors/Straw Hat Pirates",
 		effectLines: [
 			[
 				"All of your characters with a cost of 12 or more gain ",
-				{ icon: "blocker", alt: "Blocker" },
+				keyword("blocker", "Blocker"),
 				".",
 			],
 			["(After your opponent attacks, you can rest this card and target this card for the next attack.)"],
 		],
 	},
+	"OP17-080": {
+		rarity: "Super Rare",
+		stats: "Black / Cost 2 / Ranged / Power 2000 / Counter 1000",
+		traits: "Elbaf/Straw Hat Crew",
+		effectLines: [
+			["If there is a Character with a cost of 12 or more, this Character gains +3000 power."],
+			[
+				keyword("on-play", "On Play"),
+				" Look at the top 3 cards of your deck, reveal up to 1 {Elbaf} type card and add it to your hand. Then, trash the rest.",
+			],
+		],
+	},
 	"OP17-093": {
 		rarity: "Super Rare",
-		stats: "Black / Cost 8 / Attack / Power 8000 / Elbaf, Four Emperors, Straw Hat Pirates",
+		stats: "Black / Cost 8 / Attack / Power 8000",
+		traits: "Elbaf/Four Emperors/Straw Hat Pirates",
 		effectLines: [
 			[
 				"If there is a character with a cost of 12 or more, this character gains ",
-				{ icon: "rush", alt: "Rush" },
+				keyword("rush", "Rush"),
 				".",
 			],
 			[
-				{ icon: "on-play", alt: "On Play" },
-				"Draw one card, and play up to one character card with a cost of 2 or less from your trash.",
+				keyword("on-play", "On Play"),
+				" Draw one card, and play up to one character card with a cost of 2 or less from your trash.",
 			],
+		],
+	},
+	"OP17-099": {
+		rarity: "Leader Card",
+		stats: "Yellow / Life 5 / Special / Power 5000",
+		traits: "The Four Emperors/Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("when-attacking", "When Attacking"),
+				" You may trash 1 card from your hand: Your opponent chooses one of the following effects.",
+			],
+			["- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards."],
+			["- Your opponent trashes 1 card from their hand."],
+		],
+	},
+	"OP17-112": {
+		rarity: "Super Rare",
+		stats: "Yellow / Cost 10 / Special / Power 12000",
+		traits: "The Four Emperors/Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("your-turn", "Your Turn"),
+				" All of your Characters with 4000 base power and a ",
+				keyword("trigger", "Trigger"),
+				" become 8000 base power.",
+			],
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card and choose one of the following effects.",
+			],
+			["- Add up to 1 card from the top of your deck to the top of your Life cards."],
+			["- Add up to 1 card from the top of your opponent's Life cards to the owner's hand."],
 		],
 	},
 	"OP17-119": {
 		rarity: "Secret Rare",
-		stats: "Black / Cost 6 / Attack / Power 8000 / Giant - Elbaf",
+		stats: "Black / Cost 6 / Attack / Power 8000",
+		traits: "Giant/Elbaf",
 		effectLines: [
 			["This character's cost increases by 12, and if it's your opponent's turn, this character's power increases by 3000."],
 			[
-				{ icon: "on-play", alt: "On Play" },
-				"KO your opponent's characters so that their total cost is 4 or less.",
+				keyword("on-play", "On Play"),
+				" KO your opponent's characters so that their total cost is 4 or less.",
+			],
+		],
+	},
+	"EB04-007": {
+		rarity: "SP",
+		stats: "Red / Cost 7 / Slash / Power 9000",
+		traits: "Egghead/Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Your Leader gains +2000 power until the end of your opponent's next End Phase.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" If your opponent has a Character with 8000 power or more, this Character gains ",
+				keyword("rush", "Rush"),
+				" during this turn.",
+			],
+		],
+	},
+	"OP12-056": {
+		rarity: "SP",
+		stats: "Blue / Cost 1 / Event",
+		traits: "Navy",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 1 card from your hand: Play up to 1 blue {Navy} Character card with a power of 8000 or less other than [Monkey.D.Garp] from your hand.",
+			],
+		],
+	},
+	"OP14-108": {
+		rarity: "SP",
+		stats: "Yellow / Cost 6 / Slash / Power 6000 / Counter 1000",
+		traits: "Former Roger Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader is multicolored and your opponent has 3 or less Life cards, K.O. up to 1 of your opponent's Characters with 7000 base power or less.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Activate this card's ",
+				keyword("on-play", "On Play"),
+				" effect.",
+			],
+		],
+	},
+	"P-107": {
+		rarity: "SP",
+		stats: "Purple / Cost 8 / Special / Power 10000",
+		traits: "King of the Pirates/Roger Pirates",
+		effectLines: [
+			["[When Played] If you or your opponent has 10 DON!! cards on their field, your Leader gets +2000 Power until the end of your opponent's next End Phase."],
+		],
+	},
+	"ST32-002": {
+		rarity: "SP",
+		stats: "Green / Cost 5 / Slash / Power 6000 / Counter 1000",
+		traits: "Land of Wano/Kouzuki Clan",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card and up to 1 of your opponent's Characters with a base cost of 6 or less cannot be rested until the end of your opponent's next End Phase.",
+			],
+		],
+	},
+	"OP13-028": {
+		rarity: "Gold",
+		stats: "Green / Cost 10 / Special / Power 12000",
+		traits: "FILM/The Four Emperors/Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Set all of your DON!! cards as active. Then, you cannot play cards from your hand during this turn.",
+			],
+		],
+	},
+	"P-084": {
+		rarity: "Gold",
+		stats: "Blue / Cost 7 / Special / Power 8000",
+		traits: "The Four Emperors/Cross Guild",
+		effectLines: [
+			["This Character cannot attack. If your Leader is [Buggy], all cost 3 and 4 Characters cannot attack."],
+			[
+				keyword("on-play", "On Play"),
+				" Play up to one cost 6 or lower {Cross Guild} type Character from your hand.",
+			],
+		],
+	},
+	"ST27-005": {
+		rarity: "Gold",
+		stats: "Black / Cost 7 / Special / Power 8000",
+		traits: "The Four Emperors/Blackbeard Pirates",
+		effectLines: [
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest this Character: K.O. up to 1 Character with a cost of 3 or less.",
+			],
+			[
+				keyword("on-ko", "On K.O."),
+				" Add up to 1 black card from your trash to your hand.",
+			],
+		],
+	},
+	"ST31-004": {
+		rarity: "Gold",
+		stats: "Red / Cost 7 / Strike / Power 9000",
+		traits: "The Four Emperors/Straw Hat Crew",
+		effectLines: [
+			[
+				"If you have a total of 3 or more given DON!! cards, this Character gains ",
+				keyword("rush", "Rush"),
+				".",
+			],
+			["(This card can attack on the turn in which it is played.)"],
+			[
+				keyword("on-play", "On Play"),
+				" For every {Straw Hat Crew} type card on your field, give up to 1 of your opponent's Characters -1000 power during this turn.",
+			],
+		],
+	},
+	"OP16-098": {
+		rarity: "SP",
+		stats: "Black / Cost 6 / Strike / Power 5000 / Counter 1000",
+		traits: "Land of Wano",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card and trash 1 card from your hand.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may trash this Character: Play up to 1 black [Yamato] with a cost of 8 from your trash.",
 			],
 		],
 	},
 };
+const getLeakSortRank = (card) => {
+	if (card.code.startsWith("OP17-")) return 0;
+	if (card.rarity === "Gold") return 2;
+	return 1;
+};
+
 const leakCards = isLeakPage
 	? cards
 			.map((card) => {
 				const details = leakCardDetails[card.code];
-				return details ? { ...card, ...details } : null;
+				const rarity = details?.rarity ?? "";
+				const hideEditionChip = rarity === "SP" || rarity === "Gold";
+				return details
+					? {
+							...card,
+							...details,
+							edition: hideEditionChip ? null : details.edition ?? card.edition ?? null,
+							variants: card.variants ?? [],
+						}
+					: null;
 			})
 			.filter(Boolean)
+			.sort((a, b) => {
+				const rankDiff = getLeakSortRank(a) - getLeakSortRank(b);
+				if (rankDiff !== 0) return rankDiff;
+				return a.code.localeCompare(b.code, "en");
+			})
 	: [];
+const leakCount = leakCards.length;
 
 const title = isLeakPage
 	? `${extensionLabel} Leaks Card List | One Piece Card Game`
@@ -99,11 +402,7 @@ const description = isLeakPage
 					<p>
 						This page tracks the currently revealed {extensionLabel} leaks for the One Piece Card Game ahead
 						of the official release on {releaseDateLabel}. New cards will be added here as they are
-						revealed, and the URL will stay unchanged.
-					</p>
-					<p class="leak-note">
-						Only the currently revealed cards are shown for now. Once the full set is out, this page can
-						switch back to the standard extension format without changing its URL.
+						revealed.
 					</p>
 				</>
 			) : (
@@ -112,9 +411,6 @@ const description = isLeakPage
 					use search if you want to jump straight to an exact card number.
 				</p>
 			)}
-			<p class="hero-links">
-				Need deck context? Head back to <a href="/deck-guides/">Deck Guides</a>.
-			</p>
 		</div>
 	</section>
 
@@ -125,7 +421,7 @@ const description = isLeakPage
 					<h2>{isLeakPage ? `${extensionLabel} Revealed Cards` : `${extensionLabel} Cards`}</h2>
 					<p>
 						{isLeakPage
-							? `${cards.length} revealed leak cards currently available on this page.`
+							? `${leakCount} revealed leak cards currently available on this page.`
 							: `${cards.length} cards available in this extension.`}
 					</p>
 				</div>
@@ -154,7 +450,21 @@ const description = isLeakPage
 									{card.edition && <p class="leak-chip leak-chip-solid">{card.edition}</p>}
 									{card.notes?.map((note) => <p class="leak-chip">{note}</p>)}
 								</div>
-								<p class="leak-card-stats">{card.stats}</p>
+								{card.variants.length > 0 && (
+									<div class="leak-card-variants">
+										{card.variants.map((variant) => (
+											<button
+												type="button"
+												class="variant-button"
+												data-card
+												data-full={variant.fullUrl}
+												data-name={`${card.code} ${variant.label}`}
+											>
+												{variant.label}
+											</button>
+										))}
+									</div>
+								)}
 								{card.traits && <p class="leak-card-traits">{card.traits}</p>}
 								<div class="leak-card-effects">
 									{card.effectLines.map((line) => (
@@ -218,14 +528,6 @@ const description = isLeakPage
 						{isLeakPage
 							? `Not yet. This page currently lists only the revealed ${extensionLabel} leaks and will grow as more cards are officially shown.`
 							: `Yes. This page lists the full ${extensionLabel} card pool in one place.`}
-					</p>
-				</article>
-				<article class="faq-card">
-					<h3>{isLeakPage ? "Will this URL change when OP17 is complete?" : "Can I search by exact card number?"}</h3>
-					<p>
-						{isLeakPage
-							? "No. This page keeps the same URL while the set is incomplete, then can switch back to the standard full-extension format later."
-							: "Yes. Use the global search bar under the menu to jump straight to a code."}
 					</p>
 				</article>
 				<article class="faq-card">
@@ -453,6 +755,12 @@ const description = isLeakPage
 		gap: 0.5rem;
 	}
 
+	.leak-card-variants {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
 	.leak-chip {
 		padding: 0.35rem 0.65rem;
 		border-radius: 999px;
@@ -467,9 +775,29 @@ const description = isLeakPage
 		color: #ffe6cf;
 	}
 
-	.leak-card-stats {
-		font-weight: 600;
-		color: var(--text-100) !important;
+	.variant-button {
+		padding: 0.38rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 138, 42, 0.38);
+		background: rgba(255, 149, 56, 0.12);
+		color: var(--text-100);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			transform 0.18s ease,
+			background 0.18s ease,
+			border-color 0.18s ease;
+	}
+
+	.variant-button:hover,
+	.variant-button:focus-visible {
+		transform: translateY(-1px);
+		background: rgba(255, 149, 56, 0.2);
+		border-color: rgba(255, 190, 120, 0.68);
+		outline: none;
 	}
 
 	.leak-card-traits {
@@ -671,7 +999,8 @@ const description = isLeakPage
 		}
 
 		.leak-card-rarity,
-		.leak-chip {
+		.leak-chip,
+		.variant-button {
 			font-size: 0.7rem;
 		}
 
