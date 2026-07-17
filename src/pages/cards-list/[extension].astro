@@ -46,6 +46,20 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-004": {
+		rarity: "Character",
+		stats: "Red / Cost 3 / Slash / Power 2000 / Counter 2000",
+		traits: "Minks/Land of Wano/Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Up to 1 of your {Land of Wano} type Characters or up to 1 of your Characters with a type including \"Whitebeard Pirates\" gains ",
+				keyword("rush", "Rush"),
+				" during this turn.",
+			],
+			["(This card can attack on the turn in which it is played.)"],
+		],
+	},
 	"OP17-020": {
 		rarity: "Leader Card",
 		stats: "Green / Life 5 / Slash / Power 5000",
@@ -71,6 +85,21 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-028": {
+		rarity: "Character",
+		stats: "Green / Cost 4 / Strike / Power 3000 / Counter 1000",
+		traits: "Animal/Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("blocker", "Blocker"),
+				" (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
+			],
+			[
+				keyword("on-play", "On Play"),
+				" K.O. up to 1 of your opponent's rested Characters with a cost of 6 or less.",
+			],
+		],
+	},
 	"OP17-031": {
 		rarity: "Super Rare",
 		stats: "Green / Cost 5 / Ranged / Power 6000 / Counter 1000",
@@ -83,6 +112,19 @@ const leakCardDetails = {
 			[
 				keyword("end-of-your-turn", "End of Your Turn"),
 				" Set up to 1 of your {Red-Haired Pirates} type Characters as active.",
+			],
+		],
+	},
+	"OP17-034": {
+		rarity: "Character",
+		stats: "Green / Cost 5 / Slash / Power 6000 / Counter 1000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" If your opponent's Leader has 6000 power or more, set up to 1 of your DON!! cards as active. Then, your {Red-Haired Pirates} type Leader's base power becomes 6000 until the end of your opponent's next End Phase.",
 			],
 		],
 	},
@@ -132,6 +174,23 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-072": {
+		rarity: "Character",
+		stats: "Purple / Cost 2 / Special / Power 1000 / Counter 1000",
+		traits: "Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("blocker", "Blocker"),
+				" (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
+			],
+			[
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: Up to 1 of your Leader or Characters gains +1000 power during this battle.",
+			],
+		],
+	},
 	"OP17-079": {
 		rarity: "Leader Card",
 		stats: "Black / Life 5 / Attack / Power 5000",
@@ -154,6 +213,31 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" Look at the top 3 cards of your deck, reveal up to 1 {Elbaf} type card and add it to your hand. Then, trash the rest.",
+			],
+		],
+	},
+	"OP17-083": {
+		rarity: "Character",
+		stats: "Black / Cost 2 / Strike / Power 2000 / Counter 1000",
+		traits: "Fish-Man/Elbaph/Straw Hat Crew",
+		effectLines: [
+			[
+				"If there is a Character with a cost of 12 or more, this Character gains ",
+				keyword("blocker", "Blocker"),
+				" and +3000 power.",
+			],
+			["(After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"],
+		],
+	},
+	"OP17-090": {
+		rarity: "Character",
+		stats: "Black / Cost 2 / Strike / Power 2000",
+		traits: "Elbaph/Straw Hat Crew",
+		effectLines: [
+			["If there is a Character with a cost of 12 or more, this Character gains +3000 power."],
+			[
+				keyword("on-play", "On Play"),
+				" If there is a Character with a cost of 12 or more, K.O. up to 1 of your opponent's Characters with a cost of 2 or less.",
 			],
 		],
 	},
@@ -184,6 +268,21 @@ const leakCardDetails = {
 			],
 			["- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards."],
 			["- Your opponent trashes 1 card from their hand."],
+		],
+	},
+	"OP17-105": {
+		rarity: "Character",
+		stats: "Yellow / Cost 5 / Wisdom / Power 0 / Counter 1000",
+		traits: "Firetank Pirates/Former Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 1 card with a ",
+				keyword("trigger", "Trigger"),
+				" from your hand: Return up to 1 of your opponent's Characters with a ",
+				keyword("trigger", "Trigger"),
+				" to the owner's hand.",
+			],
 		],
 	},
 	"OP17-112": {
