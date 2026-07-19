@@ -11,9 +11,19 @@ const manualCardOverrides = {
 			name: "Edward Newgate",
 			color: "Red",
 		},
+		"op17-003 izo": {
+			code: "OP17-003",
+			name: "Izo",
+			color: "Red",
+		},
 		"op17-005 edward newgate": {
 			code: "OP17-005",
 			name: "Edward Newgate",
+			color: "Red",
+		},
+		"blenheim op17-012": {
+			code: "OP17-012",
+			name: "Blenheim",
 			color: "Red",
 		},
 		"inuarashi and nekomamushi op17-004": {
@@ -34,6 +44,11 @@ const manualCardOverrides = {
 		"bonk punch and monster op17-028": {
 			code: "OP17-028",
 			name: "Bonk Punch & Monster",
+			color: "Green",
+		},
+		"op17-029 hongo": {
+			code: "OP17-029",
+			name: "Hongo",
 			color: "Green",
 		},
 		"rockstar op17-034": {
@@ -61,6 +76,16 @@ const manualCardOverrides = {
 			name: "Kaido",
 			color: "Purple",
 		},
+		"op17-064 king": {
+			code: "OP17-064",
+			name: "King",
+			color: "Purple",
+		},
+		"who's.who op17-071": {
+			code: "OP17-071",
+			name: "Who's.Who",
+			color: "Purple",
+		},
 		"black maria op17-072": {
 			code: "OP17-072",
 			name: "Black Maria",
@@ -81,6 +106,11 @@ const manualCardOverrides = {
 			name: "Franky",
 			color: "Black",
 		},
+		"op17-091 brook": {
+			code: "OP17-091",
+			name: "Brook",
+			color: "Black",
+		},
 		"op17-093monkey.d.luffy": {
 			code: "OP17-093",
 			name: "Monkey D. Luffy",
@@ -99,6 +129,11 @@ const manualCardOverrides = {
 		"charlotte chiffon op17-105": {
 			code: "OP17-105",
 			name: "Charlotte Chiffon",
+			color: "Yellow",
+		},
+		"op17-109 charlotte pudding": {
+			code: "OP17-109",
+			name: "Charlotte Pudding",
 			color: "Yellow",
 		},
 		"op17-119-loki": {

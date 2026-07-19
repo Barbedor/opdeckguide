@@ -1,4 +1,5 @@
 ﻿---
+import { affiliateCards } from "../lib/affiliateCards";
 import { siteUrl } from "../lib/site";
 
 const { title: pageTitle, description, canonical, noindex = false, structuredData } = Astro.props;
@@ -9,6 +10,7 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
+const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);
 const defaultStructuredData = isHomePage
 	? {
 			"@context": "https://schema.org",
@@ -122,6 +124,151 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		<main id="content">
 			<slot />
 		</main>
+
+		{
+			isDeckGuidePage && (
+				<script is:inline define:vars={{ affiliateCards }}>
+					const setupDeckGuideAffiliatePrices = () => {
+						const decklistSection = document.querySelector("#decklist");
+						const deckGrid = decklistSection?.querySelector(".deck-grid");
+						const decklistHeader = decklistSection?.querySelector(".section-header");
+						const decklistDescription =
+							decklistHeader?.querySelector("p") ?? decklistHeader?.querySelector(".decklist-intro");
+						const decklistTitleRow = decklistHeader?.querySelector(".decklist-title-row");
+
+						if (!(deckGrid instanceof HTMLElement)) return;
+						if (decklistHeader instanceof HTMLElement) {
+							decklistHeader.style.display = "grid";
+							decklistHeader.style.gridTemplateColumns = "minmax(0, 1fr)";
+							decklistHeader.style.gridAutoFlow = "row";
+							decklistHeader.style.alignItems = "start";
+							decklistHeader.style.justifyContent = "stretch";
+						}
+
+						const deckCards = Array.from(deckGrid.querySelectorAll(".deck-card"));
+						let hasAffiliateCards = false;
+
+						deckCards.forEach((deckCard) => {
+							if (!(deckCard instanceof HTMLElement)) return;
+
+							const code = deckCard.querySelector(".deck-code")?.textContent?.trim();
+							if (!code) return;
+
+							const affiliateCard = affiliateCards[code];
+							if (!affiliateCard) return;
+
+							hasAffiliateCards = true;
+
+							let shell = deckCard.parentElement;
+							if (!(shell instanceof HTMLElement) || !shell.classList.contains("deck-card-shell")) {
+								shell = document.createElement("div");
+								shell.className = "deck-card-shell";
+								deckCard.replaceWith(shell);
+								shell.appendChild(deckCard);
+							}
+
+							if (!shell.querySelector("[data-affiliate-badge]")) {
+								const affiliateBadge = document.createElement("a");
+								affiliateBadge.className = "deck-affiliate-link";
+								affiliateBadge.href = affiliateCard.affiliateUrl;
+								affiliateBadge.target = "_blank";
+								affiliateBadge.rel = "nofollow sponsored noopener";
+								affiliateBadge.textContent = affiliateCard.price;
+								affiliateBadge.setAttribute("data-affiliate-badge", "");
+								shell.appendChild(affiliateBadge);
+							}
+						});
+
+						const syncAffiliateBadgePositions = () => {
+							deckCards.forEach((deckCard) => {
+								if (!(deckCard instanceof HTMLElement)) return;
+
+								const shell = deckCard.parentElement;
+								const badge = shell?.querySelector("[data-affiliate-badge]");
+								const image = deckCard.querySelector("img");
+
+								if (!(shell instanceof HTMLElement) || !(badge instanceof HTMLElement) || !(image instanceof HTMLElement)) {
+									return;
+								}
+
+								const shellRect = shell.getBoundingClientRect();
+								const imageRect = image.getBoundingClientRect();
+								const left = imageRect.left - shellRect.left + 6;
+								const top = imageRect.top - shellRect.top + imageRect.height - 6;
+
+								shell.style.setProperty("--affiliate-left", `${left}px`);
+								shell.style.setProperty("--affiliate-top", `${top}px`);
+							});
+						};
+
+						syncAffiliateBadgePositions();
+						window.addEventListener("resize", syncAffiliateBadgePositions);
+
+						if (!hasAffiliateCards || !(decklistHeader instanceof HTMLElement)) return;
+
+						let priceToggle = decklistHeader.querySelector("[data-price-toggle]");
+						const isNewPriceToggle = !(priceToggle instanceof HTMLButtonElement);
+
+						if (!(priceToggle instanceof HTMLButtonElement)) {
+							priceToggle = document.createElement("button");
+							priceToggle.className = "price-toggle is-active";
+							priceToggle.type = "button";
+							priceToggle.setAttribute("data-price-toggle", "");
+							priceToggle.setAttribute("aria-pressed", "true");
+							priceToggle.setAttribute("aria-label", "Toggle affiliate price badges");
+							priceToggle.innerHTML = `
+								<span class="price-toggle-track" aria-hidden="true">
+									<span class="price-toggle-thumb"></span>
+								</span>
+								<span class="price-toggle-label">Show Prices</span>
+							`;
+						}
+
+						if (decklistDescription instanceof HTMLElement) {
+							let controlsRow = decklistHeader.querySelector(".decklist-affiliate-controls");
+							if (!(controlsRow instanceof HTMLElement)) {
+								controlsRow = document.createElement("div");
+								controlsRow.className = "decklist-affiliate-controls";
+								decklistDescription.insertAdjacentElement("afterend", controlsRow);
+							}
+							controlsRow.style.width = "100%";
+							controlsRow.style.maxWidth = "100%";
+							controlsRow.style.display = "flex";
+							controlsRow.style.justifyContent = "flex-start";
+							controlsRow.style.alignItems = "center";
+							controlsRow.style.marginTop = "0.85rem";
+							controlsRow.style.gridColumn = "1";
+							controlsRow.style.gridRow = "3";
+							controlsRow.appendChild(priceToggle);
+						} else if (decklistTitleRow instanceof HTMLElement) {
+							decklistTitleRow.insertAdjacentElement("afterend", priceToggle);
+						} else if (decklistDescription?.parentElement === decklistHeader) {
+							decklistHeader.insertBefore(priceToggle, decklistDescription);
+						} else {
+							decklistHeader.appendChild(priceToggle);
+						}
+
+						if (isNewPriceToggle) {
+							priceToggle.addEventListener("click", () => {
+								const isActive = priceToggle.getAttribute("aria-pressed") !== "false";
+								const nextActive = !isActive;
+								priceToggle.setAttribute("aria-pressed", String(nextActive));
+								priceToggle.classList.toggle("is-active", nextActive);
+								document.querySelectorAll("[data-affiliate-badge]").forEach((badge) => {
+									badge.classList.toggle("is-hidden", !nextActive);
+								});
+							});
+						}
+					};
+
+					if (document.readyState === "loading") {
+						document.addEventListener("DOMContentLoaded", setupDeckGuideAffiliatePrices, { once: true });
+					} else {
+						setupDeckGuideAffiliatePrices();
+					}
+				</script>
+			)
+		}
 
 		<footer class="site-footer">
 			<div class="container footer-inner">
@@ -592,6 +739,118 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		padding-top: 1rem !important;
 	}
 
+	.deck-card-shell {
+		position: relative;
+		min-width: 0;
+	}
+
+	.deck-card-shell .deck-card {
+		width: 100%;
+	}
+
+	.deck-affiliate-link {
+		position: absolute;
+		left: var(--affiliate-left, 0.35rem);
+		top: var(--affiliate-top, 0.35rem);
+		transform: translateY(-100%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		max-width: 100%;
+		padding: 0.25rem 0.46rem;
+		border-radius: 8px;
+		background: rgba(8, 18, 28, 0.94);
+		border: 1px solid rgba(120, 214, 255, 0.2);
+		color: #d7f2ff;
+		font-size: 0.72rem;
+		font-weight: 800;
+		text-decoration: none;
+		line-height: 1;
+		text-align: center;
+		backdrop-filter: blur(6px);
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		z-index: 2;
+	}
+
+	.deck-affiliate-link:hover {
+		background: rgba(12, 28, 42, 0.96);
+		color: #effbff;
+	}
+
+	.deck-affiliate-link.is-hidden {
+		display: none;
+	}
+
+	.price-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: var(--text-100);
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.price-toggle-track {
+		position: relative;
+		width: 46px;
+		height: 28px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+		transition: background 160ms ease;
+	}
+
+	.price-toggle-thumb {
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: #ffffff;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+		transition: transform 160ms ease;
+	}
+
+	.price-toggle.is-active .price-toggle-track {
+		background: #1e90ff;
+	}
+
+	.price-toggle.is-active .price-toggle-thumb {
+		transform: translateX(18px);
+	}
+
+	.price-toggle-label {
+		white-space: nowrap;
+	}
+
+	.decklist-affiliate-controls {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex: 0 0 100%;
+		order: 3;
+		margin-top: 0.85rem;
+		width: 100%;
+	}
+
+	#decklist .decklist-header {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) !important;
+		grid-auto-flow: row !important;
+		align-items: start !important;
+		justify-content: stretch !important;
+	}
+
+	#decklist .decklist-affiliate-controls {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
 	@media (max-width: 800px) {
 		.header-top {
 			width: 100%;
@@ -600,6 +859,14 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		.section-header {
 			flex-direction: column;
 			align-items: flex-start;
+		}
+
+		.price-toggle {
+			align-self: flex-start;
+		}
+
+		.decklist-affiliate-controls {
+			margin-top: 0.7rem;
 		}
 
 		.nav-search {
@@ -809,6 +1076,12 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 		.deck-role {
 			display: none !important;
+		}
+
+		.deck-affiliate-link {
+			padding: 0.18rem 0.34rem !important;
+			font-size: 0.62rem !important;
+			border-radius: 7px !important;
 		}
 
 		.options-grid,
