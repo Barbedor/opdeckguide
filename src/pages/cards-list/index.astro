@@ -1,5 +1,6 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { affiliateCards } from "../../lib/affiliateCards";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
 import { guideSearchIndex } from "../../lib/guides";
 
@@ -132,7 +133,7 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 	</div>
 </MainLayout>
 
-<script define:vars={{ metadataAvailable, guideSearchIndex }}>
+<script define:vars={{ metadataAvailable, guideSearchIndex, affiliateCards }}>
 	const searchInput = document.querySelector("[data-global-search]");
 	const resultsContainer = document.querySelector("[data-search-results]");
 	const modal = document.querySelector("[data-modal]");
@@ -285,6 +286,8 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 			const grid = document.createElement("div");
 			grid.className = "cards-grid";
 			groups.get(color).forEach((card) => {
+				const shell = document.createElement("div");
+				shell.className = "card-thumb-shell";
 				const button = document.createElement("button");
 				button.type = "button";
 				button.className = "card-thumb";
@@ -294,7 +297,18 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 				img.src = card.smallUrl;
 				img.alt = `${card.code} card`;
 				button.appendChild(img);
-				grid.appendChild(button);
+				shell.appendChild(button);
+				const affiliateCard = affiliateCards[card.code];
+				if (affiliateCard) {
+					const link = document.createElement("a");
+					link.className = "card-affiliate-link";
+					link.href = affiliateCard.affiliateUrl;
+					link.target = "_blank";
+					link.rel = "nofollow sponsored noopener";
+					link.textContent = affiliateCard.price;
+					shell.appendChild(link);
+				}
+				grid.appendChild(shell);
 			});
 			group.appendChild(grid);
 			wrapper.appendChild(group);
@@ -308,6 +322,8 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 		const grid = document.createElement("div");
 		grid.className = "cards-grid";
 		cards.forEach((card) => {
+			const shell = document.createElement("div");
+			shell.className = "card-thumb-shell";
 			const button = document.createElement("button");
 			button.type = "button";
 			button.className = "card-thumb";
@@ -317,7 +333,18 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 			img.src = card.smallUrl;
 			img.alt = `${card.code} card`;
 			button.appendChild(img);
-			grid.appendChild(button);
+			shell.appendChild(button);
+			const affiliateCard = affiliateCards[card.code];
+			if (affiliateCard) {
+				const link = document.createElement("a");
+				link.className = "card-affiliate-link";
+				link.href = affiliateCard.affiliateUrl;
+				link.target = "_blank";
+				link.rel = "nofollow sponsored noopener";
+				link.textContent = affiliateCard.price;
+				shell.appendChild(link);
+			}
+			grid.appendChild(shell);
 		});
 		section.appendChild(grid);
 		resultsContainer.appendChild(section);
@@ -757,6 +784,12 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 		justify-content: start;
 	}
 
+	:global(.card-thumb-shell) {
+		position: relative;
+		width: 120px;
+		max-width: 120px;
+	}
+
 	:global(.card-thumb) {
 		padding: 0;
 		border-radius: 12px;
@@ -778,6 +811,35 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 		transform: translateY(-4px);
 		box-shadow: var(--shadow);
 		outline: none;
+	}
+
+	:global(.card-affiliate-link) {
+		position: absolute;
+		left: 0.38rem;
+		bottom: 1rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		max-width: calc(100% - 0.76rem);
+		padding: 0.22rem 0.42rem;
+		border-radius: 8px;
+		background: rgba(8, 18, 28, 0.92);
+		border: 1px solid rgba(120, 214, 255, 0.2);
+		color: #d7f2ff;
+		font-size: 0.68rem;
+		font-weight: 800;
+		text-decoration: none;
+		line-height: 1;
+		text-align: center;
+		backdrop-filter: blur(6px);
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		z-index: 2;
+	}
+
+	:global(.card-affiliate-link:hover) {
+		background: rgba(12, 28, 42, 0.96);
+		color: #effbff;
 	}
 
 	.card-modal {
@@ -915,6 +977,11 @@ const extensionLabel = (value) => (value === "P" ? "Promo" : value);
 			grid-template-columns: repeat(3, minmax(96px, 96px));
 			gap: 0.55rem;
 			justify-content: center;
+		}
+
+		:global(.card-thumb-shell) {
+			width: 96px;
+			max-width: 96px;
 		}
 
 		:global(.card-thumb) {

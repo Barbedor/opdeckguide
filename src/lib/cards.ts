@@ -131,6 +131,11 @@ const manualCardOverrides = {
 			name: "Charlotte Chiffon",
 			color: "Yellow",
 		},
+		"op17-106 charlotte smoothie": {
+			code: "OP17-106",
+			name: "Charlotte Smoothie",
+			color: "Yellow",
+		},
 		"op17-109 charlotte pudding": {
 			code: "OP17-109",
 			name: "Charlotte Pudding",
