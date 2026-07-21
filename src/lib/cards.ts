@@ -46,6 +46,11 @@ const manualCardOverrides = {
 			name: "Bonk Punch & Monster",
 			color: "Green",
 		},
+		"fugar op17-026": {
+			code: "OP17-026",
+			name: "Fugar",
+			color: "Green",
+		},
 		"op17-029 hongo": {
 			code: "OP17-029",
 			name: "Hongo",
@@ -96,9 +101,24 @@ const manualCardOverrides = {
 			name: "Monkey D. Luffy",
 			color: "Black",
 		},
+		"gerd op17-081": {
+			code: "OP17-081",
+			name: "Gerd",
+			color: "Black",
+		},
+		"sanji op17-082": {
+			code: "OP17-082",
+			name: "Sanji",
+			color: "Black",
+		},
 		"jinbe op17-083": {
 			code: "OP17-083",
 			name: "Jinbe",
+			color: "Black",
+		},
+		"dorry op17-0xx": {
+			code: "OP17-0XX",
+			name: "Dorry",
 			color: "Black",
 		},
 		"franky op17-090": {
