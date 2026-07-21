@@ -581,6 +581,12 @@ const tips = [
 				<div>
 					<h2>Matchups</h2>
 					<p>How the main OP16 leaders line up against Teach.</p>
+					<p class="matchups-intro-link-copy">
+						For the full turn-order breakdown, see the
+						<a class="guide-inline-link" href="/meta-analysis/Black-Yellow-Marshall-D-Teach-op16-stats/">
+							OP16 Black/Yellow Marshall D. Teach stats in OP16 Format
+						</a>
+					</p>
 				</div>
 			</div>
 			<div class="matchups-stack">
@@ -951,6 +957,23 @@ const tips = [
 		color: var(--accent);
 	}
 
+	.guide-inline-link {
+		color: var(--accent-2);
+		font-weight: 700;
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
+	.guide-inline-link:hover {
+		color: var(--accent);
+	}
+
+	.matchups-intro-link-copy {
+		max-width: 100%;
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
 	.curve-cards {
 		display: flex;
 		flex-wrap: wrap;
@@ -1115,6 +1138,10 @@ const tips = [
 	}
 
 	@media (min-width: 641px) {
+		.matchups-intro-link-copy {
+			white-space: nowrap;
+		}
+
 		#mulligan .section-header > div {
 			width: 100%;
 			max-width: none;
@@ -1249,6 +1276,24 @@ const tips = [
 	}
 
 	@media (max-width: 640px) {
+		#matchups .section-header > div,
+		#matchups .section-header p,
+		#matchups .guide-inline-link {
+			min-width: 0;
+			max-width: 100%;
+		}
+
+		.matchups-intro-link-copy {
+			white-space: normal;
+		}
+
+		#matchups .guide-inline-link {
+			display: block;
+			white-space: normal !important;
+			overflow-wrap: anywhere;
+			word-break: break-word;
+		}
+
 		.copy-sim-button {
 			width: auto;
 			justify-content: center;

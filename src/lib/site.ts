@@ -8,6 +8,7 @@ export const staticSitePaths = [
 	"/",
 	"/deck-guides/",
 	"/meta-analysis/",
+	"/meta-analysis/Black-Yellow-Marshall-D-Teach-op16-stats/",
 	"/meta-analysis/Purple-Yellow-Rosinante-op12-stats/",
 	"/meta-analysis/Green-Blue-Luffy-op16-stats/",
 	"/meta-analysis/Blue-Yellow-Nami-op11-stats/",

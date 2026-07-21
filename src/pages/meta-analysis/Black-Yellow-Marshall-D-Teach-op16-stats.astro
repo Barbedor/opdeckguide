@@ -1,0 +1,461 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "OP16 Black/Yellow Marshall D. Teach stats in OP16 Format";
+const description =
+	"Turn-order win rate article for Black/Yellow Marshall D. Teach in the OP16 format, with a visual breakdown of first and second player performance.";
+
+const summary = {
+	totalGames: "25567",
+	winRate: "52.3%",
+	wins: "13371",
+	losses: "12196",
+};
+
+const leaderHeroArt = "/assets/guides/Teach-op16.png";
+const getRateTone = (value: string) => {
+	const numeric = Number.parseFloat(value.replace("%", "").trim());
+	if (numeric < 50) return "turn-rate-negative";
+	if (numeric > 50) return "turn-rate-positive";
+	return "turn-rate-neutral";
+};
+
+const featuredTurnOrderStats = [
+	{ label: "Monkey D. Luffy", code: "OP16-022", art: "/assets/guides/Luffy op16.png", first: "25%", second: "39.9%" },
+	{ label: "Marshall D. Teach", code: "OP16-080", art: "/assets/guides/Teach-op16.png", first: "26.1%", second: "73.9%" },
+	{ label: "Nami", code: "OP11-041", art: "/assets/guides/nami-op11.png", first: "60.1%", second: "71.4%" },
+	{ label: "Enel", code: "OP15-058", art: "/assets/guides/enel-op15.png", first: "69.4%", second: "65.5%" },
+	{ label: "Yamato", code: "OP16-079", art: "/assets/guides/yamato-op16.png", first: "21.8%", second: "52.2%" },
+	{ label: "Donquixote Rosinante", code: "OP12-061", art: "/assets/guides/rosinante-op12.png", first: "33.8%", second: "48.3%" },
+	{ label: "Portgas D. Ace", code: "OP16-001", art: "/assets/guides/Ace-op16.png", first: "35.4%", second: "64.8%" },
+	{ label: "Boa Hancock", code: "OP14-041", art: "/assets/guides/boa-hancock-op14.png", first: "56.9%", second: "76.3%" },
+	{ label: "Lucy", code: "OP15-002", art: "/assets/guides/lucy-op15.png", first: "28.1%", second: "43.8%" },
+	{ label: "Shanks", code: "OP09-001", art: "/assets/guides/Shanks op09.png", first: "40.3%", second: "71%" },
+	{ label: "Portgas D. Ace", code: "OP13-002", art: "/assets/guides/portgas-d-ace-op13.png", first: "54.5%", second: "75.9%" },
+	{ label: "Koby", code: "OP11-001", art: "/assets/guides/Koby OP11-001.png", first: "44%", second: "54.6%" },
+	{ label: "Gol.D.Roger", code: "OP13-003", art: "/assets/guides/Gol.D.Roger OP13-003.png", first: "53.5%", second: "83.5%" },
+	{ label: "Monkey D. Luffy", code: "ST29-001", art: "/assets/guides/monkey-d-luffy-st29.png", first: "42.1%", second: "58.2%" },
+	{ label: "Monkey D. Luffy", code: "OP13-001", art: "/assets/guides/monkey-d-luffy-op13.png", first: "80%", second: "90%" },
+	{ label: "Jinbe", code: "OP14-040", art: "/assets/guides/jinbe-op14.png", first: "33.3%", second: "63.2%" },
+	{ label: "Sengoku", code: "OP16-060", art: "/assets/guides/Sengoku-op16.png", first: "33.9%", second: "33.1%" },
+	{ label: "Dracule Mihawk", code: "OP14-020", art: "/assets/guides/dracule-mihawk-op14.png", first: "60.7%", second: "68.3%" },
+	{ label: "Krieg", code: "OP15-001", art: "/assets/guides/Krieg OP15-001.png", first: "46.3%", second: "71.8%" },
+	{ label: "Luffy & Ace", code: "ST30-001", art: "/assets/guides/Luffy-st30.png", first: "50%", second: "53.1%" },
+	{ label: "Marshall D. Teach", code: "OP09-081", art: "/assets/guides/Marshall D. Teach OP09-081.png", first: "46.7%", second: "73.9%" },
+	{ label: "Kalgara", code: "OP08-098", art: "/assets/guides/Kalgara OP08-098.png", first: "54.4%", second: "54.8%" },
+	{ label: "Enel", code: "OP05-098", art: "/assets/guides/Enel OP05-098.png", first: "63.9%", second: "92.9%" },
+	{ label: "Monkey D. Luffy", code: "OP11-040", art: "/assets/guides/luffy op11.png", first: "80.6%", second: "72.1%" },
+	{ label: "Nico Robin", code: "OP09-062", art: "/assets/guides/Nico-Robin-op09.png", first: "39.1%", second: "54.8%" },
+	{ label: "Jewelry Bonney", code: "EB04-001", art: "/assets/guides/Jewelry Bonney EB04-001.png", first: "73.8%", second: "86.1%" },
+	{ label: "Monkey D. Luffy", code: "OP15-098", art: "/assets/guides/monkey-d-luffy-op15.png", first: "43.4%", second: "56.6%" },
+	{ label: "Buggy", code: "OP16-041", art: "/assets/guides/Buggy op16.png", first: "36.2%", second: "40.9%" },
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero meta-article-hero">
+		<div class="container article-hero-grid">
+			<div>
+				<span class="hero-badge">Meta Article</span>
+				<h1>OP16 Black/Yellow Marshall D. Teach stats in OP16 Format</h1>
+				<div class="article-leader-hero">
+					<img src={leaderHeroArt} alt="Black and Yellow Marshall D. Teach leader art" loading="eager" />
+				</div>
+				<p class="article-kicker">Turn-order stats for Black/Yellow Marshall D. Teach in the OP16 format.</p>
+				<p>
+					Black/Yellow Teach is a menacing control leader built around grinding opponents down and dictating
+					the pace of the game. His powerful removal, paired with life manipulation, makes him difficult to race
+					down and rewards patient, calculated play.
+				</p>
+				<p>
+					The deck&apos;s control identity is one of its most distinct strengths: it makes the board harder to
+					attack into, dictates where damage falls, and punishes anyone who doesn&apos;t respect it. By trading
+					efficiently and grinding out aggressive strategies, Teach can seize control of the game.
+				</p>
+				<p class="deck-guide-link-copy">
+					Need the full list and matchup notes? Read the
+					<a class="deck-guide-link" href="/deck-guides/marshall-d-teach-op16/">Marshall.D.Teach OP16 Deck Guide</a>.
+				</p>
+				<div class="article-inline-summary">
+					<div class="hero-summary-card">
+					<div class="hero-summary-label">Format</div>
+					<strong>OP16</strong>
+					<div class="hero-summary-divider"></div>
+					<div class="hero-summary-label">Source Sample</div>
+					<strong>{summary.totalGames} Games</strong>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats-section">
+		<div class="container stats-stack">
+			<article class="stats-panel">
+				<div class="section-header">
+					<div>
+						<h2>1st / 2nd Win Rate Stats</h2>
+						<p>
+							How does Black/Yellow Teach perform going 1st vs. 2nd? These win rate stats break down how turn
+							order affects Black/Yellow Teach&apos;s gameplay and provide crucial insight for deciding how to
+							approach specific matchups.
+						</p>
+					</div>
+				</div>
+
+				<div class="summary-metrics">
+					<div class="summary-metric">
+						<span class="summary-label">Total Games</span>
+						<strong>{summary.totalGames}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">Winrate</span>
+						<strong>{summary.winRate}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">W / L</span>
+						<strong class="wl-stat">
+							<span class="wl-win">{summary.wins}</span>/<span class="wl-loss">{summary.losses}</span>
+						</strong>
+					</div>
+				</div>
+
+				<div class="turn-order-grid">
+					{featuredTurnOrderStats.map((entry) => (
+						<div class="turn-order-card">
+							<div class="leader-art-frame">
+								{entry.art ? (
+									<img src={entry.art} alt={`${entry.label} leader art`} loading="lazy" />
+								) : (
+									<div class="leader-art-placeholder">{entry.code}</div>
+								)}
+							</div>
+							<div class="turn-order-meta">
+								<div class="turn-order-name">{entry.label}</div>
+								<div class="turn-order-code">{entry.code}</div>
+							</div>
+							<div class="turn-order-split">
+								<div class={`turn-rate ${getRateTone(entry.first)}`}>
+									<span class="turn-label">1st</span>
+									<strong>{entry.first}</strong>
+								</div>
+								<div class={`turn-rate ${getRateTone(entry.second)}`}>
+									<span class="turn-label">2nd</span>
+									<strong>{entry.second}</strong>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div class="analysis-grid">
+					<div class="analysis-card">
+						<h3>What this chart is for</h3>
+						<p>
+							This snapshot helps you compare turn order at a glance. Teach performs best when it slows the
+							game down early and converts each removal window into tempo the opponent cannot recover.
+						</p>
+					</div>
+					<div class="analysis-card">
+						<h3>How to read it</h3>
+						<p>
+							Look at the first and second player results together, then use the matchup board to spot where
+							Teach benefits most from extra DON!! tempo and where it can still lock games down on the draw.
+						</p>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	.meta-article-hero {
+		padding-bottom: 34px;
+	}
+
+	.article-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) 260px;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.article-kicker {
+		color: var(--text-200);
+		font-weight: 600;
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(239, 210, 66, 0.28), transparent 36%),
+			radial-gradient(circle at right, rgba(102, 52, 168, 0.22), transparent 40%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: center 18%;
+	}
+
+	.hero-summary-card {
+		background:
+			radial-gradient(circle at top left, rgba(239, 210, 66, 0.34), transparent 46%),
+			radial-gradient(circle at top right, rgba(18, 18, 18, 0.24), transparent 44%),
+			linear-gradient(135deg, rgba(123, 98, 22, 0.34), rgba(20, 18, 12, 0.42) 58%, rgba(8, 10, 16, 0.96));
+		border: 1px solid rgba(239, 210, 66, 0.24);
+		border-radius: 20px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.45rem;
+		box-shadow: var(--shadow);
+	}
+
+	.article-inline-summary {
+		margin-top: 1rem;
+		max-width: 260px;
+	}
+
+	.hero-summary-label {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.hero-summary-divider {
+		height: 1px;
+		background: rgba(255, 255, 255, 0.08);
+		margin: 0.2rem 0 0.15rem;
+	}
+
+	.stats-section {
+		padding: 0 0 56px;
+	}
+
+	.stats-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.stats-panel {
+		background: rgba(10, 14, 24, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 22px;
+		padding: 1.25rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.section-header h2 {
+		margin-bottom: 0.55rem;
+	}
+
+	.section-header p {
+		margin: 0;
+		max-width: 760px;
+		color: var(--text-200);
+	}
+
+	.summary-metrics {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.summary-metric {
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		padding: 0.95rem 0.9rem;
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.summary-label {
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #f0d878;
+	}
+
+	.summary-metric strong {
+		font-size: 1rem;
+	}
+
+	.wl-stat {
+		display: inline-flex;
+		gap: 0.05rem;
+		align-items: baseline;
+	}
+
+	.wl-win {
+		color: #57d18b;
+	}
+
+	.wl-loss {
+		color: #ff8d6f;
+	}
+
+	.turn-order-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.turn-order-card {
+		border: 1px solid var(--border);
+		border-radius: 18px;
+		padding: 0.8rem;
+		background: rgba(7, 10, 18, 0.92);
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.leader-art-frame img,
+	.leader-art-placeholder {
+		width: 100%;
+		aspect-ratio: 1.75 / 1;
+		border-radius: 14px;
+		object-fit: cover;
+		object-position: center top;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.leader-art-placeholder {
+		display: grid;
+		place-items: center;
+		color: var(--text-300);
+		font-size: 0.8rem;
+	}
+
+	.turn-order-meta {
+		display: grid;
+		gap: 0.18rem;
+	}
+
+	.turn-order-name {
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.turn-order-code {
+		color: #caa24a;
+		font-size: 0.82rem;
+	}
+
+	.turn-order-split {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem;
+	}
+
+	.turn-rate {
+		border-radius: 14px;
+		padding: 0.55rem 0.45rem;
+		display: grid;
+		justify-items: center;
+		gap: 0.2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.turn-rate-positive {
+		background: rgba(19, 76, 52, 0.36);
+		border-color: rgba(70, 200, 128, 0.28);
+	}
+
+	.turn-rate-negative {
+		background: rgba(82, 28, 38, 0.32);
+		border-color: rgba(215, 92, 122, 0.24);
+	}
+
+	.turn-rate-neutral {
+		background: rgba(55, 68, 95, 0.3);
+		border-color: rgba(149, 165, 195, 0.18);
+	}
+
+	.turn-label {
+		color: var(--text-300);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.turn-rate strong {
+		color: var(--text-100);
+		font-size: 0.94rem;
+	}
+
+	.analysis-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.analysis-card {
+		border-radius: 18px;
+		padding: 1rem;
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.analysis-card h3 {
+		margin-bottom: 0.45rem;
+	}
+
+	.analysis-card p {
+		margin: 0;
+		color: var(--text-200);
+	}
+
+	.deck-guide-link-copy {
+		margin-top: 1rem;
+	}
+
+	.deck-guide-link {
+		color: var(--accent-2);
+		font-weight: 700;
+	}
+
+	.deck-guide-link:hover {
+		color: var(--accent);
+	}
+
+	@media (max-width: 1100px) {
+		.turn-order-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 900px) {
+		.article-hero-grid,
+		.analysis-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.turn-order-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.summary-metrics,
+		.turn-order-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.stats-panel {
+			padding: 1rem;
+		}
+	}
+</style>
