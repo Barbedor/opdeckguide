@@ -41,6 +41,11 @@ const manualCardOverrides = {
 			name: "Shanks",
 			color: "Green",
 		},
+		"building snake op17-025": {
+			code: "OP17-025",
+			name: "Building Snake",
+			color: "Green",
+		},
 		"bonk punch and monster op17-028": {
 			code: "OP17-028",
 			name: "Bonk Punch & Monster",

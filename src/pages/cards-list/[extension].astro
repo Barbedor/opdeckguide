@@ -17,6 +17,7 @@ const initialCards = cards.slice(0, initialBatch);
 const remainingCards = cards.slice(initialBatch);
 const extensionLabel = extension === "P" ? "Promo" : extension;
 const isLeakPage = extension.toUpperCase() === "OP17";
+const useExpandedMobileCardGrid = !isLeakPage && /^(OP|EB)/i.test(extension.toUpperCase());
 const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
@@ -110,6 +111,23 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" Set up to 2 of your DON!! cards as active. Then, rest all of your opponent's Characters.",
+			],
+		],
+	},
+	"OP17-025": {
+		rarity: "Uncommon",
+		stats: "Green / Cost 4 / Slash / Power 5000 / Counter 1000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("on-ko", "On K.O."),
+				" K.O. up to 1 of your opponent's rested Characters with a cost of 6 or less.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" Give up to 1 rested DON!! card to your [Shanks] Leader.",
 			],
 		],
 	},
@@ -335,7 +353,7 @@ const leakCardDetails = {
 		],
 	},
 	"OP17-0XX": {
-		rarity: "Character",
+		rarity: "Unknown",
 		stats: "Black / Cost 5 / Slash / Power 5000 / Counter 1000",
 		traits: "Giant/Elbaph/Giant Warrior Pirates",
 		effectLines: [
@@ -759,7 +777,10 @@ const description = isLeakPage
 				</div>
 			) : (
 				<>
-					<div class="cards-grid" data-card-grid>
+					<div
+						class:list={["cards-grid", { "cards-grid-expanded-mobile": useExpandedMobileCardGrid }]}
+						data-card-grid
+					>
 						{initialCards.map((card) => {
 							const affiliateCard = getAffiliateCard(card.code);
 							return (
@@ -1313,6 +1334,22 @@ const description = isLeakPage
 			grid-template-columns: repeat(3, minmax(96px, 96px));
 			justify-content: center;
 			gap: 0.55rem;
+		}
+
+		:global(.cards-grid-expanded-mobile) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			justify-content: stretch;
+			gap: 0.45rem;
+		}
+
+		:global(.cards-grid-expanded-mobile .card-thumb-shell) {
+			width: 100%;
+			max-width: none;
+		}
+
+		:global(.cards-grid-expanded-mobile .card-thumb) {
+			width: 100%;
+			max-width: none;
 		}
 
 		:global(.card-thumb-shell) {
