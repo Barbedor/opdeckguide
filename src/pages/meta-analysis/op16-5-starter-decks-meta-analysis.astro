@@ -5,13 +5,6 @@ const title = "OP16.5 Meta Analysis: Which New Starter Decks Can Actually Change
 const description =
 	"A first OP16.5 One Piece Card Game meta analysis covering ST31 through ST36, early simulator data, matchup trends, and which decks look poised to reshape the field before OP17.";
 
-const quickTakeaways = [
-	"Purple Katakuri looks like the strongest of the six directly supported Leaders.",
-	"Red/Green Luffy and Mihawk may be the biggest winners overall, even though neither is the face of a new Starter Deck.",
-	"Purple Enel and Green/Blue Luffy still look like true format pillars going into OP16.5.",
-	"Nami and Teach remain major metagame forces, but both may need to navigate a less forgiving field than before.",
-];
-
 const starterDecks = [
 	{
 		id: "st31-luffy",
@@ -22,7 +15,7 @@ const starterDecks = [
 		tone: "meta",
 		sample: "48.7% overall win rate",
 		turnOrder: ["45% going 1st", "52% going 2nd"],
-		matchupSummary: "7 favorable, 4 even, 9 unfavorable across the 20 decks included in the sample.",
+		matchupSummary: "",
 		highlights: [
 			"Looks well positioned into Mihawk and Green/Blue Luffy, two decks that could be heavily represented near the top of the field.",
 			"Still struggles into Purple Enel and Nami, which matters because both Leaders should remain relevant.",
@@ -46,9 +39,9 @@ const starterDecks = [
 		label: "ST32 Zoro",
 		verdict: "Rogue",
 		tone: "rogue",
-		sample: "About 1,400 games logged",
-		turnOrder: ["No reliable overall win rate published", "No first/second split published"],
-		matchupSummary: "The early read is qualitative rather than statistical.",
+		sample: "",
+		turnOrder: [],
+		matchupSummary: "",
 		highlights: [
 			"The new support does not appear to fundamentally change how Green Zoro plays.",
 			"It reads more like a light upgrade or a lateral evolution than a structural redesign.",
@@ -73,8 +66,8 @@ const starterDecks = [
 		verdict: "Meta",
 		tone: "meta",
 		sample: "Roughly 48% overall win rate",
-		turnOrder: ["5 favorable matchups", "5 even, 10 unfavorable"],
-		matchupSummary: "The raw record is average, but the matchup map still leaves room for growth.",
+		turnOrder: [],
+		matchupSummary: "",
 		highlights: [
 			"Currently appears weak into Red/Green Luffy, Purple Enel, and Nami.",
 			"Mihawk also looks slightly unfavorable, which is notable because cards like Gravity Blade and Ice Time should help manage wide boards.",
@@ -100,7 +93,7 @@ const starterDecks = [
 		tone: "top",
 		sample: "About 48% overall win rate",
 		turnOrder: ["53% going 1st", "40% going 2nd"],
-		matchupSummary: "5 favorable, 6 even, 9 unfavorable.",
+		matchupSummary: "",
 		highlights: [
 			"The first/second split is the biggest warning sign. Katakuri clearly wants to dictate the pace from the opening turns.",
 			"It looks good into Mihawk and Nami, two decks that may see a lot of play.",
@@ -125,8 +118,8 @@ const starterDecks = [
 		verdict: "Meta",
 		tone: "meta",
 		sample: "Around 46% overall win rate",
-		turnOrder: ["3 favorable matchups", "7 even, 10 unfavorable"],
-		matchupSummary: "The healing package helps survivability, but not every game turns that into a win.",
+		turnOrder: [],
+		matchupSummary: "",
 		highlights: [
 			"The deck drew a lot of attention because of how much life it can recover.",
 			"That said, healing alone does not solve its issues closing games or turning stabilization into pressure.",
@@ -151,8 +144,8 @@ const starterDecks = [
 		verdict: "Wildcard",
 		tone: "wildcard",
 		sample: "Around 42% overall win rate",
-		turnOrder: ["3 favorable matchups", "4 even, 13 unfavorable"],
-		matchupSummary: "On paper, these are the weakest first-wave numbers of the six directly supported Leaders.",
+		turnOrder: [],
+		matchupSummary: "",
 		highlights: [
 			"Sabo may also be the least defined deck in the group right now.",
 			"Players are still trying an aggressive shell, a more traditional midrange shell, and hybrid builds that split the difference.",
@@ -176,7 +169,7 @@ const surpriseWinners = [
 		id: "rg-luffy",
 		name: "Red/Green Luffy",
 		art: "/assets/guides/monkey-d-luffy-op13.png",
-		record: "14 favorable, 3 even, 3 unfavorable",
+		record: "",
 		verdict: "Apex",
 		copy: [
 			"Red/Green Luffy looks like one of the biggest winners of OP16.5 because it directly benefits from some of the new Luffy Starter Deck cards.",
@@ -189,7 +182,7 @@ const surpriseWinners = [
 		id: "mihawk",
 		name: "Mihawk",
 		art: "/assets/guides/dracule-mihawk-op14.png",
-		record: "11 favorable, 5 even, 4 unfavorable",
+		record: "",
 		verdict: "Apex",
 		copy: [
 			"Mihawk may be the single biggest beneficiary of the green Starter Deck support, perhaps even more than Zoro himself.",
@@ -204,7 +197,7 @@ const formatPillars = [
 	{
 		name: "Purple Enel",
 		art: "/assets/guides/enel-op15.png",
-		record: "12 favorable, 5 even, 3 unfavorable",
+		record: "",
 		verdict: "Apex",
 		points: [
 			"Still looks favorable into Mihawk, Red/Green Luffy, Kuzan, Purple Katakuri, Green/Blue Luffy, and Rosinante.",
@@ -215,7 +208,7 @@ const formatPillars = [
 	{
 		name: "Green/Blue Luffy",
 		art: "/assets/guides/Luffy op16.png",
-		record: "About 54% win rate, with 12 favorable, 5 even, and 3 unfavorable matchups",
+		record: "",
 		verdict: "Apex",
 		points: [
 			"Red/Green Luffy, Purple Enel, and Nami are the three major pressure points called out so far.",
@@ -226,7 +219,7 @@ const formatPillars = [
 	{
 		name: "Nami",
 		art: "/assets/guides/nami-op11.png",
-		record: "12 favorable, 2 even, 6 unfavorable",
+		record: "",
 		verdict: "Top Meta",
 		points: [
 			"Nami still has the blue-yellow defensive tools to heal, stall, and drag combat into awkward shapes.",
@@ -237,7 +230,7 @@ const formatPillars = [
 	{
 		name: "Teach",
 		art: "/assets/guides/Teach-op16.png",
-		record: "About 51.94% win rate, with 8 favorable, 5 even, and 7 unfavorable matchups",
+		record: "",
 		verdict: "Top Meta",
 		points: [
 			"Teach is still hugely relevant because it appears good into Red/Green Luffy, Purple Enel, and Nami.",
@@ -273,7 +266,7 @@ const tierList = [
 		label: "Meta",
 		tone: "meta",
 		decks: [
-			{ name: "ST31 Luffy", art: "/assets/guides/luffy op11.png" },
+			{ name: "ST31 Luffy", art: "/assets/guides/Luffy ST21.png" },
 			{ name: "Blue Kuzan", art: "/assets/guides/Kuzan op12.png" },
 			{ name: "Kid", art: "/assets/guides/Kid-op10.png" },
 			{ name: "Red/Blue Ace", art: "/assets/guides/portgas-d-ace-op13.png" },
@@ -365,7 +358,6 @@ const verdictClass = (tone: string) => {
 			<aside class="article-toc">
 				<div class="toc-card">
 					<div class="toc-label">On This Page</div>
-					<a href="#overview">Format Premise</a>
 					<a href="#starter-decks">Starter Deck Breakdown</a>
 					<a href="#hidden-winners">Who Really Won</a>
 					<a href="#pillars">Format Pillars</a>
@@ -375,42 +367,6 @@ const verdictClass = (tone: string) => {
 			</aside>
 
 			<div class="article-content">
-				<section id="overview" class="article-block overview-block">
-					<div class="section-header compact-header">
-						<div>
-							<h2>The Format Premise</h2>
-							<p>
-								Six new Starter Decks create a short transition period between OP16 and OP17. Several classic
-								Leaders gain new tools, but not all of them benefit equally from that support.
-							</p>
-						</div>
-					</div>
-
-					<div class="overview-grid">
-						<div class="overview-card">
-							<h3>What this first read is based on</h3>
-							<p>
-								This piece is built from the earliest simulator data available, the matchups that were explicitly
-								called out, and the ways the new cards appear to reshape each strategy in practice.
-							</p>
-						</div>
-						<div class="overview-card">
-							<h3>What can still change</h3>
-							<p>
-								The format is still fresh. Lists are not fully optimized yet, sample sizes vary wildly by deck,
-								and OP17 is likely to reset priorities quickly. Treat this as a first projection, not a final
-								ruling.
-							</p>
-						</div>
-					</div>
-
-					<div class="takeaway-list">
-						{quickTakeaways.map((item) => (
-							<div class="takeaway-item">{item}</div>
-						))}
-					</div>
-				</section>
-
 				<section id="starter-decks" class="article-block">
 					<div class="section-header compact-header">
 						<div>
@@ -461,20 +417,24 @@ const verdictClass = (tone: string) => {
 									))}
 								</div>
 
-								<div class="starter-stats">
-									<div class="stat-chip">
-										<span>Early sample</span>
-										<strong>{deck.sample}</strong>
+								{(deck.sample || deck.turnOrder.length > 0) && (
+									<div class="starter-stats">
+										{deck.sample && (
+											<div class="stat-chip">
+												<span>Early sample</span>
+												<strong>{deck.sample}</strong>
+											</div>
+										)}
+										{deck.turnOrder.map((item) => (
+											<div class="stat-chip">
+												<span>Turn-order read</span>
+												<strong>{item}</strong>
+											</div>
+										))}
 									</div>
-									{deck.turnOrder.map((item) => (
-										<div class="stat-chip">
-											<span>Turn-order read</span>
-											<strong>{item}</strong>
-										</div>
-									))}
-								</div>
+								)}
 
-								<p class="matchup-summary">{deck.matchupSummary}</p>
+								{deck.matchupSummary && <p class="matchup-summary">{deck.matchupSummary}</p>}
 
 								<div class="bullet-grid">
 									{deck.highlights.map((point) => (
@@ -509,7 +469,7 @@ const verdictClass = (tone: string) => {
 									<img src={winner.art} alt={`${winner.name} leader art`} loading="lazy" />
 									<div>
 										<h3>{winner.name}</h3>
-										<p>{winner.record}</p>
+										{winner.record && <p>{winner.record}</p>}
 										<span class={`verdict-pill ${verdictClass("apex")}`}>{winner.verdict}</span>
 									</div>
 								</div>
@@ -541,7 +501,7 @@ const verdictClass = (tone: string) => {
 									<img src={pillar.art} alt={`${pillar.name} leader art`} loading="lazy" />
 									<div>
 										<h3>{pillar.name}</h3>
-										<p>{pillar.record}</p>
+										{pillar.record && <p>{pillar.record}</p>}
 										<span class={`verdict-pill ${verdictClass(pillar.verdict === "Apex" ? "apex" : "top")}`}>{pillar.verdict}</span>
 									</div>
 								</div>
