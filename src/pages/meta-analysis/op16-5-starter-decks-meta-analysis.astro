@@ -1,0 +1,1429 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "OP16.5 Meta Analysis: Which New Starter Decks Can Actually Change the Format?";
+const description =
+	"A first OP16.5 One Piece Card Game meta analysis covering ST31 through ST36, early simulator data, matchup trends, and which decks look poised to reshape the field before OP17.";
+
+const quickTakeaways = [
+	"Purple Katakuri looks like the strongest of the six directly supported Leaders.",
+	"Red/Green Luffy and Mihawk may be the biggest winners overall, even though neither is the face of a new Starter Deck.",
+	"Purple Enel and Green/Blue Luffy still look like true format pillars going into OP16.5.",
+	"Nami and Teach remain major metagame forces, but both may need to navigate a less forgiving field than before.",
+];
+
+const starterDecks = [
+	{
+		id: "st31-luffy",
+		starter: "ST31",
+		leader: "Monkey D. Luffy",
+		label: "ST31 Luffy",
+		verdict: "Meta",
+		tone: "meta",
+		sample: "48.7% overall win rate",
+		turnOrder: ["45% going 1st", "52% going 2nd"],
+		matchupSummary: "7 favorable, 4 even, 9 unfavorable across the 20 decks included in the sample.",
+		highlights: [
+			"Looks well positioned into Mihawk and Green/Blue Luffy, two decks that could be heavily represented near the top of the field.",
+			"Still struggles into Purple Enel and Nami, which matters because both Leaders should remain relevant.",
+			"Also appears to pick up a difficult new matchup into Red/Green Luffy, another major winner from the red Starter Deck cards.",
+			"Teach and Rosinante do not look especially attractive pairings either.",
+		],
+		verdictCopy:
+			"Luffy got one of the most meaningful upgrades in the entire ST31 through ST36 wave. The problem is that its bad matchups line up with several decks we still expect to see a lot of. That keeps it in the Meta tier for now, right on the edge of Top Meta if the field shifts in its favor.",
+		cards: [
+			{ code: "ST31-001", img: "/Cards/ST31/ST31-001.jpg" },
+			{ code: "ST31-002", img: "/Cards/ST31/ST31-002.jpg" },
+			{ code: "ST31-003", img: "/Cards/ST31/ST31-003.jpg" },
+			{ code: "ST31-004", img: "/Cards/ST31/ST31-004.jpg", name: "Monkey D. Luffy" },
+			{ code: "ST31-005", img: "/Cards/ST31/ST31-005.jpg" },
+		],
+	},
+	{
+		id: "st32-zoro",
+		starter: "ST32",
+		leader: "Green Zoro",
+		label: "ST32 Zoro",
+		verdict: "Rogue",
+		tone: "rogue",
+		sample: "About 1,400 games logged",
+		turnOrder: ["No reliable overall win rate published", "No first/second split published"],
+		matchupSummary: "The early read is qualitative rather than statistical.",
+		highlights: [
+			"The new support does not appear to fundamentally change how Green Zoro plays.",
+			"It reads more like a light upgrade or a lateral evolution than a structural redesign.",
+			"Purple Enel still looks difficult, even though some of the new green cards initially seemed promising there.",
+			"Several of the strongest green Starter Deck cards may actually help Mihawk more than Zoro.",
+		],
+		verdictCopy:
+			"Zoro can still put up results with the right build and the right bracket, but the first wave of testing does not suggest a real breakout. Until players prove otherwise, it looks like a Rogue deck rather than a stable top-table choice.",
+		cards: [
+			{ code: "ST32-001", img: "/Cards/ST32/ST32-001.jpg", name: "Kin'emon" },
+			{ code: "ST32-002", img: "/Cards/ST32/ST32-002.jpg", name: "Kouzuki Oden" },
+			{ code: "ST32-003", img: "/Cards/ST32/ST32-003.jpg", name: "Dracule Mihawk" },
+			{ code: "ST32-004", img: "/Cards/ST32/ST32-004.jpg" },
+			{ code: "ST32-005", img: "/Cards/ST32/ST32-005.jpg", name: "Roronoa Zoro" },
+		],
+	},
+	{
+		id: "st33-kuzan",
+		starter: "ST33",
+		leader: "Blue Kuzan",
+		label: "ST33 Kuzan",
+		verdict: "Meta",
+		tone: "meta",
+		sample: "Roughly 48% overall win rate",
+		turnOrder: ["5 favorable matchups", "5 even, 10 unfavorable"],
+		matchupSummary: "The raw record is average, but the matchup map still leaves room for growth.",
+		highlights: [
+			"Currently appears weak into Red/Green Luffy, Purple Enel, and Nami.",
+			"Mihawk also looks slightly unfavorable, which is notable because cards like Gravity Blade and Ice Time should help manage wide boards.",
+			"The deck may simply be under-optimized and still searching for the right balance between bodies and Events.",
+			"Teach and Red Luffy do look more promising, which matters if Teach remains a check on Purple Enel and Red/Green Luffy.",
+		],
+		verdictCopy:
+			"Kuzan's first numbers are only fair, but the deck does not look unsalvageable. It has adjustable tools, several matchups still appear playable, and it may be one of the Starters whose stock changes the most once the lists tighten up. For now, we place it in Meta with room to rise.",
+		cards: [
+			{ code: "ST33-001", img: "/Cards/ST33/ST33-001.jpg", name: "Koby" },
+			{ code: "ST33-002", img: "/Cards/ST33/ST33-002.jpg" },
+			{ code: "ST33-003", img: "/Cards/ST33/ST33-003.jpg", name: "Smoker" },
+			{ code: "ST33-004", img: "/Cards/ST33/ST33-004.jpg", name: "Borsalino" },
+			{ code: "ST33-005", img: "/Cards/ST33/ST33-005.jpg", name: "Monkey D. Garp" },
+		],
+	},
+	{
+		id: "st34-katakuri",
+		starter: "ST34",
+		leader: "Purple Katakuri",
+		label: "ST34 Katakuri",
+		verdict: "Top Meta",
+		tone: "top",
+		sample: "About 48% overall win rate",
+		turnOrder: ["53% going 1st", "40% going 2nd"],
+		matchupSummary: "5 favorable, 6 even, 9 unfavorable.",
+		highlights: [
+			"The first/second split is the biggest warning sign. Katakuri clearly wants to dictate the pace from the opening turns.",
+			"It looks good into Mihawk and Nami, two decks that may see a lot of play.",
+			"Red/Green Luffy and Kuzan appear close to even.",
+			"Green/Blue Luffy and Purple Enel look notably worse, which is a major issue because both are among the sturdiest decks in the format.",
+		],
+		verdictCopy:
+			"Katakuri has real flaws, but its positioning into Mihawk and Nami gives it a meaningful role in the room. We currently place it at the lower end of Top Meta. Its exact standing will depend heavily on how much Purple Enel, Green/Blue Luffy, Mihawk, and Nami show up.",
+		cards: [
+			{ code: "ST34-001", img: "/Cards/ST34/ST34-001.jpg", name: "Charlotte Katakuri" },
+			{ code: "ST34-002", img: "/Cards/ST34/ST34-002.jpg", name: "Charlotte Cracker" },
+			{ code: "ST34-003", img: "/Cards/ST34/ST34-003.jpg", name: "Charlotte Brulee" },
+			{ code: "ST34-004", img: "/Cards/ST34/ST34-004.jpg", name: "Charlotte Linlin" },
+			{ code: "ST34-005", img: "/Cards/ST34/ST34-005.jpg", name: "Baron Tamago & Pekoms" },
+		],
+	},
+	{
+		id: "st36-kid",
+		starter: "ST36",
+		leader: "Kid",
+		label: "ST36 Kid",
+		verdict: "Meta",
+		tone: "meta",
+		sample: "Around 46% overall win rate",
+		turnOrder: ["3 favorable matchups", "7 even, 10 unfavorable"],
+		matchupSummary: "The healing package helps survivability, but not every game turns that into a win.",
+		highlights: [
+			"The deck drew a lot of attention because of how much life it can recover.",
+			"That said, healing alone does not solve its issues closing games or turning stabilization into pressure.",
+			"Mihawk, Red/Green Luffy, Purple Katakuri, and Green/Blue Luffy all look rough.",
+			"Purple Enel and Nami still seem slightly unfavorable, though not as punishing as the matchups above, and Teach does look favorable.",
+		],
+		verdictCopy:
+			"Kid has a powerful mechanic, but the support may have been somewhat overrated early on. It improves staying power without fully fixing the deck's ability to finish games. We currently place it in the middle of Meta, with its good Teach matchup giving it a specific niche.",
+		cards: [
+			{ code: "ST36-001", img: "/Cards/ST36/ST36-001.jpg" },
+			{ code: "ST36-002", img: "/Cards/ST36/ST36-002.jpg", name: "Killer" },
+			{ code: "ST36-003", img: "/Cards/ST36/ST36-003.jpg", name: "Scratchmen Apoo" },
+			{ code: "ST36-004", img: "/Cards/ST36/ST36-004.jpg" },
+			{ code: "ST36-005", img: "/Cards/ST36/ST36-005.jpg", name: 'Eustass "Captain" Kid' },
+		],
+	},
+	{
+		id: "st35-sabo",
+		starter: "ST35",
+		leader: "Sabo",
+		label: "ST35 Sabo",
+		verdict: "Wildcard",
+		tone: "wildcard",
+		sample: "Around 42% overall win rate",
+		turnOrder: ["3 favorable matchups", "4 even, 13 unfavorable"],
+		matchupSummary: "On paper, these are the weakest first-wave numbers of the six directly supported Leaders.",
+		highlights: [
+			"Sabo may also be the least defined deck in the group right now.",
+			"Players are still trying an aggressive shell, a more traditional midrange shell, and hybrid builds that split the difference.",
+			"That hybrid approach may be dragging the numbers down by reducing the deck's internal coherence.",
+			"The Starter Deck support itself appears to point more naturally toward a dedicated aggressive build.",
+		],
+		verdictCopy:
+			"We do not expect Sabo to become an immediate omnipresent force, but it could easily be stronger than the first data suggests. We place it in Wildcard: a deck that may stay relatively niche, but could absolutely reward a specialist who finds the cleanest aggressive version.",
+		cards: [
+			{ code: "ST35-001", img: "/Cards/ST35/ST35-001.jpg" },
+			{ code: "ST35-002", img: "/Cards/ST35/ST35-002.jpg" },
+			{ code: "ST35-003", img: "/Cards/ST35/ST35-003.jpg" },
+			{ code: "ST35-004", img: "/Cards/ST35/ST35-004.jpg" },
+			{ code: "ST35-005", img: "/Cards/ST35/ST35-005.jpg" },
+		],
+	},
+];
+
+const surpriseWinners = [
+	{
+		id: "rg-luffy",
+		name: "Red/Green Luffy",
+		art: "/assets/guides/monkey-d-luffy-op13.png",
+		record: "14 favorable, 3 even, 3 unfavorable",
+		verdict: "Apex",
+		copy: [
+			"Red/Green Luffy looks like one of the biggest winners of OP16.5 because it directly benefits from some of the new Luffy Starter Deck cards.",
+			"The new Stage, in particular, appears to give the deck a level of consistency and structural stability it was missing before.",
+			"It looks favorable into Nami, Purple Enel, Green/Blue Luffy, Mihawk, Kuzan, and Kid, which is a remarkable spread for an early format snapshot.",
+			"Teach remains the glaring problem because shutting off the Leader effect makes the matchup extremely difficult.",
+		],
+	},
+	{
+		id: "mihawk",
+		name: "Mihawk",
+		art: "/assets/guides/dracule-mihawk-op14.png",
+		record: "11 favorable, 5 even, 4 unfavorable",
+		verdict: "Apex",
+		copy: [
+			"Mihawk may be the single biggest beneficiary of the green Starter Deck support, perhaps even more than Zoro himself.",
+			"The new Oden offers a freeze effect, a draw effect, and the Wano typing needed to support a cleaner package with cards like Otama and the Samurai Event.",
+			"That gives Mihawk a mix of hand volume, large threats, and field control that often defines the best green decks.",
+			"Purple Katakuri, Green/Blue Luffy, and Red/Green Luffy look like the biggest problems, while Nami and Teach still appear favorable.",
+		],
+	},
+];
+
+const formatPillars = [
+	{
+		name: "Purple Enel",
+		art: "/assets/guides/enel-op15.png",
+		record: "12 favorable, 5 even, 3 unfavorable",
+		verdict: "Apex",
+		points: [
+			"Still looks favorable into Mihawk, Red/Green Luffy, Kuzan, Purple Katakuri, Green/Blue Luffy, and Rosinante.",
+			"Nami and Teach remain the headline problem matchups.",
+			"The deck's filtering and answer density still make it one of the hardest engines to push out of a format quickly.",
+		],
+	},
+	{
+		name: "Green/Blue Luffy",
+		art: "/assets/guides/Luffy op16.png",
+		record: "About 54% win rate, with 12 favorable, 5 even, and 3 unfavorable matchups",
+		verdict: "Apex",
+		points: [
+			"Red/Green Luffy, Purple Enel, and Nami are the three major pressure points called out so far.",
+			"Even with those weaknesses, it still looks strong into most of the rest of the field.",
+			"The Nami matchup may also be somewhat less bad at a high level than broad stats suggest because the deck has a high mastery ceiling.",
+		],
+	},
+	{
+		name: "Nami",
+		art: "/assets/guides/nami-op11.png",
+		record: "12 favorable, 2 even, 6 unfavorable",
+		verdict: "Top Meta",
+		points: [
+			"Nami still has the blue-yellow defensive tools to heal, stall, and drag combat into awkward shapes.",
+			"The difference is that Mihawk and Red/Green Luffy both look naturally well positioned against her and may be much more common in OP16.5.",
+			"Nami seems favored into Kuzan, Green/Blue Luffy, and Purple Enel, but unfavorable into Mihawk, Red/Green Luffy, Purple Katakuri, and Teach.",
+		],
+	},
+	{
+		name: "Teach",
+		art: "/assets/guides/Teach-op16.png",
+		record: "About 51.94% win rate, with 8 favorable, 5 even, and 7 unfavorable matchups",
+		verdict: "Top Meta",
+		points: [
+			"Teach is still hugely relevant because it appears good into Red/Green Luffy, Purple Enel, and Nami.",
+			"Those three matchups alone give it real strategic importance in the room.",
+			"The downside is that Mihawk, Kuzan, and Green/Blue Luffy all seem more difficult, so Teach remains highly field-dependent.",
+		],
+	},
+];
+
+const tierList = [
+	{
+		label: "Apex",
+		tone: "apex",
+		decks: [
+			{ name: "Red/Green Luffy", art: "/assets/guides/monkey-d-luffy-op13.png" },
+			{ name: "Mihawk", art: "/assets/guides/dracule-mihawk-op14.png" },
+			{ name: "Purple Enel", art: "/assets/guides/enel-op15.png" },
+			{ name: "Green/Blue Luffy", art: "/assets/guides/Luffy op16.png" },
+		],
+	},
+	{
+		label: "Top Meta",
+		tone: "top",
+		decks: [
+			{ name: "Purple Katakuri", art: "/assets/guides/Katakuri op11.png" },
+			{ name: "Nami", art: "/assets/guides/nami-op11.png" },
+			{ name: "Teach", art: "/assets/guides/Teach-op16.png" },
+			{ name: "Rosinante", art: "/assets/guides/rosinante-op12.png" },
+			{ name: "Lucci", art: "/assets/guides/Koby OP11-001.png" },
+		],
+	},
+	{
+		label: "Meta",
+		tone: "meta",
+		decks: [
+			{ name: "ST31 Luffy", art: "/assets/guides/luffy op11.png" },
+			{ name: "Blue Kuzan", art: "/assets/guides/Kuzan op12.png" },
+			{ name: "Kid", art: "/assets/guides/Kid-op10.png" },
+			{ name: "Red/Blue Ace", art: "/assets/guides/portgas-d-ace-op13.png" },
+			{ name: "Boa Hancock", art: "/assets/guides/boa-hancock-op14.png" },
+			{ name: "Yamato", art: "/assets/guides/yamato-op16.png" },
+			{ name: "Shanks", art: "/assets/guides/Shanks op09.png" },
+			{ name: "Green/Purple Luffy", art: "/assets/guides/Monkey D. Luffy EB02-010.png" },
+		],
+	},
+	{
+		label: "Rogue",
+		tone: "rogue",
+		decks: [
+			{ name: "Green Zoro", art: "/assets/guides/Roronoa Zoro OP12-020.png" },
+			{ name: "Crocodile", art: "/assets/guides/crocodile-op14.png" },
+			{ name: "Red Ace", art: "/assets/guides/Ace-op16.png" },
+			{ name: "Luffy & Ace", art: "/assets/guides/Luffy-st30.png" },
+			{ name: "Koby", art: "/assets/guides/Koby OP11-001.png" },
+			{ name: "Kalgara", art: "/assets/guides/Kalgara OP08-098.png" },
+		],
+	},
+	{
+		label: "Wildcard",
+		tone: "wildcard",
+		decks: [
+			{ name: "Sabo", art: "/assets/guides/Sabo OP13-004.png" },
+			{ name: "Red/Yellow Bonney", art: "/assets/guides/Jewelry Bonney EB04-001.png" },
+		],
+	},
+];
+
+const verdictClass = (tone: string) => {
+	if (tone === "apex") return "verdict-apex";
+	if (tone === "top") return "verdict-top";
+	if (tone === "rogue") return "verdict-rogue";
+	if (tone === "wildcard") return "verdict-wildcard";
+	return "verdict-meta";
+};
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero op165-hero">
+		<div class="container hero-shell">
+			<div class="hero-copy">
+				<span class="hero-badge">Meta Analysis</span>
+				<h1>New OP16.5 Starter Decks: Which Ones Can Actually Move the Meta?</h1>
+				<p class="hero-lead">
+					OP16.5 is a short bridge format between OP16 and OP17, but the six new Starter Decks already look
+					strong enough to reshape the matchup map. The biggest surprise so far is that the decks benefiting the
+					most may not be the six headliners themselves.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#starter-decks">Jump to the ST Breakdown</a>
+					<a class="btn btn-secondary" href="#tier-list">See the First Tier List</a>
+				</div>
+			</div>
+			<div class="hero-side">
+				<div class="hero-panel">
+					<div class="hero-panel-label">Format Window</div>
+					<strong>OP16.5</strong>
+					<p>Early simulator data, live matchup observations, and first-list projections before OP17 hits.</p>
+				</div>
+				<div class="hero-starter-strip">
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/ST21/ST21-001.jpg" data-name="ST21-001 Monkey D. Luffy">
+						<img src="/Cards/ST21/ST21-001.jpg" alt="Monkey D. Luffy ST21-001 leader card" loading="eager" />
+					</button>
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP12/OP12-020.jpg" data-name="OP12-020 Roronoa Zoro">
+						<img src="/Cards/OP12/OP12-020.jpg" alt="Roronoa Zoro OP12-020 leader card" loading="eager" />
+					</button>
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP12/OP12-040.jpg" data-name="OP12-040 Kuzan">
+						<img src="/Cards/OP12/OP12-040.jpg" alt="Kuzan OP12-040 leader card" loading="eager" />
+					</button>
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP11/OP11-062.jpg" data-name="OP11-062 Charlotte Katakuri">
+						<img src="/Cards/OP11/OP11-062.jpg" alt="Charlotte Katakuri OP11-062 leader card" loading="eager" />
+					</button>
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP13/OP13-004.jpg" data-name="OP13-004 Sabo">
+						<img src="/Cards/OP13/OP13-004.jpg" alt="Sabo OP13-004 leader card" loading="eager" />
+					</button>
+					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP10/OP10-099.jpg" data-name='OP10-099 Eustass "Captain" Kid'>
+						<img src="/Cards/OP10/OP10-099.jpg" alt='Eustass "Captain" Kid OP10-099 leader card' loading="eager" />
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container article-layout">
+			<aside class="article-toc">
+				<div class="toc-card">
+					<div class="toc-label">On This Page</div>
+					<a href="#overview">Format Premise</a>
+					<a href="#starter-decks">Starter Deck Breakdown</a>
+					<a href="#hidden-winners">Who Really Won</a>
+					<a href="#pillars">Format Pillars</a>
+					<a href="#tier-list">First OP16.5 Tier List</a>
+					<a href="#conclusion">Conclusion</a>
+				</div>
+			</aside>
+
+			<div class="article-content">
+				<section id="overview" class="article-block overview-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>The Format Premise</h2>
+							<p>
+								Six new Starter Decks create a short transition period between OP16 and OP17. Several classic
+								Leaders gain new tools, but not all of them benefit equally from that support.
+							</p>
+						</div>
+					</div>
+
+					<div class="overview-grid">
+						<div class="overview-card">
+							<h3>What this first read is based on</h3>
+							<p>
+								This piece is built from the earliest simulator data available, the matchups that were explicitly
+								called out, and the ways the new cards appear to reshape each strategy in practice.
+							</p>
+						</div>
+						<div class="overview-card">
+							<h3>What can still change</h3>
+							<p>
+								The format is still fresh. Lists are not fully optimized yet, sample sizes vary wildly by deck,
+								and OP17 is likely to reset priorities quickly. Treat this as a first projection, not a final
+								ruling.
+							</p>
+						</div>
+					</div>
+
+					<div class="takeaway-list">
+						{quickTakeaways.map((item) => (
+							<div class="takeaway-item">{item}</div>
+						))}
+					</div>
+				</section>
+
+				<section id="starter-decks" class="article-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>The Six New Starter Decks</h2>
+							<p>
+								Each Starter Deck below gets its own visual card package, early positioning read, and working
+								verdict based on the first OP16.5 samples.
+							</p>
+						</div>
+					</div>
+
+					<div class="starter-index">
+						{starterDecks.map((deck) => (
+							<a href={`#${deck.id}`} class="starter-index-card">
+								<span>{deck.starter}</span>
+								<strong>{deck.leader}</strong>
+								<em class={verdictClass(deck.tone)}>{deck.verdict}</em>
+							</a>
+						))}
+					</div>
+
+					<div class="starter-stack">
+						{starterDecks.map((deck) => (
+							<article id={deck.id} class="starter-panel">
+								<div class="starter-header">
+									<div>
+										<div class="starter-kicker">{deck.starter}</div>
+										<h3>{deck.leader}</h3>
+									</div>
+									<span class={`verdict-pill ${verdictClass(deck.tone)}`}>{deck.verdict}</span>
+								</div>
+
+								<div class="starter-gallery">
+									{deck.cards.map((card) => (
+										<button
+											class="starter-card"
+											type="button"
+											data-card-preview
+											data-full={card.img}
+											data-name={`${card.code} ${card.name ?? card.code}`}
+										>
+											<img src={card.img} alt={`${card.name ?? card.code} card art`} loading="lazy" />
+											<div class="starter-card-caption">
+												<strong>{card.name ?? card.code}</strong>
+												<span>{card.code}</span>
+											</div>
+										</button>
+									))}
+								</div>
+
+								<div class="starter-stats">
+									<div class="stat-chip">
+										<span>Early sample</span>
+										<strong>{deck.sample}</strong>
+									</div>
+									{deck.turnOrder.map((item) => (
+										<div class="stat-chip">
+											<span>Turn-order read</span>
+											<strong>{item}</strong>
+										</div>
+									))}
+								</div>
+
+								<p class="matchup-summary">{deck.matchupSummary}</p>
+
+								<div class="bullet-grid">
+									{deck.highlights.map((point) => (
+										<p class="bullet-card">{point}</p>
+									))}
+								</div>
+
+								<div class="verdict-box">
+									<div class="verdict-box-title">Our Verdict</div>
+									<p>{deck.verdictCopy}</p>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section id="hidden-winners" class="article-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>The Starter Deck Faces Are Not the Only Real Winners</h2>
+							<p>
+								One of the clearest early lessons is that the decks represented by the Starter Decks are not
+								necessarily the ones using the new cards best.
+							</p>
+						</div>
+					</div>
+
+					<div class="winner-grid">
+						{surpriseWinners.map((winner) => (
+							<article id={winner.id} class="winner-card">
+								<div class="winner-head">
+									<img src={winner.art} alt={`${winner.name} leader art`} loading="lazy" />
+									<div>
+										<h3>{winner.name}</h3>
+										<p>{winner.record}</p>
+										<span class={`verdict-pill ${verdictClass("apex")}`}>{winner.verdict}</span>
+									</div>
+								</div>
+								<div class="winner-copy">
+									{winner.copy.map((paragraph) => (
+										<p>{paragraph}</p>
+									))}
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section id="pillars" class="article-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>The Decks Still Defining the Room</h2>
+							<p>
+								Even with six new Starter Decks entering the conversation, several OP16 pillars still look like
+								the decks everyone else must answer.
+							</p>
+						</div>
+					</div>
+
+					<div class="pillar-grid">
+						{formatPillars.map((pillar) => (
+							<article class="pillar-card">
+								<div class="pillar-head">
+									<img src={pillar.art} alt={`${pillar.name} leader art`} loading="lazy" />
+									<div>
+										<h3>{pillar.name}</h3>
+										<p>{pillar.record}</p>
+										<span class={`verdict-pill ${verdictClass(pillar.verdict === "Apex" ? "apex" : "top")}`}>{pillar.verdict}</span>
+									</div>
+								</div>
+								<ul>
+									{pillar.points.map((point) => (
+										<li>{point}</li>
+									))}
+								</ul>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section id="tier-list" class="article-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>Our First OP16.5 Tier List</h2>
+							<p>
+								This is our first projection based on the early data and the matchups that were explicitly
+								described. Several decks still have very small samples, so this board should be treated as
+								provisional.
+							</p>
+						</div>
+					</div>
+
+					<div class="tier-columns">
+						{tierList.map((tier) => (
+							<section class={`tier-column tier-column-${tier.tone}`}>
+								<header>
+									<h3>{tier.label}</h3>
+								</header>
+								<div class="tier-deck-list">
+									{tier.decks.map((deck) => (
+										<img src={deck.art} alt={`${deck.name} icon`} title={deck.name} loading="lazy" />
+									))}
+								</div>
+							</section>
+						))}
+					</div>
+				</section>
+
+				<section id="conclusion" class="article-block conclusion-block">
+					<div class="section-header compact-header">
+						<div>
+							<h2>Conclusion</h2>
+							<p>
+								The new Starter Decks do not appear to create six brand-new dominant decks. What they do seem
+								to do is redistribute key matchups across the field.
+							</p>
+						</div>
+					</div>
+
+					<div class="conclusion-grid">
+						<div class="conclusion-card">
+							<h3>What changed most</h3>
+							<p>
+								Purple Katakuri currently looks like the most competitive of the six directly reinforced
+								Leaders. ST31 Luffy, Kuzan, and Kid all seem capable of holding real meta share. Green Zoro
+								still looks limited, while Sabo remains a high-variance development project.
+							</p>
+						</div>
+						<div class="conclusion-card">
+							<h3>Who gained the most</h3>
+							<p>
+								The biggest winners may actually be Red/Green Luffy and Mihawk, both of which seem to convert
+								the new red and green support into stronger, more coherent tournament plans than the face decks
+								of the Starters themselves.
+							</p>
+						</div>
+					</div>
+
+					<div class="closing-points">
+						<p>Nami may lose ground if Mihawk and Red/Green Luffy both surge.</p>
+						<p>Teach gains importance because of how cleanly it pressures Red/Green Luffy and Purple Enel.</p>
+						<p>Purple Katakuri may benefit if Mihawk becomes one of the most played decks.</p>
+						<p>Kuzan and Sabo still have substantial room to improve as lists get refined.</p>
+					</div>
+
+					<p class="final-note">
+						OP16.5 should be a short format, but it may end up being noticeably more open than late OP16. The
+						next wave of tournament results will tell us whether Red/Green Luffy and Mihawk really are the new
+						decks to beat before OP17 arrives.
+					</p>
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		if (!full) return;
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		document.body.style.overflow = "";
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+</script>
+
+<style>
+	.op165-hero {
+		padding-bottom: 2.4rem;
+	}
+
+	.hero-shell {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.hero-lead {
+		max-width: 62ch;
+	}
+
+	.hero-side {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.hero-panel {
+		padding: 1.15rem;
+		border-radius: 20px;
+		background:
+			radial-gradient(circle at top left, rgba(255, 107, 61, 0.22), transparent 44%),
+			radial-gradient(circle at bottom right, rgba(255, 159, 26, 0.18), transparent 48%),
+			rgba(12, 17, 30, 0.92);
+		border: 1px solid rgba(255, 138, 42, 0.22);
+		box-shadow: var(--shadow);
+	}
+
+	.hero-panel-label,
+	.toc-label,
+	.starter-kicker,
+	.verdict-box-title {
+		font-size: 0.76rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.hero-panel strong {
+		display: block;
+		margin-top: 0.35rem;
+		font-size: 1.5rem;
+	}
+
+	.hero-panel p {
+		margin-bottom: 0;
+	}
+
+	.hero-starter-strip {
+		display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 0.55rem;
+	}
+
+	.hero-starter-strip img {
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+	}
+
+	.hero-starter-card {
+		padding: 0;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+	}
+
+	.hero-starter-card:focus-visible {
+		outline: none;
+	}
+
+	.hero-starter-card:hover img,
+	.hero-starter-card:focus-visible img {
+		transform: translateY(-2px);
+		border-color: rgba(255, 144, 53, 0.32);
+		box-shadow: 0 16px 28px rgba(0, 0, 0, 0.34);
+	}
+
+	.article-layout {
+		display: grid;
+		grid-template-columns: 240px minmax(0, 1fr);
+		gap: 1.25rem;
+		align-items: start;
+	}
+
+	.article-toc {
+		position: sticky;
+		top: 122px;
+	}
+
+	.toc-card {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.55rem;
+		padding: 1rem;
+		border-radius: 18px;
+		background: rgba(12, 17, 30, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.toc-card a {
+		display: block;
+		padding: 0.55rem 0.75rem;
+		border-radius: 12px;
+		color: var(--accent-2);
+		font-weight: 600;
+		line-height: 1.3;
+		background: linear-gradient(90deg, rgba(255, 136, 52, 0.12), rgba(255, 136, 52, 0.03));
+		border: 1px solid rgba(255, 136, 52, 0.12);
+		transition:
+			color 140ms ease,
+			border-color 140ms ease,
+			background 140ms ease,
+			transform 140ms ease;
+	}
+
+	.toc-card a:hover {
+		color: #ffb15f;
+		border-color: rgba(255, 136, 52, 0.28);
+		background: linear-gradient(90deg, rgba(255, 136, 52, 0.2), rgba(255, 136, 52, 0.05));
+		transform: translateX(2px);
+	}
+
+	.article-content {
+		display: grid;
+		gap: 1.35rem;
+	}
+
+	.article-block {
+		padding: 1.25rem;
+		border-radius: 22px;
+		background: rgba(10, 14, 24, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.compact-header {
+		margin-bottom: 1.2rem;
+	}
+
+	.compact-header h2 {
+		margin-bottom: 0.4rem;
+	}
+
+	.compact-header p {
+		max-width: 68ch;
+	}
+
+	.overview-grid,
+	.conclusion-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+
+	.overview-card,
+	.conclusion-card,
+	.bullet-card,
+	.verdict-box,
+	.winner-card,
+	.pillar-card {
+		border-radius: 18px;
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.overview-card,
+	.conclusion-card,
+	.verdict-box {
+		padding: 1rem;
+	}
+
+	.overview-card p,
+	.conclusion-card p,
+	.verdict-box p {
+		margin-bottom: 0;
+		color: var(--text-200);
+	}
+
+	.takeaway-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+		margin-top: 1rem;
+	}
+
+	.takeaway-item {
+		padding: 0.9rem 1rem;
+		border-radius: 16px;
+		background: linear-gradient(135deg, rgba(255, 107, 61, 0.12), rgba(255, 159, 26, 0.08));
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		font-weight: 600;
+	}
+
+	.starter-index {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	.starter-index-card {
+		display: grid;
+		gap: 0.5rem;
+		padding: 0.95rem 1rem;
+		border-radius: 18px;
+		background:
+			radial-gradient(circle at top right, rgba(255, 145, 54, 0.08), transparent 38%),
+			linear-gradient(180deg, rgba(11, 16, 28, 0.98), rgba(7, 11, 19, 0.96));
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+		transition:
+			transform 0.16s ease,
+			border-color 0.16s ease,
+			box-shadow 0.16s ease,
+			background 0.16s ease;
+	}
+
+	.starter-index-card:hover {
+		transform: translateY(-2px);
+		border-color: rgba(255, 138, 42, 0.22);
+		box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+		background:
+			radial-gradient(circle at top right, rgba(255, 145, 54, 0.12), transparent 42%),
+			linear-gradient(180deg, rgba(13, 19, 32, 0.98), rgba(8, 12, 20, 0.96));
+	}
+
+	.starter-index-card span {
+		color: #90a9e2;
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.starter-index-card strong {
+		font-size: 1.08rem;
+		line-height: 1.2;
+		color: var(--text-100);
+	}
+
+	.starter-index-card em {
+		justify-self: start;
+		display: inline-flex;
+		align-items: center;
+		padding: 0.34rem 0.72rem;
+		border-radius: 999px;
+		font-size: 0.8rem;
+		font-style: normal;
+		font-weight: 800;
+		letter-spacing: 0.01em;
+		border: 1px solid transparent;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	}
+
+	.starter-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.starter-panel {
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 18px;
+		background: rgba(6, 9, 17, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.starter-header,
+	.winner-head,
+	.pillar-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+
+	.starter-header h3,
+	.winner-head h3,
+	.pillar-head h3 {
+		margin: 0.2rem 0 0;
+	}
+
+	.verdict-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.38rem 0.8rem;
+		border-radius: 999px;
+		font-weight: 800;
+		font-size: 0.8rem;
+		border: 1px solid transparent;
+		white-space: nowrap;
+	}
+
+	.verdict-apex {
+		color: #261100;
+		background: linear-gradient(135deg, #ffda7a, #ff9f1c);
+		border-color: rgba(255, 202, 92, 0.44);
+	}
+
+	.verdict-top {
+		color: #2a1400;
+		background: linear-gradient(135deg, #ffb25a, #ff7f32);
+		border-color: rgba(255, 137, 58, 0.42);
+	}
+
+	.verdict-meta {
+		color: #102317;
+		background: linear-gradient(135deg, #8be6b1, #46c981);
+		border-color: rgba(70, 201, 129, 0.36);
+	}
+
+	.verdict-rogue {
+		color: #fff3db;
+		background: linear-gradient(135deg, #8d6840, #6d5130);
+		border-color: rgba(198, 157, 106, 0.34);
+	}
+
+	.verdict-wildcard {
+		color: #fff2f8;
+		background: linear-gradient(135deg, #d65a8e, #a8458c);
+		border-color: rgba(214, 90, 142, 0.38);
+	}
+
+	.starter-gallery {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 0.7rem;
+	}
+
+	.starter-card {
+		margin: 0;
+		display: grid;
+		gap: 0.45rem;
+		justify-items: center;
+		padding: 0;
+		background: transparent;
+		border: 0;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.starter-card img {
+		width: 100%;
+		max-width: 150px;
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+		transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+	}
+
+	.starter-card:hover img,
+	.starter-card:focus-visible img {
+		transform: translateY(-2px);
+		border-color: rgba(255, 144, 53, 0.32);
+		box-shadow: 0 16px 28px rgba(0, 0, 0, 0.34);
+	}
+
+	.starter-card:focus-visible {
+		outline: none;
+	}
+
+	.starter-card-caption {
+		display: grid;
+		gap: 0.1rem;
+	}
+
+	.starter-card-caption strong {
+		font-size: 0.82rem;
+		line-height: 1.2;
+	}
+
+	.starter-card-caption span {
+		color: var(--text-300);
+		font-size: 0.76rem;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(5, 8, 14, 0.82);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		z-index: 1000;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+	}
+
+	.starter-stats {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.7rem;
+	}
+
+	.stat-chip {
+		padding: 0.85rem 0.9rem;
+		border-radius: 16px;
+		background: rgba(12, 17, 30, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.stat-chip span {
+		font-size: 0.73rem;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: var(--text-300);
+	}
+
+	.matchup-summary {
+		margin: 0;
+		color: var(--text-200);
+		font-weight: 600;
+	}
+
+	.bullet-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+	}
+
+	.bullet-card {
+		padding: 1rem;
+		margin: 0;
+		color: var(--text-200);
+	}
+
+	.winner-grid,
+	.pillar-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.winner-card,
+	.pillar-card {
+		padding: 1rem;
+	}
+
+	.winner-head img,
+	.pillar-head img {
+		width: 92px;
+		border-radius: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.winner-head p,
+	.pillar-head p {
+		margin: 0.35rem 0 0.55rem;
+		color: var(--text-300);
+	}
+
+	.winner-copy p:last-child,
+	.pillar-card ul {
+		margin-bottom: 0;
+	}
+
+	.pillar-card ul {
+		padding-left: 1.1rem;
+		color: var(--text-200);
+	}
+
+	.tier-columns {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.9rem;
+	}
+
+	.tier-column {
+		padding: 0.95rem 0;
+		border: 0;
+		border-top: 1px solid rgba(255, 143, 58, 0.28);
+		background: transparent;
+		color: var(--text-100);
+	}
+
+	.tier-column:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	.tier-column header {
+		margin-bottom: 0.7rem;
+	}
+
+	.tier-column h3 {
+		margin: 0;
+	}
+
+	.tier-column-apex h3 {
+		color: #ffb347;
+	}
+
+	.tier-column-top h3 {
+		color: #ff9952;
+	}
+
+	.tier-column-meta h3 {
+		color: #67d796;
+	}
+
+	.tier-column-rogue h3 {
+		color: #d3a974;
+	}
+
+	.tier-column-wildcard h3 {
+		color: #df79ad;
+	}
+
+	.tier-deck-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+	}
+
+	.tier-deck-list img {
+		width: 52px;
+		height: 52px;
+		border-radius: 12px;
+		object-fit: cover;
+		object-position: center top;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.tier-column-apex .tier-deck-list img {
+		box-shadow: 0 0 0 1px rgba(255, 179, 71, 0.26), 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.tier-column-top .tier-deck-list img {
+		box-shadow: 0 0 0 1px rgba(255, 153, 82, 0.26), 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.tier-column-meta .tier-deck-list img {
+		box-shadow: 0 0 0 1px rgba(103, 215, 150, 0.24), 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.tier-column-rogue .tier-deck-list img {
+		box-shadow: 0 0 0 1px rgba(211, 169, 116, 0.24), 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.tier-column-wildcard .tier-deck-list img {
+		box-shadow: 0 0 0 1px rgba(223, 121, 173, 0.24), 0 10px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.closing-points {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.8rem;
+		margin-top: 1rem;
+	}
+
+	.closing-points p {
+		margin: 0;
+		padding: 0.9rem 1rem;
+		border-radius: 16px;
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.final-note {
+		margin: 1rem 0 0;
+		color: var(--text-200);
+		font-size: 1.04rem;
+	}
+
+	@media (max-width: 1100px) {
+		.article-layout,
+		.hero-shell {
+			grid-template-columns: 1fr;
+		}
+
+		.article-toc {
+			position: static;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.takeaway-list,
+		.bullet-grid,
+		.winner-grid,
+		.pillar-grid,
+		.overview-grid,
+		.conclusion-grid,
+		.closing-points {
+			grid-template-columns: 1fr;
+		}
+
+		.starter-stats {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.article-block {
+			padding: 0.85rem;
+			border-radius: 18px;
+		}
+
+		.starter-panel {
+			padding: 0.8rem;
+			gap: 0.8rem;
+		}
+
+		.overview-card,
+		.conclusion-card,
+		.verdict-box,
+		.bullet-card,
+		.winner-card,
+		.pillar-card,
+		.stat-chip {
+			padding: 0.8rem;
+		}
+
+		.bullet-card {
+			font-size: 0.98rem;
+			line-height: 1.5;
+		}
+
+		.starter-stats {
+			gap: 0.55rem;
+		}
+
+		.hero-starter-strip {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.hero-starter-strip img {
+			border-radius: 10px;
+		}
+
+		.starter-index {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.5rem;
+		}
+
+		.starter-index-card {
+			padding: 0.72rem 0.62rem;
+			gap: 0.4rem;
+			border-radius: 14px;
+		}
+
+		.starter-index-card span {
+			font-size: 0.62rem;
+		}
+
+		.starter-index-card strong {
+			font-size: 0.84rem;
+		}
+
+		.starter-index-card em {
+			padding: 0.28rem 0.52rem;
+			font-size: 0.68rem;
+		}
+
+		.toc-card {
+			gap: 0.45rem;
+		}
+
+		.starter-header,
+		.winner-head,
+		.pillar-head {
+			flex-direction: column;
+		}
+
+		.starter-gallery {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			gap: 0.55rem 0.35rem;
+			justify-items: center;
+		}
+
+		.starter-gallery .starter-card {
+			grid-column: span 2;
+			width: 100%;
+			max-width: 104px;
+			gap: 0.35rem;
+		}
+
+		.starter-gallery .starter-card:nth-child(4) {
+			grid-column: 2 / span 2;
+		}
+
+		.starter-gallery .starter-card:nth-child(5) {
+			grid-column: 4 / span 2;
+		}
+
+		.starter-card img {
+			max-width: 104px;
+			border-radius: 10px;
+		}
+
+		.starter-card-caption {
+			width: 100%;
+			text-align: center;
+		}
+
+		.starter-card-caption strong {
+			font-size: 0.74rem;
+		}
+
+		.starter-card-caption span {
+			font-size: 0.68rem;
+		}
+
+		.winner-head img,
+		.pillar-head img {
+			width: 76px;
+		}
+	}
+</style>

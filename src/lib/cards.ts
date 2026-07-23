@@ -26,6 +26,11 @@ const manualCardOverrides = {
 			name: "Blenheim",
 			color: "Red",
 		},
+		"marco op17-015": {
+			code: "OP17-015",
+			name: "Marco",
+			color: "Red",
+		},
 		"inuarashi and nekomamushi op17-004": {
 			code: "OP17-004",
 			name: "Inuarashi & Nekomamushi",
