@@ -60,6 +60,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-007": {
+		rarity: "Rare",
+		stats: "Red / Cost 7 / Slash / Power 8000",
+		traits: "Land of Wano/Kouzuki Clan/Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader is [Edward Newgate] or has the {Land of Wano} type, play up to 1 Character card with a type including {Land of Wano} or \"Whitebeard Pirates\" with 6000 power or less from your hand.",
+			],
+		],
+	},
 	"OP17-004": {
 		rarity: "Common",
 		stats: "Red / Cost 3 / Slash / Power 2000 / Counter 2000",
@@ -158,6 +169,19 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-027": {
+		rarity: "Rare",
+		stats: "Green / Cost 7 / Ranged / Power 9000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[keyword("rush", "Rush"), ": Character"],
+			["(This card can attack Characters on the turn it is played.)"],
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader has the {Red-Haired Pirates} type, draw 1 card and rest up to 2 of your opponent's Characters.",
+			],
+		],
+	},
 	"OP17-028": {
 		rarity: "Common",
 		stats: "Green / Cost 4 / Strike / Power 3000 / Counter 1000",
@@ -226,6 +250,17 @@ const leakCardDetails = {
 				" ",
 				keyword("once-per-turn", "Once Per Turn"),
 				" DON!! -1: Up to 1 of your opponent's Characters gets -2000 power during this turn.",
+			],
+		],
+	},
+	"OP17-060": {
+		rarity: "Rare",
+		stats: "Purple / Cost 6 / Strike / Power 6000 / Counter 1000",
+		traits: "Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader has the {Animal Kingdom Pirates} type, add up to 1 DON!! from your DON!! deck and set it as active. Then, K.O. up to 1 of your opponent's Characters with 3000 power or less.",
 			],
 		],
 	},
@@ -376,6 +411,30 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-087": {
+		rarity: "Rare",
+		stats: "Black / Cost 2 / Strike / Power 2000 / Counter 1000",
+		traits: "Elbaph/Straw Hat Crew",
+		effectLines: [
+			["If there is a Character with a cost of 12 or more, this Character gains +3000 power."],
+			[
+				keyword("on-play", "On Play"),
+				" If there is a Character with a cost of 12 or more, give up to 1 of your opponent's Characters -3000 power during this turn.",
+			],
+		],
+	},
+	"OP17-089": {
+		rarity: "Rare",
+		stats: "Black / Cost 4 / Strike / Power 6000",
+		traits: "Giant/Elbaph/Former Navy",
+		effectLines: [
+			["This Character gains +12 cost."],
+			[
+				keyword("on-play", "On Play"),
+				" Look at 3 cards from the top of your deck; reveal up to 1 {Elbaph} type card and add it to your hand. Then, trash the rest.",
+			],
+		],
+	},
 	"OP17-090": {
 		rarity: "Common",
 		stats: "Black / Cost 2 / Strike / Power 2000",
@@ -495,6 +554,23 @@ const leakCardDetails = {
 			],
 			["- Add up to 1 card from the top of your deck to the top of your Life cards."],
 			["- Add up to 1 card from the top of your opponent's Life cards to the owner's hand."],
+		],
+	},
+	"OP17-114": {
+		rarity: "Rare",
+		stats: "Yellow / Cost 6 / Slash/Strike / Power 4000 / Counter 1000",
+		traits: "Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("your-turn", "Your Turn"),
+				" ",
+				keyword("on-play", "On Play"),
+				" You may rest 2 of your DON!! cards: Draw 1 card and add up to 1 card from the top of your deck to the top of your Life. Then, give up to 2 of your opponent's Characters -3000 power during this turn.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Play this card.",
+			],
 		],
 	},
 	"OP17-119": {

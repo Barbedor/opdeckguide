@@ -21,6 +21,11 @@ const manualCardOverrides = {
 			name: "Edward Newgate",
 			color: "Red",
 		},
+		"kouzuki oden op17-007": {
+			code: "OP17-007",
+			name: "Kouzuki Oden",
+			color: "Red",
+		},
 		"blenheim op17-012": {
 			code: "OP17-012",
 			name: "Blenheim",
@@ -51,6 +56,11 @@ const manualCardOverrides = {
 			name: "Building Snake",
 			color: "Green",
 		},
+		"benn.beckman op17-027": {
+			code: "OP17-027",
+			name: "Benn Beckman",
+			color: "Green",
+		},
 		"bonk punch and monster op17-028": {
 			code: "OP17-028",
 			name: "Bonk Punch & Monster",
@@ -79,6 +89,11 @@ const manualCardOverrides = {
 		"kaido op17-058": {
 			code: "OP17-058",
 			name: "Kaido",
+			color: "Purple",
+		},
+		"ulti and page one op17-060": {
+			code: "OP17-060",
+			name: "Ulti & Page One",
 			color: "Purple",
 		},
 		"kaido op17-062": {
@@ -131,6 +146,16 @@ const manualCardOverrides = {
 			name: "Dorry",
 			color: "Black",
 		},
+		"nico robin op17-087": {
+			code: "OP17-087",
+			name: "Nico Robin",
+			color: "Black",
+		},
+		"jaguar.d. saul op17-089": {
+			code: "OP17-089",
+			name: "Jaguar D. Saul",
+			color: "Black",
+		},
 		"franky op17-090": {
 			code: "OP17-090",
 			name: "Franky",
@@ -169,6 +194,11 @@ const manualCardOverrides = {
 		"op17-109 charlotte pudding": {
 			code: "OP17-109",
 			name: "Charlotte Pudding",
+			color: "Yellow",
+		},
+		"the 3 sweet commanders op17-114": {
+			code: "OP17-114",
+			name: "The 3 Sweet Commanders",
 			color: "Yellow",
 		},
 		"op17-119-loki": {
