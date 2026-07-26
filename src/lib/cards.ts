@@ -141,6 +141,11 @@ const manualCardOverrides = {
 			name: "Jinbe",
 			color: "Black",
 		},
+		"nami op17-085": {
+			code: "OP17-085",
+			name: "Nami",
+			color: "Black",
+		},
 		"dorry op17-0xx": {
 			code: "OP17-0XX",
 			name: "Dorry",
@@ -166,6 +171,11 @@ const manualCardOverrides = {
 			name: "Brook",
 			color: "Black",
 		},
+		"roronoa zoro op17-095": {
+			code: "OP17-095",
+			name: "Roronoa Zoro",
+			color: "Black",
+		},
 		"op17-093monkey.d.luffy": {
 			code: "OP17-093",
 			name: "Monkey D. Luffy",
@@ -184,6 +194,11 @@ const manualCardOverrides = {
 		"charlotte chiffon op17-105": {
 			code: "OP17-105",
 			name: "Charlotte Chiffon",
+			color: "Yellow",
+		},
+		"charlotte cracker op17-104": {
+			code: "OP17-104",
+			name: "Charlotte Cracker",
 			color: "Yellow",
 		},
 		"op17-106 charlotte smoothie": {
