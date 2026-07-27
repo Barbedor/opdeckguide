@@ -137,6 +137,21 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-024": {
+		rarity: "Common",
+		stats: "Green / Cost 8 / Special / Power 8000 / Counter 1000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("banish", "Banish"),
+				" (When this card deals damage, the target card is trashed without activating its Trigger.)",
+			],
+			[
+				keyword("on-play", "On Play"),
+				" Rest up to 1 of your opponent's Characters.",
+			],
+		],
+	},
 	"OP17-025": {
 		rarity: "Uncommon",
 		stats: "Green / Cost 4 / Slash / Power 5000 / Counter 1000",
@@ -397,6 +412,20 @@ const leakCardDetails = {
 				" and +3000 power.",
 			],
 			["(After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"],
+		],
+	},
+	"OP17-084": {
+		rarity: "Uncommon",
+		stats: "Black / Cost 1 / Strike / Power 2000 / Counter 2000",
+		traits: "Animal/Elbaph/Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" If there is a Character with a cost of 12 or more, up to 1 of your Characters gains ",
+				keyword("unblockable", "Unblockable"),
+				" during this turn.",
+			],
+			["(This card cannot be blocked.)"],
 		],
 	},
 	"OP17-085": {
@@ -763,7 +792,7 @@ const getLeakSortRank = (card) => {
 };
 
 const getLeakSortCode = (code) => {
-	if (code === "OP17-0XX") return "OP17-084";
+	if (code === "OP17-0XX") return "OP17-086";
 	return code;
 };
 

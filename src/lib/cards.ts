@@ -51,6 +51,11 @@ const manualCardOverrides = {
 			name: "Shanks",
 			color: "Green",
 		},
+		"howling gab op17-024": {
+			code: "OP17-024",
+			name: "Howling Gab",
+			color: "Green",
+		},
 		"building snake op17-025": {
 			code: "OP17-025",
 			name: "Building Snake",
@@ -139,6 +144,11 @@ const manualCardOverrides = {
 		"jinbe op17-083": {
 			code: "OP17-083",
 			name: "Jinbe",
+			color: "Black",
+		},
+		"tony tony.chopper op17-084": {
+			code: "OP17-084",
+			name: "Tony Tony.Chopper",
 			color: "Black",
 		},
 		"nami op17-085": {
