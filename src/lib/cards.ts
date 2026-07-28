@@ -31,6 +31,11 @@ const manualCardOverrides = {
 			name: "Blenheim",
 			color: "Red",
 		},
+		"portgas.d.ace op17-013": {
+			code: "OP17-013",
+			name: "Portgas.D.Ace",
+			color: "Red",
+		},
 		"marco op17-015": {
 			code: "OP17-015",
 			name: "Marco",
