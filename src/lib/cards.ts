@@ -96,6 +96,11 @@ const manualCardOverrides = {
 			name: "Yasopp",
 			color: "Green",
 		},
+		"gloriosa op17-048": {
+			code: "OP17-048",
+			name: "Gloriosa",
+			color: "Blue",
+		},
 		"kaido op17-058": {
 			code: "OP17-058",
 			name: "Kaido",

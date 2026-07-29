@@ -264,6 +264,18 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-048": {
+		rarity: "Super Rare",
+		stats: "Blue / Cost 4 / Wisdom / Power 1000",
+		traits: "Amazon Lily/Rocks Pirates",
+		effectLines: [
+			[keyword("blocker", "Blocker")],
+			[
+				keyword("on-play", "On Play"),
+				" Place up to 1 Character with a cost of 5 or less at the bottom of the owner's deck.",
+			],
+		],
+	},
 	"OP17-058": {
 		rarity: "Leader Card",
 		stats: "Purple / Life 5 / Special / Power 5000",
@@ -833,10 +845,10 @@ const leakCards = isLeakPage
 const leakCount = leakCards.length;
 
 const title = isLeakPage
-	? `${extensionLabel} Leaks Card List | One Piece Card Game`
+	? `${extensionLabel} Revealed Cards List | One Piece Card Game`
 	: `${extensionLabel} Card List | One Piece Card Game`;
 const description = isLeakPage
-	? `Browse the latest ${extensionLabel} leaks for the One Piece Card Game before the set releases on ${releaseDateLabel}. This page updates with each newly revealed card while the URL stays the same.`
+	? `Browse the latest officially revealed ${extensionLabel} cards for the One Piece Card Game ahead of the set release on ${releaseDateLabel}. This page updates as Bandai reveals new cards while the URL stays the same.`
 	: `Browse the full ${extensionLabel} card list, search exact card numbers, and open full-size One Piece Card Game previews instantly.`;
 ---
 
@@ -844,13 +856,13 @@ const description = isLeakPage
 	<section class="hero">
 		<div class="container">
 			<span class="hero-badge">{extensionLabel}</span>
-			<h1>{isLeakPage ? `${extensionLabel} Leaks Card List` : `${extensionLabel} Card List`}</h1>
+			<h1>{isLeakPage ? `${extensionLabel} Revealed Cards List` : `${extensionLabel} Card List`}</h1>
 			{isLeakPage ? (
 				<>
 					<p>
-						This page tracks the currently revealed {extensionLabel} leaks for the One Piece Card Game ahead
-						of the official release on {releaseDateLabel}. New cards will be added here as they are
-						revealed.
+						This page tracks the currently revealed {extensionLabel} cards officially shown by Bandai for
+						the One Piece Card Game ahead of the set release on {releaseDateLabel}. New cards will be added
+						here as they are revealed.
 					</p>
 				</>
 			) : (
@@ -869,7 +881,7 @@ const description = isLeakPage
 					<h2>{isLeakPage ? `${extensionLabel} Revealed Cards` : `${extensionLabel} Cards`}</h2>
 					<p>
 						{isLeakPage
-							? `${leakCount} revealed leak cards currently available on this page.`
+							? `${leakCount} officially revealed cards currently available on this page.`
 							: `${cards.length} cards available in this extension.`}
 					</p>
 				</div>
@@ -989,7 +1001,7 @@ const description = isLeakPage
 			<div class="section-header faq-header">
 				<div>
 					<h2>{extensionLabel} FAQ</h2>
-					<p>{isLeakPage ? "Quick answers about the current OP17 leak page." : "Quick answers for the most common card list questions."}</p>
+					<p>{isLeakPage ? "Quick answers about the current OP17 revealed cards page." : "Quick answers for the most common card list questions."}</p>
 				</div>
 			</div>
 			<div class="faq-grid">
@@ -997,7 +1009,7 @@ const description = isLeakPage
 					<h3>{isLeakPage ? `Can I browse every ${extensionLabel} card here?` : `Can I browse every ${extensionLabel} card here?`}</h3>
 					<p>
 						{isLeakPage
-							? `Not yet. This page currently lists only the revealed ${extensionLabel} leaks and will grow as more cards are officially shown.`
+							? `Not yet. This page currently lists only the revealed ${extensionLabel} cards and will grow as more cards are officially shown by Bandai.`
 							: `Yes. This page lists the full ${extensionLabel} card pool in one place.`}
 					</p>
 				</article>
@@ -1005,7 +1017,7 @@ const description = isLeakPage
 					<h3>{isLeakPage ? "When is OP17 scheduled to release?" : "Where can I find deck context?"}</h3>
 					<p>
 						{isLeakPage ? (
-							<>The current target release date is {releaseDateLabel}. Until then, this page is intentionally framed as leaks.</>
+							<>The current target release date is {releaseDateLabel}. Until then, this page tracks the cards officially revealed by Bandai.</>
 						) : (
 							<>Use <a href="/deck-guides/">Deck Guides</a> to see how cards show up in real lists.</>
 						)}
