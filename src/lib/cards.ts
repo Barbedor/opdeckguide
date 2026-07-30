@@ -106,6 +106,11 @@ const manualCardOverrides = {
 			name: "Kaido",
 			color: "Purple",
 		},
+		"aramaki op17-059": {
+			code: "OP17-059",
+			name: "Aramaki",
+			color: "Purple",
+		},
 		"ulti and page one op17-060": {
 			code: "OP17-060",
 			name: "Ulti & Page One",
