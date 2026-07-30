@@ -100,8 +100,6 @@ const mulliganKeeps = [
 	},
 ];
 
-const idealHandCards = [katakuriSt34, puddingPrb, puddingSearcher, brulee];
-
 const curveFirst = [
 	{
 		label: "1 DON!!",
@@ -158,7 +156,7 @@ const curveSecond = [
 		label: "7 DON!!",
 		notes:
 			"Because Cracker gave you an extra DON!!, you reach Charlotte Katakuri ST34-001 a turn early here. Its effect immediately starts paying you back for the DON!! you'll spend on the leader and your combo turns.",
-		cards: [cracker, katakuriSt34],
+		cards: [katakuriSt34],
 	},
 	{
 		label: "9 DON!!",
@@ -327,7 +325,7 @@ const tips = [
 	{
 		copy:
 			"Having Charlotte Katakuri OP11-067 already in hand makes the Pudding combo much safer. Without it, you can still rely on the two cards drawn by Charlotte Pudding PRB02-010, but that's a gamble. Your fallback lines are Charlotte Katakuri ST34-001 first, then Charlotte Daifuku OP11-068.",
-		cards: [katakuriOp11, puddingPrb, daifuku],
+		cards: [puddingPrb, katakuriSt34, daifuku],
 	},
 	{
 		copy:
@@ -357,7 +355,7 @@ const tips = [
 	{
 		copy:
 			"Don't auto-fire Conquest of the Sea as soon as two targets show up. Sometimes it's better to wait until the opposing board is wider or to hold it for one exact threat. The card becomes especially strong after your first Pudding into cost-8 Katakuri line, once the deck can really start controlling the board.",
-		cards: [conquest, puddingPrb, katakuriOp11],
+		cards: [conquest],
 	},
 	{
 		copy:
@@ -390,7 +388,7 @@ const tips = [
 					that stability into much stronger late-game Big Mom turns.
 				</p>
 				<div class="hero-actions">
-					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-primary" href="#curve">Curve Guide</a>
 					<a class="btn btn-secondary" href="#matchups">Matchups</a>
 				</div>
 			</div>
@@ -476,20 +474,6 @@ const tips = [
 				</div>
 				<div class="tip-card glow-block">
 					<h3>Keep Patterns</h3>
-					<div class="sendback-grid ideal-grid">
-						{idealHandCards.map((entryCard) => (
-							<button
-								class="mini-card sendback-card"
-								type="button"
-								data-card-preview
-								data-full={entryCard.img}
-								data-name={`${entryCard.code} ${entryCard.name}`}
-							>
-								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-								<div class="mini-label sendback-label">{entryCard.name}</div>
-							</button>
-						))}
-					</div>
 					<ul class="bullet-list">
 						<li>Hands that naturally chain from Katakuri cost 5 into Charlotte Pudding cost 7</li>
 						<li>Search-heavy openers that reliably find your key combo pieces</li>
@@ -524,7 +508,7 @@ const tips = [
 					{curveFirst.map((slot) => (
 						<div class="curve-row">
 							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
+							<div class="curve-cards" style={`--curve-card-columns: ${Math.min(slot.cards.length, 4)};`}>
 								{slot.cards.map((entryCard) => (
 									<button
 										class="mini-card curve-card"
@@ -549,7 +533,7 @@ const tips = [
 					{curveSecond.map((slot) => (
 						<div class="curve-row">
 							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
+							<div class="curve-cards" style={`--curve-card-columns: ${Math.min(slot.cards.length, 4)};`}>
 								{slot.cards.map((entryCard) => (
 									<button
 										class="mini-card curve-card"
@@ -570,7 +554,7 @@ const tips = [
 			</div>
 			<div class="tip-card glow-block">
 				<h3>Leader Ability</h3>
-				<div class="tip-row">
+				<div class="tip-row leader-ability-row">
 					<div class="tip-cards">
 						<button
 							class="mini-card"
@@ -673,9 +657,9 @@ const tips = [
 				</div>
 			</div>
 			<div class="tips-grid">
-				{tips.map((tip) => (
+				{tips.map((tip, index) => (
 					<div
-						class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""} ${tip.cards.length >= 4 ? "four-card-tip" : ""}`}
+						class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""} ${tip.cards.length >= 4 ? "four-card-tip" : ""} ${index === tips.length - 1 ? "last-tip-card" : ""}`}
 					>
 						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
 							<div class="tip-cards">
@@ -1130,8 +1114,28 @@ const tips = [
 			max-width: none;
 		}
 
+		#mulligan .section-header p {
+			max-width: none;
+		}
+
+		#curve .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		#curve .section-header p {
+			max-width: none;
+		}
+
+		.curve-cards {
+			display: grid;
+			grid-template-columns: repeat(var(--curve-card-columns, 4), minmax(0, 120px));
+			justify-content: start;
+			align-items: start;
+		}
+
 		.mulligan-rows {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 1.25rem;
 		}
 
@@ -1172,6 +1176,19 @@ const tips = [
 			align-items: start;
 		}
 
+		.leader-ability-row {
+			grid-template-columns: 140px minmax(0, 1fr);
+			align-items: center;
+		}
+
+		.leader-ability-row .tip-cards {
+			justify-content: flex-start;
+		}
+
+		.leader-ability-row p {
+			margin: 0;
+		}
+
 		.matchup-row .tip-cards,
 		.tip-row .tip-cards {
 			justify-content: center;
@@ -1197,6 +1214,17 @@ const tips = [
 		.tips-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 1.25rem;
+		}
+
+		.last-tip-card {
+			grid-column: 1 / -1;
+		}
+
+		.last-tip-card .tip-cards {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			width: 100%;
+			justify-items: center;
 		}
 	}
 
