@@ -26,6 +26,11 @@ const manualCardOverrides = {
 			name: "Kouzuki Oden",
 			color: "Red",
 		},
+		"jozu op17-008": {
+			code: "OP17-008",
+			name: "Jozu",
+			color: "Red",
+		},
 		"blenheim op17-012": {
 			code: "OP17-012",
 			name: "Blenheim",
@@ -86,6 +91,16 @@ const manualCardOverrides = {
 			name: "Hongo",
 			color: "Green",
 		},
+		"lime juice op17-032": {
+			code: "OP17-032",
+			name: "Lime Juice",
+			color: "Green",
+		},
+		"lucky.roux op17-033": {
+			code: "OP17-033",
+			name: "Lucky.Roux",
+			color: "Green",
+		},
 		"rockstar op17-034": {
 			code: "OP17-034",
 			name: "Rockstar",
@@ -94,6 +109,11 @@ const manualCardOverrides = {
 		"yassop op17-031": {
 			code: "OP17-031",
 			name: "Yasopp",
+			color: "Green",
+		},
+		"op17-038": {
+			code: "OP17-038",
+			name: "I Think He's Seen An Ugly Future",
 			color: "Green",
 		},
 		"gloriosa op17-048": {
@@ -139,6 +159,16 @@ const manualCardOverrides = {
 		"black maria op17-072": {
 			code: "OP17-072",
 			name: "Black Maria",
+			color: "Purple",
+		},
+		"yamato op17-074": {
+			code: "OP17-074",
+			name: "Yamato",
+			color: "Purple",
+		},
+		"op17-078": {
+			code: "OP17-078",
+			name: "Drunken Dragon Bagua",
 			color: "Purple",
 		},
 		"op17-079 monkey.d.luffy": {
@@ -206,6 +236,11 @@ const manualCardOverrides = {
 			name: "Monkey D. Luffy",
 			color: "Black",
 		},
+		"op17-098": {
+			code: "OP17-098",
+			name: "Gum-Gum Kong Pistol",
+			color: "Black",
+		},
 		"charlottte linlin op17-099": {
 			code: "OP17-099",
 			name: "Charlotte.Linlin",
@@ -214,6 +249,11 @@ const manualCardOverrides = {
 		"charlottte linlin op17-112": {
 			code: "OP17-112",
 			name: "Charlotte.Linlin",
+			color: "Yellow",
+		},
+		"streusen op17-113": {
+			code: "OP17-113",
+			name: "Streusen",
 			color: "Yellow",
 		},
 		"charlotte chiffon op17-105": {
@@ -239,6 +279,11 @@ const manualCardOverrides = {
 		"the 3 sweet commanders op17-114": {
 			code: "OP17-114",
 			name: "The 3 Sweet Commanders",
+			color: "Yellow",
+		},
+		"op17-117": {
+			code: "OP17-117",
+			name: "Maser Saber",
 			color: "Yellow",
 		},
 		"op17-119-loki": {

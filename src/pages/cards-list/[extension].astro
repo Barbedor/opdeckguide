@@ -71,6 +71,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-008": {
+		rarity: "Rare",
+		stats: "Red / Cost 6 / Wisdom / Power 8000",
+		traits: "Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Your [Edward.Newgate] Leader's base power becomes 8000 until the end of your opponent's next End Phase.",
+			],
+		],
+	},
 	"OP17-004": {
 		rarity: "Common",
 		stats: "Red / Cost 3 / Slash / Power 2000 / Counter 2000",
@@ -251,6 +262,32 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-032": {
+		rarity: "Rare",
+		stats: "Green / Cost 1 / Special / Power 2000 / Counter 2000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Look at 3 cards from the top of your deck; reveal up to 1 card with a type including \"Red-Haired Pirates\" and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+			],
+		],
+	},
+	"OP17-033": {
+		rarity: "Rare",
+		stats: "Green / Cost 4 / Strike / Power 5000 / Counter 1000",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Look at 3 cards from the top of your deck; reveal up to 1 card with a type including \"Red-Haired Pirates\" and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+			],
+			[
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" You may trash this Character: Rest up to 1 of your opponent's Leader or Characters.",
+			],
+		],
+	},
 	"OP17-034": {
 		rarity: "Common",
 		stats: "Green / Cost 5 / Slash / Power 6000 / Counter 1000",
@@ -261,6 +298,21 @@ const leakCardDetails = {
 				" ",
 				keyword("once-per-turn", "Once Per Turn"),
 				" If your opponent's Leader has 6000 power or more, set up to 1 of your DON!! cards as active. Then, your {Red-Haired Pirates} type Leader's base power becomes 6000 until the end of your opponent's next End Phase.",
+			],
+		],
+	},
+	"OP17-038": {
+		rarity: "Common",
+		stats: "Green / Cost 0 / Event",
+		traits: "Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 4 of your cards: Rest up to 1 of your opponent's Characters.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +3000 power during this battle.",
 			],
 		],
 	},
@@ -388,6 +440,36 @@ const leakCardDetails = {
 				" ",
 				keyword("once-per-turn", "Once Per Turn"),
 				" You may trash 1 card from your hand: Up to 1 of your Leader or Characters gains +1000 power during this battle.",
+			],
+		],
+	},
+	"OP17-074": {
+		rarity: "Rare",
+		stats: "Purple / Cost 3 / Wisdom / Power 1000 / Counter 1000",
+		traits: "Land of Wano",
+		effectLines: [
+			[
+				keyword("blocker", "Blocker"),
+				" (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
+			],
+			[
+				keyword("on-play", "On Play"),
+				" Add up to 1 DON!! card as rested from your DON!! deck.",
+			],
+		],
+	},
+	"OP17-078": {
+		rarity: "Common",
+		stats: "Purple / Cost 2 / Event",
+		traits: "The Four Emperors/Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 2 of your DON!! cards and trash 2 cards from your hand: If your Leader has the {Animal Kingdom Pirates} type, add up to 3 DON!! cards from your DON!! deck and rest them.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" Give up to 1 of your Leader or Character cards +4000 power during this battle.",
 			],
 		],
 	},
@@ -563,6 +645,21 @@ const leakCardDetails = {
 			["If one of your Characters would be removed from the field by your opponent's effect, you may place 3 cards from your trash at the bottom of your deck in any order instead."],
 		],
 	},
+	"OP17-098": {
+		rarity: "Common",
+		stats: "Black / Cost 1 / Event",
+		traits: "Elbaph/The Four Emperors/Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 6 of your DON!! cards: If there is a Character with a cost of 12 or more, K.O. up to 2 of your opponent's Characters with a cost of 6 or less.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" Your Leader gains +3000 power during this battle.",
+			],
+		],
+	},
 	"OP17-099": {
 		rarity: "Leader Card",
 		stats: "Yellow / Life 5 / Special / Power 5000",
@@ -658,6 +755,17 @@ const leakCardDetails = {
 			["- Add up to 1 card from the top of your opponent's Life cards to the owner's hand."],
 		],
 	},
+	"OP17-113": {
+		rarity: "Rare",
+		stats: "Yellow / Cost 1 / Slash / Power 2000 / Counter 2000",
+		traits: "Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Look at 3 cards from the top of your deck; reveal up to 1 {Big Mom Pirates} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+			],
+		],
+	},
 	"OP17-114": {
 		rarity: "Rare",
 		stats: "Yellow / Cost 6 / Slash/Strike / Power 4000 / Counter 1000",
@@ -672,6 +780,21 @@ const leakCardDetails = {
 			[
 				keyword("trigger", "Trigger"),
 				" Play this card.",
+			],
+		],
+	},
+	"OP17-117": {
+		rarity: "Common",
+		stats: "Yellow / Cost 1 / Event",
+		traits: "The Four Emperors/Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("counter", "Counter"),
+				" Up to 1 of your [Charlotte Linlin] cards gains +3000 power during this battle.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Your opponent may trash 3 cards from their hand. If they don't, K.O. up to 1 of your opponent's Characters with a cost of 6 or less.",
 			],
 		],
 	},
