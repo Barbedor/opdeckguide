@@ -1,0 +1,1475 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Charlotte Katakuri OP11 Deck Guide";
+const description =
+	"Charlotte Katakuri OP11 deck guide for One Piece Card Game with decklist, mulligan priorities, a curve guide, tech cards, matchup notes, and gameplay tips for the OP16 format.";
+
+const icon = "/assets/guides/Katakuri%20op11.png";
+
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
+const card = (code, name, img) => ({ code, name, img });
+
+const katakuriLeader = card("OP11-062", "Charlotte Katakuri", "/Cards/OP11/OP11-062.jpg");
+const puddingSearcher = card("OP11-070", "Charlotte Pudding", "/Cards/OP11/OP11-070.jpg");
+const brulee = card("ST34-003", "Charlotte Brulee", "/Cards/ST34/ST34-003.jpg");
+const katakuriOp08 = card("OP08-062", "Charlotte Katakuri", "/Cards/OP08/OP08-062.png");
+const tamagoPekoms = card("ST34-005", "Baron Tamago & Pekoms", "/Cards/ST34/ST34-005.jpg");
+const baby5 = card("EB03-036", "Baby 5", "/Cards/EB03/EB03-036.jpg");
+const cracker = card("ST34-002", "Charlotte Cracker", "/Cards/ST34/ST34-002.jpg");
+const katakuriSt34 = card("ST34-001", "Charlotte Katakuri", "/Cards/ST34/ST34-001.jpg");
+const daifuku = card("OP11-068", "Charlotte Daifuku", "/Cards/OP11/OP11-068.jpg");
+const puddingPrb = card("PRB02-010", "Charlotte Pudding", "/Cards/PRB02/PRB02-010.jpg");
+const katakuriOp11 = card("OP11-067", "Charlotte Katakuri", "/Cards/OP11/OP11-067.jpg");
+const linlinSt34 = card("ST34-004", "Charlotte Linlin", "/Cards/ST34/ST34-004.jpg");
+const divineDeparture = card("OP13-076", "Divine Departure", "/Cards/OP13/OP13-076.jpg");
+const mamaragan = card("OP15-078", "Mamaragan", "/Cards/OP15/OP15-078.jpg");
+const onePieceSearch = card("OP07-077", "We're Going to Claim the One Piece!!!", "/Cards/OP07/OP07-077.png");
+const conquest = card("OP08-077", "Conquest of the Sea", "/Cards/OP08/OP08-077.png");
+const linlinOp08 = card("OP08-069", "Charlotte Linlin", "/Cards/OP08/OP08-069.png");
+const usohachi = card("ST18-001", "Usohachi", "/Cards/ST18/ST18-001.png");
+const anana = card("OP11-065", "Anana", "/Cards/OP11/OP11-065.jpg");
+const slowSlowBeam = card("OP07-076", "Slow-Slow Beam Sword", "/Cards/OP07/OP07-076.png");
+
+const mihawk14 = card("OP14-020", "Dracule Mihawk", "/Cards/OP14/OP14-020.jpg");
+const kid10 = card("OP10-099", "Eustass 'Captain' Kid", "/Cards/OP10/OP10-099.jpg");
+const nami11 = card("OP11-041", "Nami OP11", "/Cards/OP11/OP11-041.jpg");
+const rgLuffy = card("OP13-003", "Red/Green Luffy", "/Cards/OP13/OP13-003.jpg");
+const teach16 = card("OP16-080", "Marshall.D.Teach OP16", "/Cards/OP16/OP16-080.jpg");
+const enel15 = card("OP15-058", "Purple Enel OP15", "/Cards/OP15/OP15-058.jpg");
+const gbLuffy = card("OP16-022", "Green/Blue Luffy OP16", "/Cards/OP16/OP16-022.jpg");
+const rosinante12 = card("OP12-061", "Donquixote Rosinante OP12", "/Cards/OP12/OP12-061.jpg");
+const st21Luffy = card("ST21-001", "Monkey.D.Luffy ST21", "/Cards/ST21/ST21-001.jpg");
+
+const decklist = [
+	{ ...katakuriLeader, count: 1, role: "Leader" },
+	{ ...puddingSearcher, count: 4, role: "Character" },
+	{ ...brulee, count: 4, role: "Character" },
+	{ ...katakuriOp08, count: 2, role: "Character" },
+	{ ...tamagoPekoms, count: 3, role: "Character" },
+	{ ...baby5, count: 3, role: "Character" },
+	{ ...cracker, count: 4, role: "Character" },
+	{ ...katakuriSt34, count: 4, role: "Character" },
+	{ ...daifuku, count: 2, role: "Character" },
+	{ ...puddingPrb, count: 4, role: "Character" },
+	{ ...katakuriOp11, count: 4, role: "Character" },
+	{ ...linlinSt34, count: 4, role: "Character" },
+	{ ...divineDeparture, count: 2, role: "Event" },
+	{ ...mamaragan, count: 4, role: "Event" },
+	{ ...onePieceSearch, count: 4, role: "Event" },
+	{ ...conquest, count: 2, role: "Event" },
+];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const mulliganKeeps = [
+	{
+		copy:
+			"One of your best searchers. It helps assemble the deck's main sequence immediately, and opening on it makes it much easier to line up your strongest turns.",
+		cards: [puddingSearcher],
+	},
+	{
+		copy:
+			"Another high-priority opener. Brulee keeps the early game smooth and improves your odds of finding the cards that matter most, especially Katakuri cost 5.",
+		cards: [brulee],
+	},
+	{
+		copy:
+			"This event is one of the best stabilizers in the opening hand. It keeps digging toward the engine and helps you find the curve pieces you need to stay on plan.",
+		cards: [onePieceSearch],
+	},
+	{
+		copy:
+			"The most important early payoff in the deck. Seeing Katakuri cost 5 from the start makes your entire curve cleaner, so it's worth prioritizing heavily in your mulligan decisions.",
+		cards: [katakuriSt34],
+	},
+];
+
+const idealHandCards = [katakuriSt34, puddingPrb, puddingSearcher, brulee];
+
+const curveFirst = [
+	{
+		label: "1 DON!!",
+		notes:
+			"Play a searcher first, usually Charlotte Pudding, Charlotte Brulee, or We're Going to Claim the One Piece!!!, so you can start assembling your combo immediately.",
+		cards: [puddingSearcher, brulee, onePieceSearch],
+	},
+	{
+		label: "3 DON!!",
+		notes:
+			"Keep using your searchers to prepare your hand. These turns are mostly about making sure Katakuri cost 5 and the follow-up Pudding line are ready on time.",
+		cards: [puddingSearcher, brulee, onePieceSearch],
+	},
+	{
+		label: "5 DON!!",
+		notes:
+			"Charlotte Katakuri ST34-001 is the key play here. Its effect immediately improves your DON economy, which makes the future DON!!-minus effects, including the leader effect, much easier to cash in on.",
+		cards: [katakuriSt34],
+	},
+	{
+		label: "7 DON!!",
+		notes:
+			"Play Charlotte Pudding PRB02-010 to put Charlotte Katakuri OP11-067 into play, as long as your opponent already has at least 6 DON!!. This is the deck's main sequence and one of the biggest reasons the list works.",
+		cards: [puddingPrb, katakuriOp11],
+	},
+	{
+		label: "9 DON!!",
+		notes:
+			"You can repeat the Charlotte Pudding into Charlotte Katakuri line here to create a stronger board. The DON!! you get back naturally prepares your next 10-DON turn and makes the leader effect easier to keep using.",
+		cards: [puddingPrb, katakuriOp11],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"Shift into Charlotte Linlin ST34-004. If the state of the game calls for it, follow with Mamaragan so you can control the opposing board after Linlin sets a large body to 0 power.",
+		cards: [linlinSt34, mamaragan],
+	},
+];
+
+const curveSecond = [
+	{
+		label: "2 DON!!",
+		notes:
+			"Start with a searcher, usually Charlotte Pudding, Charlotte Brulee, or We're Going to Claim the One Piece!!!, so you can shape the rest of the curve right away.",
+		cards: [puddingSearcher, brulee, onePieceSearch],
+	},
+	{
+		label: "4 DON!!",
+		notes:
+			"Charlotte Cracker is the best play here. It accelerates your development by adding 1 rested DON!!, and the cost-2 KO matters a lot into decks like Green/Blue Luffy and Purple Enel.",
+		cards: [cracker],
+	},
+	{
+		label: "7 DON!!",
+		notes:
+			"Because Cracker gave you an extra DON!!, you reach Charlotte Katakuri ST34-001 a turn early here. Its effect immediately starts paying you back for the DON!! you'll spend on the leader and your combo turns.",
+		cards: [cracker, katakuriSt34],
+	},
+	{
+		label: "9 DON!!",
+		notes:
+			"Play Charlotte Pudding PRB02-010 into Charlotte Katakuri OP11-067. You get enough DON!! back to set up the next 10-DON turn naturally while still keeping the leader effect live when the game calls for it.",
+		cards: [puddingPrb, katakuriOp11],
+	},
+	{
+		label: "10 DON!!",
+		notes:
+			"Move into Charlotte Linlin ST34-004 plus Mamaragan, or adapt with another Pudding into Katakuri sequence depending on how the game looks. The best turns are the ones where you keep developing without giving up DON efficiency.",
+		cards: [linlinSt34, mamaragan, puddingPrb, katakuriOp11],
+	},
+];
+
+const optionsCards = [
+	{
+		...linlinOp08,
+		copy:
+			"It slows aggressive decks down by putting a cost-6-or-lower character into Life while healing you for 1. Since Katakuri struggles most against fast decks, a 9000-power body with that kind of effect is always worth considering.",
+	},
+	{
+		...usohachi,
+		copy:
+			"A more offensive 2K Counter option. Once you hit 8 DON!!, Usohachi can rest an opposing cost-5-or-lower character, but picking it means you'll protect your ST34 Katakuri less often.",
+	},
+	{
+		...anana,
+		copy:
+			"A simple defensive option. It's a 1-cost blocker that doesn't take much investment to deploy and can help cover some of the deck's rougher aggressive matchups.",
+	},
+	{
+		...slowSlowBeam,
+		copy:
+			"I used to run this before cutting it for Charlotte Cracker, which I now rate higher, especially into Green/Blue Luffy. If that matchup mattered less, Slow-Slow Beam Sword would be very easy to bring back into the list.",
+	},
+];
+
+const matchups = [
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: mihawk14,
+		notes: [
+			"Charlotte Linlin ST34-004 is a direct answer to Law & Bepo and 9-cost Mihawk, while Charlotte Katakuri OP11-067 blocks Mihawk's large attacks very well.",
+			"Conquest of the Sea is excellent here because it can remove Mihawk cost 6 and Oden with only one card.",
+			"Try to break Mihawk's going-first curve. The deck is much less threatening when it can't unfold its ideal sequence.",
+			"Don't waste your Charlotte Linlins. They're your cleanest late-game answer.",
+		],
+	},
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: kid10,
+		notes: [
+			"Kid often struggles to pressure through Katakuri's late-game Big Mom bodies.",
+			"Conquest of the Sea removes multiple important cards like Borsalino and Killer and can slow the deck down a lot.",
+			"Focus on your own curve instead of over-controlling early.",
+			"Once Katakuri OP11-067 is established, Kid has a much harder time converting its board edge.",
+		],
+	},
+	{
+		label: "Favorable",
+		tone: "up",
+		icon: "↑",
+		leader: nami11,
+		notes: [
+			"This matchup is naturally favorable.",
+			"Stick to your main plan: assemble the Pudding into Katakuri engine quickly, then take over the game.",
+			"Katakuri's large bodies force Nami to keep answering instead of fully advancing its own plan.",
+			"Don't overcommit your resources. Keep enough DON!! to defend the turns that matter most.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: rgLuffy,
+		notes: [
+			"Charlotte Linlin ST34-004 is your best answer to Sanji, Usopp, and Zoro because those are the cards that let Red/Green Luffy refund DON!! and fully cash in on the leader effect.",
+			"Conquest of the Sea matters for the same reason.",
+			"Don't be afraid to delay your combo if Charlotte Linlin can immediately break the opposing board.",
+			"The matchup becomes much more comfortable once Red/Green Luffy can't keep enough DON!! to attack and defend in the same turn.",
+		],
+	},
+	{
+		label: "Even",
+		tone: "even",
+		icon: "≈",
+		leader: teach16,
+		notes: [
+			"Play your usual game plan. There's no need to mulligan for one specific card.",
+			"Conquest of the Sea loses a lot of value because Teach can increase the cost of its characters.",
+			"Save your Charlotte Linlins for major threats like Shiryu or Teach itself.",
+			"Before you go for lethal, calculate the redirection effects and counters your opponent can still represent.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: enel15,
+		notes: [
+			"This is one of the deck's worst matchups.",
+			"Even with the available tech cards, it's hard to improve this pairing in a meaningful way.",
+			"Try to speed the plan up through Charlotte Cracker and land your large cards as quickly as possible.",
+			"If Purple Enel is heavily represented in your event, Katakuri loses a lot of value.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: gbLuffy,
+		notes: [
+			"Katakuri has a hard time surviving here.",
+			"Charlotte Cracker and Conquest of the Sea are your best cards for breaking the opposing combo pieces before they fully come together.",
+			"If the opponent moves into the Boa Hancock plan, keep Charlotte Linlin followed by Mamaragan ready to answer it immediately.",
+			"This matchup can be improved a little with tech cards, unlike Purple Enel.",
+		],
+	},
+	{
+		label: "Slightly Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: rosinante12,
+		notes: [
+			"Rosinante can mirror a similar control plan to yours.",
+			"You can compare Sakazuki plus Mamaragan to your own Linlin plus Mamaragan package.",
+			"Don't let Rosinante set up multiple large threats too quickly.",
+			"Try to save your removal effects for the turns where Rosinante invests the most resources.",
+		],
+	},
+	{
+		label: "Unfavorable",
+		tone: "down",
+		icon: "↓",
+		leader: st21Luffy,
+		notes: [
+			"The deck applies pressure very quickly and doesn't give Katakuri much time to get its engine online.",
+			"Prioritize your own development over trading resources early.",
+			"Every delay in your curve sharply increases the opponent's chances of closing the game.",
+			"ST21 Luffy is simply too fast for Katakuri most of the time.",
+		],
+	},
+];
+
+const tips = [
+	{
+		copy:
+			"The core of the deck is still Charlotte Katakuri ST34-001 into Charlotte Pudding PRB02-010 into Charlotte Katakuri OP11-067. Your searchers should mainly be used to find those three cards and make that curve as consistent as possible.",
+		cards: [katakuriSt34, puddingPrb, katakuriOp11],
+	},
+	{
+		copy:
+			"If you're still missing the key pieces, don't be afraid to cash in Mamaragan as a counter just to draw 1 card when you're at 6 DON!! or less. Having Katakuri ST34-001 and Charlotte Pudding PRB02-010 in hand matters more than always saving Mamaragan for the combo.",
+		cards: [mamaragan, katakuriSt34, puddingPrb],
+	},
+	{
+		copy:
+			"Always track the opposing DON count before you play Charlotte Pudding PRB02-010. The draw effect and the 6-to-8-cost cheat line only work if your opponent already has at least 6 DON!! in play.",
+		cards: [puddingPrb],
+	},
+	{
+		copy:
+			"Having Charlotte Katakuri OP11-067 already in hand makes the Pudding combo much safer. Without it, you can still rely on the two cards drawn by Charlotte Pudding PRB02-010, but that's a gamble. Your fallback lines are Charlotte Katakuri ST34-001 first, then Charlotte Daifuku OP11-068.",
+		cards: [katakuriOp11, puddingPrb, daifuku],
+	},
+	{
+		copy:
+			"Get full value out of Charlotte Katakuri ST34-001 before and after it gets KO'd. It gives back 2 rested DON!! when a DON!! returns to the DON!! deck, and when it gets KO'd, it can also play an 8000-power character from hand, usually Charlotte Katakuri OP11-067 in this build.",
+		cards: [katakuriSt34, katakuriOp11],
+	},
+	{
+		copy:
+			"Charlotte Katakuri OP11-067 lets you attack much more freely. At the end of the turn, it restands two Big Mom Pirates characters and also adds 1 rested DON!! from your DON!! deck, so your attackers can still be ready for the opposing turn.",
+		cards: [katakuriOp11],
+	},
+	{
+		copy:
+			"The leader effect doesn't only fix Life totals. It also lets you anticipate what the opponent is going to draw next turn, which means you can partially map out the options they'll actually have.",
+		cards: [katakuriLeader],
+	},
+	{
+		copy:
+			"Charlotte Linlin ST34-004 isn't just there to gain Life. On top of healing you for 1, it sets an opposing character to 0 power, which means your searchers, Baron Tamago & Pekoms, or even your leader can finish the target off.",
+		cards: [linlinSt34, tamagoPekoms, katakuriLeader],
+	},
+	{
+		copy:
+			"Mamaragan OP15-078 directly completes the Charlotte Linlin ST34-004 line. Once a target is set to 0 power, Mamaragan can rest it so one of your characters or your leader can finish it off. Divine Departure can also lower a character far enough to put it in Mamaragan range.",
+		cards: [linlinSt34, mamaragan, divineDeparture],
+	},
+	{
+		copy:
+			"Don't auto-fire Conquest of the Sea as soon as two targets show up. Sometimes it's better to wait until the opposing board is wider or to hold it for one exact threat. The card becomes especially strong after your first Pudding into cost-8 Katakuri line, once the deck can really start controlling the board.",
+		cards: [conquest, puddingPrb, katakuriOp11],
+	},
+	{
+		copy:
+			"Charlotte Cracker ST34-002 gives you both control and acceleration. It can KO a cost-2 character and then add 1 rested DON!!, which helps you reach Pudding cost 7 and Katakuri cost 8 or Charlotte Linlin cost 10 faster.",
+		cards: [cracker],
+	},
+	{
+		copy:
+			"Charlotte Katakuri OP08-062 requires you to watch the opponent's DON count closely. It can only transform into a Katakuri whose cost is less than or equal to the amount of DON!! the opponent controls, so sometimes it's a bridge into Katakuri cost 5 and other times it's a bridge into Katakuri cost 8.",
+		cards: [katakuriOp08, katakuriSt34, katakuriOp11],
+	},
+	{
+		copy:
+			"When you don't have the perfect curve, keep searching instead of abandoning the plan. The list plays 12 searchers precisely to find Charlotte Katakuri ST34-001 and Charlotte Pudding PRB02-010 consistently, and Charlotte Cracker plus Pudding's fallback lines keep you in the game even when some pieces arrive late.",
+		cards: [puddingSearcher, brulee, onePieceSearch, cracker],
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div>
+				<span class="hero-badge">Deck Guide</span>
+				<h1>Charlotte Katakuri OP11 Deck Guide</h1>
+				<p>
+					Charlotte Katakuri OP11 gets a real upgrade from ST34, which gives the deck stronger search lines,
+					cleaner DON!! management, and new ways to reinforce its core Katakuri into Pudding engine. The deck
+					still plays a patient control game, but it now hits its main sequence more consistently and converts
+					that stability into much stronger late-game Big Mom turns.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#decklist">Jump to Decklist</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Charlotte Katakuri OP11 guide icon" loading="lazy" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container">
+			<div class="section-header decklist-header">
+				<div class="decklist-title-row">
+					<h2>Decklist</h2>
+					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+						Copy for Sim
+					</button>
+				</div>
+				<p>Main list for Charlotte Katakuri OP11 in the OP16 format.</p>
+			</div>
+			<div class="deck-grid">
+				{decklist.map((entry) => (
+					<button
+						class="deck-card"
+						type="button"
+						data-card-preview
+						data-full={entry.img}
+						data-name={`${entry.code} ${entry.name}`}
+					>
+						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+						<div class="deck-info">
+							<span class="deck-count">{entry.count}x</span>
+							<div>
+								<div class="deck-name">{entry.name}</div>
+								<div class="deck-code">{entry.code}</div>
+							</div>
+						</div>
+						<span class="deck-role">{entry.role}</span>
+					</button>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="mulligan" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Mulligan</h2>
+					<p>
+						The deck is built around one precise sequence: Charlotte Katakuri cost 5 into Charlotte Pudding
+						cost 7. Because of that, your top priority is using your searchers to find those pieces as early as
+						possible, especially the 5-cost Katakuri.
+					</p>
+				</div>
+			</div>
+			<div class="mulligan-stack">
+				<div class="tip-card glow-block">
+					<h3>High Priority</h3>
+					<div class="mulligan-rows">
+						{mulliganKeeps.map((entry) => (
+							<div class="mulligan-row">
+								<div class="tip-cards">
+									{entry.cards.map((entryCard) => (
+										<button
+											class="mini-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									))}
+								</div>
+								<div class="mulligan-copy">
+									<p>{entry.copy}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="tip-card glow-block">
+					<h3>Keep Patterns</h3>
+					<div class="sendback-grid ideal-grid">
+						{idealHandCards.map((entryCard) => (
+							<button
+								class="mini-card sendback-card"
+								type="button"
+								data-card-preview
+								data-full={entryCard.img}
+								data-name={`${entryCard.code} ${entryCard.name}`}
+							>
+								<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+								<div class="mini-label sendback-label">{entryCard.name}</div>
+							</button>
+						))}
+					</div>
+					<ul class="bullet-list">
+						<li>Hands that naturally chain from Katakuri cost 5 into Charlotte Pudding cost 7</li>
+						<li>Search-heavy openers that reliably find your key combo pieces</li>
+						<li>Avoid hands that are only late game, especially Charlotte Linlin-heavy hands with no searchers</li>
+					</ul>
+					<p class="mulligan-text">
+						If your hand can naturally move from Katakuri cost 5 into Charlotte Pudding cost 7, that's already
+						a strong reason to keep. What you want to avoid most are hands full of late-game cards with no way
+						to assemble the engine.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="curve" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Curve Guide</h2>
+					<p>
+						The deck can play from either seat, but both curves are really about reaching the Katakuri into
+						Pudding engine on time and then converting that DON!! refund into stronger control turns. The whole
+						list is built so your midgame keeps paying you back for the leader's DON!!-minus effect instead of
+						falling behind on tempo.
+					</p>
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going First</h3>
+				<div class="curve-rows">
+					{curveFirst.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{curveSecond.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+			<div class="tip-card glow-block">
+				<h3>Leader Ability</h3>
+				<div class="tip-row">
+					<div class="tip-cards">
+						<button
+							class="mini-card"
+							type="button"
+							data-card-preview
+							data-full={katakuriLeader.img}
+							data-name={`${katakuriLeader.code} ${katakuriLeader.name}`}
+						>
+							<img loading="lazy" src={katakuriLeader.img} alt={`${katakuriLeader.code} ${katakuriLeader.name}`} />
+							<div class="mini-label">{katakuriLeader.name}</div>
+						</button>
+					</div>
+					<p>
+						The leader effect can matter on both offense and defense. Because it costs DON!! -1, the deck's
+						curve is specifically built to pay that cost back through Charlotte Katakuri ST34-001 and Charlotte
+						Katakuri OP11-067, so you can still keep developing at a healthy pace.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="options" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tech Cards</h2>
+					<p>Meta-dependent flex options that keep showing up in successful Katakuri tournament lists.</p>
+				</div>
+			</div>
+			<div class="options-rich-grid">
+				{optionsCards.map((entryCard) => (
+					<div class="option-note-card glow-block">
+						<button
+							class="option-card"
+							type="button"
+							data-card-preview
+							data-full={entryCard.img}
+							data-name={`${entryCard.code} ${entryCard.name}`}
+						>
+							<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+							<div class="option-info">
+								<div class="deck-name">{entryCard.name}</div>
+								<div class="deck-code">{entryCard.code}</div>
+							</div>
+						</button>
+						<p>{entryCard.copy}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="matchups" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Matchups</h2>
+					<p>How the main OP16 leaders line up against Charlotte Katakuri.</p>
+				</div>
+			</div>
+			<div class="matchups-stack">
+				{matchups.map((matchup) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${matchup.tone === "down" ? "badge-down" : matchup.tone === "even" ? "badge-even" : "badge-up"}`}>
+							<span class="badge-icon">{matchup.icon}</span>
+							<span>{matchup.label}</span>
+						</div>
+						<div class="matchup-row">
+							<div class="tip-cards">
+								<button
+									class="mini-card"
+									type="button"
+									data-card-preview
+									data-full={matchup.leader.img}
+									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
+								>
+									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<div class="mini-label">{matchup.leader.name}</div>
+								</button>
+							</div>
+							<ul class="bullet-list matchup-list">
+								{matchup.notes.map((note) => (
+									<li>{note}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section id="tips" class="list-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<h2>Tips</h2>
+					<p>Core reminders for Charlotte Katakuri in the OP16 format.</p>
+				</div>
+			</div>
+			<div class="tips-grid">
+				{tips.map((tip) => (
+					<div
+						class={`tip-card glow-block ${tip.cards.length > 1 ? "multi-card-tip" : ""} ${tip.cards.length >= 4 ? "four-card-tip" : ""}`}
+					>
+						<div class={`tip-row ${tip.cards.length > 1 ? "multi-card-tip-row" : ""}`}>
+							<div class="tip-cards">
+								{tip.cards.map((entryCard) => (
+									<button
+										class="mini-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+									>
+										<img class="card-main-image" loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<p>{tip.copy}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
+	});
+</script>
+
+<style>
+	.guide-hero .hero-grid {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+
+	.guide-icon {
+		display: grid;
+		place-items: center;
+	}
+
+	.guide-icon img {
+		width: min(320px, 90%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow);
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.decklist-header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		column-gap: 1rem;
+		row-gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: contents;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.decklist-title-row h2 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.decklist-title-row .copy-sim-button {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.decklist-header p {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.glow-block {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.glow-block,
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		box-shadow:
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.75rem;
+		text-align: left;
+		cursor: pointer;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible {
+		transform: translateY(-4px);
+		border-color: rgba(255, 107, 61, 0.4);
+		box-shadow: var(--shadow);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.tip-card,
+	.curve-block,
+	.matchup-card,
+	.option-note-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: var(--radius-md);
+	}
+
+	.tip-card {
+		padding: 1rem 1.2rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.tip-card h3,
+	.mulligan-copy h4 {
+		margin: 0;
+	}
+
+	.tip-cards {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.tip-row,
+	.matchup-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-stack,
+	.mulligan-rows,
+	.tips-grid {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.mulligan-row {
+		display: grid;
+		grid-template-columns: 140px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-copy p,
+	.mulligan-text,
+	.curve-note,
+	.option-note-card p {
+		color: var(--text-300);
+	}
+
+	.sendback-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.9rem;
+		align-items: start;
+		justify-items: center;
+	}
+
+	.sendback-card {
+		text-align: center;
+	}
+
+	.sendback-label {
+		max-width: 130px;
+		margin-inline: auto;
+	}
+
+	.bullet-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-200);
+	}
+
+	.curve-block {
+		padding: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.8rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.curve-label {
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.curve-cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.curve-card {
+		text-align: center;
+	}
+
+	.option-note-card {
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.option-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+		justify-items: center;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.option-card img {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+		border-radius: 10px;
+	}
+
+	.option-info {
+		display: grid;
+		gap: 0.2rem;
+		text-align: center;
+	}
+
+	.options-rich-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.matchups-stack {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		padding: 1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.matchup-badge {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(12, 17, 30, 0.8);
+	}
+
+	.badge-icon {
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		font-weight: 800;
+		color: #0b0f1a;
+	}
+
+	.badge-up {
+		color: #7ef29a;
+	}
+
+	.badge-up .badge-icon {
+		background: linear-gradient(135deg, #22c55e, #86efac);
+	}
+
+	.badge-down {
+		color: #ff8a8a;
+	}
+
+	.badge-down .badge-icon {
+		background: linear-gradient(135deg, #ef4444, #fca5a5);
+	}
+
+	.badge-even {
+		color: #ffd66b;
+	}
+
+	.badge-even .badge-icon {
+		background: linear-gradient(135deg, #f59e0b, #fbbf24);
+	}
+
+	@media (min-width: 641px) {
+		#mulligan .section-header > div {
+			width: 100%;
+			max-width: none;
+		}
+
+		.mulligan-rows {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.mulligan-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.mulligan-row .mini-card {
+			text-align: center;
+		}
+
+		.mulligan-row .mini-label {
+			display: block;
+		}
+
+		.mulligan-copy p {
+			margin: 0;
+			text-align: left;
+		}
+
+		.matchups-stack {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+			align-items: stretch;
+		}
+
+		.matchup-row,
+		.tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+			align-items: start;
+		}
+
+		.matchup-row .tip-cards,
+		.tip-row .tip-cards {
+			justify-content: center;
+			flex-wrap: wrap;
+			row-gap: 0.9rem;
+		}
+
+		.matchup-row .mini-card,
+		.tip-row .mini-card {
+			text-align: center;
+		}
+
+		.matchup-row .mini-label,
+		.tip-row .mini-label {
+			display: block;
+		}
+
+		.matchup-list,
+		.tip-row p {
+			margin: 0;
+		}
+
+		.tips-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		background: rgba(6, 8, 14, 0.85);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		z-index: 40;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		max-width: min(520px, 90vw);
+		max-height: 90vh;
+		background: rgba(10, 14, 24, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: 1rem 1rem 1.5rem;
+		position: relative;
+		box-shadow: var(--shadow);
+	}
+
+	.card-modal-inner img {
+		width: 100%;
+		max-height: 80vh;
+		object-fit: contain;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid var(--border);
+		color: var(--text-100);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		cursor: pointer;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 900px) {
+		.guide-hero .hero-grid,
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 1fr;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
+		}
+
+		.section-header {
+			gap: 0.8rem;
+		}
+
+		#decklist .section-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.mini-card img {
+			width: 90px;
+		}
+
+		.mulligan-copy p,
+		.tip-row p,
+		.matchup-list {
+			margin: 0;
+		}
+
+		.sendback-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem 0.55rem;
+		}
+
+		.sendback-label {
+			max-width: 120px;
+		}
+
+		.options-rich-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.option-note-card {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.9rem;
+			row-gap: 0.55rem;
+		}
+
+		.option-note-card .option-card {
+			justify-items: start;
+			text-align: left;
+		}
+
+		.option-note-card .option-card img {
+			max-width: 96px;
+		}
+
+		.option-note-card .option-info {
+			text-align: left;
+		}
+
+		.option-note-card p {
+			grid-column: 2;
+			margin: 0;
+		}
+
+		.mulligan-row,
+		.tip-row,
+		.matchup-row {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.mulligan-row .tip-cards,
+		.tip-row .tip-cards,
+		.matchup-row .tip-cards {
+			flex-wrap: nowrap;
+		}
+
+		.tip-row .tip-cards {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
+		}
+
+		.tip-card.multi-card-tip .tip-row {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.tip-card.multi-card-tip .tip-cards {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			gap: 0.55rem;
+			flex-wrap: nowrap;
+		}
+
+		.tip-card.four-card-tip .tip-cards {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.55rem;
+			width: 100%;
+			justify-items: start;
+		}
+
+		.tip-card.multi-card-tip p {
+			grid-column: 1;
+			margin-top: 0;
+		}
+
+		.tip-row .tip-cards .mini-card img {
+			width: 90px;
+			max-width: 90px;
+		}
+
+		.mulligan-row .mini-label,
+		.tip-row .mini-label,
+		.matchup-row .mini-label,
+		.curve-row .mini-label {
+			display: none;
+		}
+
+		.curve-cards {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.45rem;
+			justify-items: start;
+			align-items: start;
+		}
+
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+		}
+
+		.curve-cards .mini-card {
+			width: 100%;
+		}
+
+		.curve-cards .mini-card .card-main-image {
+			width: 100%;
+			max-width: 88px;
+		}
+
+		.curve-label {
+			grid-column: auto;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.deck-card {
+			padding: 0.35rem;
+			gap: 0.4rem;
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.deck-card img {
+			max-width: 94px;
+			border-radius: 8px;
+		}
+
+		.deck-info {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.28rem;
+		}
+
+		.deck-count {
+			padding: 0.18rem 0.45rem;
+			font-size: 0.68rem;
+			line-height: 1;
+		}
+
+		.deck-name {
+			font-size: 0.68rem;
+			line-height: 1.15;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.deck-code {
+			font-size: 0.66rem;
+			line-height: 1.1;
+		}
+
+		.deck-role {
+			display: none;
+		}
+	}
+</style>

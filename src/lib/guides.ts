@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Charlotte Katakuri OP11 Deck Guide",
+		leader: "Charlotte Katakuri",
+		code: "OP11",
+		formatLabel: "OP16 Format",
+		summary: "Decklist, mulligan priorities, curve guide, tech cards, matchup notes, and gameplay tips for Charlotte Katakuri OP11.",
+		month: "July",
+		href: "/deck-guides/katakuri-op11/",
+		imageSrc: "/assets/guides/Katakuri%20op11.png",
+		imageAlt: "Charlotte Katakuri OP11 guide icon",
+		aliases: ["charlotte katakuri", "katakuri", "op11 katakuri", "yellow katakuri", "big mom pirates katakuri", "st34 katakuri"],
+		tags: ["op11", "op16", "yellow", "big mom pirates", "st34"],
+	},
+	{
+		kind: "deck",
 		title: "Shanks OP09 Deck Guide",
 		leader: "Shanks",
 		code: "OP09",
