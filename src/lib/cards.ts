@@ -11,6 +11,11 @@ const manualCardOverrides = {
 			name: "Edward Newgate",
 			color: "Red",
 		},
+		"atmos op17-002": {
+			code: "OP17-002",
+			name: "Atmos",
+			color: "Red",
+		},
 		"op17-003 izo": {
 			code: "OP17-003",
 			name: "Izo",
@@ -44,6 +49,11 @@ const manualCardOverrides = {
 		"marco op17-015": {
 			code: "OP17-015",
 			name: "Marco",
+			color: "Red",
+		},
+		"op-17-019": {
+			code: "OP17-019",
+			name: "I Don't Have Time to Chat with Snot-Nosed Brats",
 			color: "Red",
 		},
 		"inuarashi and nekomamushi op17-004": {
@@ -151,6 +161,11 @@ const manualCardOverrides = {
 			name: "King",
 			color: "Purple",
 		},
+		"op17-066": {
+			code: "OP17-066",
+			name: "Kurozumi Orochi",
+			color: "Purple",
+		},
 		"who's.who op17-071": {
 			code: "OP17-071",
 			name: "Who's.Who",
@@ -231,6 +246,11 @@ const manualCardOverrides = {
 			name: "Roronoa Zoro",
 			color: "Black",
 		},
+		"op17-094": {
+			code: "OP17-094",
+			name: "Rodo",
+			color: "Black",
+		},
 		"op17-093monkey.d.luffy": {
 			code: "OP17-093",
 			name: "Monkey D. Luffy",
@@ -244,6 +264,11 @@ const manualCardOverrides = {
 		"charlottte linlin op17-099": {
 			code: "OP17-099",
 			name: "Charlotte.Linlin",
+			color: "Yellow",
+		},
+		"op17-101": {
+			code: "OP17-101",
+			name: "Caribou",
 			color: "Yellow",
 		},
 		"charlottte linlin op17-112": {
@@ -276,9 +301,19 @@ const manualCardOverrides = {
 			name: "Charlotte Pudding",
 			color: "Yellow",
 		},
+		"op17-108": {
+			code: "OP17-108",
+			name: "Charlotte Brulee",
+			color: "Yellow",
+		},
 		"the 3 sweet commanders op17-114": {
 			code: "OP17-114",
 			name: "The 3 Sweet Commanders",
+			color: "Yellow",
+		},
+		"op17-116": {
+			code: "OP17-116",
+			name: "Fulgora",
 			color: "Yellow",
 		},
 		"op17-117": {

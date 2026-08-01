@@ -36,6 +36,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-002": {
+		rarity: "Common",
+		stats: "Red / Cost 4 / Slash / Power 6000",
+		traits: "Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("opponents-turn", "Opponent's Turn"),
+				" This Character gains +3000 power.",
+			],
+		],
+	},
 	"OP17-003": {
 		rarity: "Rare",
 		stats: "Red / Cost 4 / Ranged / Power 6000",
@@ -132,6 +143,21 @@ const leakCardDetails = {
 			[
 				keyword("on-ko", "On K.O."),
 				" You may trash 1 card with a type including \"Whitebeard Pirates\" from your hand: Play this Character card from your trash.",
+			],
+		],
+	},
+	"OP17-019": {
+		rarity: "Rare",
+		stats: "Red / Cost 1 / Event",
+		traits: "The Four Emperors/Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" Look at 5 cards from the top of your deck; reveal up to 1 card with a type including \"Whitebeard Pirates\" and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Your Leader gains +1000 power during this turn.",
 			],
 		],
 	},
@@ -414,6 +440,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-066": {
+		rarity: "Common",
+		stats: "Purple / Cost 1 / Wisdom / Power 0 / Counter 1000",
+		traits: "Land of Wano/Kurozumi Clan",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" DON!! -1: If you have a Character with a cost of 10 or more, draw 2 cards and trash 1 card from your hand.",
+			],
+		],
+	},
 	"OP17-071": {
 		rarity: "Common",
 		stats: "Purple / Cost 2 / Slash / Power 3000 / Counter 1000",
@@ -636,6 +673,14 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-094": {
+		rarity: "Uncommon",
+		stats: "Black / Cost 1 / Slash / Power 2000 / Counter 2000",
+		traits: "Giant/Elbaph/New Giant Pirates",
+		effectLines: [
+			["If your Leader has the {Elbaph} type, this Character gains +12 cost."],
+		],
+	},
 	"OP17-095": {
 		rarity: "Common",
 		stats: "Black / Cost 2 / Slash / Power 2000 / Counter 2000",
@@ -671,6 +716,23 @@ const leakCardDetails = {
 			],
 			["- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards."],
 			["- Your opponent trashes 1 card from their hand."],
+		],
+	},
+	"OP17-101": {
+		rarity: "Common",
+		stats: "Yellow / Cost 5 / Special / Power 6000 / Counter 1000",
+		traits: "Supernovas/Caribou Pirates",
+		effectLines: [
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may add 1 card from the top of your Life cards to your hand: Give up to 1 of your opponent's Characters -3000 power during this turn.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" You may trash 1 card from your hand: K.O. up to 1 of your opponent's Characters with a cost of 5 or less.",
+			],
 		],
 	},
 	"OP17-104": {
@@ -716,6 +778,21 @@ const leakCardDetails = {
 			[
 				keyword("trigger", "Trigger"),
 				" Play this card.",
+			],
+		],
+	},
+	"OP17-108": {
+		rarity: "Common",
+		stats: "Yellow / Cost 3 / Special / Power 4000 / Counter 1000",
+		traits: "Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("blocker", "Blocker"),
+				" (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Rest up to 1 of your opponent's Characters with a cost of 6 or less.",
 			],
 		],
 	},
@@ -780,6 +857,23 @@ const leakCardDetails = {
 			[
 				keyword("trigger", "Trigger"),
 				" Play this card.",
+			],
+		],
+	},
+	"OP17-116": {
+		rarity: "Uncommon",
+		stats: "Yellow / Cost 1 / Event",
+		traits: "The Four Emperors/Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 2 of your DON!! cards: K.O. up to 1 of your opponent's Stages.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" If you have 2 or more Characters with a ",
+				keyword("trigger", "Trigger"),
+				", up to 1 of your Leader or Characters gains +4000 power during this battle.",
 			],
 		],
 	},
