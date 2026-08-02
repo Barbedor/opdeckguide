@@ -71,6 +71,12 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-006": {
+		rarity: "Common",
+		stats: "Red / Cost 7 / Strike / Power 8000 / Counter 2000",
+		traits: "Whitebeard Pirates",
+		effectLines: [],
+	},
 	"OP17-007": {
 		rarity: "Rare",
 		stats: "Red / Cost 7 / Slash / Power 8000",
@@ -273,6 +279,25 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-030": {
+		rarity: "Common",
+		stats: "Green / Cost 4 / Strike / Power 5000 / Counter 1000",
+		traits: "East Blue/Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" You may rest 1 of your DON!! cards: This Character gains ",
+				keyword("rush", "Rush"),
+				" during this turn.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" If you have 5 or less cards in your hand, set up to 1 of your DON!! cards as active.",
+			],
+		],
+	},
 	"OP17-031": {
 		rarity: "Super Rare",
 		stats: "Green / Cost 5 / Ranged / Power 6000 / Counter 1000",
@@ -327,6 +352,27 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-035": {
+		rarity: "Common",
+		stats: "Green / Cost 7 / Slash / Power 8000 / Counter 2000",
+		traits: "East Blue/Straw Hat Crew",
+		effectLines: [],
+	},
+	"OP17-037": {
+		rarity: "Rare",
+		stats: "Green / Cost 1 / Event",
+		traits: "The Four Emperors/Red-Haired Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				' Look at 5 cards from the top of your deck; reveal up to 1 card with a type including "Red-Haired Pirates" and add it to your hand. Then, place the rest at the bottom of your deck in any order.',
+			],
+			[
+				keyword("counter", "Counter"),
+				" You may rest 1 of your cards: Up to 1 of your Leader or Characters gains +3000 power during this battle.",
+			],
+		],
+	},
 	"OP17-038": {
 		rarity: "Common",
 		stats: "Green / Cost 0 / Event",
@@ -342,7 +388,99 @@ const leakCardDetails = {
 			],
 		],
 	},
-	"OP17-048": {
+	"OP17-039": {
+		rarity: "Leader Card",
+		stats: "Blue / Life 5 / Slash / Power 5000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("when-attacking", "When Attacking"),
+				' You may trash 1 card from your hand: Reveal 1 card from the top of your deck. If the revealed card\'s type includes "Rocks Pirates", draw 2 cards.',
+			],
+		],
+	},
+	"OP17-040": {
+		rarity: "Treasure Rare",
+		edition: "TREASURE RARE",
+		stats: "Blue / Cost 6 / Special / Power 8000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card.",
+			],
+			[
+				keyword("once-per-turn", "Once Per Turn"),
+				' When your Leader with a type including "Rocks Pirates" attacks or is attacked, you may trash 1 card from your hand to activate this effect. Your Leader gains +3000 power during this battle.',
+			],
+		],
+	},
+	"OP17-041": {
+		rarity: "Uncommon",
+		stats: "Blue / Cost 4 / Strike / Power 6000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("blocker", "Blocker"),
+				" (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
+			],
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 1 card from your hand: Place all of your opponent's Characters with a base cost of 1 at the bottom of the owner's deck in any order.",
+			],
+		],
+	},
+	"OP17-042": {
+		rarity: "Rare",
+		stats: "Blue / Cost 4 / Strike / Power 6000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[keyword("blocker", "Blocker")],
+			[
+				keyword("on-play", "On Play"),
+				' You may reveal 3 cards with a type including "Rocks Pirates" from your hand: Give up to 1 of your opponent\'s Characters -3000 power during this turn.',
+			],
+		],
+	},
+	"OP17-043": {
+		rarity: "Uncommon",
+		stats: "Blue / Cost 5 / Special / Power 7000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			["If this Character would be removed from the field, you may trash 2 cards from your hand instead."],
+			[
+				keyword("on-play", "On Play"),
+				" Your Leader's base power becomes 6000 until the end of your opponent's next End Phase.",
+			],
+		],
+	},
+	"OP17-044": {
+		rarity: "Uncommon",
+		stats: "Blue / Cost 4 / Special / Power 6000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				'If your Leader\'s type includes "Rocks Pirates" and this Character is rested, your opponent cannot attack any card other than the Character [Captain John].',
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest this Character: Draw 1 card and trash 1 card from your hand.",
+			],
+		],
+	},
+	"OP17-045": {
+		rarity: "Uncommon",
+		stats: "Blue / Cost 2 / Slash / Power 4000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			["If one of your Characters would be removed from the field by your opponent's effect, you may trash 2 cards from your hand instead."],
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card.",
+			],
+		],
+	},
+	"OP17-046": {
 		rarity: "Super Rare",
 		stats: "Blue / Cost 4 / Wisdom / Power 1000",
 		traits: "Amazon Lily/Rocks Pirates",
@@ -351,6 +489,144 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" Place up to 1 Character with a cost of 5 or less at the bottom of the owner's deck.",
+			],
+		],
+	},
+	"OP17-048": {
+		rarity: "Super Rare",
+		stats: "Blue / Cost 7 / Slash / Power 9000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[keyword("rush", "Rush: Character")],
+			[
+				keyword("when-attacking", "When Attacking"),
+				" / ",
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				' You may trash 1 card with a type including "Rocks Pirates" from your hand: Give up to 1 of your opponent\'s Characters -3000 power during this turn.',
+			],
+		],
+	},
+	"OP17-049": {
+		rarity: "Rare",
+		stats: "Blue / Cost 5 / Special / Power 7000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Your opponent chooses one:",
+			],
+			["- Draw 2 cards."],
+			["- Your opponent trashes 2 cards from their hand."],
+			[
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: Up to 1 of your Leader or Characters gains +1000 power during this battle.",
+			],
+		],
+	},
+	"OP17-050": {
+		rarity: "Common",
+		stats: "Blue / Cost 1 / Slash / Power 2000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Look at 2 cards from the top of your deck, reorganize them in any order and place them at the top or bottom of your deck. Then, draw 1 card.",
+			],
+		],
+	},
+	"OP17-051": {
+		rarity: "Common",
+		stats: "Blue / Cost 7 / Strike / Power 8000 / Counter 2000",
+		traits: "Fish-Man/Impel Down/The Sun Pirates",
+		effectLines: [],
+	},
+	"OP17-052": {
+		rarity: "Common",
+		stats: "Blue / Cost 3 / Ranged / Power 5000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Add up to 1 blue Event with a cost of 0 from your trash to your hand.",
+			],
+		],
+	},
+	"OP17-053": {
+		rarity: "Common",
+		stats: "Blue / Cost 5 / Strike / Power 7000",
+		traits: "Fish-Man/Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-ko", "On K.O."),
+				" Your opponent places 2 cards from their hand at the bottom of their deck in any order.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: This Character gains +3000 power during this turn.",
+			],
+		],
+	},
+	"OP17-054": {
+		rarity: "Rare",
+		stats: "Blue / Cost 3 / Wisdom / Power 5000",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Up to 1 of your opponent's Characters with a base cost of 6 or less cannot attack until the end of your opponent's next End Phase.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest 3 of your DON!! cards and this Character: Up to 1 of your opponent's Characters cannot attack until the end of your opponent's next End Phase.",
+			],
+		],
+	},
+	"OP17-055": {
+		rarity: "Rare",
+		stats: "Blue / Cost 0 / Event",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 1 of your DON!! cards: Up to 1 of your [Rocks.D.Xebec] gains ",
+				keyword("unblockable", "Unblockable"),
+				" during this turn.",
+			],
+			[
+				keyword("counter", "Counter"),
+				' Up to 1 of your Leader with a type including "Rocks Pirates" or up to 1 of your Characters with a type including "Rocks Pirates" gains +2000 power during this battle.',
+			],
+		],
+	},
+	"OP17-056": {
+		rarity: "Uncommon",
+		stats: "Blue / Cost 0 / Event",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 5 of your DON!! cards: Return up to 1 Character with a cost of 6 or less to the owner's hand.",
+			],
+			[
+				keyword("counter", "Counter"),
+				' Up to 1 of your Leader with a type including "Rocks Pirates" or up to 1 of your Characters with a type including "Rocks Pirates" gains +2000 power during this battle.',
+			],
+		],
+	},
+	"OP17-057": {
+		rarity: "Common",
+		stats: "Blue / Cost 1 / Stage",
+		traits: "Rocks Pirates",
+		effectLines: [
+			[
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				' You may rest this Stage and trash 1 card from your hand: Up to 1 of your Leader with a type including "Rocks Pirates" or up to 1 of your Characters with a type including "Rocks Pirates" gains +1000 power during this battle.',
 			],
 		],
 	},
@@ -393,6 +669,21 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" If your Leader has the {Animal Kingdom Pirates} type, add up to 1 DON!! from your DON!! deck and set it as active. Then, K.O. up to 1 of your opponent's Characters with 3000 power or less.",
+			],
+		],
+	},
+	"OP17-061": {
+		rarity: "Super Rare",
+		stats: "Purple / Cost 9 / Strike / Power 11000",
+		traits: "Fish-Man/Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" DON!! -1: If your Leader has the {Animal Kingdom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may trash this Character: Play up to 1 [King], [Queen], or [Jack] from your hand.",
 			],
 		],
 	},
@@ -654,6 +945,18 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" If there is a Character with a cost of 12 or more, your opponent trashes 1 card from their hand.",
+			],
+		],
+	},
+	"OP17-092": {
+		rarity: "Uncommon",
+		stats: "Black / Cost 5 / Slash / Power 5000 / Counter 1000",
+		traits: "Giant/Elbaph/Giant Pirates",
+		effectLines: [
+			["This Character gains +12 cost."],
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader has the {Elbaph} type, play up to 1 [Dorry] with a cost of 5 or less from your trash or your hand. Then, you cannot play Character cards during this turn.",
 			],
 		],
 	},
@@ -930,6 +1233,44 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-DON-01": {
+		rarity: "DON!!",
+		stats: "Blue DON!! Card",
+		traits: "OP17 DON!!",
+		effectLines: [],
+	},
+	"OP17-DON-02": {
+		rarity: "DON!!",
+		stats: "Gold DON!! Card",
+		traits: "OP17 DON!!",
+		effectLines: [],
+	},
+	"OP17-DON-03": {
+		rarity: "DON!!",
+		stats: "Gold DON!! Card",
+		traits: "4 Yonko",
+		effectLines: [],
+	},
+	"OP17-DON-04": {
+		rarity: "DON!!",
+		stats: "Gold DON!! Card",
+		traits: "Luffy and Loki",
+		effectLines: [],
+	},
+	"EB04-061": {
+		rarity: "Pirate Crew Super Alt Manga",
+		stats: "Yellow / Cost 10 / Strike / Power 12000",
+		traits: "Egghead/The Four Emperors/Straw Hat Crew",
+		effectLines: [
+			["If you have 1 or less Life cards, give this card in your hand -1 cost."],
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 1 card from your hand: Your Leader gains +2000 power until the end of your opponent's next End Phase. Then, this Character gains ",
+				keyword("blocker", "Blocker"),
+				" until the end of your opponent's next End Phase.",
+			],
+		],
+	},
 	"EB04-007": {
 		rarity: "SP",
 		stats: "Red / Cost 7 / Slash / Power 9000",
@@ -1068,9 +1409,13 @@ const leakCardDetails = {
 	},
 };
 const getLeakSortRank = (card) => {
+	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
+	if (card.rarity === "SP") return 2;
+	if (card.rarity === "Treasure Rare") return 3;
+	if (card.rarity === "Gold") return 4;
+	if (card.code.startsWith("OP17-DON")) return 5;
 	if (card.code.startsWith("OP17-")) return 0;
-	if (card.rarity === "Gold") return 2;
-	return 1;
+	return 2;
 };
 
 const getLeakSortCode = (code) => {
@@ -1084,12 +1429,32 @@ const leakCards = isLeakPage
 				const details = leakCardDetails[card.code];
 				const rarity = details?.rarity ?? "";
 				const hideEditionChip = rarity === "SP" || rarity === "Gold";
+				const hasStandaloneSpecialRarity = card.edition === "PIRATE CREW SUPER ALT MANGA";
+				const staticVariantLabel =
+					!hasStandaloneSpecialRarity &&
+					(card.variants?.length ?? 0) === 0 &&
+					["ALT", "ALT BAKI"].includes(card.edition ?? "")
+						? card.edition
+						: null;
 				return details
 					? {
 							...card,
 							...details,
+							rarity: hasStandaloneSpecialRarity ? card.edition : details.rarity,
 							edition: hideEditionChip ? null : details.edition ?? card.edition ?? null,
-							variants: card.variants ?? [],
+							variants: [
+								...(card.variants ?? []),
+								...(staticVariantLabel
+									? [
+											{
+												label: staticVariantLabel,
+												fullUrl: card.fullUrl,
+												smallUrl: card.smallUrl,
+												disabled: true,
+											},
+										]
+									: []),
+							],
 						}
 					: null;
 			})
@@ -1168,21 +1533,26 @@ const description = isLeakPage
 								</div>
 								<h3>{card.name}</h3>
 								<div class="leak-card-meta">
-									{card.edition && <p class="leak-chip leak-chip-solid">{card.edition}</p>}
 									{card.notes?.map((note) => <p class="leak-chip">{note}</p>)}
 								</div>
 								{card.variants.length > 0 && (
 									<div class="leak-card-variants">
 										{card.variants.map((variant) => (
-											<button
-												type="button"
-												class="variant-button"
-												data-card
-												data-full={variant.fullUrl}
-												data-name={`${card.code} ${variant.label}`}
-											>
-												{variant.label}
-											</button>
+											variant.disabled ? (
+												<button type="button" class="variant-button variant-button-static" disabled>
+													{variant.label}
+												</button>
+											) : (
+												<button
+													type="button"
+													class="variant-button"
+													data-card
+													data-full={variant.fullUrl}
+													data-name={`${card.code} ${variant.label}`}
+												>
+													{variant.label}
+												</button>
+											)
 										))}
 									</div>
 								)}
@@ -1564,6 +1934,16 @@ const description = isLeakPage
 		background: rgba(255, 149, 56, 0.2);
 		border-color: rgba(255, 190, 120, 0.68);
 		outline: none;
+	}
+
+	.variant-button-static,
+	.variant-button-static:hover,
+	.variant-button-static:focus-visible {
+		cursor: default;
+		transform: none;
+		opacity: 0.78;
+		background: rgba(255, 149, 56, 0.12);
+		border-color: rgba(255, 138, 42, 0.38);
 	}
 
 	.leak-card-traits {

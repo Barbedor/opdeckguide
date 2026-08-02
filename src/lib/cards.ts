@@ -3,7 +3,7 @@ import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
 const hiddenExtensions = new Set(["back_cards", "don"]);
-const variantPriority = ["base", "ALT", "MANGA", "ALT GOLD"];
+const variantPriority = ["base", "ALT BAKI", "ALT", "MANGA", "PIRATE CREW SUPER ALT MANGA", "ALT GOLD", "TREASURE RARE"];
 const manualCardOverrides = {
 	OP17: {
 		"op17-001 edward newgate": {
@@ -24,6 +24,11 @@ const manualCardOverrides = {
 		"op17-005 edward newgate": {
 			code: "OP17-005",
 			name: "Edward Newgate",
+			color: "Red",
+		},
+		"op17-006": {
+			code: "OP17-006",
+			name: "Kingdew",
 			color: "Red",
 		},
 		"kouzuki oden op17-007": {
@@ -101,6 +106,11 @@ const manualCardOverrides = {
 			name: "Hongo",
 			color: "Green",
 		},
+		"op17-030": {
+			code: "OP17-030",
+			name: "Monkey.D.Luffy",
+			color: "Green",
+		},
 		"lime juice op17-032": {
 			code: "OP17-032",
 			name: "Lime Juice",
@@ -116,6 +126,11 @@ const manualCardOverrides = {
 			name: "Rockstar",
 			color: "Green",
 		},
+		"op17-035": {
+			code: "OP17-035",
+			name: "Roronoa Zoro",
+			color: "Green",
+		},
 		"yassop op17-031": {
 			code: "OP17-031",
 			name: "Yasopp",
@@ -126,9 +141,99 @@ const manualCardOverrides = {
 			name: "I Think He's Seen An Ugly Future",
 			color: "Green",
 		},
-		"gloriosa op17-048": {
-			code: "OP17-048",
+		"op17-037": {
+			code: "OP17-037",
+			name: "Are You That Afraid of the New Era?!!",
+			color: "Green",
+		},
+		"op 17-039": {
+			code: "OP17-039",
+			name: "Rocks.D.Xebec",
+			color: "Blue",
+		},
+		"op17-040": {
+			code: "OP17-040",
+			name: "Edward.Newgate",
+			color: "Blue",
+		},
+		"wang zhi op17-041": {
+			code: "OP17-041",
+			name: "Wang Zhi",
+			color: "Blue",
+		},
+		"op17-042": {
+			code: "OP17-042",
+			name: "Kaido",
+			color: "Blue",
+		},
+		"ganzui op17-043": {
+			code: "OP17-043",
+			name: "Ganzui",
+			color: "Blue",
+		},
+		"captain john op17-044": {
+			code: "OP17-044",
+			name: "Captain John",
+			color: "Blue",
+		},
+		"kyo op17-045": {
+			code: "OP17-045",
+			name: "Kyo",
+			color: "Blue",
+		},
+		"gloriosa op17-046": {
+			code: "OP17-046",
 			name: "Gloriosa",
+			color: "Blue",
+		},
+		"op17-048": {
+			code: "OP17-048",
+			name: "Shiki",
+			color: "Blue",
+		},
+		"op17-049": {
+			code: "OP17-049",
+			name: "Charlotte Linlin",
+			color: "Blue",
+		},
+		"streusen op17-050": {
+			code: "OP17-050",
+			name: "Streusen",
+			color: "Blue",
+		},
+		"op17-051": {
+			code: "OP17-051",
+			name: "Jinbe",
+			color: "Blue",
+		},
+		"don marlon op17-052": {
+			code: "OP17-052",
+			name: "Don Marlon",
+			color: "Blue",
+		},
+		"barbell op17-053": {
+			code: "OP17-053",
+			name: "Barbell",
+			color: "Blue",
+		},
+		"op17-054": {
+			code: "OP17-054",
+			name: "Miss Buckingham Stussy",
+			color: "Blue",
+		},
+		"op17-055": {
+			code: "OP17-055",
+			name: "There's No Authority in the World That Lasts Forever!!!",
+			color: "Blue",
+		},
+		"op17-056": {
+			code: "OP17-056",
+			name: "Rocks Pirates",
+			color: "Blue",
+		},
+		"fullalead op17-057": {
+			code: "OP17-057",
+			name: "Fullalead",
 			color: "Blue",
 		},
 		"kaido op17-058": {
@@ -146,7 +251,17 @@ const manualCardOverrides = {
 			name: "Ulti & Page One",
 			color: "Purple",
 		},
+		"lead performers op17-061": {
+			code: "OP17-061",
+			name: "Lead Performers",
+			color: "Purple",
+		},
 		"kaido op17-062": {
+			code: "OP17-062",
+			name: "Kaido",
+			color: "Purple",
+		},
+		"op17-062 alt (2)": {
 			code: "OP17-062",
 			name: "Kaido",
 			color: "Purple",
@@ -239,6 +354,11 @@ const manualCardOverrides = {
 		"op17-091 brook": {
 			code: "OP17-091",
 			name: "Brook",
+			color: "Black",
+		},
+		"op17-092": {
+			code: "OP17-092",
+			name: "Brogy",
 			color: "Black",
 		},
 		"roronoa zoro op17-095": {
@@ -391,6 +511,31 @@ const manualCardOverrides = {
 			name: "Yamato",
 			color: "Black",
 		},
+		"blue don!!": {
+			code: "OP17-DON-01",
+			name: "Blue DON!!",
+			color: "Blue",
+		},
+		"gold don!! op17": {
+			code: "OP17-DON-02",
+			name: "Gold DON!! OP17",
+			color: "Gold",
+		},
+		"gold don!! 4 yonko": {
+			code: "OP17-DON-03",
+			name: "Gold DON!! 4 Yonko",
+			color: "Gold",
+		},
+		"gold don!! luffy and loki": {
+			code: "OP17-DON-04",
+			name: "Gold DON!! Luffy and Loki",
+			color: "Gold",
+		},
+		"monkey.d.luffy eb04-061 pirate crew super alt manga": {
+			code: "EB04-061",
+			name: "Monkey.D.Luffy",
+			color: "Yellow",
+		},
 	},
 };
 
@@ -460,12 +605,21 @@ const normalizeOverrideKey = (value) => value.trim().toLowerCase().replace(/\s+/
 const getOp17VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.endsWith(" alt gold")) return "ALT GOLD";
+	if (normalized.endsWith(" treasure rare")) return "TREASURE RARE";
+	if (normalized.endsWith(" pirate crew super alt manga")) return "PIRATE CREW SUPER ALT MANGA";
+	if (normalized.endsWith(" alt (2)")) return "ALT";
 	if (normalized.endsWith(" manga")) return "MANGA";
+	if (normalized === "op17-062 alt" || normalized.endsWith(" op17-062 alt")) return "ALT BAKI";
 	if (normalized.endsWith(" alt")) return "ALT";
 	return null;
 };
 
 const stripOp17VariantSuffix = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.endsWith(" pirate crew super alt manga")) return base.slice(0, -" pirate crew super alt manga".length).trim();
+	if (normalized.endsWith(" alt (2)")) return base.slice(0, -" alt (2)".length).trim();
+	if (normalized === "op17-062 alt" || normalized.endsWith(" op17-062 alt")) return base.slice(0, -" alt".length).trim();
+	if (normalized.endsWith(" alt baki")) return base.slice(0, -" alt baki".length).trim();
 	const variant = getOp17VariantLabel(base);
 	if (!variant) return base.trim();
 	return base.slice(0, -variant.length).trim();
@@ -493,9 +647,19 @@ const sortByVariantPriority = (entries) =>
 		return a.fullUrl.localeCompare(b.fullUrl, "en");
 	});
 
+const getOp17VariantDisplayLabel = (code, variant) => {
+	if (code === "OP17-118" && variant === "MANGA") return "PIRATE CREW SUPER ALT MANGA";
+	return variant;
+};
+
+const isStandaloneOp17Variant = (code, variant) =>
+	variant === "TREASURE RARE" || (code === "OP17-118" && variant === "MANGA");
+
 const getOp17CardRank = (card) => {
+	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
+	if (card.edition === "TREASURE RARE" || /treasure rare/i.test(card.fullUrl ?? "")) return 2;
 	if (card.code.startsWith("OP17-")) return 0;
-	if (["OP13-028", "P-084", "ST27-005", "ST31-004"].includes(card.code)) return 2;
+	if (["OP13-028", "P-084", "ST27-005", "ST31-004"].includes(card.code)) return 3;
 	return 1;
 };
 
@@ -516,7 +680,8 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 		const cardColor = override.color ?? meta.color ?? "Other";
 		const fullUrl = `/Cards/OP17/${file}`;
 		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl;
-		const group = groups.get(code) ?? [];
+		const groupKey = isStandaloneOp17Variant(code, variant) ? `${code}::${variant}` : code;
+		const group = groups.get(groupKey) ?? [];
 		group.push({
 			code,
 			name,
@@ -525,29 +690,29 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 			smallUrl,
 			variant,
 		});
-		groups.set(code, group);
+		groups.set(groupKey, group);
 	}
 
 	return [...groups.entries()]
-		.map(([code, entries]) => {
+		.map(([, entries]) => {
 			const sortedEntries = sortByVariantPriority(entries);
 			const primary = sortedEntries[0];
 			const variants = sortedEntries
 				.slice(1)
 				.map((entry) => ({
-					label: entry.variant,
+					label: getOp17VariantDisplayLabel(entry.code, entry.variant),
 					fullUrl: entry.fullUrl,
 					smallUrl: entry.smallUrl,
 				}))
 				.filter((entry) => Boolean(entry.label));
 
 			return {
-				code,
+				code: primary.code,
 				name: primary.name,
 				color: primary.color,
 				smallUrl: primary.smallUrl,
 				fullUrl: primary.fullUrl,
-				edition: primary.variant ?? null,
+				edition: getOp17VariantDisplayLabel(primary.code, primary.variant) ?? null,
 				variants,
 			};
 		})
