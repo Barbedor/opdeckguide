@@ -271,6 +271,11 @@ const manualCardOverrides = {
 			name: "Caribou",
 			color: "Yellow",
 		},
+		"op17-103": {
+			code: "OP17-103",
+			name: "Charlotte Katakuri",
+			color: "Yellow",
+		},
 		"charlottte linlin op17-112": {
 			code: "OP17-112",
 			name: "Charlotte.Linlin",
@@ -320,6 +325,11 @@ const manualCardOverrides = {
 			code: "OP17-117",
 			name: "Maser Saber",
 			color: "Yellow",
+		},
+		"op17-118": {
+			code: "OP17-118",
+			name: "Rocks.D.Xebec",
+			color: "Blue",
 		},
 		"op17-119-loki": {
 			code: "OP17-119",
