@@ -20,7 +20,13 @@ const displayTitle = entry.title.replace(
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
-const allowedGuideLeaderSlugs = new Set(["ace-op13", "rosinante-op12", "shanks-op09"]);
+const allowedGuideLeaderSlugs = new Set([
+	"ace-op13",
+	"rosinante-op12",
+	"shanks-op09",
+	"katakuri-sample-op16",
+	"katakuri-sample-op16-bandaicrossstore",
+]);
 const showDeckGuideButton =
 	Boolean(entry.leader.href) &&
 	entry.leader.href !== "/deck-guides/" &&
