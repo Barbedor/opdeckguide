@@ -41,6 +41,16 @@ const manualCardOverrides = {
 			name: "Jozu",
 			color: "Red",
 		},
+		"op17 haruta": {
+			code: "OP17-HARUTA",
+			name: "Haruta",
+			color: "Red",
+		},
+		"op17 rakuyo": {
+			code: "OP17-RAKUYO",
+			name: "Rakuyo",
+			color: "Red",
+		},
 		"blenheim op17-012": {
 			code: "OP17-012",
 			name: "Blenheim",
@@ -59,6 +69,11 @@ const manualCardOverrides = {
 		"op-17-019": {
 			code: "OP17-019",
 			name: "I Don't Have Time to Chat with Snot-Nosed Brats",
+			color: "Red",
+		},
+		"op17 gurarararara": {
+			code: "OP17-GURARARARA",
+			name: "Gurararararara!",
 			color: "Red",
 		},
 		"inuarashi and nekomamushi op17-004": {
@@ -131,6 +146,11 @@ const manualCardOverrides = {
 			name: "Roronoa Zoro",
 			color: "Green",
 		},
+		"op17 crone oli": {
+			code: "OP17-CRONE-OLI",
+			name: "Crone Oli",
+			color: "Green",
+		},
 		"yassop op17-031": {
 			code: "OP17-031",
 			name: "Yasopp",
@@ -144,6 +164,11 @@ const manualCardOverrides = {
 		"op17-037": {
 			code: "OP17-037",
 			name: "Are You That Afraid of the New Era?!!",
+			color: "Green",
+		},
+		"op17-036": {
+			code: "OP17-036",
+			name: "Withdraw Now And Allow Me To Save Face",
 			color: "Green",
 		},
 		"op 17-039": {
@@ -296,9 +321,34 @@ const manualCardOverrides = {
 			name: "Yamato",
 			color: "Purple",
 		},
+		"op17 sasaki": {
+			code: "OP17-SASAKI",
+			name: "Sasaki",
+			color: "Purple",
+		},
+		"op17 basil hawkins": {
+			code: "OP17-BASIL-HAWKINS",
+			name: "Basil Hawkins",
+			color: "Purple",
+		},
+		"op17-076 x.drake": {
+			code: "OP17-076",
+			name: "X.Drake",
+			color: "Purple",
+		},
+		"op17-jack": {
+			code: "OP17-JACK",
+			name: "Jack",
+			color: "Purple",
+		},
 		"op17-078": {
 			code: "OP17-078",
 			name: "Drunken Dragon Bagua",
+			color: "Purple",
+		},
+		"op17 wo ro roro ! i think i've sobered up !": {
+			code: "OP17-WORORORO",
+			name: "Wo Ro Ro Ro Ro!! I Think I’ve Sobered Up!!",
 			color: "Purple",
 		},
 		"op17-079 monkey.d.luffy": {
@@ -391,9 +441,34 @@ const manualCardOverrides = {
 			name: "Caribou",
 			color: "Yellow",
 		},
+		"op17 charlotte oven": {
+			code: "OP17-OVEN",
+			name: "Charlotte Oven",
+			color: "Yellow",
+		},
 		"op17-103": {
 			code: "OP17-103",
 			name: "Charlotte Katakuri",
+			color: "Yellow",
+		},
+		"op17 charlotte mont-d'or": {
+			code: "OP17-MONT-DOR",
+			name: "Charlotte Mont-d'or",
+			color: "Yellow",
+		},
+		"op17 charlotte perospero": {
+			code: "OP17-PEROSPERO",
+			name: "Charlotte Perospero",
+			color: "Yellow",
+		},
+		"op17 charlotte daifuku": {
+			code: "OP17-DAIFUKU",
+			name: "Charlotte Daifuku",
+			color: "Yellow",
+		},
+		"op17 there's still a code of honor you clows": {
+			code: "OP17-CODE-OF-HONOR",
+			name: "There's Still A Code Of Honour? You Clowns!",
 			color: "Yellow",
 		},
 		"charlottte linlin op17-112": {
@@ -663,6 +738,29 @@ const getOp17CardRank = (card) => {
 	return 1;
 };
 
+const getOp17SortCode = (card) => {
+	const explicitAnchors = {
+		"OP17-HARUTA": "OP17-018.7",
+		"OP17-RAKUYO": "OP17-018.8",
+		"OP17-GURARARARA": "OP17-018.9",
+		"OP17-CRONE-OLI": "OP17-035.9",
+		"OP17-JACK": "OP17-077.6",
+		"OP17-BASIL-HAWKINS": "OP17-077.7",
+		"OP17-SASAKI": "OP17-077.8",
+		"OP17-WORORORO": "OP17-077.9",
+		"OP17-DAIFUKU": "OP17-115.5",
+		"OP17-MONT-DOR": "OP17-115.6",
+		"OP17-OVEN": "OP17-115.7",
+		"OP17-PEROSPERO": "OP17-115.8",
+		"OP17-CODE-OF-HONOR": "OP17-115.9",
+	};
+	if (explicitAnchors[card.code]) return explicitAnchors[card.code];
+	if (/^OP17-[A-Z]/.test(card.code) && !card.code.startsWith("OP17-DON")) {
+		return `${card.code}-${card.name}`;
+	}
+	return card.code;
+};
+
 const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 	const overrides = manualCardOverrides.OP17 ?? {};
 	const groups = new Map();
@@ -719,7 +817,7 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 		.sort((a, b) => {
 			const rankDiff = getOp17CardRank(a) - getOp17CardRank(b);
 			if (rankDiff !== 0) return rankDiff;
-			return a.code.localeCompare(b.code, "en");
+			return getOp17SortCode(a).localeCompare(getOp17SortCode(b), "en");
 		});
 };
 
