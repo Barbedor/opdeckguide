@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Sabo OP13 Deck Guide",
+		leader: "Sabo",
+		code: "OP13",
+		formatLabel: "OP16 Format",
+		summary: "Decklist, mulligan priorities, curve guides, tech cards, matchup notes, and gameplay tips for Sabo OP13.",
+		month: "August",
+		href: "/deck-guides/sabo-op13/",
+		imageSrc: "/assets/guides/Sabo%20OP13-004.png",
+		imageAlt: "Sabo OP13 guide icon",
+		aliases: ["sabo", "op13 sabo", "red sabo", "st31 sabo", "straw hat sabo"],
+		tags: ["op13", "op16", "red", "st31", "straw hat crew"],
+	},
+	{
+		kind: "deck",
 		title: "Charlotte Katakuri OP11 Deck Guide",
 		leader: "Charlotte Katakuri",
 		code: "OP11",
