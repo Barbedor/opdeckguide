@@ -85,6 +85,15 @@ const leaderIndex = {
 		imageSrc: "/assets/guides/Ace-op16.png",
 		href: "/deck-guides/portgas-d-ace-op16/",
 	},
+	"red-ace-op16": {
+		slug: "red-ace-op16",
+		name: "Portgas.D.Ace",
+		code: "OP16-001",
+		format: "op16",
+		color: "Red",
+		imageSrc: "/assets/guides/Ace-op16.png",
+		href: "/deck-guides/portgas-d-ace-op16/",
+	},
 	"krieg-op15": {
 		slug: "krieg-op15",
 		name: "Don Krieg",
@@ -321,6 +330,15 @@ const leaderIndex = {
 	},
 	"mihawk-sample-op16": {
 		slug: "mihawk-sample-op16",
+		name: "Dracule Mihawk",
+		code: "OP14",
+		format: "op16",
+		color: "Green",
+		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
+		href: "/deck-guides/dracule-mihawk-op14/",
+	},
+	"g-mihawk-op14": {
+		slug: "g-mihawk-op14",
 		name: "Dracule Mihawk",
 		code: "OP14",
 		format: "op16",
