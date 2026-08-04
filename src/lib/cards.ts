@@ -800,23 +800,6 @@ const getOp17SortCode = (card) => {
 const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 	const overrides = manualCardOverrides.OP17 ?? {};
 	const groups = new Map();
-	const getDisplayPriority = (variant) => {
-		switch (variant) {
-			case "TREASURE RARE":
-				return 0;
-			case "ALT":
-				return 1;
-			case "ALT BAKI":
-				return 2;
-			case "MANGA":
-				return 3;
-			case "ALT GOLD":
-				return 4;
-			case "base":
-			default:
-				return 5;
-		}
-	};
 
 	for (const file of files) {
 		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
@@ -846,15 +829,7 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 
 	return [...groups.entries()]
 		.map(([, entries]) => {
-			const sortedEntries = [...entries].sort((a, b) => {
-				const aRank = getDisplayPriority(a.variant ?? "base");
-				const bRank = getDisplayPriority(b.variant ?? "base");
-				if (aRank !== bRank) return aRank - bRank;
-				const aVariantRank = variantPriority.indexOf(a.variant ?? "base");
-				const bVariantRank = variantPriority.indexOf(b.variant ?? "base");
-				if (aVariantRank !== bVariantRank) return aVariantRank - bVariantRank;
-				return a.fullUrl.localeCompare(b.fullUrl, "en");
-			});
+			const sortedEntries = sortByVariantPriority(entries);
 			const primary = sortedEntries[0];
 			const variants = sortedEntries
 				.slice(1)
