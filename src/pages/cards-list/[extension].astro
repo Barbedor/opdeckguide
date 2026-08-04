@@ -1710,14 +1710,6 @@ const getLeakDisplaySortCode = (card) => {
 	return getLeakSortCode(card.code);
 };
 
-const shouldShowOp17EnglishEffectText = (card) => {
-	if (extension !== "OP17") return true;
-	const hasExplicitEnglishVariant =
-		Boolean(card.edition) || (card.variants?.some((variant) => !variant.disabled) ?? false);
-	const isEnglishSample = /sample/i.test(card.fullUrl ?? "");
-	return hasExplicitEnglishVariant || isEnglishSample;
-};
-
 const leakCards = isLeakPage
 	? cards
 			.map((card) => {
@@ -1852,25 +1844,23 @@ const description = isLeakPage
 									</div>
 								)}
 								{card.traits && <p class="leak-card-traits">{card.traits}</p>}
-								{shouldShowOp17EnglishEffectText(card) && (
-									<div class="leak-card-effects">
-										{card.effectLines.map((line) => (
-											<p class="leak-effect-line">
-												{line.map((part) =>
-													typeof part === "string" ? (
-														<span>{part}</span>
-													) : (
-														<img
-															class="keyword-badge"
-															src={`${keywordAssetBase}/${part.icon}.png`}
-															alt={part.alt}
-														/>
-													)
-												)}
-											</p>
-										))}
-									</div>
-								)}
+								<div class="leak-card-effects">
+									{card.effectLines.map((line) => (
+										<p class="leak-effect-line">
+											{line.map((part) =>
+												typeof part === "string" ? (
+													<span>{part}</span>
+												) : (
+													<img
+														class="keyword-badge"
+														src={`${keywordAssetBase}/${part.icon}.png`}
+														alt={part.alt}
+													/>
+												)
+											)}
+										</p>
+									))}
+								</div>
 							</div>
 						</article>
 					)})}
