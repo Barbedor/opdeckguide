@@ -41,6 +41,11 @@ const manualCardOverrides = {
 			name: "Jozu",
 			color: "Red",
 		},
+		"op17-011": {
+			code: "OP17-011",
+			name: "Blamenco",
+			color: "Red",
+		},
 		"op17 haruta": {
 			code: "OP17-HARUTA",
 			name: "Haruta",
@@ -89,6 +94,11 @@ const manualCardOverrides = {
 		"shanks op17-022": {
 			code: "OP17-022",
 			name: "Shanks",
+			color: "Green",
+		},
+		"op17-023": {
+			code: "OP17-023",
+			name: "Nami",
 			color: "Green",
 		},
 		"howling gab op17-024": {
@@ -211,6 +221,11 @@ const manualCardOverrides = {
 			name: "Gloriosa",
 			color: "Blue",
 		},
+		"op17-047": {
+			code: "OP17-047",
+			name: "Shiki",
+			color: "Blue",
+		},
 		"op17-048": {
 			code: "OP17-048",
 			name: "Shiki",
@@ -306,6 +321,11 @@ const manualCardOverrides = {
 			name: "Kurozumi Orochi",
 			color: "Purple",
 		},
+		"op17-070": {
+			code: "OP17-070",
+			name: "Scratchmen Apoo",
+			color: "Purple",
+		},
 		"who's.who op17-071": {
 			code: "OP17-071",
 			name: "Who's.Who",
@@ -391,6 +411,11 @@ const manualCardOverrides = {
 			name: "Nico Robin",
 			color: "Black",
 		},
+		"op17-088": {
+			code: "OP17-088",
+			name: "Hajrudin",
+			color: "Black",
+		},
 		"jaguar.d. saul op17-089": {
 			code: "OP17-089",
 			name: "Jaguar D. Saul",
@@ -416,6 +441,11 @@ const manualCardOverrides = {
 			name: "Roronoa Zoro",
 			color: "Black",
 		},
+		"op17-096": {
+			code: "OP17-096",
+			name: "I'm Luffy!! The Man Who's Gonna Become the King of the Pirates!!",
+			color: "Black",
+		},
 		"op17-094": {
 			code: "OP17-094",
 			name: "Rodo",
@@ -429,6 +459,11 @@ const manualCardOverrides = {
 		"op17-098": {
 			code: "OP17-098",
 			name: "Gum-Gum Kong Pistol",
+			color: "Black",
+		},
+		"op17-017": {
+			code: "OP17-017",
+			name: "HAS THE POWER TO DESTROY THE WORLD!!",
 			color: "Black",
 		},
 		"charlottte linlin op17-099": {
@@ -742,6 +777,7 @@ const getOp17SortCode = (card) => {
 	const explicitAnchors = {
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
+		"OP17-017": "OP17-018.85",
 		"OP17-GURARARARA": "OP17-018.9",
 		"OP17-CRONE-OLI": "OP17-035.9",
 		"OP17-JACK": "OP17-077.6",
@@ -764,6 +800,23 @@ const getOp17SortCode = (card) => {
 const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 	const overrides = manualCardOverrides.OP17 ?? {};
 	const groups = new Map();
+	const getDisplayPriority = (variant) => {
+		switch (variant) {
+			case "TREASURE RARE":
+				return 0;
+			case "ALT":
+				return 1;
+			case "ALT BAKI":
+				return 2;
+			case "MANGA":
+				return 3;
+			case "ALT GOLD":
+				return 4;
+			case "base":
+			default:
+				return 5;
+		}
+	};
 
 	for (const file of files) {
 		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
@@ -793,7 +846,15 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 
 	return [...groups.entries()]
 		.map(([, entries]) => {
-			const sortedEntries = sortByVariantPriority(entries);
+			const sortedEntries = [...entries].sort((a, b) => {
+				const aRank = getDisplayPriority(a.variant ?? "base");
+				const bRank = getDisplayPriority(b.variant ?? "base");
+				if (aRank !== bRank) return aRank - bRank;
+				const aVariantRank = variantPriority.indexOf(a.variant ?? "base");
+				const bVariantRank = variantPriority.indexOf(b.variant ?? "base");
+				if (aVariantRank !== bVariantRank) return aVariantRank - bVariantRank;
+				return a.fullUrl.localeCompare(b.fullUrl, "en");
+			});
 			const primary = sortedEntries[0];
 			const variants = sortedEntries
 				.slice(1)

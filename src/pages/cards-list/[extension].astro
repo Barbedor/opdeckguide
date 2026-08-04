@@ -139,6 +139,19 @@ const leakCardDetails = {
 			["(This card can attack on the turn in which it is played.)"],
 		],
 	},
+	"OP17-011": {
+		rarity: "Common",
+		stats: "Red / Cost 5 / Strike / Power 6000 / Counter 1000",
+		traits: "Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("don-x2", "DON!! x2"),
+				" ",
+				keyword("when-attacking", "When Attacking"),
+				" Give up to 1 of your opponent's Characters -4000 power during this turn.",
+			],
+		],
+	},
 	"OP17-012": {
 		rarity: "Common",
 		stats: "Red / Cost 2 / Slash / Power 1000 / Counter 1000",
@@ -227,6 +240,14 @@ const leakCardDetails = {
 				keyword("on-play", "On Play"),
 				" Set up to 2 of your DON!! cards as active. Then, rest all of your opponent's Characters.",
 			],
+		],
+	},
+	"OP17-023": {
+		rarity: "Uncommon",
+		stats: "Green / Cost 1 / Wisdom / Power 1000 / Counter 2000",
+		traits: "East Blue/Straw Hat Crew",
+		effectLines: [
+			["If your {East Blue} or {Straw Hat Crew} Character would be K.O.'d, you may rest this Character instead."],
 		],
 	},
 	"OP17-024": {
@@ -554,6 +575,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-047": {
+		rarity: "Common",
+		stats: "Blue / Cost 9 / Special / Power 10000",
+		traits: "FILM/Impel Down/Golden Lion Pirates",
+		effectLines: [
+			[
+				keyword("end-of-your-turn", "End of Your Turn"),
+				" If you have 2 or less cards in your hand, your opponent places 1 card from their hand at the bottom of their deck.",
+			],
+		],
+	},
 	"OP17-048": {
 		rarity: "Super Rare",
 		stats: "Blue / Cost 7 / Slash / Power 9000",
@@ -804,6 +836,12 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-070": {
+		rarity: "Common",
+		stats: "Purple / Cost 6 / Special / Power 7000 / Counter 2000",
+		traits: "On-Air Pirates/Animal Kingdom Pirates",
+		effectLines: [],
+	},
 	"OP17-071": {
 		rarity: "Common",
 		stats: "Purple / Cost 2 / Slash / Power 3000 / Counter 1000",
@@ -1034,6 +1072,12 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-088": {
+		rarity: "Common",
+		stats: "Black / Cost 7 / Strike / Power 8000 / Counter 2000",
+		traits: "Giant/Elbaph/New Giant Pirates",
+		effectLines: [],
+	},
 	"OP17-089": {
 		rarity: "Rare",
 		stats: "Black / Cost 4 / Strike / Power 6000",
@@ -1113,6 +1157,36 @@ const leakCardDetails = {
 		effectLines: [
 			["If there is a Character with a cost of 12 or more, this Character gains +3000 power."],
 			["If one of your Characters would be removed from the field by your opponent's effect, you may place 3 cards from your trash at the bottom of your deck in any order instead."],
+		],
+	},
+	"OP17-096": {
+		rarity: "Rare",
+		stats: "Black / Cost 1 / Event",
+		traits: "Elbaph/The Four Emperors/Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("counter", "Counter"),
+				" If you have a Character with a cost of 12 or more, up to 1 of your Leader or Character cards gains +4000 power during this battle.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Add up to 1 {Elbaph} type card from your trash to your hand.",
+			],
+		],
+	},
+	"OP17-017": {
+		rarity: "Uncommon",
+		stats: "Black / Cost 1 / Event",
+		traits: "The Four Emperors/Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 2 of your DON!! cards: K.O. up to 1 of your opponent's Stages.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" If you have 2 or more Characters with 8000 power, up to 1 of your Leader or Character cards gains +4000 power during this battle.",
+			],
 		],
 	},
 	"OP17-098": {
@@ -1616,6 +1690,7 @@ const getLeakDisplaySortCode = (card) => {
 	const explicitAnchors = {
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
+		"OP17-017": "OP17-018.85",
 		"OP17-GURARARARA": "OP17-018.9",
 		"OP17-CRONE-OLI": "OP17-035.9",
 		"OP17-JACK": "OP17-077.6",
@@ -1633,6 +1708,14 @@ const getLeakDisplaySortCode = (card) => {
 		return `${card.code}-${card.name}`;
 	}
 	return getLeakSortCode(card.code);
+};
+
+const shouldShowOp17EnglishEffectText = (card) => {
+	if (extension !== "OP17") return true;
+	const hasExplicitEnglishVariant =
+		Boolean(card.edition) || (card.variants?.some((variant) => !variant.disabled) ?? false);
+	const isEnglishSample = /sample/i.test(card.fullUrl ?? "");
+	return hasExplicitEnglishVariant || isEnglishSample;
 };
 
 const leakCards = isLeakPage
@@ -1769,23 +1852,25 @@ const description = isLeakPage
 									</div>
 								)}
 								{card.traits && <p class="leak-card-traits">{card.traits}</p>}
-								<div class="leak-card-effects">
-									{card.effectLines.map((line) => (
-										<p class="leak-effect-line">
-											{line.map((part) =>
-												typeof part === "string" ? (
-													<span>{part}</span>
-												) : (
-													<img
-														class="keyword-badge"
-														src={`${keywordAssetBase}/${part.icon}.png`}
-														alt={part.alt}
-													/>
-												)
-											)}
-										</p>
-									))}
-								</div>
+								{shouldShowOp17EnglishEffectText(card) && (
+									<div class="leak-card-effects">
+										{card.effectLines.map((line) => (
+											<p class="leak-effect-line">
+												{line.map((part) =>
+													typeof part === "string" ? (
+														<span>{part}</span>
+													) : (
+														<img
+															class="keyword-badge"
+															src={`${keywordAssetBase}/${part.icon}.png`}
+															alt={part.alt}
+														/>
+													)
+												)}
+											</p>
+										))}
+									</div>
+								)}
 							</div>
 						</article>
 					)})}

@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Rocks.D.Xebec OP17 First Look",
+		leader: "Rocks.D.Xebec",
+		code: "OP17",
+		formatLabel: "OP17 Format",
+		summary: "Leader ability, first sample decklist, strengths, weaknesses, and conclusions for Rocks.D.Xebec OP17.",
+		month: "August",
+		href: "/deck-guides/rocks-d-xebec-op17/",
+		imageSrc: "/assets/guides/Rocks.DXebec%20op17.png",
+		imageAlt: "Rocks.D.Xebec OP17 first look cover",
+		aliases: ["rocks d xebec", "xebec", "op17 xebec", "rocks pirates", "blue xebec", "first look xebec"],
+		tags: ["op17", "blue", "rocks pirates", "first look"],
+	},
+	{
+		kind: "deck",
 		title: "Sabo OP13 Deck Guide",
 		leader: "Sabo",
 		code: "OP13",
