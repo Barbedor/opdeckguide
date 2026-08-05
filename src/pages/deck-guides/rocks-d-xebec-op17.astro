@@ -77,7 +77,7 @@ const decklist = [
 						<div class="info-box">
 							<p class="ability-meta">Type &amp; Attribute: Rocks Pirates - Slash</p>
 							<p class="ability-copy">
-								<img class="keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" /><br />
+								<img class="leader-keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" /><br />
 								You may trash 1 card from your hand:<br />
 								Reveal 1 card from the top of your deck.<br />
 								If the revealed card's type includes "Rocks Pirates",<br />
@@ -104,6 +104,7 @@ const decklist = [
 								data-card-preview
 								data-full={entry.img}
 								data-name={`${entry.code} ${entry.name}`}
+								data-code={entry.code}
 							>
 								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
@@ -143,10 +144,9 @@ const decklist = [
 					<div class="section-tag section-tag-light">Conclusion</div>
 					<p class="ability-copy">
 						The leader ability is one of the strongest of the set and leads you to always have cards in hand.<br />
+						Aggressive decks like OP16 Luffy could end up struggling because of it.<br />
 						The "Rocks Pirates" limitation doesn't seem like a problem, but it allows little margin for deck
-						building or for some tech.<br />
-						I'm afraid decks like Buffy or aggro decks will suffer, but we'll see how the meta will evolve.<br />
-						I really like the concept that recalls manga, Rocks fight only for themselves!
+						building or for some tech.
 					</p>
 				</div>
 			</div>
@@ -157,6 +157,7 @@ const decklist = [
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
 			<img src="" alt="" data-modal-image />
+			<div class="modal-effect-copy" data-modal-effect hidden></div>
 		</div>
 	</div>
 </MainLayout>
@@ -164,14 +165,75 @@ const decklist = [
 	const previewButtons = document.querySelectorAll("[data-card-preview]");
 	const modal = document.querySelector("[data-modal]");
 	const modalImage = document.querySelector("[data-modal-image]");
+	const modalEffect = document.querySelector("[data-modal-effect]");
 	const closeButton = document.querySelector("[data-close]");
+	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
+	const decklistEffectTextByCode = {
+		"OP17-043": [
+			"If this Character would be removed from the field, you may trash 2 cards from your hand instead.",
+			[keywordBadge("on-play", "On Play"), " Your Leader's base power becomes 6000 until the end of your opponent's next End Phase."],
+		],
+		"OP17-044": [
+			"If your Leader's type includes \"Rocks Pirates\" and this Character is rested, your opponent can't attack any card other than [Captain John].",
+			[keywordBadge("activate-main", "Activate: Main"), " You may rest this Character: Draw 1 card and trash 1 card from your hand."],
+		],
+		"OP17-045": [
+			"If one of your Characters would be removed from the field by your opponent's effect, you may trash 2 cards from your hand instead.",
+			[keywordBadge("on-play", "On Play"), " Draw 1 card."],
+		],
+		"OP17-046": [
+			[keywordBadge("blocker", "Blocker")],
+			[keywordBadge("on-play", "On Play"), " Place up to 1 Character with a cost of 5 or less at the bottom of the owner's deck."],
+		],
+		"OP17-050": [[keywordBadge("on-play", "On Play"), " Look at 2 cards from the top of your deck, reorganize them in any order and place them at the top or bottom of your deck. Then, draw 1 card."]],
+		"OP17-052": [[keywordBadge("on-play", "On Play"), " Add up to 1 blue Event with a cost of 0 from your trash to your hand."]],
+		"OP17-055": [
+			[keywordBadge("main", "Main"), " You may rest 1 of your DON!! cards: Up to 1 of your [Rocks.D.Xebec] gains ", keywordBadge("unblockable", "Unblockable"), " during this turn."],
+			[keywordBadge("counter", "Counter"), " Up to 1 of your Leader with a type including \"Rocks Pirates\" or up to 1 of your Characters with a type including \"Rocks Pirates\" gains +2000 power during this battle."],
+		],
+		"OP17-056": [
+			[keywordBadge("main", "Main"), " You may rest 5 of your DON!! cards: Return up to 1 Character with a cost of 6 or less to the owner's hand."],
+			[keywordBadge("counter", "Counter"), " Up to 1 of your Leader with a type including \"Rocks Pirates\" or up to 1 of your Characters with a type including \"Rocks Pirates\" gains +2000 power during this battle."],
+		],
+		"OP17-057": [
+			[keywordBadge("on-your-opponents-attack", "On Your Opponent's Attack"), " You may rest this Stage and trash 1 card from your hand: Up to 1 of your Leader with a type including \"Rocks Pirates\" or up to 1 of your Characters with a type including \"Rocks Pirates\" gains +1000 power during this battle."],
+		],
+	};
 
 	const openModal = (button) => {
 		if (!modal || !modalImage) return;
 		const full = button.getAttribute("data-full");
 		const name = button.getAttribute("data-name") || "Card preview";
+		const code = button.getAttribute("data-code");
+		const effectLines = code ? decklistEffectTextByCode[code] : null;
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
+		if (modalEffect) {
+			modalEffect.innerHTML = "";
+			if (effectLines?.length) {
+				effectLines.forEach((line) => {
+					const paragraph = document.createElement("p");
+					const normalizedLine = Array.isArray(line) ? line : [line];
+					normalizedLine.forEach((part) => {
+						if (typeof part === "string") {
+							paragraph.appendChild(document.createTextNode(part));
+							return;
+						}
+						if (part?.type === "keyword") {
+							const image = document.createElement("img");
+							image.className = "modal-keyword-badge";
+							image.src = `/assets/keywords/${part.icon}.png`;
+							image.alt = part.alt;
+							paragraph.appendChild(image);
+						}
+					});
+					modalEffect.appendChild(paragraph);
+				});
+				modalEffect.hidden = false;
+			} else {
+				modalEffect.hidden = true;
+			}
+		}
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
 	};
@@ -394,7 +456,7 @@ const decklist = [
 		text-transform: none;
 	}
 
-	.keyword-badge {
+	.leader-keyword-badge {
 		display: inline-block;
 		height: 1.9rem;
 		width: auto;
@@ -483,12 +545,42 @@ const decklist = [
 	.card-modal-inner {
 		position: relative;
 		max-width: min(92vw, 520px);
+		display: grid;
+		gap: 1rem;
 	}
 
-	.card-modal-inner img {
+	.card-modal-inner > img {
 		width: 100%;
 		border-radius: 20px;
 		box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+	}
+
+	.modal-effect-copy {
+		background: rgba(10, 14, 24, 0.96);
+		border: 1px solid rgba(255, 138, 42, 0.22);
+		border-radius: 18px;
+		padding: 1rem 1.1rem;
+		color: var(--text-100);
+		font-size: 1rem;
+		line-height: 1.55;
+	}
+
+	.modal-effect-copy p {
+		margin: 0;
+	}
+
+	.modal-effect-copy p + p {
+		margin-top: 0.7rem;
+	}
+
+	.modal-effect-copy :global(.modal-keyword-badge) {
+		display: inline-block;
+		height: 1em;
+		width: auto;
+		max-width: none;
+		vertical-align: middle;
+		transform: translateY(-0.02em);
+		margin: 0 0.12em;
 	}
 
 	.modal-close {
@@ -574,7 +666,7 @@ const decklist = [
 			line-height: 1.5;
 		}
 
-		.keyword-badge {
+		.leader-keyword-badge {
 			height: 1.6rem;
 		}
 

@@ -66,6 +66,11 @@ const manualCardOverrides = {
 			name: "Portgas.D.Ace",
 			color: "Red",
 		},
+		"op17-014": {
+			code: "OP17-014",
+			name: "Whitey Bay",
+			color: "Red",
+		},
 		"marco op17-015": {
 			code: "OP17-015",
 			name: "Marco",
@@ -446,6 +451,11 @@ const manualCardOverrides = {
 			name: "I'm Luffy!! The Man Who's Gonna Become the King of the Pirates!!",
 			color: "Black",
 		},
+		"op17-097": {
+			code: "OP17-097",
+			name: "Instead I'll Feed on this Rage!! And Use It to Bring the World to Ruin!!",
+			color: "Black",
+		},
 		"op17-094": {
 			code: "OP17-094",
 			name: "Rodo",
@@ -474,6 +484,11 @@ const manualCardOverrides = {
 		"op17-101": {
 			code: "OP17-101",
 			name: "Caribou",
+			color: "Yellow",
+		},
+		"op17-100": {
+			code: "OP17-100",
+			name: "Capone \"Gang\" Bege",
 			color: "Yellow",
 		},
 		"op17 charlotte oven": {
