@@ -41,6 +41,11 @@ const manualCardOverrides = {
 			name: "Jozu",
 			color: "Red",
 		},
+		"op17-010": {
+			code: "OP17-010",
+			name: "Fossa",
+			color: "Red",
+		},
 		"op17-011": {
 			code: "OP17-011",
 			name: "Blamenco",
@@ -324,6 +329,11 @@ const manualCardOverrides = {
 		"op17-066": {
 			code: "OP17-066",
 			name: "Kurozumi Orochi",
+			color: "Purple",
+		},
+		"op17-067": {
+			code: "OP17-067",
+			name: "Kurozumi Kanjuro",
 			color: "Purple",
 		},
 		"op17-070": {

@@ -139,6 +139,21 @@ const leakCardDetails = {
 			["(This card can attack on the turn in which it is played.)"],
 		],
 	},
+	"OP17-010": {
+		rarity: "Common",
+		stats: "Red / Cost 1 / Slash / Power 3000",
+		traits: "Whitebeard Pirates",
+		effectLines: [
+			[
+				keyword("activate-main", "Activate:Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" If your opponent has a Character with 10000 power or more, and you do not have [Fossa], this Character gains ",
+				keyword("blocker", "Blocker"),
+				" and +2000 power until the end of your opponent's next End Phase.",
+			],
+		],
+	},
 	"OP17-011": {
 		rarity: "Common",
 		stats: "Red / Cost 5 / Strike / Power 6000 / Counter 1000",
@@ -848,6 +863,17 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" DON!! -1: If you have a Character with a cost of 10 or more, draw 2 cards and trash 1 card from your hand.",
+			],
+		],
+	},
+	"OP17-067": {
+		rarity: "Common",
+		stats: "Purple / Cost 2 / Slash / Power 3000 / Counter 1000",
+		traits: "Land of Wano/Kurozumi Clan",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" DON!! -1: If you have a Character with a cost of 10 or more, rest up to 1 of your opponent's Characters.",
 			],
 		],
 	},
