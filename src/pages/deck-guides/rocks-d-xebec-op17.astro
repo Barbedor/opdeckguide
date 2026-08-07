@@ -8,6 +8,22 @@ const description =
 const publishedAt = "August 3, 2026";
 const icon = "/assets/guides/Rocks.DXebec%20op17.png";
 
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
 const leader = card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/OP%2017-039%20ALT.jpg", 1, "Leader");
@@ -29,6 +45,8 @@ const decklist = [
 	card("OP17-056", "Rocks Pirates", "/Cards/OP17/op17-056.jpg", 4, "Event"),
 	card("OP17-057", "Fullalead", "/Cards/OP17/Fullalead%20op17-057.jpg", 4, "Stage"),
 ];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 ---
 
 <MainLayout title={title} description={description}>
@@ -90,8 +108,13 @@ const decklist = [
 
 			<div class="glow-block">
 				<div class="section-header decklist-header">
-					<div>
+					<div class="decklist-title-row">
 						<h2>Decklist</h2>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+							Copy for Sim
+						</button>
+					</div>
+					<div>
 						<p>Sample first-look OP17 list for Rocks.D.Xebec.</p>
 					</div>
 				</div>
@@ -167,6 +190,7 @@ const decklist = [
 	const modalImage = document.querySelector("[data-modal-image]");
 	const modalEffect = document.querySelector("[data-modal-effect]");
 	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
 	const decklistEffectTextByCode = {
 		"OP17-043": [
@@ -254,6 +278,26 @@ const decklist = [
 	});
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") closeModal();
+	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
 	});
 </script>
 
@@ -346,6 +390,14 @@ const decklist = [
 	.leader-details {
 		display: grid;
 		gap: 1.4rem;
+	}
+
+	.decklist-title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
 	.glow-block {
@@ -517,6 +569,10 @@ const decklist = [
 		font-size: 0.85rem;
 		text-transform: uppercase;
 		letter-spacing: 1px;
+	}
+
+	.copy-sim-button {
+		flex: 0 0 auto;
 	}
 
 	.summary-grid {
