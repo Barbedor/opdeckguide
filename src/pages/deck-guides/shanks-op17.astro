@@ -1,0 +1,872 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Shanks OP17 First Look";
+const description =
+	"First look at Shanks OP17 for One Piece Card Game with leader ability, sample decklist, favorable and unfavorable matchups, and a conclusion for the OP17 format.";
+
+const publishedAt = "August 6, 2026";
+const icon = "/assets/guides/Shanks%20op17.png";
+
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
+const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
+
+const leader = card("OP17-020", "Shanks", "/Cards/OP17/Shanks%20op17-020%20alt.jpg", 1, "Leader");
+
+const decklist = [
+	card("OP17-020", "Shanks", "/Cards/OP17/Shanks%20op17-020%20alt.jpg", 1, "Leader"),
+	card("OP17-021", "Crone Oli", "/Cards/OP17/OP17%20Crone%20Oli.jpg", 4, "Character"),
+	card("OP17-032", "Lime Juice", "/Cards/OP17/Lime%20Juice%20op17-032.jpg", 4, "Character"),
+	card("ST32-001", "Kin'emon", "/Cards/ST32/ST32-001.jpg", 4, "Character"),
+	card("EB04-018", "Megalo", "/Cards/EB04/EB04-018.jpg", 4, "Character"),
+	card("OP17-033", "Lucky.Roux", "/Cards/OP17/Lucky.Roux%20op17-033.jpg", 4, "Character"),
+	card("OP14-033", "Perona", "/Cards/OP14/OP14-033.jpg", 4, "Character"),
+	card("OP17-031", "Yasopp", "/Cards/OP17/Yassop%20op17-031.jpg", 4, "Character"),
+	card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg", 3, "Character"),
+	card("ST32-003", "Dracule Mihawk", "/Cards/ST32/ST32-003.jpg", 3, "Character"),
+	card("OP17-027", "Benn Beckman", "/Cards/OP17/Benn.Beckman%20op17-027.jpg", 4, "Character"),
+	card("ST16-004", "Shanks", "/Cards/ST16/ST16-004.png", 2, "Character"),
+	card("OP17-022", "Shanks", "/Cards/OP17/Shanks%20op17-022.jpg", 4, "Character"),
+	card("ST24-004", "Law & Bepo", "/Cards/ST24/ST24-004.jpg", 2, "Character"),
+	card("OP17-038", "I Think He's Seen An Ugly Future", "/Cards/OP17/op17-038.jpg", 2, "Event"),
+	card("OP17-036", "Withdraw Now And Allow Me To Save Face", "/Cards/OP17/OP17-036.jpg", 2, "Event"),
+];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div class="hero-copy">
+				<div class="hero-tags">
+					<span class="hero-chip">First Look</span>
+					<span class="hero-chip hero-chip-accent">OP17 Format</span>
+				</div>
+				<h1>Shanks OP17 First Look</h1>
+				<p class="hero-intro">
+					A first OP17 look at Shanks, including its leader effect, a sample decklist, favorable and
+					unfavorable matchups, and a short conclusion on where the deck currently stands.
+				</p>
+				<div class="publish-banner">Published {publishedAt}</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Shanks OP17 first look icon" loading="eager" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container article-stack">
+			<div class="leader-panel glow-block">
+				<div class="leader-grid">
+					<div class="leader-tag-wrap">
+						<div class="section-tag">LEADER</div>
+					</div>
+					<div class="ability-tag-wrap">
+						<div class="section-tag section-tag-light">Ability</div>
+					</div>
+					<div class="leader-card-wrap">
+						<button
+							class="detail-card"
+							type="button"
+							data-card-preview
+							data-full={leader.img}
+							data-name={`${leader.code} ${leader.name}`}
+							data-code={leader.code}
+						>
+							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
+						</button>
+					</div>
+					<div class="leader-details">
+						<div class="info-box">
+							<p class="ability-meta">Type &amp; Attribute: The Four Emperors/Red-Haired Pirates - Slash</p>
+							<p class="ability-copy">
+								<span class="leader-keyword-group">
+									<img class="leader-keyword-badge" src="/assets/keywords/activate-main.png" alt="Activate: Main" />
+									<img class="leader-keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
+								</span><br />
+								You may trash 1 card from your hand or rest 1 of your DON!! cards:<br />
+								Up to 1 of your opponent's rested Characters will not become active<br />
+								during your opponent's next Refresh Phase.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block">
+				<div class="section-header decklist-header">
+					<div class="decklist-title-row">
+						<h2>Decklist</h2>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+							Copy for Sim
+						</button>
+					</div>
+					<div>
+						<p>Sample first-look OP17 list for Shanks.</p>
+					</div>
+				</div>
+				<div class="deck-grid">
+					{
+						decklist.map((entry) => (
+							<button
+								class="deck-card"
+								type="button"
+								data-card-preview
+								data-full={entry.img}
+								data-name={`${entry.code} ${entry.name}`}
+								data-code={entry.code}
+							>
+								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<div class="deck-info">
+									<span class="deck-count">{entry.count}x</span>
+									<div>
+										<div class="deck-name">{entry.name}</div>
+										<div class="deck-code">{entry.code}</div>
+									</div>
+								</div>
+								<span class="deck-role">{entry.role}</span>
+							</button>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="summary-grid">
+				<div class="glow-block conclusions-card">
+					<div class="section-tag section-tag-light">Conclusion</div>
+					<p class="ability-copy">
+						A solid midrange deck capable of varying its style of play according to the situation. The decklist
+						allows a lot of space for deck building.
+					</p>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-up">
+						<span class="badge-icon">&uarr;</span>
+						<span>Matchup Favorable</span>
+					</div>
+					<div class="matchup-row matchup-row-cards-only">
+						<div class="tip-cards">
+							<div class="mini-card matchup-static-card" aria-label="Charlotte Linlin OP17">
+								<img src="/assets/guides/Charlotte%20Linlin%20op17.png" alt="Charlotte Linlin OP17" loading="lazy" />
+								<div class="mini-label">Charlotte Linlin</div>
+							</div>
+							<div class="mini-card matchup-static-card" aria-label="Edward Newgate OP17">
+								<img src="/assets/guides/Edward.Newgate%20op17.png" alt="Edward Newgate OP17" loading="lazy" />
+								<div class="mini-label">Edward Newgate</div>
+							</div>
+							<div class="mini-card matchup-static-card" aria-label="Kaido OP17">
+								<img src="/assets/guides/Kaido%20op17.png" alt="Kaido OP17" loading="lazy" />
+								<div class="mini-label">Kaido</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-down">
+						<span class="badge-icon">&darr;</span>
+						<span>Matchups Unfavorable</span>
+					</div>
+					<div class="matchup-row matchup-row-cards-only">
+						<div class="tip-cards">
+							<div class="mini-card matchup-static-card" aria-label="Rocks.D.Xebec OP17">
+								<img src="/assets/guides/Rocks.DXebec%20op17.png" alt="Rocks.D.Xebec OP17" loading="lazy" />
+								<div class="mini-label">Rocks.D.Xebec</div>
+							</div>
+							<div class="mini-card matchup-static-card" aria-label="Monkey.D.Luffy OP17">
+								<img src="/assets/guides/Luffy%20OP17.png" alt="Monkey.D.Luffy OP17" loading="lazy" />
+								<div class="mini-label">Monkey.D.Luffy</div>
+							</div>
+							<div class="mini-card matchup-static-card" aria-label="Dracule Mihawk OP14">
+								<img src="/assets/guides/dracule-mihawk-op14.png" alt="Dracule Mihawk OP14" loading="lazy" />
+								<div class="mini-label">Dracule Mihawk</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+			<div class="modal-effect-copy" data-modal-effect hidden></div>
+		</div>
+	</div>
+</MainLayout>
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const modalEffect = document.querySelector("[data-modal-effect]");
+	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
+	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
+	const decklistEffectTextByCode = {
+		"OP17-020": [
+			[keywordBadge("activate-main", "Activate: Main"), " ", keywordBadge("once-per-turn", "Once Per Turn"), " You may trash 1 card from your hand or rest 1 of your DON!! cards: Up to 1 of your opponent's rested Characters will not become active during your opponent's next Refresh Phase."],
+		],
+		"OP17-021": [
+			['If your Character with a type including "Red-Haired Pirates" would be removed from the field by your opponent\'s effect, you may rest 1 of your cards instead.'],
+		],
+		"OP17-022": [
+			[keywordBadge("rush", "Rush")],
+			[keywordBadge("on-play", "On Play"), " Set up to 2 of your DON!! cards as active. Then, rest all of your opponent's Characters."],
+		],
+		"OP17-027": [
+			[keywordBadge("rush", "Rush"), ": Character"],
+			["(This card can attack Characters on the turn it is played.)"],
+			[keywordBadge("on-play", "On Play"), " If your Leader has the {Red-Haired Pirates} type, draw 1 card and rest up to 2 of your opponent's Characters."],
+		],
+		"OP17-031": [
+			[keywordBadge("on-play", "On Play"), " Draw 1 card and rest up to 1 of your opponent's Characters with a cost of 8 or less."],
+			[keywordBadge("end-of-your-turn", "End of Your Turn"), " Set up to 1 of your {Red-Haired Pirates} type Characters as active."],
+		],
+		"OP17-032": [
+			[keywordBadge("on-play", "On Play"), ' Look at 3 cards from the top of your deck; reveal up to 1 card with a type including "Red-Haired Pirates" and add it to your hand. Then, place the rest at the bottom of your deck in any order.'],
+		],
+		"OP17-033": [
+			[keywordBadge("on-play", "On Play"), ' Look at 3 cards from the top of your deck; reveal up to 1 card with a type including "Red-Haired Pirates" and add it to your hand. Then, place the rest at the bottom of your deck in any order.'],
+			[keywordBadge("on-your-opponents-attack", "On Your Opponent's Attack"), " You may trash this Character: Rest up to 1 of your opponent's Leader or Characters."],
+		],
+		"OP17-036": [
+			[keywordBadge("main", "Main"), " You may rest 6 of your DON!! cards: Rest up to 1 of your opponent's Characters. Then, K.O. up to 2 of your opponent's rested Characters with a cost of 6 or less."],
+			[keywordBadge("counter", "Counter"), " Up to 1 of your [Shanks] gains +4000 power during this battle."],
+		],
+		"OP17-038": [
+			[keywordBadge("main", "Main"), " You may rest 4 of your cards: Rest up to 1 of your opponent's Characters."],
+			[keywordBadge("counter", "Counter"), " You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +3000 power during this battle."],
+		],
+	};
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		const code = button.getAttribute("data-code");
+		const effectLines = code ? decklistEffectTextByCode[code] : null;
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		if (modalEffect) {
+			modalEffect.innerHTML = "";
+			if (effectLines?.length) {
+				effectLines.forEach((line) => {
+					const paragraph = document.createElement("p");
+					const normalizedLine = Array.isArray(line) ? line : [line];
+					normalizedLine.forEach((part) => {
+						if (typeof part === "string") {
+							paragraph.appendChild(document.createTextNode(part));
+							return;
+						}
+						if (part?.type === "keyword") {
+							const image = document.createElement("img");
+							image.className = "modal-keyword-badge";
+							image.src = `/assets/keywords/${part.icon}.png`;
+							image.alt = part.alt;
+							paragraph.appendChild(image);
+						}
+					});
+					modalEffect.appendChild(paragraph);
+				});
+				modalEffect.hidden = false;
+			} else {
+				modalEffect.hidden = true;
+			}
+		}
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+	};
+
+	const closeModal = () => {
+		if (!modal || !modalImage) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		modalImage.setAttribute("src", "");
+		modalImage.setAttribute("alt", "");
+		if (modalEffect) {
+			modalEffect.innerHTML = "";
+			modalEffect.hidden = true;
+		}
+		document.body.style.overflow = "";
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && modal?.classList.contains("is-open")) {
+			closeModal();
+		}
+	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const simDeck = button.getAttribute("data-sim-deck");
+			if (!simDeck) return;
+			const previous = button.textContent?.trim();
+
+			try {
+				await navigator.clipboard.writeText(simDeck);
+				button.textContent = "Copied";
+				window.setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1800);
+			} catch {
+				button.textContent = "Copy failed";
+				window.setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1800);
+			}
+		});
+	});
+</script>
+<style>
+	:root {
+		--first-look-accent: #7bd53a;
+		--first-look-accent-soft: rgba(123, 213, 58, 0.2);
+		--first-look-border: rgba(123, 213, 58, 0.28);
+	}
+
+	.guide-hero {
+		padding-top: 3.2rem;
+	}
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 415px);
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.hero-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+		margin-bottom: 1rem;
+	}
+
+	.hero-chip,
+	.publish-banner {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.7rem 1.1rem;
+		border-radius: 999px;
+		border: 1px solid var(--first-look-border);
+		background: rgba(12, 17, 30, 0.85);
+		color: #f3f7ff;
+	}
+
+	.hero-chip {
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.hero-chip-accent {
+		color: var(--accent);
+	}
+
+	.hero-intro {
+		max-width: 56ch;
+	}
+
+	.publish-banner {
+		margin-top: 1.25rem;
+		font-weight: 600;
+	}
+
+	.guide-icon {
+		display: flex;
+		justify-content: center;
+	}
+
+	.guide-icon img {
+		width: min(415px, 100%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+	}
+
+	.article-stack,
+	.summary-grid,
+	.leader-details {
+		display: grid;
+		gap: 1.4rem;
+	}
+
+	.summary-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.conclusions-card {
+		grid-column: 1 / -1;
+	}
+
+	.glow-block {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--first-look-border);
+		border-radius: 26px;
+		padding: 1.25rem;
+		box-shadow:
+			0 0 0 1px rgba(123, 213, 58, 0.18),
+			0 0 22px rgba(123, 213, 58, 0.1),
+			0 0 52px rgba(123, 213, 58, 0.06);
+	}
+
+	.leader-grid {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 1fr);
+		grid-template-areas:
+			"leaderTag abilityTag"
+			"card ability";
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.leader-tag-wrap {
+		grid-area: leaderTag;
+	}
+
+	.ability-tag-wrap {
+		grid-area: abilityTag;
+	}
+
+	.leader-card-wrap {
+		grid-area: card;
+	}
+
+	.leader-details {
+		grid-area: ability;
+	}
+
+	.section-tag {
+		display: inline-flex;
+		padding: 0.45rem 0.9rem;
+		background: var(--first-look-accent-soft);
+		color: #f1f8e8;
+		margin-bottom: 1rem;
+		border-radius: 999px;
+		font-weight: 600;
+	}
+
+	.section-tag-light {
+		font-weight: 500;
+	}
+
+	.detail-card,
+	.deck-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.detail-card img {
+		width: 100%;
+		max-width: 220px;
+		border-radius: 16px;
+	}
+
+	.info-box {
+		background: rgba(8, 12, 22, 0.92);
+		border: 1px solid rgba(123, 213, 58, 0.2);
+		border-radius: 22px;
+		padding: 1rem 1.1rem;
+	}
+
+	.ability-meta {
+		margin: 0 0 0.85rem;
+		color: var(--accent);
+		font-size: 0.95rem;
+		line-height: 1.45;
+		font-weight: 400;
+	}
+
+	.ability-copy {
+		font-size: clamp(1rem, 1.35vw, 1.2rem);
+		font-weight: 400;
+		line-height: 1.55;
+		letter-spacing: 0;
+		text-transform: none;
+		margin: 0;
+	}
+
+	.leader-keyword-group {
+		display: inline-grid;
+		gap: 0.28rem;
+		margin-bottom: 0.28rem;
+	}
+
+	.leader-keyword-badge {
+		height: 1.2em;
+		width: auto;
+		margin-right: 0.18em;
+		vertical-align: -0.18em;
+	}
+
+	.decklist-header {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p {
+		margin: 0;
+	}
+
+	.copy-sim-button {
+		flex: 0 0 auto;
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.deck-card {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.75rem;
+		display: grid;
+		gap: 0.65rem;
+		text-align: left;
+		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.deck-card:hover,
+	.deck-card:focus-visible,
+	.detail-card:hover,
+	.detail-card:focus-visible {
+		transform: translateY(-4px);
+		outline: none;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 110px;
+		margin: 0 auto;
+		border-radius: 12px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.22rem 0.55rem;
+		border-radius: 999px;
+		background: rgba(255, 107, 61, 0.12);
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	.deck-name {
+		font-size: 0.92rem;
+		font-weight: 600;
+		line-height: 1.25;
+	}
+
+	.deck-code,
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.78rem;
+	}
+
+	.deck-role {
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.matchup-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.45rem 0.9rem;
+		border-radius: 999px;
+		font-weight: 600;
+	}
+
+	.badge-up {
+		background: rgba(74, 222, 128, 0.14);
+		color: #65f59b;
+	}
+
+	.badge-down {
+		background: rgba(255, 107, 107, 0.14);
+		color: #ff7c7c;
+	}
+
+	.badge-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.1rem;
+		height: 1.1rem;
+		border-radius: 999px;
+		background: currentColor;
+		color: #08101b;
+		font-size: 0.78rem;
+		font-weight: 700;
+	}
+
+	.matchup-row {
+		display: grid;
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.matchup-row-cards-only {
+		justify-items: center;
+	}
+
+	.tip-cards {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.9rem;
+		width: 100%;
+	}
+
+	.mini-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		text-align: center;
+		transition: transform 0.2s ease;
+	}
+
+	.matchup-static-card {
+		cursor: default;
+	}
+
+	.mini-card:hover,
+	.mini-card:focus-visible {
+		transform: translateY(-4px);
+		outline: none;
+	}
+
+	.matchup-static-card:hover,
+	.matchup-static-card:focus-visible {
+		transform: none;
+		outline: none;
+	}
+
+	.mini-card img {
+		width: 100%;
+		max-width: 132px;
+		border-radius: 14px;
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+	}
+
+	.mini-label {
+		display: block;
+		margin-top: 0.45rem;
+		font-size: 0.92rem;
+		line-height: 1.25;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		background: rgba(5, 8, 16, 0.82);
+		padding: 1.5rem;
+		z-index: 50;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		max-width: min(92vw, 520px);
+		display: grid;
+		gap: 1rem;
+	}
+
+	.card-modal-inner > img {
+		width: 100%;
+		border-radius: 20px;
+	}
+
+	.modal-effect-copy {
+		background: rgba(12, 17, 30, 0.95);
+		border: 1px solid var(--border);
+		border-radius: 18px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.modal-effect-copy p {
+		margin: 0;
+		font-size: 1.05rem;
+		line-height: 1.5;
+		font-weight: 400;
+	}
+
+	.modal-effect-copy :global(.modal-keyword-badge) {
+		display: inline-block;
+		height: 1.2em;
+		width: auto;
+		vertical-align: -0.18em;
+		margin-right: 0.18em;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: -0.75rem;
+		right: -0.75rem;
+		border: none;
+		border-radius: 999px;
+		background: var(--accent);
+		color: #fff;
+		padding: 0.55rem 0.85rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	@media (max-width: 900px) {
+		.hero-grid,
+		.summary-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.conclusions-card {
+			grid-column: auto;
+		}
+
+		.guide-icon,
+		.detail-card {
+			justify-self: center;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.deck-card {
+			padding: 0.7rem;
+		}
+
+		.deck-card img {
+			max-width: 92px;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.guide-hero {
+			padding-top: 2rem;
+		}
+
+		.glow-block {
+			padding: 1rem;
+			border-radius: 22px;
+		}
+
+		.leader-grid {
+			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+			grid-template-areas:
+				"leaderTag abilityTag"
+				"card ability";
+			align-items: start;
+			gap: 1rem;
+		}
+
+		.detail-card img {
+			max-width: 100%;
+		}
+
+		.ability-copy {
+			font-size: 0.98rem;
+			line-height: 1.5;
+		}
+
+		.leader-keyword-badge {
+			height: 1.2em;
+		}
+
+		.tip-cards {
+			gap: 0.75rem;
+		}
+
+		.mini-card img {
+			max-width: 110px;
+		}
+	}
+</style>

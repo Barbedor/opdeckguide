@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Shanks OP17 First Look",
+		leader: "Shanks",
+		code: "OP17",
+		formatLabel: "OP17 Format",
+		summary: "Leader ability, first sample decklist, favorable and unfavorable matchups, and a conclusion for Shanks OP17.",
+		month: "August",
+		href: "/deck-guides/shanks-op17/",
+		imageSrc: "/assets/guides/Shanks%20op17.png",
+		imageAlt: "Shanks OP17 first look cover",
+		aliases: ["shanks op17", "op17 shanks", "green shanks", "first look shanks", "red-haired pirates shanks"],
+		tags: ["op17", "green", "red-haired pirates", "first look"],
+	},
+	{
+		kind: "deck",
 		title: "Rocks.D.Xebec OP17 First Look",
 		leader: "Rocks.D.Xebec",
 		code: "OP17",

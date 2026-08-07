@@ -167,7 +167,7 @@ const manualCardOverrides = {
 			color: "Green",
 		},
 		"op17 crone oli": {
-			code: "OP17-CRONE-OLI",
+			code: "OP17-021",
 			name: "Crone Oli",
 			color: "Green",
 		},
@@ -804,7 +804,6 @@ const getOp17SortCode = (card) => {
 		"OP17-RAKUYO": "OP17-018.8",
 		"OP17-017": "OP17-018.85",
 		"OP17-GURARARARA": "OP17-018.9",
-		"OP17-CRONE-OLI": "OP17-035.9",
 		"OP17-JACK": "OP17-077.6",
 		"OP17-BASIL-HAWKINS": "OP17-077.7",
 		"OP17-SASAKI": "OP17-077.8",

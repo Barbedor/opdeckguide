@@ -167,7 +167,7 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 					<div class="section-tag section-tag-light">Conclusion</div>
 					<p class="ability-copy">
 						The leader ability is one of the strongest of the set and leads you to always have cards in hand.<br />
-						Aggressive decks like OP16 Luffy could end up struggling because of it.<br />
+						Aggressive decks like Black Luffy OP17 could end up struggling because of it.<br />
 						The "Rocks Pirates" limitation doesn't seem like a problem, but it allows little margin for deck
 						building or for some tech.
 					</p>
@@ -700,6 +700,35 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 	}
 
 	@media (max-width: 560px) {
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
+		}
+
+		.decklist-header {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
 		.leader-grid {
 			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 			grid-template-areas:
