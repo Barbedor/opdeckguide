@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Monkey.D.Luffy OP17 First Look",
+		leader: "Monkey.D.Luffy",
+		code: "OP17",
+		formatLabel: "OP17 Format",
+		summary: "Leader ability, first sample decklist, favorable and unfavorable matchups, and a conclusion for Monkey.D.Luffy OP17.",
+		month: "August",
+		href: "/deck-guides/monkey-d-luffy-op17/",
+		imageSrc: "/assets/guides/Monkey.D.Luffy%20op17.png",
+		imageAlt: "Monkey.D.Luffy OP17 first look cover",
+		aliases: ["monkey d luffy op17", "op17 luffy", "black luffy", "first look luffy", "straw hat crew luffy"],
+		tags: ["op17", "black", "straw hat crew", "first look"],
+	},
+	{
+		kind: "deck",
 		title: "Shanks OP17 First Look",
 		leader: "Shanks",
 		code: "OP17",
