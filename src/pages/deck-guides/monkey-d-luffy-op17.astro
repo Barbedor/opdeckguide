@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 const title = "Monkey.D.Luffy OP17 First Look";
 const description =
-	"First look at Monkey.D.Luffy OP17 for One Piece Card Game with leader ability, sample decklist, favorable and unfavorable matchups, and a conclusion for the OP17 format.";
+	"First look at Monkey.D.Luffy OP17 for One Piece Card Game with leader ability, updated sample decklist, curve guide, possible Luffy targets, matchup overview, and a conclusion for the OP17 format.";
 
 const publishedAt = "August 8, 2026";
 const icon = "/assets/guides/Monkey.D.Luffy%20op17.png";
@@ -35,19 +35,55 @@ const decklist = [
 	card("OP17-094", "Rodo", "/Cards/OP17/op17-094.jpg", 2),
 	card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg", 4),
 	card("OP17-081", "Gerd", "/Cards/OP17/Gerd%20op17-081.jpg", 4),
-	card("OP17-082", "Sanji", "/Cards/OP17/Sanji%20op17-082.jpg", 4),
+	card("OP17-095", "Roronoa Zoro", "/Cards/OP17/Roronoa%20Zoro%20op17-095.jpg", 2),
+	card("OP17-091", "Brook", "/Cards/OP17/op17-091%20Brook.jpg", 2),
 	card("OP17-083", "Jinbe", "/Cards/OP17/Jinbe%20op17-083.jpg", 2),
-	card("OP17-087", "Nico Robin", "/Cards/OP17/Nico%20Robin%20op17-087.jpg", 3),
-	card("OP17-091", "Brook", "/Cards/OP17/op17-091%20Brook.jpg", 4),
-	card("OP17-095", "Roronoa Zoro", "/Cards/OP17/Roronoa%20Zoro%20op17-095.jpg", 4),
+	card("OP17-082", "Sanji", "/Cards/OP17/Sanji%20op17-082.jpg", 4),
+	card("OP17-087", "Nico Robin", "/Cards/OP17/Nico%20Robin%20op17-087.jpg", 2),
 	card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/Jaguar.D.%20Saul%20op17-089.jpg", 4),
+	card("OP17-085", "Dorry", "/Cards/OP17/Dorry%20op17-0XX.jpg", 3),
+	card("OP17-092", "Brogy", "/Cards/OP17/op17-092.jpg", 3),
 	card("OP17-119", "Loki", "/Cards/OP17/op17-119-loki.png", 4),
 	card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/op17-093Monkey.D.Luffy.jpg", 4),
+	card("OP17-098", "Gum-Gum Kong Pistol", "/Cards/OP17/op17-098.jpg", 2, "Event"),
 	card("OP17-097", "Instead I'll Feed on this Rage!! And Use It to Bring the World to Ruin!!", "/Cards/OP17/op17-097.jpg", 2, "Event"),
-	card("OP17-098", "Gum-Gum Kong Pistol", "/Cards/OP17/op17-098.jpg", 3, "Event"),
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const curveGuide = [
+	{
+		label: "2 DON!!",
+		note: "Open with Usopp to search an Elbaph card and start stacking the trash.",
+		card: card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg"),
+	},
+	{
+		label: "4 DON!!",
+		note: "Play Jaguar.D. Saul to establish a 12-cost body while finding another Elbaph card.",
+		card: card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/Jaguar.D.%20Saul%20op17-089.jpg"),
+	},
+	{
+		label: "6 DON!!",
+		note: "Loki gives you a large 12-cost threat and controls the opponent's low-cost board.",
+		card: card("OP17-119", "Loki", "/Cards/OP17/op17-119-loki.png"),
+	},
+	{
+		label: "8 DON!!",
+		note: "Monkey.D.Luffy draws a card and brings one of your 2-cost Characters back from the trash.",
+		card: card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/op17-093Monkey.D.Luffy.jpg"),
+	},
+];
+
+const luffyTargets = [
+	{ note: "Trade board", card: card("OP17-087", "Nico Robin", "/Cards/OP17/Nico%20Robin%20op17-087.jpg") },
+	{ note: "Search and stack trash", card: card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg") },
+	{ note: "Protect board", card: card("OP17-095", "Roronoa Zoro", "/Cards/OP17/Roronoa%20Zoro%20op17-095.jpg") },
+	{ note: "Unblockable", card: card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/Tony%20Tony.Chopper%20op17-084.jpg") },
+	{ note: "Cycle your hand", card: card("OP17-082", "Sanji", "/Cards/OP17/Sanji%20op17-082.jpg") },
+	{ note: "Gain tempo", card: card("OP17-091", "Brook", "/Cards/OP17/op17-091%20Brook.jpg") },
+	{ note: "Blocker", card: card("OP17-083", "Jinbe", "/Cards/OP17/Jinbe%20op17-083.jpg") },
+	{ note: "Recycle and block", card: card("OP17-081", "Gerd", "/Cards/OP17/Gerd%20op17-081.jpg") },
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -60,8 +96,9 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 				</div>
 				<h1>Monkey.D.Luffy OP17 First Look</h1>
 				<p class="hero-intro">
-					A first OP17 look at Monkey.D.Luffy, including his leader effect, a sample decklist, favorable and
-					unfavorable matchups, and a short conclusion on where the deck currently stands.
+					A first OP17 look at Monkey.D.Luffy, including his leader effect, an updated sample decklist, a
+					curve guide, possible Luffy targets, favorable and unfavorable matchups, and a short conclusion on
+					where the deck currently stands.
 				</p>
 				<div class="publish-banner">Published {publishedAt}</div>
 			</div>
@@ -140,6 +177,68 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 							</button>
 						))
 					}
+				</div>
+			</div>
+
+			<div id="curve" class="glow-block guide-feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Curve Guide</h2>
+						<p>Going second is your best start: follow the 2, 4, 6, then 8 DON!! curve.</p>
+					</div>
+				</div>
+				<div class="curve-rows">
+					{curveGuide.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								<button
+									class="mini-card curve-card"
+									type="button"
+									data-card-preview
+									data-full={slot.card.img}
+									data-name={`${slot.card.code} ${slot.card.name}`}
+									data-code={slot.card.code}
+								>
+									<img loading="lazy" src={slot.card.img} alt={`${slot.card.code} ${slot.card.name}`} />
+									<div class="mini-label">{slot.card.name}</div>
+								</button>
+							</div>
+							<div class="curve-note">{slot.note}</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div id="luffy-targets" class="glow-block guide-feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Possible Luffy's Target</h2>
+						<p>
+							Choose the 2-cost Character that best fits the board when Monkey.D.Luffy OP17-093 is played.
+						</p>
+					</div>
+				</div>
+				<div class="target-grid">
+					{luffyTargets.map((target) => (
+						<article class="target-option">
+							<button
+								class="mini-card target-card"
+								type="button"
+								data-card-preview
+								data-full={target.card.img}
+								data-name={`${target.card.code} ${target.card.name}`}
+								data-code={target.card.code}
+							>
+								<img loading="lazy" src={target.card.img} alt={`${target.card.code} ${target.card.name}`} />
+								<div class="mini-label">{target.card.name}</div>
+							</button>
+							<div class="target-copy">
+								<strong>{target.note}</strong>
+								<span>{target.card.name}</span>
+							</div>
+						</article>
+					))}
 				</div>
 			</div>
 
@@ -245,6 +344,10 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 			[keywordBadge("on-play", "On Play"), " If there is a Character with a cost of 12 or more, up to 1 of your Characters gains ", keywordBadge("unblockable", "Unblockable"), " during this turn."],
 			["(This card cannot be blocked.)"],
 		],
+		"OP17-085": [
+			["This Character gains +12 cost."],
+			[keywordBadge("on-play", "On Play"), " If your Leader has the {Elbaph} type, play up to 1 [Brogy] with a cost of 5 or less from your hand or trash. Then, you cannot play Character cards during this turn."],
+		],
 		"OP17-086": [
 			[keywordBadge("on-play", "On Play"), " You may trash 1 {Elbaph} type card from your hand: Draw 2 cards."],
 		],
@@ -259,6 +362,10 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		"OP17-091": [
 			["If there is a Character with a cost of 12 or more, this Character gains +3000 power."],
 			[keywordBadge("on-play", "On Play"), " If there is a Character with a cost of 12 or more, your opponent trashes 1 card from their hand."],
+		],
+		"OP17-092": [
+			["This Character gains +12 cost."],
+			[keywordBadge("on-play", "On Play"), " If your Leader has the {Elbaph} type, play up to 1 [Dorry] with a cost of 5 or less from your hand or trash. Then, you cannot play Character cards during this turn."],
 		],
 		"OP17-093": [
 			["If there is a Character with a cost of 12 or more, this Character gains ", keywordBadge("rush", "Rush"), "."],
@@ -374,9 +481,9 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 </script>
 <style>
 	:root {
-		--first-look-accent: #7bd53a;
-		--first-look-accent-soft: rgba(123, 213, 58, 0.2);
-		--first-look-border: rgba(123, 213, 58, 0.28);
+		--first-look-accent: #ff8a2a;
+		--first-look-accent-soft: rgba(255, 138, 42, 0.16);
+		--first-look-border: rgba(255, 138, 42, 0.24);
 	}
 
 	.guide-hero {
@@ -459,9 +566,9 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		border-radius: 26px;
 		padding: 1.25rem;
 		box-shadow:
-			0 0 0 1px rgba(123, 213, 58, 0.18),
-			0 0 22px rgba(123, 213, 58, 0.1),
-			0 0 52px rgba(123, 213, 58, 0.06);
+			0 0 0 1px rgba(255, 138, 42, 0.3),
+			0 0 22px rgba(255, 138, 42, 0.14),
+			0 0 52px rgba(255, 138, 42, 0.08);
 	}
 
 	.leader-grid {
@@ -494,7 +601,7 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		display: inline-flex;
 		padding: 0.45rem 0.9rem;
 		background: var(--first-look-accent-soft);
-		color: #f1f8e8;
+		color: #fff3e8;
 		margin-bottom: 1rem;
 		border-radius: 999px;
 		font-weight: 600;
@@ -520,7 +627,7 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 
 	.info-box {
 		background: rgba(8, 12, 22, 0.92);
-		border: 1px solid rgba(123, 213, 58, 0.2);
+		border: 1px solid rgba(255, 138, 42, 0.2);
 		border-radius: 22px;
 		padding: 1rem 1.1rem;
 	}
@@ -646,6 +753,99 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 	.deck-role {
 		text-transform: uppercase;
 		letter-spacing: 1px;
+	}
+
+	.guide-feature-block {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.feature-header,
+	.feature-header h2,
+	.feature-header p {
+		margin: 0;
+	}
+
+	.feature-header p {
+		margin-top: 0.45rem;
+		color: var(--text-200);
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 92px 150px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 0.9rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.72);
+	}
+
+	.curve-label {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.curve-cards {
+		display: flex;
+		justify-content: center;
+	}
+
+	.curve-card img {
+		max-width: 112px;
+	}
+
+	.curve-note {
+		color: var(--text-200);
+		line-height: 1.5;
+	}
+
+	.target-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.target-option {
+		display: grid;
+		grid-template-columns: minmax(82px, 104px) minmax(0, 1fr);
+		gap: 0.8rem;
+		align-items: center;
+		padding: 0.85rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.72);
+	}
+
+	.target-card img {
+		max-width: 104px;
+	}
+
+	.target-card .mini-label {
+		display: none;
+	}
+
+	.target-copy {
+		display: grid;
+		gap: 0.3rem;
+		min-width: 0;
+	}
+
+	.target-copy strong {
+		color: var(--accent);
+		line-height: 1.25;
+	}
+
+	.target-copy span {
+		color: var(--text-300);
+		font-size: 0.82rem;
+		line-height: 1.3;
 	}
 
 	.matchup-badge {
@@ -824,6 +1024,10 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		.deck-grid {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
+
+		.target-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -861,6 +1065,21 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 
 		.deck-card img {
 			max-width: 92px;
+		}
+
+		.curve-row {
+			grid-template-columns: 70px 96px minmax(0, 1fr);
+			gap: 0.7rem;
+			padding: 0.75rem;
+		}
+
+		.curve-card img {
+			max-width: 88px;
+		}
+
+		.curve-card .mini-label,
+		.curve-note {
+			font-size: 0.8rem;
 		}
 	}
 
@@ -902,6 +1121,18 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 
 		.mini-card img {
 			max-width: 110px;
+		}
+
+		.target-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.target-option {
+			grid-template-columns: 84px minmax(0, 1fr);
+		}
+
+		.target-card img {
+			max-width: 84px;
 		}
 	}
 </style>

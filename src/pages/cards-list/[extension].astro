@@ -515,6 +515,8 @@ const leakCardDetails = {
 	"OP17-040": {
 		rarity: "Treasure Rare",
 		edition: "TREASURE RARE",
+		headerBadge: "RARE",
+		notes: ["ALT"],
 		stats: "Blue / Cost 6 / Special / Power 8000",
 		traits: "Rocks Pirates",
 		effectLines: [
@@ -1736,6 +1738,7 @@ const leakCardDetails = {
 const getLeakSortRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
 	if (card.rarity === "SP") return 2;
+	if (card.code === "OP17-040") return 0;
 	if (card.rarity === "Treasure Rare") return 3;
 	if (card.rarity === "Gold") return 4;
 	if (card.code.startsWith("OP17-DON")) return 5;
@@ -1877,7 +1880,10 @@ const description = isLeakPage
 							<div class="leak-card-copy">
 								<div class="leak-card-header">
 									<p class="leak-card-code">{card.code}</p>
-									<p class="leak-card-rarity">{card.rarity}</p>
+									<div class="leak-card-rarity-group">
+										<p class="leak-card-rarity">{card.rarity}</p>
+										{card.headerBadge ? <p class="leak-card-rarity">{card.headerBadge}</p> : null}
+									</div>
 								</div>
 								<h3>{card.name}</h3>
 								<div class="leak-card-meta">
@@ -2200,6 +2206,13 @@ const description = isLeakPage
 		gap: 0.65rem;
 	}
 
+	.leak-card-rarity-group {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
 	.leak-card-copy h3 {
 		margin: 0;
 		font-size: clamp(1.2rem, 1rem + 0.55vw, 1.55rem);
@@ -2222,6 +2235,10 @@ const description = isLeakPage
 	}
 
 	.leak-card-rarity {
+		display: inline-flex;
+		align-items: center;
+		white-space: nowrap;
+		flex: 0 0 auto;
 		color: #ffd6b0 !important;
 		font-weight: 700;
 		font-size: 0.78rem;

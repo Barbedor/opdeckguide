@@ -5,7 +5,7 @@ export const deckGuides = [
 		leader: "Monkey.D.Luffy",
 		code: "OP17",
 		formatLabel: "OP17 Format",
-		summary: "Leader ability, first sample decklist, favorable and unfavorable matchups, and a conclusion for Monkey.D.Luffy OP17.",
+		summary: "Leader ability, updated sample decklist, curve guide, possible Luffy targets, matchup overview, and a conclusion for Monkey.D.Luffy OP17.",
 		month: "August",
 		href: "/deck-guides/monkey-d-luffy-op17/",
 		imageSrc: "/assets/guides/Monkey.D.Luffy%20op17.png",
