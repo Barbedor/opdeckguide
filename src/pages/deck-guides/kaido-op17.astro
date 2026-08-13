@@ -1,0 +1,1306 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Kaido OP17 Mini Deck Guide";
+const description =
+	"Mini deck guide for Kaido OP17 for One Piece Card Game with leader ability, updated decklist, deck in a nutshell, best curve, even curve, raid bosses, force, faiblesse, and a conclusion for the OP17 format.";
+
+const publishedAt = "August 12, 2026";
+const icon = "/assets/guides/Kaido%20op17.png";
+
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+
+	if (remaining > 0) {
+		lines.push(`${remaining}x${code}`);
+	}
+
+	return lines;
+};
+
+const card = (code, name, img, count = null, role = "Character", effectCode = code) => ({
+	code,
+	name,
+	img,
+	count,
+	role,
+	effectCode,
+});
+
+const leader = card("OP17-058", "Kaido", "/Cards/OP17/Kaido%20op17-058.jpg", 1, "Leader");
+const queenEb = card("EB04-032", "Queen", "/Cards/EB04/EB04-032.jpg", 4);
+const basilHawkins = card("OP17-073", "Basil Hawkins", "/Cards/OP17/OP17%20Basil%20Hawkins.jpg", 4, "Character", "OP17-BASIL-HAWKINS");
+const yamato = card("OP17-074", "Yamato", "/Cards/OP17/Yamato%20op17-074.jpg", 4);
+const usohachi = card("ST18-001", "Usohachi", "/Cards/ST18/ST18-001.png", 4);
+const kingEb = card("EB04-031", "King", "/Cards/EB04/EB04-031.jpg", 4);
+const kaidoEb = card("EB04-030", "Kaido", "/Cards/EB04/EB04-030.jpg", 2);
+const leadPerformers = card("OP17-061", "Lead Performers", "/Cards/OP17/Lead%20Performers%20op17-061%20ALT.jpg", 3);
+const queenOp17 = card("OP17-065", "Queen", "/Cards/OP17/OP17-065.jpg", 2);
+const jack = card("OP17-069", "Jack", "/Cards/OP17/OP17-JACK.jpg", 2, "Character", "OP17-JACK");
+const kaidoBlocker = card("OP17-062", "Kaido", "/Cards/OP17/Kaido%20op17-062.jpg", 3);
+const kaidoRaid = card("OP17-063", "Kaido", "/Cards/OP17/Kaido%20op17-063.jpg", 2);
+const charlotteLinlin = card("ST34-004", "Charlotte Linlin", "/Cards/ST34/ST34-004.jpg", 3);
+const mamaragan = card("OP15-078", "Mamaragan", "/Cards/OP15/OP15-078.jpg", 3, "Event");
+const woRoRoRo = card(
+	"OP17-076",
+	"Wo Ro Ro Ro Ro!! I Think I've Sobered Up!!",
+	"/Cards/OP17/OP17%20Wo%20RO%20RORO%20!%20I%20think%20I've%20Sobered%20Up%20!.jpg",
+	4,
+	"Event",
+	"OP17-WORORORO",
+);
+const claimOnePiece = card("OP07-077", "We're Going to Claim the One Piece!!!", "/Cards/OP07/OP07-077.png", 3, "Event");
+const gundariMeteorShower = card("OP17-077", "Gundari Meteor Shower", "/Cards/OP17/OP17-077.jpg", 3, "Event");
+
+const decklist = [
+	leader,
+	queenEb,
+	basilHawkins,
+	yamato,
+	usohachi,
+	kingEb,
+	kaidoEb,
+	leadPerformers,
+	queenOp17,
+	jack,
+	kaidoBlocker,
+	kaidoRaid,
+	charlotteLinlin,
+	mamaragan,
+	woRoRoRo,
+	claimOnePiece,
+	gundariMeteorShower,
+];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const nutshellForce = [
+	"Massive late-game value and continuous DON!! recovery.",
+	"Punishes opponent misplays instantly.",
+	"Insane board control and defensive endurance.",
+];
+
+const nutshellWeakness = [
+	"Inconsistent early game (can brick easily).",
+	"Highly dependent on playing 6c King exactly on curve.",
+	"Slow start makes it vulnerable to heavy Aggro.",
+];
+
+const coreEngine = [
+	"1c Queen / 3C Yamato: Your early setup tools.",
+	"6c King: The absolute MVP",
+	"10c Bosses (Kaido / Linlin): Your win conditions. They clear the opponent's board, heal your Life, and refund DON!! to keep your defensive events active.",
+];
+
+const bestCurve = [
+	{
+		label: "1 DON!!",
+		note: "Queen EB04-032 is your best turn-1 setup because on play it can trash 1 Animal Kingdom Pirates card from your hand to draw 2 cards. That lets you cycle your hand immediately, dig deeper into your curve pieces, and set up its DON!! effect for the following turns.",
+		cards: [{ card: queenEb }],
+	},
+	{
+		label: "3 DON!!",
+		note: "The cost 3 turn is still a setup turn. Queen is shown in Rest because you use its Activate: Main effect to rest 2 of your DON!! and add 1 DON!! card from your DON!! deck as rested. We’re Going to claim the One Piece!!! then helps you find the next Animal Kingdom Pirates or Big Mom Pirates piece by looking at 5 cards from the top of your deck and adding 1 matching card other than itself to your hand.",
+		cards: [{ card: queenEb, rested: true }, { card: claimOnePiece }],
+	},
+	{
+		label: "6 DON!!",
+		note: "King EB04-031 is the key pivot of the whole curve. If your Leader is Animal Kingdom Pirates and you have no other King, its once per turn effect adds 1 DON!! from your deck as active and 1 more as rested. On top of that, if King would be K.O.'d, you can return 1 DON!! from your field to your DON!! deck instead, which makes it a strong ramp piece that is also awkward to remove cleanly.",
+		cards: [{ card: kingEb }],
+	},
+	{
+		label: "10 DON!!",
+		note: "At 10 DON!!, you choose the boss that fits the board state. One Kaido line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
+		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
+		mode: "or",
+	},
+];
+
+const evenCurve = [
+	{
+		label: "2 DON!!",
+		note: "On the even curve, Queen EB04-032 is still your setup piece because it filters your hand with its draw 2 line, while We’re Going to claim the One Piece!!! looks at 5 cards and finds the next Animal Kingdom Pirates or Big Mom Pirates card you need to keep the curve moving.",
+		cards: [{ card: queenEb }, { card: claimOnePiece }],
+	},
+	{
+		label: "5 DON!!",
+		note: "This is the stabilized even-curve bridge from your reference. Queen is in Rest because it already attacked, and Leader Kaido is also in Rest because you attached 2 DON!! to him and attacked for 7000 power. The point of the turn is to convert your early setup into real pressure while staying on schedule for your midgame ramp turns.",
+		cards: [{ card: queenEb, rested: true }, { card: leader, rested: true }],
+	},
+	{
+		label: "7 DON!!",
+		note: "King remains your most important even-curve midgame turn as well. Its once per turn effect gives you 1 active DON!! and 1 rested DON!! if your Leader is Animal Kingdom Pirates and you control no other King, and its replacement effect can send 1 DON!! back to the deck instead of letting King be K.O.'d.",
+		cards: [{ card: kingEb }],
+	},
+	{
+		label: "10 DON!!",
+		note: "Once you reach 10 DON!! on the even curve, choose the Kaido that matches the board state: the defensive one when you want to extend your DON!! engine, or the offensive one when you need immediate removal and pressure.",
+		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
+		mode: "or",
+	},
+];
+
+const raidBosses = [
+	{
+		card: kaidoRaid,
+		copy: "Negates the effect of a 6-cost or lower Character and KOs it, completely bypassing KO protection! Even better: he turns all the unplayable bricks in your hand into +1000 Counters.",
+	},
+	{
+		card: kaidoBlocker,
+		copy: "A massive 12k Power Blocker that generates extra DON!! every turn when you return DON!! to your DON!! deck. It adds 1 DON!! from your deck as active, then re-stands 1 DON!! on your field, helping you maintain your defensive options even after committing resources.",
+	},
+	{
+		card: charlotteLinlin,
+		copy: "She drops an opponent's Character to 0 Power, setting up the perfect combo with the 0-cost event Mamaragan to wipe out huge threats for free.",
+	},
+	{
+		card: leadPerformers,
+		copy: "Drops as an 11k body that heals you for 1 Life immediately. You can then trash it to cheat out a Queen, Jack or King directly from your hand, swinging the tempo instantly in your favor.",
+	},
+	{
+		card: queenOp17,
+		copy: "A 10k Banish threat that replaces itself by drawing a card at the cost of DON!!-1. On play, he can also locks down two of your opponent's 5-cost or lower Characters, creating a brutal late-game chokehold.",
+	},
+	{
+		card: jack,
+		copy: "A 10k Rush Character that instantly drops an opposing Character’s power by -2000 on entry. Perfect for taking back the board and applying massive lethal pressure the turn he hits the field.",
+	},
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div class="hero-copy">
+				<div class="hero-tags">
+					<span class="hero-chip">Mini Deck Guide</span>
+					<span class="hero-chip hero-chip-accent">OP17 Format</span>
+				</div>
+				<h1>Kaido OP17 Mini Deck Guide</h1>
+				<p class="hero-intro">
+					A quick OP17 mini-guide to help you master Kaido and his oppressive late-game plan. If you enjoy
+					ramping fast, surviving the early turns, and dropping massive cost 10 bosses, this Leader is built
+					for that style.
+				</p>
+				<div class="publish-banner">Published {publishedAt}</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Kaido OP17 mini deck guide icon" loading="eager" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container article-stack">
+			<div class="leader-panel glow-block">
+				<div class="leader-grid">
+					<div class="leader-tag-wrap">
+						<div class="section-tag">LEADER</div>
+					</div>
+					<div class="ability-tag-wrap">
+						<div class="section-tag section-tag-light">Ability</div>
+					</div>
+					<div class="leader-card-wrap">
+						<button
+							class="detail-card"
+							type="button"
+							data-card-preview
+							data-full={leader.img}
+							data-name={`${leader.code} ${leader.name}`}
+							data-code={leader.effectCode}
+						>
+							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
+						</button>
+					</div>
+					<div class="leader-details">
+						<div class="info-box">
+							<p class="ability-meta">Type &amp; Attribute: The Four Emperors/Animal Kingdom Pirates - Special</p>
+							<p class="ability-copy">
+								<img class="leader-keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" />
+								/
+								<img class="leader-keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />
+								<img class="leader-keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
+								<br />
+								DON!! -1: Up to 1 of your opponent's Characters gets -2000 power during this turn.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block">
+				<div class="section-header decklist-header">
+					<div class="decklist-title-row">
+						<h2>Decklist</h2>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+							Copy for Sim
+						</button>
+					</div>
+				</div>
+				<div class="deck-grid">
+					{
+						decklist.map((entry) => (
+							<button
+								class="deck-card"
+								type="button"
+								data-card-preview
+								data-full={entry.img}
+								data-name={`${entry.code} ${entry.name}`}
+								data-code={entry.effectCode}
+							>
+								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<div class="deck-info">
+									<span class="deck-count">{entry.count}x</span>
+									<div>
+										<div class="deck-name">{entry.name}</div>
+										<div class="deck-code">{entry.code}</div>
+									</div>
+								</div>
+								<span class="deck-role">{entry.role}</span>
+							</button>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Your Best Curve</h2>
+						<p>Going first is your best start.</p>
+					</div>
+				</div>
+				<div class="curve-rows">
+					{bestCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entry, index) => (
+									<>
+										{index > 0 && (
+											<span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>
+										)}
+										<button
+											class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
+											type="button"
+											data-card-preview
+											data-full={entry.card.img}
+											data-name={`${entry.card.code} ${entry.card.name}`}
+											data-code={entry.card.effectCode}
+										>
+											<div class="curve-card-frame">
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												{entry.donAttached && (
+													<div class="curve-don-attach" aria-label={`${entry.donAttached} DON attached`}>
+														<img src="/Cards/Don/Don.png" alt="" aria-hidden="true" />
+														<span>{entry.donAttached} DON!!</span>
+													</div>
+												)}
+											</div>
+										</button>
+									</>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Even Curve</h2>
+						<p>Still under optimization, but this is the current even-curve structure.</p>
+					</div>
+				</div>
+				<div class="curve-rows">
+					{evenCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entry, index) => (
+									<>
+										{index > 0 && (
+											<span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>
+										)}
+										<button
+											class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
+											type="button"
+											data-card-preview
+											data-full={entry.card.img}
+											data-name={`${entry.card.code} ${entry.card.name}`}
+											data-code={entry.card.effectCode}
+										>
+											<div class="curve-card-frame">
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												{entry.donAttached && (
+													<div class="curve-don-attach" aria-label={`${entry.donAttached} DON attached`}>
+														<img src="/Cards/Don/Don.png" alt="" aria-hidden="true" />
+														<span>{entry.donAttached} DON!!</span>
+													</div>
+												)}
+											</div>
+										</button>
+									</>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Raid Bosses</h2>
+						<p>The late game is where Kaido takes over. These are the payoff threats that matter most.</p>
+					</div>
+				</div>
+				<div class="boss-grid">
+					{raidBosses.map((entry) => (
+						<article class="boss-card">
+							<button
+								class="mini-card boss-card-media"
+								type="button"
+								data-card-preview
+								data-full={entry.card.img}
+								data-name={`${entry.card.code} ${entry.card.name}`}
+								data-code={entry.card.effectCode}
+							>
+								<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+								<div class="mini-label">{entry.card.name}</div>
+							</button>
+							<p class="curve-note">{entry.copy}</p>
+						</article>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Deck In A Nutshell</h2>
+						<p>
+							Ramp to 10 DON!! as fast as possible. Survive the early game so you can spam massive cost 10
+							boss Characters that refund DON!!, heal you, and lock down the late-game board.
+						</p>
+					</div>
+				</div>
+				<div class="nutshell-grid">
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Strength</div>
+						<ul class="summary-list">
+							{nutshellForce.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Weakness</div>
+						<ul class="summary-list">
+							{nutshellWeakness.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</div>
+				<div class="core-panel">
+					<div class="section-tag section-tag-light">The Core Engine</div>
+					<ul class="summary-list">
+						{coreEngine.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			</div>
+
+			<div class="summary-grid">
+				<div class="glow-block conclusions-card">
+					<div class="section-tag section-tag-light">Conclusion</div>
+					<p class="ability-copy">
+						Kaido OP17 is a clean late-game purple strategy that rewards disciplined ramp lines and careful
+						resource management. When the deck reaches cost 10 turns on schedule, it becomes very hard to
+						outscale because every boss either stabilizes, heals, or creates another DON!! loop.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+			<div class="modal-effect-copy" data-modal-effect hidden></div>
+		</div>
+	</div>
+</MainLayout>
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const modalEffect = document.querySelector("[data-modal-effect]");
+	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
+	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
+	const decklistEffectTextByCode = {
+		"OP17-058": [
+			[
+				keywordBadge("when-attacking", "When Attacking"),
+				" / ",
+				keywordBadge("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keywordBadge("once-per-turn", "Once Per Turn"),
+				" DON!! -1: Up to 1 of your opponent's Characters gets -2000 power during this turn.",
+			],
+		],
+		"OP17-061": [
+			[keywordBadge("on-play", "On Play"), " DON!! -1: If your Leader has the {Animal Kingdom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards."],
+			[keywordBadge("activate-main", "Activate: Main"), " You may trash this Character: Play up to 1 [King], [Queen], or [Jack] from your hand."],
+		],
+		"OP17-062": [
+			[keywordBadge("blocker", "Blocker")],
+			[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("once-per-turn", "Once Per Turn"), " When a DON!! card on your field is returned to your DON!! deck, add up to 1 DON!! card from your DON!! deck and set it as active. Then, set up to 1 of your DON!! cards as active."],
+		],
+		"OP17-063": [
+			["All of your Character cards without a Counter in your hand have a +1000 Counter."],
+			[keywordBadge("activate-main", "Activate: Main"), " ", keywordBadge("once-per-turn", "Once Per Turn"), " DON!! -1: If this Character was played on this turn, negate the effect of up to 1 of your opponent's Characters with a cost of 6 or less, and K.O. that Character."],
+		],
+		"OP17-074": [
+			[keywordBadge("blocker", "Blocker"), " (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"],
+			[keywordBadge("on-play", "On Play"), " Add up to 1 DON!! card as rested from your DON!! deck."],
+		],
+		"OP17-BASIL-HAWKINS": [
+			[keywordBadge("on-play", "On Play"), " You may trash 1 card from your hand: If your Leader has the {Animal Kingdom Pirates} type, add up to 1 DON!! card from your DON!! deck and set it as active."],
+		],
+		"OP17-076": [
+			[keywordBadge("on-play", "On Play"), " DON!! -2: Trash 1 card from your opponent's hand."],
+		],
+		"OP17-JACK": [
+			[keywordBadge("rush", "Rush: Character")],
+			[keywordBadge("on-play", "On Play"), " DON!! -1: If your Leader has the {Animal Kingdom Pirates} type, give up to 1 of your opponent's Characters -2000 power during this turn."],
+		],
+		"OP17-WORORORO": [
+			[keywordBadge("counter", "Counter"), " You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +3000 power during this battle."],
+		],
+		"EB04-031": [
+			[keywordBadge("on-play", "On Play"), " If your Leader has the {Animal Kingdom Pirates} type, add up to 1 DON!! from your DON!! deck and set it as active. Then, K.O. up to 1 of your opponent's Characters with 3000 power or less."],
+		],
+		"EB04-032": [
+			[keywordBadge("on-play", "On Play"), " Look at 5 cards from the top of your deck; reveal up to 1 purple card other than [Queen] and add it to your hand. Then, place the rest at the bottom of the deck in any order."],
+		],
+		"ST18-001": [
+			[keywordBadge("blocker", "Blocker"), " (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"],
+		],
+		"ST34-004": [
+			[keywordBadge("on-play", "On Play"), " Give up to 1 of your opponent's Characters -10000 power during this turn."],
+		],
+		"OP15-078": [
+			[keywordBadge("counter", "Counter"), " If your Leader has a type including {Animal Kingdom Pirates}, draw 1 card if you have 6 DON!! cards or less on your field. Then, up to 1 of your Leader or Character cards gains +1000 power during this battle."],
+		],
+		"OP07-077": [
+			[keywordBadge("counter", "Counter"), " If your Leader has a {The Four Emperors} type card, give up to 1 of your Leader or Character cards +3000 power during this battle."],
+		],
+	};
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		const code = button.getAttribute("data-code");
+		const effectLines = code?.startsWith("OP17") ? decklistEffectTextByCode[code] : null;
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		if (modalEffect) {
+			modalEffect.innerHTML = "";
+			if (effectLines?.length) {
+				effectLines.forEach((line) => {
+					const paragraph = document.createElement("p");
+					const normalizedLine = Array.isArray(line) ? line : [line];
+					normalizedLine.forEach((part) => {
+						if (typeof part === "string") {
+							paragraph.appendChild(document.createTextNode(part));
+							return;
+						}
+						if (part?.type === "keyword") {
+							const image = document.createElement("img");
+							image.className = "modal-keyword-badge";
+							image.src = `/assets/keywords/${part.icon}.png`;
+							image.alt = part.alt;
+							paragraph.appendChild(image);
+						}
+					});
+					modalEffect.appendChild(paragraph);
+				});
+				modalEffect.hidden = false;
+			} else {
+				modalEffect.hidden = true;
+			}
+		}
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const closeModal = () => {
+		if (!modal) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	previewButtons.forEach((button) => {
+		button.addEventListener("click", () => openModal(button));
+	});
+
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => {
+		if (event.target === modal) closeModal();
+	});
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeModal();
+	});
+
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const value = button.getAttribute("data-sim-deck") ?? "";
+			if (!value) return;
+			try {
+				await navigator.clipboard.writeText(value);
+				const previous = button.textContent;
+				button.textContent = "Copied!";
+				setTimeout(() => {
+					button.textContent = previous ?? "Copy for Sim";
+				}, 1400);
+			} catch {
+				button.textContent = "Copy failed";
+				setTimeout(() => {
+					button.textContent = "Copy for Sim";
+				}, 1400);
+			}
+		});
+	});
+</script>
+
+<style>
+	.guide-hero {
+		padding: 3rem 0 2rem;
+	}
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.hero-copy {
+		min-width: 0;
+		max-width: 760px;
+	}
+
+	.hero-copy h1 {
+		margin: 0;
+		font-size: clamp(2.1rem, 5vw, 3.3rem);
+		line-height: 1.05;
+	}
+
+	.hero-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	.hero-chip,
+	.publish-banner,
+	.section-tag {
+		border-radius: 999px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.hero-chip {
+		padding: 0.45rem 0.9rem;
+		background: rgba(44, 117, 255, 0.16);
+		color: #9ec0ff;
+		border: 1px solid rgba(68, 143, 255, 0.28);
+	}
+
+	.hero-chip-accent {
+		background: rgba(255, 138, 42, 0.14);
+		color: var(--accent);
+		border-color: rgba(255, 138, 42, 0.28);
+	}
+
+	.publish-banner {
+		display: inline-flex;
+		margin-top: 1rem;
+		padding: 0.7rem 1.1rem;
+		background: linear-gradient(135deg, rgba(255, 138, 42, 0.16), rgba(44, 117, 255, 0.14));
+		border: 1px solid rgba(255, 138, 42, 0.28);
+		color: var(--text-100);
+	}
+
+	.hero-intro {
+		max-width: 56ch;
+		margin: 1rem 0 0;
+		color: var(--text-200);
+		font-size: 1.02rem;
+		line-height: 1.6;
+	}
+
+	.guide-icon img {
+		width: min(320px, 100%);
+		border-radius: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+	}
+
+	.article-stack,
+	.summary-grid,
+	.leader-details,
+	.feature-block {
+		display: grid;
+		gap: 1.4rem;
+	}
+
+	.glow-block {
+		background: rgba(12, 17, 30, 0.9);
+		border: 1px solid rgba(255, 138, 42, 0.24);
+		border-radius: 26px;
+		padding: 1.25rem;
+		overflow: hidden;
+	}
+
+	.section-tag {
+		display: inline-flex;
+		padding: 0.45rem 0.9rem;
+		background: rgba(44, 117, 255, 0.2);
+		color: #dfe9ff;
+		margin-bottom: 1rem;
+	}
+
+	.section-tag-light {
+		font-weight: 500;
+	}
+
+	.leader-grid {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 1fr);
+		grid-template-areas:
+			"leaderTag abilityTag"
+			"card ability";
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.leader-tag-wrap {
+		grid-area: leaderTag;
+		min-width: 0;
+	}
+
+	.ability-tag-wrap {
+		grid-area: abilityTag;
+		min-width: 0;
+	}
+
+	.leader-card-wrap {
+		grid-area: card;
+		min-width: 0;
+	}
+
+	.leader-details {
+		grid-area: ability;
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.detail-card,
+	.deck-card {
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.detail-card img {
+		width: 100%;
+		max-width: 220px;
+		border-radius: 16px;
+	}
+
+	.info-box {
+		background: rgba(8, 12, 22, 0.92);
+		border: 1px solid rgba(68, 143, 255, 0.2);
+		border-radius: 22px;
+		padding: 1rem 1.1rem;
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.ability-meta {
+		margin: 0 0 0.85rem;
+		color: var(--accent);
+		font-size: 0.95rem;
+		line-height: 1.45;
+		font-weight: 400;
+		overflow-wrap: anywhere;
+	}
+
+	.ability-copy {
+		font-size: clamp(1rem, 1.35vw, 1.2rem);
+		font-weight: 400;
+		line-height: 1.55;
+		letter-spacing: 0;
+		text-transform: none;
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.summary-list {
+		margin: 0;
+		padding-left: 1.2rem;
+		font-size: clamp(1rem, 1.35vw, 1.2rem);
+		font-weight: 400;
+		line-height: 1.55;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	.leader-keyword-badge {
+		display: inline-block;
+		height: 1.15em;
+		width: auto;
+		vertical-align: -0.14em;
+		margin: 0 0.08em;
+	}
+
+	.decklist-header,
+	.feature-header {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.decklist-title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		min-width: 0;
+	}
+
+	.decklist-title-row h2,
+	.decklist-header p,
+	.feature-header h2,
+	.feature-header p {
+		margin: 0;
+	}
+
+	.feature-header p {
+		color: var(--text-200);
+		line-height: 1.55;
+	}
+
+	.deck-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 1rem;
+		min-width: 0;
+	}
+
+	.deck-card {
+		background: rgba(10, 14, 24, 0.92);
+		border: 1px solid rgba(255, 138, 42, 0.22);
+		border-radius: 18px;
+		padding: 0.9rem;
+		display: grid;
+		gap: 0.85rem;
+		text-align: left;
+	}
+
+	.deck-card img {
+		width: 100%;
+		max-width: 150px;
+		margin: 0 auto;
+		border-radius: 14px;
+	}
+
+	.deck-info {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.deck-count {
+		background: rgba(255, 107, 61, 0.15);
+		color: var(--accent);
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 0.3rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	.deck-name {
+		font-weight: 600;
+	}
+
+	.deck-code {
+		color: var(--text-300);
+		font-size: 0.85rem;
+	}
+
+	.deck-role {
+		color: var(--text-300);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.copy-sim-button {
+		flex: 0 0 auto;
+	}
+
+	.nutshell-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.info-panel,
+	.core-panel {
+		padding: 0.95rem 1rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 96px max-content minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 0.9rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+		min-width: 0;
+	}
+
+	.curve-label {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.curve-cards {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 0.65rem;
+		flex-wrap: nowrap;
+		width: max-content;
+	}
+
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card:hover,
+	.mini-card:focus-visible {
+		transform: translateY(-2px);
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+		background: transparent;
+	}
+
+	.curve-card-frame {
+		position: relative;
+		display: inline-block;
+	}
+
+	.curve-card.is-rested .curve-card-frame {
+		transform: rotate(-90deg);
+		transform-origin: center;
+	}
+
+	.curve-card.is-rested {
+		padding-inline: 0.85rem;
+	}
+
+	.curve-card.is-rested .mini-label {
+		margin-top: 0.65rem;
+	}
+
+	.curve-don-attach {
+		position: absolute;
+		left: 50%;
+		bottom: -0.4rem;
+		transform: translateX(-50%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		box-shadow: 0 8px 18px rgba(255, 138, 42, 0.28);
+		white-space: nowrap;
+	}
+
+	.curve-don-attach img {
+		width: 24px;
+		height: 24px;
+		display: block;
+	}
+
+	.curve-don-attach span {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		color: #fff;
+		font-size: 0.5rem;
+		font-weight: 900;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
+	.curve-card img {
+		max-width: 112px;
+	}
+
+	.curve-note {
+		color: var(--text-200);
+		line-height: 1.5;
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.curve-join {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		align-self: center;
+		color: var(--accent);
+		font-size: 1.75rem;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.curve-join-or {
+		font-size: 1.2rem;
+		text-transform: uppercase;
+	}
+
+	.boss-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.boss-card {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 132px;
+		gap: 1rem;
+		align-items: start;
+		padding: 0.95rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+		min-width: 0;
+	}
+
+	.boss-card .curve-note {
+		order: 1;
+		text-align: left;
+	}
+
+	.boss-card-media {
+		order: 2;
+		justify-self: end;
+	}
+
+	.boss-card-media img {
+		max-width: 132px;
+	}
+
+	.summary-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.card-modal {
+		position: fixed;
+		inset: 0;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		background: rgba(5, 8, 16, 0.82);
+		padding: 1.5rem;
+		z-index: 50;
+	}
+
+	.card-modal.is-open {
+		display: flex;
+	}
+
+	.card-modal-inner {
+		position: relative;
+		width: min(92vw, 520px);
+		display: grid;
+		gap: 1rem;
+		justify-items: center;
+	}
+
+	.card-modal-inner > img {
+		width: min(100%, 360px);
+		justify-self: center;
+		border-radius: 20px;
+		box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+	}
+
+	.modal-effect-copy {
+		width: 100%;
+		background: rgba(10, 14, 24, 0.96);
+		border: 1px solid rgba(255, 138, 42, 0.22);
+		border-radius: 18px;
+		padding: 1rem 1.1rem;
+		color: var(--text-100);
+		font-size: 1rem;
+		line-height: 1.55;
+	}
+
+	.modal-effect-copy p {
+		margin: 0;
+	}
+
+	.modal-effect-copy p + p {
+		margin-top: 0.7rem;
+	}
+
+	.modal-effect-copy :global(.modal-keyword-badge) {
+		display: inline-block;
+		height: 1em;
+		width: auto;
+		max-width: none;
+		vertical-align: -0.12em;
+		margin: 0 0.08em;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: -0.75rem;
+		right: -0.75rem;
+		border: none;
+		border-radius: 999px;
+		background: var(--accent);
+		color: #fff;
+		padding: 0.55rem 0.85rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	@media (max-width: 900px) {
+		.hero-grid,
+		.nutshell-grid,
+		.boss-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.curve-row {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-icon,
+		.detail-card {
+			justify-self: center;
+		}
+	}
+
+	@media (min-width: 901px) {
+		.deck-grid {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+
+		.deck-card {
+			padding: 0.75rem;
+			gap: 0.65rem;
+		}
+
+		.deck-card img {
+			max-width: 110px;
+		}
+
+		.deck-count {
+			padding: 0.22rem 0.55rem;
+			font-size: 0.8rem;
+		}
+
+		.deck-name {
+			font-size: 0.92rem;
+		}
+
+		.deck-code,
+		.deck-role {
+			font-size: 0.78rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.copy-sim-button {
+			width: auto;
+			justify-content: center;
+			padding-inline: 0.9rem;
+			min-width: 0;
+			flex-shrink: 0;
+		}
+
+		.decklist-title-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+			column-gap: 0.75rem;
+		}
+
+		.decklist-title-row h2 {
+			min-width: 0;
+		}
+
+		.decklist-title-row .copy-sim-button {
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.deck-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.deck-card {
+			padding: 0.7rem;
+		}
+
+		.deck-card img {
+			max-width: 92px;
+		}
+
+		.boss-card {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.9rem;
+		}
+
+		.boss-card .curve-note {
+			flex: 1 1 auto;
+			margin: 0;
+			text-align: left;
+		}
+
+		.boss-card-media {
+			flex: 0 0 108px;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.boss-card-media img {
+			width: 108px;
+			max-width: 108px;
+		}
+
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			text-align: left;
+		}
+
+		.curve-label {
+			text-align: left;
+		}
+
+		.curve-cards {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 0.12rem;
+			flex-wrap: nowrap;
+			width: max-content;
+		}
+
+		.curve-cards .mini-card {
+			width: auto;
+		}
+
+		.curve-cards .mini-card img {
+			max-width: 88px;
+		}
+
+		.curve-cards .curve-join {
+			min-width: 1.2rem;
+			margin-inline: 0.35rem;
+			justify-content: center;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.guide-hero {
+			padding-top: 2rem;
+		}
+
+		.glow-block {
+			padding: 1rem;
+			border-radius: 22px;
+		}
+
+		.leader-grid {
+			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+			grid-template-areas:
+				"leaderTag abilityTag"
+				"card ability";
+			align-items: start;
+			gap: 1rem;
+		}
+
+		.detail-card img {
+			max-width: 100%;
+		}
+
+		.ability-copy {
+			font-size: 0.98rem;
+			line-height: 1.5;
+		}
+
+		.leader-keyword-badge {
+			height: 1em;
+		}
+
+		.curve-note {
+			text-align: left;
+		}
+
+		.curve-card img {
+			max-width: 86px;
+		}
+	}
+</style>

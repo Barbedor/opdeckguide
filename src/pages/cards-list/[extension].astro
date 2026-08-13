@@ -857,6 +857,18 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP17-065": {
+		rarity: "Uncommon",
+		stats: "Purple / Cost 9 / Strike / Power 10000",
+		traits: "Animal Kingdom Pirates",
+		effectLines: [
+			[keyword("banish", "Banish")],
+			[
+				keyword("on-play", "On Play"),
+				" DON!! -1: Draw 1 card. Then, up to 2 of your opponent's Characters with a cost of 5 or less cannot attack until the end of your opponent's next End Phase.",
+			],
+		],
+	},
 	"OP17-066": {
 		rarity: "Common",
 		stats: "Purple / Cost 1 / Wisdom / Power 0 / Counter 1000",
@@ -959,6 +971,21 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" DON!! -2: Trash 1 card from your opponent's hand.",
+			],
+		],
+	},
+	"OP17-077": {
+		rarity: "Rare",
+		stats: "Purple / Cost 1 / Event",
+		traits: "The Four Emperors/Animal Kingdom Pirates",
+		effectLines: [
+			[
+				keyword("main", "Main"),
+				" You may rest 3 of your DON!! cards and trash 2 cards from your hand: If your Leader has the {Animal Kingdom Pirates} type, add up to 3 DON!! cards from your DON!! deck and rest them.",
+			],
+			[
+				keyword("counter", "Counter"),
+				" DON!! -1: Your Leader gains +4000 power during this battle.",
 			],
 		],
 	},
@@ -2207,10 +2234,15 @@ const description = isLeakPage
 	}
 
 	.leak-card-rarity-group {
-		display: flex;
+		display: inline-flex;
+		flex-direction: row;
 		flex-wrap: nowrap;
 		align-items: center;
+		align-self: center;
 		gap: 0.65rem;
+		white-space: nowrap;
+		width: max-content;
+		max-width: 100%;
 	}
 
 	.leak-card-copy h3 {

@@ -1,11 +1,11 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Rocks.D.Xebec OP17 First Look";
+const title = "Rocks.D.Xebec OP17 Mini Deck Guide";
 const description =
-	"First look at Rocks.D.Xebec OP17 for One Piece Card Game with leader ability, sample decklist, strengths, weaknesses, and conclusions for the OP17 format.";
+	"Mini deck guide for Rocks.D.Xebec OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, odd curve, 10 DON!! plays, defensive transformation, strengths, weaknesses, and conclusions for the OP17 format.";
 
-const publishedAt = "August 3, 2026";
+const publishedAt = "August 11, 2026";
 const icon = "/assets/guides/Rocks.DXebec%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -27,26 +27,101 @@ const expandSimLines = (count, code) => {
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
 const leader = card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/OP%2017-039%20ALT.jpg", 1, "Leader");
+const buckin = card("OP08-051", "Buckin", "/Cards/OP08/OP08-051.png", 3, "Character");
+const streusen = card("OP17-050", "Streusen", "/Cards/OP17/Streusen%20op17-050.jpg", 4, "Character");
+const kyo = card("OP17-045", "Kyo", "/Cards/OP17/Kyo%20op17-045.jpg", 4, "Character");
+const donMarlon = card("OP17-052", "Don Marlon", "/Cards/OP17/Don%20Marlon%20op17-052.jpg", 2, "Character");
+const missBuckingham = card("OP17-054", "Miss Buckingham Stussy", "/Cards/OP17/OP17-054%20ALT.jpg", 4, "Character");
+const kaido = card("OP17-042", "Kaido", "/Cards/OP17/op17-042.jpg", 2, "Character");
+const captainJohn = card("OP17-044", "Captain John", "/Cards/OP17/Captain%20John%20op17-044.jpg", 3, "Character");
+const gloriosa = card("OP17-046", "Gloriosa", "/Cards/OP17/Gloriosa%20op17-046.jpg", 4, "Character");
+const charlotteLinlin = card("OP17-049", "Charlotte Linlin", "/Cards/OP17/OP17-049%20ALT.jpg", 4, "Character");
+const edwardNewgate = card("OP17-040", "Edward.Newgate", "/Cards/OP17/op17-040%20TREASURE%20RARE.jpg", 4, "Character");
+const shiki = card("OP17-048", "Shiki", "/Cards/OP17/OP17-048%20ALT.jpg", 4, "Character");
+const rocksXebecCharacter = card("OP17-118", "Rocks.D.Xebec", "/Cards/OP17/op17-118.jpg", 4, "Character");
+const noAuthority = card("OP17-055", "There's No Authority in the World That Lasts Forever!!!", "/Cards/OP17/op17-055.jpg", 4, "Event");
+const rocksPirates = card("OP17-056", "Rocks Pirates", "/Cards/OP17/op17-056.jpg", 4, "Event");
+const fullalead = card("OP17-057", "Fullalead", "/Cards/OP17/Fullalead%20op17-057.jpg", null, "Stage");
 
 const decklist = [
 	card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/OP%2017-039%20ALT.jpg", 1, "Leader"),
-	card("OP17-050", "Streusen", "/Cards/OP17/Streusen%20op17-050.jpg", 4, "Character"),
-	card("OP17-045", "Kyo", "/Cards/OP17/Kyo%20op17-045.jpg", 2, "Character"),
-	card("OP17-052", "Don Marlon", "/Cards/OP17/Don%20Marlon%20op17-052.jpg", 3, "Character"),
-	card("OP17-054", "Miss Buckingham Stussy", "/Cards/OP17/OP17-054%20ALT.jpg", 4, "Character"),
-	card("OP17-044", "Captain John", "/Cards/OP17/Captain%20John%20op17-044.jpg", 4, "Character"),
-	card("OP17-046", "Gloriosa", "/Cards/OP17/Gloriosa%20op17-046.jpg", 4, "Character"),
-	card("OP17-043", "Ganzui", "/Cards/OP17/Ganzui%20op17-043.jpg", 2, "Character"),
-	card("OP17-049", "Charlotte Linlin", "/Cards/OP17/OP17-049%20ALT.jpg", 4, "Character"),
-	card("OP17-040", "Edward.Newgate", "/Cards/OP17/op17-040%20TREASURE%20RARE.jpg", 4, "Character"),
-	card("OP17-048", "Shiki", "/Cards/OP17/OP17-048%20ALT.jpg", 3, "Character"),
-	card("OP17-118", "Rocks.D.Xebec", "/Cards/OP17/op17-118.jpg", 4, "Character"),
-	card("OP17-055", "There's No Authority in the World That Lasts Forever!!!", "/Cards/OP17/op17-055.jpg", 4, "Event"),
-	card("OP17-056", "Rocks Pirates", "/Cards/OP17/op17-056.jpg", 4, "Event"),
-	card("OP17-057", "Fullalead", "/Cards/OP17/Fullalead%20op17-057.jpg", 4, "Stage"),
+	buckin,
+	streusen,
+	kyo,
+	donMarlon,
+	missBuckingham,
+	kaido,
+	captainJohn,
+	gloriosa,
+	charlotteLinlin,
+	edwardNewgate,
+	shiki,
+	rocksXebecCharacter,
+	noAuthority,
+	rocksPirates,
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const bestCurve = [
+	{
+		label: "2 DON!!",
+		notes: "Kyo is the cleanest even-curve opener because playing it immediately draws 1, so your hand does not lose momentum while you develop the board. The important part is what happens after that: as long as Kyo stays in play, whenever one of your Characters would be removed by an opponent’s effect, you can trash 2 cards from hand instead. That means it is not just a tempo starter, it is also a protection piece that helps your key bodies survive and lets you keep your even curve online into Captain John, Edward.Newgate, and beyond.",
+		cards: [kyo],
+	},
+	{
+		label: "4 DON!!",
+		notes: "Captain John is your four-DON!! stabilizer because once it is rested, the opponent can no longer attack your other cards freely and has to go through it first. That makes it excellent for protecting the rest of your board and forcing awkward combat patterns. On top of that, it can rest itself to draw 1 and trash 1, which fixes weak cards in hand and prepares stronger follow-up turns. In practice, this card is doing two jobs at once: it locks combat around itself and smooths your resources for the bigger turns that come next.",
+		cards: [captainJohn],
+	},
+	{
+		label: "6 DON!!",
+		notes: "Edward.Newgate is the even-curve pivot because it gives you a strong body while turning the rest of your hand into real combat value. In this deck, that matters on both sides of the turn: offensively, it helps you pressure the opponent with stronger attacks and forces more demanding responses; defensively, it lets you preserve your board and life total by making your exchanges much harder to win cleanly. The card is strong here because it does not ask you to choose between defense and pressure, it gives you both at the same time.",
+		cards: [edwardNewgate],
+	},
+	{
+		label: "8 DON!!",
+		notes: "Shiki is your high-end even-curve payoff when you want a large threat that changes combat math immediately. It turns otherwise weak cards in hand into a meaningful swing, which makes the turn powerful offensively because you can push damage while keeping pressure on the board. But the role of the card does not stop there: since the effect also functions during the opponent’s attack, Shiki can protect you on the following turn cycle as well. That is why this play is so important in the curve: it gives you a big body, stronger attacks, and a real defensive follow-up if the game keeps going.",
+		cards: [shiki],
+	},
+];
+
+const oddCurve = [
+	{
+		label: "1 DON!!",
+		notes: "Streusen is your cleanest odd-curve opener because it looks at the top 2 cards, lets you reorder them or send them to the bottom, then draws 1. That means it improves hand quality immediately while also setting up the top of your deck so your next turns and leader effect stay consistent.",
+		cards: [streusen],
+	},
+	{
+		label: "3 DON!!",
+		notes: "Kyo is the bridge card of the odd curve. On play it replaces itself with a draw, and once it is on board it forces the opponent to respect your protection line because any effect removal on one of your characters can be answered by trashing 2 from hand instead. It is what lets you keep developing without folding to effect-based interaction.",
+		cards: [kyo],
+	},
+	{
+		label: "5 DON!!",
+		notes: "Charlotte Linlin is your five-DON!! stabilizer when you want a real body on board without giving up defensive texture. In this shell, it helps convert awkward cards in hand into extra counter value, so the turn is not just offensive pressure: it also makes your following exchanges safer and keeps the leader engine live longer.",
+		cards: [charlotteLinlin],
+	},
+	{
+		label: "7 DON!!",
+		notes: "Shiki is the odd-curve payoff because it gives you a large body while turning weak cards in hand into a big swing in combat. The important part is that the effect is not only offensive: it also works during the opponent’s attack, so Shiki can turn a 7-DON!! turn into both pressure on your turn and protection on theirs.",
+		cards: [shiki],
+	},
+];
+
+const tenDonPlays = [
+	{
+		label: "10 DON!! Play",
+		notes: "Rocks.D.Xebec turns your 10-DON!! turn into a flexible payoff depending on what the matchup asks for.",
+		leaderCard: rocksXebecCharacter,
+		pairs: [
+			[edwardNewgate, missBuckingham],
+			[shiki, kyo],
+			[charlotteLinlin, gloriosa],
+			[charlotteLinlin, kaido],
+		],
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -54,13 +129,14 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		<div class="container hero-grid">
 			<div class="hero-copy">
 				<div class="hero-tags">
-					<span class="hero-chip">First Look</span>
+					<span class="hero-chip">Mini Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Rocks.D.Xebec OP17 First Look</h1>
+				<h1>Rocks.D.Xebec OP17 Mini Deck Guide</h1>
 				<p class="hero-intro">
-					An early OP17 look at Rocks.D.Xebec, including its leader effect, a first sample decklist,
-					strengths, weaknesses, and a conclusion on the deck’s first direction.
+					A compact OP17 guide for Rocks.D.Xebec, including its leader effect, the updated decklist, your
+					best curve, the odd curve, key 10 DON!! plays, defensive transformation lines, strengths,
+					weaknesses, and a short conclusion on the deck’s current direction.
 				</p>
 				<div class="publish-banner">Published {publishedAt}</div>
 			</div>
@@ -115,7 +191,7 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 						</button>
 					</div>
 					<div>
-						<p>Sample first-look OP17 list for Rocks.D.Xebec.</p>
+						<p>Updated OP17 list for Rocks.D.Xebec.</p>
 					</div>
 				</div>
 				<div class="deck-grid">
@@ -144,6 +220,113 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 				</div>
 			</div>
 
+			<div class="curve-block glow-block">
+				<h3>Curve Guide</h3>
+				<p class="curve-intro">
+					Going second is your best start. The curve shown is just an example, because Xebec’s lines can
+					change a lot depending on the matchup and your hand texture.
+				</p>
+				<div class="curve-rows">
+					{bestCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+										data-code={entryCard.code}
+									>
+										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="curve-block glow-block">
+				<h3>Odd Curve</h3>
+				<p class="curve-intro">
+					The curve shown is just an example. Xebec’s plays vary greatly depending on the matchup.
+				</p>
+				<div class="curve-rows">
+					{oddCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-label">{slot.label}</div>
+							<div class="curve-cards">
+								{slot.cards.map((entryCard) => (
+									<button
+										class="mini-card curve-card"
+										type="button"
+										data-card-preview
+										data-full={entryCard.img}
+										data-name={`${entryCard.code} ${entryCard.name}`}
+										data-code={entryCard.code}
+									>
+										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										<div class="mini-label">{entryCard.name}</div>
+									</button>
+								))}
+							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="curve-block glow-block">
+				<h3>10 DON!! Plays</h3>
+				<div class="ten-don-header">
+					<button
+						class="detail-card ten-don-leader"
+						type="button"
+						data-card-preview
+						data-full={rocksXebecCharacter.img}
+						data-name={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`}
+						data-code={rocksXebecCharacter.code}
+					>
+						<img src={rocksXebecCharacter.img} alt={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`} loading="lazy" />
+					</button>
+					<div class="ten-don-intro">
+						<div class="ten-don-intro-chip">10 DON!! payoff</div>
+						<p class="curve-note ten-don-note">
+							Rocks.D.Xebec OP17-118 turns your 10-DON!! turn into a flexible double-deploy. Pick the pair that best matches the board state and matchup.
+						</p>
+					</div>
+				</div>
+				<div class="ten-don-plays">
+					{tenDonPlays[0].pairs.map((pair) => (
+						<div class="ten-don-row">
+							<div class="curve-cards ten-don-pair">
+								{pair.map((entryCard, index) => (
+									<>
+										{index > 0 && <span class="combo-plus" aria-hidden="true">+</span>}
+										<button
+											class="mini-card curve-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+											data-code={entryCard.code}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<div class="mini-label">{entryCard.name}</div>
+										</button>
+									</>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
 			<div class="summary-grid">
 				<div class="glow-block">
 					<div class="section-tag section-tag-light">Strength</div>
@@ -161,6 +344,14 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 						<li>Slash attribute against Mihawk</li>
 						<li>6k base power leader</li>
 						<li>Small space for deckbuilding</li>
+					</ul>
+				</div>
+				<div class="glow-block">
+					<div class="section-tag section-tag-light">Defensive Transformation</div>
+					<ul class="summary-list">
+						<li>Newgate / Shiki: Turn bricks into +3000 / -3000 swings.</li>
+						<li>Linlin / Fullalead: Turn bricks into +1000 Counters.</li>
+						<li>Ganzui: Turns Leader into a 6000 Power wall.</li>
 					</ul>
 				</div>
 				<div class="glow-block conclusions-card">
@@ -193,6 +384,8 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
 	const decklistEffectTextByCode = {
+		"OP08-051": [[keywordBadge("counter", "Counter"), " If your Leader has the {Rocks Pirates} type, this card gains +3000 counter instead of +2000 during this battle."]],
+		"OP17-042": [[keywordBadge("on-play", "On Play"), " If your Leader's type includes \"Rocks Pirates\", set up to 1 of your DON!! cards as active."]],
 		"OP17-043": [
 			"If this Character would be removed from the field, you may trash 2 cards from your hand instead.",
 			[keywordBadge("on-play", "On Play"), " Your Leader's base power becomes 6000 until the end of your opponent's next End Phase."],
@@ -378,6 +571,34 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		cursor: pointer;
 	}
 
+	.mini-card {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+		border-radius: 10px;
+	}
+
+	.mini-card:hover,
+	.mini-card:focus-visible {
+		transform: translateY(-2px);
+	}
+
+	.mini-card img {
+		width: 120px;
+		border-radius: 10px;
+		display: block;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+		background: transparent;
+	}
+
+	.mini-label {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text-300);
+		text-align: center;
+	}
+
 	.guide-icon img {
 		width: min(320px, 100%);
 		border-radius: 18px;
@@ -522,6 +743,129 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		gap: 1rem;
 	}
 
+	.curve-block h3,
+	.curve-intro {
+		margin: 0;
+	}
+
+	.curve-intro {
+		margin-top: 0.45rem;
+		color: var(--text-200);
+		line-height: 1.55;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.curve-row {
+		display: grid;
+		grid-template-columns: 96px 170px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 0.9rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+	}
+
+	.curve-label {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.curve-cards {
+		display: flex;
+		justify-content: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.curve-card img {
+		max-width: 112px;
+	}
+
+	.curve-note {
+		color: var(--text-200);
+		line-height: 1.5;
+	}
+
+	.ten-don-header {
+		display: grid;
+		grid-template-columns: 136px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		padding: 0.9rem 1rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+	}
+
+	.ten-don-leader {
+		justify-self: center;
+	}
+
+	.ten-don-leader img {
+		max-width: 136px;
+		width: 100%;
+		border-radius: 14px;
+	}
+
+	.ten-don-intro {
+		display: grid;
+		gap: 0.5rem;
+		align-content: center;
+	}
+
+	.ten-don-intro-chip {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		background: rgba(255, 138, 42, 0.16);
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.ten-don-plays {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.ten-don-row {
+		padding: 0.9rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+	}
+
+	.ten-don-pair {
+		justify-content: flex-start;
+		align-items: center;
+		gap: 0.55rem;
+	}
+
+	.combo-plus {
+		color: var(--accent);
+		font-size: 1.8rem;
+		font-weight: 900;
+		line-height: 1;
+		text-shadow: 0 0 18px rgba(255, 138, 42, 0.3);
+	}
+
+	.ten-don-note {
+		margin: 0;
+		max-width: 62ch;
+	}
+
 	.deck-card {
 		background: rgba(10, 14, 24, 0.92);
 		border: 1px solid rgba(255, 138, 42, 0.22);
@@ -661,6 +1005,11 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 			grid-template-columns: 1fr;
 		}
 
+		.curve-row,
+		.ten-don-header {
+			grid-template-columns: 1fr;
+		}
+
 		.guide-icon {
 			justify-self: center;
 		}
@@ -699,7 +1048,55 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		}
 	}
 
+	@media (max-width: 900px) {
+		.deck-grid {
+			grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		}
+	}
+
 	@media (max-width: 560px) {
+		.curve-row,
+		.ten-don-row {
+			text-align: center;
+		}
+
+		.curve-label,
+		.ten-don-note {
+			text-align: center;
+		}
+
+		.curve-note {
+			text-align: left;
+		}
+
+		.ten-don-header {
+			grid-template-columns: 96px minmax(0, 1fr);
+			gap: 0.75rem;
+			align-items: center;
+			padding: 0.75rem;
+		}
+
+		.ten-don-intro {
+			justify-items: start;
+		}
+
+		.ten-don-leader img {
+			max-width: 96px;
+		}
+
+		.ten-don-pair {
+			justify-content: center;
+		}
+
+		.ten-don-pair .mini-card {
+			flex: 0 0 112px;
+			width: 112px;
+		}
+
+		.combo-plus {
+			font-size: 1.5rem;
+		}
+
 		.copy-sim-button {
 			width: auto;
 			justify-content: center;
