@@ -397,7 +397,7 @@ const luffyTargets = [
 		const full = button.getAttribute("data-full");
 		const name = button.getAttribute("data-name") || "Card preview";
 		const code = button.getAttribute("data-code");
-		const effectLines = code ? decklistEffectTextByCode[code] : null;
+		const effectLines = code?.startsWith("OP17") ? decklistEffectTextByCode[code] : null;
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
 		if (modalEffect) {
@@ -973,11 +973,12 @@ const luffyTargets = [
 		padding: 1rem 1.1rem;
 		display: grid;
 		gap: 0.8rem;
+		font-size: 0.75rem;
 	}
 
 	.modal-effect-copy p {
 		margin: 0;
-		font-size: 1.05rem;
+		font-size: 0.75rem;
 		line-height: 1.5;
 		font-weight: 400;
 	}

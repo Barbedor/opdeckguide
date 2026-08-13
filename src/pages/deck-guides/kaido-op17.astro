@@ -1,4 +1,4 @@
----
+﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
 const title = "Kaido OP17 Mini Deck Guide";
@@ -100,23 +100,23 @@ const coreEngine = [
 
 const bestCurve = [
 	{
-		label: "1 DON!!",
-		note: "Queen EB04-032 is your best turn-1 setup because on play it can trash 1 Animal Kingdom Pirates card from your hand to draw 2 cards. That lets you cycle your hand immediately, dig deeper into your curve pieces, and set up its DON!! effect for the following turns.",
+		label: "2 DON!!",
+		note: "Play Queen to cycle your hand. Its Activate: Main effect will matter on the next turn.",
 		cards: [{ card: queenEb }],
 	},
 	{
 		label: "3 DON!!",
-		note: "The cost 3 turn is still a setup turn. Queen is shown in Rest because you use its Activate: Main effect to rest 2 of your DON!! and add 1 DON!! card from your DON!! deck as rested. We’re Going to claim the One Piece!!! then helps you find the next Animal Kingdom Pirates or Big Mom Pirates piece by looking at 5 cards from the top of your deck and adding 1 matching card other than itself to your hand.",
+		note: "Use Queen's effect to add 1 rested DON!!, then play We're Going to Claim the One Piece!!! to search.",
 		cards: [{ card: queenEb, rested: true }, { card: claimOnePiece }],
 	},
 	{
 		label: "6 DON!!",
-		note: "King EB04-031 is the key pivot of the whole curve. If your Leader is Animal Kingdom Pirates and you have no other King, its once per turn effect adds 1 DON!! from your deck as active and 1 more as rested. On top of that, if King would be K.O.'d, you can return 1 DON!! from your field to your DON!! deck instead, which makes it a strong ramp piece that is also awkward to remove cleanly.",
+		note: "Thanks to Queen's effect from the previous turn, you have 6 DON!! instead of 5, so you can play King. It's a core piece of the deck. It's very hard for the opponent to remove, and it lets you generate a lot of DON!! turn after turn.",
 		cards: [{ card: kingEb }],
 	},
 	{
 		label: "10 DON!!",
-		note: "At 10 DON!!, you choose the boss that fits the board state. One Kaido line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
+		note: "Thanks to your setup from the previous turns, you now reach 10 DON!!. From here, pick the Kaido that fits the board state. One line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
 		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
 		mode: "or",
 	},
@@ -125,22 +125,22 @@ const bestCurve = [
 const evenCurve = [
 	{
 		label: "2 DON!!",
-		note: "On the even curve, Queen EB04-032 is still your setup piece because it filters your hand with its draw 2 line, while We’re Going to claim the One Piece!!! looks at 5 cards and finds the next Animal Kingdom Pirates or Big Mom Pirates card you need to keep the curve moving.",
+		note: "Play Queen to cycle your hand. Its Activate: Main effect will matter on the next turn. Then play We're Going to Claim the One Piece!!! to search.",
 		cards: [{ card: queenEb }, { card: claimOnePiece }],
 	},
 	{
 		label: "5 DON!!",
-		note: "This is the stabilized even-curve bridge from your reference. Queen is in Rest because it already attacked, and Leader Kaido is also in Rest because you attached 2 DON!! to him and attacked for 7000 power. The point of the turn is to convert your early setup into real pressure while staying on schedule for your midgame ramp turns.",
+		note: "Use Queen's effect to add 1 rested DON!! so you now have 5 DON!!. Then attach 2 DON!! to your Leader and swing for 7k.",
 		cards: [{ card: queenEb, rested: true }, { card: leader, rested: true }],
 	},
 	{
 		label: "7 DON!!",
-		note: "King remains your most important even-curve midgame turn as well. Its once per turn effect gives you 1 active DON!! and 1 rested DON!! if your Leader is Animal Kingdom Pirates and you control no other King, and its replacement effect can send 1 DON!! back to the deck instead of letting King be K.O.'d.",
+		note: "Play King. It's a core piece of the deck. It's very hard for the opponent to remove, and it lets you generate a lot of DON!! turn after turn.",
 		cards: [{ card: kingEb }],
 	},
 	{
 		label: "10 DON!!",
-		note: "Once you reach 10 DON!! on the even curve, choose the Kaido that matches the board state: the defensive one when you want to extend your DON!! engine, or the offensive one when you need immediate removal and pressure.",
+		note: "Thanks to your setup from the previous turns, you now reach 10 DON!!. From here, pick the Kaido that fits the board state. One line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
 		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
 		mode: "or",
 	},
@@ -169,7 +169,7 @@ const raidBosses = [
 	},
 	{
 		card: jack,
-		copy: "A 10k Rush Character that instantly drops an opposing Character’s power by -2000 on entry. Perfect for taking back the board and applying massive lethal pressure the turn he hits the field.",
+		copy: "A 10k Rush Character that instantly drops an opposing Characterâ€™s power by -2000 on entry. Perfect for taking back the board and applying massive lethal pressure the turn he hits the field.",
 	},
 ];
 ---
@@ -307,6 +307,7 @@ const raidBosses = [
 									</>
 								))}
 							</div>
+							<div class="curve-note">{slot.note}</div>
 						</div>
 					))}
 				</div>
@@ -350,6 +351,7 @@ const raidBosses = [
 									</>
 								))}
 							</div>
+							<div class="curve-note">{slot.note}</div>
 						</div>
 					))}
 				</div>
@@ -972,7 +974,7 @@ const raidBosses = [
 		top: 50%;
 		transform: translate(-50%, -50%);
 		color: #fff;
-		font-size: 0.5rem;
+		font-size: 0.75rem;
 		font-weight: 900;
 		letter-spacing: 0.02em;
 		text-transform: uppercase;
@@ -1086,12 +1088,13 @@ const raidBosses = [
 		border-radius: 18px;
 		padding: 1rem 1.1rem;
 		color: var(--text-100);
-		font-size: 1rem;
+		font-size: 0.75rem;
 		line-height: 1.55;
 	}
 
 	.modal-effect-copy p {
 		margin: 0;
+		font-size: 0.5rem;
 	}
 
 	.modal-effect-copy p + p {
@@ -1304,3 +1307,6 @@ const raidBosses = [
 		}
 	}
 </style>
+
+
+

@@ -422,7 +422,7 @@ const tenDonPlays = [
 		const full = button.getAttribute("data-full");
 		const name = button.getAttribute("data-name") || "Card preview";
 		const code = button.getAttribute("data-code");
-		const effectLines = code ? decklistEffectTextByCode[code] : null;
+		const effectLines = code?.startsWith("OP17") ? decklistEffectTextByCode[code] : null;
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
 		if (modalEffect) {
@@ -961,12 +961,13 @@ const tenDonPlays = [
 		border-radius: 18px;
 		padding: 1rem 1.1rem;
 		color: var(--text-100);
-		font-size: 1rem;
+		font-size: 0.75rem;
 		line-height: 1.55;
 	}
 
 	.modal-effect-copy p {
 		margin: 0;
+		font-size: 0.75rem;
 	}
 
 	.modal-effect-copy p + p {
