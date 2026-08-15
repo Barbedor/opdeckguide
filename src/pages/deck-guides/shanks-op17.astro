@@ -1,11 +1,11 @@
----
+﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Shanks OP17 First Look";
+const title = "Shanks OP17 Mini Deck Guide";
 const description =
-	"First look at Shanks OP17 for One Piece Card Game with leader ability, sample decklist, favorable and unfavorable matchups, and a conclusion for the OP17 format.";
+	"Mini deck guide for Shanks OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, big bodies, deck in a nutshell, strengths, weaknesses, and a conclusion for the OP17 format.";
 
-const publishedAt = "August 6, 2026";
+const publishedAt = "August 13, 2026";
 const icon = "/assets/guides/Shanks%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -28,26 +28,111 @@ const card = (code, name, img, count = null, role = "Character") => ({ code, nam
 
 const leader = card("OP17-020", "Shanks", "/Cards/OP17/Shanks%20op17-020%20alt.jpg", 1, "Leader");
 
+const croneOli = card("OP17-021", "Crone Oli", "/Cards/OP17/OP17%20Crone%20Oli.jpg", 4, "Character");
+const fugar = card("OP17-026", "Fugar", "/Cards/OP17/Fugar%20op17-026.jpg", 2, "Character");
+const limeJuice = card("OP17-032", "Lime Juice", "/Cards/OP17/Lime%20Juice%20op17-032.jpg", 4, "Character");
+const hongo = card("OP17-029", "Hongo", "/Cards/OP17/op17-029%20Hongo.jpg", 4, "Character");
+const luckyRoux = card("OP17-033", "Lucky.Roux", "/Cards/OP17/Lucky.Roux%20op17-033.jpg", 4, "Character");
+const yasopp = card("OP17-031", "Yasopp", "/Cards/OP17/Yassop%20op17-031.jpg", 4, "Character");
+const rockstar = card("OP17-034", "Rockstar", "/Cards/OP17/Rockstar%20op17-034.jpg", 3, "Character");
+const kouzukiOden = card("ST32-002", "Kouzuki Oden", "/Cards/ST32/ST32-002.jpg", 3, "Character");
+const trafalgarLaw = card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg", 3, "Character");
+const bennBeckman = card("OP17-027", "Benn.Beckman", "/Cards/OP17/Benn.Beckman%20op17-027.jpg", 4, "Character");
+const shanksSt16 = card("ST16-004", "Shanks", "/Cards/ST16/ST16-004.png", 4, "Character");
+const shanksOp17 = card("OP17-022", "Shanks", "/Cards/OP17/Shanks%20op17-022.jpg", 4, "Character");
+const uglyFuture = card("OP17-038", "I Think He's Seen An Ugly Future", "/Cards/OP17/op17-038.jpg", 3, "Event");
+const newEra = card("OP17-037", "Are You That Afraid of the New Era?!!", "/Cards/OP17/OP17-037%20MANGA.jpg", 4, "Event");
+
 const decklist = [
-	card("OP17-020", "Shanks", "/Cards/OP17/Shanks%20op17-020%20alt.jpg", 1, "Leader"),
-	card("OP17-021", "Crone Oli", "/Cards/OP17/OP17%20Crone%20Oli.jpg", 4, "Character"),
-	card("OP17-032", "Lime Juice", "/Cards/OP17/Lime%20Juice%20op17-032.jpg", 4, "Character"),
-	card("ST32-001", "Kin'emon", "/Cards/ST32/ST32-001.jpg", 4, "Character"),
-	card("EB04-018", "Megalo", "/Cards/EB04/EB04-018.jpg", 4, "Character"),
-	card("OP17-033", "Lucky.Roux", "/Cards/OP17/Lucky.Roux%20op17-033.jpg", 4, "Character"),
-	card("OP14-033", "Perona", "/Cards/OP14/OP14-033.jpg", 4, "Character"),
-	card("OP17-031", "Yasopp", "/Cards/OP17/Yassop%20op17-031.jpg", 4, "Character"),
-	card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg", 3, "Character"),
-	card("ST32-003", "Dracule Mihawk", "/Cards/ST32/ST32-003.jpg", 3, "Character"),
-	card("OP17-027", "Benn Beckman", "/Cards/OP17/Benn.Beckman%20op17-027.jpg", 4, "Character"),
-	card("ST16-004", "Shanks", "/Cards/ST16/ST16-004.png", 2, "Character"),
-	card("OP17-022", "Shanks", "/Cards/OP17/Shanks%20op17-022.jpg", 4, "Character"),
-	card("ST24-004", "Law & Bepo", "/Cards/ST24/ST24-004.jpg", 2, "Character"),
-	card("OP17-038", "I Think He's Seen An Ugly Future", "/Cards/OP17/op17-038.jpg", 2, "Event"),
-	card("OP17-036", "Withdraw Now And Allow Me To Save Face", "/Cards/OP17/OP17-036.jpg", 2, "Event"),
+	leader,
+	croneOli,
+	fugar,
+	limeJuice,
+	hongo,
+	luckyRoux,
+	yasopp,
+	rockstar,
+	kouzukiOden,
+	trafalgarLaw,
+	bennBeckman,
+	shanksSt16,
+	shanksOp17,
+	uglyFuture,
+	newEra,
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const nutshellStrength = [
+	"Oppressive board control: Starves the opponent of resources.",
+	"Massive consistency: Runs 8-12 searchers (Lucky Roux, Limejuice, Perona).",
+	"Punishes Aggro: Easily picks off low-cost rested threats.",
+];
+
+const nutshellWeakness = [
+	"Resource intensive: Leader ability requires trashing a card or resting a DON!!.",
+	"Awkward early game: The 3-DON!! turn is weak when going first.",
+	"Struggles against Big Bodies: Weak to decks dropping 10+ cost un-restable threats.",
+];
+
+const coreEngine = [
+	"Leader Shanks: The control anchor. Trashes a card or rests a DON!! to freeze characters.",
+	"7c Benn Beckman: The MVP. A 9k Rush body that rests two characters and draws a card.",
+	"10c & 9c Shanks: The sweepers. 10c rests the entire board; 9c provides heavy spot removal.",
+];
+
+const bestCurve = [
+	{
+		label: "2 DON!!",
+		cards: [{ card: newEra }, { card: limeJuice }],
+	},
+	{
+		label: "4 DON!!",
+		cards: [{ card: luckyRoux }],
+	},
+	{
+		label: "6 DON!!",
+		cards: [{ card: yasopp }],
+	},
+	{
+		label: "8 DON!!",
+		cards: [{ card: bennBeckman }],
+	},
+	{
+		label: "10 DON!!",
+		cards: [{ card: shanksOp17 }],
+	},
+];
+
+const oddCurve = [
+	{
+		label: "1 DON!!",
+		cards: [{ card: limeJuice }],
+	},
+	{
+		label: "3 DON!!",
+		cards: [{ card: limeJuice }, { card: leader, rested: true }],
+	},
+	{
+		label: "5 DON!!",
+		cards: [{ card: yasopp }],
+	},
+	{
+		label: "7 DON!!",
+		cards: [{ card: bennBeckman }],
+	},
+];
+
+const bigBodies = [
+	{
+		card: shanksOp17,
+		copy: "Drops for 10 DON!! to instantly rest your opponent's entire board, attacks with Rush, and refunds 2 active DON!!. He completely resets the game in your favor while setting up your Leader freeze.",
+	},
+	{
+		card: shanksSt16,
+		copy: "The perfect alternative when you don't need a full board wipe. He easily pops a single massive rested threat. Fully searchable and vital for tight late-game scenarios where 10 DON!! is too slow.",
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -55,18 +140,18 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		<div class="container hero-grid">
 			<div class="hero-copy">
 				<div class="hero-tags">
-					<span class="hero-chip">First Look</span>
+					<span class="hero-chip">Mini Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Shanks OP17 First Look</h1>
+				<h1>Shanks OP17 Mini Deck Guide</h1>
 				<p class="hero-intro">
-					A first OP17 look at Shanks, including its leader effect, a sample decklist, favorable and
-					unfavorable matchups, and a short conclusion on where the deck currently stands.
+					A quick OP17 mini guide focused on Shanks' control plan, updated decklist, curve guide, big bodies,
+					and the core tools that let the deck freeze the board and convert tempo into clean wins.
 				</p>
 				<div class="publish-banner">Published {publishedAt}</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Shanks OP17 first look icon" loading="eager" />
+				<img src={icon} alt="Shanks OP17 mini deck guide icon" loading="eager" />
 			</div>
 		</div>
 	</section>
@@ -119,7 +204,7 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 						</button>
 					</div>
 					<div>
-						<p>Sample first-look OP17 list for Shanks.</p>
+						<p>Updated OP17 Shanks list built around searchers, freeze effects, and heavy finishers.</p>
 					</div>
 				</div>
 				<div class="deck-grid">
@@ -148,57 +233,136 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 				</div>
 			</div>
 
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Curve Guide</h2>
+					</div>
+				</div>
+
+				<div class="curve-guide-block">
+					<h3>Your Best Curve</h3>
+					<p>Going 2nd is your best start! It leaves you 1 DON!! open for leader effect or events.</p>
+					<div class="curve-rows">
+						{bestCurve.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class="curve-join">+</span>}
+											<button
+												class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
+												type="button"
+												data-card-preview
+												data-full={entry.card.img}
+												data-name={`${entry.card.code} ${entry.card.name}`}
+												data-code={entry.card.code}
+											>
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+											</button>
+										</>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="curve-guide-block">
+					<h3>Odd Curve</h3>
+					<div class="curve-rows">
+						{oddCurve.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class="curve-join">+</span>}
+											<button
+												class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
+												type="button"
+												data-card-preview
+												data-full={entry.card.img}
+												data-name={`${entry.card.code} ${entry.card.name}`}
+												data-code={entry.card.code}
+											>
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+											</button>
+										</>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Big Bodies</h2>
+					</div>
+				</div>
+				<div class="boss-grid">
+					{bigBodies.map((entry) => (
+						<article class="boss-card">
+							<button
+								class="mini-card boss-card-media"
+								type="button"
+								data-card-preview
+								data-full={entry.card.img}
+								data-name={`${entry.card.code} ${entry.card.name}`}
+								data-code={entry.card.code}
+							>
+								<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+							</button>
+							<p class="curve-note">{entry.copy}</p>
+						</article>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Deck In A Nutshell</h2>
+						<p>
+							Rest your opponent's Characters with your Mid-Game drops, attack into them to clean the board,
+							and then use your Leader ability to completely freeze anything left standing so it won't wake up
+							next turn!
+						</p>
+					</div>
+				</div>
+				<div class="nutshell-grid">
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Strength</div>
+						<ul class="summary-list">
+							{nutshellStrength.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Weakness</div>
+						<ul class="summary-list">
+							{nutshellWeakness.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</div>
+				<div class="core-panel">
+					<div class="section-tag section-tag-light">The Core Engine</div>
+					<ul class="summary-list">
+						{coreEngine.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			</div>
+
 			<div class="summary-grid">
 				<div class="glow-block conclusions-card">
 					<div class="section-tag section-tag-light">Conclusion</div>
 					<p class="ability-copy">
-						A solid midrange deck capable of varying its style of play according to the situation. The decklist
-						allows a lot of space for deck building.
+						Shanks OP17 is a proactive control deck that uses searchers, midgame freeze tools, and oversized
+						finisher turns to choke the opponent out of clean lines.
 					</p>
-				</div>
-				<div class="matchup-card glow-block">
-					<div class="matchup-badge badge-up">
-						<span class="badge-icon">&uarr;</span>
-						<span>Matchup Favorable</span>
-					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							<div class="mini-card matchup-static-card" aria-label="Charlotte Linlin OP17">
-								<img src="/assets/guides/Charlotte%20Linlin%20op17.png" alt="Charlotte Linlin OP17" loading="lazy" />
-								<div class="mini-label">Charlotte Linlin</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Edward Newgate OP17">
-								<img src="/assets/guides/Edward.Newgate%20op17.png" alt="Edward Newgate OP17" loading="lazy" />
-								<div class="mini-label">Edward Newgate</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Kaido OP17">
-								<img src="/assets/guides/Kaido%20op17.png" alt="Kaido OP17" loading="lazy" />
-								<div class="mini-label">Kaido</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="matchup-card glow-block">
-					<div class="matchup-badge badge-down">
-						<span class="badge-icon">&darr;</span>
-						<span>Matchups Unfavorable</span>
-					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							<div class="mini-card matchup-static-card" aria-label="Rocks.D.Xebec OP17">
-								<img src="/assets/guides/Rocks.DXebec%20op17.png" alt="Rocks.D.Xebec OP17" loading="lazy" />
-								<div class="mini-label">Rocks.D.Xebec</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Monkey.D.Luffy OP17">
-								<img src="/assets/guides/Luffy%20OP17.png" alt="Monkey.D.Luffy OP17" loading="lazy" />
-								<div class="mini-label">Monkey.D.Luffy</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Dracule Mihawk OP14">
-								<img src="/assets/guides/dracule-mihawk-op14.png" alt="Dracule Mihawk OP14" loading="lazy" />
-								<div class="mini-label">Dracule Mihawk</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -236,6 +400,9 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 			["(This card can attack Characters on the turn it is played.)"],
 			[keywordBadge("on-play", "On Play"), " If your Leader has the {Red-Haired Pirates} type, draw 1 card and rest up to 2 of your opponent's Characters."],
 		],
+		"OP17-029": [
+			[keywordBadge("on-play", "On Play"), " Rest up to 1 of your opponent's Characters with a cost of 4 or less."],
+		],
 		"OP17-031": [
 			[keywordBadge("on-play", "On Play"), " Draw 1 card and rest up to 1 of your opponent's Characters with a cost of 8 or less."],
 			[keywordBadge("end-of-your-turn", "End of Your Turn"), " Set up to 1 of your {Red-Haired Pirates} type Characters as active."],
@@ -247,9 +414,16 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 			[keywordBadge("on-play", "On Play"), ' Look at 3 cards from the top of your deck; reveal up to 1 card with a type including "Red-Haired Pirates" and add it to your hand. Then, place the rest at the bottom of your deck in any order.'],
 			[keywordBadge("on-your-opponents-attack", "On Your Opponent's Attack"), " You may trash this Character: Rest up to 1 of your opponent's Leader or Characters."],
 		],
+		"OP17-034": [
+			[keywordBadge("on-play", "On Play"), " If your Leader has the {Red-Haired Pirates} type, this Character gains +1000 power until the end of your opponent's next turn."],
+		],
 		"OP17-036": [
 			[keywordBadge("main", "Main"), " You may rest 6 of your DON!! cards: Rest up to 1 of your opponent's Characters. Then, K.O. up to 2 of your opponent's rested Characters with a cost of 6 or less."],
 			[keywordBadge("counter", "Counter"), " Up to 1 of your [Shanks] gains +4000 power during this battle."],
+		],
+		"OP17-037": [
+			[keywordBadge("main", "Main"), " Up to 1 of your opponent's rested Characters gains -3000 power during this turn."],
+			[keywordBadge("counter", "Counter"), " If your Leader has the {Red-Haired Pirates} type, up to 1 of your Leader or Character cards gains +3000 power during this battle."],
 		],
 		"OP17-038": [
 			[keywordBadge("main", "Main"), " You may rest 4 of your cards: Rest up to 1 of your opponent's Characters."],
@@ -556,6 +730,123 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		margin-top: 1rem;
 	}
 
+	.feature-block,
+	.nutshell-grid,
+	.info-panel,
+	.core-panel,
+	.curve-guide-block {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.curve-guide-block + .curve-guide-block {
+		margin-top: 1rem;
+	}
+
+	.curve-guide-block h3,
+	.curve-guide-block p {
+		margin: 0;
+	}
+
+	.curve-rows {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.curve-row {
+		display: grid;
+		gap: 0.75rem;
+		padding: 1rem;
+		border-radius: 22px;
+		border: 1px solid var(--first-look-border);
+		background: rgba(8, 12, 22, 0.72);
+	}
+
+	.curve-label {
+		color: var(--accent);
+		font-weight: 700;
+	}
+
+	.curve-cards {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.9rem;
+	}
+
+	.curve-card {
+		display: block;
+	}
+
+	.curve-card img {
+		max-width: 120px;
+		border-radius: 14px;
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+	}
+
+	.curve-card.is-rested img {
+		transform: rotate(90deg);
+		transform-origin: center;
+	}
+
+	.curve-join {
+		color: var(--accent);
+		font-size: 1.8rem;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.boss-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.boss-card {
+		display: grid;
+		grid-template-columns: 160px minmax(0, 1fr);
+		gap: 1.25rem;
+		align-items: center;
+		padding: 1rem;
+		border-radius: 22px;
+		border: 1px solid var(--first-look-border);
+		background: rgba(8, 12, 22, 0.72);
+	}
+
+	.boss-card-media img {
+		max-width: 160px;
+		border-radius: 16px;
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+	}
+
+	.curve-note {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+
+	.nutshell-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.info-panel,
+	.core-panel {
+		padding: 1rem;
+		border-radius: 22px;
+		border: 1px solid var(--first-look-border);
+		background: rgba(8, 12, 22, 0.72);
+	}
+
+	.core-panel {
+		margin-top: 1rem;
+	}
+
+	.summary-list {
+		margin: 0;
+		padding-left: 1.15rem;
+		display: grid;
+		gap: 0.55rem;
+	}
+
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
@@ -774,7 +1065,9 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 
 	@media (max-width: 900px) {
 		.hero-grid,
-		.summary-grid {
+		.summary-grid,
+		.nutshell-grid,
+		.boss-card {
 			grid-template-columns: 1fr;
 		}
 
@@ -869,5 +1162,26 @@ const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entr
 		.mini-card img {
 			max-width: 110px;
 		}
+
+		.curve-card img {
+			max-width: 100px;
+		}
+
+		.boss-card {
+			padding: 0.9rem;
+			gap: 0.9rem;
+		}
+
+		.boss-card-media img {
+			max-width: 130px;
+		}
 	}
 </style>
+
+
+
+
+
+
+
+
