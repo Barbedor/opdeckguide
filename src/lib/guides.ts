@@ -1,5 +1,18 @@
-﻿export const deckGuides = [
+export const deckGuides = [
 	{
+		kind: "deck",
+		title: "Charlotte Linlin OP17 First Look",
+		leader: "Charlotte Linlin",
+		code: "OP17",
+		formatLabel: "OP17 Format",
+		summary: "Leader ability, sample decklist, matchup favorable and unfavorable overview, and a conclusion for Charlotte Linlin OP17.",
+		month: "August",
+		href: "/deck-guides/charlotte-linlin-op17/",
+		imageSrc: "/assets/guides/Charlotte Linlin op17.png",
+		imageAlt: "Charlotte Linlin OP17 first look cover",
+		aliases: ["charlotte linlin op17", "op17 linlin", "big mom op17", "yellow linlin", "first look linlin"],
+		tags: ["op17", "yellow", "big mom pirates", "first look"],
+	},	{
 		kind: "deck",
 		title: "Kaido OP17 Mini Deck Guide",
 		leader: "Kaido",
@@ -22,7 +35,7 @@
 		summary: "Leader ability, updated sample decklist, curve guide, possible Luffy targets, matchup overview, and a conclusion for Monkey.D.Luffy OP17.",
 		month: "August",
 		href: "/deck-guides/monkey-d-luffy-op17/",
-		imageSrc: "/assets/guides/Monkey.D.Luffy%20op17.png",
+		imageSrc: "/assets/guides/Luffy OP17.png",
 		imageAlt: "Monkey.D.Luffy OP17 first look cover",
 		aliases: ["monkey d luffy op17", "op17 luffy", "black luffy", "first look luffy", "straw hat crew luffy"],
 		tags: ["op17", "black", "straw hat crew", "first look"],
@@ -472,4 +485,5 @@ export const guideSearchIndex = [
 	...buildGuideSearchIndex(visibleDeckGuides),
 	...buildGuideSearchIndex(beginnerGuides),
 ];
+
 
