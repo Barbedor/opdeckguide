@@ -1,18 +1,19 @@
 export const deckGuides = [
 	{
 		kind: "deck",
-		title: "Charlotte Linlin OP17 First Look",
+		title: "Charlotte Linlin OP17 Mini Deck Guide",
 		leader: "Charlotte Linlin",
 		code: "OP17",
 		formatLabel: "OP17 Format",
-		summary: "Leader ability, sample decklist, matchup favorable and unfavorable overview, and a conclusion for Charlotte Linlin OP17.",
+		summary: "Leader ability, updated decklist, curve guide, mind games and board traps, deck in a nutshell, and a conclusion for Charlotte Linlin OP17.",
 		month: "August",
 		href: "/deck-guides/charlotte-linlin-op17/",
 		imageSrc: "/assets/guides/Charlotte Linlin op17.png",
-		imageAlt: "Charlotte Linlin OP17 first look cover",
-		aliases: ["charlotte linlin op17", "op17 linlin", "big mom op17", "yellow linlin", "first look linlin"],
-		tags: ["op17", "yellow", "big mom pirates", "first look"],
-	},	{
+		imageAlt: "Charlotte Linlin OP17 mini deck guide cover",
+		aliases: ["charlotte linlin op17", "op17 linlin", "big mom op17", "yellow linlin", "mini deck guide linlin"],
+		tags: ["op17", "yellow", "big mom pirates", "mini deck guide"],
+	},
+	{
 		kind: "deck",
 		title: "Kaido OP17 Mini Deck Guide",
 		leader: "Kaido",

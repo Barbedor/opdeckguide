@@ -1,9 +1,9 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Charlotte Linlin OP17 First Look";
+const title = "Charlotte Linlin OP17 Mini Deck Guide";
 const description =
-	"First look at Charlotte Linlin OP17 for One Piece Card Game with leader ability, sample decklist, matchup favorable and unfavorable overview, and a conclusion for the OP17 format.";
+	"Mini deck guide for Charlotte Linlin OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, mind games and board traps, deck in a nutshell, and a conclusion for the OP17 format.";
 
 const publishedAt = "August 16, 2026";
 const icon = "/assets/guides/Charlotte%20Linlin%20op17.png";
@@ -11,41 +11,65 @@ const icon = "/assets/guides/Charlotte%20Linlin%20op17.png";
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
-
 	while (remaining > 4) {
 		lines.push(`4x${code}`);
 		remaining -= 4;
 	}
-
-	if (remaining > 0) {
-		lines.push(`${remaining}x${code}`);
-	}
-
+	if (remaining > 0) lines.push(`${remaining}x${code}`);
 	return lines;
 };
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
 const leader = card("OP17-099", "Charlotte Linlin", "/Cards/OP17/Charlottte%20Linlin%20op17-099.jpg", 1, "Leader");
+const streusen = card("OP17-113", "Streusen", "/Cards/OP17/Streusen%20op17-113.jpg", 4);
+const cracker = card("OP17-104", "Charlotte Cracker", "/Cards/OP17/Charlotte%20Cracker%20op17-104.jpg", 4);
+const daifuku = card("OP17-107", "Charlotte Daifuku", "/Cards/OP17/OP17%20Charlotte%20Daifuku.jpg", 3);
+const pudding = card("OP17-109", "Charlotte Pudding", "/Cards/OP17/op17-109%20Charlotte%20Pudding.jpg", 4);
+const montDor = card("OP17-111", "Charlotte Mont-d'Or", "/Cards/OP17/OP17%20Charlotte%20Mont-D'or.jpg", 4);
+const oven = card("OP17-102", "Charlotte Oven", "/Cards/OP17/OP17%20Charlotte%20Oven.jpg", 4);
+const smoothie = card("OP17-106", "Charlotte Smoothie", "/Cards/OP17/op17-106%20Charlotte%20Smoothie.jpg", 4);
+const katakuri = card("OP17-103", "Charlotte Katakuri", "/Cards/OP17/OP17-103.jpg", 4);
+const sweet3Generals = card("OP17-114", "Sweet 3 Generals", "/Cards/OP17/The%203%20Sweet%20Commanders%20op17-114.jpg", 4);
+const perospero = card("OP17-110", "Charlotte Perospero", "/Cards/OP17/OP17%20Charlotte%20Perospero.jpg", 4);
+const linlin10c = card("OP17-112", "Charlotte Linlin", "/Cards/OP17/Charlotte%20Linlin%20op17-112.jpg", 4);
+const codeOfHonor = card("OP17-115", "Don't You Know That Even the Cruel World of Pirates Has a Code of Honor?!", "/Cards/OP17/OP17%20There's%20Still%20A%20Code%20Of%20Honor%20%20You%20Clows.jpg", 1, "Event");
+const maserSaber = card("OP17-117", "Maser Saber", "/Cards/OP17/op17-117.jpg", 4, "Event");
+const flampe = card("EB01-056", "Charlotte Flampe", "/Cards/EB01/EB01-056.png", 2);
 
 const decklist = [
 	leader,
-	card("OP17-113", "Streusen", "/Cards/OP17/Streusen%20op17-113.jpg", 4),
-	card("OP11-106", "Zeus", "/Cards/OP11/OP11-106.jpg", 4),
-	card("OP08-105", "Jewelry Bonney", "/Cards/OP08/OP08-105.png", 4),
-	card("OP17-104", "Charlotte Cracker", "/Cards/OP17/Charlotte%20Cracker%20op17-104.jpg", 4),
-	card("OP17-107", "Charlotte Daifuku", "/Cards/OP17/OP17%20Charlotte%20Daifuku.jpg", 4),
-	card("OP17-109", "Charlotte Pudding", "/Cards/OP17/op17-109%20Charlotte%20Pudding.jpg", 4),
-	card("OP17-102", "Charlotte Oven", "/Cards/OP17/OP17%20Charlotte%20Oven.jpg", 2),
-	card("OP17-106", "Charlotte Smoothie", "/Cards/OP17/op17-106%20Charlotte%20Smoothie.jpg", 4),
-	card("OP17-103", "Charlotte Katakuri", "/Cards/OP17/OP17-103.jpg", 4),
-	card("OP17-114", "The 3 Sweet Commanders", "/Cards/OP17/The%203%20Sweet%20Commanders%20op17-114.jpg", 4),
-	card("OP17-110", "Charlotte Perospero", "/Cards/OP17/OP17%20Charlotte%20Perospero.jpg", 4),
-	card("OP17-112", "Charlotte Linlin", "/Cards/OP17/Charlotte%20Linlin%20op17-112.jpg", 4),
-	card("EB04-059", "Black Rope Dragon Twister", "/Cards/EB04/EB04-059.jpg", 4, "Event"),
+	flampe,
+	streusen,
+	cracker,
+	daifuku,
+	pudding,
+	montDor,
+	oven,
+	smoothie,
+	katakuri,
+	sweet3Generals,
+	perospero,
+	linlin10c,
+	codeOfHonor,
+	maserSaber,
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const bestCurve = [
+	{ label: "2 DON!!", cards: [{ card: streusen }] },
+	{ label: "4 DON!!", cards: [{ card: oven }] },
+	{ label: "6 DON!!", cards: [{ card: katakuri }] },
+	{ label: "8 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to" },
+];
+
+const oddCurve = [
+	{ label: "1 DON!!", cards: [{ card: streusen }] },
+	{ label: "3 DON!!", cards: [{ card: pudding }] },
+	{ label: "5 DON!!", cards: [{ card: cracker }] },
+	{ label: "7 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to" },
+];
 
 const favorableMatchups = [
 	{ name: "Portgas.D.Ace", image: "/assets/guides/Ace-op16.png", alt: "Portgas.D.Ace OP16" },
@@ -59,6 +83,23 @@ const unfavorableMatchups = [
 	{ name: "Rocks.D.Xebec", image: "/assets/guides/Rocks.DXebec%20op17.png", alt: "Rocks.D.Xebec OP17" },
 	{ name: "Monkey.D.Luffy", image: "/assets/guides/Luffy OP17.png", alt: "Monkey.D.Luffy OP17" },
 ];
+
+const strengths = [
+	"Incredible Survivability: Endless healing makes it nearly impossible for Aggro to rush you down.",
+	"Insane Value from Life: Every damage taken is a chance to play a free Character or a devastating Event Trigger (like Maser Saber).",
+	"Target Deterrence: Cards like Kiku and Oven punish the opponent if they try to clear your board.",
+];
+
+const weaknesses = [
+	"Starvation Weakness: Struggles if the opponent \"starves\" you (doesn't attack your Life early).",
+	"Weak Base Stats: Your entire board is full of fragile 4k bodies until 10c Linlin hits.",
+	"Hand Depletion: The Leader ability requires trashing cards, which can empty your hand if not managed.",
+];
+
+const coreEngine = [
+	"Leader Linlin: Forces a lose-lose choice: they trash a random card, or you heal a Life.",
+	"10c Linlin: The ultimate win condition. Instantly boosts all your 4k Trigger bodies to 8000 Power!",
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -66,18 +107,19 @@ const unfavorableMatchups = [
 		<div class="container hero-grid">
 			<div class="hero-copy">
 				<div class="hero-tags">
-					<span class="hero-chip">First Look</span>
+					<span class="hero-chip">Mini Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Charlotte Linlin OP17 First Look</h1>
+				<h1>Charlotte Linlin OP17 Mini Deck Guide</h1>
 				<p class="hero-intro">
-					A first OP17 look at Charlotte Linlin, including her leader effect, sample decklist, matchup
-					favorable and unfavorable overview, and a short conclusion on where the deck currently stands.
+					OP17 Charlotte Linlin is the ultimate "Yellow Slop" deck. Heal endlessly,
+					spam Trigger characters, and drop the 10c Linlin to turn your entire board into massive 8K Bosses.
+					Swipe to master the most oppressive healing engine in the OP17 meta!
 				</p>
 				<div class="publish-banner">Published {publishedAt}</div>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Charlotte Linlin OP17 first look icon" loading="eager" />
+				<img src={icon} alt="Charlotte Linlin OP17 mini deck guide icon" loading="eager" />
 			</div>
 		</div>
 	</section>
@@ -86,21 +128,10 @@ const unfavorableMatchups = [
 		<div class="container article-stack">
 			<div class="leader-panel glow-block">
 				<div class="leader-grid">
-					<div class="leader-tag-wrap">
-						<div class="section-tag">LEADER</div>
-					</div>
-					<div class="ability-tag-wrap">
-						<div class="section-tag section-tag-light">Ability</div>
-					</div>
+					<div class="leader-tag-wrap"><div class="section-tag">LEADER</div></div>
+					<div class="ability-tag-wrap"><div class="section-tag section-tag-light">Ability</div></div>
 					<div class="leader-card-wrap">
-						<button
-							class="detail-card"
-							type="button"
-							data-card-preview
-							data-full={leader.img}
-							data-name={`${leader.code} ${leader.name}`}
-							data-code={leader.code}
-						>
+						<button class="detail-card" type="button" data-card-preview data-full={leader.img} data-name={`${leader.code} ${leader.name}`} data-code={leader.code}>
 							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
 						</button>
 					</div>
@@ -111,8 +142,7 @@ const unfavorableMatchups = [
 								<img class="leader-keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" />
 								You may trash 1 card from your hand: Your opponent chooses one:
 								<br />
-								- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of
-								your Life cards.
+								- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards.
 								<br />
 								- Trash 1 card from your opponent's hand.
 							</p>
@@ -125,25 +155,13 @@ const unfavorableMatchups = [
 				<div class="section-header decklist-header">
 					<div class="decklist-title-row">
 						<h2>Decklist</h2>
-						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-							Copy for Sim
-						</button>
-					</div>
-					<div>
-						<p>Sample first-look OP17 list for Charlotte Linlin.</p>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button>
 					</div>
 				</div>
 				<div class="deck-grid">
 					{
 						decklist.map((entry) => (
-							<button
-								class="deck-card"
-								type="button"
-								data-card-preview
-								data-full={entry.img}
-								data-name={`${entry.code} ${entry.name}`}
-								data-code={entry.code}
-							>
+							<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
 								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
 									<span class="deck-count">{entry.count}x</span>
@@ -159,54 +177,131 @@ const unfavorableMatchups = [
 				</div>
 			</div>
 
-			<div class="summary-grid">
-				<div class="glow-block conclusions-card">
-					<div class="section-tag section-tag-light">Conclusion</div>
-					<p class="ability-copy">
-						The deck has a very simple gameplay with the goal of staying alive as much as possible before
-						playing Mom at 10c. Sometimes it is tiring to play if the opponent does control board or does not
-						make you add Life while other times it is the exact opposite. It remains undeniable that it has
-						excellent MU if played correctly.
-					</p>
-				</div>
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Curve Guide</h2></div></div>
 
-				<div class="matchup-card glow-block">
-					<div class="matchup-badge badge-up">
-						<span class="badge-icon">&uarr;</span>
-						<span>Matchup Favorable</span>
-					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							{
-								favorableMatchups.map((entry) => (
-									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
-										<img src={entry.image} alt={entry.alt} loading="lazy" />
-										<div class="mini-label">{entry.name}</div>
-									</div>
-								))
-							}
-						</div>
+				<div class="curve-guide-block">
+					<h3>Your Best Curve</h3>
+					<p>Going second is usually preferred to naturally curve into your massive 10-DON!! turn.</p>
+					<div class="curve-rows">
+						{bestCurve.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
+											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.code}>
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+											</button>
+										</>
+									))}
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 
-				<div class="matchup-card glow-block">
-					<div class="matchup-badge badge-down">
-						<span class="badge-icon">&darr;</span>
-						<span>Matchup Unfavorable</span>
+				<div class="curve-guide-block">
+					<h3>Odd Curve</h3>
+					<p>The curve shown is just an example. It doesn't leave space for leader effect without discarding a card from hand.</p>
+					<div class="curve-rows">
+						{oddCurve.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
+											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.code}>
+												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+											</button>
+										</>
+									))}
+								</div>
+							</div>
+						))}
 					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							{
-								unfavorableMatchups.map((entry) => (
-									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
-										<img src={entry.image} alt={entry.alt} loading="lazy" />
-										<div class="mini-label">{entry.name}</div>
-									</div>
-								))
-							}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Mind Games &amp; Board Traps</h2></div></div>
+				<div class="mind-games-grid">
+					<button class="detail-card mind-game-hero" type="button" data-card-preview data-full={linlin10c.img} data-name={`${linlin10c.code} ${linlin10c.name}`} data-code={linlin10c.code}>
+						<img src={linlin10c.img} alt={`${linlin10c.code} ${linlin10c.name}`} loading="lazy" />
+					</button>
+					<button class="detail-card mind-game-hero mind-game-side-card" type="button" data-card-preview data-full={maserSaber.img} data-name={`${maserSaber.code} ${maserSaber.name}`} data-code={maserSaber.code}>
+						<img src={maserSaber.img} alt={`${maserSaber.code} ${maserSaber.name}`} loading="lazy" />
+					</button>
+					<div class="mind-games-copy">
+						<div class="mind-game-block">
+							<h3>The "Lose-Lose" Ultimatum</h3>
+							<p>When attacking, your Leader forces the opponent to choose: Trash a RANDOM card or let you heal 1 Life.</p>
+							<p>Pro Tip: In the early game, opponents are terrified of randomly trashing their key combo pieces. They will almost ALWAYS choose to let you heal. Abuse this to easily stack your Life to 6 or 7!</p>
+						</div>
+						<div class="mind-game-block">
+							<h3>The "Maser Saber" Surprise</h3>
+							<p>Don't forget the 1-cost Counter Event! Not only does it give +3000 Power, but its Trigger is completely broken:</p>
+							<p>The effect: Your opponent MUST trash 3 cards from their hand. If they don't, you instantly KO one of their 6-cost or lower Characters. A completely free board-clear from your Life!</p>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="matchup-grid">
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Matchup Favorable</span></div>
+					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
+						{favorableMatchups.map((entry) => (
+							<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+								<img src={entry.image} alt={entry.alt} loading="lazy" />
+								<div class="mini-label">{entry.name}</div>
+							</div>
+						))}
+					</div></div>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Matchup Unfavorable</span></div>
+					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
+						{unfavorableMatchups.map((entry) => (
+							<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+								<img src={entry.image} alt={entry.alt} loading="lazy" />
+								<div class="mini-label">{entry.name}</div>
+							</div>
+						))}
+					</div></div>
+				</div>
+			</div>
+
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Deck In A Nutshell</h2>
+						<p>The "Rope-a-Dope" Strategy. Drag your opponent into deep waters. Spam your board with 4k-Power Trigger characters that punish the opponent for KOing them. Then, drop the 10c Linlin to magically buff all your 4k bodies into 8k Bosses for massive lethal swings.</p>
+					</div>
+				</div>
+				<div class="nutshell-grid">
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Strength</div>
+						<ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul>
+					</div>
+					<div class="info-panel">
+						<div class="section-tag section-tag-light">Weakness</div>
+						<ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul>
+					</div>
+				</div>
+				<div class="core-panel">
+					<div class="section-tag section-tag-light">The Core Engine</div>
+					<ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul>
+				</div>
+			</div>
+
+			<div class="glow-block conclusions-card">
+				<div class="section-tag section-tag-light">Conclusion</div>
+				<p class="ability-copy">
+					The deck has a very simple gameplay with the goal of staying alive as much as possible before playing Mom at 10c. Sometimes it is tiring to play if the opponent does control board or does not make you add Life while other times it is the exact opposite. It remains undeniable that it has excellent MU if played correctly.
+				</p>
 			</div>
 		</div>
 	</section>
@@ -228,106 +323,19 @@ const unfavorableMatchups = [
 	const copyButtons = document.querySelectorAll("[data-copy-sim]");
 	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
 	const decklistEffectTextByCode = {
-		"OP17-099": [
-			[
-				keywordBadge("when-attacking", "When Attacking"),
-				" You may trash 1 card from your hand: Your opponent chooses one:",
-			],
-			["- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards."],
-			["- Trash 1 card from your opponent's hand."],
-		],
-		"OP17-102": [
-			[
-				keywordBadge("on-ko", "On K.O."),
-				" Play up to 1 Character card with 4000 power or less other than [Charlotte Oven] from your trash.",
-			],
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-103": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" ",
-				keywordBadge("on-play", "On Play"),
-				" If your Leader has the {Big Mom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards. Then, give up to 1 of your opponent's Characters -3000 power during this turn.",
-			],
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-104": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" ",
-				keywordBadge("on-play", "On Play"),
-				" You may rest 2 of your DON!! cards: If your Leader has the {Big Mom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards.",
-			],
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-106": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" ",
-				keywordBadge("on-play", "On Play"),
-				" You may rest 2 of your DON!! cards: Add up to 1 card from the top of your deck to the top of your Life cards. Then, your opponent trashes 1 card from their hand.",
-			],
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-107": [
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-109": [
-			[
-				keywordBadge("on-play", "On Play"),
-				" You may trash 1 card with a ",
-				keywordBadge("trigger", "Trigger"),
-				" from your hand: Draw 3 cards.",
-			],
-			[
-				keywordBadge("trigger", "Trigger"),
-				" Look at 5 cards from the top of your deck; reveal up to 1 {Big Mom Pirates} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
-			],
-		],
-		"OP17-110": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" ",
-				keywordBadge("on-play", "On Play"),
-				" Play up to 1 {Big Mom Pirates} type Character card with a cost of 6 or less from your hand. Then, this Character gains ",
-				keywordBadge("rush", "Rush"),
-				".",
-			],
-			[keywordBadge("trigger", "Trigger"), " Play this card."],
-		],
-		"OP17-112": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" All of your Characters with 4000 base power and a ",
-				keywordBadge("trigger", "Trigger"),
-				" become 8000 base power.",
-			],
-			[
-				keywordBadge("on-play", "On Play"),
-				" Draw 1 card and choose one of the following effects.",
-			],
-			["- Add up to 1 card from the top of your deck to the top of your Life cards."],
-			["- Add up to 1 card from the top of your opponent's Life cards to the owner's hand."],
-		],
-		"OP17-113": [
-			[
-				keywordBadge("on-play", "On Play"),
-				" Look at 3 cards from the top of your deck; reveal up to 1 {Big Mom Pirates} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
-			],
-		],
-		"OP17-114": [
-			[
-				keywordBadge("your-turn", "Your Turn"),
-				" ",
-				keywordBadge("on-play", "On Play"),
-				" You may rest 2 of your DON!! cards: Draw 1 card and add up to 1 card from the top of your deck to the top of your Life. Then, give up to 2 of your opponent's Characters -3000 power during this turn.",
-			],
-			[
-				keywordBadge("trigger", "Trigger"),
-				" Play this card.",
-			],
-		],
+		"OP17-099": [[keywordBadge("when-attacking", "When Attacking"), " You may trash 1 card from your hand: Your opponent chooses one of the following effects."], ["- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards."], ["- Your opponent trashes 1 card from their hand."]],
+		"OP17-102": [[keywordBadge("on-ko", "On K.O."), " Play up to 1 Character card with 4000 power or less other than [Charlotte Oven] from your trash."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-103": [[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("on-play", "On Play"), " If your Leader has the {Big Mom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards. Then, give up to 1 of your opponent's Characters -3000 power during this turn."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-104": [[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("on-play", "On Play"), " You may rest 2 of your DON!! cards: If your Leader has the {Big Mom Pirates} type, add up to 1 card from the top of your deck to the top of your Life cards."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-106": [[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("on-play", "On Play"), " You may rest 2 of your DON!! cards: Add up to 1 card from the top of your deck to the top of your Life cards. Then, your opponent trashes 1 card from their hand."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-107": [[keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-109": [[keywordBadge("on-play", "On Play"), " You may trash 1 card with a ", keywordBadge("trigger", "Trigger"), " from your hand: Draw 3 cards."], [keywordBadge("trigger", "Trigger"), " Look at 5 cards from the top of your deck; reveal up to 1 {Big Mom Pirates} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order."]],
+		"OP17-110": [[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("on-play", "On Play"), " Play up to 1 {Big Mom Pirates} type Character card with a cost of 6 or less from your hand. Then, this Character gains ", keywordBadge("rush", "Rush"), "."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-111": [[keywordBadge("on-play", "On Play"), " You may reveal 2 cards with a ", keywordBadge("trigger", "Trigger"), " from your hand: K.O. up to 2 of your opponent's Characters with a cost of 1 or less."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-113": [[keywordBadge("on-play", "On Play"), " Look at 3 cards from the top of your deck; reveal up to 1 {Big Mom Pirates} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order."]],
+		"OP17-114": [[keywordBadge("your-turn", "Your Turn"), " ", keywordBadge("on-play", "On Play"), " You may rest 2 of your DON!! cards: Draw 1 card and add up to 1 card from the top of your deck to the top of your Life. Then, give up to 2 of your opponent's Characters -3000 power during this turn."], [keywordBadge("trigger", "Trigger"), " Play this card."]],
+		"OP17-115": [[keywordBadge("main", "Main"), " Your [Charlotte Linlin] Leader gains ", keywordBadge("unblockable", "Unblockable"), " during this turn."], [keywordBadge("counter", "Counter"), " Up to 1 of your [Charlotte Linlin] gains +4000 power during this battle."]],
+		"OP17-117": [[keywordBadge("counter", "Counter"), " Up to 1 of your [Charlotte Linlin] cards gains +3000 power during this battle."], [keywordBadge("trigger", "Trigger"), " Your opponent may trash 3 cards from their hand. If they don't, K.O. up to 1 of your opponent's Characters with a cost of 6 or less."]],
 	};
 
 	const openModal = (button) => {
@@ -345,11 +353,8 @@ const unfavorableMatchups = [
 					const paragraph = document.createElement("p");
 					const normalizedLine = Array.isArray(line) ? line : [line];
 					normalizedLine.forEach((part) => {
-						if (typeof part === "string") {
-							paragraph.appendChild(document.createTextNode(part));
-							return;
-						}
-						if (part?.type === "keyword") {
+						if (typeof part === "string") paragraph.appendChild(document.createTextNode(part));
+						else if (part?.type === "keyword") {
 							const image = document.createElement("img");
 							image.className = "modal-keyword-badge";
 							image.src = `/assets/keywords/${part.icon}.png`;
@@ -360,9 +365,7 @@ const unfavorableMatchups = [
 					modalEffect.appendChild(paragraph);
 				});
 				modalEffect.hidden = false;
-			} else {
-				modalEffect.hidden = true;
-			}
+			} else modalEffect.hidden = true;
 		}
 		modal.classList.add("is-open");
 		modal.setAttribute("aria-hidden", "false");
@@ -375,567 +378,109 @@ const unfavorableMatchups = [
 		modal.setAttribute("aria-hidden", "true");
 		modalImage.setAttribute("src", "");
 		modalImage.setAttribute("alt", "");
-		if (modalEffect) {
-			modalEffect.innerHTML = "";
-			modalEffect.hidden = true;
-		}
+		if (modalEffect) { modalEffect.innerHTML = ""; modalEffect.hidden = true; }
 		document.body.style.overflow = "";
 	};
 
-	previewButtons.forEach((button) => {
-		button.addEventListener("click", () => openModal(button));
-	});
-
+	previewButtons.forEach((button) => button.addEventListener("click", () => openModal(button)));
 	closeButton?.addEventListener("click", closeModal);
-	modal?.addEventListener("click", (event) => {
-		if (event.target === modal) closeModal();
-	});
-	document.addEventListener("keydown", (event) => {
-		if (event.key === "Escape" && modal?.classList.contains("is-open")) {
-			closeModal();
-		}
-	});
-
+	modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+	document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal?.classList.contains("is-open")) closeModal(); });
 	copyButtons.forEach((button) => {
 		button.addEventListener("click", async () => {
 			const simDeck = button.getAttribute("data-sim-deck");
 			if (!simDeck) return;
 			const previous = button.textContent?.trim();
-
 			try {
 				await navigator.clipboard.writeText(simDeck);
 				button.textContent = "Copied";
-				window.setTimeout(() => {
-					button.textContent = previous ?? "Copy for Sim";
-				}, 1800);
+				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
 			} catch {
 				button.textContent = "Copy failed";
-				window.setTimeout(() => {
-					button.textContent = previous ?? "Copy for Sim";
-				}, 1800);
+				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
 			}
 		});
 	});
 </script>
 <style>
-	:root {
-		--first-look-accent: #f5d000;
-		--first-look-accent-soft: rgba(245, 208, 0, 0.18);
-		--first-look-border: rgba(245, 208, 0, 0.28);
-	}
-
-	.guide-hero {
-		padding-top: 3.2rem;
-	}
-
-	.hero-grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(260px, 415px);
-		gap: 2rem;
-		align-items: center;
-	}
-
-	.hero-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-		margin-bottom: 1rem;
-	}
-
-	.hero-chip,
-	.publish-banner {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.7rem 1.1rem;
-		border-radius: 999px;
-		border: 1px solid var(--first-look-border);
-		background: rgba(12, 17, 30, 0.85);
-		color: #f3f7ff;
-	}
-
-	.hero-chip {
-		font-size: 0.95rem;
-		font-weight: 600;
-	}
-
-	.hero-chip-accent {
-		color: var(--accent);
-	}
-
-	.hero-intro {
-		max-width: 56ch;
-	}
-
-	.publish-banner {
-		margin-top: 1.25rem;
-		font-weight: 600;
-	}
-
-	.guide-icon {
-		display: flex;
-		justify-content: center;
-	}
-
-	.guide-icon img {
-		width: min(415px, 100%);
-		border-radius: 18px;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-	}
-
-	.article-stack,
-	.summary-grid,
-	.leader-details {
-		display: grid;
-		gap: 1.4rem;
-	}
-
-	.summary-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.conclusions-card {
-		grid-column: 1 / -1;
-	}
-
-	.glow-block {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--first-look-border);
-		border-radius: 26px;
-		padding: 1.25rem;
-		box-shadow:
-			0 0 0 1px rgba(245, 208, 0, 0.16),
-			0 0 22px rgba(245, 208, 0, 0.08),
-			0 0 52px rgba(245, 208, 0, 0.05);
-	}
-
-	.leader-grid {
-		display: grid;
-		grid-template-columns: 220px minmax(0, 1fr);
-		grid-template-areas:
-			"leaderTag abilityTag"
-			"card ability";
-		gap: 1.5rem;
-		align-items: start;
-	}
-
-	.leader-tag-wrap {
-		grid-area: leaderTag;
-	}
-
-	.ability-tag-wrap {
-		grid-area: abilityTag;
-	}
-
-	.leader-card-wrap {
-		grid-area: card;
-	}
-
-	.leader-details {
-		grid-area: ability;
-	}
-
-	.section-tag {
-		display: inline-flex;
-		padding: 0.45rem 0.9rem;
-		background: var(--first-look-accent-soft);
-		color: #fff7c7;
-		margin-bottom: 1rem;
-		border-radius: 999px;
-		font-weight: 600;
-	}
-
-	.section-tag-light {
-		font-weight: 500;
-	}
-
-	.detail-card,
-	.deck-card {
-		background: transparent;
-		border: none;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.detail-card img {
-		width: 100%;
-		max-width: 220px;
-		border-radius: 16px;
-	}
-
-	.info-box {
-		background: rgba(8, 12, 22, 0.92);
-		border: 1px solid rgba(245, 208, 0, 0.18);
-		border-radius: 22px;
-		padding: 1rem 1.1rem;
-	}
-
-	.ability-meta {
-		margin: 0 0 0.85rem;
-		color: var(--accent);
-		font-size: 0.95rem;
-		line-height: 1.45;
-		font-weight: 400;
-	}
-
-	.ability-copy {
-		font-size: clamp(1rem, 1.35vw, 1.2rem);
-		font-weight: 400;
-		line-height: 1.55;
-		letter-spacing: 0;
-		text-transform: none;
-		margin: 0;
-	}
-
-	.leader-keyword-badge {
-		height: 1.2em;
-		width: auto;
-		margin-right: 0.18em;
-		vertical-align: -0.18em;
-	}
-
-	.decklist-header {
-		display: grid;
-		gap: 0.45rem;
-	}
-
-	.decklist-title-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
-
-	.decklist-title-row h2,
-	.decklist-header p {
-		margin: 0;
-	}
-
-	.copy-sim-button {
-		flex: 0 0 auto;
-	}
-
-	.deck-grid {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
-	}
-
-	.deck-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 0.75rem;
-		display: grid;
-		gap: 0.65rem;
-		text-align: left;
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
-	}
-
-	.deck-card:hover,
-	.deck-card:focus-visible,
-	.detail-card:hover,
-	.detail-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.deck-card img {
-		width: 100%;
-		max-width: 110px;
-		margin: 0 auto;
-		border-radius: 12px;
-	}
-
-	.deck-info {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0.6rem;
-		align-items: center;
-	}
-
-	.deck-count {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.22rem 0.55rem;
-		border-radius: 999px;
-		background: rgba(255, 107, 61, 0.12);
-		color: var(--accent);
-		font-size: 0.8rem;
-		font-weight: 700;
-	}
-
-	.deck-name {
-		font-size: 0.92rem;
-		font-weight: 600;
-		line-height: 1.25;
-	}
-
-	.deck-code,
-	.deck-role {
-		color: var(--text-300);
-		font-size: 0.78rem;
-	}
-
-	.deck-role {
-		text-transform: uppercase;
-		letter-spacing: 1px;
-	}
-
-	.matchup-badge {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		padding: 0.45rem 0.9rem;
-		border-radius: 999px;
-		font-weight: 600;
-	}
-
-	.badge-up {
-		background: rgba(74, 222, 128, 0.14);
-		color: #65f59b;
-	}
-
-	.badge-down {
-		background: rgba(255, 107, 107, 0.14);
-		color: #ff7c7c;
-	}
-
-	.badge-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 1.1rem;
-		height: 1.1rem;
-		border-radius: 999px;
-		background: currentColor;
-		color: #08101b;
-		font-size: 0.78rem;
-		font-weight: 700;
-	}
-
-	.matchup-row {
-		display: grid;
-		gap: 0.9rem;
-		margin-top: 1rem;
-	}
-
-	.matchup-row-cards-only {
-		justify-items: center;
-	}
-
-	.tip-cards {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.9rem;
-		width: 100%;
-	}
-
-	.mini-card {
-		background: transparent;
-		border: none;
-		padding: 0;
-		cursor: pointer;
-		text-align: center;
-		transition: transform 0.2s ease;
-	}
-
-	.matchup-static-card {
-		cursor: default;
-	}
-
-	.mini-card:hover,
-	.mini-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-
-	.matchup-static-card:hover,
-	.matchup-static-card:focus-visible {
-		transform: none;
-		outline: none;
-	}
-
-	.mini-card img {
-		width: 100%;
-		max-width: 132px;
-		border-radius: 14px;
-		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
-	}
-
-	.mini-label {
-		display: block;
-		margin-top: 0.45rem;
-		font-size: 0.92rem;
-		line-height: 1.25;
-	}
-
-	.card-modal {
-		position: fixed;
-		inset: 0;
-		display: none;
-		align-items: center;
-		justify-content: center;
-		background: rgba(5, 8, 16, 0.82);
-		padding: 1.5rem;
-		z-index: 50;
-	}
-
-	.card-modal.is-open {
-		display: flex;
-	}
-
-	.card-modal-inner {
-		position: relative;
-		max-width: min(92vw, 520px);
-		display: grid;
-		gap: 1rem;
-	}
-
-	.card-modal-inner > img {
-		width: 100%;
-		border-radius: 20px;
-	}
-
-	.modal-effect-copy {
-		background: rgba(12, 17, 30, 0.95);
-		border: 1px solid var(--border);
-		border-radius: 18px;
-		padding: 1rem 1.1rem;
-		display: grid;
-		gap: 0.8rem;
-		font-size: 0.75rem;
-	}
-
-	.modal-effect-copy p {
-		margin: 0;
-		font-size: 0.75rem;
-		line-height: 1.5;
-		font-weight: 400;
-	}
-
-	.modal-effect-copy :global(.modal-keyword-badge) {
-		display: inline-block;
-		height: 1.2em;
-		width: auto;
-		vertical-align: -0.18em;
-		margin-right: 0.18em;
-	}
-
-	.modal-close {
-		position: absolute;
-		top: -0.75rem;
-		right: -0.75rem;
-		border: none;
-		border-radius: 999px;
-		background: var(--accent);
-		color: #fff;
-		padding: 0.55rem 0.85rem;
-		font-weight: 700;
-		cursor: pointer;
-	}
-
-	@media (max-width: 900px) {
-		.hero-grid,
-		.summary-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.conclusions-card {
-			grid-column: auto;
-		}
-
-		.guide-icon,
-		.detail-card {
-			justify-self: center;
-		}
-
-		.deck-grid {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-		}
-	}
-
-	@media (max-width: 640px) {
-		.copy-sim-button {
-			width: auto;
-			justify-content: center;
-			padding-inline: 0.9rem;
-			min-width: 0;
-			flex-shrink: 0;
-		}
-
-		.decklist-title-row {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			align-items: center;
-			column-gap: 0.75rem;
-		}
-
-		.decklist-title-row h2 {
-			min-width: 0;
-		}
-
-		.decklist-title-row .copy-sim-button {
-			grid-column: 2;
-			justify-self: end;
-		}
-
-		.deck-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.deck-card {
-			padding: 0.7rem;
-		}
-
-		.deck-card img {
-			max-width: 92px;
-		}
-	}
-
-	@media (max-width: 560px) {
-		.guide-hero {
-			padding-top: 2rem;
-		}
-
-		.glow-block {
-			padding: 1rem;
-			border-radius: 22px;
-		}
-
-		.leader-grid {
-			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-			grid-template-areas:
-				"leaderTag abilityTag"
-				"card ability";
-			align-items: start;
-			gap: 1rem;
-		}
-
-		.detail-card img {
-			max-width: 100%;
-		}
-
-		.ability-copy {
-			font-size: 0.98rem;
-			line-height: 1.5;
-		}
-
-		.leader-keyword-badge {
-			height: 1.2em;
-		}
-
-		.tip-cards {
-			gap: 0.75rem;
-		}
-
-		.mini-card img {
-			max-width: 110px;
-		}
-	}
+	:root { --first-look-accent: #f5d000; --first-look-accent-soft: rgba(245, 208, 0, 0.18); --first-look-border: rgba(245, 208, 0, 0.28); }
+	.guide-hero { padding-top: 3.2rem; }
+	.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 415px); gap: 2rem; align-items: center; }
+	.hero-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
+	.hero-chip, .publish-banner { display: inline-flex; align-items: center; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid var(--first-look-border); background: rgba(12, 17, 30, 0.85); color: #f3f7ff; }
+	.hero-chip { font-size: 0.95rem; font-weight: 600; }
+	.hero-chip-accent { color: var(--accent); }
+	.hero-intro { max-width: 60ch; }
+	.publish-banner { margin-top: 1.25rem; font-weight: 600; }
+	.guide-icon { display: flex; justify-content: center; }
+	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+	.article-stack, .leader-details, .feature-block, .curve-guide-block, .curve-rows, .nutshell-grid, .info-panel, .core-panel { display: grid; gap: 1rem; }
+	.matchup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(245,208,0,0.16), 0 0 22px rgba(245,208,0,0.08), 0 0 52px rgba(245,208,0,0.05); }
+	.leader-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; gap: 1.5rem; align-items: start; }
+	.leader-tag-wrap { grid-area: leaderTag; } .ability-tag-wrap { grid-area: abilityTag; } .leader-card-wrap { grid-area: card; } .leader-details { grid-area: ability; }
+	.section-tag { display: inline-flex; padding: 0.45rem 0.9rem; background: var(--first-look-accent-soft); color: #fff7c7; margin-bottom: 1rem; border-radius: 999px; font-weight: 600; }
+	.section-tag-light { font-weight: 500; }
+	.detail-card, .deck-card { background: transparent; border: none; padding: 0; cursor: pointer; }
+	.detail-card img { width: 100%; max-width: 220px; border-radius: 16px; }
+	.info-box { background: rgba(8, 12, 22, 0.92); border: 1px solid rgba(245,208,0,0.18); border-radius: 22px; padding: 1rem 1.1rem; }
+	.ability-meta { margin: 0 0 0.85rem; color: var(--accent); font-size: 0.95rem; line-height: 1.45; font-weight: 400; }
+	.ability-copy { font-size: clamp(1rem, 1.35vw, 1.2rem); font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; margin: 0; }
+	.leader-keyword-badge { height: 1.2em; width: auto; margin-right: 0.18em; vertical-align: -0.18em; }
+	.decklist-header { display: grid; gap: 0.45rem; }
+	.decklist-title-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+	.decklist-title-row h2, .decklist-header p, .curve-guide-block h3, .curve-guide-block p { margin: 0; }
+	.copy-sim-button { flex: 0 0 auto; }
+	.deck-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+	.deck-card { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem; display: grid; gap: 0.65rem; text-align: left; transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease; }
+	.deck-card:hover, .deck-card:focus-visible, .detail-card:hover, .detail-card:focus-visible, .mini-card:hover, .mini-card:focus-visible { transform: translateY(-4px); outline: none; }
+	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
+	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
+	.deck-count { display: inline-flex; align-items: center; justify-content: center; padding: 0.22rem 0.55rem; border-radius: 999px; background: rgba(255, 107, 61, 0.12); color: var(--accent); font-size: 0.8rem; font-weight: 700; }
+	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
+	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
+	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
+	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
+	.curve-row { display: grid; gap: 0.75rem; padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.curve-label { color: var(--accent); font-weight: 700; }
+	.curve-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; }
+	.curve-card img, .mind-game-hero img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.curve-card.is-rested img { transform: rotate(90deg); transform-origin: center; }
+	.curve-join { color: var(--accent); font-size: 1.8rem; font-weight: 700; line-height: 1; }
+	.curve-join-to { font-size: 1.6rem; }
+	.mind-games-grid { display: grid; grid-template-columns: 320px minmax(0, 1fr); grid-template-areas: "hero copy" "side copy"; gap: 1.25rem; align-items: start; }
+	.mind-game-hero { grid-area: hero; }
+	.mind-game-side-card { grid-area: side; align-self: start; }
+	.mind-games-copy { grid-area: copy; display: grid; gap: 1rem; }
+	.mind-game-block h3 { margin: 0 0 0.5rem; color: #ff8d76; font-size: 1.25rem; }
+	.mind-game-block p { margin: 0; line-height: 1.6; }
+	.matchup-badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 600; }
+	.badge-up { background: rgba(74, 222, 128, 0.14); color: #65f59b; }
+	.badge-down { background: rgba(255, 107, 107, 0.14); color: #ff7c7c; }
+	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; font-weight: 700; }
+	.matchup-row { display: grid; gap: 0.9rem; margin-top: 1rem; }
+	.matchup-row-cards-only { justify-items: center; }
+	.tip-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; width: 100%; }
+	.mini-card { background: transparent; border: none; padding: 0; cursor: pointer; text-align: center; transition: transform 0.2s ease; }
+	.matchup-static-card { cursor: default; }
+	.matchup-static-card:hover, .matchup-static-card:focus-visible { transform: none; outline: none; }
+	.mini-card img { width: 100%; max-width: 132px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.mini-label { display: block; margin-top: 0.45rem; font-size: 0.92rem; line-height: 1.25; }
+	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.info-panel, .core-panel { padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.core-panel { margin-top: 1rem; }
+	.summary-list { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
+	.conclusions-card { display: grid; gap: 0.8rem; }
+	.card-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(5,8,16,0.82); padding: 1.5rem; z-index: 50; }
+	.card-modal.is-open { display: flex; }
+	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
+	.card-modal-inner > img { width: 100%; border-radius: 20px; }
+	.modal-effect-copy { background: rgba(12, 17, 30, 0.95); border: 1px solid var(--border); border-radius: 18px; padding: 1rem 1.1rem; display: grid; gap: 0.8rem; font-size: 0.75rem; }
+	.modal-effect-copy p { margin: 0; font-size: 0.75rem; line-height: 1.5; font-weight: 400; }
+	.modal-effect-copy :global(.modal-keyword-badge) { display: inline-block; height: 1.2em; width: auto; vertical-align: -0.18em; margin-right: 0.18em; }
+	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
+	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid, .mind-games-grid { grid-template-columns: 1fr; } .guide-icon, .detail-card { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+	@media (max-width: 640px) { .copy-sim-button { width: auto; justify-content: center; padding-inline: 0.9rem; min-width: 0; flex-shrink: 0; } .decklist-title-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 0.75rem; } .decklist-title-row h2 { min-width: 0; } .decklist-title-row .copy-sim-button { grid-column: 2; justify-self: end; } .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.7rem; } .deck-card img { max-width: 92px; } }
+	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .leader-keyword-badge { height: 1.2em; } .tip-cards { gap: 0.75rem; } .mini-card img { max-width: 110px; } .curve-card img, .mind-game-hero img { max-width: 100px; } }
 </style>
 
