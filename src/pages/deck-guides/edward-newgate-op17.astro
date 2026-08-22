@@ -205,7 +205,8 @@ const unfavorableMatchups = [
 		const full = button.getAttribute("data-full");
 		const name = button.getAttribute("data-name") || "Card preview";
 		const code = button.getAttribute("data-code");
-		const effectLines = code?.startsWith("OP17") ? decklistEffectTextByCode[code] : null;
+		const japaneseCardCodes = new Set(["OP17-001", "OP17-003", "OP17-005", "OP17-007", "OP17-008", "OP17-016", "OP17-019"]);
+		const effectLines = japaneseCardCodes.has(code ?? "") ? decklistEffectTextByCode[code] : null;
 		modalImage.setAttribute("src", full);
 		modalImage.setAttribute("alt", name);
 		if (modalEffect) {
@@ -320,8 +321,8 @@ const unfavorableMatchups = [
 	.card-modal.is-open { display: flex; }
 	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
 	.card-modal-inner > img { width: 100%; border-radius: 20px; }
-	.modal-effect-copy { background: rgba(12, 17, 30, 0.95); border: 1px solid var(--border); border-radius: 18px; padding: 1rem 1.1rem; display: grid; gap: 0.8rem; font-size: 1.125rem; }
-	.modal-effect-copy p { margin: 0; font-size: 1.125rem; line-height: 1.5; font-weight: 400; }
+	.modal-effect-copy { background: rgba(12, 17, 30, 0.95); border: 1px solid var(--border); border-radius: 18px; padding: 1rem 1.1rem; display: grid; gap: 0.8rem; font-size: 0.82rem; }
+	.modal-effect-copy p { margin: 0; font-size: 0.82rem; line-height: 1.5; font-weight: 400; }
 	.modal-effect-copy :global(.modal-keyword-badge) { display: inline-block; height: 1.2em; width: auto; vertical-align: -0.18em; margin-right: 0.18em; }
 	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
 	@media (max-width: 980px) { .hero-grid, .summary-grid { grid-template-columns: 1fr; } .guide-icon, .detail-card { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
