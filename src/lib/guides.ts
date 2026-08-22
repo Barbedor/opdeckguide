@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Edward.Newgate OP17 First Look",
+		leader: "Edward.Newgate",
+		code: "OP17",
+		formatLabel: "OP17 Format",
+		summary: "Leader ability, sample decklist, matchup overview, and a conclusion for Edward.Newgate OP17.",
+		month: "August",
+		href: "/deck-guides/edward-newgate-op17/",
+		imageSrc: "/assets/guides/Edward.Newgate op17.png",
+		imageAlt: "Edward.Newgate OP17 first look cover",
+		aliases: ["edward newgate op17", "whitebeard op17", "op17 newgate", "red newgate", "first look newgate"],
+		tags: ["op17", "red", "whitebeard pirates", "first look"],
+	},
+	{
+		kind: "deck",
 		title: "Charlotte Linlin OP17 Mini Deck Guide",
 		leader: "Charlotte Linlin",
 		code: "OP17",

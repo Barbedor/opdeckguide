@@ -1,0 +1,330 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Edward.Newgate OP17 First Look";
+const description =
+	"First look at Edward.Newgate OP17 for One Piece Card Game with leader ability, sample decklist, matchup overview, and a conclusion for the OP17 format.";
+
+const publishedAt = "August 20, 2026";
+const icon = "/assets/guides/Edward.Newgate op17.png";
+
+const expandSimLines = (count, code) => {
+	const lines = [];
+	let remaining = count;
+	while (remaining > 4) {
+		lines.push(`4x${code}`);
+		remaining -= 4;
+	}
+	if (remaining > 0) lines.push(`${remaining}x${code}`);
+	return lines;
+};
+
+const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
+
+const leader = card("OP17-001", "Edward.Newgate", "/Cards/OP17/op17-001 edward newgate.png", 1, "Leader");
+
+const decklist = [
+	leader,
+	card("ST15-004", "Thatch", "/Cards/ST15/ST15-004.png", 4),
+	card("OP10-005", "Sanji", "/Cards/OP10/OP10-005.jpg", 4),
+	card("OP17-004", "Inuarashi & Nekomamushi", "/Cards/OP17/Inuarashi and Nekomamushi op17-004.jpg", 4),
+	card("OP17-016", "Rakuyo", "/Cards/OP17/OP17 Rakuyo.jpg", 4),
+	card("OP17-003", "Izo", "/Cards/OP17/op17-003 Izo.jpg", 4),
+	card("OP16-118", "Portgas.D.Ace", "/Cards/OP16/OP16-118.jpg", 4),
+	card("OP17-015", "Marco", "/Cards/OP17/Marco op17-015.jpg", 3),
+	card("OP17-008", "Jozu", "/Cards/OP17/Jozu op17-008.jpg", 4),
+	card("OP17-013", "Portgas.D.Ace", "/Cards/OP17/Portgas.D.Ace op17-013.jpg", 4),
+	card("OP17-007", "Kouzuki Oden", "/Cards/OP17/Kouzuki Oden op17-007.jpg", 4),
+	card("OP09-118", "Gol.D.Roger", "/Cards/OP09/OP09-118.jpg", 1),
+	card("OP17-005", "Edward.Newgate", "/Cards/OP17/op17-005 edward newgate.jpg", 4),
+	card("OP17-019", "I Don't Have Time to Chat with Snot-Nosed Brats", "/Cards/OP17/op-17-019.jpg", 2, "Event"),
+	card("OP16-021", "Moby Dick", "/Cards/OP16/OP16-021.jpg", 4, "Stage"),
+];
+
+const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const favorableMatchups = [
+	{ name: "Shanks", image: "/assets/guides/Shanks op17.png", alt: "Shanks OP17" },
+	{ name: "Dracule Mihawk", image: "/assets/guides/dracule-mihawk-op14.png", alt: "Dracule Mihawk OP14" },
+	{ name: "Sabo", image: "/assets/guides/Sabo OP13-004.png", alt: "Sabo OP13" },
+	{ name: "Monkey.D.Luffy", image: "/assets/guides/Luffy OP17.png", alt: "Monkey.D.Luffy OP17" },
+];
+
+const unfavorableMatchups = [
+	{ name: "Rocks.D.Xebec", image: "/assets/guides/Rocks.DXebec op17.png", alt: "Rocks.D.Xebec OP17" },
+	{ name: "Charlotte Linlin", image: "/assets/guides/Charlotte Linlin op17.png", alt: "Charlotte Linlin OP17" },
+	{ name: "Kaido", image: "/assets/guides/Kaido op17.png", alt: "Kaido OP17" },
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div class="hero-copy">
+				<div class="hero-tags">
+					<span class="hero-chip">First Look</span>
+					<span class="hero-chip hero-chip-accent">OP17 Format</span>
+				</div>
+				<h1>Edward.Newgate OP17 First Look</h1>
+				<p class="hero-intro">
+					A first OP17 look at Edward.Newgate, including his leader effect, a sample decklist, favorable and
+					unfavorable matchups, and a short conclusion on where the deck currently stands.
+				</p>
+				<div class="publish-banner">Published {publishedAt}</div>
+			</div>
+			<div class="guide-icon">
+				<img src={icon} alt="Edward.Newgate OP17 first look icon" loading="eager" />
+			</div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container article-stack">
+			<div class="leader-panel glow-block">
+				<div class="leader-grid">
+					<div class="leader-tag-wrap"><div class="section-tag">LEADER</div></div>
+					<div class="ability-tag-wrap"><div class="section-tag section-tag-light">Ability</div></div>
+					<div class="leader-card-wrap">
+						<button class="detail-card" type="button" data-card-preview data-full={leader.img} data-name={`${leader.code} ${leader.name}`} data-code={leader.code}>
+							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
+						</button>
+					</div>
+					<div class="leader-details">
+						<div class="info-box">
+							<p class="ability-meta">Type &amp; Attribute: The Four Emperors/Whitebeard Pirates - Special</p>
+							<p class="ability-copy">
+								<br />
+								- on opponent's attack -
+								<br />
+								- once per turn - you may trash 1 card from your hand:
+								<br />
+								up to 1 of your leader characters gain +4000 power during the battle.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block">
+				<div class="section-header decklist-header">
+					<div class="decklist-title-row">
+						<h2>Decklist</h2>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button>
+					</div>
+				</div>
+				<div class="deck-grid">
+					{
+						decklist.map((entry) => (
+							<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<div class="deck-info">
+									<span class="deck-count">{entry.count}x</span>
+									<div>
+										<div class="deck-name">{entry.name}</div>
+										<div class="deck-code">{entry.code}</div>
+									</div>
+								</div>
+								<span class="deck-role">{entry.role}</span>
+							</button>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="summary-grid">
+				<div class="glow-block conclusions-card">
+					<div class="section-tag section-tag-light">Conclusion</div>
+					<p class="ability-copy">
+						The leader's ability in combination with the cards revealed to increase the basic power seem to
+						take the gameplay in a very tank direction but at the moment it is not the correct choice. We
+						will see in the future if he will receive better support.
+					</p>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Matchup Favorable</span></div>
+					<div class="matchup-row matchup-row-cards-only">
+						<div class="tip-cards">
+							{favorableMatchups.map((entry) => (
+								<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+									<img src={entry.image} alt={entry.alt} loading="lazy" />
+									<div class="mini-label">{entry.name}</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Matchup Unfavorable</span></div>
+					<div class="matchup-row matchup-row-cards-only">
+						<div class="tip-cards">
+							{unfavorableMatchups.map((entry) => (
+								<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+									<img src={entry.image} alt={entry.alt} loading="lazy" />
+									<div class="mini-label">{entry.name}</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true">
+		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
+			<button class="modal-close" type="button" data-close>Close</button>
+			<img src="" alt="" data-modal-image />
+			<div class="modal-effect-copy" data-modal-effect hidden></div>
+		</div>
+	</div>
+</MainLayout>
+
+<script>
+	const previewButtons = document.querySelectorAll("[data-card-preview]");
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const modalEffect = document.querySelector("[data-modal-effect]");
+	const closeButton = document.querySelector("[data-close]");
+	const copyButtons = document.querySelectorAll("[data-copy-sim]");
+	const keywordBadge = (icon, alt) => ({ type: "keyword", icon, alt });
+	const decklistEffectTextByCode = {
+		"OP17-001": [[keywordBadge("on-your-opponents-attack", "On Your Opponent's Attack"), " ", keywordBadge("once-per-turn", "Once Per Turn"), " You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +4000 power during this battle."]],
+		"OP17-003": [[keywordBadge("rush", "Rush"), " Character"], [keywordBadge("on-play", "On Play"), " If your Leader is [Edward Newgate] or has the {Land of Wano} type, give up to 1 of your opponent's rested Characters -6000 power during this turn."]],
+		"OP17-004": [[keywordBadge("on-play", "On Play"), " Up to 1 of your {Land of Wano} type Characters or up to 1 of your Characters with a type including \"Whitebeard Pirates\" gains ", keywordBadge("rush", "Rush"), " during this turn."], ["(This card can attack on the turn in which it is played.)"]],
+		"OP17-005": [["If your opponent has a Character with 10000 power or more, give this card in your hand -4 cost."], [keywordBadge("on-play", "On Play"), " Set the base power of your monocolored Leader to 8000 until the end of your opponent's next End Phase."]],
+		"OP17-007": [[keywordBadge("on-play", "On Play"), " If your Leader is [Edward Newgate] or has the {Land of Wano} type, play up to 1 Character card with a type including {Land of Wano} or \"Whitebeard Pirates\" with 6000 power or less from your hand."]],
+		"OP17-008": [[keywordBadge("on-play", "On Play"), " Your [Edward.Newgate] Leader's base power becomes 8000 until the end of your opponent's next End Phase."]],
+		"OP17-013": [["If your opponent has a Character with 10000 power or more, give this card in your hand -2 cost."], [keywordBadge("on-play", "On Play"), " If your Leader is [Edward.Newgate], give up to 1 of your opponent's rested Characters -6000 power during this turn."]],
+		"OP17-015": [["If one of your Characters would be removed from the field by your opponent's effect, you may K.O. this Character instead."], [keywordBadge("on-ko", "On K.O."), " You may trash 1 card with a type including \"Whitebeard Pirates\" from your hand: Play this Character card from your trash."]],
+		"OP17-016": [[keywordBadge("on-play", "On Play"), " K.O. up to 2 of your opponent's Characters with 2000 base power or less."]],
+		"OP17-019": [[keywordBadge("main", "Main"), " Look at 5 cards from the top of your deck; reveal up to 1 card with a type including \"Whitebeard Pirates\" and add it to your hand. Then, place the rest at the bottom of your deck in any order."], [keywordBadge("trigger", "Trigger"), " Your Leader gains +1000 power during this turn."]],
+	};
+
+	const openModal = (button) => {
+		if (!modal || !modalImage) return;
+		const full = button.getAttribute("data-full");
+		const name = button.getAttribute("data-name") || "Card preview";
+		const code = button.getAttribute("data-code");
+		const effectLines = code?.startsWith("OP17") ? decklistEffectTextByCode[code] : null;
+		modalImage.setAttribute("src", full);
+		modalImage.setAttribute("alt", name);
+		if (modalEffect) {
+			modalEffect.innerHTML = "";
+			if (effectLines?.length) {
+				effectLines.forEach((line) => {
+					const paragraph = document.createElement("p");
+					const normalizedLine = Array.isArray(line) ? line : [line];
+					normalizedLine.forEach((part) => {
+						if (typeof part === "string") paragraph.appendChild(document.createTextNode(part));
+						else if (part?.type === "keyword") {
+							const image = document.createElement("img");
+							image.className = "modal-keyword-badge";
+							image.src = `/assets/keywords/${part.icon}.png`;
+							image.alt = part.alt;
+							paragraph.appendChild(image);
+						}
+					});
+					modalEffect.appendChild(paragraph);
+				});
+				modalEffect.hidden = false;
+			} else {
+				modalEffect.hidden = true;
+			}
+		}
+		modal.classList.add("is-open");
+		modal.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+	};
+
+	const closeModal = () => {
+		if (!modal || !modalImage) return;
+		modal.classList.remove("is-open");
+		modal.setAttribute("aria-hidden", "true");
+		modalImage.setAttribute("src", "");
+		modalImage.setAttribute("alt", "");
+		if (modalEffect) { modalEffect.innerHTML = ""; modalEffect.hidden = true; }
+		document.body.style.overflow = "";
+	};
+
+	previewButtons.forEach((button) => button.addEventListener("click", () => openModal(button)));
+	closeButton?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+	document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal?.classList.contains("is-open")) closeModal(); });
+	copyButtons.forEach((button) => {
+		button.addEventListener("click", async () => {
+			const simDeck = button.getAttribute("data-sim-deck");
+			if (!simDeck) return;
+			const previous = button.textContent?.trim();
+			try {
+				await navigator.clipboard.writeText(simDeck);
+				button.textContent = "Copied";
+				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
+			} catch {
+				button.textContent = "Copy failed";
+				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
+			}
+		});
+	});
+</script>
+
+<style>
+	:root { --first-look-accent: #e11818; --first-look-accent-soft: rgba(225, 24, 24, 0.18); --first-look-border: rgba(225, 24, 24, 0.34); }
+	.guide-hero { padding-top: 3.2rem; }
+	.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 415px); gap: 2rem; align-items: center; }
+	.hero-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
+	.hero-chip, .publish-banner { display: inline-flex; align-items: center; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid var(--first-look-border); background: rgba(12, 17, 30, 0.85); color: #f3f7ff; }
+	.hero-chip { font-size: 0.95rem; font-weight: 600; }
+	.hero-chip-accent { color: var(--accent); }
+	.hero-intro { max-width: 60ch; }
+	.publish-banner { margin-top: 1.25rem; font-weight: 600; }
+	.guide-icon { display: flex; justify-content: center; }
+	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+	.article-stack { display: grid; gap: 1rem; }
+	.summary-grid, .leader-details { display: grid; gap: 1rem; }
+	.summary-grid { grid-template-columns: 1.2fr 1fr 1fr; align-items: start; }
+	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(225,24,24,0.16), 0 0 22px rgba(225,24,24,0.08), 0 0 52px rgba(225,24,24,0.05); }
+	.leader-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; gap: 1.5rem; align-items: start; }
+	.leader-tag-wrap { grid-area: leaderTag; } .ability-tag-wrap { grid-area: abilityTag; } .leader-card-wrap { grid-area: card; } .leader-details { grid-area: ability; }
+	.section-tag { display: inline-flex; padding: 0.45rem 0.9rem; background: var(--first-look-accent-soft); color: #ffe6e6; margin-bottom: 1rem; border-radius: 999px; font-weight: 600; }
+	.section-tag-light { font-weight: 500; }
+	.detail-card, .deck-card { background: transparent; border: none; padding: 0; cursor: pointer; }
+	.detail-card img { width: 100%; max-width: 220px; border-radius: 16px; }
+	.info-box { background: rgba(8, 12, 22, 0.92); border: 1px solid rgba(225,24,24,0.22); border-radius: 22px; padding: 1rem 1.1rem; }
+	.ability-meta { margin: 0 0 0.85rem; color: var(--accent); font-size: 0.95rem; line-height: 1.45; font-weight: 400; }
+	.ability-copy { font-size: clamp(1rem, 1.35vw, 1.2rem); font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; margin: 0; }
+	.decklist-header { display: grid; gap: 0.45rem; }
+	.decklist-title-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+	.decklist-title-row h2 { margin: 0; }
+	.copy-sim-button { flex: 0 0 auto; }
+	.deck-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+	.deck-card { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem; display: grid; gap: 0.65rem; text-align: left; transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease; }
+	.deck-card:hover, .deck-card:focus-visible, .detail-card:hover, .detail-card:focus-visible { transform: translateY(-4px); outline: none; }
+	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
+	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
+	.deck-count { display: inline-flex; align-items: center; justify-content: center; padding: 0.22rem 0.55rem; border-radius: 999px; background: rgba(255, 107, 61, 0.12); color: var(--accent); font-size: 0.8rem; font-weight: 700; }
+	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
+	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
+	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
+	.matchup-badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 600; }
+	.badge-up { background: rgba(74, 222, 128, 0.14); color: #65f59b; }
+	.badge-down { background: rgba(255, 107, 107, 0.14); color: #ff7c7c; }
+	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; font-weight: 700; }
+	.matchup-row { display: grid; gap: 0.9rem; margin-top: 1rem; }
+	.matchup-row-cards-only { justify-items: center; }
+	.tip-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; width: 100%; }
+	.mini-card { background: transparent; border: none; padding: 0; text-align: center; }
+	.matchup-static-card img { width: 100%; max-width: 132px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.mini-label { display: block; margin-top: 0.45rem; font-size: 0.92rem; line-height: 1.25; }
+	.conclusions-card { display: grid; gap: 0.8rem; }
+	.card-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(5,8,16,0.82); padding: 1.5rem; z-index: 50; }
+	.card-modal.is-open { display: flex; }
+	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
+	.card-modal-inner > img { width: 100%; border-radius: 20px; }
+	.modal-effect-copy { background: rgba(12, 17, 30, 0.95); border: 1px solid var(--border); border-radius: 18px; padding: 1rem 1.1rem; display: grid; gap: 0.8rem; font-size: 1.125rem; }
+	.modal-effect-copy p { margin: 0; font-size: 1.125rem; line-height: 1.5; font-weight: 400; }
+	.modal-effect-copy :global(.modal-keyword-badge) { display: inline-block; height: 1.2em; width: auto; vertical-align: -0.18em; margin-right: 0.18em; }
+	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
+	@media (max-width: 980px) { .hero-grid, .summary-grid { grid-template-columns: 1fr; } .guide-icon, .detail-card { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+	@media (max-width: 640px) { .copy-sim-button { width: auto; justify-content: center; padding-inline: 0.9rem; min-width: 0; flex-shrink: 0; } .decklist-title-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 0.75rem; } .decklist-title-row .copy-sim-button { grid-column: 2; justify-self: end; } .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.7rem; } .deck-card img { max-width: 92px; } }
+	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .tip-cards { gap: 0.75rem; } .matchup-static-card img { max-width: 110px; } }
+</style>
