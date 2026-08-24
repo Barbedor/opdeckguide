@@ -40,7 +40,7 @@ export const cardsListPaths = getExtensions().map((extension) => `/cards-list/${
 export const tournamentDecklistPaths = [
 	"/tournaments-decklists/",
 	...tournamentFormats
-		.filter((format) => format.slug !== "op16-east")
+		.filter((format) => format.slug !== "op17-east")
 		.map((format) => `/tournaments-decklists/${format.slug}/`),
 ];
 

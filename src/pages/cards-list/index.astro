@@ -9,10 +9,25 @@ const description =
 	"Browse One Piece Card Game cards by extension, search exact card numbers, and jump from cards to related deck guides from one global hub.";
 
 const metadataAvailable = hasMetadata();
-
-const extensionSummaries = getExtensionSummaries();
+const featuredExtensionOrder = new Map([
+	["OP18", 0],
+	["EB05", 1],
+	["OP17", 2],
+]);
+const extensionSummaries = getExtensionSummaries().sort((a, b) => {
+	const aFeatured = featuredExtensionOrder.get(a.extension);
+	const bFeatured = featuredExtensionOrder.get(b.extension);
+	if (aFeatured !== undefined || bFeatured !== undefined) {
+		if (aFeatured === undefined) return 1;
+		if (bFeatured === undefined) return -1;
+		return aFeatured - bFeatured;
+	}
+	return 0;
+});
 const groupForExtension = (value) => {
 	const upper = value.toUpperCase();
+	if (upper === "OP17") return "OP";
+	if (featuredExtensionOrder.has(upper)) return "Featured";
 	if (upper.startsWith("OP")) return "OP";
 	if (upper.startsWith("EB")) return "EB";
 	if (upper.startsWith("PRB")) return "PRB";
@@ -32,7 +47,12 @@ for (const item of extensionSummaries) {
 	lastGroup = group;
 }
 
-const extensionLabel = (value) => (value === "P" ? "Promo" : value);
+const extensionLabel = (value) => {
+	if (value === "P") return "Promo";
+	if (value.toUpperCase() === "EB05") return "EB05 Heroines Edition vol.2";
+	if (value.toUpperCase() === "OP18") return "OP18 God’s Dominion";
+	return value;
+};
 ---
 
 <MainLayout title={title} description={description}>

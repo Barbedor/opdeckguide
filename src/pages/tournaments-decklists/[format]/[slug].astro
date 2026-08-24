@@ -12,7 +12,11 @@ export const getStaticPaths = () =>
 const { entry } = Astro.props;
 
 const forcedFormatCode =
-	entry.viewSlug === "op16-east" || entry.viewSlug === "op16-west" ? "OP16" : null;
+	entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west"
+		? "OP17"
+		: entry.viewSlug === "op16-east" || entry.viewSlug === "op16-west"
+			? "OP16"
+			: null;
 const displayTitle = entry.title.replace(
 	/\s+(OP\d+|EB\d+|ST\d+)\s+/,
 	(_, code) => ` (Format ${forcedFormatCode ?? code}) `,
@@ -30,8 +34,8 @@ const allowedGuideLeaderSlugs = new Set([
 const showDeckGuideButton =
 	Boolean(entry.leader.href) &&
 	entry.leader.href !== "/deck-guides/" &&
-	(leaderFormat === "OP16" || allowedGuideLeaderSlugs.has(entry.leader.slug));
-const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
+	((leaderFormat === "OP16" || leaderFormat === "OP17") || allowedGuideLeaderSlugs.has(entry.leader.slug));
+const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;

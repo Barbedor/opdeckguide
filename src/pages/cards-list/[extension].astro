@@ -15,9 +15,43 @@ const cards = getCardsForExtension(extension);
 const initialBatch = 96;
 const initialCards = cards.slice(0, initialBatch);
 const remainingCards = cards.slice(initialBatch);
-const extensionLabel = extension === "P" ? "Promo" : extension;
-const isLeakPage = extension.toUpperCase() === "OP17";
+const revealPageConfigs = {
+	EB05: {
+		badgeLabel: "EB05",
+		displayLabel: "EB05 Heroines Edition vol.2",
+		title: "EB05 Heroines Edition vol.2 Revealed Cards List | Female One Piece Characters",
+		description:
+			"Browse the officially revealed EB05 Heroines Edition vol.2 cards for the One Piece Card Game, a set centered on the female characters of One Piece. This page updates as Bandai reveals new cards while the URL stays the same.",
+		intro:
+			"This page tracks the currently revealed EB05 Heroines Edition vol.2 cards officially shown by Bandai for the One Piece Card Game. This set is centered on the female characters of One Piece, and new cards will be added here as they are revealed.",
+		faqIntro: "Quick answers about the current EB05 revealed cards page.",
+		faqCards:
+			"Not yet. This page currently lists only the revealed EB05 cards and will grow as more cards are officially shown by Bandai.",
+		faqSecondaryTitle: "Are these EB05 cards officially revealed?",
+		faqSecondaryAnswer: "Yes. This page only tracks cards that have been officially shown by Bandai.",
+	},
+	OP18: {
+		badgeLabel: "OP18",
+		displayLabel: "OP18 God’s Dominion",
+		title: "OP18 God’s Dominion Revealed Cards List | Holy Knights and Water 7 One Piece Card Game",
+		description:
+			"Browse the officially revealed OP18 God’s Dominion cards for the One Piece Card Game. OP18 is notably centered on the Holy Knights (God's Knights) and Water 7, and this page updates as Bandai reveals new cards while the URL stays the same.",
+		intro:
+			"This page tracks the currently revealed OP18 God’s Dominion cards officially shown by Bandai for the One Piece Card Game. OP18 is notably centered on the Holy Knights (God's Knights) and Water 7, and new cards will be added here as they are revealed.",
+		faqIntro: "Quick answers about the current OP18 revealed cards page.",
+		faqCards:
+			"Not yet. This page currently lists only the revealed OP18 cards and will grow as more cards are officially shown by Bandai.",
+		faqSecondaryTitle: "What is OP18 centered on?",
+		faqSecondaryAnswer:
+			"OP18 is notably centered on the Holy Knights (God's Knights) and Water 7, based on the cards officially revealed by Bandai so far.",
+	},
+};
+const revealPageConfig = revealPageConfigs[extension.toUpperCase()] ?? null;
+const extensionLabel = revealPageConfig?.displayLabel ?? (extension === "P" ? "Promo" : extension);
+const heroBadgeLabel = revealPageConfig?.badgeLabel ?? extensionLabel;
+const isLeakPage = Boolean(revealPageConfig);
 const useExpandedMobileCardGrid = !isLeakPage && /^(OP|EB)/i.test(extension.toUpperCase());
+const shouldShowAffiliateLink = (card) => !(extension.toUpperCase() === "OP17" && /^\/Cards\/OP17\/SP /i.test(card.fullUrl));
 const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
@@ -1613,6 +1647,151 @@ const leakCardDetails = {
 		traits: "Luffy and Loki",
 		effectLines: [],
 	},
+	"EB05-010": {
+		rarity: "Leader Card",
+		stats: "Green/Yellow / Life 4 / Wisdom / Power 5000",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("once-per-turn", "Once Per Turn"),
+				" When one of your Characters with the <Wisdom> attribute and without ",
+				keyword("blocker", "Blocker"),
+				" is K.O.'d, add up to 1 card from the top of your deck to the top of your Life cards.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" Set up to 1 of your Characters with the <Wisdom> attribute and 6000 power or less as active.",
+			],
+		],
+	},
+	"EB05-016": {
+		rarity: "SP",
+		headerBadge: "SUPER RARE",
+		stats: "Green / Cost 6 / Wisdom / Power 6000 / Counter 1000",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("your-turn", "Your Turn"),
+				" ",
+				keyword("on-play", "On Play"),
+				" Play up to 1 Character card with a cost of 5 or less and the <Wisdom> attribute from your hand.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Rest up to 1 of your opponent's Characters with a cost of 6 or less.",
+			],
+		],
+	},
+	"EB05-056": {
+		rarity: "Common",
+		stats: "Yellow / Cost 1 / Wisdom / Power 0 / Counter 2000",
+		traits: "Ohara",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 1 card with a ",
+				keyword("trigger", "Trigger"),
+				" from your hand: If your Leader is [Nico Robin], draw 2 cards.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Play this card.",
+			],
+		],
+	},
+	"OP18-021": {
+		rarity: "Leader Card",
+		stats: "Green / Purple / Life 4 / Strike / Power 5000",
+		traits: "Water Seven / The Franky Family / Straw Hat Crew",
+		effectLines: [
+			["All Stage cards in your hand have a +3000 Counter."],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" DON!! -1: Play up to 1 Stage card with a cost of 5 or less from your hand.",
+			],
+		],
+	},
+	"OP18-031": {
+		rarity: "Super Rare",
+		notes: ["MANGA"],
+		stats: "Green / Cost 4 / Wisdom / Power 5000 / Counter 1000",
+		traits: "Water Seven / Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("opponents-turn", "Opponent's Turn"),
+				" If your Character would be removed from the field by your opponent's effect, you may rest this Character instead.",
+			],
+			[
+				keyword("end-of-your-turn", "End of Your Turn"),
+				" Set up to 1 of your {Water Seven} type cards and up to 1 of your DON!! cards as active.",
+			],
+		],
+	},
+	"OP18-060": {
+		rarity: "Leader Card",
+		stats: "Black / Purple / Life 4 / Special / Power 5000",
+		traits: "Celestial Dragons / Holy Knights of God",
+		effectLines: [
+			[
+				keyword("once-per-turn", "Once Per Turn"),
+				" When a Character is played from your trash, draw 2 cards and trash 1 card from your hand.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: If you have a Character with 8000 base power or more, add up to 1 DON!! card as active from your DON!! deck.",
+			],
+		],
+	},
+	"OP18-065": {
+		rarity: "Super Rare",
+		stats: "Purple / Cost 10 / Power 11000",
+		traits: "Celestial Dragons / Holy Knights of God",
+		effectLines: [
+			[keyword("blocker", "Blocker")],
+			[
+				keyword("on-play", "On Play"),
+				" DON!! -1: Play up to 1 {Celestial Dragons} type Character card with 6000 power or less from your trash.",
+			],
+		],
+	},
+	"OP18-078": {
+		rarity: "Uncommon",
+		stats: "Purple / Cost 5",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 1 card, then add up to 1 DON!! card as rested from your DON!! deck.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest this Stage: Give up to a total of 4 of your Leader or Characters 1 rested DON!! card each.",
+			],
+		],
+	},
+	"OP18-???": {
+		rarity: "Secret Rare",
+		stats: "Yellow / Cost 8 / Slash / Power 9000",
+		traits: "Celestial Dragons / Holy Knights of God",
+		effectLines: [
+			[
+				keyword("on-ko", "On K.O."),
+				" You may trash 1 card from your hand: Play this Character card from your trash.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" If this Character was played on this turn, play up to 1 {Holy Knights of God} type Character card with a cost of 6 or less from your trash.",
+			],
+		],
+	},
 	"EB04-061": {
 		rarity: "Pirate Crew Super Alt Manga",
 		stats: "Yellow / Cost 10 / Strike / Power 12000",
@@ -1772,11 +1951,13 @@ const getLeakSortRank = (card) => {
 	if (card.rarity === "Gold") return 4;
 	if (card.code.startsWith("OP17-DON")) return 5;
 	if (card.code.startsWith("OP17-")) return 0;
+	if (card.code.startsWith("OP18-")) return 0;
 	return 2;
 };
 
 const getLeakSortCode = (code) => {
 	if (code === "OP17-0XX") return "OP17-086";
+	if (code === "OP18-???") return "OP18-079";
 	return code;
 };
 
@@ -1849,25 +2030,21 @@ const leakCards = isLeakPage
 const leakCount = leakCards.length;
 
 const title = isLeakPage
-	? `${extensionLabel} Revealed Cards List | One Piece Card Game`
+	? revealPageConfig.title
 	: `${extensionLabel} Card List | One Piece Card Game`;
 const description = isLeakPage
-	? `Browse the latest officially revealed ${extensionLabel} cards for the One Piece Card Game ahead of the set release on ${releaseDateLabel}. This page updates as Bandai reveals new cards while the URL stays the same.`
+	? revealPageConfig.description
 	: `Browse the full ${extensionLabel} card list, search exact card numbers, and open full-size One Piece Card Game previews instantly.`;
 ---
 
 <MainLayout title={title} description={description}>
 	<section class="hero">
 		<div class="container">
-			<span class="hero-badge">{extensionLabel}</span>
+			<span class="hero-badge">{heroBadgeLabel}</span>
 			<h1>{isLeakPage ? `${extensionLabel} Revealed Cards List` : `${extensionLabel} Card List`}</h1>
 			{isLeakPage ? (
 				<>
-					<p>
-						This page tracks the currently revealed {extensionLabel} cards officially shown by Bandai for
-						the One Piece Card Game ahead of the set release on {releaseDateLabel}. New cards will be added
-						here as they are revealed.
-					</p>
+					<p>{revealPageConfig.intro}</p>
 				</>
 			) : (
 				<p>
@@ -1969,7 +2146,7 @@ const description = isLeakPage
 						data-card-grid
 					>
 						{initialCards.map((card) => {
-							const affiliateCard = getAffiliateCard(card.code);
+							const affiliateCard = shouldShowAffiliateLink(card) ? getAffiliateCard(card.code) : null;
 							return (
 								<div class="card-thumb-shell">
 									<button
@@ -2013,7 +2190,7 @@ const description = isLeakPage
 			<div class="section-header faq-header">
 				<div>
 					<h2>{extensionLabel} FAQ</h2>
-					<p>{isLeakPage ? "Quick answers about the current OP17 revealed cards page." : "Quick answers for the most common card list questions."}</p>
+					<p>{isLeakPage ? revealPageConfig.faqIntro : "Quick answers for the most common card list questions."}</p>
 				</div>
 			</div>
 			<div class="faq-grid">
@@ -2021,15 +2198,15 @@ const description = isLeakPage
 					<h3>{isLeakPage ? `Can I browse every ${extensionLabel} card here?` : `Can I browse every ${extensionLabel} card here?`}</h3>
 					<p>
 						{isLeakPage
-							? `Not yet. This page currently lists only the revealed ${extensionLabel} cards and will grow as more cards are officially shown by Bandai.`
+							? revealPageConfig.faqCards
 							: `Yes. This page lists the full ${extensionLabel} card pool in one place.`}
 					</p>
 				</article>
 				<article class="faq-card">
-					<h3>{isLeakPage ? "When is OP17 scheduled to release?" : "Where can I find deck context?"}</h3>
+					<h3>{isLeakPage ? revealPageConfig.faqSecondaryTitle : "Where can I find deck context?"}</h3>
 					<p>
 						{isLeakPage ? (
-							<>The current target release date is {releaseDateLabel}. Until then, this page tracks the cards officially revealed by Bandai.</>
+							<>{revealPageConfig.faqSecondaryAnswer}</>
 						) : (
 							<>Use <a href="/deck-guides/">Deck Guides</a> to see how cards show up in real lists.</>
 						)}
@@ -2112,7 +2289,9 @@ const description = isLeakPage
 			button.appendChild(img);
 			shell.appendChild(button);
 			const affiliateCard = !isLeakPage ? affiliateCards[card.code] : null;
-			if (affiliateCard) {
+			const shouldShowAffiliateLink =
+				!(card.fullUrl && /^\/Cards\/OP17\/SP /i.test(card.fullUrl)) && affiliateCard;
+			if (shouldShowAffiliateLink) {
 				const link = document.createElement("a");
 				link.className = "card-affiliate-link";
 				link.href = affiliateCard.affiliateUrl;
@@ -2544,15 +2723,15 @@ const description = isLeakPage
 		}
 
 		.cards-grid {
-			grid-template-columns: repeat(3, minmax(96px, 96px));
-			justify-content: center;
-			gap: 0.55rem;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			justify-content: stretch;
+			gap: 0.4rem;
 		}
 
 		:global(.cards-grid-expanded-mobile) {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			justify-content: stretch;
-			gap: 0.45rem;
+			gap: 0.4rem;
 		}
 
 		:global(.cards-grid-expanded-mobile .card-thumb-shell) {

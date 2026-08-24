@@ -6,12 +6,12 @@ import {
 	tournamentFormats,
 } from "../../lib/tournamentDecklists";
 
-const defaultFormat = "op16-east";
+const defaultFormat = "op17-east";
 const formatConfig = tournamentFormats.find((format) => format.slug === defaultFormat);
 
-const title = "One Piece TCG Tournament Decklists OP16 | East and West Winners";
+const title = "One Piece TCG Tournament Decklists OP17 | East and West Winners";
 const description =
-	"Browse winning One Piece TCG tournament decklists for OP16 across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
+	"Browse winning One Piece TCG tournament decklists for OP17 across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -19,8 +19,8 @@ const description =
 		currentFormat={defaultFormat}
 		entries={getTournamentEntriesByFormat(defaultFormat)}
 		formatConfig={formatConfig}
-		heroTitle="One Piece TCG OP16 Tournament Decklists"
-		heroIntro="Track winning One Piece TCG tournament decklists for the OP16 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
+		heroTitle="One Piece TCG OP17 Tournament Decklists"
+		heroIntro="Track winning One Piece TCG tournament decklists for the OP17 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
 		showSeoContent={true}
 	/>
 </MainLayout>

@@ -65,7 +65,7 @@ const allLeaderStats = leaderStats.map((item) => {
 const topLeaderStats = allLeaderStats.slice(0, 10);
 const extraLeaderStats = allLeaderStats.slice(10);
 const hasExtraLeaders = extraLeaderStats.length > 0;
-const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
+const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 ---
 
 <section class="hero tournament-hero">
@@ -514,22 +514,24 @@ const getFormatHref = (slug) => (slug === "op16-east" ? "/tournaments-decklists/
 
 	.format-tabs {
 		display: flex;
-		gap: 0.65rem;
+		gap: 0.45rem;
 		margin-top: 1rem;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 	}
 
 	.format-tab {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-width: 86px;
-		padding: 0.72rem 1rem;
+		min-width: 72px;
+		padding: 0.58rem 0.72rem;
 		border-radius: 999px;
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		background: rgba(17, 21, 34, 0.95);
 		color: var(--text-200);
 		font-weight: 700;
+		font-size: 0.9rem;
+		white-space: nowrap;
 	}
 
 	.format-tab.active {

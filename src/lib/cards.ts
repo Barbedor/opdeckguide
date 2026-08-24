@@ -672,6 +672,80 @@ const manualCardOverrides = {
 			color: "Yellow",
 		},
 	},
+	EB05: {
+		"eb05-010 nico robin": {
+			code: "EB05-010",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"eb05-010 nico robin ": {
+			code: "EB05-010",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"eb05-016 nico robin": {
+			code: "EB05-016",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"eb05-016 nico robin ": {
+			code: "EB05-016",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"sp eb05-016 nico robin": {
+			code: "EB05-016",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"sp eb05-016 nico robin ": {
+			code: "EB05-016",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"eb05-056 nico olivia": {
+			code: "EB05-056",
+			name: "Nico Olivia",
+			color: "Yellow",
+		},
+	},
+	OP18: {
+		"leader op18-021 franky": {
+			code: "OP18-021",
+			name: "Franky",
+			color: "Green",
+		},
+		"leader alt op18-021 franky": {
+			code: "OP18-021",
+			name: "Franky",
+			color: "Green",
+		},
+		"manga op18-031 nico robin": {
+			code: "OP18-031",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"op18 saint shamrock": {
+			code: "OP18-???",
+			name: "Saint Shamrock",
+			color: "Yellow",
+		},
+		"op18-060 saint gunko": {
+			code: "OP18-060",
+			name: "Saint Gunko",
+			color: "Black",
+		},
+		"alt op18-065 saint gunko": {
+			code: "OP18-065",
+			name: "Saint Gunko",
+			color: "Purple",
+		},
+		"op18-078 mini-merry": {
+			code: "OP18-078",
+			name: "Mini-Merry",
+			color: "Purple",
+		},
+	},
 };
 
 export const colorOrder = [
@@ -787,19 +861,20 @@ const getOp17VariantDisplayLabel = (code, variant) => {
 	return variant;
 };
 
-const isStandaloneOp17Variant = (code, variant) =>
-	variant === "TREASURE RARE" || (code === "OP17-118" && variant === "MANGA");
-
 const getOp17CardRank = (card) => {
-	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
-	if (card.edition === "TREASURE RARE" || /treasure rare/i.test(card.fullUrl ?? "")) return 2;
+	if (card.edition === "TREASURE RARE" || /treasure rare/i.test(card.fullUrl ?? "")) return 0;
+	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 3;
+	if (["OP13-028", "P-084", "ST27-005"].includes(card.code)) return 1;
+	if (card.code.startsWith("OP17-DON")) return 6;
 	if (card.code.startsWith("OP17-")) return 0;
-	if (["OP13-028", "P-084", "ST27-005", "ST31-004"].includes(card.code)) return 3;
+	if (["EB04-007", "OP12-056", "OP14-108", "P-107", "ST32-002"].includes(card.code)) return 4;
+	if (card.code === "ST31-004") return 5;
 	return 1;
 };
 
 const getOp17SortCode = (card) => {
 	const explicitAnchors = {
+		"OP17-040-TREASURE RARE": "OP17-039.1",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
 		"OP17-017": "OP17-018.85",
@@ -814,6 +889,8 @@ const getOp17SortCode = (card) => {
 		"OP17-PEROSPERO": "OP17-115.8",
 		"OP17-CODE-OF-HONOR": "OP17-115.9",
 	};
+	const keyedEdition = card.edition ? `${card.code}-${card.edition}` : null;
+	if (keyedEdition && explicitAnchors[keyedEdition]) return explicitAnchors[keyedEdition];
 	if (explicitAnchors[card.code]) return explicitAnchors[card.code];
 	if (/^OP17-[A-Z]/.test(card.code) && !card.code.startsWith("OP17-DON")) {
 		return `${card.code}-${card.name}`;
@@ -821,25 +898,58 @@ const getOp17SortCode = (card) => {
 	return card.code;
 };
 
-const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
-	const overrides = manualCardOverrides.OP17 ?? {};
+const shouldKeepOp17SpecialFile = (file) => {
+	const normalized = normalizeOverrideKey(file);
+	if (normalized === "op17-054 alt.jpg" || normalized === "op17-054 alt") return false;
+	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
+	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
+	return (
+		normalized.includes("sp ") ||
+		normalized.includes(" alt gold") ||
+		normalized.includes(" manga") ||
+		normalized.includes("don!!") ||
+		normalized.includes("pirate crew super alt manga") ||
+		normalized.includes("treasure rare") ||
+		normalized.includes(" alt") ||
+		normalized.includes("alt (2)")
+	);
+};
+
+const getOp18VariantLabel = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("leader alt ")) return "ALT";
+	if (normalized.startsWith("alt ")) return "ALT";
+	if (normalized.startsWith("manga ")) return "MANGA";
+	return null;
+};
+
+const stripOp18VariantPrefix = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("leader alt ")) return base.slice("Leader ALT ".length).trim();
+	if (normalized.startsWith("leader ")) return base.slice("Leader ".length).trim();
+	if (normalized.startsWith("alt ")) return base.slice("ALT ".length).trim();
+	if (normalized.startsWith("manga ")) return base.slice("MANGA ".length).trim();
+	return base.trim();
+};
+
+const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
+	const overrides = manualCardOverrides.OP18 ?? {};
 	const groups = new Map();
 
 	for (const file of files) {
 		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
 		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
-		const variant = getOp17VariantLabel(base);
-		const canonicalBase = stripOp17VariantSuffix(base);
-		const override = overrides[normalizeOverrideKey(canonicalBase)] ?? {};
+		const canonicalBase = stripOp18VariantPrefix(base);
+		const variant = getOp18VariantLabel(base);
+		const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
 		const code = override.code ?? extractCodeFromBase(canonicalBase);
 		if (!code) continue;
 		const meta = metadataIndex.get(code) ?? {};
 		const name = override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code;
 		const cardColor = override.color ?? meta.color ?? "Other";
-		const fullUrl = `/Cards/OP17/${file}`;
+		const fullUrl = `/Cards/OP18/${file}`;
 		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl;
-		const groupKey = isStandaloneOp17Variant(code, variant) ? `${code}::${variant}` : code;
-		const group = groups.get(groupKey) ?? [];
+		const group = groups.get(code) ?? [];
 		group.push({
 			code,
 			name,
@@ -848,17 +958,17 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 			smallUrl,
 			variant,
 		});
-		groups.set(groupKey, group);
+		groups.set(code, group);
 	}
 
-	return [...groups.entries()]
-		.map(([, entries]) => {
+	return [...groups.values()]
+		.map((entries) => {
 			const sortedEntries = sortByVariantPriority(entries);
 			const primary = sortedEntries[0];
 			const variants = sortedEntries
 				.slice(1)
 				.map((entry) => ({
-					label: getOp17VariantDisplayLabel(entry.code, entry.variant),
+					label: entry.variant,
 					fullUrl: entry.fullUrl,
 					smallUrl: entry.smallUrl,
 				}))
@@ -870,10 +980,56 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 				color: primary.color,
 				smallUrl: primary.smallUrl,
 				fullUrl: primary.fullUrl,
-				edition: getOp17VariantDisplayLabel(primary.code, primary.variant) ?? null,
+				edition: primary.variant ?? null,
 				variants,
 			};
 		})
+		.sort((a, b) => a.code.localeCompare(b.code, "en"));
+};
+
+const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
+	const overrides = manualCardOverrides.OP17 ?? {};
+	const rootPath = path.join(cardsRoot, "OP17");
+	const basePath = path.join(rootPath, "New OP17");
+	const cards = [];
+
+	if (fs.existsSync(basePath)) {
+		for (const file of fs.readdirSync(basePath)) {
+			if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
+			const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+			const code = base.toUpperCase();
+			const meta = metadataIndex.get(code) ?? {};
+			cards.push({
+				code,
+				name: meta.name ?? code,
+				color: meta.color ?? "Other",
+				smallUrl: `/Cards/OP17/New%20OP17/${file}`,
+				fullUrl: `/Cards/OP17/New%20OP17/${file}`,
+			});
+		}
+	}
+
+	for (const file of files) {
+		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
+		if (!shouldKeepOp17SpecialFile(file)) continue;
+		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		const variant = getOp17VariantLabel(base);
+		const canonicalBase = stripOp17VariantSuffix(base);
+		const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
+		const code = override.code ?? extractCodeFromBase(canonicalBase);
+		if (!code) continue;
+		const meta = metadataIndex.get(code) ?? {};
+		cards.push({
+			code,
+			name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
+			color: override.color ?? meta.color ?? "Other",
+			smallUrl: `/Cards/OP17/${file}`,
+			fullUrl: `/Cards/OP17/${file}`,
+			edition: getOp17VariantDisplayLabel(code, variant) ?? null,
+		});
+	}
+
+	return cards
 		.sort((a, b) => {
 			const rankDiff = getOp17CardRank(a) - getOp17CardRank(b);
 			if (rankDiff !== 0) return rankDiff;
@@ -936,10 +1092,13 @@ export const getCardsForExtension = (extension) => {
 	if (extension.toUpperCase() === "OP17") {
 		return getCardsForOp17(files, smallByBase, metadataIndex);
 	}
+	if (extension.toUpperCase() === "OP18") {
+		return getCardsForOp18(files, smallByBase, metadataIndex);
+	}
 
 	return [...fullByBase.entries()]
 		.map(([base, fullUrl]) => {
-			const override = overrides[base.toLowerCase()] ?? {};
+			const override = overrides[base.toLowerCase()] ?? overrides[base.toLowerCase().trim()] ?? {};
 			const code = override.code ?? base.toUpperCase();
 			const meta = metadataIndex.get(code) ?? metadataIndex.get(base) ?? {};
 			return {

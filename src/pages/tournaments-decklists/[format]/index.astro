@@ -8,7 +8,7 @@ import {
 
 export const getStaticPaths = () =>
 	tournamentFormats
-		.filter((format) => format.slug !== "op16-east")
+		.filter((format) => format.slug !== "op17-east")
 		.map((format) => ({
 		params: { format: format.slug },
 		props: { format },
@@ -16,9 +16,19 @@ export const getStaticPaths = () =>
 
 const { format } = Astro.props;
 const entries = getTournamentEntriesByFormat(format.slug);
-const title = "One Piece TCG Tournament Decklists OP16 | East and West Winners";
-const description =
-	"Browse winning One Piece TCG tournament decklists for OP16 across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
+const isOp17Format = format.entryFormat === "op17";
+const title = isOp17Format
+	? "One Piece TCG Tournament Decklists OP17 | East and West Winners"
+	: "One Piece TCG Tournament Decklists | East and West Winners";
+const description = isOp17Format
+	? "Browse winning One Piece TCG tournament decklists for OP17 across East and West formats. Track top leaders, recent results, and the latest competitive builds."
+	: "Browse winning One Piece TCG tournament decklists across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
+const heroTitle = isOp17Format
+	? "One Piece TCG OP17 Tournament Decklists"
+	: "One Piece TCG Tournament Decklists";
+const heroIntro = isOp17Format
+	? "Track winning One Piece TCG tournament decklists for the OP17 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
+	: "Track winning One Piece TCG tournament decklists across East and West formats. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta.";
 ---
 
 <MainLayout title={title} description={description}>
@@ -26,8 +36,8 @@ const description =
 		currentFormat={format.slug}
 		entries={entries}
 		formatConfig={format}
-		heroTitle="One Piece TCG OP16 Tournament Decklists"
-		heroIntro="Track winning One Piece TCG tournament decklists for the OP16 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
+		heroTitle={heroTitle}
+		heroIntro={heroIntro}
 		showSeoContent={true}
 	/>
 </MainLayout>
