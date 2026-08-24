@@ -34,6 +34,7 @@ const allowedGuideLeaderSlugs = new Set([
 const showDeckGuideButton =
 	Boolean(entry.leader.href) &&
 	entry.leader.href !== "/deck-guides/" &&
+	entry.viewSlug !== "op17-east" &&
 	((leaderFormat === "OP16" || leaderFormat === "OP17") || allowedGuideLeaderSlugs.has(entry.leader.slug));
 const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
