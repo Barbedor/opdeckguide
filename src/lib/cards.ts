@@ -703,6 +703,16 @@ const manualCardOverrides = {
 			name: "Nico Robin",
 			color: "Green",
 		},
+		"eb05-042 shinobu": {
+			code: "EB05-042",
+			name: "Shinobu",
+			color: "Black",
+		},
+		"sp op01-016": {
+			code: "OP01-016",
+			name: "Nami",
+			color: "Red",
+		},
 		"eb05-056 nico olivia": {
 			code: "EB05-056",
 			name: "Nico Olivia",

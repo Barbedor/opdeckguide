@@ -1684,6 +1684,12 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"EB05-042": {
+		rarity: "Common",
+		stats: "Black / Cost 4 / Special / Power 5000 / Counter 2000",
+		traits: "Land of Wano",
+		effectLines: [[keyword("on-play", "On Play"), " Draw 2 cards and trash 2 cards from your hand."]],
+	},
 	"EB05-056": {
 		rarity: "Common",
 		stats: "Yellow / Cost 1 / Wisdom / Power 0 / Counter 2000",
@@ -1698,6 +1704,18 @@ const leakCardDetails = {
 			[
 				keyword("trigger", "Trigger"),
 				" Play this card.",
+			],
+		],
+	},
+	"OP01-016": {
+		rarity: "SP",
+		headerBadge: "RARE",
+		stats: "Red / Cost 1 / Special / Power 2000 / Counter 1000",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Look at 5 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card other than [Nami] and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
 			],
 		],
 	},
@@ -1945,6 +1963,7 @@ const leakCardDetails = {
 };
 const getLeakSortRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
+	if (card.code === "OP01-016") return 6;
 	if (card.rarity === "SP") return 2;
 	if (card.code === "OP17-040") return 0;
 	if (card.rarity === "Treasure Rare") return 3;
