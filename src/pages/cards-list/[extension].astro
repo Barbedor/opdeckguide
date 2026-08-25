@@ -51,7 +51,13 @@ const extensionLabel = revealPageConfig?.displayLabel ?? (extension === "P" ? "P
 const heroBadgeLabel = revealPageConfig?.badgeLabel ?? extensionLabel;
 const isLeakPage = Boolean(revealPageConfig);
 const useExpandedMobileCardGrid = !isLeakPage && /^(OP|EB)/i.test(extension.toUpperCase());
-const shouldShowAffiliateLink = (card) => !(extension.toUpperCase() === "OP17" && /^\/Cards\/OP17\/SP /i.test(card.fullUrl));
+const shouldShowAffiliateLink = (card) => {
+	if (extension.toUpperCase() !== "OP17") return true;
+	if (/^\/Cards\/OP17\/SP /i.test(card.fullUrl)) return false;
+	if (/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl)) return false;
+	if (/\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl)) return false;
+	return true;
+};
 const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
@@ -2309,7 +2315,15 @@ const description = isLeakPage
 			shell.appendChild(button);
 			const affiliateCard = !isLeakPage ? affiliateCards[card.code] : null;
 			const shouldShowAffiliateLink =
-				!(card.fullUrl && /^\/Cards\/OP17\/SP /i.test(card.fullUrl)) && affiliateCard;
+				affiliateCard &&
+				!(
+					card.fullUrl &&
+					(
+						/^\/Cards\/OP17\/SP /i.test(card.fullUrl) ||
+						/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl) ||
+						/\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl)
+					)
+				);
 			if (shouldShowAffiliateLink) {
 				const link = document.createElement("a");
 				link.className = "card-affiliate-link";

@@ -336,6 +336,11 @@ const manualCardOverrides = {
 			name: "King",
 			color: "Purple",
 		},
+		"op17-065": {
+			code: "OP17-065",
+			name: "Queen",
+			color: "Purple",
+		},
 		"op17-066": {
 			code: "OP17-066",
 			name: "Kurozumi Orochi",
@@ -384,6 +389,11 @@ const manualCardOverrides = {
 		"op17-jack": {
 			code: "OP17-JACK",
 			name: "Jack",
+			color: "Purple",
+		},
+		"op17-077": {
+			code: "OP17-077",
+			name: "Gundari Meteor Shower",
 			color: "Purple",
 		},
 		"op17-078": {
@@ -651,7 +661,17 @@ const manualCardOverrides = {
 			name: "Monkey.D.Luffy",
 			color: "Red",
 		},
+		"gold luffy": {
+			code: "ST31-004",
+			name: "Monkey.D.Luffy",
+			color: "Red",
+		},
 		"img_20260712_193630": {
+			code: "OP16-098",
+			name: "Yamato",
+			color: "Black",
+		},
+		"yamato spop16-098_p2": {
 			code: "OP16-098",
 			name: "Yamato",
 			color: "Black",
@@ -886,9 +906,9 @@ const getOp17CardRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 3;
 	if (["OP13-028", "P-084", "ST27-005"].includes(card.code)) return 1;
 	if (card.code.startsWith("OP17-DON")) return 6;
+	if (card.code === "ST31-004") return 0;
 	if (card.code.startsWith("OP17-")) return 0;
 	if (["EB04-007", "OP12-056", "OP14-108", "P-107", "ST32-002"].includes(card.code)) return 4;
-	if (card.code === "ST31-004") return 5;
 	return 1;
 };
 
@@ -909,6 +929,8 @@ const getOp17SortCode = (card) => {
 		"OP17-OVEN": "OP17-115.7",
 		"OP17-PEROSPERO": "OP17-115.8",
 		"OP17-CODE-OF-HONOR": "OP17-115.9",
+		"ST31-004": "OP17-119.1",
+		"OP16-098": "P-107.1",
 	};
 	const keyedEdition = card.edition ? `${card.code}-${card.edition}` : null;
 	if (keyedEdition && explicitAnchors[keyedEdition]) return explicitAnchors[keyedEdition];
@@ -926,6 +948,8 @@ const shouldKeepOp17SpecialFile = (file) => {
 	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
 	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
 	if (normalized === "shanks op17-020.png") return true;
+	if (normalized === "gold luffy.png" || normalized === "gold luffy") return true;
+	if (normalized === "yamato spop16-098_p2.png" || normalized === "yamato spop16-098_p2") return true;
 	return (
 		normalized.includes("sp ") ||
 		normalized.includes(" alt gold") ||
