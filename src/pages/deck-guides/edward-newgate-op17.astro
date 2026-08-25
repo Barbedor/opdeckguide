@@ -21,23 +21,23 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
-const leader = card("OP17-001", "Edward.Newgate", "/Cards/OP17/op17-001 edward newgate.png", 1, "Leader");
+const leader = card("OP17-001", "Edward.Newgate", "/Cards/OP17/New OP17/OP17-001.jpg", 1, "Leader");
 
 const decklist = [
 	leader,
 	card("ST15-004", "Thatch", "/Cards/ST15/ST15-004.png", 4),
 	card("OP10-005", "Sanji", "/Cards/OP10/OP10-005.jpg", 4),
-	card("OP17-004", "Inuarashi & Nekomamushi", "/Cards/OP17/Inuarashi and Nekomamushi op17-004.jpg", 4),
-	card("OP17-016", "Rakuyo", "/Cards/OP17/OP17 Rakuyo.jpg", 4),
-	card("OP17-003", "Izo", "/Cards/OP17/op17-003 Izo.jpg", 4),
+	card("OP17-004", "Inuarashi & Nekomamushi", "/Cards/OP17/New OP17/OP17-004.jpg", 4),
+	card("OP17-016", "Rakuyo", "/Cards/OP17/New OP17/OP17-016.jpg", 4),
+	card("OP17-003", "Izo", "/Cards/OP17/New OP17/OP17-003.jpg", 4),
 	card("OP16-118", "Portgas.D.Ace", "/Cards/OP16/OP16-118.jpg", 4),
-	card("OP17-015", "Marco", "/Cards/OP17/Marco op17-015.jpg", 3),
-	card("OP17-008", "Jozu", "/Cards/OP17/Jozu op17-008.jpg", 4),
-	card("OP17-013", "Portgas.D.Ace", "/Cards/OP17/Portgas.D.Ace op17-013.jpg", 4),
-	card("OP17-007", "Kouzuki Oden", "/Cards/OP17/Kouzuki Oden op17-007.jpg", 4),
+	card("OP17-015", "Marco", "/Cards/OP17/New OP17/OP17-015.jpg", 3),
+	card("OP17-008", "Jozu", "/Cards/OP17/New OP17/OP17-008.jpg", 4),
+	card("OP17-013", "Portgas.D.Ace", "/Cards/OP17/New OP17/OP17-013.jpg", 4),
+	card("OP17-007", "Kouzuki Oden", "/Cards/OP17/New OP17/OP17-007.jpg", 4),
 	card("OP09-118", "Gol.D.Roger", "/Cards/OP09/OP09-118.jpg", 1),
-	card("OP17-005", "Edward.Newgate", "/Cards/OP17/op17-005 edward newgate.jpg", 4),
-	card("OP17-019", "I Don't Have Time to Chat with Snot-Nosed Brats", "/Cards/OP17/op-17-019.jpg", 2, "Event"),
+	card("OP17-005", "Edward.Newgate", "/Cards/OP17/New OP17/OP17-005.jpg", 4),
+	card("OP17-019", "I Don't Have Time to Chat with Snot-Nosed Brats", "/Cards/OP17/New OP17/OP17-019.jpg", 2, "Event"),
 	card("OP16-021", "Moby Dick", "/Cards/OP16/OP16-021.jpg", 4, "Stage"),
 ];
 
@@ -174,7 +174,6 @@ const unfavorableMatchups = [
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
 			<img src="" alt="" data-modal-image />
-			<div class="modal-effect-copy" data-modal-effect hidden></div>
 		</div>
 	</div>
 </MainLayout>

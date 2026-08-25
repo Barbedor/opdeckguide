@@ -26,27 +26,27 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
-const leader = card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/op17-079%20Monkey.D.Luffy.png", 1, "Leader");
+const leader = card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader");
 
 const decklist = [
-	card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/op17-079%20Monkey.D.Luffy.png", 1, "Leader"),
-	card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/Tony%20Tony.Chopper%20op17-084.jpg", 2),
-	card("OP17-086", "Nami", "/Cards/OP17/Nami%20op17-085.jpg", 4),
-	card("OP17-094", "Rodo", "/Cards/OP17/op17-094.jpg", 2),
-	card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg", 4),
-	card("OP17-081", "Gerd", "/Cards/OP17/Gerd%20op17-081.jpg", 4),
-	card("OP17-095", "Roronoa Zoro", "/Cards/OP17/Roronoa%20Zoro%20op17-095.jpg", 2),
-	card("OP17-091", "Brook", "/Cards/OP17/op17-091%20Brook.jpg", 2),
-	card("OP17-083", "Jinbe", "/Cards/OP17/Jinbe%20op17-083.jpg", 2),
-	card("OP17-082", "Sanji", "/Cards/OP17/Sanji%20op17-082.jpg", 4),
-	card("OP17-087", "Nico Robin", "/Cards/OP17/Nico%20Robin%20op17-087.jpg", 2),
-	card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/Jaguar.D.%20Saul%20op17-089.jpg", 4),
-	card("OP17-085", "Dorry", "/Cards/OP17/Dorry%20op17-0XX.jpg", 3),
-	card("OP17-092", "Brogy", "/Cards/OP17/op17-092.jpg", 3),
-	card("OP17-119", "Loki", "/Cards/OP17/op17-119-loki.png", 4),
-	card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/op17-093Monkey.D.Luffy.jpg", 4),
-	card("OP17-098", "Gum-Gum Kong Pistol", "/Cards/OP17/op17-098.jpg", 2, "Event"),
-	card("OP17-097", "Instead I'll Feed on this Rage!! And Use It to Bring the World to Ruin!!", "/Cards/OP17/op17-097.jpg", 2, "Event"),
+	card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader"),
+	card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/New OP17/OP17-084.jpg", 2),
+	card("OP17-086", "Nami", "/Cards/OP17/New OP17/OP17-086.jpg", 4),
+	card("OP17-094", "Rodo", "/Cards/OP17/New OP17/OP17-094.jpg", 2),
+	card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg", 4),
+	card("OP17-081", "Gerd", "/Cards/OP17/New OP17/OP17-081.jpg", 4),
+	card("OP17-095", "Roronoa Zoro", "/Cards/OP17/New OP17/OP17-095.jpg", 2),
+	card("OP17-091", "Brook", "/Cards/OP17/New OP17/OP17-091.jpg", 2),
+	card("OP17-083", "Jinbe", "/Cards/OP17/New OP17/OP17-083.jpg", 2),
+	card("OP17-082", "Sanji", "/Cards/OP17/New OP17/OP17-082.jpg", 4),
+	card("OP17-087", "Nico Robin", "/Cards/OP17/New OP17/OP17-087.jpg", 2),
+	card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/New OP17/OP17-089.jpg", 4),
+	card("OP17-085", "Dorry", "/Cards/OP17/New OP17/OP17-085.jpg", 3),
+	card("OP17-092", "Brogy", "/Cards/OP17/New OP17/OP17-092.jpg", 3),
+	card("OP17-119", "Loki", "/Cards/OP17/New OP17/OP17-119.jpg", 4),
+	card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-093.jpg", 4),
+	card("OP17-098", "Gum-Gum Kong Pistol", "/Cards/OP17/New OP17/OP17-098.jpg", 2, "Event"),
+	card("OP17-097", "Instead I'll Feed on this Rage!! And Use It to Bring the World to Ruin!!", "/Cards/OP17/New OP17/OP17-097.jpg", 2, "Event"),
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
@@ -55,34 +55,34 @@ const curveGuide = [
 	{
 		label: "2 DON!!",
 		note: "Open with Usopp to search an Elbaph card and start stacking the trash.",
-		card: card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg"),
+		card: card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg"),
 	},
 	{
 		label: "4 DON!!",
 		note: "Play Jaguar.D. Saul to establish a 12-cost body while finding another Elbaph card.",
-		card: card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/Jaguar.D.%20Saul%20op17-089.jpg"),
+		card: card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/New OP17/OP17-089.jpg"),
 	},
 	{
 		label: "6 DON!!",
 		note: "Loki gives you a large 12-cost threat and controls the opponent's low-cost board.",
-		card: card("OP17-119", "Loki", "/Cards/OP17/op17-119-loki.png"),
+		card: card("OP17-119", "Loki", "/Cards/OP17/New OP17/OP17-119.jpg"),
 	},
 	{
 		label: "8 DON!!",
 		note: "Monkey.D.Luffy draws a card and brings one of your 2-cost Characters back from the trash.",
-		card: card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/op17-093Monkey.D.Luffy.jpg"),
+		card: card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-093.jpg"),
 	},
 ];
 
 const luffyTargets = [
-	{ note: "Trade board", card: card("OP17-087", "Nico Robin", "/Cards/OP17/Nico%20Robin%20op17-087.jpg") },
-	{ note: "Search and stack trash", card: card("OP17-080", "Usopp", "/Cards/OP17/Usopp%20op17-080.jpg") },
-	{ note: "Protect board", card: card("OP17-095", "Roronoa Zoro", "/Cards/OP17/Roronoa%20Zoro%20op17-095.jpg") },
-	{ note: "Unblockable", card: card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/Tony%20Tony.Chopper%20op17-084.jpg") },
-	{ note: "Cycle your hand", card: card("OP17-082", "Sanji", "/Cards/OP17/Sanji%20op17-082.jpg") },
-	{ note: "Gain tempo", card: card("OP17-091", "Brook", "/Cards/OP17/op17-091%20Brook.jpg") },
-	{ note: "Blocker", card: card("OP17-083", "Jinbe", "/Cards/OP17/Jinbe%20op17-083.jpg") },
-	{ note: "Recycle and block", card: card("OP17-081", "Gerd", "/Cards/OP17/Gerd%20op17-081.jpg") },
+	{ note: "Trade board", card: card("OP17-087", "Nico Robin", "/Cards/OP17/New OP17/OP17-087.jpg") },
+	{ note: "Search and stack trash", card: card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg") },
+	{ note: "Protect board", card: card("OP17-095", "Roronoa Zoro", "/Cards/OP17/New OP17/OP17-095.jpg") },
+	{ note: "Unblockable", card: card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/New OP17/OP17-084.jpg") },
+	{ note: "Cycle your hand", card: card("OP17-082", "Sanji", "/Cards/OP17/New OP17/OP17-082.jpg") },
+	{ note: "Gain tempo", card: card("OP17-091", "Brook", "/Cards/OP17/New OP17/OP17-091.jpg") },
+	{ note: "Blocker", card: card("OP17-083", "Jinbe", "/Cards/OP17/New OP17/OP17-083.jpg") },
+	{ note: "Recycle and block", card: card("OP17-081", "Gerd", "/Cards/OP17/New OP17/OP17-081.jpg") },
 ];
 ---
 
@@ -307,7 +307,6 @@ const luffyTargets = [
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
 			<img src="" alt="" data-modal-image />
-			<div class="modal-effect-copy" data-modal-effect hidden></div>
 		</div>
 	</div>
 </MainLayout>

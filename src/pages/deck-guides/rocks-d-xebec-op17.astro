@@ -26,25 +26,25 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
-const leader = card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/OP%2017-039%20ALT.jpg", 1, "Leader");
+const leader = card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/New OP17/OP17-039.jpg", 1, "Leader");
 const buckin = card("OP08-051", "Buckin", "/Cards/OP08/OP08-051.png", 3, "Character");
-const streusen = card("OP17-050", "Streusen", "/Cards/OP17/Streusen%20op17-050.jpg", 4, "Character");
-const kyo = card("OP17-045", "Kyo", "/Cards/OP17/Kyo%20op17-045.jpg", 4, "Character");
-const donMarlon = card("OP17-052", "Don Marlon", "/Cards/OP17/Don%20Marlon%20op17-052.jpg", 2, "Character");
-const missBuckingham = card("OP17-054", "Miss Buckingham Stussy", "/Cards/OP17/OP17-054%20ALT.jpg", 4, "Character");
-const kaido = card("OP17-042", "Kaido", "/Cards/OP17/op17-042.jpg", 2, "Character");
-const captainJohn = card("OP17-044", "Captain John", "/Cards/OP17/Captain%20John%20op17-044.jpg", 3, "Character");
-const gloriosa = card("OP17-046", "Gloriosa", "/Cards/OP17/Gloriosa%20op17-046.jpg", 4, "Character");
-const charlotteLinlin = card("OP17-049", "Charlotte Linlin", "/Cards/OP17/OP17-049%20ALT.jpg", 4, "Character");
-const edwardNewgate = card("OP17-040", "Edward.Newgate", "/Cards/OP17/op17-040%20TREASURE%20RARE.jpg", 4, "Character");
-const shiki = card("OP17-048", "Shiki", "/Cards/OP17/OP17-048%20ALT.jpg", 4, "Character");
-const rocksXebecCharacter = card("OP17-118", "Rocks.D.Xebec", "/Cards/OP17/op17-118.jpg", 4, "Character");
-const noAuthority = card("OP17-055", "There's No Authority in the World That Lasts Forever!!!", "/Cards/OP17/op17-055.jpg", 4, "Event");
-const rocksPirates = card("OP17-056", "Rocks Pirates", "/Cards/OP17/op17-056.jpg", 4, "Event");
-const fullalead = card("OP17-057", "Fullalead", "/Cards/OP17/Fullalead%20op17-057.jpg", null, "Stage");
+const streusen = card("OP17-050", "Streusen", "/Cards/OP17/New OP17/OP17-050.jpg", 4, "Character");
+const kyo = card("OP17-045", "Kyo", "/Cards/OP17/New OP17/OP17-045.jpg", 4, "Character");
+const donMarlon = card("OP17-052", "Don Marlon", "/Cards/OP17/New OP17/OP17-052.jpg", 2, "Character");
+const missBuckingham = card("OP17-054", "Miss Buckingham Stussy", "/Cards/OP17/New OP17/OP17-054.jpg", 4, "Character");
+const kaido = card("OP17-042", "Kaido", "/Cards/OP17/New OP17/OP17-042.jpg", 2, "Character");
+const captainJohn = card("OP17-044", "Captain John", "/Cards/OP17/New OP17/OP17-044.jpg", 3, "Character");
+const gloriosa = card("OP17-046", "Gloriosa", "/Cards/OP17/New OP17/OP17-046.jpg", 4, "Character");
+const charlotteLinlin = card("OP17-049", "Charlotte Linlin", "/Cards/OP17/New OP17/OP17-049.jpg", 4, "Character");
+const edwardNewgate = card("OP17-040", "Edward.Newgate", "/Cards/OP17/New OP17/OP17-040.jpg", 4, "Character");
+const shiki = card("OP17-048", "Shiki", "/Cards/OP17/New OP17/OP17-048.jpg", 4, "Character");
+const rocksXebecCharacter = card("OP17-118", "Rocks.D.Xebec", "/Cards/OP17/New OP17/OP17-118.jpg", 4, "Character");
+const noAuthority = card("OP17-055", "There's No Authority in the World That Lasts Forever!!!", "/Cards/OP17/New OP17/OP17-055.jpg", 4, "Event");
+const rocksPirates = card("OP17-056", "Rocks Pirates", "/Cards/OP17/New OP17/OP17-056.jpg", 4, "Event");
+const fullalead = card("OP17-057", "Fullalead", "/Cards/OP17/New OP17/OP17-057.jpg", null, "Stage");
 
 const decklist = [
-	card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/OP%2017-039%20ALT.jpg", 1, "Leader"),
+	card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/New OP17/OP17-039.jpg", 1, "Leader"),
 	buckin,
 	streusen,
 	kyo,
@@ -371,7 +371,6 @@ const tenDonPlays = [
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
 			<button class="modal-close" type="button" data-close>Close</button>
 			<img src="" alt="" data-modal-image />
-			<div class="modal-effect-copy" data-modal-effect hidden></div>
 		</div>
 	</div>
 </MainLayout>

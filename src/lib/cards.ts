@@ -101,6 +101,11 @@ const manualCardOverrides = {
 			name: "Shanks",
 			color: "Green",
 		},
+		"op17-020": {
+			code: "OP17-020",
+			name: "Shanks",
+			color: "Green",
+		},
 		"shanks op17-022": {
 			code: "OP17-022",
 			name: "Shanks",
@@ -227,6 +232,11 @@ const manualCardOverrides = {
 			color: "Blue",
 		},
 		"gloriosa op17-046": {
+			code: "OP17-046",
+			name: "Gloriosa",
+			color: "Blue",
+		},
+		"op17-046": {
 			code: "OP17-046",
 			name: "Gloriosa",
 			color: "Blue",
@@ -885,6 +895,7 @@ const getOp17CardRank = (card) => {
 const getOp17SortCode = (card) => {
 	const explicitAnchors = {
 		"OP17-040-TREASURE RARE": "OP17-039.1",
+		"OP17-020-ALT": "OP17-020.1",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
 		"OP17-017": "OP17-018.85",
@@ -911,8 +922,10 @@ const getOp17SortCode = (card) => {
 const shouldKeepOp17SpecialFile = (file) => {
 	const normalized = normalizeOverrideKey(file);
 	if (normalized === "op17-054 alt.jpg" || normalized === "op17-054 alt") return false;
+	if (normalized === "lead performers op17-061 alt.jpg" || normalized === "lead performers op17-061 alt") return false;
 	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
 	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
+	if (normalized === "shanks op17-020.png") return true;
 	return (
 		normalized.includes("sp ") ||
 		normalized.includes(" alt gold") ||
@@ -1007,14 +1020,19 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 		for (const file of fs.readdirSync(basePath)) {
 			if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
 			const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
-			const code = base.toUpperCase();
+			const variant = getOp17VariantLabel(base);
+			const canonicalBase = stripOp17VariantSuffix(base);
+			const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
+			const code = override.code ?? extractCodeFromBase(canonicalBase) ?? canonicalBase.toUpperCase();
+			if (code === "OP17-020" && !variant) continue;
 			const meta = metadataIndex.get(code) ?? {};
 			cards.push({
 				code,
-				name: meta.name ?? code,
-				color: meta.color ?? "Other",
+				name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
+				color: override.color ?? meta.color ?? "Other",
 				smallUrl: `/Cards/OP17/New%20OP17/${file}`,
 				fullUrl: `/Cards/OP17/New%20OP17/${file}`,
+				edition: getOp17VariantDisplayLabel(code, variant) ?? null,
 			});
 		}
 	}
