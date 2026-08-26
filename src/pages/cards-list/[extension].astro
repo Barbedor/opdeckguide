@@ -1,6 +1,10 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
-import { affiliateCards, getAffiliateCard } from "../../lib/affiliateCards";
+import {
+	cardsListAffiliateCards,
+	cardsListVariantAffiliateCards,
+	getCardsListAffiliateCard,
+} from "../../lib/affiliateCards";
 import { getExtensions, getCardsForExtension } from "../../lib/cards";
 
 export const getStaticPaths = () => {
@@ -51,11 +55,25 @@ const extensionLabel = revealPageConfig?.displayLabel ?? (extension === "P" ? "P
 const heroBadgeLabel = revealPageConfig?.badgeLabel ?? extensionLabel;
 const isLeakPage = Boolean(revealPageConfig);
 const useExpandedMobileCardGrid = !isLeakPage && /^(OP|EB)/i.test(extension.toUpperCase());
+const op17AffiliateEditionsByCode = {
+	"OP17-001": ["ALT"],
+	"OP17-005": ["ALT", "MANGA"],
+	"OP17-020": ["ALT"],
+	"OP17-031": ["ALT"],
+	"OP17-046": ["ALT"],
+	"OP17-049": ["ALT"],
+	"OP17-114": ["ALT"],
+};
+const isOp17YamatoSpecial = (card) =>
+	card.code === "OP16-098" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl);
 const shouldShowAffiliateLink = (card) => {
+	if (card.code === "OP16-098") return isOp17YamatoSpecial(card);
 	if (extension.toUpperCase() !== "OP17") return true;
+	const allowedEditions = op17AffiliateEditionsByCode[card.code];
+	if (allowedEditions) return allowedEditions.includes(card.edition ?? "");
+	if (/\/Cards\/OP17\/Charlottte Linlin op17-099\.png$/i.test(card.fullUrl)) return false;
 	if (/^\/Cards\/OP17\/SP /i.test(card.fullUrl)) return false;
 	if (/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl)) return false;
-	if (/\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl)) return false;
 	return true;
 };
 const releaseDateLabel = "August 28, 2026";
@@ -1690,6 +1708,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"EB05-036": {
+		rarity: "Common",
+		stats: "Purple / Cost 4 / Special / Power 0 / Counter 1000",
+		traits: "Navy",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" If your Leader has the {Navy} type, draw 1 card, and add up to 1 DON!! card as rested from your DON!! deck.",
+			],
+		],
+	},
 	"EB05-042": {
 		rarity: "Common",
 		stats: "Black / Cost 4 / Special / Power 5000 / Counter 2000",
@@ -2171,7 +2200,9 @@ const description = isLeakPage
 						data-card-grid
 					>
 						{initialCards.map((card) => {
-							const affiliateCard = shouldShowAffiliateLink(card) ? getAffiliateCard(card.code) : null;
+							const affiliateCard = shouldShowAffiliateLink(card)
+								? getCardsListAffiliateCard(card.code, card.edition)
+								: null;
 							return (
 								<div class="card-thumb-shell">
 									<button
@@ -2249,12 +2280,23 @@ const description = isLeakPage
 	</div>
 </MainLayout>
 
-<script define:vars={{ remainingCards, affiliateCards, isLeakPage }}>
+<script
+	define:vars={{
+		remainingCards,
+		cardsListAffiliateCards,
+		cardsListVariantAffiliateCards,
+		isLeakPage,
+		op17AffiliateEditionsByCode,
+	}}
+>
 	const modal = document.querySelector("[data-modal]");
 	const modalImage = document.querySelector("[data-modal-image]");
 	const closeButton = document.querySelector("[data-close]");
 	const grid = document.querySelector("[data-card-grid]");
 	const loadMoreButton = document.querySelector("[data-load-more]");
+	const op17AffiliateEditions = op17AffiliateEditionsByCode ?? {};
+	const isOp17YamatoSpecial = (card) =>
+		card.code === "OP16-098" && /\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl ?? "");
 	let remaining = remainingCards ?? [];
 	const batchSize = 96;
 
@@ -2313,15 +2355,23 @@ const description = isLeakPage
 			img.alt = `${card.code} card`;
 			button.appendChild(img);
 			shell.appendChild(button);
-			const affiliateCard = !isLeakPage ? affiliateCards[card.code] : null;
+			const affiliateCard = !isLeakPage
+				? (card.edition ? cardsListVariantAffiliateCards[`${card.code}::${card.edition}`] : null) ??
+					cardsListAffiliateCards[card.code]
+				: null;
 			const shouldShowAffiliateLink =
 				affiliateCard &&
+				(card.code !== "OP16-098" || isOp17YamatoSpecial(card)) &&
+				!(
+					op17AffiliateEditions[card.code] &&
+					!op17AffiliateEditions[card.code].includes(card.edition ?? "")
+				) &&
 				!(
 					card.fullUrl &&
 					(
+						/\/Cards\/OP17\/Charlottte Linlin op17-099\.png$/i.test(card.fullUrl) ||
 						/^\/Cards\/OP17\/SP /i.test(card.fullUrl) ||
-						/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl) ||
-						/\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl)
+						/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl)
 					)
 				);
 			if (shouldShowAffiliateLink) {
@@ -2635,6 +2685,7 @@ const description = isLeakPage
 		min-width: 0;
 		max-width: calc(100% - 0.76rem);
 		padding: 0.22rem 0.42rem;
+		overflow: hidden;
 		border-radius: 8px;
 		background: rgba(8, 18, 28, 0.92);
 		border: 1px solid rgba(120, 214, 255, 0.2);
@@ -2644,14 +2695,44 @@ const description = isLeakPage
 		text-decoration: none;
 		line-height: 1;
 		text-align: center;
+		white-space: nowrap;
 		backdrop-filter: blur(6px);
 		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		transition:
+			background 0.18s ease,
+			color 0.18s ease,
+			padding-right 0.18s ease;
 		z-index: 2;
 	}
 
-	:global(.card-affiliate-link:hover) {
-		background: rgba(12, 28, 42, 0.96);
-		color: #effbff;
+	:global(.card-affiliate-link)::after {
+		content: "";
+		width: 0;
+		align-self: stretch;
+		height: auto;
+		margin-left: 0;
+		opacity: 0;
+		flex: 0 0 auto;
+		background: url("/assets/TCGplayer_Logo.svg") center / auto 100% no-repeat;
+		transition:
+			width 0.18s ease,
+			margin-left 0.18s ease,
+			opacity 0.18s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		:global(.card-affiliate-link:hover),
+		:global(.card-affiliate-link:focus-visible) {
+			background: rgba(12, 28, 42, 0.96);
+			color: #effbff;
+		}
+
+		:global(.card-affiliate-link:hover)::after,
+		:global(.card-affiliate-link:focus-visible)::after {
+			width: 1.55rem;
+			margin-left: 0.16rem;
+			opacity: 1;
+		}
 	}
 
 	.card-modal {

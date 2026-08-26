@@ -556,6 +556,11 @@ const manualCardOverrides = {
 			name: "Charlotte.Linlin",
 			color: "Yellow",
 		},
+		"charlotte linlin op17-112 alt": {
+			code: "OP17-112",
+			name: "Charlotte Linlin",
+			color: "Yellow",
+		},
 		"streusen op17-113": {
 			code: "OP17-113",
 			name: "Streusen",
@@ -738,6 +743,11 @@ const manualCardOverrides = {
 			name: "Shinobu",
 			color: "Black",
 		},
+		"eb05-036 tsuru": {
+			code: "EB05-036",
+			name: "Tsuru",
+			color: "Purple",
+		},
 		"sp op01-016": {
 			code: "OP01-016",
 			name: "Nami",
@@ -913,9 +923,12 @@ const getOp17CardRank = (card) => {
 };
 
 const getOp17SortCode = (card) => {
+	if (/\/Cards\/OP17\/Charlottte Linlin op17-099\.png$/i.test(card.fullUrl ?? "")) return "OP17-098.9";
+	if (/\/Cards\/OP17\/OP17 Charlotte Daifuku ALT\.png$/i.test(card.fullUrl ?? "")) return "OP17-107.1";
 	const explicitAnchors = {
 		"OP17-040-TREASURE RARE": "OP17-039.1",
 		"OP17-020-ALT": "OP17-020.1",
+		"OP17-112-ALT": "OP17-112.1",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
 		"OP17-017": "OP17-018.85",
@@ -945,6 +958,7 @@ const shouldKeepOp17SpecialFile = (file) => {
 	const normalized = normalizeOverrideKey(file);
 	if (normalized === "op17-054 alt.jpg" || normalized === "op17-054 alt") return false;
 	if (normalized === "lead performers op17-061 alt.jpg" || normalized === "lead performers op17-061 alt") return false;
+	if (normalized === "charlottte linlin op17-099.png" || normalized === "charlottte linlin op17-099") return true;
 	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
 	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
 	if (normalized === "shanks op17-020.png") return true;

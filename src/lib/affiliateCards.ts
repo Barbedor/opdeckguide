@@ -1230,4 +1230,57 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 };
 
+export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
+	"OP17-001": {
+		affiliateUrl: "https://partner.tcgplayer.com/n4e3kx",
+		price: "$56.98",
+	},
+	"OP17-020": {
+		affiliateUrl: "https://partner.tcgplayer.com/YVkGgO",
+		price: "$49.99",
+	},
+	"OP17-031": {
+		affiliateUrl: "https://partner.tcgplayer.com/NGYDGN",
+		price: "$15.88",
+	},
+	"OP17-046": {
+		affiliateUrl: "https://partner.tcgplayer.com/bkgzGm",
+		price: "$39.92",
+	},
+	"OP17-049": {
+		affiliateUrl: "https://partner.tcgplayer.com/2RBqQ0",
+		price: "$40.98",
+	},
+	"OP17-099": {
+		affiliateUrl: "https://partner.tcgplayer.com/QYxrMa",
+		price: "$57.98",
+	},
+	"OP17-114": {
+		affiliateUrl: "https://partner.tcgplayer.com/DWMgPb",
+		price: "$26.00",
+	},
+	"OP16-098": {
+		affiliateUrl: "https://partner.tcgplayer.com/ZVe5yW",
+		price: "$185.00",
+	},
+};
+
+export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> = {
+	"OP17-005::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/YVkPKB",
+		price: "$60.96",
+	},
+	"OP17-005::MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/AgYeGN",
+		price: "$2,199.99",
+	},
+};
+
+export const cardsListAffiliateCards: Record<string, AffiliateCardEntry> = {
+	...affiliateCards,
+	...cardsListOnlyAffiliateCards,
+};
+
 export const getAffiliateCard = (code: string) => affiliateCards[code];
+export const getCardsListAffiliateCard = (code: string, edition?: string | null) =>
+	(edition ? cardsListVariantAffiliateCards[`${code}::${edition}`] : null) ?? cardsListAffiliateCards[code];

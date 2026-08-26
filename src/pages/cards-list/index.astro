@@ -1,6 +1,6 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
-import { affiliateCards } from "../../lib/affiliateCards";
+import { cardsListAffiliateCards } from "../../lib/affiliateCards";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
 import { guideSearchIndex } from "../../lib/guides";
 
@@ -10,8 +10,8 @@ const description =
 
 const metadataAvailable = hasMetadata();
 const featuredExtensionOrder = new Map([
-	["OP18", 0],
-	["EB05", 1],
+	["EB05", 0],
+	["OP18", 1],
 	["OP17", 2],
 ]);
 const extensionSummaries = getExtensionSummaries().sort((a, b) => {
@@ -153,7 +153,7 @@ const extensionLabel = (value) => {
 	</div>
 </MainLayout>
 
-<script define:vars={{ metadataAvailable, guideSearchIndex, affiliateCards }}>
+<script define:vars={{ metadataAvailable, guideSearchIndex, cardsListAffiliateCards }}>
 	const searchInput = document.querySelector("[data-global-search]");
 	const resultsContainer = document.querySelector("[data-search-results]");
 	const modal = document.querySelector("[data-modal]");
@@ -318,7 +318,7 @@ const extensionLabel = (value) => {
 				img.alt = `${card.code} card`;
 				button.appendChild(img);
 				shell.appendChild(button);
-				const affiliateCard = affiliateCards[card.code];
+				const affiliateCard = cardsListAffiliateCards[card.code];
 				if (affiliateCard) {
 					const link = document.createElement("a");
 					link.className = "card-affiliate-link";
@@ -354,7 +354,7 @@ const extensionLabel = (value) => {
 			img.alt = `${card.code} card`;
 			button.appendChild(img);
 			shell.appendChild(button);
-			const affiliateCard = affiliateCards[card.code];
+			const affiliateCard = cardsListAffiliateCards[card.code];
 			if (affiliateCard) {
 				const link = document.createElement("a");
 				link.className = "card-affiliate-link";
@@ -843,6 +843,7 @@ const extensionLabel = (value) => {
 		min-width: 0;
 		max-width: calc(100% - 0.76rem);
 		padding: 0.22rem 0.42rem;
+		overflow: hidden;
 		border-radius: 8px;
 		background: rgba(8, 18, 28, 0.92);
 		border: 1px solid rgba(120, 214, 255, 0.2);
@@ -852,14 +853,44 @@ const extensionLabel = (value) => {
 		text-decoration: none;
 		line-height: 1;
 		text-align: center;
+		white-space: nowrap;
 		backdrop-filter: blur(6px);
 		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		transition:
+			background 0.18s ease,
+			color 0.18s ease,
+			padding-right 0.18s ease;
 		z-index: 2;
 	}
 
-	:global(.card-affiliate-link:hover) {
-		background: rgba(12, 28, 42, 0.96);
-		color: #effbff;
+	:global(.card-affiliate-link)::after {
+		content: "";
+		width: 0;
+		align-self: stretch;
+		height: auto;
+		margin-left: 0;
+		opacity: 0;
+		flex: 0 0 auto;
+		background: url("/assets/TCGplayer_Logo.svg") center / auto 100% no-repeat;
+		transition:
+			width 0.18s ease,
+			margin-left 0.18s ease,
+			opacity 0.18s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		:global(.card-affiliate-link:hover),
+		:global(.card-affiliate-link:focus-visible) {
+			background: rgba(12, 28, 42, 0.96);
+			color: #effbff;
+		}
+
+		:global(.card-affiliate-link:hover)::after,
+		:global(.card-affiliate-link:focus-visible)::after {
+			width: 1.55rem;
+			margin-left: 0.16rem;
+			opacity: 1;
+		}
 	}
 
 	.card-modal {

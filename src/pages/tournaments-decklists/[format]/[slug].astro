@@ -549,6 +549,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		min-width: 0;
 		max-width: calc(100% - 0.76rem);
 		padding: 0.22rem 0.42rem;
+		overflow: hidden;
 		border-radius: 8px;
 		background: rgba(8, 18, 28, 0.92);
 		border: 1px solid rgba(120, 214, 255, 0.2);
@@ -558,14 +559,45 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		text-decoration: none;
 		line-height: 1;
 		text-align: center;
+		white-space: nowrap;
 		backdrop-filter: blur(6px);
 		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		transition:
+			background 0.18s ease,
+			color 0.18s ease,
+			padding-right 0.18s ease;
 		z-index: 2;
 	}
 
-	.detail-affiliate-link:hover {
-		background: rgba(12, 28, 42, 0.96);
-		color: #effbff;
+	.detail-affiliate-link::after {
+		content: "";
+		width: 0;
+		align-self: stretch;
+		height: auto;
+		margin-left: 0;
+		opacity: 0;
+		flex: 0 0 auto;
+		background: url("/assets/TCGplayer_Logo.svg") center / auto 100% no-repeat;
+		transition:
+			width 0.18s ease,
+			margin-left 0.18s ease,
+			opacity 0.18s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.detail-affiliate-link:hover,
+		.detail-affiliate-link:focus-visible {
+			background: rgba(12, 28, 42, 0.96);
+			color: #effbff;
+			padding-right: 1.08rem;
+		}
+
+		.detail-affiliate-link:hover::after,
+		.detail-affiliate-link:focus-visible::after {
+			width: 2rem;
+			margin-left: 0.3rem;
+			opacity: 1;
+		}
 	}
 
 	.detail-affiliate-link.is-hidden {
