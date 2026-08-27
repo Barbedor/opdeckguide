@@ -1640,10 +1640,10 @@ const leakCardDetails = {
 		stats: "Black / Cost 6 / Attack / Power 8000",
 		traits: "Giant/Elbaf",
 		effectLines: [
-			["This character's cost increases by 12, and if it's your opponent's turn, this character's power increases by 3000."],
+			["This Character gains +12 cost, and if it is your opponent's turn, this Character gains +3000 power."],
 			[
 				keyword("on-play", "On Play"),
-				" KO your opponent's characters so that their total cost is 4 or less.",
+				" K.O. your opponent's Characters with a total cost of 4 or less.",
 			],
 		],
 	},
@@ -1708,6 +1708,17 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"EB05-023": {
+		rarity: "Common",
+		stats: "Blue / Cost 1 / Wisdom / Power 0 / Counter 2000",
+		traits: "Land of Wano",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" You may trash 2 Events from your hand: Draw 3 cards.",
+			],
+		],
+	},
 	"EB05-036": {
 		rarity: "Common",
 		stats: "Purple / Cost 4 / Special / Power 0 / Counter 1000",
@@ -1751,6 +1762,104 @@ const leakCardDetails = {
 			[
 				keyword("on-play", "On Play"),
 				" Look at 5 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card other than [Nami] and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
+			],
+		],
+	},
+	"OP11-022": {
+		rarity: "Leader Card",
+		stats: "Green / Blue / Life 5 / Wisdom / Power 5000",
+		traits: "Merfolk / Fish-Man Island",
+		effectLines: [
+			["This Leader cannot attack."],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may rest 1 of your DON!! cards and turn 1 card from the top of your Life cards face-up: Play up to 1 {Neptunian} type Character card or [Megalo] with a cost equal to or less than the number of DON!! cards on your field from your hand.",
+			],
+		],
+	},
+	"OP11-041": {
+		rarity: "Leader Card",
+		stats: "Blue / Purple / Life 4 / Special / Power 5000",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("your-turn", "Your Turn"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" This effect can be activated when a card is removed from your or your opponent's Life cards. If you have 7 or less cards in your hand, draw 1 card.",
+			],
+			[
+				keyword("don-x1", "DON!! x1"),
+				" ",
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: This Leader gains +2000 power during this turn.",
+			],
+		],
+	},
+	"OP13-100": {
+		rarity: "Leader Card",
+		stats: "Green / Purple / Life 5 / Special / Power 5000",
+		traits: "Egghead / Bonney Pirates",
+		effectLines: [
+			[
+				keyword("your-turn", "Your Turn"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" This effect can be activated when you play a Character with a ",
+				keyword("trigger", "Trigger"),
+				". Give up to 2 rested DON!! cards to 1 of your Leader or Character cards.",
+			],
+		],
+	},
+	"OP14-041": {
+		rarity: "Leader Card",
+		stats: "Blue / Purple / Life 4 / Special / Power 5000",
+		traits: "The Seven Warlords of the Sea / Kuja Pirates",
+		effectLines: [
+			[
+				keyword("opponents-turn", "Opponent's Turn"),
+				" When you play a Character, draw 1 card.",
+			],
+			[
+				keyword("don-x1", "DON!! x1"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" When one of your {Amazon Lily} or {Kuja Pirates} type Characters with 5000 base power or more is K.O.'d, add up to 1 card from the top of your opponent's Life cards to the owner's hand.",
+			],
+		],
+	},
+	"OP15-039": {
+		rarity: "Leader Card",
+		stats: "Black / Yellow / Life 5 / Wisdom / Power 5000",
+		traits: "Dressrosa",
+		effectLines: [
+			["This Leader cannot attack."],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest this Leader and return 1 of your {Dressrosa} type Characters to the owner's hand: Play up to 1 {Dressrosa} type Character card with a cost of 3 from your hand.",
+			],
+		],
+	},
+	"EB03-001": {
+		rarity: "Leader Card",
+		stats: "Red / Blue / Life 4 / Slash / Power 5000",
+		traits: "Alabasta",
+		effectLines: [
+			[
+				keyword("once-per-turn", "Once Per Turn"),
+				" If your Character with a base cost of 4 or more would be K.O.'d, you may trash 1 card from your hand instead.",
+			],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" You may rest this Leader: Give up to 1 of your opponent's Characters -2000 power during this turn. Then, up to 1 of your Characters without a ",
+				keyword("when-attacking", "When Attacking"),
+				" effect gains ",
+				keyword("rush", "Rush"),
+				" during this turn.",
 			],
 		],
 	},
@@ -1824,11 +1933,11 @@ const leakCardDetails = {
 			],
 			[
 				keyword("activate-main", "Activate: Main"),
-				" You may rest this Stage: Give up to a total of 4 of your Leader or Characters 1 rested DON!! card each.",
+				" You may rest this Stage: Give up to a total of 4 of your Leader or Characters 1 rested DON!! Card each.",
 			],
 		],
 	},
-	"OP18-???": {
+	"OP18-119": {
 		rarity: "Secret Rare",
 		stats: "Yellow / Cost 8 / Slash / Power 9000",
 		traits: "Celestial Dragons / Holy Knights of God",
@@ -1999,6 +2108,8 @@ const leakCardDetails = {
 const getLeakSortRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
 	if (card.code === "OP01-016") return 6;
+	if (extension.toUpperCase() === "EB05" && card.rarity === "Leader Card" && card.edition === "ALT") return 7;
+	if (extension.toUpperCase() === "OP18" && card.code === "OP17-119" && card.edition === "ALT") return 1;
 	if (card.rarity === "SP") return 2;
 	if (card.code === "OP17-040") return 0;
 	if (card.rarity === "Treasure Rare") return 3;
@@ -2011,12 +2122,12 @@ const getLeakSortRank = (card) => {
 
 const getLeakSortCode = (code) => {
 	if (code === "OP17-0XX") return "OP17-086";
-	if (code === "OP18-???") return "OP18-079";
 	return code;
 };
 
 const getLeakDisplaySortCode = (card) => {
 	const explicitAnchors = {
+		"OP17-119-ALT": "OP18-999",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
 		"OP17-017": "OP17-018.85",
@@ -2046,7 +2157,13 @@ const leakCards = isLeakPage
 				const rarity = details?.rarity ?? "";
 				const hideEditionChip = rarity === "SP" || rarity === "Gold";
 				const hasStandaloneSpecialRarity = card.edition === "PIRATE CREW SUPER ALT MANGA";
+				const useHeaderAltBadge =
+					extension.toUpperCase() === "EB05" && details?.rarity === "Leader Card" && card.edition === "ALT";
+				const useOp18LokiAltBadge =
+					extension.toUpperCase() === "OP18" && card.code === "OP17-119" && card.edition === "ALT";
 				const staticVariantLabel =
+					!useHeaderAltBadge &&
+					!useOp18LokiAltBadge &&
 					!hasStandaloneSpecialRarity &&
 					(card.variants?.length ?? 0) === 0 &&
 					["ALT", "ALT BAKI"].includes(card.edition ?? "")
@@ -2057,6 +2174,8 @@ const leakCards = isLeakPage
 							...card,
 							...details,
 							rarity: hasStandaloneSpecialRarity ? card.edition : details.rarity,
+							headerBadge:
+								useHeaderAltBadge || useOp18LokiAltBadge ? "ALT" : details.headerBadge ?? card.headerBadge ?? null,
 							edition: hideEditionChip ? null : details.edition ?? card.edition ?? null,
 							variants: [
 								...(card.variants ?? []),

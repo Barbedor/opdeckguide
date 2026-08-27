@@ -1078,6 +1078,24 @@ const deckTemplates = {
 		{ code: "OP07-056", name: "Slave Arrow", count: 1, img: "/Cards/OP07/OP07-056.png", role: "Event" },
 		{ code: "OP06-058", name: "Gravity Blade Raging Tiger", count: 1, img: "/Cards/OP06/OP06-058.png", role: "Event" },
 	],
+	"kaido-op17-west-ebz-mccomb-aug26-kdmilla": [
+		{ code: "OP17-058", name: "Kaido", count: 1, img: "/Cards/OP17/New OP17/OP17-058.jpg", role: "Leader" },
+		{ code: "EB04-032", name: "Queen", count: 4, img: "/Cards/EB04/EB04-032.jpg", role: "Character" },
+		{ code: "OP17-068", name: "Sasaki", count: 4, img: "/Cards/OP17/New OP17/OP17-068.jpg", role: "Character" },
+		{ code: "OP17-073", name: "Basil Hawkins", count: 4, img: "/Cards/OP17/New OP17/OP17-073.jpg", role: "Character" },
+		{ code: "OP17-074", name: "Yamato", count: 4, img: "/Cards/OP17/New OP17/OP17-074.jpg", role: "Character" },
+		{ code: "EB04-031", name: "King", count: 4, img: "/Cards/EB04/EB04-031.jpg", role: "Character" },
+		{ code: "OP17-061", name: "Lead Performers", count: 4, img: "/Cards/OP17/New OP17/OP17-061.jpg", role: "Character" },
+		{ code: "OP17-065", name: "Queen", count: 2, img: "/Cards/OP17/New OP17/OP17-065.jpg", role: "Character" },
+		{ code: "ST34-004", name: "Charlotte Linlin", count: 3, img: "/Cards/ST34/ST34-004.jpg", role: "Character" },
+		{ code: "OP17-062", name: "Kaido", count: 4, img: "/Cards/OP17/New OP17/OP17-062.jpg", role: "Character" },
+		{ code: "OP17-063", name: "Kaido", count: 2, img: "/Cards/OP17/New OP17/OP17-063.jpg", role: "Character" },
+		{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
+		{ code: "OP17-076", name: "Wo Ro Ro Ro Ro!! I Think I've Sobored Up!!", count: 2, img: "/Cards/OP17/New OP17/OP17-076.jpg", role: "Event" },
+		{ code: "OP07-077", name: "We're Going to Claim the One Piece!!!", count: 4, img: "/Cards/OP07/OP07-077.png", role: "Event" },
+		{ code: "EB04-040", name: "Flame Dragon Torch", count: 1, img: "/Cards/EB04/EB04-040.jpg", role: "Event" },
+		{ code: "OP07-076", name: "Noro Noro Beam Sword", count: 4, img: "/Cards/OP07/OP07-076.png", role: "Event" },
+	],
 	...op17EastAug22DeckTemplates,
 	...op17EastAug23DeckTemplates,
 	"black-yamato-op16-east": [
@@ -14710,6 +14728,23 @@ const deckTemplates = {
 };
 
 const entrySeeds = [
+	{
+		format: "op17",
+		region: "west",
+		slug: "kaido-op17-west-ebz-mccomb-aug26-kdmilla",
+		leaderSlug: "kaido-op17",
+		deckTemplate: "kaido-op17-west-ebz-mccomb-aug26-kdmilla",
+		title: "Kaido OP17 Shop Event Winner",
+		eventName: "EBZ McComb",
+		eventType: "ShopEvent",
+		placement: "1st (5-0)",
+		date: "2026-08-26",
+		location: "Europe",
+		country: "Europe",
+		author: "KD2Milla",
+		host: "EBZ McComb",
+		summary: "KD2Milla's 1st (5-0) Kaido decklist from a ShopEvent at EBZ McComb in Europe.",
+	},
 	{
 		format: "op17",
 		region: "east",

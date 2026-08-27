@@ -758,7 +758,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP15-119": {
 		affiliateUrl: "https://partner.tcgplayer.com/ZV4m9k",
-		price: "$25.49",
+		price: "$18.99",
 	},
 	"OP16-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/MKozeY",
@@ -1206,7 +1206,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP13-118": {
 		affiliateUrl: "https://partner.tcgplayer.com/1GoLYz",
-		price: "$23.00",
+		price: "$28.99",
 	},
 	"EB03-060": {
 		affiliateUrl: "https://partner.tcgplayer.com/dy3a57",
@@ -1222,7 +1222,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"EB01-061": {
 		affiliateUrl: "https://partner.tcgplayer.com/9VQvP5",
-		price: "$22.49",
+		price: "$30.00",
 	},
 	"EB02-017": {
 		affiliateUrl: "https://partner.tcgplayer.com/9VxPP4",
@@ -1233,46 +1233,46 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
 	"OP17-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/n4e3kx",
-		price: "$56.98",
+		price: "$22.79",
 	},
 	"OP17-020": {
 		affiliateUrl: "https://partner.tcgplayer.com/YVkGgO",
-		price: "$49.99",
+		price: "$20.00",
 	},
 	"OP17-031": {
 		affiliateUrl: "https://partner.tcgplayer.com/NGYDGN",
-		price: "$15.88",
+		price: "$6.35",
 	},
 	"OP17-046": {
 		affiliateUrl: "https://partner.tcgplayer.com/bkgzGm",
-		price: "$39.92",
+		price: "$15.97",
 	},
 	"OP17-049": {
 		affiliateUrl: "https://partner.tcgplayer.com/2RBqQ0",
-		price: "$40.98",
+		price: "$16.39",
 	},
 	"OP17-099": {
 		affiliateUrl: "https://partner.tcgplayer.com/QYxrMa",
-		price: "$57.98",
+		price: "$23.19",
 	},
 	"OP17-114": {
 		affiliateUrl: "https://partner.tcgplayer.com/DWMgPb",
-		price: "$26.00",
+		price: "$10.40",
 	},
 	"OP16-098": {
 		affiliateUrl: "https://partner.tcgplayer.com/ZVe5yW",
-		price: "$185.00",
+		price: "$74.00",
 	},
 };
 
 export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> = {
 	"OP17-005::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/YVkPKB",
-		price: "$60.96",
+		price: "$24.38",
 	},
 	"OP17-005::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/AgYeGN",
-		price: "$2,199.99",
+		price: "$880.00",
 	},
 };
 

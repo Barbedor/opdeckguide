@@ -708,6 +708,10 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"alt leader nico robin eb05-010": {
+			code: "EB05-010",
+			name: "Nico Robin",
+		},
 		"eb05-010 nico robin": {
 			code: "EB05-010",
 			name: "Nico Robin",
@@ -737,6 +741,35 @@ const manualCardOverrides = {
 			code: "EB05-016",
 			name: "Nico Robin",
 			color: "Green",
+		},
+		"alt leader jewelry bonney op13-100": {
+			code: "OP13-100",
+			name: "Jewelry Bonney",
+		},
+		"alt leader boa hancock op14-041": {
+			code: "OP14-041",
+			name: "Boa Hancock",
+		},
+		"alt leader nami op11-041": {
+			code: "OP11-041",
+			name: "Nami",
+		},
+		"alt leader vivi eb03-001": {
+			code: "EB03-001",
+			name: "Nefeltari Vivi",
+		},
+		"alt leader rebecca op15-039": {
+			code: "OP15-039",
+			name: "Rebecca",
+		},
+		"alt leader shiraoshi op11-022": {
+			code: "OP11-022",
+			name: "Shirahoshi",
+		},
+		"eb05-023 cosmo": {
+			code: "EB05-023",
+			name: "Osome",
+			color: "Blue",
 		},
 		"eb05-042 shinobu": {
 			code: "EB05-042",
@@ -776,7 +809,17 @@ const manualCardOverrides = {
 			color: "Green",
 		},
 		"op18 saint shamrock": {
-			code: "OP18-???",
+			code: "OP18-119",
+			name: "Saint Shamrock",
+			color: "Yellow",
+		},
+		"op18-119 saint shamrock": {
+			code: "OP18-119",
+			name: "Saint Shamrock",
+			color: "Yellow",
+		},
+		"alt op18-119 saint shamrock": {
+			code: "OP18-119",
 			name: "Saint Shamrock",
 			color: "Yellow",
 		},
@@ -785,10 +828,20 @@ const manualCardOverrides = {
 			name: "Saint Gunko",
 			color: "Black",
 		},
+		"alt op18-060 saint gunko": {
+			code: "OP18-060",
+			name: "Saint Gunko",
+			color: "Black",
+		},
 		"alt op18-065 saint gunko": {
 			code: "OP18-065",
 			name: "Saint Gunko",
 			color: "Purple",
+		},
+		"alt op17-119 loki": {
+			code: "OP17-119",
+			name: "Loki",
+			color: "Black",
 		},
 		"op18-078 mini-merry": {
 			code: "OP18-078",
@@ -984,6 +1037,70 @@ const getOp18VariantLabel = (base) => {
 	return null;
 };
 
+const getEb05VariantLabel = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt leader ")) return "ALT";
+	return null;
+};
+
+const stripEb05VariantPrefix = (base) => {
+	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt leader ")) return base.slice("ALT Leader ".length).trim();
+	if (normalized.startsWith("sp ")) return base.slice("SP ".length).trim();
+	return base.trim();
+};
+
+const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
+	const overrides = manualCardOverrides.EB05 ?? {};
+	const cards = files
+		.filter((file) => /\.(png|jpg|jpeg|webp)$/i.test(file) && !/_small\.(png|jpg|jpeg|webp)$/i.test(file))
+		.map((file) => {
+			const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+			const canonicalBase = stripEb05VariantPrefix(base);
+			const variant = getEb05VariantLabel(base);
+			const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
+			const code = override.code ?? extractCodeFromBase(canonicalBase) ?? canonicalBase.toUpperCase();
+			const meta = metadataIndex.get(code) ?? {};
+			const fullUrl = `/Cards/EB05/${file}`;
+			return {
+				code,
+				name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
+				color: override.color ?? meta.color ?? "Other",
+				smallUrl: smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl,
+				fullUrl,
+				edition: variant ?? null,
+			};
+		})
+		.filter((card) => card && Boolean(card.fullUrl));
+
+	const altLeaderRobinIndex = cards.findIndex((card) => card.code === "EB05-010" && card.edition === "ALT");
+	const baseRobinIndex = cards.findIndex((card) => card.code === "EB05-010" && !card.edition);
+	if (altLeaderRobinIndex !== -1 && baseRobinIndex !== -1) {
+		const altRobin = cards[altLeaderRobinIndex];
+		const baseRobin = cards[baseRobinIndex];
+		cards[baseRobinIndex] = {
+			...baseRobin,
+			variants: [
+				...(baseRobin.variants ?? []),
+				{
+					label: "ALT",
+					fullUrl: altRobin.fullUrl,
+					smallUrl: altRobin.smallUrl,
+				},
+			],
+		};
+		cards.splice(altLeaderRobinIndex, 1);
+	}
+
+	return cards.sort((a, b) => {
+		const codeDiff = a.code.localeCompare(b.code, "en");
+		if (codeDiff !== 0) return codeDiff;
+		const aRank = a.edition === "ALT" ? 1 : 0;
+		const bRank = b.edition === "ALT" ? 1 : 0;
+		return aRank - bRank;
+	});
+};
+
 const stripOp18VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("leader alt ")) return base.slice("Leader ALT ".length).trim();
@@ -1160,6 +1277,9 @@ export const getCardsForExtension = (extension) => {
 	}
 	if (extension.toUpperCase() === "OP18") {
 		return getCardsForOp18(files, smallByBase, metadataIndex);
+	}
+	if (extension.toUpperCase() === "EB05") {
+		return getCardsForEb05(files, smallByBase, metadataIndex);
 	}
 
 	return [...fullByBase.entries()]
