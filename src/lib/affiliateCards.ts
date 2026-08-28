@@ -1367,6 +1367,10 @@ export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/DWMgPb",
 		price: "$10.40",
 	},
+	"OP17-037": {
+		affiliateUrl: "https://partner.tcgplayer.com/AgYJ7j",
+		price: "$95.00",
+	},
 	"OP16-098": {
 		affiliateUrl: "https://partner.tcgplayer.com/ZVe5yW",
 		price: "$74.00",
@@ -1380,7 +1384,83 @@ export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> 
 	},
 	"OP17-005::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/AgYeGN",
-		price: "$880.00",
+		price: "$1,060.00",
+	},
+	"OP17-006::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/qWGbdj",
+		price: "$5.99",
+	},
+	"OP17-022::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/X45Dk4",
+		price: "$37.99",
+	},
+	"OP17-022::MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/2RBxDg",
+		price: "$1,175.00",
+	},
+	"OP17-027::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/xJq4MA",
+		price: "$12.95",
+	},
+	"OP17-039::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/JkYExa",
+		price: "$50.00",
+	},
+	"OP17-040::TREASURE RARE": {
+		affiliateUrl: "https://partner.tcgplayer.com/X45DJa",
+		price: "$127.00",
+	},
+	"OP17-045::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/rE16ZR",
+		price: "$9.75",
+	},
+	"OP17-046::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/1GKq0m",
+		price: "$31.49",
+	},
+	"OP17-048::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/m4kWW1",
+		price: "$19.75",
+	},
+	"OP17-049::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/9VB513",
+		price: "$24.50",
+	},
+	"OP17-058::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/bkgALv",
+		price: "$85.00",
+	},
+	"OP17-062::ALT BAKI": {
+		affiliateUrl: "https://partner.tcgplayer.com/jRjoxn",
+		price: "$24.95",
+	},
+	"OP17-062::SUPER ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/2RBxbD",
+		price: "$338.00",
+	},
+	"OP17-062::MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/6kRr2N",
+		price: "$1,235.00",
+	},
+	"OP17-063::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/zzDL67",
+		price: "$15.99",
+	},
+	"OP17-070::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/L0YvaO",
+		price: "$3.50",
+	},
+	"OP17-079::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/MKY4XN",
+		price: "$99.00",
+	},
+	"OP17-079::MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/B5YWn0",
+		price: "$2,498.99",
+	},
+	"OP17-025::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/oNaEkb",
+		price: "$3.99",
 	},
 };
 

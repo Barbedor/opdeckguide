@@ -3,7 +3,7 @@ import path from "node:path";
 
 const cardsRoot = path.join(process.cwd(), "public", "Cards");
 const hiddenExtensions = new Set(["back_cards", "don"]);
-const variantPriority = ["base", "ALT BAKI", "ALT", "MANGA", "PIRATE CREW SUPER ALT MANGA", "ALT GOLD", "TREASURE RARE"];
+const variantPriority = ["base", "ALT BAKI", "ALT", "SUPER ALT", "MANGA", "PIRATE CREW SUPER ALT MANGA", "ALT GOLD", "TREASURE RARE"];
 const manualCardOverrides = {
 	OP17: {
 		"op17-001 edward newgate": {
@@ -722,6 +722,11 @@ const manualCardOverrides = {
 			name: "Nico Robin",
 			color: "Green",
 		},
+		"eb05-013 shirley": {
+			code: "EB05-013",
+			name: "Shirley",
+			color: "Green",
+		},
 		"eb05-016 nico robin": {
 			code: "EB05-016",
 			name: "Nico Robin",
@@ -919,6 +924,7 @@ const getOp17VariantLabel = (base) => {
 	if (normalized.endsWith(" alt gold")) return "ALT GOLD";
 	if (normalized.endsWith(" treasure rare")) return "TREASURE RARE";
 	if (normalized.endsWith(" pirate crew super alt manga")) return "PIRATE CREW SUPER ALT MANGA";
+	if (normalized.endsWith(" super alt")) return "SUPER ALT";
 	if (normalized.endsWith(" alt (2)")) return "ALT";
 	if (normalized.endsWith(" manga")) return "MANGA";
 	if (normalized === "op17-062 alt" || normalized.endsWith(" op17-062 alt")) return "ALT BAKI";
@@ -929,6 +935,7 @@ const getOp17VariantLabel = (base) => {
 const stripOp17VariantSuffix = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.endsWith(" pirate crew super alt manga")) return base.slice(0, -" pirate crew super alt manga".length).trim();
+	if (normalized.endsWith(" super alt")) return base.slice(0, -" super alt".length).trim();
 	if (normalized.endsWith(" alt (2)")) return base.slice(0, -" alt (2)".length).trim();
 	if (normalized === "op17-062 alt" || normalized.endsWith(" op17-062 alt")) return base.slice(0, -" alt".length).trim();
 	if (normalized.endsWith(" alt baki")) return base.slice(0, -" alt baki".length).trim();
