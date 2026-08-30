@@ -365,7 +365,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Green",
 		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
-		href: "/deck-guides/dracule-mihawk-op14/",
+		href: "/deck-guides/dracule-mihawk-op14-in-format-op17/",
 	},
 	"g-mihawk-op14": {
 		slug: "g-mihawk-op14",
@@ -374,7 +374,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Green",
 		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
-		href: "/deck-guides/dracule-mihawk-op14/",
+		href: "/deck-guides/dracule-mihawk-op14-in-format-op17/",
 	},
 	"kuzan-op12": {
 		slug: "kuzan-op12",

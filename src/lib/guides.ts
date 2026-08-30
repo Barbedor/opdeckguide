@@ -7,7 +7,7 @@ export const deckGuides = [
 		formatLabel: "OP17 Format",
 		summary: "Updated decklist, curve guide, 10 DON!! combo, deck in a nutshell, and matchups for Dracule Mihawk OP14 in the OP17 format.",
 		month: "August",
-		href: "/deck-guides/dracule-mihawk-op14/",
+		href: "/deck-guides/dracule-mihawk-op14-in-format-op17/",
 		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
 		imageAlt: "Dracule Mihawk OP14 deck guide cover",
 		aliases: ["dracule mihawk", "mihawk", "dracule", "mihawk op14", "dracule mihawk op14", "fishhawk"],
