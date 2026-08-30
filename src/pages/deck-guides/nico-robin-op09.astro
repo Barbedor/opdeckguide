@@ -1,11 +1,11 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Dracule Mihawk OP14 Deck Guide";
+const title = "Nico Robin OP09 Deck Guide";
 const description =
-	"OP17 format deck guide for Dracule Mihawk OP14 with updated decklist, curve guide, 10 DON!! combo, deck in a nutshell, and matchups.";
+	"OP17 format deck guide for Nico Robin OP09 with updated decklist, curve guide, hybrid tactics and combos, deck in a nutshell, and matchups.";
 
-const icon = "/assets/guides/dracule-mihawk-op14.png";
+const icon = "/assets/guides/Nico-Robin-op09.png";
 
 const expandSimLines = (count, code) => {
 	const lines = [];
@@ -20,92 +20,105 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
-const leader = card("OP14-020", "Dracule Mihawk", "/Cards/OP14/OP14-020.jpg", 1, "Leader");
-const otama = card("OP07-022", "Otama", "/Cards/OP07/OP07-022.png", 4);
-const perona = card("OP12-034", "Perona", "/Cards/OP12/OP12-034.jpg", 4);
-const kinemon = card("ST32-001", "Kin'emon", "/Cards/ST32/ST32-001.jpg", 4);
-const vanderDecken = card("OP06-033", "Vander Decken IX", "/Cards/OP06/OP06-033.png", 4);
-const kawamatsu = card("OP12-023", "Kawamatsu", "/Cards/OP12/OP12-023.jpg", 4);
-const yasopp = card("OP17-031", "Yasopp", "/Cards/OP17/New OP17/OP17-031.jpg", 4);
-const oden = card("ST32-002", "Kouzuki Oden", "/Cards/ST32/ST32-002.jpg", 4);
-const law = card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg", 4);
-const hody = card("OP06-035", "Hody Jones", "/Cards/OP06/OP06-035.png", 1);
-const shanks = card("OP17-022", "Shanks", "/Cards/OP17/New OP17/OP17-022.jpg", 4);
-const samourai = card("OP01-055", "You Can Be My Samourai!!", "/Cards/OP01/OP01-055.png", 4, "Event");
-const trichiliocosm = card("OP06-038", "The Billion-fold World Trichiliocosm", "/Cards/OP06/OP06-038.png", 3, "Event");
-const miniLuna = card("OP13-040", "I Know You're Strong... So I'll Go All Out from the Very Start!!!", "/Cards/OP13/OP13-040.jpg", 2, "Event");
-const coffinBoat = card("OP14-039", "Coffin Boat", "/Cards/OP14/OP14-039.jpg", 2, "Stage");
-const electricalLuna = card("OP08-036", "Electrical Luna", "/Cards/OP08/OP08-036.png", 2, "Event");
+const leader = card("OP09-062", "Nico Robin", "/Cards/OP09/OP09-062.jpg", 1, "Leader");
+const puddingSearcher = card("OP11-070", "Charlotte Pudding", "/Cards/OP11/OP11-070.jpg", 3);
+const brulee = card("ST34-003", "Charlotte Brulee", "/Cards/ST34/ST34-003.jpg", 4);
+const streusen = card("OP17-113", "Streusen", "/Cards/OP17/New OP17/OP17-113.jpg", 4);
+const yamato = card("OP17-074", "Yamato", "/Cards/OP17/New OP17/OP17-074.jpg", 4);
+const daifuku = card("OP17-107", "Charlotte Daifuku", "/Cards/OP17/New OP17/OP17-107.jpg", 4);
+const puddingOp17 = card("OP17-109", "Charlotte Pudding", "/Cards/OP17/New OP17/OP17-109.jpg", 4);
+const oven = card("OP17-102", "Charlotte Oven", "/Cards/OP17/New OP17/OP17-102.jpg", 4);
+const borsalino = card("EB04-058", "Borsalino", "/Cards/EB04/EB04-058.jpg", 2);
+const smoothie = card("OP17-106", "Charlotte Smoothie", "/Cards/OP17/New OP17/OP17-106.jpg", 4);
+const sweet3 = card("OP17-114", "Sweet 3 Generals", "/Cards/OP17/New OP17/OP17-114.jpg", 4);
+const perospero = card("OP17-110", "Charlotte Perospero", "/Cards/OP17/New OP17/OP17-110.jpg", 4);
+const linlin = card("OP17-112", "Charlotte Linlin", "/Cards/OP17/New OP17/OP17-112.jpg", 4);
+const gumGumGiant = card("OP09-078", "Gum-Gum Giant", "/Cards/OP09/OP09-078.jpg", 2, "Event");
+const itsToDieFor = card("OP08-076", "It's to Die For♡", "/Cards/OP08/OP08-076.png", 3, "Event");
+
+const robinRamp = card("OP06-062", "Nico Robin", "/Cards/OP06/OP06-062.png");
 
 const decklist = [
 	leader,
-	otama,
-	perona,
-	kinemon,
-	vanderDecken,
-	kawamatsu,
-	yasopp,
-	oden,
-	law,
-	hody,
-	shanks,
-	samourai,
-	trichiliocosm,
-	miniLuna,
-	coffinBoat,
-	electricalLuna,
+	puddingSearcher,
+	brulee,
+	streusen,
+	yamato,
+	daifuku,
+	puddingOp17,
+	oven,
+	borsalino,
+	smoothie,
+	sweet3,
+	perospero,
+	linlin,
+	gumGumGiant,
+	itsToDieFor,
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
 const goFirst = [
-	{ label: "1 DON!!", cards: [{ card: perona }], text: "Start with Perona so you can find the missing piece for the rest of your curve and prepare your next turns cleanly." },
-	{ label: "3 DON!!", cards: [{ card: perona }, { card: otama }, { card: samourai }], text: "Play Perona and Otama to keep searching for the cards you need, then play You Can Be My Samourai!! to rest the Characters you played earlier so you can draw 2 cards." },
-	{ label: "5 DON!!", cards: [{ card: yasopp }], text: "Yasopp is your clean midgame stabilizer here. He keeps your hand moving, applies pressure, and helps control a key opposing threat." },
-	{ label: "7 DON!!", cards: [{ card: law }, { card: oden, rested: true }], text: "Play Trafalgar Law to return Otama to your hand so you get a +2000 Counter, then play Oden from your hand to draw 1 card and stop one of your opponent’s Characters from attacking next turn so you can slow their game plan down." },
+	{
+		label: "1 DON!!",
+		cards: [{ card: puddingSearcher }],
+		text: "Charlotte Pudding is your searcher and helps you find a Big Mom Pirates card to set up your next turns.",
+	},
+	{
+		label: "3 DON!!",
+		cards: [{ card: puddingOp17 }, { card: leader, rested: true }],
+		text: "Charlotte Pudding lets you draw 3 cards while placing 1 strategic card in the trash, then Nico Robin attacks so you can reach 6 DON!!.",
+	},
+	{
+		label: "6 DON!!",
+		cards: [{ card: itsToDieFor }, { card: oven }],
+		text: "It's to Die For♡ pushes you up by as much as 2 DON!!, and Charlotte Oven gives you access to the Character you trashed with Pudding if Oven gets K.O.'d.",
+	},
+	{
+		label: "10 DON!!",
+		cards: [{ card: linlin }],
+		text: "Because of the previous turns, you can reach 10 DON!! as early as turn 4 and land Charlotte Linlin to add a large body, increase board pressure, draw 1 card, and either add 1 Life or trash 1 of your opponent's Life depending on the situation.",
+	},
 ];
 
 const goSecond = [
-	{ label: "2 DON!!", cards: [{ card: perona }, { card: otama }], text: "Play Perona and Otama to keep searching for the cards you need and prepare the rest of your curve." },
-	{ label: "4 DON!!", cards: [{ card: samourai }, { card: kinemon }], text: "Play Kin'emon to draw and filter your hand, then use You Can Be My Samourai!! so you keep improving your hand quality for the next turns." },
-	{ label: "6 DON!!", cards: [{ card: yasopp }], text: "At 6 DON!!, Yasopp gives you a clean midgame turn by drawing 1 card while resting an opposing threat, which helps you stay ahead on tempo." },
-	{ label: "8 DON!!", cards: [{ card: law }, { card: oden, rested: true }], text: "Play Trafalgar Law to return Otama to your hand so you get a +2000 Counter, then play Oden from your hand to draw 1 card and stop one of your opponent’s Characters from attacking next turn so you can slow their game plan down." },
-];
-
-const comboSteps = [
 	{
-		cards: [{ card: shanks }],
-		text: "For 10 DON!! Play your big Shanks. Then untap 2 DON!! and rest the opponent’s board",
+		label: "2 DON!!",
+		cards: [{ card: streusen }, { card: puddingSearcher }],
+		text: "Streusen and Charlotte Pudding help you find your Big Mom Pirates cards to set up your next turns.",
 	},
 	{
-		cards: [{ card: vanderDecken }],
-		text: "Tap 2 and play Vander Decken to K.O. one big body by trashing 1 fishman from your hand (typically Kawamatsu searched by perona or otama)",
+		label: "4 DON!!",
+		cards: [{ card: puddingOp17 }, { card: leader, rested: true }],
+		text: "Charlotte Pudding draws 3 and loads the trash, then Nico Robin attacks so you keep converting the turn into extra DON!!.",
 	},
 	{
-		cards: [{ card: vanderDecken, rested: true }],
-		text: "Tap Vander Decken by leader’s effect to Untap 3 DON!!",
+		label: "7 DON!!",
+		cards: [{ card: itsToDieFor }, { card: oven }],
+		text: "It's to Die For♡ again pushes the DON!! count forward, and Charlotte Oven keeps the discarded Character line available if Oven is removed.",
 	},
 	{
-		cards: [{ card: miniLuna }, { card: electricalLuna }],
-		text: "Luna or Mini Luna if necessary or leave open DON!! for defensive events",
+		label: "10 DON!!",
+		cards: [{ card: linlin }],
+		text: "The same payoff arrives here as well: Charlotte Linlin gives you the big body, extra pressure, a draw, and the choice between adding 1 Life or trashing 1 of your opponent's Life.",
 	},
 ];
 
 const strengths = [
-	"Absolute board dominance: you wipe threats and generate free DON!! on the same turn.",
-	"Endless card advantage through searchers, Yasopp, and events.",
+	"Leader has Banish built in, starving the opponent of life cards right from the start.",
+	"Unbelievable ramp speed for a deck that runs Yellow triggers.",
+	"Access to broken Purple defensive events like Gum Gum Giant.",
 ];
 
 const weaknesses = [
-	"Very reliant on finding specific combo pieces in the late game (Shanks + Decken + Fishman).",
-	"Vulnerable to decks that reduce base power (like Purple Linlin) if your Shanks stays rested.",
-	"Can struggle if starved of cards early by smart opponents who refuse to attack your life.",
+	"Ramping too fast without searchers or drawers (like 3c Pudding) will completely empty your hand.",
+	"Relies on seeing specific cards early to establish the ramp curve.",
+	"Susceptible to Aggro if you don't hit your healing in the mid/late game.",
 ];
 
 const coreEngine = [
-	"Leader Mihawk: Rests a character to restand 3 DON!!",
-	"10c Shanks & Vander Decken: The Exodia board wipe combo",
-	"5c Yasopp: Draws a card, rests an 8 cost threat, and restands himself at the end of the turn.",
+	"Leader Robin: Toss a trigger, get a DON!!, and swing with Banish.",
+	"10c Linlin: Linlin buffs your board and allows you to heal or damage your opponent",
 ];
 
 const matchupGroups = [
@@ -113,18 +126,29 @@ const matchupGroups = [
 		title: "Favorable",
 		tone: "up",
 		entries: [
-			{ name: "Rocks.D.Xebec OP17", image: "/assets/guides/Rocks.DXebec%20op17.png" },
+			{ name: "Dracule Mihawk OP14", image: "/assets/guides/dracule-mihawk-op14.png" },
+			{ name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte Linlin op17.png" },
+		],
+	},
+	{
+		title: "Slightly Favorable",
+		tone: "slight-up",
+		entries: [
+			{ name: "Portgas.D.Ace OP16", image: "/assets/guides/Ace-op16.png" },
+		],
+	},
+	{
+		title: "Even",
+		tone: "even",
+		entries: [
+			{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png" },
 			{ name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png" },
-			{ name: "Monkey.D.Luffy OP17", image: "/assets/guides/Luffy OP17.png" },
-			{ name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png" },
 		],
 	},
 	{
 		title: "Slightly Unfavorable",
 		tone: "slight-down",
 		entries: [
-			{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png" },
-			{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png" },
 			{ name: "Enel OP15", image: "/assets/guides/enel-op15.png" },
 		],
 	},
@@ -132,9 +156,10 @@ const matchupGroups = [
 		title: "Unfavorable",
 		tone: "down",
 		entries: [
-			{ name: "Portgas.D.Ace OP16", image: "/assets/guides/Ace-op16.png" },
-			{ name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png" },
-			{ name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte Linlin op17.png" },
+			{ name: "Rocks.D.Xebec OP17", image: "/assets/guides/Rocks.DXebec%20op17.png" },
+			{ name: "Monkey.D.Luffy OP17", image: "/assets/guides/Luffy OP17.png" },
+			{ name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png" },
+			{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png" },
 		],
 	},
 ];
@@ -148,15 +173,15 @@ const matchupGroups = [
 					<span class="hero-chip">Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Dracule Mihawk OP14 Deck Guide</h1>
+				<h1>Nico Robin OP09 Deck Guide</h1>
 				<p class="hero-intro">
-					Be the most hated player at your locals. OP17 "Fishhawk" is the undisputed Best Deck in Format.
-					Combine the oppressive control of Green Mihawk with an explosive Fishman removal package. Swipe to
-					learn how to completely break the OP17 meta!
+					Banish, ramp, and Yellow payoff cards all in one shell. Purple/Yellow Nico Robin stands out in the
+					OP17 format thanks to built-in Banish, very fast DON!! acceleration, and access to major Big Mom
+					cards.
 				</p>
 			</div>
 			<div class="guide-icon">
-				<img src={icon} alt="Dracule Mihawk OP14 deck guide icon" loading="eager" />
+				<img src={icon} alt="Nico Robin OP09 deck guide icon" loading="eager" />
 			</div>
 		</div>
 	</section>
@@ -198,15 +223,16 @@ const matchupGroups = [
 
 				<div class="curve-guide-block">
 					<h3>Go First</h3>
+					<p class="curve-heading-copy">Going first is your best start. It allows you to drop Linlin on turn 4 optimizing ramping and board pressure</p>
 					<div class="curve-rows">
 						{goFirst.map((slot) => (
 							<div class="curve-row">
 								<div class="curve-label">{slot.label}</div>
-								<div class={`curve-cards ${slot.cards.length >= 3 ? "curve-cards-triple" : ""}`}>
+								<div class="curve-cards">
 									{slot.cards.map((entry, index) => (
 										<>
 											{index > 0 && <span class="curve-join">+</span>}
-											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "ST32-002" ? "curve-card-oden" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
+											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "OP09-062" ? "curve-card-leader" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
 												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
@@ -224,11 +250,11 @@ const matchupGroups = [
 						{goSecond.map((slot) => (
 							<div class="curve-row">
 								<div class="curve-label">{slot.label}</div>
-								<div class={`curve-cards ${slot.cards.length >= 3 ? "curve-cards-triple" : ""}`}>
+								<div class="curve-cards">
 									{slot.cards.map((entry, index) => (
 										<>
 											{index > 0 && <span class="curve-join">+</span>}
-											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "ST32-002" ? "curve-card-oden" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
+											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "OP09-062" ? "curve-card-leader" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
 												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
@@ -244,25 +270,31 @@ const matchupGroups = [
 			<div class="glow-block feature-block">
 				<div class="section-header feature-header">
 					<div>
-						<h2>10 DON!! Combo</h2>
+						<h2>Hybrid Tactics &amp; Combos</h2>
 					</div>
 				</div>
-				<div class="combo-rows">
-					{comboSteps.map((step) => (
-						<div class="combo-row">
-							<div class="combo-cards">
-								{step.cards.map((entry, index) => (
-									<>
-										{index > 0 && <span class="curve-join">OR</span>}
-										<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
-											<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-										</button>
-									</>
-								))}
-							</div>
-							<p class="curve-note">{step.text}</p>
+				<div class="mind-games-grid">
+					<button class="detail-card mind-game-hero" type="button" data-card-preview data-full={leader.img} data-name={`${leader.code} ${leader.name}`}>
+						<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
+					</button>
+					<div class="mind-games-copy">
+						<div class="mind-game-block">
+							<h3>The Banish Threat</h3>
+							<p>Robin's built in Banish is a psychological weapon.</p>
+							<p>
+								Opponents hate taking Banish damage, so they will waste Counters early just to block your
+								5000 power Leader attacks. This drains their hand extremely fast.
+							</p>
 						</div>
-					))}
+						<div class="mind-game-block">
+							<h3>Gum Gum Giant Abuse</h3>
+							<p>Since you run Purple, you have access to the 1 cost Gum Gum Giant event.</p>
+							<p>
+								It gives +4000 Power for free just by trashing a brick from your hand, letting you defend
+								your board
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -275,10 +307,9 @@ const matchupGroups = [
 				<div class="core-panel">
 					<div class="section-tag section-tag-light">The Mechanic</div>
 					<p class="nutshell-copy">
-						The "Shanks & Decken" Loop. You play 10c Shanks to rest your opponent's entire board and get 2
-						DON!! back. You use those 2 DON!! to play Vander Decken, trashing a Fishman to instantly KO any
-						rested character. Then, you rest Vander Decken with Mihawk's Leader ability to restand 3 MORE
-						DON!! and push for game!
+						The "Rope-a-Dope" Strategy. Drag your opponent into deep waters. Spam your board with
+						4k-Power Trigger characters that punish the opponent for KO'ing them. Then, drop the 10c
+						Linlin to magically buff all your 4k bodies into 8k Bosses for massive lethal swings.
 					</p>
 				</div>
 				<div class="nutshell-grid">
@@ -385,9 +416,9 @@ const matchupGroups = [
 
 <style>
 	:root {
-		--first-look-accent: #46c269;
-		--first-look-accent-soft: rgba(70, 194, 105, 0.18);
-		--first-look-border: rgba(70, 194, 105, 0.28);
+		--first-look-accent: #b77cff;
+		--first-look-accent-soft: rgba(183, 124, 255, 0.18);
+		--first-look-border: rgba(183, 124, 255, 0.28);
 	}
 
 	.guide-hero { padding-top: 3.2rem; }
@@ -406,9 +437,21 @@ const matchupGroups = [
 	.hero-chip-accent { color: var(--accent); }
 	.hero-intro { max-width: 60ch; }
 	.guide-icon { display: flex; justify-content: center; }
-	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+	.guide-icon img {
+		width: min(415px, 100%);
+		border-radius: 18px;
+		border: 1px solid rgba(255,255,255,0.08);
+		box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+	}
 
-	.article-stack, .feature-block, .curve-guide-block, .curve-rows, .combo-rows, .nutshell-grid, .info-panel, .core-panel {
+	.article-stack,
+	.leader-details,
+	.feature-block,
+	.curve-guide-block,
+	.curve-rows,
+	.nutshell-grid,
+	.info-panel,
+	.core-panel {
 		display: grid;
 		gap: 1rem;
 	}
@@ -418,21 +461,22 @@ const matchupGroups = [
 		border: 1px solid var(--first-look-border);
 		border-radius: 26px;
 		padding: 1.25rem;
-		box-shadow: 0 0 0 1px rgba(70,194,105,0.16), 0 0 22px rgba(70,194,105,0.08), 0 0 52px rgba(70,194,105,0.05);
+		box-shadow: 0 0 0 1px rgba(183,124,255,0.16), 0 0 22px rgba(183,124,255,0.08), 0 0 52px rgba(183,124,255,0.05);
 	}
 
 	.section-tag {
 		display: inline-flex;
 		padding: 0.45rem 0.9rem;
 		background: var(--first-look-accent-soft);
-		color: #eafff0;
+		color: #f3e8ff;
 		margin-bottom: 1rem;
 		border-radius: 999px;
 		font-weight: 600;
 	}
-	.section-tag-light { font-weight: 500; }
 
+	.section-tag-light { font-weight: 500; }
 	.detail-card, .deck-card, .mini-card { background: transparent; border: none; padding: 0; cursor: pointer; }
+
 	.decklist-header { display: block; width: 100%; }
 	.decklist-title-row {
 		display: grid;
@@ -443,6 +487,7 @@ const matchupGroups = [
 	}
 	.decklist-title-row h2, .curve-guide-block h3, .curve-note { margin: 0; }
 	.copy-sim-button { justify-self: end; margin-left: 0; }
+	.curve-heading-copy, .nutshell-copy { margin: 0; line-height: 1.6; }
 
 	.deck-grid {
 		display: grid;
@@ -450,6 +495,7 @@ const matchupGroups = [
 		gap: 0.9rem;
 		margin-top: 1rem;
 	}
+
 	.deck-card {
 		background: rgba(12, 17, 30, 0.9);
 		border: 1px solid var(--border);
@@ -460,10 +506,17 @@ const matchupGroups = [
 		text-align: left;
 		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 	}
-	.deck-card:hover, .deck-card:focus-visible, .mini-card:hover, .mini-card:focus-visible {
+
+	.deck-card:hover,
+	.deck-card:focus-visible,
+	.detail-card:hover,
+	.detail-card:focus-visible,
+	.mini-card:hover,
+	.mini-card:focus-visible {
 		transform: translateY(-4px);
 		outline: none;
 	}
+
 	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
 	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
 	.deck-count {
@@ -477,12 +530,13 @@ const matchupGroups = [
 		font-size: 0.8rem;
 		font-weight: 700;
 	}
+
 	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
 	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
 	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
 
 	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
-	.curve-row, .combo-row {
+	.curve-row {
 		display: grid;
 		gap: 0.75rem;
 		padding: 1rem;
@@ -490,11 +544,12 @@ const matchupGroups = [
 		border: 1px solid var(--first-look-border);
 		background: rgba(8,12,22,0.72);
 	}
+
 	.curve-label { color: var(--accent); font-weight: 700; }
-	.curve-cards, .combo-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; justify-content: flex-start; }
-	.curve-card img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.curve-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; justify-content: flex-start; }
+	.curve-card img, .mind-game-hero img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
 	.curve-card.is-rested img { transform: rotate(90deg); transform-origin: center; }
-	.curve-card-oden.is-rested { margin-left: 1rem; }
+	.curve-card-leader.is-rested { margin-left: 0.8rem; }
 	.curve-join {
 		color: var(--accent);
 		font-size: 1.8rem;
@@ -506,7 +561,12 @@ const matchupGroups = [
 		min-width: 1.1rem;
 		align-self: center;
 	}
-	.curve-note, .nutshell-copy { margin: 0; line-height: 1.6; }
+	.curve-note { line-height: 1.6; }
+
+	.mind-games-grid { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+	.mind-games-copy { display: grid; gap: 1rem; }
+	.mind-game-block h3 { margin: 0 0 0.5rem; color: #ff8d76; font-size: 1.25rem; }
+	.mind-game-block p { margin: 0; line-height: 1.6; }
 
 	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.info-panel, .core-panel {
@@ -519,6 +579,7 @@ const matchupGroups = [
 		grid-template-rows: max-content 1fr;
 		align-content: start;
 	}
+	.core-panel { margin-top: 1rem; }
 	.summary-list { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
 
 	.matchup-grid {
@@ -526,6 +587,7 @@ const matchupGroups = [
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem;
 	}
+
 	.matchup-card {
 		padding: 1rem;
 		border-radius: 22px;
@@ -534,6 +596,7 @@ const matchupGroups = [
 		display: grid;
 		gap: 1rem;
 	}
+
 	.matchup-badge {
 		display: inline-flex;
 		align-items: center;
@@ -542,20 +605,26 @@ const matchupGroups = [
 		border-radius: 999px;
 		font-weight: 700;
 	}
+
 	.matchup-up { background: rgba(32, 201, 151, 0.14); color: #53e3b6; }
+	.matchup-slight-up { background: rgba(120, 204, 120, 0.14); color: #9be58e; }
+	.matchup-even { background: rgba(122, 162, 255, 0.14); color: #9bb8ff; }
 	.matchup-slight-down { background: rgba(255, 176, 94, 0.14); color: #ffbf73; }
 	.matchup-down { background: rgba(255, 92, 122, 0.14); color: #ff8ca2; }
+
 	.matchup-cards {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem 0.85rem;
 	}
+
 	.matchup-entry {
 		display: grid;
 		gap: 0.45rem;
 		justify-items: center;
 		text-align: center;
 	}
+
 	.matchup-entry img {
 		width: 100%;
 		max-width: 136px;
@@ -564,7 +633,11 @@ const matchupGroups = [
 		border-radius: 14px;
 		border: 1px solid rgba(255,255,255,0.08);
 	}
-	.matchup-name { font-size: 0.95rem; line-height: 1.3; }
+
+	.matchup-name {
+		font-size: 0.95rem;
+		line-height: 1.3;
+	}
 
 	.card-modal {
 		position: fixed;
@@ -593,10 +666,16 @@ const matchupGroups = [
 	}
 
 	@media (max-width: 900px) {
-		.hero-grid, .nutshell-grid, .matchup-grid {
+		.hero-grid,
+		.nutshell-grid,
+		.mind-games-grid,
+		.matchup-grid {
 			grid-template-columns: 1fr;
 		}
-		.guide-icon { justify-self: center; }
+		.guide-icon,
+		.detail-card {
+			justify-self: center;
+		}
 		.deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	}
 
@@ -618,12 +697,15 @@ const matchupGroups = [
 	@media (max-width: 560px) {
 		.guide-hero { padding-top: 2rem; }
 		.glow-block { padding: 1rem; border-radius: 22px; }
-		.curve-row, .combo-row {
+		.mini-card img { max-width: 110px; }
+		.curve-card img, .mind-game-hero img { max-width: 100px; }
+		.curve-card-leader.is-rested { margin-left: 1.8rem; }
+		.curve-row {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 		}
-		.curve-cards, .combo-cards {
+		.curve-cards {
 			width: 100%;
 			display: flex;
 			justify-content: flex-start;
@@ -631,15 +713,8 @@ const matchupGroups = [
 			gap: 1rem;
 			padding-left: 0;
 		}
-		.curve-cards-triple {
-			flex-wrap: nowrap;
-			gap: 0.5rem;
+		.curve-note {
+			width: 100%;
 		}
-		.curve-cards-triple .curve-card img {
-			max-width: 82px;
-		}
-		.curve-note { width: 100%; }
-		.curve-card img { max-width: 100px; }
-		.curve-card-oden.is-rested { margin-left: 1.8rem; }
 	}
 </style>

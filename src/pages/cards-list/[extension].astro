@@ -1762,6 +1762,17 @@ const leakCardDetails = {
 		traits: "Land of Wano",
 		effectLines: [[keyword("on-play", "On Play"), " Draw 2 cards and trash 2 cards from your hand."]],
 	},
+	"EB05-054": {
+		rarity: "Common",
+		stats: "Yellow / Cost 3 / Special / Power 4000 / Counter 1000",
+		traits: "Big Mom Pirates",
+		effectLines: [
+			[
+				keyword("trigger", "Trigger"),
+				" Play up to 2 {Big Mom Pirates} type Character cards with 4000 power from your hand.",
+			],
+		],
+	},
 	"EB05-056": {
 		rarity: "Common",
 		stats: "Yellow / Cost 1 / Wisdom / Power 0 / Counter 2000",
@@ -2195,31 +2206,31 @@ const leakCards = isLeakPage
 					["ALT", "ALT BAKI"].includes(card.edition ?? "")
 						? card.edition
 						: null;
-				return details
-					? {
-							...card,
-							...details,
-							rarity: hasStandaloneSpecialRarity ? card.edition : details.rarity,
-							headerBadge:
-								useHeaderAltBadge || useOp18LokiAltBadge ? "ALT" : details.headerBadge ?? card.headerBadge ?? null,
-							edition: hideEditionChip ? null : details.edition ?? card.edition ?? null,
-							variants: [
-								...(card.variants ?? []),
-								...(staticVariantLabel
-									? [
-											{
-												label: staticVariantLabel,
-												fullUrl: card.fullUrl,
-												smallUrl: card.smallUrl,
-												disabled: true,
-											},
-										]
-									: []),
-							],
-						}
-					: null;
+				return {
+					...card,
+					...details,
+					rarity: hasStandaloneSpecialRarity ? card.edition : details?.rarity ?? "",
+					headerBadge:
+						useHeaderAltBadge || useOp18LokiAltBadge ? "ALT" : details?.headerBadge ?? card.headerBadge ?? null,
+					edition: hideEditionChip ? null : details?.edition ?? card.edition ?? null,
+					traits: details?.traits ?? card.traits ?? "",
+					notes: details?.notes ?? card.notes ?? [],
+					effectLines: details?.effectLines ?? card.effectLines ?? [],
+					variants: [
+						...(card.variants ?? []),
+						...(staticVariantLabel
+							? [
+									{
+										label: staticVariantLabel,
+										fullUrl: card.fullUrl,
+										smallUrl: card.smallUrl,
+										disabled: true,
+									},
+								]
+							: []),
+					],
+				};
 			})
-			.filter(Boolean)
 			.sort((a, b) => {
 				const rankDiff = getLeakSortRank(a) - getLeakSortRank(b);
 				if (rankDiff !== 0) return rankDiff;

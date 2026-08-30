@@ -1,12 +1,17 @@
 ﻿---
-const { title, description, href, eyebrow, imageSrc, imageAlt } = Astro.props;
+const { title, description, href, eyebrow, imageSrc, imageAlt, imagePosition } = Astro.props;
 ---
 
 <a class="card" href={href}>
 	{eyebrow && <span class="card-eyebrow">{eyebrow}</span>}
 	{imageSrc && (
 		<div class="card-icon">
-			<img src={imageSrc} alt={imageAlt ?? title} loading="lazy" />
+			<img
+				src={imageSrc}
+				alt={imageAlt ?? title}
+				loading="lazy"
+				style={imagePosition ? `object-position: ${imagePosition};` : undefined}
+			/>
 		</div>
 	)}
 	<h3>{title}</h3>

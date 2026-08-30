@@ -712,6 +712,11 @@ const manualCardOverrides = {
 			code: "EB05-010",
 			name: "Nico Robin",
 		},
+		"eb05-054 charlotte brulee": {
+			code: "EB05-054",
+			name: "Charlotte Brulee",
+			color: "Yellow",
+		},
 		"eb05-010 nico robin": {
 			code: "EB05-010",
 			name: "Nico Robin",
@@ -828,6 +833,11 @@ const manualCardOverrides = {
 			name: "Saint Shamrock",
 			color: "Yellow",
 		},
+		"super alt op18-119 saint shamrock": {
+			code: "OP18-119",
+			name: "Saint Shamrock",
+			color: "Yellow",
+		},
 		"op18-060 saint gunko": {
 			code: "OP18-060",
 			name: "Saint Gunko",
@@ -844,6 +854,11 @@ const manualCardOverrides = {
 			color: "Purple",
 		},
 		"alt op17-119 loki": {
+			code: "OP17-119",
+			name: "Loki",
+			color: "Black",
+		},
+		"super alt op17-119 loki": {
 			code: "OP17-119",
 			name: "Loki",
 			color: "Black",
@@ -1039,6 +1054,7 @@ const shouldKeepOp17SpecialFile = (file) => {
 const getOp18VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("leader alt ")) return "ALT";
+	if (normalized.startsWith("super alt ")) return "SUPER ALT";
 	if (normalized.startsWith("alt ")) return "ALT";
 	if (normalized.startsWith("manga ")) return "MANGA";
 	return null;
@@ -1112,6 +1128,7 @@ const stripOp18VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("leader alt ")) return base.slice("Leader ALT ".length).trim();
 	if (normalized.startsWith("leader ")) return base.slice("Leader ".length).trim();
+	if (normalized.startsWith("super alt ")) return base.slice("Super ALT ".length).trim();
 	if (normalized.startsWith("alt ")) return base.slice("ALT ".length).trim();
 	if (normalized.startsWith("manga ")) return base.slice("MANGA ".length).trim();
 	return base.trim();
@@ -1152,6 +1169,13 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 			const primary = sortedEntries[0];
 			const variants = sortedEntries
 				.slice(1)
+				.sort((a, b) => {
+					const order = { ALT: 0, "SUPER ALT": 1, MANGA: 2 };
+					const aRank = order[a.variant ?? ""] ?? 99;
+					const bRank = order[b.variant ?? ""] ?? 99;
+					if (aRank !== bRank) return aRank - bRank;
+					return a.fullUrl.localeCompare(b.fullUrl, "en");
+				})
 				.map((entry) => ({
 					label: entry.variant,
 					fullUrl: entry.fullUrl,
@@ -1169,7 +1193,11 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 				variants,
 			};
 		})
-		.sort((a, b) => a.code.localeCompare(b.code, "en"));
+		.sort((a, b) => {
+			if (a.code === "OP17-119") return 1;
+			if (b.code === "OP17-119") return -1;
+			return a.code.localeCompare(b.code, "en");
+		});
 };
 
 const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
