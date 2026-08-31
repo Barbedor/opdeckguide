@@ -1,11 +1,9 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Rocks.D.Xebec OP17 Mini Deck Guide";
+const title = "Rocks.D.Xebec OP17 Deck Guide";
 const description =
-	"Mini deck guide for Rocks.D.Xebec OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, odd curve, 10 DON!! plays, defensive transformation, strengths, weaknesses, and conclusions for the OP17 format.";
-
-const publishedAt = "August 11, 2026";
+	"Deck guide for Rocks.D.Xebec OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, odd curve, 10 DON!! plays, matchup notes, defensive transformation, strengths, weaknesses, and conclusions for the OP17 format.";
 const icon = "/assets/guides/Rocks.DXebec%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -122,6 +120,25 @@ const tenDonPlays = [
 		],
 	},
 ];
+
+const favorableMatchups = [
+	{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png", alt: "Sabo OP13" },
+	{ name: "Portgas D. Ace OP16", image: "/assets/guides/Ace-op16.png", alt: "Portgas D. Ace OP16" },
+	{ name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png", alt: "Nico Robin OP09" },
+	{ name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte%20Linlin%20op17.png", alt: "Charlotte Linlin OP17" },
+	{ name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png", alt: "Shanks OP17" },
+	{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png", alt: "Luffy and Ace ST30" },
+	{ name: "Enel OP15", image: "/assets/guides/enel-op15.png", alt: "Enel OP15" },
+];
+
+const slightlyUnfavorableMatchups = [
+	{ name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png", alt: "Kaido OP17" },
+];
+
+const unfavorableMatchups = [
+	{ name: "Dracule Mihawk OP14", image: "/assets/guides/dracule-mihawk-op14.png", alt: "Dracule Mihawk OP14" },
+	{ name: "Monkey D. Luffy OP17", image: "/assets/guides/Luffy%20OP17.png", alt: "Monkey D. Luffy OP17" },
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -129,16 +146,15 @@ const tenDonPlays = [
 		<div class="container hero-grid">
 			<div class="hero-copy">
 				<div class="hero-tags">
-					<span class="hero-chip">Mini Deck Guide</span>
+					<span class="hero-chip">Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Rocks.D.Xebec OP17 Mini Deck Guide</h1>
+				<h1>Rocks.D.Xebec OP17 Deck Guide</h1>
 				<p class="hero-intro">
 					A compact OP17 guide for Rocks.D.Xebec, including its leader effect, the updated decklist, your
-					best curve, the odd curve, key 10 DON!! plays, defensive transformation lines, strengths,
-					weaknesses, and a short conclusion on the deck’s current direction.
+					best curve, the odd curve, key 10 DON!! plays, matchup notes, defensive transformation lines,
+					strengths, weaknesses, and a short conclusion on the deck’s current direction.
 				</p>
-				<div class="publish-banner">Published {publishedAt}</div>
 			</div>
 			<div class="guide-icon">
 				<img src={icon} alt="Rocks.D.Xebec OP17 first look icon" loading="eager" />
@@ -324,6 +340,60 @@ const tenDonPlays = [
 							</div>
 						</div>
 					))}
+				</div>
+			</div>
+
+			<div class="glow-block">
+				<div class="section-header">
+					<div>
+						<h2>Matchups</h2>
+						<p>
+							Xebec looks like one of the more complete decks in the current field. It pressures slower
+							leaders, keeps cards flowing, and has enough high-end tempo to stay favored across a large
+							part of the matchup spread.
+						</p>
+					</div>
+				</div>
+				<div class="matchup-grid">
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Favorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{favorableMatchups.map((entry) => (
+									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+										<img src={entry.image} alt={entry.alt} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-mid"><span class="badge-icon">~</span><span>Slightly Unfavorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{slightlyUnfavorableMatchups.map((entry) => (
+									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+										<img src={entry.image} alt={entry.alt} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Unfavorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{unfavorableMatchups.map((entry) => (
+									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+										<img src={entry.image} alt={entry.alt} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -922,6 +992,76 @@ const tenDonPlays = [
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	.matchup-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		display: grid;
+		gap: 0.9rem;
+		padding: 1rem;
+		align-content: start;
+	}
+
+	.matchup-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		align-self: start;
+		gap: 0.45rem;
+		padding: 0.45rem 0.9rem;
+		border-radius: 999px;
+		font-weight: 600;
+		width: 100%;
+		min-height: 40px;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.badge-up {
+		background: rgba(74, 222, 128, 0.14);
+		color: #65f59b;
+	}
+
+	.badge-mid {
+		background: rgba(255, 188, 77, 0.14);
+		color: #ffb347;
+	}
+
+	.badge-down {
+		background: rgba(255, 109, 109, 0.14);
+		color: #ff8a8a;
+	}
+
+	.matchup-row {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.matchup-row-cards-only {
+		justify-items: center;
+	}
+
+	.tip-cards {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.9rem;
+		width: 100%;
+	}
+
+	.matchup-static-card {
+		cursor: default;
+	}
+
+	.matchup-static-card:hover,
+	.matchup-static-card:focus-visible {
+		transform: none;
+		outline: none;
+	}
+
 	.conclusions-card {
 		grid-column: 1 / -1;
 	}
@@ -1001,7 +1141,8 @@ const tenDonPlays = [
 
 	@media (max-width: 900px) {
 		.hero-grid,
-		.summary-grid {
+		.summary-grid,
+		.matchup-grid {
 			grid-template-columns: 1fr;
 		}
 

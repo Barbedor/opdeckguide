@@ -234,7 +234,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP08-036": {
 		affiliateUrl: "https://partner.tcgplayer.com/L0oqGV",
-		price: "$14.51",
+		price: "$8.99",
 	},
 	"OP08-047": {
 		affiliateUrl: "https://partner.tcgplayer.com/enJM7Q",
