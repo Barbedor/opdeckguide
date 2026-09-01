@@ -1,5 +1,6 @@
 import { op17EastAug22DeckTemplates, op17EastAug22EntrySeeds } from "./op17EastAug22";
 import { op17EastAug23DeckTemplates, op17EastAug23EntrySeeds } from "./op17EastAug23";
+import { op17EastAug29DeckTemplates, op17EastAug29EntrySeeds } from "./op17EastAug29";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -1779,6 +1780,7 @@ const deckTemplates = {
 	],
 	...op17EastAug22DeckTemplates,
 	...op17EastAug23DeckTemplates,
+	...op17EastAug29DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -16329,6 +16331,7 @@ const entrySeeds = [
 	},
 	...op17EastAug22EntrySeeds,
 	...op17EastAug23EntrySeeds,
+	...op17EastAug29EntrySeeds,
 	{
 		format: "op16",
 		region: "east",

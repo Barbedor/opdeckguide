@@ -55,6 +55,16 @@ const woRoRoRo = card(
 );
 const claimOnePiece = card("OP07-077", "We're Going to Claim the One Piece!!!", "/Cards/OP07/OP07-077.png", 3, "Event");
 const gundariMeteorShower = card("OP17-077", "Gundari Meteor Shower", "/Cards/OP17/New OP17/OP17-077.jpg", 3, "Event");
+const saboOp13 = card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader");
+const mihawkOp14 = card("OP14-020", "Dracule Mihawk OP14", "/Cards/OP14/OP14-020.jpg", null, "Leader");
+const rocksOp17 = card("OP17-039", "Rocks D. Xebec OP17", "/Cards/OP17/New OP17/OP17-039.jpg", null, "Leader");
+const aceOp16 = card("OP16-001", "Portgas D. Ace OP16", "/Cards/OP16/OP16-001.jpg", null, "Leader");
+const robinOp09 = card("OP09-062", "Nico Robin OP09", "/Cards/OP09/OP09-062.jpg", null, "Leader");
+const luffyOp17 = card("OP17-079", "Monkey D. Luffy OP17", "/Cards/OP17/New OP17/OP17-079.jpg", null, "Leader");
+const linlinOp17 = card("OP17-099", "Charlotte Linlin OP17", "/Cards/OP17/New OP17/OP17-099.jpg", null, "Leader");
+const shanksOp17 = card("OP17-020", "Shanks OP17", "/Cards/OP17/New OP17/OP17-020.jpg", null, "Leader");
+const luffyAceSt30 = card("ST30-001", "Luffy & Ace ST30", "/Cards/ST30/ST30-001.jpg", null, "Leader");
+const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
 
 const decklist = [
 	leader,
@@ -77,6 +87,14 @@ const decklist = [
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
+
+const favorableMatchups = [enelOp15];
+
+const slightlyFavorableMatchups = [saboOp13, rocksOp17, aceOp16, linlinOp17];
+
+const evenMatchups = [robinOp09];
+
+const unfavorableMatchups = [mihawkOp14, luffyOp17, shanksOp17, luffyAceSt30];
 
 const nutshellForce = [
 	"Massive late-game value and continuous DON!! recovery.",
@@ -186,6 +204,10 @@ const raidBosses = [
 					ramping fast, surviving the early turns, and dropping massive cost 10 bosses, this Leader is built
 					for that style.
 				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#curve">Curve Guide</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
 			</div>
 			<div class="guide-icon">
 				<img src={icon} alt="Kaido OP17 deck guide icon" loading="eager" />
@@ -195,42 +217,6 @@ const raidBosses = [
 
 	<section id="decklist" class="list-section">
 		<div class="container article-stack">
-			<div class="leader-panel glow-block">
-				<div class="leader-grid">
-					<div class="leader-tag-wrap">
-						<div class="section-tag">LEADER</div>
-					</div>
-					<div class="ability-tag-wrap">
-						<div class="section-tag section-tag-light">Ability</div>
-					</div>
-					<div class="leader-card-wrap">
-						<button
-							class="detail-card"
-							type="button"
-							data-card-preview
-							data-full={leader.img}
-							data-name={`${leader.code} ${leader.name}`}
-							data-code={leader.effectCode}
-						>
-							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
-						</button>
-					</div>
-					<div class="leader-details">
-						<div class="info-box">
-							<p class="ability-meta">Type &amp; Attribute: The Four Emperors/Animal Kingdom Pirates - Special</p>
-							<p class="ability-copy">
-								<img class="leader-keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" />
-								/
-								<img class="leader-keyword-badge" src="/assets/keywords/on-your-opponents-attack.png" alt="On Your Opponent's Attack" />
-								<img class="leader-keyword-badge" src="/assets/keywords/once-per-turn.png" alt="Once Per Turn" />
-								<br />
-								DON!! -1: Up to 1 of your opponent's Characters gets -2000 power during this turn.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="glow-block">
 				<div class="section-header decklist-header">
 					<div class="decklist-title-row">
@@ -269,7 +255,7 @@ const raidBosses = [
 			<div class="glow-block feature-block">
 				<div class="section-header feature-header">
 					<div>
-						<h2>Your Best Curve</h2>
+						<h2 id="curve">Your Best Curve</h2>
 						<p>Going first is your best start.</p>
 					</div>
 				</div>
@@ -378,6 +364,97 @@ const raidBosses = [
 							<p class="curve-note">{entry.copy}</p>
 						</article>
 					))}
+				</div>
+			</div>
+
+			<div class="glow-block feature-block" id="matchups">
+				<div class="section-header feature-header">
+					<div>
+						<h2>Matchups</h2>
+						<p>Quick OP17 matchup spread for Kaido.</p>
+					</div>
+				</div>
+				<div class="matchup-grid">
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Favorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{favorableMatchups.map((entry) => (
+									<button
+										class="mini-card matchup-static-card"
+										type="button"
+										data-card-preview
+										data-full={entry.img}
+										data-name={`${entry.code} ${entry.name}`}
+										data-code={entry.effectCode}
+									>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-up"><span class="badge-icon">&nearr;</span><span>Slightly Favorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{slightlyFavorableMatchups.map((entry) => (
+									<button
+										class="mini-card matchup-static-card"
+										type="button"
+										data-card-preview
+										data-full={entry.img}
+										data-name={`${entry.code} ${entry.name}`}
+										data-code={entry.effectCode}
+									>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-mid"><span class="badge-icon">~</span><span>Even</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{evenMatchups.map((entry) => (
+									<button
+										class="mini-card matchup-static-card"
+										type="button"
+										data-card-preview
+										data-full={entry.img}
+										data-name={`${entry.code} ${entry.name}`}
+										data-code={entry.effectCode}
+									>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block">
+						<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Unfavorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{unfavorableMatchups.map((entry) => (
+									<button
+										class="mini-card matchup-static-card"
+										type="button"
+										data-card-preview
+										data-full={entry.img}
+										data-name={`${entry.code} ${entry.name}`}
+										data-code={entry.effectCode}
+									>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -1043,6 +1120,88 @@ const raidBosses = [
 		max-width: 132px;
 	}
 
+	.matchup-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.matchup-card {
+		display: grid;
+		gap: 0.9rem;
+		padding: 1rem;
+		align-content: start;
+	}
+
+	.matchup-badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		padding: 0.45rem 0.9rem;
+		border-radius: 999px;
+		font-weight: 600;
+		width: 100%;
+		min-height: 40px;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.badge-up {
+		background: rgba(74, 222, 128, 0.14);
+		color: #65f59b;
+	}
+
+	.badge-mid {
+		background: rgba(255, 188, 77, 0.14);
+		color: #ffb347;
+	}
+
+	.badge-down {
+		background: rgba(255, 109, 109, 0.14);
+		color: #ff8a8a;
+	}
+
+	.badge-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.1rem;
+		height: 1.1rem;
+		border-radius: 999px;
+		background: currentColor;
+		color: #08101b;
+		font-size: 0.78rem;
+		font-weight: 700;
+	}
+
+	.matchup-row {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.matchup-row-cards-only {
+		justify-items: center;
+	}
+
+	.tip-cards {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.9rem;
+		width: 100%;
+	}
+
+	.matchup-static-card {
+		cursor: default;
+	}
+
+	.matchup-static-card:hover,
+	.matchup-static-card:focus-visible {
+		transform: none;
+		outline: none;
+	}
+
 	.summary-grid {
 		grid-template-columns: 1fr;
 	}
@@ -1123,6 +1282,10 @@ const raidBosses = [
 		.hero-grid,
 		.nutshell-grid,
 		.boss-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.matchup-grid {
 			grid-template-columns: 1fr;
 		}
 
@@ -1270,6 +1433,10 @@ const raidBosses = [
 		.glow-block {
 			padding: 1rem;
 			border-radius: 22px;
+		}
+
+		.matchup-card {
+			padding: 0.9rem;
 		}
 
 		.leader-grid {

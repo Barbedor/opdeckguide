@@ -114,6 +114,10 @@ const coreEngine = [
 					spam Trigger characters, and drop the 10c Linlin to turn your entire board into massive 8K Bosses.
 					Swipe to master the most oppressive healing engine in the OP17 meta!
 				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#curve">Curve Guide</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
 			</div>
 			<div class="guide-icon">
 				<img src={icon} alt="Charlotte Linlin OP17 deck guide icon" loading="eager" />
@@ -123,31 +127,6 @@ const coreEngine = [
 
 	<section id="decklist" class="list-section">
 		<div class="container article-stack">
-			<div class="leader-panel glow-block">
-				<div class="leader-grid">
-					<div class="leader-tag-wrap"><div class="section-tag">LEADER</div></div>
-					<div class="ability-tag-wrap"><div class="section-tag section-tag-light">Ability</div></div>
-					<div class="leader-card-wrap">
-						<button class="detail-card" type="button" data-card-preview data-full={leader.img} data-name={`${leader.code} ${leader.name}`} data-code={leader.code}>
-							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
-						</button>
-					</div>
-					<div class="leader-details">
-						<div class="info-box">
-							<p class="ability-meta">Type &amp; Attribute: The Four Emperors/Big Mom Pirates - Special</p>
-							<p class="ability-copy">
-								<img class="leader-keyword-badge" src="/assets/keywords/when-attacking.png" alt="When Attacking" />
-								You may trash 1 card from your hand: Your opponent chooses one:
-								<br />
-								- Trash 1 card from your hand. Then, add up to 1 card from the top of your deck to the top of your Life cards.
-								<br />
-								- Trash 1 card from your opponent's hand.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="glow-block">
 				<div class="section-header decklist-header">
 					<div class="decklist-title-row">
@@ -174,17 +153,17 @@ const coreEngine = [
 				</div>
 			</div>
 
-			<div class="glow-block feature-block">
+			<div id="curve" class="glow-block feature-block">
 				<div class="section-header feature-header"><div><h2>Curve Guide</h2></div></div>
 
 				<div class="curve-guide-block">
-					<h3>Your Best Curve</h3>
+					<h3>Go Second</h3>
 					<p>Going second is usually preferred to naturally curve into your massive 10-DON!! turn.</p>
 					<div class="curve-rows">
 						{bestCurve.map((slot) => (
 							<div class="curve-row">
 								<div class="curve-label">{slot.label}</div>
-								<div class="curve-cards">
+								<div class={`curve-cards ${slot.cards.length === 2 ? "curve-cards-pair" : ""}`}>
 									{slot.cards.map((entry, index) => (
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
@@ -200,13 +179,13 @@ const coreEngine = [
 				</div>
 
 				<div class="curve-guide-block">
-					<h3>Odd Curve</h3>
+					<h3>Go First</h3>
 					<p>The curve shown is just an example. It doesn't leave space for leader effect without discarding a card from hand.</p>
 					<div class="curve-rows">
 						{oddCurve.map((slot) => (
 							<div class="curve-row">
 								<div class="curve-label">{slot.label}</div>
-								<div class="curve-cards">
+								<div class={`curve-cards ${slot.cards.length === 2 ? "curve-cards-pair" : ""}`}>
 									{slot.cards.map((entry, index) => (
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
@@ -246,7 +225,7 @@ const coreEngine = [
 				</div>
 			</div>
 
-			<div class="matchup-grid">
+			<div id="matchups" class="matchup-grid">
 				<div class="matchup-card glow-block">
 					<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Matchup Favorable</span></div>
 					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
@@ -477,6 +456,6 @@ const coreEngine = [
 	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
 	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid, .mind-games-grid { grid-template-columns: 1fr; } .guide-icon, .detail-card { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 	@media (max-width: 640px) { .copy-sim-button { width: auto; justify-content: center; padding-inline: 0.9rem; min-width: 0; flex-shrink: 0; } .decklist-title-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 0.75rem; } .decklist-title-row h2 { min-width: 0; } .decklist-title-row .copy-sim-button { grid-column: 2; justify-self: end; } .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.7rem; } .deck-card img { max-width: 92px; } }
-	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .leader-keyword-badge { height: 1.2em; } .tip-cards { gap: 0.75rem; } .mini-card img { max-width: 110px; } .curve-card img, .mind-game-hero img { max-width: 100px; } }
+	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .leader-keyword-badge { height: 1.2em; } .tip-cards { gap: 0.75rem; } .mini-card img { max-width: 110px; } .curve-card img, .mind-game-hero img { max-width: 100px; } .curve-cards-pair { flex-wrap: nowrap; } .curve-cards-pair .curve-card img { max-width: 88px; } .curve-cards-pair .curve-join { font-size: 1.45rem; } }
 </style>
 

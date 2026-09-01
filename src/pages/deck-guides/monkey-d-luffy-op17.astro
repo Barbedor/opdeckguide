@@ -24,7 +24,6 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
-const leader = card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader");
 
 const decklist = [
 	card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader"),
@@ -98,6 +97,10 @@ const luffyTargets = [
 					curve guide, possible Luffy targets, favorable and unfavorable matchups, and a short conclusion on
 					where the deck currently stands.
 				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="#curve">Curve Guide</a>
+					<a class="btn btn-secondary" href="#matchups">Matchups</a>
+				</div>
 			</div>
 			<div class="guide-icon">
 				<img src={icon} alt="Monkey.D.Luffy OP17 deck guide icon" loading="eager" />
@@ -107,38 +110,6 @@ const luffyTargets = [
 
 	<section id="decklist" class="list-section">
 		<div class="container article-stack">
-			<div class="leader-panel glow-block">
-				<div class="leader-grid">
-					<div class="leader-tag-wrap">
-						<div class="section-tag">LEADER</div>
-					</div>
-					<div class="ability-tag-wrap">
-						<div class="section-tag section-tag-light">Ability</div>
-					</div>
-					<div class="leader-card-wrap">
-						<button
-							class="detail-card"
-							type="button"
-							data-card-preview
-							data-full={leader.img}
-							data-name={`${leader.code} ${leader.name}`}
-							data-code={leader.code}
-						>
-							<img src={leader.img} alt={`${leader.code} ${leader.name}`} loading="lazy" />
-						</button>
-					</div>
-					<div class="leader-details">
-						<div class="info-box">
-							<p class="ability-meta">Type &amp; Attribute: Elbaph/The Four Emperors/Straw Hat Crew - Strike</p>
-							<p class="ability-copy">
-								All of your Characters with a cost of 12 or more gain
-								<img class="leader-keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" />.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="glow-block">
 				<div class="section-header decklist-header">
 					<div class="decklist-title-row">
@@ -248,7 +219,7 @@ const luffyTargets = [
 						the dice, and the lists are still under development, but it already looks like a solid choice.
 					</p>
 				</div>
-				<div class="matchup-card glow-block">
+				<div id="matchups" class="matchup-card glow-block">
 					<div class="matchup-badge badge-up">
 						<span class="badge-icon">&uarr;</span>
 						<span>Matchup Favorable</span>

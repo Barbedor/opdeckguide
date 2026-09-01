@@ -708,6 +708,16 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-035 speed": {
+			code: "EB05-035",
+			name: "Speed",
+			color: "Purple",
+		},
+		"eb05-045 ms. monday": {
+			code: "EB05-045",
+			name: "Ms. Monday",
+			color: "Black",
+		},
 		"alt leader nico robin eb05-010": {
 			code: "EB05-010",
 			name: "Nico Robin",

@@ -1,0 +1,43 @@
+export const op17EastAug29DeckTemplates = {
+	"enel-op17-east-card-delia-aug29-ruu": [
+		{ code: "OP15-058", name: "Enel", count: 1, img: "/Cards/OP15/OP15-058.jpg", role: "Leader" },
+		{ code: "OP12-071", name: "Charlotte Pudding", count: 4, img: "/Cards/OP12/OP12-071.jpg", role: "Character" },
+		{ code: "OP15-061", name: "Ohm", count: 4, img: "/Cards/OP15/OP15-061.jpg", role: "Character" },
+		{ code: "OP15-066", name: "Satori", count: 4, img: "/Cards/OP15/OP15-066.jpg", role: "Character" },
+		{ code: "OP15-067", name: "Shura", count: 4, img: "/Cards/OP15/OP15-067.jpg", role: "Character" },
+		{ code: "OP17-075", name: "X. Drake", count: 4, img: "/Cards/OP17/New OP17/OP17-075.jpg", role: "Character" },
+		{ code: "ST10-010", name: "Trafalgar Law", count: 4, img: "/Cards/ST10/ST10-010.png", role: "Character" },
+		{ code: "OP10-067", name: "Senor Pink", count: 4, img: "/Cards/OP10/OP10-067.jpg", role: "Character" },
+		{ code: "OP13-076", name: "Divine Departure", count: 1, img: "/Cards/OP13/OP13-076.jpg", role: "Event" },
+		{ code: "OP15-075", name: "El Thor", count: 4, img: "/Cards/OP15/OP15-075.jpg", role: "Event" },
+		{ code: "OP15-076", name: "Lightning Beast Kiten", count: 4, img: "/Cards/OP15/OP15-076.jpg", role: "Event" },
+		{ code: "OP15-077", name: "Lightning Dragon", count: 4, img: "/Cards/OP15/OP15-077.jpg", role: "Event" },
+		{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
+		{ code: "OP05-077", name: "Gamma Knife", count: 3, img: "/Cards/OP05/OP05-077.png", role: "Event" },
+		{ code: "OP09-077", name: "Gum-Gum Lightning", count: 2, img: "/Cards/OP09/OP09-077.jpg", role: "Event" },
+	],
+	"mihawk-op17-east-cardshop-aug29-kana": [
+		{ code: "OP14-020", name: "Dracule Mihawk", count: 1, img: "/Cards/OP14/OP14-020.jpg", role: "Leader" },
+		{ code: "OP07-022", name: "Otama", count: 4, img: "/Cards/OP07/OP07-022.png", role: "Character" },
+		{ code: "OP12-034", name: "Perona", count: 4, img: "/Cards/OP12/OP12-034.jpg", role: "Character" },
+		{ code: "ST32-001", name: "Kin'emon", count: 4, img: "/Cards/ST32/ST32-001.jpg", role: "Character" },
+		{ code: "OP06-033", name: "Vander Decken IX", count: 4, img: "/Cards/OP06/OP06-033.png", role: "Character" },
+		{ code: "OP10-030", name: "Smoker", count: 1, img: "/Cards/OP10/OP10-030.jpg", role: "Character" },
+		{ code: "OP12-023", name: "Kawamatsu", count: 4, img: "/Cards/OP12/OP12-023.jpg", role: "Character" },
+		{ code: "ST32-002", name: "Kouzuki Oden", count: 4, img: "/Cards/ST32/ST32-002.jpg", role: "Character" },
+		{ code: "OP17-031", name: "Yasopp", count: 4, img: "/Cards/OP17/New OP17/OP17-031.jpg", role: "Character" },
+		{ code: "OP13-031", name: "Trafalgar Law", count: 4, img: "/Cards/OP13/OP13-031.jpg", role: "Character" },
+		{ code: "OP17-022", name: "Shanks", count: 4, img: "/Cards/OP17/New OP17/OP17-022.jpg", role: "Character" },
+		{ code: "OP01-055", name: "You Can Be My Samurai!!", count: 3, img: "/Cards/OP01/OP01-055.png", role: "Event" },
+		{ code: "OP06-038", name: "Billion-fold World Trichiliocosm", count: 3, img: "/Cards/OP06/OP06-038.png", role: "Event" },
+		{ code: "OP12-037", name: "Demonic Aura Nine-Sword Style Asura Dead Man's Game", count: 1, img: "/Cards/OP12/OP12-037.jpg", role: "Event" },
+		{ code: "OP13-040", name: "I Know You're Strong!!!", count: 3, img: "/Cards/OP13/OP13-040.jpg", role: "Event" },
+		{ code: "OP14-039", name: "Coffin Boat", count: 2, img: "/Cards/OP14/OP14-039.jpg", role: "Stage" },
+		{ code: "OP08-036", name: "Electrical Luna", count: 1, img: "/Cards/OP08/OP08-036.png", role: "Event" },
+	],
+};
+
+export const op17EastAug29EntrySeeds = [
+	{ format: "op17", region: "east", slug: "enel-op17-east-card-delia-aug29-ruu", leaderSlug: "purple-enel-op16", deckTemplate: "enel-op17-east-card-delia-aug29-ruu", title: "Enel OP17 Flagship Battle Winner", eventName: "Card Delia", eventType: "FS", placement: "1st (5-0)", date: "2026-08-29", location: "Japan", country: "JP", author: "Ruu", host: "Card Delia", summary: "Ruu's 1st (5-0) Enel decklist from a Flagship Battle at Card Delia in Japan." },
+	{ format: "op17", region: "east", slug: "mihawk-op17-east-cardshop-aug29-kana", leaderSlug: "g-mihawk-op14", deckTemplate: "mihawk-op17-east-cardshop-aug29-kana", title: "G Mihawk OP17 5v5 Winner", eventName: "cardshop", eventType: "5vs5", placement: "1st (6-1)", date: "2026-08-29", location: "Japan", country: "JP", author: "Kana", host: "cardshop", summary: "Kana's 1st (6-1) G Mihawk decklist from a 5vs5 event at cardshop in Japan." },
+];
