@@ -56,17 +56,17 @@ const decklist = [
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
 const bestCurve = [
-	{ label: "2 DON!!", cards: [{ card: streusen }] },
-	{ label: "4 DON!!", cards: [{ card: oven }] },
-	{ label: "6 DON!!", cards: [{ card: katakuri }] },
-	{ label: "8 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to" },
+	{ label: "2 DON!!", cards: [{ card: streusen }], text: "Play Streusen to look at the top 3 cards and add a Big Mom Pirates card to your hand. This early search helps secure the next pieces of the curve while keeping your hand stocked for the Leader effect." },
+	{ label: "4 DON!!", cards: [{ card: oven }], text: "Play Charlotte Oven to establish a 4K-power body. If the opponent K.O.s it, its On K.O. effect lets you play another Character with 4K power or less from your trash, making it a useful body to expose to removal." },
+	{ label: "6 DON!!", cards: [{ card: katakuri }], text: "Play Charlotte Katakuri to add the top card of your deck to your Life, then give an opposing Character -3,000 power for the turn. This both reinforces your Life total and makes a target easier to remove or less threatening." },
+	{ label: "8 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to", text: "Play Charlotte Perospero, use its On Play effect to play Charlotte Katakuri from your hand, then give Perospero Rush. Katakuri adds the top card of your deck to your Life and reduces an opposing Character by 3,000, while Perospero can apply pressure immediately." },
 ];
 
 const oddCurve = [
-	{ label: "1 DON!!", cards: [{ card: streusen }] },
-	{ label: "3 DON!!", cards: [{ card: pudding }] },
-	{ label: "5 DON!!", cards: [{ card: cracker }] },
-	{ label: "7 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to" },
+	{ label: "1 DON!!", cards: [{ card: streusen }], text: "Play Streusen to look at the top 3 cards and add a Big Mom Pirates card to your hand. Going first, this gives you an early search without committing many resources." },
+	{ label: "3 DON!!", cards: [{ card: pudding }], text: "Play Charlotte Pudding when you have a Trigger card to spare: trash that Trigger to draw 3 cards. This converts an unneeded Trigger into a deeper hand and gives you more options for the Leader effect and later turns." },
+	{ label: "5 DON!!", cards: [{ card: cracker }], text: "Play Charlotte Cracker and, when adding a card to your Life is more valuable than keeping the DON!! active, rest 2 DON!! to use his On Play effect. This increases your Life while continuing to build a 4K-power board." },
+	{ label: "7 DON!!", cards: [{ card: perospero }, { card: katakuri }], mode: "to", text: "Play Charlotte Perospero and use its On Play effect to play Charlotte Katakuri from your hand, then give Perospero Rush. Katakuri adds the top card of your deck to your Life and gives an opposing Character -3,000, creating a strong turn even when going first." },
 ];
 
 const favorableMatchups = [
@@ -173,6 +173,7 @@ const coreEngine = [
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
@@ -195,6 +196,7 @@ const coreEngine = [
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
@@ -418,7 +420,9 @@ const coreEngine = [
 	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
 	.curve-row { display: grid; gap: 0.75rem; padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
 	.curve-label { color: var(--accent); font-weight: 700; }
-	.curve-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; }
+	.curve-note { margin: 0; font-size: 1rem; line-height: 1.6; }
+	.curve-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; width: 100%; justify-content: flex-start; justify-self: start; align-self: start; }
+	.curve-card { width: fit-content; text-align: left; }
 	.curve-card img, .mind-game-hero img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
 	.curve-card.is-rested img { transform: rotate(90deg); transform-origin: center; }
 	.curve-join { color: var(--accent); font-size: 1.8rem; font-weight: 700; line-height: 1; }
@@ -456,6 +460,43 @@ const coreEngine = [
 	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
 	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid, .mind-games-grid { grid-template-columns: 1fr; } .guide-icon, .detail-card { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 	@media (max-width: 640px) { .copy-sim-button { width: auto; justify-content: center; padding-inline: 0.9rem; min-width: 0; flex-shrink: 0; } .decklist-title-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 0.75rem; } .decklist-title-row h2 { min-width: 0; } .decklist-title-row .copy-sim-button { grid-column: 2; justify-self: end; } .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.7rem; } .deck-card img { max-width: 92px; } }
-	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .leader-keyword-badge { height: 1.2em; } .tip-cards { gap: 0.75rem; } .mini-card img { max-width: 110px; } .curve-card img, .mind-game-hero img { max-width: 100px; } .curve-cards-pair { flex-wrap: nowrap; } .curve-cards-pair .curve-card img { max-width: 88px; } .curve-cards-pair .curve-join { font-size: 1.45rem; } }
+	@media (max-width: 560px) { .guide-hero { padding-top: 2rem; } .glow-block { padding: 1rem; border-radius: 22px; } .leader-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; align-items: start; gap: 1rem; } .detail-card img { max-width: 100%; } .ability-copy { font-size: 0.98rem; line-height: 1.5; } .leader-keyword-badge { height: 1.2em; } .tip-cards { gap: 0.75rem; } .mini-card img { max-width: 110px; } .curve-card img, .mind-game-hero img { max-width: 100px; } .curve-row { display: flex; flex-direction: column; align-items: flex-start; } .curve-cards-pair { flex-wrap: nowrap; } .curve-cards-pair .curve-card img { max-width: 88px; } .curve-cards-pair .curve-join { font-size: 1.45rem; } }
+	@media (max-width: 560px) {
+		.mind-games-grid {
+			grid-template-columns: minmax(92px, 100px) minmax(0, 1fr);
+			grid-template-areas: "hero copy-one" "side copy-two";
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.mind-games-copy {
+			display: contents;
+		}
+
+		.mind-games-copy .mind-game-block:first-child {
+			grid-area: copy-one;
+		}
+
+		.mind-games-copy .mind-game-block:last-child {
+			grid-area: copy-two;
+		}
+
+		.mind-game-hero,
+		.mind-game-side-card {
+			width: 100%;
+			justify-self: start;
+		}
+
+		.mind-game-hero img,
+		.mind-game-side-card img {
+			width: 100%;
+			max-width: 100px;
+		}
+
+		.mind-game-block p {
+			font-size: 0.9rem;
+			line-height: 1.45;
+		}
+	}
 </style>
 

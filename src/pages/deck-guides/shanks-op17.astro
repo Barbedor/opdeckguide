@@ -99,22 +99,27 @@ const bestCurve = [
 	{
 		label: "2 DON!!",
 		cards: [{ card: newEra }, { card: limeJuice }],
+		text: "Use Are You That Afraid of the New Era?!! and Lime Juice to look at the top of your deck and collect Red-Haired Pirates cards. This early setup improves your next draws and helps you find the characters needed for the rest of the curve.",
 	},
 	{
 		label: "4 DON!!",
 		cards: [{ card: luckyRoux }],
+		text: "Play Lucky.Roux to check the top 3 cards for another Red-Haired Pirates card. Keep it on the field as a 5k-power body, and sacrifice it during an opponent's attack when resting their Leader or a Character is more valuable than keeping it in play.",
 	},
 	{
 		label: "6 DON!!",
 		cards: [{ card: yasopp }],
+		text: "Play Yasopp to draw 1 card and rest an opposing Character with a cost of 8 or less. At the end of your turn, his effect can ready a Red-Haired Pirates Character, letting you keep an attacker or defensive body available while continuing to develop your board.",
 	},
 	{
 		label: "8 DON!!",
 		cards: [{ card: bennBeckman }],
+		text: "Spend 7 DON!! on Benn.Beckman and use his Rush to attack a Character immediately. On play, draw 1 card and rest up to 2 opposing Characters, creating a strong tempo swing while leaving 1 DON!! available for the Leader effect.",
 	},
 	{
 		label: "10 DON!!",
 		cards: [{ card: shanksOp17 }],
+		text: "Play Shanks with Rush to attack immediately, then set up to 2 DON!! cards as active and rest all opposing Characters. This is the deck's biggest swing turn: it clears the opponent's board while restoring resources for your follow-up.",
 	},
 ];
 
@@ -122,18 +127,22 @@ const oddCurve = [
 	{
 		label: "1 DON!!",
 		cards: [{ card: limeJuice }],
+		text: "Play Lime Juice to look at the top 3 cards and add a Red-Haired Pirates card to your hand. Going first, this is a low-cost way to improve your hand before the larger turns begin.",
 	},
 	{
 		label: "3 DON!!",
 		cards: [{ card: limeJuice }, { card: leader, rested: true }],
+		text: "Use Lime Juice to search again, then attack with your Leader. If an opposing Character is already rested, Shanks can trash a card from your hand or rest 1 DON!! to keep it from becoming active on the opponent's next Refresh Phase.",
 	},
 	{
 		label: "5 DON!!",
 		cards: [{ card: yasopp }],
+		text: "Play Yasopp to draw 1 card and rest an opposing Character with a cost of 8 or less. His end-of-turn effect readies a Red-Haired Pirates Character, so the board remains useful on the opponent's turn.",
 	},
 	{
 		label: "7 DON!!",
 		cards: [{ card: bennBeckman }],
+		text: "Play Benn.Beckman for 7 DON!! to draw 1 card and rest up to 2 opposing Characters. Because he has Rush, he can also attack a Character immediately, making this the main pressure and control turn when going first.",
 	},
 ];
 
@@ -244,6 +253,7 @@ const bigBodies = [
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
@@ -272,6 +282,7 @@ const bigBodies = [
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
@@ -472,7 +483,7 @@ const bigBodies = [
 			[keywordBadge("counter", "Counter"), " Up to 1 of your [Shanks] gains +4000 power during this battle."],
 		],
 		"OP17-037": [
-			[keywordBadge("main", "Main"), " Up to 1 of your opponent's rested Characters gains -3000 power during this turn."],
+			[keywordBadge("main", "Main"), ' Look at 5 cards from the top of your deck; reveal up to 1 card with a type including "Red-Haired Pirates" and add it to your hand. Then, place the rest at the bottom of your deck in any order.'],
 			[keywordBadge("counter", "Counter"), " If your Leader has the {Red-Haired Pirates} type, up to 1 of your Leader or Character cards gains +3000 power during this battle."],
 		],
 		"OP17-038": [
@@ -822,10 +833,16 @@ const bigBodies = [
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 0.9rem;
+		width: 100%;
+		justify-content: flex-start;
+		justify-self: start;
+		align-self: start;
 	}
 
 	.curve-card {
 		display: block;
+		width: fit-content;
+		text-align: left;
 	}
 
 	.curve-card img {
@@ -1305,6 +1322,12 @@ const bigBodies = [
 
 		.curve-card img {
 			max-width: 100px;
+		}
+
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
 		}
 
 		.curve-cards {

@@ -305,6 +305,10 @@ const matchupGroups = [
 				<div class="section-header feature-header">
 					<div>
 						<h2>Matchups</h2>
+						<p class="matchup-stats-link">
+							For the complete turn-order win rate breakdown, see the
+							<a href="/meta-analysis/Green-Dracule-Mihawk-op14-stats-OP17-Format/">Dracule Mihawk OP14 stats in OP17 Format</a>.
+						</p>
 					</div>
 				</div>
 				<div class="matchup-grid">
@@ -530,6 +534,9 @@ const matchupGroups = [
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem;
 	}
+	.matchup-stats-link { margin: 0.45rem 0 0; color: var(--text-200); }
+	.matchup-stats-link a { color: var(--accent); font-weight: 700; }
+	.matchup-stats-link a:hover { color: var(--accent-2); }
 	.matchup-card {
 		padding: 1rem;
 		border-radius: 22px;

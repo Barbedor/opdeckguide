@@ -1,6 +1,11 @@
 import { op17EastAug22DeckTemplates, op17EastAug22EntrySeeds } from "./op17EastAug22";
 import { op17EastAug23DeckTemplates, op17EastAug23EntrySeeds } from "./op17EastAug23";
 import { op17EastAug29DeckTemplates, op17EastAug29EntrySeeds } from "./op17EastAug29";
+import { op17EastAug30DeckTemplates, op17EastAug30EntrySeeds } from "./op17EastAug30";
+import { op17EastAug31DeckTemplates, op17EastAug31EntrySeeds } from "./op17EastAug31";
+import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
+import { op17WestAug30DeckTemplates, op17WestAug30EntrySeeds } from "./op17WestAug30";
+import { op17WestAug31DeckTemplates, op17WestAug31EntrySeeds } from "./op17WestAug31";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -637,6 +642,15 @@ const leaderIndex = {
 		color: "Black",
 		imageSrc: "/assets/guides/Monkey.D.Luffy op17.png",
 		href: "/deck-guides/monkey-d-luffy-op17/",
+	},
+	"linlin-op17": {
+		slug: "linlin-op17",
+		name: "Charlotte Linlin",
+		code: "OP17-099",
+		format: "op17",
+		color: "Yellow",
+		imageSrc: "/assets/guides/Charlotte Linlin op17.png",
+		href: "/deck-guides/charlotte-linlin-op17/",
 	},
 	"pudding-op08": {
 		slug: "pudding-op08",
@@ -1781,6 +1795,11 @@ const deckTemplates = {
 	...op17EastAug22DeckTemplates,
 	...op17EastAug23DeckTemplates,
 	...op17EastAug29DeckTemplates,
+	...op17EastAug30DeckTemplates,
+	...op17EastAug31DeckTemplates,
+	...op17WestAug29DeckTemplates,
+	...op17WestAug30DeckTemplates,
+	...op17WestAug31DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -15982,7 +16001,7 @@ const entrySeeds = [
 		eventName: "LGS",
 		eventType: "SB",
 		placement: "1st Place",
-		date: "2026-08-30",
+		date: "2026-08-26",
 		location: "USA",
 		country: "USA",
 		author: "meikell4",
@@ -15999,7 +16018,7 @@ const entrySeeds = [
 		eventName: "LGS",
 		eventType: "SB",
 		placement: "1st Place",
-		date: "2026-08-30",
+		date: "2026-08-26",
 		location: "NA",
 		country: "NA",
 		author: "Fernando",
@@ -16332,6 +16351,11 @@ const entrySeeds = [
 	...op17EastAug22EntrySeeds,
 	...op17EastAug23EntrySeeds,
 	...op17EastAug29EntrySeeds,
+	...op17EastAug30EntrySeeds,
+	...op17EastAug31EntrySeeds,
+	...op17WestAug29EntrySeeds,
+	...op17WestAug30EntrySeeds,
+	...op17WestAug31EntrySeeds,
 	{
 		format: "op16",
 		region: "east",

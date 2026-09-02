@@ -12,6 +12,7 @@ export const staticSitePaths = [
 	"/meta-analysis/Rocks-D-Xebec-op17-stats/",
 	"/meta-analysis/op16-5-starter-decks-meta-analysis/",
 	"/meta-analysis/Green-Dracule-Mihawk-op14-stats/",
+	"/meta-analysis/Green-Dracule-Mihawk-op14-stats-OP17-Format/",
 	"/meta-analysis/Red-Green-Luffy-op13-stats/",
 	"/meta-analysis/Black-Yellow-Marshall-D-Teach-op16-stats/",
 	"/meta-analysis/Purple-Yellow-Rosinante-op12-stats/",

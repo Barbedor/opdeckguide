@@ -593,7 +593,7 @@ const manualCardOverrides = {
 		},
 		"the 3 sweet commanders op17-114": {
 			code: "OP17-114",
-			name: "The 3 Sweet Commanders",
+			name: "Sweet 3 Generals",
 			color: "Yellow",
 		},
 		"op17-116": {
@@ -708,6 +708,11 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-025 domino": {
+			code: "EB05-025",
+			name: "Domino",
+			color: "Blue",
+		},
 		"eb05-035 speed": {
 			code: "EB05-035",
 			name: "Speed",

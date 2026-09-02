@@ -1,0 +1,29 @@
+const names = {
+	"OP17-099": "Charlotte Linlin", "OP14-102": "Kumacy", "OP17-113": "Streusen", "OP11-106": "Zeus", "OP17-104": "Charlotte Cracker", "OP17-109": "Charlotte Pudding", "OP14-110": "Dr. Hogback", "OP14-111": "Perona", "OP17-102": "Charlotte Oven", "OP17-106": "Charlotte Smoothie", "OP17-103": "Charlotte Katakuri", "OP17-114": "Sweet 3 Generals", "OP17-110": "Charlotte Perospero", "OP17-112": "Charlotte Linlin",
+	"OP13-004": "Sabo", "OP17-084": "Tony Tony.Chopper", "OP17-086": "Nami", "OP17-080": "Usopp", "OP17-081": "Gerd", "OP17-082": "Sanji", "OP17-083": "Jinbe", "OP17-087": "Nico Robin", "OP17-095": "Roronoa Zoro", "OP17-089": "Jaguar D. Saul", "OP04-083": "Sabo", "OP15-088": "Pirates Docking Six", "OP17-119": "Loki", "OP17-093": "Monkey D. Luffy", "OP13-007": "Ace & Sabo & Luffy", "ST01-011": "Brook", "OP14-096": "Ground Death", "OP04-016": "Bad Manners Kick Course", "ST21-017": "Gum-Gum Mole Gun",
+	"OP17-039": "Rocks.D.Xebec", "OP08-051": "Buckin", "OP17-050": "Streusen", "OP17-045": "Kyo", "OP17-054": "Miss Buckingham Stussy", "OP17-041": "Wang Zhi", "OP17-042": "Kaido", "OP17-044": "Captain John", "OP17-046": "Gloriosa", "OP17-049": "Charlotte Linlin", "OP17-040": "Edward.Newgate", "OP17-048": "Shiki", "OP17-118": "Rocks.D.Xebec", "OP17-055": "There's No Authority in the World That Lasts Forever!!!", "OP17-056": "Rocks Pirates", "EB02-030": "That Time is When Your Friend's Dreams are Laughed at!",
+	"OP17-079": "Monkey.D.Luffy", "OP05-081": "One-Legged Soldier", "OP17-094": "Rodo", "OP17-091": "Brook", "ST14-017": "Thousand Sunny",
+};
+const pngCodes = new Set(["OP04-016", "OP04-083", "ST01-011", "OP08-051", "OP05-081", "ST14-017"]);
+const imgFor = (code) => {
+	if (code.startsWith("OP17-")) return `/Cards/OP17/New OP17/${code}.jpg`;
+	if (code.startsWith("P-")) return `/Cards/P/${code}.jpg`;
+	const [set] = code.split("-");
+	return `/Cards/${set}/${code}.${pngCodes.has(code) ? "png" : "jpg"}`;
+};
+const card = (code, count, role = "Character") => ({ code, name: names[code] ?? code, count, img: imgFor(code), role });
+const leader = (code) => card(code, 1, "Leader");
+
+export const op17EastAug31DeckTemplates = {
+	"linlin-op17-east-cardshop-aug31-ryo": [leader("OP17-099"), card("OP14-102", 4), card("OP17-113", 4), card("OP11-106", 4), card("OP17-104", 4), card("OP17-109", 4), card("OP14-110", 4), card("OP14-111", 4), card("OP17-102", 4), card("OP17-106", 2), card("OP17-103", 4), card("OP17-114", 4), card("OP17-110", 4), card("OP17-112", 4)],
+	"sabo-op17-east-nagaoka-pit-night-aug31-oono": [leader("OP13-004"), card("OP17-084", 1), card("OP17-086", 3), card("OP17-080", 4), card("OP17-081", 1), card("OP17-082", 3), card("OP17-083", 2), card("OP17-087", 4), card("OP17-095", 4), card("OP17-089", 4), card("OP04-083", 2), card("OP15-088", 4), card("OP17-119", 4), card("OP17-093", 3), card("OP13-007", 3), card("ST01-011", 2), card("OP14-096", 2, "Event"), card("OP04-016", 2, "Event"), card("ST21-017", 2, "Event")],
+	"rocks-op17-east-bali-awakening-zone-aug31-onlybelltcg": [leader("OP17-039"), card("OP08-051", 4), card("OP17-050", 2), card("OP17-045", 4), card("OP17-054", 4), card("OP17-041", 2), card("OP17-042", 2), card("OP17-044", 3), card("OP17-046", 4), card("OP17-049", 4), card("OP17-040", 4), card("OP17-048", 4), card("OP17-118", 4), card("OP17-055", 4, "Event"), card("OP17-056", 4, "Event"), card("EB02-030", 1, "Event")],
+	"luffy-op17-east-tcg-center-aug31-katsuo": [leader("OP17-079"), card("OP17-084", 1), card("OP17-086", 4), card("OP17-094", 4), card("OP05-081", 4), card("OP17-080", 4), card("OP17-081", 4), card("OP17-082", 4), card("OP17-087", 2), card("OP17-091", 4), card("OP17-095", 3), card("OP15-088", 4), card("OP17-119", 4), card("OP17-093", 3), card("ST14-017", 3), card("OP14-096", 2, "Event")],
+};
+
+export const op17EastAug31EntrySeeds = [
+	{ format: "op17", region: "east", slug: "linlin-op17-east-cardshop-aug31-ryo", leaderSlug: "linlin-op17", deckTemplate: "linlin-op17-east-cardshop-aug31-ryo", title: "Charlotte Linlin OP17 Standard Battle", eventName: "Cardshop", eventType: "SB", placement: "NA (5-2)", date: "2026-08-31", location: "Japan", country: "JP", author: "Ryo", host: "Cardshop", summary: "Ryo's NA (5-2) Charlotte Linlin decklist from a Standard Battle at Cardshop in Japan." },
+	{ format: "op17", region: "east", slug: "sabo-op17-east-nagaoka-pit-night-aug31-oono", leaderSlug: "sabo-op13", deckTemplate: "sabo-op17-east-nagaoka-pit-night-aug31-oono", title: "Sabo OP17 Standard Battle Winner", eventName: "Nagaoka Pit Night", eventType: "SB", placement: "1st (5-0)", date: "2026-08-31", location: "Japan", country: "JP", author: "Oono", host: "Nagaoka Pit Night", summary: "Oono's 1st (5-0) Sabo decklist from a Standard Battle at Nagaoka Pit Night in Japan." },
+	{ format: "op17", region: "east", slug: "rocks-op17-east-bali-awakening-zone-aug31-onlybelltcg", leaderSlug: "rocks-d-xebec-op17", deckTemplate: "rocks-op17-east-bali-awakening-zone-aug31-onlybelltcg", title: "Rocks D Xebec OP17 Flagship Battle Winner", eventName: "Bali Awakening Zone", eventType: "FS", placement: "1st (5-0)", date: "2026-08-31", location: "Indonesia", country: "ID", author: "OnlyBellTCG", host: "Bali Awakening Zone", summary: "OnlyBellTCG's 1st (5-0) Rocks D Xebec decklist from a Flagship Battle at Bali Awakening Zone in Indonesia." },
+	{ format: "op17", region: "east", slug: "luffy-op17-east-tcg-center-aug31-katsuo", leaderSlug: "monkey-d-luffy-op17", deckTemplate: "luffy-op17-east-tcg-center-aug31-katsuo", title: "Monkey.D.Luffy OP17 Flagship Battle Winner", eventName: "TCG Center(25)", eventType: "FS", placement: "1st Place", date: "2026-09-01", location: "Japan", country: "JP", author: "Katsuo", host: "TCG Center(25)", summary: "Katsuo's 1st Place Monkey.D.Luffy decklist from a Flagship Battle at TCG Center(25) in Japan." },
+];

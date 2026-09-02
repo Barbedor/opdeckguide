@@ -94,8 +94,8 @@ const goSecond = [
 	},
 	{
 		label: "7 DON!!",
-		cards: [{ card: itsToDieFor }, { card: oven }],
-		text: "It's to Die For♡ again pushes the DON!! count forward, and Charlotte Oven keeps the discarded Character line available if Oven is removed.",
+		cards: [{ card: leader, rested: true }, { card: oven }],
+		text: "Attach 3 DON!! to your Nico Robin leader and attack for 8k, then use the leader effect to add 1 DON!!. On your next turn, you will have 10 DON!!, while Charlotte Oven keeps the discarded Character line available if Oven is removed.",
 	},
 	{
 		label: "10 DON!!",
@@ -252,7 +252,7 @@ const matchupGroups = [
 					<h3>Go Second</h3>
 					<div class="curve-rows">
 						{goSecond.map((slot) => (
-							<div class="curve-row">
+							<div class={`curve-row ${slot.label === "7 DON!!" ? "curve-row-seven" : ""}`}>
 								<div class="curve-label">{slot.label}</div>
 								<div class="curve-cards">
 									{slot.cards.map((entry, index) => (
@@ -551,6 +551,9 @@ const matchupGroups = [
 
 	.curve-label { color: var(--accent); font-weight: 700; }
 	.curve-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; justify-content: flex-start; }
+	.curve-row-seven .curve-cards { gap: 2.5rem; }
+	.curve-row-seven .curve-join { margin-left: 1.5rem; }
+	.curve-row-seven .curve-card:last-of-type { margin-left: 1.75rem; }
 	.curve-card img, .mind-game-hero img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
 	.curve-card.is-rested img { transform: rotate(90deg); transform-origin: center; }
 	.curve-card-leader.is-rested { margin-left: 0.8rem; }
@@ -717,6 +720,9 @@ const matchupGroups = [
 			gap: 1rem;
 			padding-left: 0;
 		}
+		.curve-row-seven .curve-cards { gap: 1rem; flex-wrap: nowrap; }
+		.curve-row-seven .curve-join { margin-left: 1.25rem; }
+		.curve-row-seven .curve-card:last-of-type { margin-left: 1.25rem; }
 		.curve-note {
 			width: 100%;
 		}
