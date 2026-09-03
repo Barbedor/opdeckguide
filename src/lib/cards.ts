@@ -1018,6 +1018,7 @@ const getOp17SortCode = (card) => {
 	const explicitAnchors = {
 		"OP17-040-TREASURE RARE": "OP17-039.1",
 		"OP17-020-ALT": "OP17-020.1",
+		"OP17-099-ALT": "OP17-099.1",
 		"OP17-112-ALT": "OP17-112.1",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
@@ -1048,8 +1049,9 @@ const shouldKeepOp17SpecialFile = (file) => {
 	const normalized = normalizeOverrideKey(file);
 	if (normalized === "op17-054 alt.jpg" || normalized === "op17-054 alt") return false;
 	if (normalized === "lead performers op17-061 alt.jpg" || normalized === "lead performers op17-061 alt") return false;
-	if (normalized === "charlottte linlin op17-099.png" || normalized === "charlottte linlin op17-099") return true;
+	if (normalized === "charlottte linlin op17-099.png" || normalized === "charlottte linlin op17-099") return false;
 	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
+	if (normalized === "op17-099 charlotte linlin alt.jpg" || normalized === "op17-099 charlotte linlin alt") return true;
 	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
 	if (normalized === "shanks op17-020.png") return true;
 	if (normalized === "gold luffy.png" || normalized === "gold luffy") return true;

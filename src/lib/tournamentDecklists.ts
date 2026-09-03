@@ -3,9 +3,11 @@ import { op17EastAug23DeckTemplates, op17EastAug23EntrySeeds } from "./op17EastA
 import { op17EastAug29DeckTemplates, op17EastAug29EntrySeeds } from "./op17EastAug29";
 import { op17EastAug30DeckTemplates, op17EastAug30EntrySeeds } from "./op17EastAug30";
 import { op17EastAug31DeckTemplates, op17EastAug31EntrySeeds } from "./op17EastAug31";
+import { op17EastSep02DeckTemplates, op17EastSep02EntrySeeds } from "./op17EastSep02";
 import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
 import { op17WestAug30DeckTemplates, op17WestAug30EntrySeeds } from "./op17WestAug30";
 import { op17WestAug31DeckTemplates, op17WestAug31EntrySeeds } from "./op17WestAug31";
+import { op17WestSep01DeckTemplates, op17WestSep01EntrySeeds } from "./op17WestSep01";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -1797,9 +1799,11 @@ const deckTemplates = {
 	...op17EastAug29DeckTemplates,
 	...op17EastAug30DeckTemplates,
 	...op17EastAug31DeckTemplates,
+	...op17EastSep02DeckTemplates,
 	...op17WestAug29DeckTemplates,
 	...op17WestAug30DeckTemplates,
 	...op17WestAug31DeckTemplates,
+	...op17WestSep01DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -16353,9 +16357,11 @@ const entrySeeds = [
 	...op17EastAug29EntrySeeds,
 	...op17EastAug30EntrySeeds,
 	...op17EastAug31EntrySeeds,
+	...op17EastSep02EntrySeeds,
 	...op17WestAug29EntrySeeds,
 	...op17WestAug30EntrySeeds,
 	...op17WestAug31EntrySeeds,
+	...op17WestSep01EntrySeeds,
 	{
 		format: "op16",
 		region: "east",

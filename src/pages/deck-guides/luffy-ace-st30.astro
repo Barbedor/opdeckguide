@@ -1,0 +1,276 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Luffy & Ace ST30 Deck Guide";
+const description = "Luffy & Ace ST30 deck guide for the OP17 format with decklist, curve guide, strengths, weaknesses, and hybrid tactics.";
+const icon = "/assets/guides/Luffy-st30.png";
+
+const card = (code, name, img, count = 4, role = "Character") => ({ code, name, img, count, role });
+const leader = card("ST30-001", "Luffy & Ace", "/Cards/ST30/ST30-001.jpg", 1, "Leader");
+const ivankov = card("ST30-004", "Emporio.Ivankov", "/Cards/ST30/ST30-004.jpg");
+const inazuma = card("ST30-002", "Inazuma", "/Cards/ST30/ST30-002.jpg");
+const mr3 = card("ST30-014", "Mr.3 (Galdino)", "/Cards/ST30/ST30-014.jpg");
+const aceP119 = card("P-119", "Portgas.D.Ace", "/Cards/P/P-119.jpg");
+const luffyOp16 = card("OP16-015", "Monkey.D.Luffy", "/Cards/OP16/OP16-015.jpg");
+const luffySt30 = card("ST30-012", "Monkey.D.Luffy", "/Cards/ST30/ST30-012.jpg");
+const aceOp16 = card("OP16-118", "Portgas.D.Ace", "/Cards/OP16/OP16-118.jpg");
+const jozu = card("ST30-005", "Jozu", "/Cards/ST30/ST30-005.jpg");
+const bonney = card("OP07-026", "Jewelry Bonney", "/Cards/OP07/OP07-026.png");
+const law = card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg");
+const brook = card("OP15-032", "Brook", "/Cards/OP15/OP15-032.jpg");
+const newgate = card("ST30-003", "Edward.Newgate", "/Cards/ST30/ST30-003.jpg", 2);
+const fightLuffy = card("ST30-016", "Can You Still Fight, Luffy?! Of Course!!", "/Cards/ST30/ST30-016.jpg", 4, "Event");
+const saboOp13 = card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader");
+const rocksOp17 = card("OP17-039", "Rocks D. Xebec OP17", "/Cards/OP17/New OP17/OP17-039.jpg", null, "Leader");
+const mihawkOp14 = card("OP14-020", "Dracule Mihawk OP14", "/Cards/OP14/OP14-020.jpg", null, "Leader");
+const kaidoOp17 = card("OP17-058", "Kaido OP17", "/Cards/OP17/New OP17/OP17-058.jpg", null, "Leader");
+const aceLeaderOp16 = card("OP16-001", "Portgas D. Ace OP16", "/Cards/OP16/OP16-001.jpg", null, "Leader");
+const linlinOp17 = card("OP17-099", "Charlotte Linlin OP17", "/Cards/OP17/New OP17/OP17-099.jpg", null, "Leader");
+const luffyOp17 = card("OP17-079", "Monkey D. Luffy OP17", "/Cards/OP17/New OP17/OP17-079.jpg", null, "Leader");
+const shanksOp17 = card("OP17-020", "Shanks OP17", "/Cards/OP17/New OP17/OP17-020.jpg", null, "Leader");
+const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
+const boaOp14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg", null, "Leader");
+
+const decklist = [leader, ivankov, inazuma, mr3, aceP119, luffyOp16, luffySt30, aceOp16, jozu, bonney, law, brook, newgate, fightLuffy];
+const simDeckCode = decklist.map((entry) => `${entry.count}x${entry.code}`).join("\n");
+
+const matchupGroups = [
+	{ label: "Favorable", icon: "&uarr;", tone: "up", cards: [kaidoOp17, aceLeaderOp16, linlinOp17, luffyOp17, shanksOp17] },
+	{ label: "Slightly Favorable", icon: "&nearr;", tone: "slightly-up", cards: [mihawkOp14] },
+	{ label: "Even", icon: "&harr;", tone: "even", cards: [boaOp14] },
+	{ label: "Slightly Unfavorable", icon: "&darr;", tone: "slightly-down", cards: [saboOp13, rocksOp17, enelOp15] },
+];
+
+const goSecond = [
+	{ label: "2 DON!!", cards: [ivankov, inazuma], text: "Use both 1-cost plays to set up the deck immediately. Emporio.Ivankov converts two 6k-power Characters in hand into a deeper hand and a stocked trash, while Inazuma searches the top 5 for another 6k-power body. This gives you the pieces needed for the following development turns." },
+	{ label: "4 DON!!", cards: [luffySt30], text: "Commit the turn to Monkey.D.Luffy ST30 as the first pressure piece. Its When Attacking effect gives the deck a way to answer an opposing Blocker without relying on battle, so the card remains relevant even when the opponent protects a key Character behind Blocker." },
+	{ label: "6 DON!!", cards: [law, aceOp16], text: "Use Trafalgar Law to reuse a smaller Character's On Play value, then put Portgas.D.Ace OP16-118 onto the field rested. The line turns one established Character into two 6k-power bodies and keeps the board concentrated around the base power the Leader and Galdino support." },
+	{ label: "8 DON!!", cards: [newgate], text: "Play Edward.Newgate when you already have 6k-power bodies worth amplifying. His effect makes that board 7k during your turn, improving your attacks and forcing the opponent to spend more resources before your Luffy and Ace Characters receive their defensive power increase on the opponent's turn." },
+];
+
+const goFirst = [
+	{ label: "1 DON!!", cards: [inazuma], text: "Use Inazuma as the early consistency play: look at the top 5 and secure a 6k-power Character before committing to the larger turns." },
+	{ label: "3 DON!!", cards: [mr3], text: "Play Mr.3 (Galdino) before the board is fully developed so its Activate: Main effect is ready for the first meaningful attack. Resting it can place up to 2 rested DON!! on each of two 6k-power Characters, converting one setup Character into a wide attack without spending active DON!!." },
+	{ label: "5 DON!!", cards: [aceOp16], text: "Play Portgas.D.Ace OP16-118 to develop a 6k-power body while checking the top 5 cards for a Monkey.D.Luffy or a Whitebeard Pirates card. This keeps the board on plan and improves access to the Luffy and Ace pieces needed for the following turns." },
+	{ label: "7 DON!!", cards: [luffyOp16, luffySt30], text: "With 6 or more DON!! on the field, Monkey.D.Luffy OP16 costs 2 instead of 4. Play it first, then use the remaining 5 DON!! to play Monkey.D.Luffy ST30 and rest 1 DON!! to give it Rush. Its attack can rest an opposing Blocker, creating immediate pressure with both Characters entering play this turn." },
+];
+
+const strengths = [
+	"Incredible base defense: a 6k Power Leader with 4 Life is a nightmare for Aggro decks.",
+	"Characters become 9k Power defensively, forcing the opponent to rely solely on effect removal.",
+	"Crazy DON!! cheat thanks to 2c Mr. 3 (Galdino) buffing your attackers for free.",
+];
+
+const weaknesses = [
+	"You are hard-capped from playing standard top-end Bosses (like 10c Shanks).",
+	"Extremely vulnerable to bottom-deck or cost-based KO removal (like Blue/Black Sakazuki).",
+	"Can struggle to close out games if the board gets repeatedly wiped by effects.",
+];
+
+const coreEngine = [
+	"Leader Luffy & Ace: The stat machine. 6k base, 4 Life, and gives your characters +3k defensively.",
+	"OP16 SR Luffy: A 6k Power body that can be played for just 2 DON!! if you have 6 or more DON!! on the field.",
+	"2c Mr. 3 (Galdino): Rest him to give two 6k base power characters 2 rested DON!! each for massive swings.",
+];
+
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div class="hero-copy">
+				<div class="hero-tags"><span class="hero-chip">Deck Guide</span><span class="hero-chip hero-chip-accent">OP17 Format</span></div>
+				<h1>Luffy &amp; Ace ST30 Deck Guide</h1>
+				<p class="hero-intro">The unkillable 6k wall. The ST30 Luffy &amp; Ace deck uses a 6k-power Leader and 4 Life to turn its 6k-power Characters into 9k-power defenders during the opponent's turn.</p>
+				<div class="hero-actions"><a class="btn btn-primary" href="#curve">Curve Guide</a><a class="btn btn-secondary" href="#matchups">Matchups</a></div>
+			</div>
+			<div class="guide-icon"><img src={icon} alt="Luffy & Ace ST30 deck guide" loading="eager" /></div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container article-stack">
+			<div class="glow-block">
+				<div class="section-header decklist-header"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button></div></div>
+				<div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /><div class="deck-info"><span class="deck-count">{entry.count}x</span><div><div class="deck-name">{entry.name}</div><div class="deck-code">{entry.code}</div></div></div><span class="deck-role">{entry.role}</span></button>)}</div>
+			</div>
+
+			<div id="curve" class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Curve Guide</h2></div></div>
+				<div class="curve-guide-block">
+					<h3>Go Second</h3>
+					<p>Going second lets you use your DON!! to fill the board with 6k-power Characters as quickly as possible.</p>
+					<div class="curve-rows">
+						{goSecond.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class="curve-join">+</span>}
+											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+											</button>
+										</>
+									))}
+								</div>
+								<p class="curve-note">{slot.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="curve-guide-block">
+					<h3>Go First</h3>
+					<p>Going first changes the order of development, using Mr.3 (Galdino) and the 6k-power bodies to preserve pressure through the mid-game.</p>
+					<div class="curve-rows">
+						{goFirst.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
+											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+											</button>
+										</>
+									))}
+								</div>
+								<p class="curve-note">{slot.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Deck Overview</h2><h3>The Mechanic</h3><p>The 6k Power Restriction. Your Leader has 6k Power and 4 Life, but penalizes you (-2k Power) if you play any character with 7k or more base power. The catch? On the opponent's turn, ALL your Luffy and Ace 6k base power characters gain +3k Power! You swarm the board with 6k units that become 9k walls, making them impossible to clear in battle.</p></div></div><div class="nutshell-grid"><div class="info-panel"><div class="section-tag section-tag-light">Strength</div><ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul></div><div class="info-panel"><div class="section-tag section-tag-light">Weakness</div><ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul></div></div><div class="core-panel"><div class="section-tag section-tag-light">The Core Engine</div><ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul></div></div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={mr3.img} data-name={`${mr3.code} ${mr3.name}`} data-code={mr3.code}><img src={mr3.img} alt={`${mr3.code} ${mr3.name}`} loading="lazy" /></button><div><h3>The Galdino DON!! Cheat</h3><p>Mr. 3 (Galdino) is the secret MVP. By resting him, you give up to two 6k base power characters 2 rested DON!! each. This is literally 4 free DON!! worth of power every single turn, letting you push huge unblockable numbers without committing your active resources.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={law.img} data-name={`${law.code} ${law.name}`} data-code={law.code}><img src={law.img} alt={`${law.code} ${law.name}`} loading="lazy" /></button><div><h3>The Trafalgar Law Bounce</h3><p>Don't leave weak Searchers on the board! Play 6c Trafalgar Law, bounce your 1c Ivankov back to your hand, and cheat out a 5c Ace rested. Ace is completely safe while rested because the Leader effect boosts him to 9k power during the opponent's turn.</p></div></div></div></div>
+
+			<div id="matchups" class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Matchups</h2><p>OP17 matchup spread for Luffy &amp; Ace ST30.</p></div></div>
+				<div class="matchup-grid">
+					{matchupGroups.map((group) => (
+						<div class="matchup-card">
+							<div class={`matchup-badge badge-${group.tone}`}><span class="badge-icon" set:html={group.icon}></span><span>{group.label}</span></div>
+							<div class="matchup-list">
+								{group.cards.map((entry) => (
+									<button class="matchup-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<span>{entry.name}</span>
+									</button>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block conclusions-card"><div class="section-tag section-tag-light">Conclusion</div><p class="ability-copy">Build with 6k-power Characters, protect your Life when necessary, and use the Leader effect to make every Luffy and Ace body difficult to attack through. Mr.3 (Galdino), Trafalgar Law, and the 8-cost Edward.Newgate turn that defensive board into steady pressure.</p></div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true"><div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview"><button class="modal-close" type="button" data-close>Close</button><img src="" alt="" data-modal-image /></div></div>
+</MainLayout>
+
+<script>
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeModal = () => { modal?.classList.remove("is-open"); modal?.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; };
+	document.querySelectorAll("[data-card-preview]").forEach((button) => button.addEventListener("click", () => { if (!modal || !modalImage) return; modalImage.src = button.dataset.full || ""; modalImage.alt = button.dataset.name || "Card preview"; modal.classList.add("is-open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }));
+	document.querySelector("[data-close]")?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+	document.querySelectorAll("[data-copy-sim]").forEach((button) => button.addEventListener("click", async () => {
+		const simDeck = button.dataset.simDeck;
+		if (!simDeck) return;
+		const previous = button.textContent?.trim() || "Copy for Sim";
+		try {
+			if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(simDeck);
+			} else {
+				const textarea = document.createElement("textarea");
+				textarea.value = simDeck;
+				textarea.setAttribute("readonly", "");
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				textarea.remove();
+			}
+			button.textContent = "Copied";
+		} catch {
+			button.textContent = "Copy failed";
+		}
+		window.setTimeout(() => { button.textContent = previous; }, 1800);
+	}));
+</script>
+
+<style>
+	:root { --first-look-accent: #ff6b3d; --first-look-accent-soft: rgba(255, 107, 61, 0.18); --first-look-border: rgba(255, 107, 61, 0.28); }
+	.guide-hero { padding-top: 3.2rem; }
+	.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 415px); gap: 2rem; align-items: center; }
+	.hero-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
+	.hero-chip, .publish-banner { display: inline-flex; align-items: center; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid var(--first-look-border); background: rgba(12, 17, 30, 0.85); color: #f3f7ff; }
+	.hero-chip { font-size: 0.95rem; font-weight: 600; }
+	.hero-chip-accent { color: var(--accent); }
+	.hero-intro { max-width: 60ch; }
+	.guide-icon { display: flex; justify-content: center; }
+	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+	.article-stack, .feature-block, .curve-guide-block, .curve-rows, .nutshell-grid, .info-panel, .core-panel { display: grid; gap: 1rem; }
+	.matchup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(255,107,61,0.16), 0 0 22px rgba(255,107,61,0.08), 0 0 52px rgba(255,107,61,0.05); }
+	.hero-actions, .decklist-title-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+	.decklist-title-row { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-content: initial; }
+	.decklist-title-row h2 { margin: 0; min-width: 0; }
+	.decklist-title-row .copy-sim-button { justify-self: end; width: auto; flex: 0 0 auto; }
+	.deck-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+	.deck-card { background: rgba(12,17,30,0.9); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem; display: grid; gap: 0.65rem; text-align: left; cursor: pointer; }
+	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
+	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
+	.deck-count { color: var(--accent); font-weight: 700; }
+	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
+	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
+	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
+	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
+	.curve-row { display: grid; grid-template-columns: 1fr; gap: 0.75rem; align-items: start; padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.curve-label { color: var(--accent); font-weight: 700; }
+	.curve-cards { display: flex; align-items: center; flex-wrap: nowrap; gap: 0.9rem; justify-content: flex-start; width: 100%; overflow-x: auto; }
+	.curve-card { flex: 0 0 auto; background: transparent; border: 0; padding: 0; }
+	.curve-card img { display: block; width: 100%; max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.curve-join { color: var(--accent); font-size: 1.8rem; font-weight: 700; }
+	.curve-join-or { font-size: 1rem; }
+	.curve-note { margin: 0; line-height: 1.6; }
+	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.info-panel, .core-panel { padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.summary-list { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
+	.core-panel { margin-top: 1rem; }
+	.combo-grid { display: grid; gap: 1rem; }
+	.combo-card { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 1.25rem; align-items: center; padding: 1rem; border: 1px solid var(--first-look-border); border-radius: 22px; background: rgba(8,12,22,0.72); }
+	.detail-card { display: block; background: transparent; border: 0; padding: 0; cursor: pointer; }
+	.combo-card img { width: 100%; max-width: 160px; border-radius: 16px; }
+	.combo-card h3 { margin: 0 0 0.5rem; color: #ff8d76; }
+	.combo-card p, .matchup-card p, .curve-guide-block p { margin: 0; line-height: 1.6; }
+	.matchup-card { display: grid; gap: 0.9rem; align-content: start; padding: 1rem; border: 1px solid var(--first-look-border); border-radius: 22px; background: rgba(8,12,22,0.72); }
+	.matchup-badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 600; }
+	.badge-up { background: rgba(74,222,128,0.14); color: #65f59b; }
+	.badge-down { background: rgba(255,107,107,0.14); color: #ff7c7c; }
+	.badge-slightly-up { background: rgba(163,230,53,0.14); color: #bef264; }
+	.badge-slightly-down { background: rgba(251,146,60,0.14); color: #fdba74; }
+	.badge-even { background: rgba(148,163,184,0.16); color: #cbd5e1; }
+	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; }
+	.matchup-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 0.75rem; }
+	.matchup-entry { display: grid; gap: 0.4rem; justify-items: center; padding: 0.45rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(12,17,30,0.72); color: var(--text-100); cursor: pointer; text-align: center; }
+	.matchup-entry:hover, .matchup-entry:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+	.matchup-entry img { width: 100%; max-width: 92px; border-radius: 10px; }
+	.matchup-entry span { font-size: 0.78rem; line-height: 1.2; }
+	.card-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(5,8,16,0.82); padding: 1.5rem; z-index: 50; }
+	.card-modal.is-open { display: flex; }
+	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
+	.card-modal-inner > img { width: 100%; border-radius: 20px; }
+	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
+	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid { grid-template-columns: 1fr; } .guide-icon { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+	@media (max-width: 640px) { .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.55rem; } .deck-card img { max-width: 92px; } }
+	@media (max-width: 560px) { .glow-block { padding: 1rem; border-radius: 22px; } .hero-grid { grid-template-columns: minmax(0, 1fr) 96px; gap: 1rem; align-items: start; } .guide-icon img { width: 96px; } .curve-row { grid-template-columns: 1fr !important; gap: 0.65rem; align-items: start; } .curve-cards { gap: 0.45rem; } .curve-note { grid-column: auto; font-size: 0.9rem; line-height: 1.45; padding-left: 0.65rem; border-left: 2px solid rgba(255,107,61,0.55); } .curve-card img { max-width: 88px; } .combo-card { grid-template-columns: 92px minmax(0, 1fr); gap: 0.8rem; padding: 0.75rem; } .combo-card img { max-width: 92px; } .combo-card h3 { font-size: 1rem; } .combo-card p { font-size: 0.9rem; line-height: 1.45; } .matchup-card { padding: 0.75rem; } .matchup-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; } .matchup-entry { padding: 0.3rem; } .matchup-entry span { font-size: 0.68rem; } }
+</style>
