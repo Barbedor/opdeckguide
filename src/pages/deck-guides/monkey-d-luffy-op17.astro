@@ -48,6 +48,26 @@ const decklist = [
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
+const matchupGroups = [
+	{ title: "Favorable", entries: [
+		["Kaido OP17", "/assets/guides/Kaido%20op17.png"],
+		["Rocks.D.Xebec OP17", "/assets/guides/Rocks.DXebec%20op17.png"],
+	] },
+	{ title: "Slightly Favorable", entries: [
+		["Nico Robin OP09", "/assets/guides/Nico-Robin-op09.png"],
+		["Shanks OP17", "/assets/guides/Shanks%20op17.png"],
+		["Enel OP15", "/assets/guides/enel-op15.png"],
+	] },
+	{ title: "Even", entries: [["Boa Hancock OP14", "/assets/guides/boa-hancock-op14.png"]] },
+	{ title: "Slightly Unfavorable", entries: [["Portgas.D.Ace OP16", "/assets/guides/Ace-op16.png"]] },
+	{ title: "Unfavorable", entries: [
+		["Sabo OP13", "/assets/guides/Sabo%20OP13-004.png"],
+		["Dracule Mihawk OP14", "/assets/guides/dracule-mihawk-op14.png"],
+		["Monkey.D.Luffy OP17", "/assets/guides/Luffy%20OP17.png"],
+		["Luffy and Ace ST30", "/assets/guides/Luffy-st30.png"],
+	] },
+];
+
 const curveGuide = [
 	{
 		label: "2 DON!!",
@@ -219,53 +239,23 @@ const luffyTargets = [
 						the dice, and the lists are still under development, but it already looks like a solid choice.
 					</p>
 				</div>
-				<div id="matchups" class="matchup-card glow-block">
-					<div class="matchup-badge badge-up">
-						<span class="badge-icon">&uarr;</span>
-						<span>Matchup Favorable</span>
-					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							<div class="mini-card matchup-static-card" aria-label="Charlotte Linlin OP17">
-								<img src="/assets/guides/Charlotte%20Linlin%20op17.png" alt="Charlotte Linlin OP17" loading="lazy" />
-								<div class="mini-label">Charlotte Linlin</div>
+				<div id="matchups" class="matchup-grid">
+					{matchupGroups.map((group, groupIndex) => (
+						<div class="matchup-card glow-block">
+							<div class={`matchup-badge ${groupIndex < 2 ? "badge-up" : groupIndex === 2 ? "badge-even" : "badge-down"}`}>
+								<span class="badge-icon">{groupIndex === 0 ? "↑" : groupIndex === 1 ? "↗" : groupIndex === 2 ? "~" : "↓"}</span>
+								<span>{group.title}</span>
 							</div>
-							<div class="mini-card matchup-static-card" aria-label="Edward Newgate OP17">
-								<img src="/assets/guides/Edward.Newgate%20op17.png" alt="Edward Newgate OP17" loading="lazy" />
-								<div class="mini-label">Edward Newgate</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Shanks OP17">
-								<img src="/assets/guides/Shanks%20op17.png" alt="Shanks OP17" loading="lazy" />
-								<div class="mini-label">Shanks</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Rocks.D.Xebec OP17">
-								<img src="/assets/guides/Rocks.DXebec%20op17.png" alt="Rocks.D.Xebec OP17" loading="lazy" />
-								<div class="mini-label">Rocks.D.Xebec</div>
-							</div>
+							<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
+								{group.entries.map(([name, image]) => (
+									<div class="mini-card matchup-static-card" aria-label={name}>
+										<img class={name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={image} alt={name} loading="lazy" />
+										<div class="mini-label">{name.replace(/ OP\d+| ST30$/, "")}</div>
+									</div>
+								))}
+							</div></div>
 						</div>
-					</div>
-				</div>
-				<div class="matchup-card glow-block">
-					<div class="matchup-badge badge-down">
-						<span class="badge-icon">&darr;</span>
-						<span>Matchups Unfavorable</span>
-					</div>
-					<div class="matchup-row matchup-row-cards-only">
-						<div class="tip-cards">
-							<div class="mini-card matchup-static-card" aria-label="Dracule Mihawk OP14">
-								<img src="/assets/guides/dracule-mihawk-op14.png" alt="Dracule Mihawk OP14" loading="lazy" />
-								<div class="mini-label">Dracule Mihawk</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Kaido OP17">
-								<img src="/assets/guides/Kaido%20op17.png" alt="Kaido OP17" loading="lazy" />
-								<div class="mini-label">Kaido</div>
-							</div>
-							<div class="mini-card matchup-static-card" aria-label="Portgas.D.Ace OP16">
-								<img src="/assets/guides/Ace-op16.png" alt="Portgas.D.Ace OP16" loading="lazy" />
-								<div class="mini-label">Portgas.D.Ace</div>
-							</div>
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</div>
@@ -520,7 +510,7 @@ const luffyTargets = [
 	}
 
 	.summary-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: 1fr;
 	}
 
 	.conclusions-card {
@@ -655,7 +645,7 @@ const luffyTargets = [
 
 	.deck-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: 1rem;
 		margin-top: 1rem;
 	}
@@ -857,11 +847,16 @@ const luffyTargets = [
 
 	.tip-cards {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
 		gap: 0.9rem;
 		width: 100%;
+		overflow-x: auto;
 	}
+
+	.matchup-static-card { flex: 0 0 132px; }
+	.matchup-static-card img { width: 132px; height: 82px; object-fit: cover; }
+	.matchup-static-card img.nico-robin-matchup-image { object-position: center top; }
 
 	.mini-card {
 		background: transparent;
@@ -1097,4 +1092,6 @@ const luffyTargets = [
 			max-width: 84px;
 		}
 	}
+	.matchup-badge { width: fit-content; }
+	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 92px; height: 72px; max-width: 92px; object-fit: cover; } }
 </style>

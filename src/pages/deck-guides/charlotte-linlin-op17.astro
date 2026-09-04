@@ -70,16 +70,25 @@ const oddCurve = [
 ];
 
 const favorableMatchups = [
-	{ name: "Portgas.D.Ace", image: "/assets/guides/Ace-op16.png", alt: "Portgas.D.Ace OP16" },
-	{ name: "Shanks", image: "/assets/guides/Shanks%20op17.png", alt: "Shanks OP17" },
-	{ name: "Kaido", image: "/assets/guides/Kaido%20op17.png", alt: "Kaido OP17" },
 	{ name: "Dracule Mihawk", image: "/assets/guides/dracule-mihawk-op14.png", alt: "Dracule Mihawk OP14" },
-	{ name: "Edward.Newgate", image: "/assets/guides/Edward.Newgate%20op17.png", alt: "Edward.Newgate OP17" },
+	{ name: "Portgas.D.Ace", image: "/assets/guides/Ace-op16.png", alt: "Portgas.D.Ace OP16" },
+];
+
+const slightlyFavorableMatchups = [
+	{ name: "Shanks", image: "/assets/guides/Shanks%20op17.png", alt: "Shanks OP17" },
+	{ name: "Enel", image: "/assets/guides/enel-op15.png", alt: "Enel OP15" },
+];
+
+const slightlyUnfavorableMatchups = [
+	{ name: "Rocks.D.Xebec", image: "/assets/guides/Rocks.DXebec%20op17.png", alt: "Rocks.D.Xebec OP17" },
+	{ name: "Kaido", image: "/assets/guides/Kaido%20op17.png", alt: "Kaido OP17" },
 ];
 
 const unfavorableMatchups = [
-	{ name: "Rocks.D.Xebec", image: "/assets/guides/Rocks.DXebec%20op17.png", alt: "Rocks.D.Xebec OP17" },
+	{ name: "Sabo", image: "/assets/guides/Sabo%20OP13-004.png", alt: "Sabo OP13" },
 	{ name: "Monkey.D.Luffy", image: "/assets/guides/Luffy OP17.png", alt: "Monkey.D.Luffy OP17" },
+	{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png", alt: "Luffy and Ace ST30" },
+	{ name: "Boa Hancock", image: "/assets/guides/boa-hancock-op14.png", alt: "Boa Hancock OP14" },
 ];
 
 const strengths = [
@@ -240,6 +249,28 @@ const coreEngine = [
 					</div></div>
 				</div>
 				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-up"><span class="badge-icon">&nearr;</span><span>Matchup Slightly Favorable</span></div>
+					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
+						{slightlyFavorableMatchups.map((entry) => (
+							<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+								<img src={entry.image} alt={entry.alt} loading="lazy" />
+								<div class="mini-label">{entry.name}</div>
+							</div>
+						))}
+					</div></div>
+				</div>
+				<div class="matchup-card glow-block">
+					<div class="matchup-badge badge-down"><span class="badge-icon">&swarr;</span><span>Matchup Slightly Unfavorable</span></div>
+					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
+						{slightlyUnfavorableMatchups.map((entry) => (
+							<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+								<img src={entry.image} alt={entry.alt} loading="lazy" />
+								<div class="mini-label">{entry.name}</div>
+							</div>
+						))}
+					</div></div>
+				</div>
+				<div class="matchup-card glow-block">
 					<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Matchup Unfavorable</span></div>
 					<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
 						{unfavorableMatchups.map((entry) => (
@@ -255,7 +286,7 @@ const coreEngine = [
 			<div class="glow-block feature-block">
 				<div class="section-header feature-header">
 					<div>
-						<h2>Deck In A Nutshell</h2>
+						<h2>Deck Overview</h2>
 						<p>The "Rope-a-Dope" Strategy. Drag your opponent into deep waters. Spam your board with 4k-Power Trigger characters that punish the opponent for KOing them. Then, drop the 10c Linlin to magically buff all your 4k bodies into 8k Bosses for massive lethal swings.</p>
 					</div>
 				</div>
@@ -392,7 +423,7 @@ const coreEngine = [
 	.guide-icon { display: flex; justify-content: center; }
 	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
 	.article-stack, .leader-details, .feature-block, .curve-guide-block, .curve-rows, .nutshell-grid, .info-panel, .core-panel { display: grid; gap: 1rem; }
-	.matchup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+	.matchup-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
 	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(245,208,0,0.16), 0 0 22px rgba(245,208,0,0.08), 0 0 52px rgba(245,208,0,0.05); }
 	.leader-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); grid-template-areas: "leaderTag abilityTag" "card ability"; gap: 1.5rem; align-items: start; }
 	.leader-tag-wrap { grid-area: leaderTag; } .ability-tag-wrap { grid-area: abilityTag; } .leader-card-wrap { grid-area: card; } .leader-details { grid-area: ability; }
@@ -439,11 +470,13 @@ const coreEngine = [
 	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; font-weight: 700; }
 	.matchup-row { display: grid; gap: 0.9rem; margin-top: 1rem; }
 	.matchup-row-cards-only { justify-items: center; }
-	.tip-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; width: 100%; }
+	.tip-cards { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 0.9rem; width: 100%; overflow-x: auto; }
+	.matchup-static-card { flex: 0 0 132px; }
 	.mini-card { background: transparent; border: none; padding: 0; cursor: pointer; text-align: center; transition: transform 0.2s ease; }
 	.matchup-static-card { cursor: default; }
 	.matchup-static-card:hover, .matchup-static-card:focus-visible { transform: none; outline: none; }
 	.mini-card img { width: 100%; max-width: 132px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.matchup-static-card img { width: 132px; height: 82px; object-fit: cover; }
 	.mini-label { display: block; margin-top: 0.45rem; font-size: 0.92rem; line-height: 1.25; }
 	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.info-panel, .core-panel { padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
@@ -498,5 +531,7 @@ const coreEngine = [
 			line-height: 1.45;
 		}
 	}
+	.matchup-badge { width: fit-content; min-height: 0; }
+	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 100%; height: auto; max-width: 92px; object-fit: initial; } .matchup-badge { width: 100%; min-height: 40px; } }
 </style>
 

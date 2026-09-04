@@ -123,19 +123,20 @@ const tenDonPlays = [
 const favorableMatchups = [
 	{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png", alt: "Sabo OP13" },
 	{ name: "Portgas D. Ace OP16", image: "/assets/guides/Ace-op16.png", alt: "Portgas D. Ace OP16" },
-	{ name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png", alt: "Nico Robin OP09" },
 	{ name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte%20Linlin%20op17.png", alt: "Charlotte Linlin OP17" },
 	{ name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png", alt: "Shanks OP17" },
 	{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png", alt: "Luffy and Ace ST30" },
 	{ name: "Enel OP15", image: "/assets/guides/enel-op15.png", alt: "Enel OP15" },
 ];
 
-const slightlyUnfavorableMatchups = [
-	{ name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png", alt: "Kaido OP17" },
+const slightlyFavorableMatchups = [
+	{ name: "Boa Hancock OP14", image: "/assets/guides/boa-hancock-op14.png", alt: "Boa Hancock OP14" },
+	{ name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png", alt: "Nico Robin OP09" },
 ];
 
 const unfavorableMatchups = [
 	{ name: "Dracule Mihawk OP14", image: "/assets/guides/dracule-mihawk-op14.png", alt: "Dracule Mihawk OP14" },
+	{ name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png", alt: "Kaido OP17" },
 	{ name: "Monkey D. Luffy OP17", image: "/assets/guides/Luffy%20OP17.png", alt: "Monkey D. Luffy OP17" },
 ];
 ---
@@ -339,10 +340,10 @@ const unfavorableMatchups = [
 						</div>
 					</div>
 					<div class="matchup-card glow-block">
-						<div class="matchup-badge badge-mid"><span class="badge-icon">~</span><span>Slightly Unfavorable</span></div>
+						<div class="matchup-badge badge-slightly-up"><span class="badge-icon">&nearr;</span><span>Slightly Favorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{slightlyUnfavorableMatchups.map((entry) => (
+								{slightlyFavorableMatchups.map((entry) => (
 									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
 										<img src={entry.image} alt={entry.alt} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
@@ -964,7 +965,7 @@ const unfavorableMatchups = [
 
 	.matchup-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
 
@@ -995,6 +996,11 @@ const unfavorableMatchups = [
 		color: #65f59b;
 	}
 
+	.badge-slightly-up {
+		background: rgba(163, 230, 53, 0.14);
+		color: #bef264;
+	}
+
 	.badge-mid {
 		background: rgba(255, 188, 77, 0.14);
 		color: #ffb347;
@@ -1016,11 +1022,15 @@ const unfavorableMatchups = [
 
 	.tip-cards {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
 		gap: 0.9rem;
 		width: 100%;
+		overflow-x: auto;
 	}
+
+	.matchup-static-card { flex: 0 0 132px; }
+	.matchup-static-card img { width: 132px; height: 82px; object-fit: cover; }
 
 	.matchup-static-card {
 		cursor: default;
@@ -1272,4 +1282,6 @@ const unfavorableMatchups = [
 			border-radius: 22px;
 		}
 	}
+	.matchup-badge { width: fit-content; min-height: 0; }
+	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 100%; height: auto; max-width: 110px; object-fit: initial; } .matchup-badge { width: 100%; min-height: 40px; } }
 </style>

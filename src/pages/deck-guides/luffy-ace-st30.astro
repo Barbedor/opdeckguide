@@ -30,15 +30,29 @@ const luffyOp17 = card("OP17-079", "Monkey D. Luffy OP17", "/Cards/OP17/New OP17
 const shanksOp17 = card("OP17-020", "Shanks OP17", "/Cards/OP17/New OP17/OP17-020.jpg", null, "Leader");
 const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
 const boaOp14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg", null, "Leader");
+const nicoRobinOp09 = card("OP09-062", "Nico Robin OP09", "/Cards/OP09/OP09-062.jpg", null, "Leader");
+
+const matchupIcons = {
+	"OP13-004": "/assets/guides/Sabo OP13-004.png",
+	"OP17-039": "/assets/guides/Rocks.DXebec op17.png",
+	"OP14-020": "/assets/guides/dracule-mihawk-op14.png",
+	"OP17-058": "/assets/guides/Kaido op17.png",
+	"OP16-001": "/assets/guides/Ace-op16.png",
+	"OP17-099": "/assets/guides/Charlotte Linlin op17.png",
+	"OP17-079": "/assets/guides/Monkey.D.Luffy op17.png",
+	"OP17-020": "/assets/guides/Shanks op17.png",
+	"OP15-058": "/assets/guides/enel-op15.png",
+	"OP14-041": "/assets/guides/boa-hancock-op14.png",
+	"OP09-062": "/assets/guides/Nico-Robin-op09.png",
+};
 
 const decklist = [leader, ivankov, inazuma, mr3, aceP119, luffyOp16, luffySt30, aceOp16, jozu, bonney, law, brook, newgate, fightLuffy];
 const simDeckCode = decklist.map((entry) => `${entry.count}x${entry.code}`).join("\n");
 
 const matchupGroups = [
-	{ label: "Favorable", icon: "&uarr;", tone: "up", cards: [kaidoOp17, aceLeaderOp16, linlinOp17, luffyOp17, shanksOp17] },
-	{ label: "Slightly Favorable", icon: "&nearr;", tone: "slightly-up", cards: [mihawkOp14] },
-	{ label: "Even", icon: "&harr;", tone: "even", cards: [boaOp14] },
-	{ label: "Slightly Unfavorable", icon: "&darr;", tone: "slightly-down", cards: [saboOp13, rocksOp17, enelOp15] },
+	{ label: "Favorable", icon: "&uarr;", tone: "up", cards: [kaidoOp17, aceLeaderOp16, linlinOp17, luffyOp17, shanksOp17, nicoRobinOp09] },
+	{ label: "Slightly Unfavorable", icon: "&darr;", tone: "slightly-down", cards: [mihawkOp14, enelOp15] },
+	{ label: "Unfavorable", icon: "&darr;", tone: "down", cards: [saboOp13, rocksOp17, boaOp14] },
 ];
 
 const goSecond = [
@@ -157,7 +171,7 @@ const coreEngine = [
 							<div class="matchup-list">
 								{group.cards.map((entry) => (
 									<button class="matchup-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img class="matchup-leader-icon" src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<span>{entry.name}</span>
 									</button>
 								))}
@@ -219,7 +233,7 @@ const coreEngine = [
 	.guide-icon { display: flex; justify-content: center; }
 	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
 	.article-stack, .feature-block, .curve-guide-block, .curve-rows, .nutshell-grid, .info-panel, .core-panel { display: grid; gap: 1rem; }
-	.matchup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+	.matchup-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
 	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(255,107,61,0.16), 0 0 22px rgba(255,107,61,0.08), 0 0 52px rgba(255,107,61,0.05); }
 	.hero-actions, .decklist-title-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
 	.decklist-title-row { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-content: initial; }
@@ -260,11 +274,12 @@ const coreEngine = [
 	.badge-slightly-down { background: rgba(251,146,60,0.14); color: #fdba74; }
 	.badge-even { background: rgba(148,163,184,0.16); color: #cbd5e1; }
 	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; }
-	.matchup-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 0.75rem; }
-	.matchup-entry { display: grid; gap: 0.4rem; justify-items: center; padding: 0.45rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(12,17,30,0.72); color: var(--text-100); cursor: pointer; text-align: center; }
+	.matchup-list { display: flex; flex-wrap: nowrap; gap: 0.75rem; justify-content: flex-start; width: 100%; overflow-x: auto; }
+	.matchup-entry { flex: 0 0 92px; display: grid; gap: 0.4rem; justify-items: center; padding: 0.45rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(12,17,30,0.72); color: var(--text-100); cursor: pointer; text-align: center; }
 	.matchup-entry:hover, .matchup-entry:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
 	.matchup-entry img { width: 100%; max-width: 92px; border-radius: 10px; }
 	.matchup-entry span { font-size: 0.78rem; line-height: 1.2; }
+	@media (max-width: 560px) { .matchup-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; } .matchup-entry { flex: initial; } }
 	.card-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(5,8,16,0.82); padding: 1.5rem; z-index: 50; }
 	.card-modal.is-open { display: flex; }
 	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
@@ -273,4 +288,5 @@ const coreEngine = [
 	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid { grid-template-columns: 1fr; } .guide-icon { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 	@media (max-width: 640px) { .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.55rem; } .deck-card img { max-width: 92px; } }
 	@media (max-width: 560px) { .glow-block { padding: 1rem; border-radius: 22px; } .hero-grid { grid-template-columns: minmax(0, 1fr) 96px; gap: 1rem; align-items: start; } .guide-icon img { width: 96px; } .curve-row { grid-template-columns: 1fr !important; gap: 0.65rem; align-items: start; } .curve-cards { gap: 0.45rem; } .curve-note { grid-column: auto; font-size: 0.9rem; line-height: 1.45; padding-left: 0.65rem; border-left: 2px solid rgba(255,107,61,0.55); } .curve-card img { max-width: 88px; } .combo-card { grid-template-columns: 92px minmax(0, 1fr); gap: 0.8rem; padding: 0.75rem; } .combo-card img { max-width: 92px; } .combo-card h3 { font-size: 1rem; } .combo-card p { font-size: 0.9rem; line-height: 1.45; } .matchup-card { padding: 0.75rem; } .matchup-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; } .matchup-entry { padding: 0.3rem; } .matchup-entry span { font-size: 0.68rem; } }
+	@media (min-width: 901px) { .matchup-entry { flex-basis: 132px; } .matchup-leader-icon { width: 132px !important; height: 82px; object-fit: cover; } }
 </style>
