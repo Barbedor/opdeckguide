@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Portgas D. Ace OP16 Deck Guide",
+		leader: "Portgas D. Ace",
+		code: "OP16",
+		formatLabel: "OP17 Format",
+		summary: "Decklist, deck overview, strengths, weaknesses, curve guide, combos, and matchup notes for Portgas D. Ace OP16 in OP17.",
+		month: "September",
+		href: "/deck-guides/portags-d-ace-op16-format-op17/",
+		imageSrc: "/assets/guides/Ace-op16.png",
+		imageAlt: "Portgas D. Ace OP16 OP17 format deck guide cover",
+		aliases: ["portgas d ace op17", "ace op16 op17", "portgas ace op17"],
+		tags: ["op16", "op17", "red", "whitebeard pirates", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Luffy & Ace ST30 Deck Guide",
 		leader: "Luffy & Ace",
 		code: "OP17",
