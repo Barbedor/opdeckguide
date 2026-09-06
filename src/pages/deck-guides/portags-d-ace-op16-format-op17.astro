@@ -62,24 +62,26 @@ const matchupGroups = [
 ];
 
 const goSecond = [
-	{ label: "2 DON!!", cards: [garp, mobyDick], text: "Your priority is consistency, not damage. Garp and Moby Dick find the Whitebeard Pirates package and, most importantly, 4c Luffy. Use Garp when you need a body now; use Moby Dick when you want repeatable searches on the following turns. If your hand already has Luffy, search for an 8000 Power body or the counters that let you protect your Life." },
-	{ label: "4 DON!!", cards: [luffy], text: "4c Luffy is the key defensive setup. By trashing an 8000 Power card, he raises Ace to 7000 Power for the turn, which changes the opponent's attack math immediately. Develop him before committing your large bodies whenever possible: the following turns are safer, and the 8000 Power cards you kept can now become Rush attackers instead of dead cards in hand." },
-	{ label: "6 DON!!", cards: [marco], text: "Marco is the stable tempo play. He is an 8000 Power Whitebeard Pirates body, so Ace gives him Rush the moment he enters play. Attack a small Character to keep the opponent off-board, or pressure Life when their hand is already stretched. His protection effect also makes this line much better into removal-heavy decks, because an 8000 Power card in hand can keep your investment alive." },
-	{ label: "8 DON!!", cards: [newgate], text: "Edward Newgate OP16 is the aggressive 8-DON!! payoff. During your turn, your Leader gains Double Attack and +2000 Power. On Play, reveal two 8000 Power Character cards from your hand to give up to one opposing Character -6000 Power for the turn. This clears a key blocker or makes a large body easy to attack through while Ace swings twice at 7000 Power. Only commit Newgate when you can reveal the two 8000 Power cards: otherwise you lose the removal half of the play. Use the turn to convert a developed board into lethal pressure, while keeping enough counters for the next turn." },
+	{ label: "2 DON!!", mode: "or", cards: [garp, mobyDick], text: "Your priority is consistency. Garp helps find the Whitebeard Pirates package and, most importantly, 4c Luffy. Moby Dick lets you take one card without any condition, making it the cleanest way to fix an awkward hand immediately. If you already have Luffy, take the 8K Power body or the counters that let you protect your Life." },
+	{ label: "4 DON!!", cards: [luffy], text: "4c Luffy is the key defensive setup. By trashing an 8K Power card, he raises Ace to 7K Power during your opponent's turn, which changes the opponent's attack math immediately. Develop him before committing your large bodies whenever possible: the following turns are safer, and the 8K Power cards you kept can now become Rush attackers instead of dead cards in hand." },
+	{ label: "6 DON!!", cards: [marco], text: "Marco's the stable tempo play. He's an 8K Power Whitebeard Pirates body, so Ace gives him Rush the moment he enters play. Attack a small Character to keep the opponent off-board, or pressure Life when their hand is already stretched. His protection effect also makes this line much better into removal-heavy decks." },
+	{ label: "8 DON!!", cards: [newgate], text: "Edward Newgate OP16 is the aggressive 8-DON!! payoff. Because Newgate is a 10K Power Whitebeard Pirate, your Leader can give him Rush, letting him attack immediately and increase the pressure on the opponent. During your turn, your Leader also gains Double Attack and +2K Power, creating a powerful attack that can threaten two Life. You don't have to use Newgate's On Play effect every time: simply playing him for the Leader bonus and the immediate Rush attack is already extremely strong. His On Play effect is situational; when you can reveal two 8K Power Character cards from your hand, give up to one opposing Character -6K Power for the turn to clear a blocker or prepare a favorable attack. Choose the line according to the board and the number of counters you need to keep." },
+	{ label: "10 DON!!", mode: "or", cards: [newgate, newgateOp17], text: "At 10 DON!!, choose Edward Newgate OP16 or Edward Newgate OP17 according to the situation. Edward Newgate OP16 keeps increasing your pressure: your Leader can give him Rush, and the +2K Power from each Edward Newgate effect stacks during your turn. With two Edward Newgate effects active, your Leader gains +4K Power, making every Leader attack much harder to defend. If your 4c Luffy is still in play, Edward Newgate OP16 is the aggressive option that reinforces your turn. If you no longer have a 4c Luffy in play to raise your Leader's Power during your opponent's turn, prioritize Edward Newgate OP17 instead: it raises your Leader to 8K base Power for the opponent's turn and restores the deck's defensive wall." },
 ];
 
 const goFirst = [
-	{ label: "1 DON!!", cards: [garp], text: "Going first starts more slowly, so Garp is the cleanest opener. He finds the cards that turn the awkward odd curve into real pressure. Prioritize 4c Luffy if you do not have him; otherwise take the 8000 Power body or the matchup-specific answer you will need next." },
-	{ label: "3 DON!!", cards: [sanji], text: "Sanji is your early development play when you need a board before the big turns. He adds an attacker without consuming the 8000 Power cards that fuel Luffy and Marco. Into decks that establish Blockers, keep Sanji available for the turns where Unblockable can convert an otherwise stalled attack into lethal pressure." },
-	{ label: "5 DON!!", cards: [luffy], text: "On the odd curve, Luffy is still the most important investment. Play him as early as you can, then discard the least useful 8000 Power card only when the 7000 Power Leader will actually protect Life or force inefficient attacks. If the opponent cannot threaten your Life yet, preserve the card instead for a future Rush turn." },
-	{ label: "7 DON!!", cards: [vista], text: "Vista turns 7 DON!! into immediate board control. He enters as an 8000 Power Rush attacker, draws a card, and can remove a small opposing Character before it creates value. Choose Vista over a passive development turn when the opponent is trying to go wide; against a tall board, consider holding him and setting up Newgate or Marco for the stronger next turn." },
+	{ label: "1 DON!!", cards: [garp], text: "Going first starts more slowly, so Garp is the cleanest opener. He finds the cards that turn the awkward odd curve into real pressure. Prioritize 4c Luffy if you don't have him; otherwise take the 8K Power body or the matchup-specific answer you'll need next." },
+	{ label: "3 DON!!", cards: [sanji], text: "Sanji is your early development play when you need a board before the big turns. During your turn, he gains +3K Power, so he can attack as a 6K Power body without using DON!!. When he's K.O.'d, you draw one card, which makes him a useful early attacker that still replaces itself when the opponent removes him. He also doesn't consume the 8K Power cards that fuel Luffy and Marco." },
+	{ label: "5 DON!!", cards: [luffy], text: "Luffy is still the most important investment. Play him as early as you can, then discard the least useful 8K Power card only when the 7K Power Leader will actually protect Life or force inefficient attacks. If the opponent can't threaten your Life yet, preserve the card for a future turn." },
+	{ label: "7 DON!!", cards: [vista], text: "Vista turns 7 DON!! into immediate board control. He enters as an 8K Power body, draws a card, and can remove up to two small opposing Characters before they create value. Ace's Leader effect can then give Vista Rush, allowing him to attack immediately. Choose Vista over a passive development turn when the opponent is trying to go wide; against a tall board, consider holding him and setting up Newgate or Marco for the stronger next turn." },
+	{ label: "9 DON!!", cards: [newgate], text: "Edward Newgate OP16 is the pressure play: Ace gives him Rush, while your Leader gains +2K Power and Double Attack. Use him to force a powerful attacking turn or remove a key Character when you can reveal two 8K Power cards." },
 ];
 
-const strengths = ["Leader can gain Double Attack and hit for massive numbers.", "10c Newgate makes Ace an 8000 base power Leader during the opponent's turn.", "Excellent board clear against small units using Vista and Rakuyo."];
+const strengths = ["Leader can gain Double Attack and hit for massive numbers.", "10c Newgate makes Ace an 8K base power Leader during your opponent's turn.", "Excellent board clear against small units using Vista and Rakuyo."];
 
 const weaknesses = ["Runs around 28 “bricks” (characters with 0 Counter).", "Highly reliant on Moby Dick and Garp to fix your unplayable opening hands.", "Struggles if you don't find 4c Luffy early to defend your life."];
 
-const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luffy: Trashes 8K bricks from your hand to make your Leader 7000 Power defensively for the entire turn.", "OP17 10c Edward Newgate: A 12000 Power body that sets your Leader to 8000 base power until the opponent's next turn."];
+const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luffy: Trashes 8K bricks from your hand to make your Leader 7K Power defensively for the entire turn.", "OP17 10c Edward Newgate: A 12K Power body that sets your Leader to 8K base power until your opponent's next turn."];
 
 ---
 
@@ -89,7 +91,7 @@ const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luf
 			<div class="hero-copy">
 				<div class="hero-tags"><span class="hero-chip">Deck Guide</span><span class="hero-chip hero-chip-accent">OP17 Format</span></div>
 				<h1>Portgas D. Ace OP16 Deck Guide</h1>
-				<p class="hero-intro">The 8K Base Leader. Red Ace just got the biggest OP17 upgrade thanks to his dad. Turn your Leader into an 8000 Power defensive wall while swinging with massive 12000 Power Rush attackers.</p>
+				<p class="hero-intro">The 8K Base Leader. Red Ace just got the biggest OP17 upgrade thanks to his dad. Turn your Leader into an 8K Power defensive wall while swinging with massive 12K Power Rush attackers.</p>
 				<div class="hero-actions"><a class="btn btn-primary" href="#curve">Curve Guide</a><a class="btn btn-secondary" href="#matchups">Matchups</a></div>
 			</div>
 			<div class="guide-icon"><img src={icon} alt="Portgas D. Ace OP16 deck guide" loading="eager" /></div>
@@ -115,13 +117,14 @@ const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luf
 								<div class="curve-cards">
 									{slot.cards.map((entry, index) => (
 										<>
-											{index > 0 && <span class="curve-join">+</span>}
+										{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
 											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
 												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 											</button>
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
@@ -144,15 +147,16 @@ const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luf
 										</>
 									))}
 								</div>
+								<p class="curve-note">{slot.text}</p>
 							</div>
 						))}
 					</div>
 				</div>
 			</div>
 
-			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Deck Overview</h2><h3>The Mechanic</h3><p>A super aggressive deck that completely breaks the rules of Ace's Leader ability, giving any 8000 Power Whitebeard Pirate or Luffy character Rush. In OP17, you can use the new Edward Newgate cards to buff your Leader's base power to 8000, making you almost impossible to kill while you swing for lethal.</p></div></div><div class="nutshell-grid"><div class="info-panel"><div class="section-tag section-tag-light">Strength</div><ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul></div><div class="info-panel"><div class="section-tag section-tag-light">Weakness</div><ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul></div></div><div class="core-panel"><div class="section-tag section-tag-light">The Core Engine</div><ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul></div></div>
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Deck Overview</h2><h3>The Mechanic</h3><p>A super aggressive deck that completely breaks the rules of Ace's Leader ability, giving any 8K Power Whitebeard Pirate or Luffy character Rush. In OP17, you can use the new Edward Newgate cards to buff your Leader's base power to 8K, making you almost impossible to kill while you swing for lethal.</p></div></div><div class="nutshell-grid"><div class="info-panel"><div class="section-tag section-tag-light">Strength</div><ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul></div><div class="info-panel"><div class="section-tag section-tag-light">Weakness</div><ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul></div></div><div class="core-panel"><div class="section-tag section-tag-light">The Core Engine</div><ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul></div></div>
 
-			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>OP17 Pro Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={newgateOp17.img} data-name={`${newgateOp17.code} ${newgateOp17.name}`} data-code={newgateOp17.code}><img src={newgateOp17.img} alt={`${newgateOp17.code} ${newgateOp17.name}`} loading="lazy" /></button><div><h3>The OP17 Newgate Cheat</h3><p>The new 10c Newgate reduces its own cost by 4 if the opponent has a 10000+ power character on the board. Against Elbaph decks, you can play your 12000 Power Boss for only 6 DON!!, leaving you 4 DON!! to defend with events or play a Blocker like Little Oars Jr.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={marco.img} data-name={`${marco.code} ${marco.name}`} data-code={marco.code}><img src={marco.img} alt={`${marco.code} ${marco.name}`} loading="lazy" /></button><div><h3>The Marco Wall</h3><p>Marco is essential against decks with heavy effect removal. If an effect would KO or bottom deck Marco, you simply trash an 8000 power card from your hand to keep him alive. They can never get rid of him.</p></div></div></div></div>
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>OP17 Pro Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={newgateOp17.img} data-name={`${newgateOp17.code} ${newgateOp17.name}`} data-code={newgateOp17.code}><img src={newgateOp17.img} alt={`${newgateOp17.code} ${newgateOp17.name}`} loading="lazy" /></button><div><h3>The OP17 Newgate Cheat</h3><p>The new 10c Newgate reduces its own cost by 4 if the opponent has a 10K+ Power character on the board. Against Elbaph decks, you can play your 12K Power Boss for only 6 DON!!, leaving you 4 DON!! to defend with events or play a Blocker like Little Oars Jr.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={marco.img} data-name={`${marco.code} ${marco.name}`} data-code={marco.code}><img src={marco.img} alt={`${marco.code} ${marco.name}`} loading="lazy" /></button><div><h3>The Marco Wall</h3><p>Marco is essential against decks with heavy effect removal. If an effect would KO or bottom deck Marco, you simply trash an 8K Power card from your hand to keep him alive. They can never get rid of him.</p></div></div></div></div>
 
 			<div id="matchups" class="glow-block feature-block">
 				<div class="section-header feature-header"><div><h2>Matchups</h2><p>OP17 matchup spread for Portgas D. Ace OP16.</p></div></div>
@@ -173,7 +177,7 @@ const coreEngine = ["Leader: Gives Rush to your giant Boss characters.", "4c Luf
 				</div>
 			</div>
 
-			<div class="glow-block conclusions-card"><div class="section-tag section-tag-light">Conclusion</div><p class="ability-copy">Find 4c Luffy early, build with 8000 Power Whitebeard Pirates, and use OP17 Edward Newgate to make Ace an 8000 base Power Leader. This deck turns every giant body into immediate Rush pressure.</p></div>
+			<div class="glow-block conclusions-card"><div class="section-tag section-tag-light">Conclusion</div><p class="ability-copy">Find 4c Luffy early, build with 8K Power Whitebeard Pirates, and use OP17 Edward Newgate to make Ace an 8K base Power Leader. This deck turns every giant body into immediate Rush pressure.</p></div>
 		</div>
 	</section>
 

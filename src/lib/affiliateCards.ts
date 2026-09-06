@@ -1258,7 +1258,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"ST34-004": {
 		affiliateUrl: "https://partner.tcgplayer.com/vDgYAd",
-		price: "$24.00",
+		price: "$8.30",
 	},
 	"OP16-056": {
 		affiliateUrl: "https://partner.tcgplayer.com/AgkWnN",
