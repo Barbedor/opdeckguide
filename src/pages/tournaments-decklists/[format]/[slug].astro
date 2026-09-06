@@ -24,7 +24,7 @@ const displayTitle = entry.title.replace(
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
-const showDeckGuideButton = Boolean(entry.leader.href) && entry.leader.href !== "/deck-guides/";
+const showDeckGuideButton = !entry.hideDeckGuide && entry.leader.code !== "OP15-058" && Boolean(entry.leader.href) && entry.leader.href !== "/deck-guides/";
 const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
 	const lines = [];

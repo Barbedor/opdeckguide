@@ -11,6 +11,11 @@ import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestA
 import { op17WestAug30DeckTemplates, op17WestAug30EntrySeeds } from "./op17WestAug30";
 import { op17WestAug31DeckTemplates, op17WestAug31EntrySeeds } from "./op17WestAug31";
 import { op17WestSep01DeckTemplates, op17WestSep01EntrySeeds } from "./op17WestSep01";
+import { op17WestSep02DeckTemplates, op17WestSep02EntrySeeds } from "./op17WestSep02";
+import { op17WestSep03DeckTemplates, op17WestSep03EntrySeeds } from "./op17WestSep03";
+import { op17WestSep04DeckTemplates, op17WestSep04EntrySeeds } from "./op17WestSep04";
+import { op17WestSep05DeckTemplates, op17WestSep05EntrySeeds } from "./op17WestSep05";
+import { op17WestSep06DeckTemplates, op17WestSep06EntrySeeds } from "./op17WestSep06";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -133,7 +138,16 @@ const leaderIndex = {
 		format: "op16",
 		color: "Red",
 		imageSrc: "/assets/guides/Ace-op16.png",
-		href: "/deck-guides/portgas-d-ace-op16/",
+		href: "/deck-guides/portags-d-ace-op16-format-op17/",
+	},
+	"moria-op14": {
+		slug: "moria-op14",
+		name: "Gecko Moria",
+		code: "OP14-080",
+		format: "op17",
+		color: "Black",
+		imageSrc: "/Cards/OP14/OP14-080.jpg",
+		href: "/deck-guides/",
 	},
 	"krieg-op15": {
 		slug: "krieg-op15",
@@ -1810,6 +1824,11 @@ const deckTemplates = {
 	...op17WestAug30DeckTemplates,
 	...op17WestAug31DeckTemplates,
 	...op17WestSep01DeckTemplates,
+	...op17WestSep02DeckTemplates,
+	...op17WestSep03DeckTemplates,
+	...op17WestSep04DeckTemplates,
+	...op17WestSep05DeckTemplates,
+	...op17WestSep06DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -16371,6 +16390,11 @@ const entrySeeds = [
 	...op17WestAug30EntrySeeds,
 	...op17WestAug31EntrySeeds,
 	...op17WestSep01EntrySeeds,
+	...op17WestSep02EntrySeeds,
+	...op17WestSep03EntrySeeds,
+	...op17WestSep04EntrySeeds,
+	...op17WestSep05EntrySeeds,
+	...op17WestSep06EntrySeeds,
 	{
 		format: "op16",
 		region: "east",
