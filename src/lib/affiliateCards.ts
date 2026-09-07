@@ -6,7 +6,7 @@ export type AffiliateCardEntry = {
 export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"EB03-053": {
 		affiliateUrl: "https://partner.tcgplayer.com/zz0QJ0",
-		price: "$20.69",
+		price: "$14.99",
 	},
 	"EB03-041": {
 		affiliateUrl: "https://partner.tcgplayer.com/xJbQ3x",
@@ -82,7 +82,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"EB04-058": {
 		affiliateUrl: "https://partner.tcgplayer.com/m4a6Py",
-		price: "$34.74",
+		price: "$37.74",
 	},
 	"EB04-059": {
 		affiliateUrl: "https://partner.tcgplayer.com/WO0QDX",
@@ -386,7 +386,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP12-034": {
 		affiliateUrl: "https://partner.tcgplayer.com/GboBkB",
-		price: "$13.00",
+		price: "$19.99",
 	},
 	"OP12-015": {
 		affiliateUrl: "https://partner.tcgplayer.com/k4NXjV",
@@ -762,7 +762,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP15-113": {
 		affiliateUrl: "https://partner.tcgplayer.com/QYeGm3",
-		price: "$15.00",
+		price: "$5.00",
 	},
 	"OP15-114": {
 		affiliateUrl: "https://partner.tcgplayer.com/k4bLGd",
@@ -774,7 +774,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP15-119": {
 		affiliateUrl: "https://partner.tcgplayer.com/ZV4m9k",
-		price: "$18.99",
+		price: "$25.49",
 	},
 	"OP16-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/MKozeY",
@@ -1106,7 +1106,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP17-118": {
 		affiliateUrl: "https://partner.tcgplayer.com/oNaYMn",
-		price: "$37.00",
+		price: "$24.57",
 	},
 	"P-088": {
 		affiliateUrl: "https://partner.tcgplayer.com/n4jXaV",
@@ -1150,7 +1150,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"ST12-010": {
 		affiliateUrl: "https://partner.tcgplayer.com/R0aLBg",
-		price: "$13.95",
+		price: "$8.32",
 	},
 	"ST15-002": {
 		affiliateUrl: "https://partner.tcgplayer.com/L0oB63",
@@ -1334,7 +1334,7 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"EB01-061": {
 		affiliateUrl: "https://partner.tcgplayer.com/9VQvP5",
-		price: "$30.00",
+		price: "$22.49",
 	},
 	"EB02-017": {
 		affiliateUrl: "https://partner.tcgplayer.com/9VxPP4",

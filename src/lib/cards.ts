@@ -713,6 +713,11 @@ const manualCardOverrides = {
 			name: "Belo Betty",
 			color: "Red",
 		},
+		"eb05-022 octopako": {
+			code: "EB05-022",
+			name: "Octopako",
+			color: "Blue",
+		},
 		"eb05-025 domino": {
 			code: "EB05-025",
 			name: "Domino",
@@ -820,6 +825,20 @@ const manualCardOverrides = {
 			code: "EB05-056",
 			name: "Nico Olivia",
 			color: "Yellow",
+		},
+	},
+	OP08: {
+		"op08-051": {
+			code: "OP08-051",
+			name: "Buckin",
+			color: "Blue",
+		},
+	},
+	EB02: {
+		"eb02-030": {
+			code: "EB02-030",
+			name: "That Time is When Your Friend's Dreams are Laughed at!",
+			color: "Black",
 		},
 	},
 	OP18: {
@@ -1234,8 +1253,10 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 			const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
 			const variant = getOp17VariantLabel(base);
 			const canonicalBase = stripOp17VariantSuffix(base);
-			const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
-			const code = override.code ?? extractCodeFromBase(canonicalBase) ?? canonicalBase.toUpperCase();
+			const directOverride = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)];
+			const detectedCode = extractCodeFromBase(canonicalBase);
+			const override = directOverride ?? Object.values(overrides).find((item) => item.code === detectedCode) ?? {};
+			const code = override.code ?? detectedCode ?? canonicalBase.toUpperCase();
 			if (code === "OP17-020" && !variant) continue;
 			const meta = metadataIndex.get(code) ?? {};
 			cards.push({
@@ -1255,8 +1276,10 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
 		const variant = getOp17VariantLabel(base);
 		const canonicalBase = stripOp17VariantSuffix(base);
-		const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
-		const code = override.code ?? extractCodeFromBase(canonicalBase);
+		const directOverride = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)];
+		const detectedCode = extractCodeFromBase(canonicalBase);
+		const override = directOverride ?? Object.values(overrides).find((item) => item.code === detectedCode) ?? {};
+		const code = override.code ?? detectedCode;
 		if (!code) continue;
 		const meta = metadataIndex.get(code) ?? {};
 		cards.push({
@@ -1383,6 +1406,17 @@ export const buildCardIndex = () => {
 		}
 	}
 	return allCards;
+};
+
+export const getClassicCardImage = (code) => {
+	const set = code.split("-")[0];
+	const folder = set === "OP17" ? path.join(cardsRoot, "OP17", "New OP17") : path.join(cardsRoot, set);
+	const publicFolder = set === "OP17" ? "OP17/New%20OP17" : set;
+	for (const extension of ["jpg", "png", "jpeg", "webp"]) {
+		const filename = `${code}.${extension}`;
+		if (fs.existsSync(path.join(folder, filename))) return `/Cards/${publicFolder}/${filename}`;
+	}
+	return null;
 };
 
 export const hasMetadata = () => {

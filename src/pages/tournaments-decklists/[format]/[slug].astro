@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getAffiliateCard } from "../../../lib/affiliateCards";
+import { getClassicCardImage } from "../../../lib/cards";
 import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
 
 export const getStaticPaths = () =>
@@ -24,7 +25,9 @@ const displayTitle = entry.title.replace(
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
-const showDeckGuideButton = !entry.hideDeckGuide && entry.leader.code !== "OP15-058" && Boolean(entry.leader.href) && entry.leader.href !== "/deck-guides/";
+const isOp17LuffyAce = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "ST30-001";
+const deckGuideHref = isOp17LuffyAce ? "/deck-guides/luffy-ace-st30/" : entry.leader.href;
+const showDeckGuideButton = !entry.hideDeckGuide && (isOp17LuffyAce || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
 const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
 	const lines = [];
@@ -61,7 +64,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 				</div>
 				<div class="detail-links">
 					<a class="btn btn-secondary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
-					{showDeckGuideButton && <a class="btn btn-secondary" href={entry.leader.href}>Read the deck guide</a>}
+					{showDeckGuideButton && <a class="btn btn-secondary" href={deckGuideHref}>Read the deck guide</a>}
 					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
 						Copy for Sim
 					</button>
@@ -142,6 +145,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 			<div class="detail-grid">
 				{entry.cards.map((card) => {
 					const affiliateCard = getAffiliateCard(card.code);
+					const classicImage = getClassicCardImage(card.code) ?? card.img;
 
 					return (
 						<div class="detail-card">
@@ -150,10 +154,10 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 									class="detail-card-preview"
 									type="button"
 									data-card-preview
-									data-full={card.img}
+									data-full={classicImage}
 									data-name={`${card.code} ${card.name}`}
 								>
-									<img src={card.img} alt={`${card.code} ${card.name}`} loading="lazy" />
+									<img src={classicImage} alt={`${card.code} ${card.name}`} loading="lazy" />
 								</button>
 								{
 									affiliateCard && (

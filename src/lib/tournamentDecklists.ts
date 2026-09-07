@@ -7,6 +7,7 @@ import { op17EastSep02DeckTemplates, op17EastSep02EntrySeeds } from "./op17EastS
 import { op17EastSep03DeckTemplates, op17EastSep03EntrySeeds } from "./op17EastSep03";
 import { op17EastSep04DeckTemplates, op17EastSep04EntrySeeds } from "./op17EastSep04";
 import { op17EastSep05DeckTemplates, op17EastSep05EntrySeeds } from "./op17EastSep05";
+import { op17EastSep06DeckTemplates, op17EastSep06EntrySeeds } from "./op17EastSep06";
 import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
 import { op17WestAug30DeckTemplates, op17WestAug30EntrySeeds } from "./op17WestAug30";
 import { op17WestAug31DeckTemplates, op17WestAug31EntrySeeds } from "./op17WestAug31";
@@ -16,6 +17,7 @@ import { op17WestSep03DeckTemplates, op17WestSep03EntrySeeds } from "./op17WestS
 import { op17WestSep04DeckTemplates, op17WestSep04EntrySeeds } from "./op17WestSep04";
 import { op17WestSep05DeckTemplates, op17WestSep05EntrySeeds } from "./op17WestSep05";
 import { op17WestSep06DeckTemplates, op17WestSep06EntrySeeds } from "./op17WestSep06";
+import { cardNames, registerDeckCardNames } from "./cardNames";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -146,7 +148,7 @@ const leaderIndex = {
 		code: "OP14-080",
 		format: "op17",
 		color: "Black",
-		imageSrc: "/Cards/OP14/OP14-080.jpg",
+		imageSrc: "/assets/guides/Gecko Moria OP14-080.png",
 		href: "/deck-guides/",
 	},
 	"krieg-op15": {
@@ -182,7 +184,7 @@ const leaderIndex = {
 		code: "OP13-004",
 		format: "op16",
 		color: "Red / Black",
-		imageSrc: "/assets/leader-art/sabo-op13-art.png",
+		imageSrc: "/assets/guides/Sabo OP13-004.png",
 		href: "/deck-guides/sabo-op13/",
 	},
 	"imu-op13": {
@@ -191,7 +193,7 @@ const leaderIndex = {
 		code: "OP13-079",
 		format: "op16",
 		color: "Black",
-		imageSrc: "/assets/leader-art/imu-op13-art.png",
+		imageSrc: "/assets/guides/Imu OP13-079.png",
 		href: "/deck-guides/",
 	},
 	"sengoku-op16": {
@@ -506,7 +508,7 @@ const leaderIndex = {
 		code: "OP13-100",
 		format: "op16",
 		color: "Yellow",
-		imageSrc: "/Cards/OP13/OP13-100.jpg",
+		imageSrc: "/assets/guides/Bonney op13.png",
 		href: "/deck-guides/",
 	},
 	"bonney-eb04": {
@@ -1820,6 +1822,7 @@ const deckTemplates = {
 	...op17EastSep03DeckTemplates,
 	...op17EastSep04DeckTemplates,
 	...op17EastSep05DeckTemplates,
+	...op17EastSep06DeckTemplates,
 	...op17WestAug29DeckTemplates,
 	...op17WestAug30DeckTemplates,
 	...op17WestAug31DeckTemplates,
@@ -16386,6 +16389,7 @@ const entrySeeds = [
 	...op17EastSep03EntrySeeds,
 	...op17EastSep04EntrySeeds,
 	...op17EastSep05EntrySeeds,
+	...op17EastSep06EntrySeeds,
 	...op17WestAug29EntrySeeds,
 	...op17WestAug30EntrySeeds,
 	...op17WestAug31EntrySeeds,
@@ -29551,7 +29555,29 @@ const entrySeeds = [
 	},
 ];
 
-const cloneDeck = (cards) => cards.map((card) => ({ ...card }));
+// Populate the shared name registry from every historical decklist before any
+// deck is cloned for a page. New decklists still use getCardName() directly.
+const historicalDeckCards = Object.values(deckTemplates).flat();
+registerDeckCardNames(historicalDeckCards);
+const unnamedHistoricalCards = [...new Set(historicalDeckCards.map(({ code }) => code))].filter((code) => !cardNames[code]);
+if (unnamedHistoricalCards.length) {
+	throw new Error(`Missing card names in src/lib/cardNames.ts: ${unnamedHistoricalCards.join(", ")}`);
+}
+
+const cloneDeck = (cards) => {
+	const merged = new Map();
+
+	for (const card of cards) {
+		const existing = merged.get(card.code);
+		if (existing) {
+			existing.count += card.count;
+		} else {
+			merged.set(card.code, { ...card, name: cardNames[card.code] ?? card.name });
+		}
+	}
+
+	return [...merged.values()];
+};
 
 const formatDate = (value) => {
 	const [year, month, day] = value.split("-");

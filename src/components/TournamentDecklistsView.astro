@@ -4,6 +4,8 @@ import { tournamentFormats, getTournamentLeaderStats } from "../lib/tournamentDe
 const { currentFormat, entries, heroTitle, heroIntro, showSeoContent = false } = Astro.props;
 
 const formatConfig = tournamentFormats.find((format) => format.slug === currentFormat);
+const formatLabel = formatConfig?.title ?? "Tournament Decklists";
+const regionName = formatConfig?.region === "west" ? "Western" : "Eastern";
 const leaderStats = getTournamentLeaderStats(currentFormat);
 const totalDecklists = entries.length;
 
@@ -11,7 +13,7 @@ const eventTypeMeta = {
 	"Grand Asia Open": { short: "GAO", color: "#f5c451", soft: "rgba(245, 196, 81, 0.18)" },
 	"Area Qualifiers": { short: "AQ", color: "#a06eff", soft: "rgba(160, 110, 255, 0.18)" },
 	"Area Final": { short: "AF", color: "#ff9f43", soft: "rgba(255, 159, 67, 0.18)" },
-	"EU Final": { short: "EU", color: "#72c9ff", soft: "rgba(114, 201, 255, 0.22)" },
+	"EU Final": { short: "EU", color: "#b8e6ff", soft: "rgba(184, 230, 255, 0.30)" },
 	Regional: { short: "R", color: "#ff9f43", soft: "rgba(255, 159, 67, 0.18)" },
 	"Treasure Cup": { short: "TC", color: "#4fbaff", soft: "rgba(79, 186, 255, 0.18)" },
 	"Flagship Battle": { short: "FS", color: "#ff6b6b", soft: "rgba(255, 107, 107, 0.18)" },
@@ -23,6 +25,7 @@ const eventTypeMeta = {
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame FC": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame+LCQ": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
+	"Taiwan Final": { short: "TW", color: "#c79a2b", soft: "rgba(199, 154, 43, 0.22)" },
 };
 
 const eventOptions = Object.keys(eventTypeMeta)
@@ -290,34 +293,34 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		<section class="tournament-seo">
 			<div class="container">
 				<div class="tournament-seo-header">
-					<h2>Tournament Decklists FAQ</h2>
-					<p>Quick answers about how these tournament decklists are tracked and how to use them.</p>
+					<h2>{formatLabel} FAQ</h2>
+					<p>Quick answers about the {regionName.toLowerCase()} tournament results tracked on this page and how to use them.</p>
 				</div>
 				<div class="tournament-seo-grid">
 					<article class="seo-card">
-						<h2>How to use these tournament decklists?</h2>
+						<h2>How do I use these {formatLabel.toLowerCase()}?</h2>
 						<p>
-							Use this page as the main hub for One Piece TCG tournament results. Start with the
-							format tabs, check the top leader share, then open the winning decklists that match the
-							meta you want to study.
+							Use this page to study the {regionName.toLowerCase()} One Piece TCG meta. Check the
+							top leader share, then open the winning decklists that match the decks you want to
+							prepare for.
 						</p>
 					</article>
 
 					<article class="seo-card">
 						<h2>What counts as a winning decklist on OPDeckGuide?</h2>
 						<p>
-							OPDeckGuide tracks real tournament results and featured winning lists from supported
-							event types. The goal is to show the decks that actually performed, not theory-only test
-							lists or recycled sample builds.
+							OPDeckGuide tracks real {regionName.toLowerCase()} tournament results and featured
+							winning lists from supported event types. The goal is to show the decks that actually
+							performed, not theory-only test lists or recycled sample builds.
 						</p>
 					</article>
 
 					<article class="seo-card">
 						<h2>How do East and West formats differ?</h2>
 						<p>
-							East and West formats can diverge in release timing, legal card pool, and leader
-							popularity. Splitting the data by region makes it easier to compare the active meta
-							without mixing tournament environments that do not behave the same way.
+							The {regionName.toLowerCase()} format can diverge from other regions in release timing,
+							legal card pool, and leader popularity. Keeping this data separate makes the active
+							regional meta easier to compare without mixing tournament environments.
 						</p>
 					</article>
 

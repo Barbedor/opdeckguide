@@ -134,14 +134,15 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			isDeckGuidePage && (
 				<script is:inline define:vars={{ affiliateCards }}>
 					const setupDeckGuideAffiliatePrices = () => {
-						const decklistSection = document.querySelector("#decklist");
-						const deckGrid = decklistSection?.querySelector(".deck-grid");
+						const deckGrid = document.querySelector("#decklist .deck-grid, .list-section .deck-grid");
+						const decklistSection = deckGrid?.closest("#decklist, .list-section");
 						const decklistHeader = decklistSection?.querySelector(".section-header");
 						const decklistDescription =
 							decklistHeader?.querySelector("p") ?? decklistHeader?.querySelector(".decklist-intro");
 						const decklistTitleRow = decklistHeader?.querySelector(".decklist-title-row");
 
-						if (!(deckGrid instanceof HTMLElement)) return;
+						if (!(deckGrid instanceof HTMLElement) || !(decklistSection instanceof HTMLElement)) return;
+						decklistSection.setAttribute("data-decklist-section", "");
 						if (decklistHeader instanceof HTMLElement) {
 							decklistHeader.style.display = "grid";
 							decklistHeader.style.gridTemplateColumns = "minmax(0, 1fr)";
@@ -845,7 +846,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		width: 100%;
 	}
 
-	#decklist .decklist-header {
+	[data-decklist-section] .decklist-header {
 		display: grid !important;
 		grid-template-columns: minmax(0, 1fr) !important;
 		grid-auto-flow: row !important;
@@ -853,7 +854,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		justify-content: stretch !important;
 	}
 
-	#decklist .decklist-affiliate-controls {
+	[data-decklist-section] .decklist-affiliate-controls {
 		width: 100% !important;
 		max-width: 100% !important;
 	}

@@ -77,6 +77,7 @@ const op17AffiliateEditionsByCode = {
 	"OP17-070": ["ALT"],
 	"OP17-079": ["ALT", "MANGA"],
 	"OP17-114": ["ALT"],
+	"OP17-118": [""],
 };
 const isOp17YamatoSpecial = (card) =>
 	card.code === "OP16-098" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl);
@@ -1731,6 +1732,12 @@ const leakCardDetails = {
 				" If your Leader is [Shirahoshi], you may turn 1 card from the top of your Life cards face-down: Rest up to 1 of your opponent's Characters with a cost of 5 or less.",
 			],
 		],
+	},
+	"EB05-022": {
+		rarity: "Common",
+		stats: "Blue / Cost 1 / Wisdom / Power 2000 / Counter 1000",
+		traits: "Fish-Man/Fish-Man Island",
+		effectLines: [[keyword("on-ko", "On K.O."), " Draw 2 cards."]],
 	},
 	"EB05-013": {
 		rarity: "Common",
