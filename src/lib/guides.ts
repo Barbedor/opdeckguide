@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Boa Hancock OP14 Deck Guide",
+		leader: "Boa Hancock",
+		code: "OP14",
+		formatLabel: "OP17 Format",
+		summary: "Decklist, curve guide, deck overview, tactics, and matchup notes for Boa Hancock OP14 in the OP17 format.",
+		month: "September",
+		href: "/deck-guides/boa-hancock-op14-format-op17/",
+		imageSrc: "/assets/guides/boa-hancock-op14.png",
+		imageAlt: "Boa Hancock OP14 OP17 format deck guide cover",
+		aliases: ["boa hancock op17", "boa op14 op17", "yellow blue boa", "kuja boa"],
+		tags: ["op14", "op17", "yellow", "blue", "kuja pirates", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Portgas D. Ace OP16 Deck Guide",
 		leader: "Portgas D. Ace",
 		code: "OP16",

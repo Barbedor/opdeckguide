@@ -1,0 +1,288 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Boa Hancock OP14 Deck Guide";
+const description = "Boa Hancock OP14 deck guide for the OP17 format with decklist, curve guide, strengths, weaknesses, tactics, and matchups.";
+const icon = "/assets/guides/boa-hancock-op14.png";
+
+const card = (code, name, img, count = 4, role = "Character") => ({ code, name, img, count, role });
+const leader = card("OP14-041", "Boa Hancock", "/Cards/OP14/OP14-041.jpg", 1, "Leader");
+const hiyori = card("OP06-106", "Kouzuki Hiyori", "/Cards/OP06/OP06-106.png");
+const pudding = card("OP17-109", "Charlotte Pudding", "/Cards/OP17/New OP17/OP17-109.jpg");
+const ran = card("OP14-114", "Ran", "/Cards/OP14/OP14-114.jpg");
+const zoro = card("OP15-113", "Roronoa Zoro", "/Cards/OP15/OP15-113.jpg");
+const borsalino = card("EB04-058", "Borsalino", "/Cards/EB04/EB04-058.jpg");
+const marigold = card("OP16-113", "Boa Marigold", "/Cards/OP16/OP16-113.jpg");
+const nami = card("OP11-054", "Nami", "/Cards/OP11/OP11-054.jpg", 3);
+const gorgonSisters = card("OP14-105", "Gorgon Sisters", "/Cards/OP14/OP14-105.jpg");
+const shakuyaku = card("OP14-107", "Shakuyaku", "/Cards/OP14/OP14-107.jpg");
+const moria = card("OP14-104", "Gecko Moria", "/Cards/OP14/OP14-104.jpg", 3);
+const teach = card("OP16-119", "Marshall.D.Teach", "/Cards/OP16/OP16-119.jpg", 3);
+const boa = card("OP14-112", "Boa Hancock", "/Cards/OP14/OP14-112.jpg");
+const frighten = card("OP14-118", "You'll Frighten Me…", "/Cards/OP14/OP14-118.jpg", 1, "Event");
+const perfumeFemur = card("OP07-057", "Perfume Femur", "/Cards/OP07/OP07-057.png", 2, "Event");
+const gravityBlade = card("OP06-058", "Gravity Blade Raging Tiger", "/Cards/OP06/OP06-058.png", 2, "Event");
+const saboOp13 = card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader");
+const rocksOp17 = card("OP17-039", "Rocks D. Xebec OP17", "/Cards/OP17/New OP17/OP17-039.jpg", null, "Leader");
+const mihawkOp14 = card("OP14-020", "Dracule Mihawk OP14", "/Cards/OP14/OP14-020.jpg", null, "Leader");
+const kaidoOp17 = card("OP17-058", "Kaido OP17", "/Cards/OP17/New OP17/OP17-058.jpg", null, "Leader");
+const aceLeaderOp16 = card("OP16-001", "Portgas D. Ace OP16", "/Cards/OP16/OP16-001.jpg", null, "Leader");
+const linlinOp17 = card("OP17-099", "Charlotte Linlin OP17", "/Cards/OP17/New OP17/OP17-099.jpg", null, "Leader");
+const luffyOp17 = card("OP17-079", "Monkey D. Luffy OP17", "/Cards/OP17/New OP17/OP17-079.jpg", null, "Leader");
+const shanksOp17 = card("OP17-020", "Shanks OP17", "/Cards/OP17/New OP17/OP17-020.jpg", null, "Leader");
+const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
+const boaOp14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg", null, "Leader");
+const nicoRobinOp09 = card("OP09-062", "Nico Robin OP09", "/Cards/OP09/OP09-062.jpg", null, "Leader");
+const luffyAceSt30 = card("ST30-001", "Luffy & Ace ST30", "/Cards/ST30/ST30-001.jpg", null, "Leader");
+
+const matchupIcons = {
+	"OP13-004": "/assets/guides/Sabo OP13-004.png",
+	"OP17-039": "/assets/guides/Rocks.DXebec op17.png",
+	"OP14-020": "/assets/guides/dracule-mihawk-op14.png",
+	"OP17-058": "/assets/guides/Kaido op17.png",
+	"OP16-001": "/assets/guides/Ace-op16.png",
+	"OP17-099": "/assets/guides/Charlotte Linlin op17.png",
+	"OP17-079": "/assets/guides/Monkey.D.Luffy op17.png",
+	"OP17-020": "/assets/guides/Shanks op17.png",
+	"OP15-058": "/assets/guides/enel-op15.png",
+	"OP14-041": "/assets/guides/boa-hancock-op14.png",
+	"ST30-001": "/assets/guides/Luffy-st30.png",
+	"OP09-062": "/assets/guides/Nico-Robin-op09.png",
+};
+
+const decklist = [leader, hiyori, pudding, ran, zoro, borsalino, marigold, nami, gorgonSisters, shakuyaku, moria, teach, boa, frighten, perfumeFemur, gravityBlade];
+const simDeckCode = decklist.map((entry) => `${entry.count}x${entry.code}`).join("\n");
+
+const matchupGroups = [
+	{ label: "Favorable", icon: "&uarr;", tone: "up", cards: [aceLeaderOp16, linlinOp17, shanksOp17, enelOp15, luffyAceSt30] },
+	{ label: "Slightly Favorable", icon: "&uarr;", tone: "slightly-up", cards: [mihawkOp14] },
+	{ label: "Even", icon: "&asymp;", tone: "even", cards: [kaidoOp17, luffyOp17] },
+	{ label: "Slightly Unfavorable", icon: "&darr;", tone: "slightly-down", cards: [rocksOp17] },
+	{ label: "Unfavorable", icon: "&darr;", tone: "down", cards: [saboOp13, nicoRobinOp09] },
+];
+
+const goSecond = [
+	{ label: "2 DON!!", cards: [hiyori], text: "Start with Kouzuki Hiyori to place the Trigger you need from your hand on top of your Life pile. This makes the next Life you gain deliberate rather than random, which is the foundation of Boa's defensive plan." },
+	{ label: "4 DON!!", mode: "or", cards: [ran, zoro], text: "Either play Ran to attach a DON!! to your Leader for free every turn, enabling your Leader effect's activation condition, or play Roronoa Zoro to add an extra Life and give yourself one more chance to activate a Trigger when your opponent attacks your Life." },
+	{ label: "6 DON!!", cards: [nami], text: "Nami reinforces your defense as a Blocker and forces your opponent to plan every attack carefully. When they attack, you can block with Nami; if she is K.O.'d, Boa's Leader effect makes your opponent take a Life card. This makes attacking into Nami a real dilemma: they must either respect your defense or give you a direct way to pressure their Life." },
+	{ label: "8 DON!!", cards: [teach], text: "Marshall.D.Teach is the powerful top-end setup. He helps you look at the top of the deck and arrange the Trigger cards you want to put into Life, so your next defensive turn is prepared instead of left to chance." },
+	{ label: "10 DON!!", mode: "or", cards: [teach, boa], text: "Choose Marshall.D.Teach when you need to set up the top of your deck and prepare the Trigger cards for the turns ahead, or Boa Hancock OP14-112 to place the top card of your deck into your Life and add a Life card to your hand. Both plays turn your Life area into a planned defensive resource rather than leaving your next Trigger to chance." },
+];
+
+const goFirst = [
+	{ label: "1 DON!!", cards: [], text: "There is no play on the first turn because the deck doesn't run any 1-cost cards." },
+	{ label: "3 DON!!", cards: [pudding], text: "Charlotte Pudding is the clean development turn. Use her to improve the quality of your hand and to keep the cards that matter for your Trigger sequence, instead of committing a Life setup too early." },
+	{ label: "5 DON!!", cards: [zoro], text: "Roronoa Zoro gives you a solid mid-game body while you continue preserving the cards needed for the next Life setup. This keeps the board relevant without abandoning the deck's defensive Trigger plan." },
+	{ label: "7 DON!!", cards: [gorgonSisters], text: "Gorgon Sisters is the turn where the deck turns its prepared Life into tempo. Set up the Trigger sequence first, then use this development to make the opponent's next attacks and K.O.s work in your favor." },
+	{ label: "9 DON!!", mode: "or", cards: [teach, boa], text: "Choose Marshall.D.Teach when you need to set up the top of your deck and prepare the Trigger cards for the turns ahead, or Boa Hancock OP14-112 to place the top card of your deck into your Life and add a Life card to your hand. Both plays turn your Life area into a planned defensive resource rather than leaving your next Trigger to chance." },
+];
+
+const strengths = ["Incredible hand advantage: draw cards every time you pop a Trigger on the opponent's turn.", "Built-in Life Burn: the opponent is punished for trying to clear your board.", "Unpredictable defense: stacking your Life lets you set up massive counters."];
+
+const weaknesses = ["Very weak to non-K.O. removal. If your Kuja characters get bottom-decked or bounced to hand, the Life Burn effect doesn't trigger.", "Hard execution: precise sequencing and deck stacking matter, and one wrong placement can cost the game.", "Struggles against massive Boss monsters outside Rayleigh's or Teach's K.O. range."];
+
+const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the opponent's Life when Kuja characters are K.O.'d.", "4c Boa Hancock and 8c Teach: let you look at the top of your deck and stack the exact Triggers you need into your Life area.", "5c Boa Marigold: comes out of Life and gains Blocker at 2 Life, forcing the opponent to K.O. her and take burn damage."];
+
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero guide-hero">
+		<div class="container hero-grid">
+			<div class="hero-copy">
+				<div class="hero-tags"><span class="hero-chip">Deck Guide</span><span class="hero-chip hero-chip-accent">OP17 Format</span></div>
+				<h1>Boa Hancock OP14 Deck Guide</h1>
+				<p class="hero-intro">The most toxic deck in OP17. Boa Hancock is a Trigger machine that develops characters, heals, and draws a card every time a Trigger pops.</p>
+				<div class="hero-actions"><a class="btn btn-primary" href="#curve">Curve Guide</a><a class="btn btn-secondary" href="#matchups">Matchups</a></div>
+			</div>
+			<div class="guide-icon"><img src={icon} alt="Boa Hancock OP14 deck guide" loading="eager" /></div>
+		</div>
+	</section>
+
+	<section id="decklist" class="list-section">
+		<div class="container article-stack">
+			<div class="glow-block">
+				<div class="section-header decklist-header"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button></div></div>
+				<div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /><div class="deck-info"><span class="deck-count">{entry.count}x</span><div><div class="deck-name">{entry.name}</div><div class="deck-code">{entry.code}</div></div></div><span class="deck-role">{entry.role}</span></button>)}</div>
+			</div>
+
+			<div id="curve" class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Curve Guide</h2></div></div>
+				<div class="curve-guide-block">
+					<h3>Go Second</h3>
+					<p>Going second is your best curve because it lets you set up Life, develop a body, and transition into your Trigger payoffs naturally.</p>
+					<div class="curve-rows">
+						{goSecond.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
+											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+											</button>
+										</>
+									))}
+								</div>
+								<p class="curve-note">{slot.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="curve-guide-block">
+					<h3>Go First</h3>
+					<p>Going first is awkward, but still playable when you sequence your hand and Life setup carefully.</p>
+					<div class="curve-rows">
+						{goFirst.map((slot) => (
+							<div class="curve-row">
+								<div class="curve-label">{slot.label}</div>
+								<div class="curve-cards">
+									{slot.cards.map((entry, index) => (
+										<>
+											{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
+											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+											</button>
+										</>
+									))}
+								</div>
+								<p class="curve-note">{slot.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Deck Overview</h2><h3>The Mechanic</h3><p>This deck barely runs any Blue cards. Instead, it uses the Big Mom Pirates and Kuja Pirates Trigger packages. Whenever you play a character on your opponent's turn via Trigger, your Leader lets you draw a card: you develop a body and replace the card in your hand for free.</p></div></div><div class="nutshell-grid"><div class="info-panel"><div class="section-tag section-tag-light">Strength</div><ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul></div><div class="info-panel"><div class="section-tag section-tag-light">Weakness</div><ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul></div></div><div class="core-panel"><div class="section-tag section-tag-light">The Core Engine</div><ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul></div></div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>OP17 Pro Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={boa.img} data-name={`${boa.code} ${boa.name}`} data-code={boa.code}><img src={boa.img} alt={`${boa.code} ${boa.name}`} loading="lazy" /></button><div><h3>The Unblockable Finisher</h3><p>Don't forget the Blue side of the deck. Perfume Femur gives your Leader or a Warlord character +2K Power and makes their attack completely unblockable. It's the finisher that steals games when the opponent thinks they're safe behind Blockers.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={marigold.img} data-name={`${marigold.code} ${marigold.name}`} data-code={marigold.code}><img src={marigold.img} alt={`${marigold.code} ${marigold.name}`} loading="lazy" /></button><div><h3>The Marigold Burn Block</h3><p>5c Boa Marigold is a defensive trap. At 2 Life or less, she gains Blocker. When the opponent attacks for game, block with her: if she's K.O.'d, your Leader effect triggers and forces the opponent to take a Life to hand. It's a lose-lose situation for them.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={moria.img} data-name={`${moria.code} ${moria.name}`} data-code={moria.code}><img src={moria.img} alt={`${moria.code} ${moria.name}`} loading="lazy" /></button><div><h3>The Moria Pitch</h3><p>Gecko Moria is in the deck for his powerful Trigger. With 3c Charlotte Pudding, you can discard him to activate his On Play effect and instantly draw 3 fresh cards: maximum value with no dead hand.</p></div></div></div></div>
+
+			<div id="matchups" class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Matchups</h2><p>OP17 matchup spread for Boa Hancock OP14.</p></div></div>
+				<div class="matchup-grid">
+					{matchupGroups.map((group) => (
+						<div class="matchup-card">
+							<div class={`matchup-badge badge-${group.tone}`}><span class="badge-icon" set:html={group.icon}></span><span>{group.label}</span></div>
+							<div class="matchup-list">
+								{group.cards.map((entry) => (
+									<button class="matchup-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+										<img class="matchup-leader-icon" src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<span>{entry.name}</span>
+									</button>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="glow-block conclusions-card"><div class="section-tag section-tag-light">Conclusion</div><p class="ability-copy">Set up your Life with the right Triggers, make every opposing K.O. awkward, and turn your defensive turns into card advantage and Life Burn. Boa wins by forcing opponents into increasingly bad choices.</p></div>
+		</div>
+	</section>
+
+	<div class="card-modal" data-modal aria-hidden="true"><div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview"><button class="modal-close" type="button" data-close>Close</button><img src="" alt="" data-modal-image /></div></div>
+</MainLayout>
+
+<script>
+	const modal = document.querySelector("[data-modal]");
+	const modalImage = document.querySelector("[data-modal-image]");
+	const closeModal = () => { modal?.classList.remove("is-open"); modal?.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; };
+	document.querySelectorAll("[data-card-preview]").forEach((button) => button.addEventListener("click", () => { if (!modal || !modalImage) return; modalImage.src = button.dataset.full || ""; modalImage.alt = button.dataset.name || "Card preview"; modal.classList.add("is-open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }));
+	document.querySelector("[data-close]")?.addEventListener("click", closeModal);
+	modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+	document.querySelectorAll("[data-copy-sim]").forEach((button) => button.addEventListener("click", async () => {
+		const simDeck = button.dataset.simDeck;
+		if (!simDeck) return;
+		const previous = button.textContent?.trim() || "Copy for Sim";
+		try {
+			if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(simDeck);
+			} else {
+				const textarea = document.createElement("textarea");
+				textarea.value = simDeck;
+				textarea.setAttribute("readonly", "");
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				textarea.remove();
+			}
+			button.textContent = "Copied";
+		} catch {
+			button.textContent = "Copy failed";
+		}
+		window.setTimeout(() => { button.textContent = previous; }, 1800);
+	}));
+</script>
+
+<style>
+	:root { --first-look-accent: #ff6b3d; --first-look-accent-soft: rgba(255, 107, 61, 0.18); --first-look-border: rgba(255, 107, 61, 0.28); }
+	.guide-hero { padding-top: 3.2rem; }
+	.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 415px); gap: 2rem; align-items: center; }
+	.hero-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
+	.hero-chip, .publish-banner { display: inline-flex; align-items: center; padding: 0.7rem 1.1rem; border-radius: 999px; border: 1px solid var(--first-look-border); background: rgba(12, 17, 30, 0.85); color: #f3f7ff; }
+	.hero-chip { font-size: 0.95rem; font-weight: 600; }
+	.hero-chip-accent { color: var(--accent); }
+	.hero-intro { max-width: 60ch; }
+	.guide-icon { display: flex; justify-content: center; }
+	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+	.article-stack, .feature-block, .curve-guide-block, .curve-rows, .nutshell-grid, .info-panel, .core-panel { display: grid; gap: 1rem; }
+	.matchup-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+	.glow-block { background: rgba(12, 17, 30, 0.9); border: 1px solid var(--first-look-border); border-radius: 26px; padding: 1.25rem; box-shadow: 0 0 0 1px rgba(255,107,61,0.16), 0 0 22px rgba(255,107,61,0.08), 0 0 52px rgba(255,107,61,0.05); }
+	.hero-actions, .decklist-title-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+	.decklist-title-row { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-content: initial; }
+	.decklist-title-row h2 { margin: 0; min-width: 0; }
+	.decklist-title-row .copy-sim-button { justify-self: end; width: auto; flex: 0 0 auto; }
+	.deck-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+	.deck-card { background: rgba(12,17,30,0.9); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem; display: grid; gap: 0.65rem; text-align: left; cursor: pointer; }
+	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
+	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
+	.deck-count { color: var(--accent); font-weight: 700; }
+	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
+	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
+	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
+	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
+	.curve-row { display: grid; grid-template-columns: 1fr; gap: 0.75rem; align-items: start; padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.curve-label { color: var(--accent); font-weight: 700; }
+	.curve-cards { display: flex; align-items: center; flex-wrap: nowrap; gap: 0.9rem; justify-content: flex-start; width: 100%; overflow-x: auto; }
+	.curve-card { flex: 0 0 auto; background: transparent; border: 0; padding: 0; }
+	.curve-card img { display: block; width: 100%; max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
+	.curve-join { color: var(--accent); font-size: 1.8rem; font-weight: 700; }
+	.curve-join-or { font-size: 1rem; }
+	.curve-note { margin: 0; line-height: 1.6; }
+	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.info-panel, .core-panel { padding: 1rem; border-radius: 22px; border: 1px solid var(--first-look-border); background: rgba(8,12,22,0.72); }
+	.summary-list { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
+	.core-panel { margin-top: 1rem; }
+	.combo-grid { display: grid; gap: 1rem; }
+	.combo-card { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 1.25rem; align-items: center; padding: 1rem; border: 1px solid var(--first-look-border); border-radius: 22px; background: rgba(8,12,22,0.72); }
+	.detail-card { display: block; background: transparent; border: 0; padding: 0; cursor: pointer; }
+	.combo-card img { width: 100%; max-width: 160px; border-radius: 16px; }
+	.combo-card h3 { margin: 0 0 0.5rem; color: #ff8d76; }
+	.combo-card p, .matchup-card p, .curve-guide-block p { margin: 0; line-height: 1.6; }
+	.matchup-card { display: grid; gap: 0.9rem; align-content: start; padding: 1rem; border: 1px solid var(--first-look-border); border-radius: 22px; background: rgba(8,12,22,0.72); }
+	.matchup-badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 600; }
+	.badge-up { background: rgba(74,222,128,0.14); color: #65f59b; }
+	.badge-down { background: rgba(255,107,107,0.14); color: #ff7c7c; }
+	.badge-slightly-up { background: rgba(163,230,53,0.14); color: #bef264; }
+	.badge-slightly-down { background: rgba(251,146,60,0.14); color: #fdba74; }
+	.badge-even { background: rgba(148,163,184,0.16); color: #cbd5e1; }
+	.badge-icon { display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; background: currentColor; color: #08101b; font-size: 0.78rem; }
+	.matchup-list { display: flex; flex-wrap: nowrap; gap: 0.75rem; justify-content: flex-start; width: 100%; overflow-x: auto; }
+	.matchup-entry { flex: 0 0 92px; display: grid; gap: 0.4rem; justify-items: center; padding: 0.45rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(12,17,30,0.72); color: var(--text-100); cursor: pointer; text-align: center; }
+	.matchup-entry:hover, .matchup-entry:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+	.matchup-entry img { width: 100%; max-width: 92px; border-radius: 10px; }
+	.matchup-entry span { font-size: 0.78rem; line-height: 1.2; }
+	@media (max-width: 560px) { .matchup-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; } .matchup-entry { flex: initial; } }
+	.card-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(5,8,16,0.82); padding: 1.5rem; z-index: 50; }
+	.card-modal.is-open { display: flex; }
+	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
+	.card-modal-inner > img { width: 100%; border-radius: 20px; }
+	.modal-close { position: absolute; top: -0.75rem; right: -0.75rem; border: none; border-radius: 999px; background: var(--accent); color: #fff; padding: 0.55rem 0.85rem; font-weight: 700; cursor: pointer; }
+	@media (max-width: 900px) { .hero-grid, .matchup-grid, .nutshell-grid { grid-template-columns: 1fr; } .guide-icon { justify-self: center; } .deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+	@media (max-width: 640px) { .deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .deck-card { padding: 0.55rem; } .deck-card img { max-width: 92px; } }
+	@media (max-width: 560px) { .glow-block { padding: 1rem; border-radius: 22px; } .hero-grid { grid-template-columns: minmax(0, 1fr) 96px; gap: 1rem; align-items: start; } .guide-icon img { width: 96px; } .curve-row { grid-template-columns: 1fr !important; gap: 0.65rem; align-items: start; } .curve-cards { gap: 0.45rem; } .curve-note { grid-column: auto; font-size: 0.9rem; line-height: 1.45; padding-left: 0.65rem; border-left: 2px solid rgba(255,107,61,0.55); } .curve-card img { max-width: 88px; } .combo-card { grid-template-columns: 92px minmax(0, 1fr); gap: 0.8rem; padding: 0.75rem; } .combo-card img { max-width: 92px; } .combo-card h3 { font-size: 1rem; } .combo-card p { font-size: 0.9rem; line-height: 1.45; } .matchup-card { padding: 0.75rem; } .matchup-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; } .matchup-entry { padding: 0.3rem; } .matchup-entry span { font-size: 0.68rem; } }
+	@media (min-width: 901px) { .matchup-entry { flex-basis: 132px; } .matchup-leader-icon { width: 132px !important; height: 82px; object-fit: cover; } }
+</style>
