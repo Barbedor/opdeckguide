@@ -26,8 +26,13 @@ const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
 const isOp17LuffyAce = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "ST30-001";
-const deckGuideHref = isOp17LuffyAce ? "/deck-guides/luffy-ace-st30/" : entry.leader.href;
-const showDeckGuideButton = !entry.hideDeckGuide && (isOp17LuffyAce || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
+const isOp17BoaHancock = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "OP14-041";
+const deckGuideHref = isOp17LuffyAce
+	? "/deck-guides/luffy-ace-st30/"
+	: isOp17BoaHancock
+		? "/deck-guides/boa-hancock-op14-format-op17/"
+		: entry.leader.href;
+const showDeckGuideButton = !entry.hideDeckGuide && (isOp17LuffyAce || isOp17BoaHancock || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
 const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
 	const lines = [];

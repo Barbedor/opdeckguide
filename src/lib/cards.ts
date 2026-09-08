@@ -191,6 +191,11 @@ const manualCardOverrides = {
 			name: "Are You That Afraid of the New Era?!!",
 			color: "Green",
 		},
+		"op17 -037 alt": {
+			code: "OP17-037",
+			name: "Are You That Afraid of the New Era?!!",
+			color: "Green",
+		},
 		"op17-036": {
 			code: "OP17-036",
 			name: "Withdraw Now And Allow Me To Save Face",
@@ -718,6 +723,11 @@ const manualCardOverrides = {
 			name: "Octopako",
 			color: "Blue",
 		},
+		"eb05-017 mermaid cafe dancers": {
+			code: "EB05-017",
+			name: "Mermaid Cafe Dancers",
+			color: "Green",
+		},
 		"eb05-025 domino": {
 			code: "EB05-025",
 			name: "Domino",
@@ -1027,6 +1037,11 @@ const getOp17VariantDisplayLabel = (code, variant) => {
 
 const getOp17CardRank = (card) => {
 	if (card.edition === "TREASURE RARE" || /treasure rare/i.test(card.fullUrl ?? "")) return 0;
+	if (
+		card.edition === "PIRATE CREW SUPER ALT MANGA" &&
+		["EB04-061", "OP17-118"].includes(card.code)
+	)
+		return 4;
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 3;
 	if (["OP13-028", "P-084", "ST27-005"].includes(card.code)) return 1;
 	if (card.code.startsWith("OP17-DON")) return 6;
@@ -1042,6 +1057,7 @@ const getOp17SortCode = (card) => {
 	const explicitAnchors = {
 		"OP17-040-TREASURE RARE": "OP17-039.1",
 		"OP17-020-ALT": "OP17-020.1",
+		"OP17-037-ALT": "OP17-037.1",
 		"OP17-099-ALT": "OP17-099.1",
 		"OP17-112-ALT": "OP17-112.1",
 		"OP17-HARUTA": "OP17-018.7",
@@ -1058,7 +1074,9 @@ const getOp17SortCode = (card) => {
 		"OP17-PEROSPERO": "OP17-115.8",
 		"OP17-CODE-OF-HONOR": "OP17-115.9",
 		"ST31-004": "OP17-119.1",
-		"OP16-098": "P-107.1",
+		"OP16-098": "ST27-005.1",
+		"EB04-061-PIRATE CREW SUPER ALT MANGA": "P-107.1",
+		"OP17-118-PIRATE CREW SUPER ALT MANGA": "P-107.2",
 	};
 	const keyedEdition = card.edition ? `${card.code}-${card.edition}` : null;
 	if (keyedEdition && explicitAnchors[keyedEdition]) return explicitAnchors[keyedEdition];
@@ -1076,7 +1094,7 @@ const shouldKeepOp17SpecialFile = (file) => {
 	if (normalized === "charlottte linlin op17-099.png" || normalized === "charlottte linlin op17-099") return false;
 	if (normalized === "charlottte linlin op17-099.jpg" || normalized === "charlottte linlin op17-099 alt.jpg") return false;
 	if (normalized === "op17-099 charlotte linlin alt.jpg" || normalized === "op17-099 charlotte linlin alt") return true;
-	if (normalized === "shanks op17-020.jpg" || normalized === "shanks op17-020 alt.jpg") return false;
+	if (normalized === "shanks op17-020.jpg") return false;
 	if (normalized === "shanks op17-020.png") return true;
 	if (normalized === "gold luffy.png" || normalized === "gold luffy") return true;
 	if (normalized === "yamato spop16-098_p2.png" || normalized === "yamato spop16-098_p2") return true;

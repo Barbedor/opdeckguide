@@ -159,7 +159,7 @@ export const deckGuides = [
 		title: "Sabo OP13 Deck Guide",
 		leader: "Sabo",
 		code: "OP13",
-		formatLabel: "OP16 Format",
+		formatLabel: "OP16.5 Format",
 		summary: "Decklist, mulligan priorities, curve guides, tech cards, matchup notes, and gameplay tips for Sabo OP13.",
 		month: "August",
 		href: "/deck-guides/sabo-op13/",

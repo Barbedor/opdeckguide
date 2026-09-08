@@ -2,6 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import {
 	cardsListAffiliateCards,
+	cardsListOnlyAffiliateCards,
 	cardsListVariantAffiliateCards,
 	getCardsListAffiliateCard,
 } from "../../lib/affiliateCards";
@@ -56,6 +57,10 @@ const heroBadgeLabel = revealPageConfig?.badgeLabel ?? extensionLabel;
 const isLeakPage = Boolean(revealPageConfig);
 const useExpandedMobileCardGrid = !isLeakPage && /^(OP|EB)/i.test(extension.toUpperCase());
 const op17AffiliateEditionsByCode = {
+	"EB04-061": ["PIRATE CREW SUPER ALT MANGA"],
+	"OP13-028": ["ALT GOLD"],
+	"P-084": ["ALT GOLD"],
+	"ST27-005": ["ALT GOLD"],
 	"OP17-001": ["ALT"],
 	"OP17-005": ["ALT", "MANGA"],
 	"OP17-006": ["ALT"],
@@ -64,6 +69,7 @@ const op17AffiliateEditionsByCode = {
 	"OP17-025": ["ALT"],
 	"OP17-027": ["ALT"],
 	"OP17-031": ["ALT"],
+	"OP17-037": ["ALT"],
 	"OP17-099": ["ALT"],
 	"OP17-039": ["", "ALT"],
 	"OP17-040": ["", "TREASURE RARE"],
@@ -76,13 +82,31 @@ const op17AffiliateEditionsByCode = {
 	"OP17-063": ["ALT"],
 	"OP17-070": ["ALT"],
 	"OP17-079": ["ALT", "MANGA"],
+	"OP17-080": ["ALT"],
+	"OP17-087": ["ALT"],
+	"OP17-088": ["ALT"],
+	"OP17-093": ["ALT"],
+	"OP17-112": ["ALT", "MANGA"],
 	"OP17-114": ["ALT"],
-	"OP17-118": [""],
+	"OP17-118": ["", "ALT", "PIRATE CREW SUPER ALT MANGA"],
+	"OP17-119": ["ALT"],
+	"OP17-DAIFUKU": ["ALT"],
 };
 const isOp17YamatoSpecial = (card) =>
 	card.code === "OP16-098" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl);
+const isOp17GoldLuffySpecial = (card) =>
+	card.code === "ST31-004" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl);
+const isOp17ZoroSpecial = (card) =>
+	card.code === "EB04-007" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/SP Roronoa Zoro eb04-007\./i.test(card.fullUrl);
+const isOp17GarpSpecial = (card) =>
+	card.code === "OP12-056" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/SP Monkey\.D\.Garp op12-059\./i.test(card.fullUrl);
+const isOp17RayleighSpecial = (card) =>
+	card.code === "OP14-108" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/SP Silvers Rayleigh op14-108\./i.test(card.fullUrl);
+const isOp17RogerSpecial = (card) =>
+	card.code === "P-107" && extension.toUpperCase() === "OP17" && /\/Cards\/OP17\/SP Gol\.D\.Roger P-107\./i.test(card.fullUrl);
 const shouldShowAffiliateLink = (card) => {
 	if (card.code === "OP16-098") return isOp17YamatoSpecial(card);
+	if (isOp17GoldLuffySpecial(card) || isOp17ZoroSpecial(card) || isOp17GarpSpecial(card) || isOp17RayleighSpecial(card) || isOp17RogerSpecial(card)) return true;
 	if (extension.toUpperCase() !== "OP17") return true;
 	const allowedEditions = op17AffiliateEditionsByCode[card.code];
 	if (allowedEditions) return allowedEditions.includes(card.edition ?? "");
@@ -1739,6 +1763,17 @@ const leakCardDetails = {
 		traits: "Fish-Man/Fish-Man Island",
 		effectLines: [[keyword("on-ko", "On K.O."), " Draw 2 cards."]],
 	},
+	"EB05-017": {
+		rarity: "Common",
+		stats: "Green / Cost 1 / Wisdom / Power 0 / Counter 2000",
+		traits: "Merfolk/Fish-Man Island",
+		effectLines: [
+			[
+				keyword("on-your-opponents-attack", "On Your Opponent's Attack"),
+				" You may rest 1 of your DON!! cards and trash this Character: Your {Fish-Man} or {Merfolk} type Leader gains +4000 power during this battle.",
+			],
+		],
+	},
 	"EB05-013": {
 		rarity: "Common",
 		stats: "Green / Cost 3 / Wisdom / Power 4000 / Counter 1000",
@@ -2453,9 +2488,19 @@ const description = isLeakPage
 						data-card-grid
 					>
 						{initialCards.map((card) => {
-							const affiliateCard = shouldShowAffiliateLink(card)
-								? getCardsListAffiliateCard(card.code, card.edition)
-								: null;
+							const affiliateCard = isOp17GoldLuffySpecial(card)
+								? cardsListOnlyAffiliateCards["OP17-GOLD-LUFFY"]
+								: isOp17ZoroSpecial(card)
+									? cardsListOnlyAffiliateCards["OP17-SP-ZORO"]
+									: isOp17GarpSpecial(card)
+										? cardsListOnlyAffiliateCards["OP17-SP-GARP"]
+										: isOp17RayleighSpecial(card)
+											? cardsListOnlyAffiliateCards["OP17-SP-RAYLEIGH"]
+											: isOp17RogerSpecial(card)
+												? cardsListOnlyAffiliateCards["OP17-SP-ROGER"]
+								: shouldShowAffiliateLink(card)
+									? getCardsListAffiliateCard(card.code, card.edition)
+									: null;
 							return (
 								<div class="card-thumb-shell">
 									<button
@@ -2537,6 +2582,7 @@ const description = isLeakPage
 	define:vars={{
 		remainingCards,
 		cardsListAffiliateCards,
+		cardsListOnlyAffiliateCards,
 		cardsListVariantAffiliateCards,
 		isLeakPage,
 		op17AffiliateEditionsByCode,
@@ -2550,6 +2596,16 @@ const description = isLeakPage
 	const op17AffiliateEditions = op17AffiliateEditionsByCode ?? {};
 	const isOp17YamatoSpecial = (card) =>
 		card.code === "OP16-098" && /\/Cards\/OP17\/Yamato SPOP16-098_p2\./i.test(card.fullUrl ?? "");
+	const isOp17GoldLuffySpecial = (card) =>
+		card.code === "ST31-004" && /\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl ?? "");
+	const isOp17ZoroSpecial = (card) =>
+		card.code === "EB04-007" && /\/Cards\/OP17\/SP Roronoa Zoro eb04-007\./i.test(card.fullUrl ?? "");
+	const isOp17GarpSpecial = (card) =>
+		card.code === "OP12-056" && /\/Cards\/OP17\/SP Monkey\.D\.Garp op12-059\./i.test(card.fullUrl ?? "");
+	const isOp17RayleighSpecial = (card) =>
+		card.code === "OP14-108" && /\/Cards\/OP17\/SP Silvers Rayleigh op14-108\./i.test(card.fullUrl ?? "");
+	const isOp17RogerSpecial = (card) =>
+		card.code === "P-107" && /\/Cards\/OP17\/SP Gol\.D\.Roger P-107\./i.test(card.fullUrl ?? "");
 	let remaining = remainingCards ?? [];
 	const batchSize = 96;
 
@@ -2609,24 +2665,37 @@ const description = isLeakPage
 			button.appendChild(img);
 			shell.appendChild(button);
 			const affiliateCard = !isLeakPage
-				? (card.edition ? cardsListVariantAffiliateCards[`${card.code}::${card.edition}`] : null) ??
-					cardsListAffiliateCards[card.code]
+				? isOp17GoldLuffySpecial(card)
+					? cardsListOnlyAffiliateCards["OP17-GOLD-LUFFY"]
+					: isOp17ZoroSpecial(card)
+						? cardsListOnlyAffiliateCards["OP17-SP-ZORO"]
+						: isOp17GarpSpecial(card)
+							? cardsListOnlyAffiliateCards["OP17-SP-GARP"]
+							: isOp17RayleighSpecial(card)
+								? cardsListOnlyAffiliateCards["OP17-SP-RAYLEIGH"]
+								: isOp17RogerSpecial(card)
+									? cardsListOnlyAffiliateCards["OP17-SP-ROGER"]
+					: (card.edition ? cardsListVariantAffiliateCards[`${card.code}::${card.edition}`] : null) ??
+						cardsListAffiliateCards[card.code]
 				: null;
+			const hasUnsupportedAffiliateEdition =
+				op17AffiliateEditions[card.code] &&
+				!op17AffiliateEditions[card.code].includes(card.edition ?? "");
+			const isSuppressedOp17AffiliateCard =
+				!isOp17GoldLuffySpecial(card) &&
+				!isOp17ZoroSpecial(card) &&
+				!isOp17GarpSpecial(card) &&
+				!isOp17RayleighSpecial(card) &&
+				!isOp17RogerSpecial(card) &&
+				card.fullUrl &&
+				(/\/Cards\/OP17\/Charlottte Linlin op17-099\.png$/i.test(card.fullUrl) ||
+					/^\/Cards\/OP17\/SP /i.test(card.fullUrl) ||
+					/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl));
 			const shouldShowAffiliateLink =
 				affiliateCard &&
 				(card.code !== "OP16-098" || isOp17YamatoSpecial(card)) &&
-				!(
-					op17AffiliateEditions[card.code] &&
-					!op17AffiliateEditions[card.code].includes(card.edition ?? "")
-				) &&
-				!(
-					card.fullUrl &&
-					(
-						/\/Cards\/OP17\/Charlottte Linlin op17-099\.png$/i.test(card.fullUrl) ||
-						/^\/Cards\/OP17\/SP /i.test(card.fullUrl) ||
-						/\/Cards\/OP17\/Gold Luffy\./i.test(card.fullUrl)
-					)
-				);
+				!hasUnsupportedAffiliateEdition &&
+				!isSuppressedOp17AffiliateCard;
 			if (shouldShowAffiliateLink) {
 				const link = document.createElement("a");
 				link.className = "card-affiliate-link";

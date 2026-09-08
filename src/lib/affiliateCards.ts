@@ -1343,6 +1343,26 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 };
 
 export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
+	"OP17-SP-ROGER": {
+		affiliateUrl: "https://partner.tcgplayer.com/qWL5An",
+		price: "$189.99",
+	},
+	"OP17-SP-RAYLEIGH": {
+		affiliateUrl: "https://partner.tcgplayer.com/DWZ9Ly",
+		price: "$106.00",
+	},
+	"OP17-SP-GARP": {
+		affiliateUrl: "https://partner.tcgplayer.com/OYvVYA",
+		price: "$102.00",
+	},
+	"OP17-SP-ZORO": {
+		affiliateUrl: "https://partner.tcgplayer.com/DWZ9y2",
+		price: "$474.98",
+	},
+	"OP17-GOLD-LUFFY": {
+		affiliateUrl: "https://partner.tcgplayer.com/KBvrE9",
+		price: "$901.83",
+	},
 	"OP17-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/n4e3kx",
 		price: "$22.79",
@@ -1373,22 +1393,78 @@ export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
 	},
 	"OP17-037": {
 		affiliateUrl: "https://partner.tcgplayer.com/AgYJ7j",
-		price: "$95.00",
+		price: "$71.03",
 	},
 	"OP16-098": {
 		affiliateUrl: "https://partner.tcgplayer.com/ZVe5yW",
-		price: "$74.00",
+		price: "$302.70",
 	},
 };
 
 export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> = {
+	"OP17-118::PIRATE CREW SUPER ALT MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/oNgmqO",
+		price: "$6,999.05",
+	},
+	"EB04-061::PIRATE CREW SUPER ALT MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/xJje0v",
+		price: "$17,999.99",
+	},
+	"ST27-005::ALT GOLD": {
+		affiliateUrl: "https://partner.tcgplayer.com/m4JLvM",
+		price: "$220.87",
+	},
+	"P-084::ALT GOLD": {
+		affiliateUrl: "https://partner.tcgplayer.com/QYvavo",
+		price: "$198.46",
+	},
+	"OP13-028::ALT GOLD": {
+		affiliateUrl: "https://partner.tcgplayer.com/oNgxgO",
+		price: "$271.16",
+	},
+	"OP17-119::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/en53bz",
+		price: "$71.18",
+	},
+	"OP17-118::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/3kqBOB",
+		price: "$48.98",
+	},
+	"OP17-112::MANGA": {
+		affiliateUrl: "https://partner.tcgplayer.com/L0yjrZ",
+		price: "$826.88",
+	},
+	"OP17-112::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/2RLoXO",
+		price: "$32.63",
+	},
+	"OP17-DAIFUKU::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/rEq9eR",
+		price: "$14.81",
+	},
+	"OP17-080::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/DWZYqj",
+		price: "$17.30",
+	},
+	"OP17-093::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/E0gLxP",
+		price: "$44.06",
+	},
+	"OP17-088::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/Jkv9BR",
+		price: "$4.99",
+	},
+	"OP17-087::ALT": {
+		affiliateUrl: "https://partner.tcgplayer.com/9Vjm2W",
+		price: "$48.07",
+	},
 	"OP17-005::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/YVkPKB",
 		price: "$24.38",
 	},
 	"OP17-005::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/AgYeGN",
-		price: "$1,060.00",
+		price: "$1,197.71",
 	},
 	"OP17-006::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/qWGbdj",
@@ -1400,7 +1476,7 @@ export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> 
 	},
 	"OP17-022::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/2RBxDg",
-		price: "$1,175.00",
+		price: "$1,490.16",
 	},
 	"OP17-027::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/xJq4MA",
@@ -1412,7 +1488,7 @@ export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> 
 	},
 	"OP17-040::TREASURE RARE": {
 		affiliateUrl: "https://partner.tcgplayer.com/X45DJa",
-		price: "$127.00",
+		price: "$53.18",
 	},
 	"OP17-045::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/rE16ZR",
@@ -1440,11 +1516,11 @@ export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> 
 	},
 	"OP17-062::SUPER ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/2RBxbD",
-		price: "$338.00",
+		price: "$237.92",
 	},
 	"OP17-062::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/6kRr2N",
-		price: "$1,235.00",
+		price: "$1,116.34",
 	},
 	"OP17-063::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/zzDL67",
@@ -1460,7 +1536,7 @@ export const cardsListVariantAffiliateCards: Record<string, AffiliateCardEntry> 
 	},
 	"OP17-079::MANGA": {
 		affiliateUrl: "https://partner.tcgplayer.com/B5YWn0",
-		price: "$2,498.99",
+		price: "$1,930.70",
 	},
 	"OP17-025::ALT": {
 		affiliateUrl: "https://partner.tcgplayer.com/oNaEkb",
