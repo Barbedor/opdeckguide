@@ -713,6 +713,11 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-002 doll": {
+			code: "EB05-002",
+			name: "Doll",
+			color: "Red",
+		},
 		"eb05-005 belo betty": {
 			code: "EB05-005",
 			name: "Belo Betty",
