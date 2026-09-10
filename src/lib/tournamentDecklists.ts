@@ -8,6 +8,7 @@ import { op17EastSep03DeckTemplates, op17EastSep03EntrySeeds } from "./op17EastS
 import { op17EastSep04DeckTemplates, op17EastSep04EntrySeeds } from "./op17EastSep04";
 import { op17EastSep05DeckTemplates, op17EastSep05EntrySeeds } from "./op17EastSep05";
 import { op17EastSep06DeckTemplates, op17EastSep06EntrySeeds } from "./op17EastSep06";
+import { op17EastSep09DeckTemplates, op17EastSep09EntrySeeds } from "./op17EastSep09";
 import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
 import { op17WestAug30DeckTemplates, op17WestAug30EntrySeeds } from "./op17WestAug30";
 import { op17WestAug31DeckTemplates, op17WestAug31EntrySeeds } from "./op17WestAug31";
@@ -17,6 +18,7 @@ import { op17WestSep03DeckTemplates, op17WestSep03EntrySeeds } from "./op17WestS
 import { op17WestSep04DeckTemplates, op17WestSep04EntrySeeds } from "./op17WestSep04";
 import { op17WestSep05DeckTemplates, op17WestSep05EntrySeeds } from "./op17WestSep05";
 import { op17WestSep06DeckTemplates, op17WestSep06EntrySeeds } from "./op17WestSep06";
+import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
 export const tournamentDecklistSampleMode = true;
@@ -149,6 +151,24 @@ const leaderIndex = {
 		format: "op17",
 		color: "Black",
 		imageSrc: "/assets/guides/Gecko Moria OP14-080.png",
+		href: "/deck-guides/",
+	},
+	"koala-op12": {
+		slug: "koala-op12",
+		name: "Koala",
+		code: "OP12-081",
+		format: "op17",
+		color: "Yellow / Black",
+		imageSrc: "/assets/guides/Koala op12.png",
+		href: "/deck-guides/",
+	},
+	"luffy-op05": {
+		slug: "luffy-op05",
+		name: "Monkey.D.Luffy",
+		code: "OP05-060",
+		format: "op17",
+		color: "Purple",
+		imageSrc: "/assets/guides/Luffy OP05.png",
 		href: "/deck-guides/",
 	},
 	"krieg-op15": {
@@ -1823,6 +1843,7 @@ const deckTemplates = {
 	...op17EastSep04DeckTemplates,
 	...op17EastSep05DeckTemplates,
 	...op17EastSep06DeckTemplates,
+	...op17EastSep09DeckTemplates,
 	...op17WestAug29DeckTemplates,
 	...op17WestAug30DeckTemplates,
 	...op17WestAug31DeckTemplates,
@@ -1832,6 +1853,7 @@ const deckTemplates = {
 	...op17WestSep04DeckTemplates,
 	...op17WestSep05DeckTemplates,
 	...op17WestSep06DeckTemplates,
+	...op17WestSep07DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -16390,6 +16412,7 @@ const entrySeeds = [
 	...op17EastSep04EntrySeeds,
 	...op17EastSep05EntrySeeds,
 	...op17EastSep06EntrySeeds,
+	...op17EastSep09EntrySeeds,
 	...op17WestAug29EntrySeeds,
 	...op17WestAug30EntrySeeds,
 	...op17WestAug31EntrySeeds,
@@ -16399,6 +16422,7 @@ const entrySeeds = [
 	...op17WestSep04EntrySeeds,
 	...op17WestSep05EntrySeeds,
 	...op17WestSep06EntrySeeds,
+	...op17WestSep07EntrySeeds,
 	{
 		format: "op16",
 		region: "east",

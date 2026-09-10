@@ -67,7 +67,7 @@ const goFirst = [
 
 const goSecond = [
 	{ label: "2 DON!!", cards: [{ card: perona }, { card: otama }], text: "Play Perona and Otama to keep searching for the cards you need and prepare the rest of your curve." },
-	{ label: "4 DON!!", cards: [{ card: samourai }, { card: kinemon }], text: "Play Kin'emon to draw and filter your hand, then use You Can Be My Samourai!! so you keep improving your hand quality for the next turns." },
+	{ label: "4 DON!!", cards: [{ card: kinemon }, { card: samourai }], text: "Play Kin'emon to draw and filter your hand, then use You Can Be My Samourai!! so you keep improving your hand quality for the next turns." },
 	{ label: "6 DON!!", cards: [{ card: yasopp }], text: "At 6 DON!!, Yasopp gives you a clean midgame turn by drawing 1 card while resting an opposing threat, which helps you stay ahead on tempo." },
 	{ label: "8 DON!!", cards: [{ card: law }, { card: oden, rested: true }], text: "Play Trafalgar Law to return Otama to your hand so you get a +2000 Counter, then play Oden from your hand to draw 1 card and stop one of your opponent’s Characters from attacking next turn so you can slow their game plan down." },
 ];
@@ -86,8 +86,8 @@ const comboSteps = [
 		text: "Tap Vander Decken by leader’s effect to Untap 3 DON!!",
 	},
 	{
-		cards: [{ card: miniLuna }, { card: electricalLuna }],
-		text: "Luna or Mini Luna if necessary or leave open DON!! for defensive events",
+		cards: [{ card: electricalLuna }, { card: miniLuna }],
+		text: "Electrical Luna or I Know You're Strong if necessary, or leave open DON!! for defensive events",
 	},
 ];
 
@@ -104,7 +104,7 @@ const weaknesses = [
 
 const coreEngine = [
 	"Leader Mihawk: Rests a character to restand 3 DON!!",
-	"10c Shanks & Vander Decken: The Exodia board wipe combo",
+	"10c Shanks & Vander Decken: The Exodia Board Control combo",
 	"5c Yasopp: Draws a card, rests an 8 cost threat, and restands himself at the end of the turn.",
 ];
 
@@ -290,7 +290,7 @@ const matchupGroups = [
 				<div class="core-panel">
 					<div class="section-tag section-tag-light">The Mechanic</div>
 					<p class="nutshell-copy">
-						The "Shanks & Decken" Loop. You play 10c Shanks to rest your opponent's entire board and get 2
+						The "Shanks & Decken" Combo Spam. You play 10c Shanks to rest your opponent's entire board and get 2
 						DON!! back. You use those 2 DON!! to play Vander Decken, trashing a Fishman to instantly KO any
 						rested character. Then, you rest Vander Decken with Mihawk's Leader ability to restand 3 MORE
 						DON!! and push for game!
