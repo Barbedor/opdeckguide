@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 const title = "Rocks.D.Xebec OP17 Deck Guide";
 const description =
-	"Deck guide for Rocks.D.Xebec OP17 for One Piece Card Game with leader ability, updated decklist, curve guide, odd curve, 10 DON!! plays, matchup notes, defensive transformation, strengths, weaknesses, and conclusions for the OP17 format.";
+	"Deck guide for Rocks.D.Xebec OP17 for One Piece Card Game with an updated decklist, mulligan priorities, curve guide, matchup notes, tech cards, and practical tips for the OP17 format.";
 const icon = "/assets/guides/Rocks.DXebec%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -24,13 +24,15 @@ const expandSimLines = (count, code) => {
 
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
+const rocksLeader = card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/New OP17/OP17-039.jpg", 1, "Leader");
 const buckin = card("OP08-051", "Buckin", "/Cards/OP08/OP08-051.png", 3, "Character");
 const streusen = card("OP17-050", "Streusen", "/Cards/OP17/New OP17/OP17-050.jpg", 4, "Character");
 const kyo = card("OP17-045", "Kyo", "/Cards/OP17/New OP17/OP17-045.jpg", 4, "Character");
 const donMarlon = card("OP17-052", "Don Marlon", "/Cards/OP17/New OP17/OP17-052.jpg", 2, "Character");
 const missBuckingham = card("OP17-054", "Miss Buckingham Stussy", "/Cards/OP17/New OP17/OP17-054.jpg", 4, "Character");
-const kaido = card("OP17-042", "Kaido", "/Cards/OP17/New OP17/OP17-042.jpg", 2, "Character");
-const captainJohn = card("OP17-044", "Captain John", "/Cards/OP17/New OP17/OP17-044.jpg", 3, "Character");
+const wangZhi = card("OP17-041", "Wang Zhi", "/Cards/OP17/New OP17/OP17-041.jpg", 2, "Character");
+const kaido = card("OP17-042", "Kaido", "/Cards/OP17/New OP17/OP17-042.jpg", 4, "Character");
+const captainJohn = card("OP17-044", "Captain John", "/Cards/OP17/New OP17/OP17-044.jpg", 2, "Character");
 const gloriosa = card("OP17-046", "Gloriosa", "/Cards/OP17/New OP17/OP17-046.jpg", 4, "Character");
 const charlotteLinlin = card("OP17-049", "Charlotte Linlin", "/Cards/OP17/New OP17/OP17-049.jpg", 4, "Character");
 const edwardNewgate = card("OP17-040", "Edward.Newgate", "/Cards/OP17/New OP17/OP17-040.jpg", 4, "Character");
@@ -39,14 +41,16 @@ const rocksXebecCharacter = card("OP17-118", "Rocks.D.Xebec", "/Cards/OP17/New O
 const noAuthority = card("OP17-055", "There's No Authority in the World That Lasts Forever!!!", "/Cards/OP17/New OP17/OP17-055.jpg", 4, "Event");
 const rocksPirates = card("OP17-056", "Rocks Pirates", "/Cards/OP17/New OP17/OP17-056.jpg", 4, "Event");
 const fullalead = card("OP17-057", "Fullalead", "/Cards/OP17/New OP17/OP17-057.jpg", null, "Stage");
+const gravityBlade = card("OP06-058", "Gravity Blade Raging Tiger", "/Cards/OP06/OP06-058.png", null, "Event");
+const galdino = card("OP16-056", "Mr.3(Galdino)", "/Cards/OP16/OP16-056.jpg", null, "Character");
 
 const decklist = [
-	card("OP17-039", "Rocks.D.Xebec", "/Cards/OP17/New OP17/OP17-039.jpg", 1, "Leader"),
-	buckin,
+	rocksLeader,
 	streusen,
 	kyo,
 	donMarlon,
 	missBuckingham,
+	wangZhi,
 	kaido,
 	captainJohn,
 	gloriosa,
@@ -60,64 +64,108 @@ const decklist = [
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
-const bestCurve = [
+const mulliganPriorities = [
 	{
-		label: "2 DON!!",
-		notes: "Kyo is the cleanest even-curve opener because playing it immediately draws 1, so your hand does not lose momentum while you develop the board. The important part is what happens after that: as long as Kyo stays in play, whenever one of your Characters would be removed by an opponent’s effect, you can trash 2 cards from hand instead. That means it is not just a tempo starter, it is also a protection piece that helps your key bodies survive and lets you keep your even curve online into Captain John, Edward.Newgate, and beyond.",
-		cards: [kyo],
+		title: "Going First",
+		text: "Charlotte Linlin OP17-049 is your main priority. You can play it at 5 DON!! and begin using its defensive effect while potentially generating extra resources.",
+		cards: [charlotteLinlin],
 	},
 	{
-		label: "4 DON!!",
-		notes: "Captain John is your four-DON!! stabilizer because once it is rested, the opponent can no longer attack your other cards freely and has to go through it first. That makes it excellent for protecting the rest of your board and forcing awkward combat patterns. On top of that, it can rest itself to draw 1 and trash 1, which fixes weak cards in hand and prepares stronger follow-up turns. In practice, this card is doing two jobs at once: it locks combat around itself and smooths your resources for the bigger turns that come next.",
-		cards: [captainJohn],
-	},
-	{
-		label: "6 DON!!",
-		notes: "Edward.Newgate is the even-curve pivot because it gives you a strong body while turning the rest of your hand into real combat value. In this deck, that matters on both sides of the turn: offensively, it helps you pressure the opponent with stronger attacks and forces more demanding responses; defensively, it lets you preserve your board and life total by making your exchanges much harder to win cleanly. The card is strong here because it does not ask you to choose between defense and pressure, it gives you both at the same time.",
+		title: "Going Second",
+		text: "Edward.Newgate OP17-040 is especially important. At 6 DON!!, it is an excellent development play and can immediately increase the pressure from your Leader.",
 		cards: [edwardNewgate],
 	},
 	{
-		label: "8 DON!!",
-		notes: "Shiki is your high-end even-curve payoff when you want a large threat that changes combat math immediately. It turns otherwise weak cards in hand into a meaningful swing, which makes the turn powerful offensively because you can push damage while keeping pressure on the board. But the role of the card does not stop there: since the effect also functions during the opponent’s attack, Shiki can protect you on the following turn cycle as well. That is why this play is so important in the curve: it gives you a big body, stronger attacks, and a real defensive follow-up if the game keeps going.",
-		cards: [shiki],
+		title: "Based on the Matchup",
+		text: "Keep Gloriosa OP17-046 when your opponent has an important 5-cost Character you need to answer quickly. Miss Buckingham Stussy OP17-054 is almost always useful to have, but multiple copies can become clunky. Streusen OP17-050 is good early, but is not worth mulliganing specifically for.",
+		cards: [gloriosa, missBuckingham, streusen],
 	},
 ];
 
-const oddCurve = [
+const goFirstCurve = [
 	{
 		label: "1 DON!!",
-		notes: "Streusen is your cleanest odd-curve opener because it looks at the top 2 cards, lets you reorder them or send them to the bottom, then draws 1. That means it improves hand quality immediately while also setting up the top of your deck so your next turns and leader effect stay consistent.",
+		notes: "If you have Streusen, you can develop it on the first turn. It looks at the top 2 cards of your deck, lets you place them on the top or bottom, then draws 1 card. This helps you avoid a weak next draw and slightly improve your hand quality.",
 		cards: [streusen],
 	},
 	{
 		label: "3 DON!!",
-		notes: "Kyo is the bridge card of the odd curve. On play it replaces itself with a draw, and once it is on board it forces the opponent to respect your protection line because any effect removal on one of your characters can be answered by trashing 2 from hand instead. It is what lets you keep developing without folding to effect-based interaction.",
-		cards: [kyo],
+		notes: "A strong sequence is to attack with your Leader, trash a 2K Counter Event for the Leader effect to draw 2 cards, then play Don Marlon to return that Event from the trash. You use the Leader effect without actually losing your defensive Event. Without Don Marlon, simply develop Kyo or Streusen.",
+		cards: [rocksLeader, donMarlon],
 	},
 	{
 		label: "5 DON!!",
-		notes: "Charlotte Linlin is your five-DON!! stabilizer when you want a real body on board without giving up defensive texture. In this shell, it helps convert awkward cards in hand into extra counter value, so the turn is not just offensive pressure: it also makes your following exchanges safer and keeps the leader engine live longer.",
+		notes: "Charlotte Linlin is usually your best development here. By trashing a card, it gives a Leader or Character +1K Power during your opponent's attack. Its other effect also makes the opponent choose between letting you draw 2 cards or trashing 2 cards from their own hand.",
 		cards: [charlotteLinlin],
 	},
 	{
 		label: "7 DON!!",
-		notes: "Shiki is the odd-curve payoff because it gives you a large body while turning weak cards in hand into a big swing in combat. The important part is that the effect is not only offensive: it also works during the opponent’s attack, so Shiki can turn a 7-DON!! turn into both pressure on your turn and protection on theirs.",
+		notes: "Shiki is especially strong when an opposing Character is already rested. Its Rush effect and Power reduction let it pressure the opponent's board immediately. You are not required to play Shiki: use Gloriosa to bottom deck a 5-cost Character or Stussy to stop a 6-cost Character from attacking when those lines answer the board better. Against Mihawk plus Oden, for example, Gloriosa can bottom deck Oden while Stussy prevents Mihawk from attacking.",
 		cards: [shiki],
+	},
+	{
+		label: "9 DON!!",
+		notes: "Edward.Newgate plus Miss Buckingham Stussy is an excellent combination. Stussy shuts down an important attack while Newgate strengthens your Leader both offensively and defensively.",
+		cards: [edwardNewgate, missBuckingham],
+	},
+	{
+		label: "10 DON!!",
+		notes: "If you have enough board space, play Rocks.D.Xebec, then Kaido plus Charlotte Linlin. You develop a 12K Character and up to 9 total cost of Rocks Pirates Characters with different names. Kaido plus Linlin is a strong pairing, but you do not need to use all 9 cost every time; choose the combination that best fits the board. If your board is already strong, keeping Rocks.D.Xebec in hand as a 2K Counter can be better.",
+		cards: [rocksXebecCharacter, kaido, charlotteLinlin],
 	},
 ];
 
-const tenDonPlays = [
+const goSecondCurve = [
 	{
-		label: "10 DON!! Play",
-		notes: "Rocks.D.Xebec turns your 10-DON!! turn into a flexible payoff depending on what the matchup asks for.",
-		leaderCard: rocksXebecCharacter,
-		pairs: [
-			[edwardNewgate, missBuckingham],
-			[shiki, kyo],
-			[charlotteLinlin, gloriosa],
-			[charlotteLinlin, kaido],
-		],
+		label: "2 DON!!",
+		notes: "Kyo is an excellent first development. Its On Play effect replaces the card, and it also prepares protection against effect removal for your Characters.",
+		cards: [kyo],
 	},
+	{
+		label: "4 DON!!",
+		notes: "Several plays are useful here. Captain John can redirect opposing attacks to itself while rested. Wang Zhi gives you a 6K Blocker and can be especially strong against boards full of 1-cost Characters. Kaido can simply be developed as a 6K Blocker when its Power reduction is not needed yet. Choose based on the board instead of automatically favoring one option.",
+		cards: [captainJohn, wangZhi, kaido],
+	},
+	{
+		label: "6 DON!!",
+		notes: "Edward.Newgate is one of your best developments. It can increase your Leader's Power offensively during your attack and defensively during your opponent's turn. Multiple Newgates can also stack their effects later in the game.",
+		cards: [edwardNewgate],
+	},
+	{
+		label: "8 DON!!",
+		notes: "If the opponent has a rested Character, Shiki can pressure it immediately with its Rush effect and Power reduction. Even without the perfect target, its defensive ability can justify developing it when you need to survive several large attacks.",
+		cards: [shiki],
+	},
+	{
+		label: "10 DON!!",
+		notes: "Rocks.D.Xebec into Edward.Newgate plus Miss Buckingham Stussy gives you three Characters immediately while combining offensive pressure, defense, and control over an opposing attack. Rocks is not mandatory at 10 DON!!; several cheaper Characters can be better when their effects answer the board more effectively.",
+		cards: [rocksXebecCharacter, edwardNewgate, missBuckingham],
+	},
+];
+
+const techCards = [
+	{ card: buckin, title: "Buckin OP08-051", text: "Buckin can be added mainly for its 1K Counter when you need more defense against early-game pressure. Avoid playing it onto the board: having it among your Characters interferes with the condition that lets Rocks OP17-118 become a 2K Counter in hand. The main list instead finds more defense through Characters such as Wang Zhi and Captain John." },
+	{ card: fullalead, title: "Rocks Pirates Stage", text: "The Stage is not recommended in this version. You must trash a card from your hand to play it, while the deck already has other ways to compensate for its lack of traditional Counters." },
+	{ card: gravityBlade, title: "Gravity Blade", text: "Gravity Blade is not needed in the current list, but can become a useful Tech Card in a metagame with many difficult 6-cost Characters. Its main drawback is that it is not a Rocks Pirates card, reducing the consistency of the Leader effect." },
+	{ card: galdino, title: "Mr. 3 (Galdino) OP16", text: "Mr. 3 (Galdino) follows the same logic. It can be useful in a field full of large Characters costing 9 or less, but being outside the Rocks Pirates type also reduces the consistency of the Leader effect. Keep non-Rocks Tech Cards limited and only include them for a real metagame need." },
+];
+
+const tips = [
+	"Do not always play on curve. At 8 DON!!, two 4-cost Characters can be better than Shiki. Newgate plus Kyo, Linlin plus Stussy, or another combination may fit the opposing board better.",
+	"Use the Leader effect regularly to refresh your hand. The deck is built around Rocks Pirates to make the reveal as reliable as possible.",
+	"Trash 2K Counter Events when Don Marlon can recover them. You can pay for the Leader effect and immediately get that defensive resource back.",
+	"Keep Rocks OP17-118 in hand when your board is already strong. A second large development wave is not always needed, and Rocks can instead serve as a 2K Counter.",
+	"Use Kyo to protect important Characters from removal. Because the deck regularly generates extra cards, trashing 2 cards can be worthwhile to preserve an essential threat.",
+	"Stussy can defend without using Counter. Its On Play effect can stop a 6-cost Character from attacking, then its Activate: Main can neutralize any Character. A rested Stussy also often attracts an opposing attack before it can repeat its effect.",
+	"Do not automatically use Captain John's effect. It must be rested to redirect attacks, but that can expose it to removal. Against Kaido, for example, keeping it active can avoid a Power reduction making it easy to remove.",
+	"Use Kaido when its Power reduction creates real value. If there is no worthwhile target, simply develop it as a 6K Blocker.",
+	"Wang Zhi can heavily punish boards full of 1-cost Characters. Against Purple Enel, it can bottom deck several small Characters at once.",
+	"Stussy is especially effective against Purple Enel. Stop its key 6-cost Character from attacking while you continue developing your board and Enel must spend resources dealing with Stussy.",
+	"Remember the differences between your pseudo-Counters: Linlin can reinforce your Leader or a Character, Newgate only protects your Leader, and Shiki requires an attack from an opposing Character.",
+	"Multiple Newgates can stack their effects. With two in play, you can trash two cards to raise your Leader's Power significantly during an attack.",
+	"Keep 1 DON!! available when setting up a lethal attack with Unblockable. There's No Authority in the World That Lasts Forever!!! needs that DON!! to grant Unblockable, and poor DON!! management can cost you a winning line.",
+	"Use Gloriosa to prepare lethal. Bottom decking a 5-cost Blocker before your attack sequence can matter more than developing another threat.",
+	"Do not play 10-cost Rocks only because you reached 10 DON!!. Against Red Ace OP17, it can let the opponent benefit from a cost reduction on their own 10-cost Edward.Newgate OP17. Before playing it, check whether developing three Characters truly outweighs what the opponent can do next turn.",
 ];
 
 const favorableMatchups = [
@@ -151,9 +199,8 @@ const unfavorableMatchups = [
 				</div>
 				<h1>Rocks.D.Xebec OP17 Deck Guide</h1>
 				<p class="hero-intro">
-					A compact OP17 guide for Rocks.D.Xebec, including its leader effect, the updated decklist, your
-					best curve, the odd curve, key 10 DON!! plays, matchup notes, defensive transformation lines,
-					strengths, weaknesses, and a short conclusion on the deck’s current direction.
+					A compact OP17 guide for Rocks.D.Xebec, including the updated decklist, mulligan priorities,
+					going-first and going-second curves, matchup notes, tech cards, and practical tips.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#curve">Curve Guide</a>
@@ -206,94 +253,36 @@ const unfavorableMatchups = [
 				</div>
 			</div>
 
-			<div class="curve-block glow-block">
-				<h3>Curve Guide</h3>
-				<p class="curve-intro">
-					Going second is your best start. The curve shown is just an example, because Xebec’s lines can
-					change a lot depending on the matchup and your hand texture.
-				</p>
-				<div class="curve-rows">
-					{bestCurve.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((entryCard) => (
-									<button
-										class="mini-card curve-card"
-										type="button"
-										data-card-preview
-										data-full={entryCard.img}
-										data-name={`${entryCard.code} ${entryCard.name}`}
-										data-code={entryCard.code}
-									>
-										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-										<div class="mini-label">{entryCard.name}</div>
+			<div class="glow-block">
+				<div class="section-header"><div><h2>Mulligan</h2><p>Rocks does not have a traditional searcher, so you do not need to hunt for one exact combination. Your priorities depend mainly on your curve and the matchup.</p></div></div>
+				<div class="summary-grid">
+					{mulliganPriorities.map((priority) => (
+						<div class={`info-box mulligan-priority ${priority.cards.length > 1 ? "mulligan-priority-matchup" : ""}`}>
+							<h3>{priority.title}</h3>
+							<div class="mulligan-cards">
+								{priority.cards.map((entry) => (
+									<button class="mini-card mulligan-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
+										<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
 									</button>
 								))}
 							</div>
-							<div class="curve-note">{slot.notes}</div>
-						</div>
-					))}
-				</div>
-			</div>
-
-			<div class="curve-block glow-block">
-				<h3>Odd Curve</h3>
-				<p class="curve-intro">
-					The curve shown is just an example. Xebec’s plays vary greatly depending on the matchup.
-				</p>
-				<div class="curve-rows">
-					{oddCurve.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((entryCard) => (
-									<button
-										class="mini-card curve-card"
-										type="button"
-										data-card-preview
-										data-full={entryCard.img}
-										data-name={`${entryCard.code} ${entryCard.name}`}
-										data-code={entryCard.code}
-									>
-										<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-										<div class="mini-label">{entryCard.name}</div>
-									</button>
-								))}
-							</div>
-							<div class="curve-note">{slot.notes}</div>
+							<p class="ability-copy">{priority.text}</p>
 						</div>
 					))}
 				</div>
 			</div>
 
 			<div id="curve" class="curve-block glow-block">
-				<h3>10 DON!! Plays</h3>
-				<div class="ten-don-header">
-					<button
-						class="detail-card ten-don-leader"
-						type="button"
-						data-card-preview
-						data-full={rocksXebecCharacter.img}
-						data-name={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`}
-						data-code={rocksXebecCharacter.code}
-					>
-						<img src={rocksXebecCharacter.img} alt={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`} loading="lazy" />
-					</button>
-					<div class="ten-don-intro">
-						<div class="ten-don-intro-chip">10 DON!! payoff</div>
-						<p class="curve-note ten-don-note">
-							Rocks.D.Xebec OP17-118 turns your 10-DON!! turn into a flexible double-deploy. Pick the pair that best matches the board state and matchup.
-						</p>
-					</div>
-				</div>
-				<div class="ten-don-plays">
-					{tenDonPlays[0].pairs.map((pair) => (
-						<div class="ten-don-row">
-							<div class="curve-cards ten-don-pair">
-								{pair.map((entryCard, index) => (
-									<>
-										{index > 0 && <span class="combo-plus" aria-hidden="true">+</span>}
+				<h3>Curve Guide</h3>
+				<p class="curve-intro">This curve is a guideline, not an automatic sequence. Rocks depends heavily on the opposing board, so it is often better to answer the situation than to simply play your most expensive available Character.</p>
+				<h3 class="curve-subheading">Going First</h3>
+				<div class="curve-rows">
+					{goFirstCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-visual">
+								<div class="curve-label">{slot.label}</div>
+								<div class={`curve-cards curve-cards-${slot.cards.length}`}>
+									{slot.cards.map((entryCard) => (
 										<button
 											class="mini-card curve-card"
 											type="button"
@@ -303,11 +292,39 @@ const unfavorableMatchups = [
 											data-code={entryCard.code}
 										>
 											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
-											<div class="mini-label">{entryCard.name}</div>
 										</button>
-									</>
-								))}
+									))}
+								</div>
 							</div>
+							<div class="curve-note">{slot.notes}</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="curve-block glow-block">
+				<h3>Going Second</h3>
+				<div class="curve-rows">
+					{goSecondCurve.map((slot) => (
+						<div class="curve-row">
+							<div class="curve-visual">
+								<div class="curve-label">{slot.label}</div>
+								<div class={`curve-cards curve-cards-${slot.cards.length}`}>
+									{slot.cards.map((entryCard) => (
+										<button
+											class="mini-card curve-card"
+											type="button"
+											data-card-preview
+											data-full={entryCard.img}
+											data-name={`${entryCard.code} ${entryCard.name}`}
+											data-code={entryCard.code}
+										>
+											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+										</button>
+									))}
+								</div>
+							</div>
+							<div class="curve-note">{slot.notes}</div>
 						</div>
 					))}
 				</div>
@@ -330,11 +347,10 @@ const unfavorableMatchups = [
 						<div class="matchup-badge badge-up"><span class="badge-icon">&uarr;</span><span>Favorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{favorableMatchups.map((entry) => (
-									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
-										<img src={entry.image} alt={entry.alt} loading="lazy" />
-										<div class="mini-label">{entry.name}</div>
-									</div>
+							{favorableMatchups.map((entry) => (
+								<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+									<img src={entry.image} alt={entry.alt} loading="lazy" />
+								</div>
 								))}
 							</div>
 						</div>
@@ -343,11 +359,10 @@ const unfavorableMatchups = [
 						<div class="matchup-badge badge-slightly-up"><span class="badge-icon">&nearr;</span><span>Slightly Favorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{slightlyFavorableMatchups.map((entry) => (
-									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
-										<img src={entry.image} alt={entry.alt} loading="lazy" />
-										<div class="mini-label">{entry.name}</div>
-									</div>
+							{slightlyFavorableMatchups.map((entry) => (
+								<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+									<img src={entry.image} alt={entry.alt} loading="lazy" />
+								</div>
 								))}
 							</div>
 						</div>
@@ -356,11 +371,10 @@ const unfavorableMatchups = [
 						<div class="matchup-badge badge-down"><span class="badge-icon">&darr;</span><span>Unfavorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{unfavorableMatchups.map((entry) => (
-									<div class="mini-card matchup-static-card" aria-label={entry.alt}>
-										<img src={entry.image} alt={entry.alt} loading="lazy" />
-										<div class="mini-label">{entry.name}</div>
-									</div>
+							{unfavorableMatchups.map((entry) => (
+								<div class="mini-card matchup-static-card" aria-label={entry.alt}>
+									<img src={entry.image} alt={entry.alt} loading="lazy" />
+								</div>
 								))}
 							</div>
 						</div>
@@ -368,42 +382,25 @@ const unfavorableMatchups = [
 				</div>
 			</div>
 
-			<div class="summary-grid">
-				<div class="glow-block">
-					<div class="section-tag section-tag-light">Strength</div>
-					<ul class="summary-list">
-						<li>Crazy leader ability</li>
-						<li>Overstatted body</li>
-						<li>Draw power</li>
-						<li>Powerful tempo play</li>
-					</ul>
+			<div class="glow-block">
+				<div class="section-header"><div><h2>Tech Cards</h2></div></div>
+				<div class="tech-grid">
+					{techCards.map((tech) => (
+						<div class="tech-card">
+							<button class="mini-card" type="button" data-card-preview data-full={tech.card.img} data-name={`${tech.card.code} ${tech.card.name}`} data-code={tech.card.code}>
+								<img loading="lazy" src={tech.card.img} alt={`${tech.card.code} ${tech.card.name}`} />
+							</button>
+							<div><h3>{tech.title}</h3><p class="ability-copy">{tech.text}</p></div>
+						</div>
+					))}
 				</div>
-				<div class="glow-block">
-					<div class="section-tag section-tag-light">Weakness</div>
-					<ul class="summary-list">
-						<li>No counter hand without stage</li>
-						<li>Slash attribute against Mihawk</li>
-						<li>6k base power leader</li>
-						<li>Small space for deckbuilding</li>
-					</ul>
-				</div>
-				<div class="glow-block">
-					<div class="section-tag section-tag-light">Defensive Transformation</div>
-					<ul class="summary-list">
-						<li>Newgate / Shiki: Turn bricks into +3000 / -3000 swings.</li>
-						<li>Linlin / Fullalead: Turn bricks into +1000 Counters.</li>
-						<li>Ganzui: Turns Leader into a 6000 Power wall.</li>
-					</ul>
-				</div>
-				<div class="glow-block conclusions-card">
-					<div class="section-tag section-tag-light">Conclusion</div>
-					<p class="ability-copy">
-						The leader ability is one of the strongest of the set and leads you to always have cards in hand.<br />
-						Aggressive decks like Black Luffy OP17 could end up struggling because of it.<br />
-						The "Rocks Pirates" limitation doesn't seem like a problem, but it allows little margin for deck
-						building or for some tech.
-					</p>
-				</div>
+			</div>
+
+			<div class="glow-block">
+				<div class="section-header"><div><h2>Tips</h2></div></div>
+				<ul class="summary-list tips-list">
+					{tips.map((tip) => <li>{tip}</li>)}
+				</ul>
 			</div>
 		</div>
 	</section>
@@ -559,7 +556,7 @@ const unfavorableMatchups = [
 
 	.hero-tags {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		gap: 0.75rem;
 		margin-bottom: 1rem;
 	}
@@ -630,13 +627,6 @@ const unfavorableMatchups = [
 		display: block;
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 		background: transparent;
-	}
-
-	.mini-label {
-		margin-top: 0.4rem;
-		font-size: 0.85rem;
-		color: var(--text-300);
-		text-align: center;
 	}
 
 	.guide-icon img {
@@ -794,6 +784,11 @@ const unfavorableMatchups = [
 		line-height: 1.55;
 	}
 
+	.curve-subheading {
+		margin-top: 1.6rem !important;
+		color: var(--accent);
+	}
+
 	.curve-rows {
 		display: grid;
 		gap: 0.9rem;
@@ -802,9 +797,9 @@ const unfavorableMatchups = [
 
 	.curve-row {
 		display: grid;
-		grid-template-columns: 96px 170px minmax(0, 1fr);
+		grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
 		gap: 1rem;
-		align-items: center;
+		align-items: start;
 		padding: 0.9rem;
 		border: 1px solid rgba(255, 138, 42, 0.16);
 		border-radius: 18px;
@@ -816,9 +811,14 @@ const unfavorableMatchups = [
 		font-weight: 700;
 	}
 
+	.curve-visual {
+		display: grid;
+		gap: 0.75rem;
+	}
+
 	.curve-cards {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		gap: 0.75rem;
 		flex-wrap: wrap;
 	}
@@ -961,6 +961,65 @@ const unfavorableMatchups = [
 
 	.summary-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mulligan-cards {
+		display: flex;
+		gap: 0.75rem;
+		align-items: flex-start;
+	}
+
+	.mulligan-card img {
+		width: 96px;
+	}
+
+	.mulligan-priority {
+		display: grid;
+		grid-template-columns: 96px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.mulligan-priority h3 {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+
+	.mulligan-priority-matchup {
+		grid-column: 1 / -1;
+		grid-template-columns: max-content minmax(0, 1fr);
+	}
+
+	.mulligan-priority-matchup .mulligan-cards {
+		flex-wrap: nowrap;
+	}
+
+	.tech-grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.tech-card {
+		display: grid;
+		grid-template-columns: 120px minmax(0, 1fr);
+		gap: 1rem;
+		align-items: start;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(255, 138, 42, 0.16);
+	}
+
+	.tech-card:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	.tech-card h3 {
+		margin: 0 0 0.4rem;
+	}
+
+	.tips-list {
+		display: grid;
+		gap: 0.85rem;
 	}
 
 	.matchup-grid {
@@ -1141,6 +1200,10 @@ const unfavorableMatchups = [
 	}
 
 	@media (min-width: 901px) {
+		.curve-note {
+			align-self: center;
+		}
+
 		.deck-grid {
 			grid-template-columns: repeat(5, minmax(0, 1fr));
 		}
@@ -1176,6 +1239,37 @@ const unfavorableMatchups = [
 	}
 
 	@media (max-width: 560px) {
+		.hero-tags {
+			gap: 0.45rem;
+		}
+
+		.hero-chip {
+			padding: 0.4rem 0.65rem;
+			font-size: 0.82rem;
+			letter-spacing: 0.04em;
+		}
+
+		.mulligan-priority {
+			grid-template-columns: 96px minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.mulligan-priority .mulligan-cards {
+			justify-content: start;
+		}
+
+		.mulligan-priority-matchup {
+			grid-template-columns: 1fr;
+		}
+
+		.mulligan-priority-matchup .mulligan-cards {
+			justify-content: center;
+		}
+
+		.mulligan-priority-matchup .mulligan-card img {
+			width: min(25vw, 80px);
+		}
+
 		.curve-row,
 		.ten-don-row {
 			text-align: center;
@@ -1188,6 +1282,24 @@ const unfavorableMatchups = [
 
 		.curve-note {
 			text-align: left;
+		}
+
+		.curve-cards {
+			flex-wrap: nowrap;
+			width: 100%;
+		}
+
+		.curve-cards-2 .curve-card {
+			flex: 0 0 112px;
+		}
+
+		.curve-cards-3 .curve-card {
+			flex: 0 0 min(22vw, 88px);
+		}
+
+		.curve-cards-3 .curve-card img {
+			width: 100%;
+			max-width: 112px;
 		}
 
 		.ten-don-header {

@@ -189,7 +189,7 @@ const baseCardNames: Record<string, string> = {
 	"OP11-068": "Charlotte Daifuku",
 	"OP11-070": "Charlotte Pudding",
 	"EB03-035": "Charlotte Pudding",
-	"OP16-039": "Sakazuki",
+	"OP16-039": "Gum-Gum Twin Jet Pistol",
 	"OP17-016": "Rakuyo",
 	"OP17-063": "Kaido",
 	"OP17-065": "Queen",

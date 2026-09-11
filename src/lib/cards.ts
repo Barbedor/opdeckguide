@@ -753,6 +753,11 @@ const manualCardOverrides = {
 			name: "Ripley",
 			color: "Black",
 		},
+		"eb05-057 nojiko": {
+			code: "EB05-057",
+			name: "Nojiko",
+			color: "Yellow",
+		},
 		"alt leader nico robin eb05-010": {
 			code: "EB05-010",
 			name: "Nico Robin",
