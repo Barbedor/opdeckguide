@@ -7,6 +7,7 @@ import { op17EastSep02DeckTemplates, op17EastSep02EntrySeeds } from "./op17EastS
 import { op17EastSep03DeckTemplates, op17EastSep03EntrySeeds } from "./op17EastSep03";
 import { op17EastSep04DeckTemplates, op17EastSep04EntrySeeds } from "./op17EastSep04";
 import { op17EastSep05DeckTemplates, op17EastSep05EntrySeeds } from "./op17EastSep05";
+import { op17EastSep11DeckTemplates, op17EastSep11EntrySeeds } from "./op17EastSep11";
 import { op17EastSep06DeckTemplates, op17EastSep06EntrySeeds } from "./op17EastSep06";
 import { op17EastSep09DeckTemplates, op17EastSep09EntrySeeds } from "./op17EastSep09";
 import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
@@ -1842,6 +1843,7 @@ const deckTemplates = {
 	...op17EastSep03DeckTemplates,
 	...op17EastSep04DeckTemplates,
 	...op17EastSep05DeckTemplates,
+	...op17EastSep11DeckTemplates,
 	...op17EastSep06DeckTemplates,
 	...op17EastSep09DeckTemplates,
 	...op17WestAug29DeckTemplates,
@@ -16411,6 +16413,7 @@ const entrySeeds = [
 	...op17EastSep03EntrySeeds,
 	...op17EastSep04EntrySeeds,
 	...op17EastSep05EntrySeeds,
+	...op17EastSep11EntrySeeds,
 	...op17EastSep06EntrySeeds,
 	...op17EastSep09EntrySeeds,
 	...op17WestAug29EntrySeeds,
