@@ -144,7 +144,7 @@ const mulliganSections = [
 
 const rampSupport = [
 	{ title: "If You Miss Your Ramp", cards: [basilHawkins, drunkenDragonBagua], text: "Basil Hawkins OP17-073 is the backup option when you miss ramp: trash a card from your hand to add 1 active DON!!. It isn't your first choice, but it can be correct when that extra DON!! lets you play King on time. Drunken Dragon Bagua OP17-078 is the key catch-up line once your curve is already broken. At 6 DON!! without King, pay 4 DON!! and trash 2 cards to add 3 rested DON!!, moving to 9 DON!! and reaching 10 DON!! on the following turn. Even from 5 DON!!, this line takes you to 8 DON!! and then 10 DON!! next turn." },
-	{ title: "Watch Your DON!! -X Effects", cards: [leader, mamaragan, charlotteLinlin, kingEb, kaidoBlocker], text: "Once you reach the late game, don't treat 10 DON!! as permanent. Your Leader, Mamaragan, Linlin, and several other cards return DON!! to your DON!! deck. King and Kaido OP17-062 help offset that loss, so plan the order of your effects before paying any DON!! -X cost—especially when you are setting up your next 9- or 10-cost Character." },
+	{ title: "Watch Your DON!! -X Effects", cards: [kingEb, kaidoBlocker], text: "Once you reach the late game, don't treat 10 DON!! as permanent. Your Leader, Mamaragan, Linlin, and several other cards return DON!! to your DON!! deck. King and Kaido OP17-062 help offset that loss, so plan the order of your effects before paying any DON!! -X cost—especially when you are setting up your next 9- or 10-cost Character." },
 ];
 
 const techCards = [
@@ -250,8 +250,8 @@ const tips = [
 				</div>
 				<div class="curve-guide-block support-guides">
 					{rampSupport.map((support) => (
-						<article class="support-row">
-							<div class="support-card-list">
+						<article class={`support-row ${support.cards.length === 2 ? "support-row-featured" : ""}`}>
+							<div class={`support-card-list ${support.cards.length === 2 ? "support-card-list-featured" : ""}`}>
 								{support.cards.map((entry) => (
 									<button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}>
 										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
@@ -865,6 +865,7 @@ const tips = [
 	.curve-label {
 		color: var(--accent);
 		font-weight: 700;
+		margin-bottom: 0.75rem;
 	}
 
 	.curve-cards {
@@ -1095,6 +1096,10 @@ const tips = [
 		cursor: default;
 	}
 
+	.matchup-static-card .mini-label {
+		display: none;
+	}
+
 	.matchup-static-card:hover,
 	.matchup-static-card:focus-visible {
 		transform: none;
@@ -1272,6 +1277,10 @@ const tips = [
 		width: 76px;
 	}
 
+	.support-card-list-featured .support-card img {
+		width: 110px;
+	}
+
 	.tip-card img {
 		width: 96px;
 	}
@@ -1420,6 +1429,10 @@ const tips = [
 			max-width: 86px;
 		}
 
+		.late-game-row .curve-card img {
+			max-width: 66px;
+		}
+
 		.support-row,
 		.tech-card,
 		.tip-item {
@@ -1438,12 +1451,76 @@ const tips = [
 			width: 50px;
 		}
 
+		.support-card-list-featured .support-card img {
+			width: 86px;
+		}
+
+		.support-row-featured {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.support-row-featured .support-card-list {
+			justify-content: center;
+		}
+
+
 		.tech-card > .mini-card img {
 			width: 88px;
 		}
+
+		.tech-card {
+			display: grid;
+			grid-template-columns: 120px minmax(0, 1fr);
+			gap: 1rem;
+			align-items: start;
+			padding: 1rem 0 0;
+			border: 0;
+			border-top: 2px solid rgba(255, 138, 42, 0.48);
+			border-radius: 0;
+			background: transparent;
+		}
+
+		.tech-card:first-child {
+			padding-top: 0;
+			border-top: 0;
+		}
+
+		.tech-card > .mini-card img {
+			width: 120px;
+		}
+
+		.tech-card {
+			padding-top: 0;
+			border-top: 0;
+		}
+
+		.tech-card .curve-note {
+			padding-left: 0 !important;
+			border-left: 0 !important;
+		}
+
+		.tip-item {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.tip-card-list {
+			width: 100%;
+			flex-wrap: nowrap;
+			gap: 0.5rem;
+		}
+
+		.tip-card img {
+			width: 86px;
+		}
 	}
 	.matchup-badge { width: fit-content; min-height: 0; }
-	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 100%; height: auto; max-width: 110px; object-fit: initial; } .matchup-badge { width: 100%; min-height: 40px; } }
+	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 110px; height: 82px; object-fit: cover; } .matchup-badge { width: 100%; min-height: 40px; } }
+	@media (max-width: 560px) { .matchup-static-card img { width: 88px; height: 66px; } }
+	@media (max-width: 900px) { .tech-card + .tech-card { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 138, 42, 0.3); } }
 </style>
 
 
