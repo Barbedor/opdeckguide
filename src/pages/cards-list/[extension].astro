@@ -119,6 +119,23 @@ const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
 const leakCardDetails = {
+	"EB05-012": {
+		rarity: "Rare",
+		stats: "Green / Cost 3 / Wisdom / Power 0 / Counter 2000",
+		traits: "Merfolk/Fish-Man Island",
+		effectLines: [[keyword("on-play", "On Play"), " Rest up to 1 of your opponent's Characters with a cost of 6 or less."]],
+	},
+	"EB05-027": {
+		rarity: "Rare",
+		stats: "Blue / Cost 5 / Ranged / Power 6000 / Counter 1000",
+		traits: "Navy/SWORD",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Draw 3 cards and trash 2 cards from your hand. Then, place up to 1 Character with a cost of 2 or less at the bottom of the owner's deck.",
+			],
+		],
+	},
 	"EB05-002": {
 		rarity: "Rare",
 		stats: "Red / Cost 1 / Strike / Power 2000 / Counter 1000",

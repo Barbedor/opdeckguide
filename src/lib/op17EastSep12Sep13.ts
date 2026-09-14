@@ -1,0 +1,47 @@
+import { buildCardIndex, getClassicCardImage } from "./cards";
+
+const cardCatalog = new Map();
+for (const item of buildCardIndex()) {
+	const current = cardCatalog.get(item.code);
+	if (!current || (current.edition && !item.edition)) cardCatalog.set(item.code, item);
+}
+
+const imgFor = (code: string) => getClassicCardImage(code) ?? `/Cards/${code.split("-")[0]}/${code}.jpg`;
+const card = (code: string, count: number, role = "Character") => ({ code, name: cardCatalog.get(code)?.name ?? code, count, img: imgFor(code), role });
+const leader = (code: string) => card(code, 1, "Leader");
+
+export const op17EastSep12Sep13DeckTemplates = {
+	"rocks-op17-east-tsutaya-sep13-udon": [leader("OP17-039"), card("OP08-051", 4), card("OP17-050", 2), card("OP17-045", 4), card("OP17-054", 4), card("OP17-041", 3), card("OP17-044", 4), card("OP17-046", 4), card("OP17-049", 4), card("OP17-040", 4), card("OP17-048", 4), card("OP17-118", 4), card("OP17-055", 4, "Event"), card("OP17-056", 4, "Event"), card("EB02-030", 1, "Event")],
+	"bonney-op17-east-ogre-greenlake-sep13-aldo-wijaya": [leader("OP13-100"), card("OP13-113", 4), card("OP17-113", 4), card("PRB02-016", 2), card("OP17-107", 4), card("OP17-109", 4), card("OP17-102", 4), card("PRB02-017", 3), card("EB04-058", 2), card("OP17-106", 4), card("OP17-103", 4), card("OP17-114", 4), card("OP16-119", 4), card("OP13-108", 4), card("OP17-112", 3)],
+	"kaido-op17-east-overseas-sep13-hanamatsu": [leader("OP17-058"), card("EB04-032", 4), card("OP15-069", 4), card("OP17-075", 4), card("OP17-074", 4), card("EB04-031", 4), card("OP17-061", 4), card("OP17-065", 3), card("ST34-004", 3), card("OP17-062", 4), card("OP17-063", 2), card("OP13-076", 4, "Event"), card("OP15-078", 4, "Event"), card("OP07-077", 4, "Event"), card("OP08-077", 2, "Event")],
+	"yamato-op17-east-cardshop-sep13-daydream-pana": [leader("OP16-079"), card("OP16-091", 4), card("OP16-092", 4), card("OP16-081", 3), card("OP16-087", 4), card("OP16-088", 2), card("OP16-082", 4), card("OP16-094", 2), card("OP16-084", 4), card("OP16-098", 4), card("OP16-096", 4), card("OP16-097", 4), card("OP16-085", 4), card("OP14-096", 3, "Event"), card("OP16-099", 4)],
+	"boa-op17-east-cardshop-sep13-mano": [leader("OP14-041"), card("OP06-106", 2), card("OP17-109", 4), card("OP14-114", 4), card("OP15-113", 4), card("EB04-058", 4), card("OP16-113", 4), card("OP14-105", 4), card("OP14-107", 4), card("OP14-108", 2), card("OP14-104", 4), card("OP16-119", 2), card("OP14-112", 4), card("ST17-004", 1), card("OP11-054", 3), card("OP06-115", 2, "Event"), card("OP07-057", 1, "Event"), card("OP06-058", 1, "Event")],
+	"luffy-op17-east-dragonstar-sep13-kyon": [leader("OP16-022"), card("OP16-034", 4), card("ST30-014", 2), card("OP16-027", 2), card("OP15-032", 1), card("OP16-032", 2), card("OP16-054", 4), card("OP16-055", 4), card("ST12-010", 1), card("OP16-045", 4), card("OP16-056", 4), card("OP16-048", 4), card("OP16-050", 2), card("OP16-042", 4), card("OP16-042", 4), card("OP16-042", 1), card("OP13-040", 2, "Event"), card("OP16-038", 3, "Event"), card("EB02-030", 2, "Event")],
+	"luffy-op17-east-cardshop-sep12-hikki": [leader("OP16-022"), card("OP16-034", 4), card("ST30-014", 4), card("OP16-027", 1), card("OP16-026", 1), card("OP15-032", 1), card("OP16-032", 2), card("OP16-054", 4), card("OP16-055", 4), card("ST12-010", 1), card("OP16-045", 4), card("OP16-056", 4), card("OP16-048", 4), card("OP16-042", 4), card("OP16-042", 4), card("OP12-037", 1, "Event"), card("OP16-038", 4, "Event"), card("EB02-030", 2, "Event"), card("OP06-058", 1, "Event")],
+	"ace-op17-east-card-oroku-sep12-atsuki": [leader("OP16-001"), card("OP13-016", 4), card("OP16-015", 3), card("OP16-017", 4), card("OP16-118", 4, "Event"), card("ST23-001", 4), card("OP16-011", 3), card("OP16-014", 4), card("OP16-004", 4), card("OP17-006", 4), card("OP16-003", 4), card("OP17-005", 4), card("OP16-020", 2, "Event"), card("OP16-021", 4, "Stage"), card("OP17-017", 2, "Event")],
+	"kaido-op17-east-hs-bokkemon-sep12-kame": [leader("OP17-058"), card("EB04-032", 4), card("OP17-075", 4), card("OP17-073", 4), card("OP17-074", 4), card("EB04-031", 4), card("EB04-030", 2), card("OP17-061", 2), card("ST34-004", 3), card("OP17-062", 4), card("OP17-063", 1), card("OP13-076", 2, "Event"), card("OP15-077", 4, "Event"), card("OP15-078", 4, "Event"), card("OP07-077", 4, "Event"), card("OP07-076", 3, "Event"), card("OP09-077", 1, "Event")],
+	"sabo-op17-east-cardshop-sep12-stark": [leader("OP13-004"), card("OP17-084", 3), card("OP17-086", 3), card("OP17-080", 4), card("OP17-081", 2), card("OP17-082", 4), card("OP17-087", 4), card("OP17-095", 4), card("OP17-089", 4), card("OP15-088", 4), card("OP17-119", 4), card("OP17-093", 3), card("OP01-016", 3), card("ST01-011", 2), card("OP07-002", 2), card("OP09-097", 2, "Event"), card("OP04-016", 2, "Event")],
+	"luffy-op17-east-ck-mizonokuchi-sep12-hiiragi": [leader("OP17-079"), card("OP02-106", 4), card("OP17-086", 4), card("OP17-094", 4), card("OP17-080", 4), card("OP17-081", 4), card("OP17-082", 4), card("OP17-087", 2), card("OP17-090", 3), card("OP17-095", 3), card("OP15-088", 4), card("OP17-119", 4), card("OP17-093", 3), card("ST06-015", 3, "Event"), card("OP02-117", 4, "Event")],
+	"luffy-op17-east-bandaicrossstore-sep12-lionel": [leader("OP17-079"), card("OP17-084", 2), card("OP17-086", 4), card("OP17-094", 4), card("OP17-080", 4), card("OP17-081", 4), card("OP17-082", 2), card("OP17-087", 2), card("OP17-095", 4), card("OP17-089", 2), card("OP15-088", 4), card("OP17-119", 4), card("OP14-120", 2), card("OP17-093", 4), card("OP07-096", 2, "Event"), card("ST14-017", 2, "Event"), card("OP14-096", 4, "Event")],
+	"koala-op17-east-vidaway-sep12-no-73": [leader("OP12-081"), card("OP17-084", 3), card("OP17-086", 3), card("OP17-080", 4), card("OP17-081", 3), card("OP17-082", 4), card("OP17-083", 2), card("OP17-087", 2), card("OP17-095", 4), card("OP17-089", 4), card("OP15-088", 2), card("OP17-119", 4), card("OP17-093", 4), card("OP07-085", 1), card("EB04-058", 4), card("OP12-119", 2), card("OP14-096", 2, "Event"), card("OP17-098", 2, "Event")],
+	"nami-op17-east-ck-mizonokuchi-sep12-hando": [leader("OP11-041"), card("OP14-102", 4), card("OP06-106", 2), card("OP11-106", 4), card("OP14-110", 4), card("OP14-111", 4), card("OP15-113", 1), card("EB03-053", 4), card("EB04-058", 4), card("OP14-108", 3), card("EB03-055", 4), card("OP14-104", 4), card("OP16-119", 4), card("OP17-054", 3), card("PRB02-008", 1), card("OP16-056", 3), card("OP13-042", 1)],
+};
+
+const entry = (slug: string, leaderSlug: string, title: string, eventName: string, eventType: string, placement: string, date: string, author: string, host: string) => ({ format: "op17", region: "east", slug, leaderSlug, deckTemplate: slug, title, eventName, eventType, placement, date, location: "Japan", country: "JP", author, host, summary: `${author}'s ${placement} ${title.replace(" OP17", "")} decklist from ${eventName} at ${host}.` });
+
+export const op17EastSep12Sep13EntrySeeds = [
+	entry("rocks-op17-east-tsutaya-sep13-udon", "rocks-d-xebec-op17", "Rocks D Xebec OP17 Flagship Battle Winner", "FS", "FS", "1st Place", "2026-09-13", "Udon", "Tsutaya(23)"),
+	entry("bonney-op17-east-ogre-greenlake-sep13-aldo-wijaya", "bonney-op13", "Jewelry Bonney OP17 Flagship Battle Winner", "FS", "FS", "1st (5-0)", "2026-09-13", "Aldo Wijaya", "Ogre Greenlake"),
+	entry("kaido-op17-east-overseas-sep13-hanamatsu", "kaido-op17", "Kaido OP17 Standard Battle Winner", "Overseas", "Standard Battle", "1st Place", "2026-09-13", "Hanamatsu", "Overseas"),
+	entry("yamato-op17-east-cardshop-sep13-daydream-pana", "yamato-op16", "Yamato OP17 Standard Battle Winner", "StorePrelims", "Standard Battle", "1st (4-0)", "2026-09-13", "Daydream_pana", "Cardshop"),
+	entry("boa-op17-east-cardshop-sep13-mano", "boa-hancock-op16", "Boa Hancock OP17 Flagship Battle Winner", "FS", "FS", "1st (5-0)", "2026-09-13", "Mano", "Cardshop"),
+	entry("luffy-op17-east-dragonstar-sep13-kyon", "luffy-op16", "Monkey D. Luffy OP17 Flagship Battle Winner", "FS", "FS", "1st Place", "2026-09-13", "Kyon", "DragonStar"),
+	entry("luffy-op17-east-cardshop-sep12-hikki", "luffy-op16", "Monkey D. Luffy OP17 Flagship Battle Winner", "FS", "FS", "1st (5-0)", "2026-09-12", "Hikki", "Cardshop"),
+	entry("ace-op17-east-card-oroku-sep12-atsuki", "ace-op16", "Portgas.D. Ace OP17 Flagship Battle Winner", "FS", "FS", "1st Place", "2026-09-12", "Atsuki", "card_oroku"),
+	entry("kaido-op17-east-hs-bokkemon-sep12-kame", "kaido-op17", "Kaido OP17 Flagship Battle Winner", "FS", "FS", "1st Place", "2026-09-12", "Kame", "HS_bokkemon"),
+	entry("sabo-op17-east-cardshop-sep12-stark", "sabo-op13", "Sabo OP17 Standard Battle Winner", "SB", "Standard Battle", "1st (4-0)", "2026-09-12", "Stark", "Cardshop"),
+	entry("luffy-op17-east-ck-mizonokuchi-sep12-hiiragi", "monkey-d-luffy-op17", "Monkey D. Luffy OP17 Standard Battle Winner", "SB", "Standard Battle", "1st Place", "2026-09-12", "Hiiragi", "CK_mizonokuchi"),
+	entry("luffy-op17-east-bandaicrossstore-sep12-lionel", "monkey-d-luffy-op17", "Monkey D. Luffy OP17 Flagship Battle Winner", "FS", "FS", "1st (5-0)", "2026-09-12", "Lionel", "BandaiCrossStore"),
+	entry("koala-op17-east-vidaway-sep12-no-73", "koala-op12", "Koala OP17 Standard Battle Winner", "StorePrelims", "Standard Battle", "1st Place", "2026-09-12", "No 73", "Vidayway(13)"),
+	entry("nami-op17-east-ck-mizonokuchi-sep12-hando", "nami-sample-op16", "Nami OP17 Standard Battle Winner", "SB", "Standard Battle", "1st Place", "2026-09-12", "Hando", "CK_mizonokuchi"),
+];

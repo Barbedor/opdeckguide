@@ -8,6 +8,10 @@ import { op17EastSep03DeckTemplates, op17EastSep03EntrySeeds } from "./op17EastS
 import { op17EastSep04DeckTemplates, op17EastSep04EntrySeeds } from "./op17EastSep04";
 import { op17EastSep05DeckTemplates, op17EastSep05EntrySeeds } from "./op17EastSep05";
 import { op17EastSep11DeckTemplates, op17EastSep11EntrySeeds } from "./op17EastSep11";
+import { op17EastSep12Sep13DeckTemplates, op17EastSep12Sep13EntrySeeds } from "./op17EastSep12Sep13";
+import { op17WestSep10DeckTemplates, op17WestSep10EntrySeeds } from "./op17WestSep10";
+import { op17WestSep11DeckTemplates, op17WestSep11EntrySeeds } from "./op17WestSep11";
+import { op17WestSep12Sep13DeckTemplates, op17WestSep12Sep13EntrySeeds } from "./op17WestSep12Sep13";
 import { op17EastSep06DeckTemplates, op17EastSep06EntrySeeds } from "./op17EastSep06";
 import { op17EastSep09DeckTemplates, op17EastSep09EntrySeeds } from "./op17EastSep09";
 import { op17WestAug29DeckTemplates, op17WestAug29EntrySeeds } from "./op17WestAug29";
@@ -1844,6 +1848,7 @@ const deckTemplates = {
 	...op17EastSep04DeckTemplates,
 	...op17EastSep05DeckTemplates,
 	...op17EastSep11DeckTemplates,
+	...op17EastSep12Sep13DeckTemplates,
 	...op17EastSep06DeckTemplates,
 	...op17EastSep09DeckTemplates,
 	...op17WestAug29DeckTemplates,
@@ -1856,6 +1861,9 @@ const deckTemplates = {
 	...op17WestSep05DeckTemplates,
 	...op17WestSep06DeckTemplates,
 	...op17WestSep07DeckTemplates,
+	...op17WestSep10DeckTemplates,
+	...op17WestSep11DeckTemplates,
+	...op17WestSep12Sep13DeckTemplates,
 	"black-yamato-op16-east": [
 		{ code: "OP16-079", name: "Yamato", count: 1, img: "/Cards/OP16/OP16-079.jpg", role: "Leader" },
 		{ code: "OP16-091", name: "Nami", count: 4, img: "/Cards/OP16/OP16-091.jpg", role: "Character" },
@@ -16414,6 +16422,7 @@ const entrySeeds = [
 	...op17EastSep04EntrySeeds,
 	...op17EastSep05EntrySeeds,
 	...op17EastSep11EntrySeeds,
+	...op17EastSep12Sep13EntrySeeds,
 	...op17EastSep06EntrySeeds,
 	...op17EastSep09EntrySeeds,
 	...op17WestAug29EntrySeeds,
@@ -16426,6 +16435,9 @@ const entrySeeds = [
 	...op17WestSep05EntrySeeds,
 	...op17WestSep06EntrySeeds,
 	...op17WestSep07EntrySeeds,
+	...op17WestSep10EntrySeeds,
+	...op17WestSep11EntrySeeds,
+	...op17WestSep12Sep13EntrySeeds,
 	{
 		format: "op16",
 		region: "east",
@@ -29636,15 +29648,27 @@ const normalizeEventName = (eventName) =>
 		.replace(/\bTB\b/g, "Treasure Cup")
 		.replace(/\bTC\b/g, "Treasure Cup");
 
-const normalizeSummary = (summary, location, country) => {
-	if (location === "NA" || country === "NA") {
-		return summary
-			.replace(/ at ([^.]+) in NA\./, " at $1.")
-			.replace(/ in NA\./g, ".")
-			.replace(/ in NA,/g, ",");
-	}
+// Keep every decklist intro consistent, regardless of which source module or
+// workstation added the entry. The generated summary intentionally overrides
+// any hand-written `summary` field in the raw entry data.
+const buildDecklistSummary = (entry, leader) => {
+	const standing = [entry.placement, entry.record]
+		.filter(Boolean)
+		.join(" ")
+		.replace(/\bNA\b/g, "")
+		.replace(/\s+/g, " ")
+		.trim();
+	const subject = [entry.author, standing, leader?.name].filter(Boolean).join(" ");
+	const parts = [subject ? `${subject} decklist` : "Decklist"];
+	// NA means "unknown" in the source data: keep it in Location, but never
+	// present it as a country in the decklist introduction.
+	const country = [entry.location || entry.country].find((value) => value && value !== "NA");
 
-	return summary;
+	if (entry.eventType) parts.push(`from ${entry.eventType}`);
+	if (entry.host) parts.push(`at ${entry.host}`);
+	if (country) parts.push(`in ${country}`);
+
+	return `${parts.join(" ")}.`;
 };
 
 const publishedTournamentFormats = new Set(tournamentFormats.map((format) => format.entryFormat));
@@ -29667,7 +29691,7 @@ export const tournamentDecklistEntries = entrySeeds
 			title: normalizeEventName(entry.title),
 			eventName: normalizeEventName(entry.eventName),
 			eventType: normalizeEventType(entry.eventType),
-			summary: normalizeSummary(entry.summary, entry.location, entry.country),
+			summary: buildDecklistSummary(entry, leader),
 			region: view.region,
 			viewSlug: view.slug,
 			viewLabel: view.label,
