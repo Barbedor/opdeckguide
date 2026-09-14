@@ -1,9 +1,9 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Kaido OP17 Deck Guide";
+const title = "Kaido OP17 Deck Guide: Decklist, Mulligan & Ramp Curve";
 const description =
-	"Deck guide for Kaido OP17 for One Piece Card Game with leader ability, updated decklist, deck in a nutshell, best curve, even curve, raid bosses, strengths, weaknesses, and a conclusion for the OP17 format.";
+	"Kaido OP17 deck guide with decklist, mulligan priorities, ramp curves, recovery lines, tech cards, matchups, and gameplay tips for the OP17 format.";
 const icon = "/assets/guides/Kaido%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -35,26 +35,32 @@ const leader = card("OP17-058", "Kaido", "/Cards/OP17/New OP17/OP17-058.jpg", 1,
 const queenEb = card("EB04-032", "Queen", "/Cards/EB04/EB04-032.jpg", 4);
 const basilHawkins = card("OP17-073", "Basil Hawkins", "/Cards/OP17/New OP17/OP17-073.jpg", 4, "Character", "OP17-BASIL-HAWKINS");
 const yamato = card("OP17-074", "Yamato", "/Cards/OP17/New OP17/OP17-074.jpg", 4);
-const usohachi = card("ST18-001", "Usohachi", "/Cards/ST18/ST18-001.png", 4);
+const sasaki = card("OP17-068", "Sasaki", "/Cards/OP17/New OP17/OP17-068.jpg", 3);
 const kingEb = card("EB04-031", "King", "/Cards/EB04/EB04-031.jpg", 4);
-const kaidoEb = card("EB04-030", "Kaido", "/Cards/EB04/EB04-030.jpg", 2);
-const leadPerformers = card("OP17-061", "Lead Performers", "/Cards/OP17/New OP17/OP17-061.jpg", 3);
+const leadPerformers = card("OP17-061", "Lead Performers", "/Cards/OP17/New OP17/OP17-061.jpg", 4);
 const queenOp17 = card("OP17-065", "Queen", "/Cards/OP17/New OP17/OP17-065.jpg", 2);
 const jack = card("OP17-069", "Jack", "/Cards/OP17/New OP17/OP17-069.jpg", 2, "Character", "OP17-JACK");
-const kaidoBlocker = card("OP17-062", "Kaido", "/Cards/OP17/New OP17/OP17-062.jpg", 3);
+const kaidoBlocker = card("OP17-062", "Kaido", "/Cards/OP17/New OP17/OP17-062.jpg", 4);
 const kaidoRaid = card("OP17-063", "Kaido", "/Cards/OP17/New OP17/OP17-063.jpg", 2);
 const charlotteLinlin = card("ST34-004", "Charlotte Linlin", "/Cards/ST34/ST34-004.jpg", 3);
-const mamaragan = card("OP15-078", "Mamaragan", "/Cards/OP15/OP15-078.jpg", 3, "Event");
+const mamaragan = card("OP15-078", "Mamaragan", "/Cards/OP15/OP15-078.jpg", 4, "Event");
 const woRoRoRo = card(
 	"OP17-076",
-	"Wo Ro Ro Ro Ro!! I Think I've Sobered Up!!",
+	"Worororo! I Think I've Sobered Up",
 	"/Cards/OP17/New OP17/OP17-076.jpg",
-	4,
+	2,
 	"Event",
 	"OP17-WORORORO",
 );
-const claimOnePiece = card("OP07-077", "We're Going to Claim the One Piece!!!", "/Cards/OP07/OP07-077.png", 3, "Event");
-const gundariMeteorShower = card("OP17-077", "Gundari Meteor Shower", "/Cards/OP17/New OP17/OP17-077.jpg", 3, "Event");
+const claimOnePiece = card("OP07-077", "We're Going to Claim the One Piece!!!", "/Cards/OP07/OP07-077.png", 4, "Event");
+const slowSlowBeamSword = card("OP07-076", "Slow-Slow Beam Sword", "/Cards/OP07/OP07-076.png", 4, "Event");
+const kundaiDragonSwarm = card("OP17-077", "Kundai Dragon Swarm", "/Cards/OP17/New OP17/OP17-077.jpg", 2, "Event");
+const drunkenDragonBagua = card("OP17-078", "Drunken Dragon Bagua", "/Cards/OP17/New OP17/OP17-078.jpg", 2, "Event");
+const blackMariaOp08 = card("OP08-074", "Black Maria", "/Cards/OP08/OP08-074.png");
+const divineDeparture = card("OP13-076", "Divine Departure", "/Cards/OP13/OP13-076.jpg", null, "Event");
+const xDrake = card("OP17-075", "X.Drake", "/Cards/OP17/New OP17/OP17-075.jpg");
+const kanjuro = card("OP17-067", "Kanjuro", "/Cards/OP17/New OP17/OP17-067.jpg");
+const blackMariaOp17 = card("OP17-072", "Black Maria", "/Cards/OP17/New OP17/OP17-072.jpg");
 const saboOp13 = card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader");
 const mihawkOp14 = card("OP14-020", "Dracule Mihawk OP14", "/Cards/OP14/OP14-020.jpg", null, "Leader");
 const rocksOp17 = card("OP17-039", "Rocks D. Xebec OP17", "/Cards/OP17/New OP17/OP17-039.jpg", null, "Leader");
@@ -84,21 +90,20 @@ const matchupIcons = {
 const decklist = [
 	leader,
 	queenEb,
+	sasaki,
 	basilHawkins,
 	yamato,
-	usohachi,
 	kingEb,
-	kaidoEb,
 	leadPerformers,
 	queenOp17,
-	jack,
 	kaidoBlocker,
 	kaidoRaid,
 	charlotteLinlin,
 	mamaragan,
 	woRoRoRo,
+	drunkenDragonBagua,
 	claimOnePiece,
-	gundariMeteorShower,
+	slowSlowBeamSword,
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
@@ -111,97 +116,62 @@ const evenMatchups = [boaOp14];
 
 const unfavorableMatchups = [mihawkOp14, luffyOp17, luffyAceSt30];
 
-const nutshellForce = [
-	"Massive late-game value and continuous DON!! recovery.",
-	"Punishes opponent misplays instantly.",
-	"Insane board control and defensive endurance.",
+const goingFirstCurve = [
+	{ label: "1 DON!! — Hand Fixing", cards: [claimOnePiece], text: "Use We're Going to Claim the One Piece!!! to search the top 5 cards of your deck for an Animal Kingdom Pirates or Big Mom Pirates card. The priority is to set up Yamato and King." },
+	{ label: "3 DON!! — Yamato", cards: [yamato], text: "Play Yamato OP17-074 to add 1 rested DON!!. You move from 3 to 4 DON!! on your field while leaving behind a Blocker for your first layer of protection." },
+	{ label: "6 DON!! — King", cards: [kingEb], text: "Play King EB04-031, then use Activate: Main to add 1 active DON!! and 1 rested DON!!. You finish this turn with 8 DON!! and naturally reach 10 DON!! on the following turn." },
+	{ label: "10 DON!! — Kaido", cards: [kaidoBlocker], text: "You can now play Kaido OP17-062, your 12K Blocker. It is usually best to keep him active at first to stabilize your defense; his effect also helps recover DON!! after you return DON!! cards to your DON!! deck. From here, your plays become board-dependent: Charlotte Linlin, Lead Performers, the other Kaido, and multi-card turns are all live options." },
 ];
 
-const nutshellWeakness = [
-	"Inconsistent early game (can brick easily).",
-	"Highly dependent on playing 6c King exactly on curve.",
-	"Slow start makes it vulnerable to heavy Aggro.",
+const goingSecondCurve = [
+	{ label: "2 DON!! — Preparation", cards: [claimOnePiece], text: "Use We're Going to Claim the One Piece!!! to start shaping your hand for the next turns." },
+	{ label: "4 DON!! — Queen", cards: [queenEb], text: "Play Queen EB04-032 and use Activate: Main by resting 2 DON!! to add 1 rested DON!!. You move from 4 to 5 DON!!." },
+	{ label: "7 DON!! — King", cards: [kingEb], text: "You naturally reach 7 DON!! on the next turn. Play King for 6 DON!!, then use Activate: Main to add 1 active DON!! and 1 rested DON!!. You keep 1 DON!! after playing King, then end with 9 DON!! on your field and reach 10 DON!! next turn." },
 ];
 
-const coreEngine = [
-	"1c Queen / 3C Yamato: Your early setup tools.",
-	"6c King: The absolute MVP",
-	"10c Bosses (Kaido / Linlin): Your win conditions. They clear the opponent's board, heal your Life, and refund DON!! to keep your defensive events active.",
+const lateGameChoices = [
+	{ card: kaidoBlocker, text: "Kaido OP17-062 when you need a massive Blocker to stabilize your defense." },
+	{ card: kaidoRaid, text: "Kaido OP17-063 when you need to immediately deal with an opposing Character that costs 6 or less." },
+	{ card: charlotteLinlin, text: "Charlotte Linlin ST34-004 to heal and reduce an opposing Character's base Power to 0." },
+	{ card: leadPerformers, text: "Lead Performers OP17-061 to heal, then set up its replacement by playing a King, Queen, or Jack." },
 ];
 
-const bestCurve = [
-	{
-		label: "2 DON!!",
-		note: "Play Queen to cycle your hand. Its Activate: Main effect will matter on the next turn.",
-		cards: [{ card: queenEb }],
-	},
-	{
-		label: "3 DON!!",
-		note: "Use Queen's effect to add 1 rested DON!!, then play We're Going to Claim the One Piece!!! to search.",
-		cards: [{ card: queenEb, rested: true }, { card: claimOnePiece }],
-	},
-	{
-		label: "6 DON!!",
-		note: "Thanks to Queen's effect from the previous turn, you have 6 DON!! instead of 5, so you can play King. It's a core piece of the deck. It's very hard for the opponent to remove, and it lets you generate a lot of DON!! turn after turn.",
-		cards: [{ card: kingEb }],
-	},
-	{
-		label: "10 DON!!",
-		note: "Thanks to your setup from the previous turns, you now reach 10 DON!!. From here, pick the Kaido that fits the board state. One line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
-		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
-		mode: "or",
-	},
+const mulliganSections = [
+	{ title: "Going First", text: "Yamato OP17-074 is your top priority. Your ideal progression is 3 DON!! → Yamato → 4 DON!! → 6 DON!! → King → 8 DON!! → 10 DON!!. Yamato gives you 1 rested DON!! while putting a Blocker into play, so you can reach the 6 DON!! needed for King on your third turn. King EB04-031 is therefore another essential keep: when you play him at 6 DON!!, he adds 1 active DON!! and 1 rested DON!! to reach 8 DON!! and naturally puts you at 10 DON!! on the following turn.", cards: [yamato, kingEb] },
+	{ title: "Going Second", text: "Queen EB04-032 becomes your main ramp piece. At 4 DON!!, use Activate: Main by resting 2 DON!! to add 1 rested DON!!. You move to 5 DON!! and reach 7 DON!! next turn, letting you play King while keeping 1 DON!! available. King EB04-031 remains a high-priority keep because he is what accelerates you into the late game.", cards: [queenEb, kingEb] },
+	{ title: "Hand Fixing", text: "If your opening hand is missing part of the ramp line, Queen EB04-032 can fix it by trashing an Animal Kingdom Pirates card to draw 2 cards and look for King or another missing piece. We're Going to Claim the One Piece!!! also finds an Animal Kingdom Pirates or Big Mom Pirates card from the top 5 cards of your deck. Mamaragan OP15-078 digs deeper early: while you have 6 DON!! or less, its 1K Counter also lets you draw a card, and it costs 0. Don't keep a hand only because it contains powerful 9- or 10-cost cards. Your mulligan priority is reaching the late game on the right turns through ramp.", cards: [queenEb, claimOnePiece, mamaragan] },
 ];
 
-const evenCurve = [
-	{
-		label: "2 DON!!",
-		note: "Play Queen to cycle your hand. Its Activate: Main effect will matter on the next turn. Then play We're Going to Claim the One Piece!!! to search.",
-		cards: [{ card: queenEb }, { card: claimOnePiece }],
-	},
-	{
-		label: "5 DON!!",
-		note: "Use Queen's effect to add 1 rested DON!! so you now have 5 DON!!. Then attach 2 DON!! to your Leader and swing for 7k.",
-		cards: [{ card: queenEb, rested: true }, { card: leader, rested: true }],
-	},
-	{
-		label: "7 DON!!",
-		note: "Play King. It's a core piece of the deck. It's very hard for the opponent to remove, and it lets you generate a lot of DON!! turn after turn.",
-		cards: [{ card: kingEb }],
-	},
-	{
-		label: "10 DON!!",
-		note: "Thanks to your setup from the previous turns, you now reach 10 DON!!. From here, pick the Kaido that fits the board state. One line gives you the big defensive wall and DON!! recursion, while the other is the offensive payoff that can answer a cost 6 or lower Character immediately.",
-		cards: [{ card: kaidoBlocker }, { card: kaidoRaid }],
-		mode: "or",
-	},
+const rampSupport = [
+	{ title: "If You Miss Your Ramp", cards: [basilHawkins, drunkenDragonBagua], text: "Basil Hawkins OP17-073 is the backup option when you miss ramp: trash a card from your hand to add 1 active DON!!. It isn't your first choice, but it can be correct when that extra DON!! lets you play King on time. Drunken Dragon Bagua OP17-078 is the key catch-up line once your curve is already broken. At 6 DON!! without King, pay 4 DON!! and trash 2 cards to add 3 rested DON!!, moving to 9 DON!! and reaching 10 DON!! on the following turn. Even from 5 DON!!, this line takes you to 8 DON!! and then 10 DON!! next turn." },
+	{ title: "Watch Your DON!! -X Effects", cards: [leader, mamaragan, charlotteLinlin, kingEb, kaidoBlocker], text: "Once you reach the late game, don't treat 10 DON!! as permanent. Your Leader, Mamaragan, Linlin, and several other cards return DON!! to your DON!! deck. King and Kaido OP17-062 help offset that loss, so plan the order of your effects before paying any DON!! -X cost—especially when you are setting up your next 9- or 10-cost Character." },
 ];
 
-const raidBosses = [
-	{
-		card: kaidoRaid,
-		copy: "Negates the effect of a 6-cost or lower Character and KOs it, completely bypassing KO protection! Even better: he turns all the unplayable bricks in your hand into +1000 Counters.",
-	},
-	{
-		card: kaidoBlocker,
-		copy: "A massive 12k Power Blocker that generates extra DON!! every turn when you return DON!! to your DON!! deck. It adds 1 DON!! from your deck as active, then re-stands 1 DON!! on your field, helping you maintain your defensive options even after committing resources.",
-	},
-	{
-		card: charlotteLinlin,
-		copy: "She drops an opponent's Character to 0 Power, setting up the perfect combo with the 0-cost event Mamaragan to wipe out huge threats for free.",
-	},
-	{
-		card: leadPerformers,
-		copy: "Drops as an 11k body that heals you for 1 Life immediately. You can then trash it to cheat out a Queen, Jack or King directly from your hand, swinging the tempo instantly in your favor.",
-	},
-	{
-		card: queenOp17,
-		copy: "A 10k Banish threat that replaces itself by drawing a card at the cost of DON!!-1. On play, he can also locks down two of your opponent's 5-cost or lower Characters, creating a brutal late-game chokehold.",
-	},
-	{
-		card: jack,
-		copy: "A 10k Rush Character that instantly drops an opposing Characterâ€™s power by -2000 on entry. Perfect for taking back the board and applying massive lethal pressure the turn he hits the field.",
-	},
+const techCards = [
+	{ card: card("ST18-001", "Uso-Hachi", "/Cards/ST18/ST18-001.png"), title: "Uso-Hachi ST18-001", text: "Uso-Hachi can replace Sasaki when you want to keep a 2K Counter while gaining late-game control. With 8 DON!! or more, his On Play can rest an opposing Character that costs 5 or less, including an awkward Blocker before your attacks." },
+	{ card: blackMariaOp08, title: "Black Maria OP08-074", text: "Another possible Sasaki replacement. She temporarily adds 5 rested DON!!, then returns DON!! at the end of the turn until you have the same amount as your opponent. That temporary ramp can still be valuable with Kaido because you can spend it on DON!! -X effects before it disappears." },
+	{ card: kundaiDragonSwarm, title: "Kundai Dragon Swarm OP17-077", text: "Can replace Drunken Dragon Bagua if you prefer the cheaper Counter. Kundai Dragon Swarm costs only 1 DON!! as a Counter, while Drunken Dragon Bagua costs 2 DON!! but gives 4K Counter to either your Leader or a Character. Drunken Dragon Bagua also offers a recovery line through its Main effect: pay 4 DON!! and trash 2 cards to add 3 rested DON!! and quickly work back toward 10 DON!!." },
+	{ card: divineDeparture, title: "Divine Departure OP13-076", text: "Can take the place of Worororo! I Think I've Sobered Up. Both offer a similar 3K Counter for 0 DON!! by trashing another card. Divine Departure adds an offensive option: with a DON!! attached to your Leader or a Character, pay 5 DON!! to give an opposing Character -8K Power for the turn. Worororo! remains an Animal Kingdom Pirates card, which matters for the deck's synergies." },
+	{ card: xDrake, title: "X.Drake OP17-075", text: "Another Sasaki alternative that keeps the 2K Counter role. With DON!! -2 on play, he forces your opponent to trash a card from hand, adding resource pressure without changing your 2K Counter count." },
+	{ card: kanjuro, title: "Kanjuro OP17-067", text: "An additional board-control option. For 2 DON!!, his On Play uses DON!! -1 and can rest an opposing Character if you control a Character that costs 10 or more. He fills a role similar to Mamaragan's Main effect, but needs 2 active DON!!. Once Kaido OP17-062 is on the board, recovering 2 active DON!! becomes much easier." },
+	{ card: blackMariaOp17, title: "Black Maria OP17-072", text: "The Blocker version of Black Maria can strengthen your defense. When your opponent attacks, you can trash a card from hand to give 1K Counter to your Leader or one of your Characters. She turns otherwise unhelpful cards in hand into defensive resources, although she isn't essential to the deck's core plan." },
+	{ card: jack, title: "Jack OP17-069", text: "Jack can be an extra target for Lead Performers; splits such as 2 Queen + 1 Jack or 1 Queen + 1 Jack are viable. He has Rush: Character and his On Play uses DON!! -1 to give an opposing Character -2K Power. Combined with Kaido's Leader effect, that can total -4K Power on the same target. Queen is usually better for card draw and defense, but Jack gives you a more aggressive option when you need to remove a Character quickly." },
+];
+
+const tips = [
+	{ cards: [queenEb, claimOnePiece, mamaragan], text: "Prioritize your curve above everything else. The deck is much weaker when you miss King at 6 DON!!. Use Queen, We're Going to Claim the One Piece!!!, and Mamaragan when necessary to find missing pieces instead of holding only your large Characters." },
+	{ cards: [leader, kaidoBlocker], text: "Use the Leader effect both offensively and defensively. The -2K Power can help remove an opposing Character, but it can also shrink an attacker and save Counters. With multiple ways to recover DON!!, DON!! -1 is often less punishing than it looks." },
+	{ cards: [sasaki], text: "Don't spend Sasaki just for ramp. He is mainly a 2K Counter; his effect costs 2 cards from hand to add 2 rested DON!!. Use it only when you truly have no other way to stay on curve." },
+	{ cards: [yamato], text: "Yamato can be used as a Blocker early. Once she has ramped you, her main job is done. Because the list has relatively few conventional Counters, don't hesitate to use her to protect Life." },
+	{ cards: [kaidoBlocker], text: "Usually keep your first Kaido OP17-062 active. His role as a Blocker is often more valuable than an immediate 12K attack. Once you have several large Characters and a stable position, start attacking with him to raise the pressure." },
+	{ cards: [leader, kaidoBlocker, slowSlowBeamSword], text: "Use Kaido OP17-062 to preserve 2 active DON!!. After using the Leader's DON!! -1, his effect lets you recover DON!! and can leave you with resources for Counter Events, making Slow-Slow Beam Sword far more threatening." },
+	{ cards: [slowSlowBeamSword], text: "Punish a poor attack order with Slow-Slow Beam Sword. If your opponent attacks with their Leader while a large Character has not attacked yet, Counter the Leader attack and rest that Character before it can swing. To play around it, they generally need to attack with their Characters before their Leader." },
+	{ cards: [leader, slowSlowBeamSword], text: "Slow-Slow Beam Sword stacks well with the Leader effect. Reducing an attacker by 2K Power and then gaining 2K Counter already creates a major swing, with the option to rest another opposing attacker on top of it." },
+	{ cards: [mamaragan, charlotteLinlin], text: "Mamaragan changes roles over the course of the game. Early, its 1K Counter with Draw 1 at 6 DON!! or less can help you find King. Late, hold it when you can set up the interaction with Charlotte Linlin to rest the Character whose base Power Linlin reduces to 0." },
+	{ cards: [kingEb, kaidoBlocker], text: "Track the order of your DON!! -X effects. A DON!! returned to the DON!! deck is no longer on your field. Before using several effects in one turn, calculate what King and Kaido OP17-062 can actually recover so you don't compromise your next 9- or 10-cost Character." },
+	{ cards: [leadPerformers, queenOp17], text: "Lead Performers doesn't need to be replaced immediately. You can play it to recover a Life, keep it on the board, attack for 11K next turn, and then trash it to play Queen. This lets you benefit from the heal, attack, and replacement." },
+	{ cards: [kaidoBlocker, kaidoRaid], text: "Adapt your 10-cost play to the board. Kaido OP17-062 is the default stabilizer because of Blocker, while Kaido OP17-063 is especially strong when an opposing Character that costs 6 or less must be removed. His effect that turns Character cards into 1K Counters can also greatly improve a hand full of large Characters." },
+	{ cards: [claimOnePiece, queenEb], text: "Keep your small cards relevant in the late game. We're Going to Claim the One Piece!!! remains useful whenever King or Kaido leaves you 1 DON!! available, and Queen can turn unneeded large Characters into fresh cards. The deck has several ways to recycle an awkward hand." },
 ];
 ---
 
@@ -214,11 +184,7 @@ const raidBosses = [
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
 				<h1>Kaido OP17 Deck Guide</h1>
-				<p class="hero-intro">
-					A quick OP17 mini-guide to help you master Kaido and his oppressive late-game plan. If you enjoy
-					ramping fast, surviving the early turns, and dropping massive cost 10 bosses, this Leader is built
-					for that style.
-				</p>
+				<p class="hero-intro">Build your DON!! lead early, play King on curve, and turn 10 DON!! into a steady stream of massive threats, defense, and board control.</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#curve">Curve Guide</a>
 					<a class="btn btn-secondary" href="#matchups">Matchups</a>
@@ -268,119 +234,37 @@ const raidBosses = [
 			</div>
 
 			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2 id="curve">Your Best Curve</h2>
-						<p>Going first is your best start.</p>
-					</div>
-				</div>
-				<div class="curve-rows">
-					{bestCurve.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((entry, index) => (
-									<>
-										{index > 0 && (
-											<span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>
-										)}
-										<button
-											class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
-											type="button"
-											data-card-preview
-											data-full={entry.card.img}
-											data-name={`${entry.card.code} ${entry.card.name}`}
-											data-code={entry.card.effectCode}
-										>
-											<div class="curve-card-frame">
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-												{entry.donAttached && (
-													<div class="curve-don-attach" aria-label={`${entry.donAttached} DON attached`}>
-														<img src="/Cards/Don/Don.png" alt="" aria-hidden="true" />
-														<span>{entry.donAttached} DON!!</span>
-													</div>
-												)}
-											</div>
-										</button>
-									</>
-								))}
-							</div>
-							<div class="curve-note">{slot.note}</div>
-						</div>
+				<div class="section-header feature-header"><div><h2>Mulligan</h2><p>Your opening hand needs to ramp efficiently and play King on time. The priority shifts slightly depending on whether you go first or second.</p></div></div>
+				<div class="mulligan-list">
+					{mulliganSections.map((section) => (
+						<article class="mulligan-priority"><h3>{section.title}</h3><div class="mulligan-cards">{section.cards.map((entry) => <button class="mini-card mulligan-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">{section.text}</p></article>
 					))}
 				</div>
 			</div>
 
-			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Even Curve</h2>
-						<p>Still under optimization, but this is the current even-curve structure.</p>
-					</div>
+			<div class="glow-block feature-block" id="curve">
+				<div class="section-header feature-header"><div><h2>Curve Guide</h2><p>This curve shows the ideal DON!! progression. If you miss a piece, the deck has several ways to return to 10 DON!!. Account for your DON!! -X effects, which can change how much DON!! you have available on the following turn.</p></div></div>
+				<div class="curve-guide-block"><h3>Going First</h3><div class="curve-rows">{goingFirstCurve.map((slot) => <div class="curve-row"><div><div class="curve-label">{slot.label}</div><div class="curve-cards">{slot.cards.map((entry) => <button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div></div><p class="curve-note">{slot.text}</p></div>)}</div></div>
+				<div class="curve-guide-block"><h3>Going Second</h3><div class="curve-rows">{goingSecondCurve.map((slot) => <div class="curve-row"><div><div class="curve-label">{slot.label}</div><div class="curve-cards">{slot.cards.map((entry) => <button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div></div><p class="curve-note">{slot.text}</p></div>)}</div>
+					<div class="curve-row late-game-row"><div><div class="curve-label">10 DON!! — Late Game</div><div class="curve-cards">{lateGameChoices.map((entry) => <button class="mini-card curve-card" type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.effectCode}><img src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} loading="lazy" /></button>)}</div></div><ul class="summary-list">{lateGameChoices.map((entry) => <li>{entry.text}</li>)}</ul></div>
 				</div>
-				<div class="curve-rows">
-					{evenCurve.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								{slot.cards.map((entry, index) => (
-									<>
-										{index > 0 && (
-											<span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>
-										)}
-										<button
-											class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`}
-											type="button"
-											data-card-preview
-											data-full={entry.card.img}
-											data-name={`${entry.card.code} ${entry.card.name}`}
-											data-code={entry.card.effectCode}
-										>
-											<div class="curve-card-frame">
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-												{entry.donAttached && (
-													<div class="curve-don-attach" aria-label={`${entry.donAttached} DON attached`}>
-														<img src="/Cards/Don/Don.png" alt="" aria-hidden="true" />
-														<span>{entry.donAttached} DON!!</span>
-													</div>
-												)}
-											</div>
-										</button>
-									</>
+				<div class="curve-guide-block support-guides">
+					{rampSupport.map((support) => (
+						<article class="support-row">
+							<div class="support-card-list">
+								{support.cards.map((entry) => (
+									<button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}>
+										<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+									</button>
 								))}
 							</div>
-							<div class="curve-note">{slot.note}</div>
-						</div>
-					))}
-				</div>
-			</div>
-
-			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Raid Bosses</h2>
-						<p>The late game is where Kaido takes over. These are the payoff threats that matter most.</p>
-					</div>
-				</div>
-				<div class="boss-grid">
-					{raidBosses.map((entry) => (
-						<article class="boss-card">
-							<button
-								class="mini-card boss-card-media"
-								type="button"
-								data-card-preview
-								data-full={entry.card.img}
-								data-name={`${entry.card.code} ${entry.card.name}`}
-								data-code={entry.card.effectCode}
-							>
-								<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-								<div class="mini-label">{entry.card.name}</div>
-							</button>
-							<p class="curve-note">{entry.copy}</p>
+							<div><h3>{support.title}</h3><p class="curve-note">{support.text}</p></div>
 						</article>
 					))}
 				</div>
 			</div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Tech Cards</h2><p>This list can be adjusted for the matchups you expect. Sasaki slots are especially flexible because he is usually a 2K Counter rather than a true ramp piece.</p></div></div><div class="tech-grid">{techCards.map((entry) => <article class="tech-card"><button class="mini-card" type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.effectCode}><img src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} loading="lazy" /></button><div><h3>{entry.title}</h3><p class="curve-note">{entry.text}</p></div></article>)}</div></div>
 
 			<div class="glow-block feature-block" id="matchups">
 				<div class="section-header feature-header">
@@ -473,48 +357,7 @@ const raidBosses = [
 				</div>
 			</div>
 
-			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Deck Overview</h2>
-						<p>
-							Ramp to 10 DON!! as fast as possible. Survive the early game so you can spam massive cost 10
-							boss Characters that refund DON!!, heal you, and lock down the late-game board.
-						</p>
-					</div>
-				</div>
-				<div class="nutshell-grid">
-					<div class="info-panel">
-						<div class="section-tag section-tag-light">Strength</div>
-						<ul class="summary-list">
-							{nutshellForce.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<div class="info-panel">
-						<div class="section-tag section-tag-light">Weakness</div>
-						<ul class="summary-list">
-							{nutshellWeakness.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-				</div>
-				<div class="core-panel">
-					<div class="section-tag section-tag-light">The Core Engine</div>
-					<ul class="summary-list">
-						{coreEngine.map((item) => <li>{item}</li>)}
-					</ul>
-				</div>
-			</div>
-
-			<div class="summary-grid">
-				<div class="glow-block conclusions-card">
-					<div class="section-tag section-tag-light">Conclusion</div>
-					<p class="ability-copy">
-						Kaido OP17 is a clean late-game purple strategy that rewards disciplined ramp lines and careful
-						resource management. When the deck reaches cost 10 turns on schedule, it becomes very hard to
-						outscale because every boss either stabilizes, heals, or creates another DON!! loop.
-					</p>
-				</div>
-			</div>
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Tips</h2><p>Kaido rewards careful ramp planning, disciplined DON!! management, and patience once the late game begins.</p></div></div><ol class="tips-list">{tips.map((tip) => <li class="tip-item"><div class="tip-card-list">{tip.cards.map((entry) => <button class="mini-card tip-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.effectCode}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">{tip.text}</p></li>)}</ol></div>
 		</div>
 	</section>
 
@@ -899,6 +742,42 @@ const raidBosses = [
 		min-width: 0;
 	}
 
+	.mulligan-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.mulligan-priority {
+		display: grid;
+		gap: 0.85rem;
+		padding-top: 1rem;
+		border-top: 2px solid rgba(255, 138, 42, 0.48);
+	}
+
+	.mulligan-priority:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	.mulligan-priority h3 {
+		margin: 0;
+	}
+
+	.mulligan-cards {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		flex-wrap: nowrap;
+	}
+
+	.mulligan-card {
+		flex: 0 0 104px;
+	}
+
+	.mulligan-card img {
+		width: 104px;
+	}
+
 	.deck-card {
 		background: rgba(10, 14, 24, 0.92);
 		border: 1px solid rgba(255, 138, 42, 0.22);
@@ -973,7 +852,7 @@ const raidBosses = [
 
 	.curve-row {
 		display: grid;
-		grid-template-columns: 96px max-content minmax(0, 1fr);
+		grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
 		gap: 1rem;
 		align-items: center;
 		padding: 0.9rem;
@@ -991,10 +870,10 @@ const raidBosses = [
 	.curve-cards {
 		display: flex;
 		justify-content: flex-start;
-		align-items: center;
+		align-items: flex-start;
 		gap: 0.65rem;
-		flex-wrap: nowrap;
-		width: max-content;
+		flex-wrap: wrap;
+		width: 100%;
 	}
 
 	.mini-card {
@@ -1348,7 +1227,97 @@ const raidBosses = [
 		}
 	}
 
-	@media (max-width: 640px) {
+	.support-guides,
+	.tech-grid,
+	.tips-list {
+		display: grid;
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.support-row,
+	.tech-card,
+	.tip-item {
+		display: grid;
+		grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 1rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+		min-width: 0;
+	}
+
+	.tip-item {
+		grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+	}
+
+	.support-row h3,
+	.tech-card h3 {
+		margin: 0 0 0.45rem;
+	}
+
+	.support-card-list,
+	.tip-card-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		align-items: flex-start;
+	}
+
+	.support-card img {
+		width: 76px;
+	}
+
+	.tip-card img {
+		width: 96px;
+	}
+
+	.tech-card > .mini-card img {
+		width: 120px;
+	}
+
+	@media (max-width: 900px) {
+		.deck-grid {
+			grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		}
+
+		.support-row,
+		.tech-card,
+		.tip-item {
+			grid-template-columns: minmax(132px, 190px) minmax(0, 1fr);
+		}
+	}
+
+	@media (max-width: 560px) {
+		.hero-tags {
+			gap: 0.45rem;
+		}
+
+		.hero-chip {
+			padding: 0.4rem 0.65rem;
+			font-size: 0.82rem;
+			letter-spacing: 0.04em;
+		}
+
+		.mulligan-cards {
+			gap: 0.75rem;
+			width: 100%;
+		}
+
+		.mulligan-card {
+			flex: 0 1 88px;
+			width: 88px;
+		}
+
+		.mulligan-card img {
+			width: 88px;
+			max-width: 100%;
+		}
+
 		.copy-sim-button {
 			width: auto;
 			justify-content: center;
@@ -1373,42 +1342,6 @@ const raidBosses = [
 			justify-self: end;
 		}
 
-		.deck-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
-		.deck-card {
-			padding: 0.7rem;
-		}
-
-		.deck-card img {
-			max-width: 92px;
-		}
-
-		.boss-card {
-			display: flex;
-			align-items: flex-start;
-			gap: 0.9rem;
-		}
-
-		.boss-card .curve-note {
-			flex: 1 1 auto;
-			margin: 0;
-			text-align: left;
-		}
-
-		.boss-card-media {
-			flex: 0 0 108px;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-		}
-
-		.boss-card-media img {
-			width: 108px;
-			max-width: 108px;
-		}
-
 		.curve-row {
 			display: flex;
 			flex-direction: column;
@@ -1424,10 +1357,10 @@ const raidBosses = [
 		.curve-cards {
 			display: flex;
 			justify-content: flex-start;
-			align-items: center;
-			gap: 0.12rem;
-			flex-wrap: nowrap;
-			width: max-content;
+			align-items: flex-start;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+			width: 100%;
 		}
 
 		.curve-cards .mini-card {
@@ -1443,9 +1376,7 @@ const raidBosses = [
 			margin-inline: 0.35rem;
 			justify-content: center;
 		}
-	}
 
-	@media (max-width: 560px) {
 		.guide-hero {
 			padding-top: 2rem;
 		}
@@ -1488,9 +1419,31 @@ const raidBosses = [
 		.curve-card img {
 			max-width: 86px;
 		}
+
+		.support-row,
+		.tech-card,
+		.tip-item {
+			grid-template-columns: 108px minmax(0, 1fr);
+			gap: 0.75rem;
+			padding: 0.8rem;
+		}
+
+		.support-card-list,
+		.tip-card-list {
+			gap: 0.4rem;
+		}
+
+		.support-card img,
+		.tip-card img {
+			width: 50px;
+		}
+
+		.tech-card > .mini-card img {
+			width: 88px;
+		}
 	}
 	.matchup-badge { width: fit-content; min-height: 0; }
-	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 92px; height: 72px; max-width: 92px; object-fit: cover; } .matchup-badge { width: 100%; min-height: 40px; } }
+	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 100%; height: auto; max-width: 110px; object-fit: initial; } .matchup-badge { width: 100%; min-height: 40px; } }
 </style>
 
 
