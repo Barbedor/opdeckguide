@@ -127,7 +127,12 @@ const isDevelopment = import.meta.env.DEV;
 				const status = usStatesOptOut?.getInitialUsStatesOptOutStatus?.();
 				const statusEnum = usStatesOptOut?.InitialUsStatesOptOutStatusEnum;
 
-				if (!statusEnum || status === statusEnum.DOES_NOT_APPLY) return;
+				if (
+					!statusEnum ||
+					(status !== statusEnum.NOT_OPTED_OUT && status !== statusEnum.OPTED_OUT)
+				) {
+					return;
+				}
 
 				showUsPrivacySection();
 
