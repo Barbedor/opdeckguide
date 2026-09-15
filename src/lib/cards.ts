@@ -763,6 +763,11 @@ const manualCardOverrides = {
 			name: "Ripley",
 			color: "Black",
 		},
+		"eb05-044 ms. father's day": {
+			code: "EB05-044",
+			name: "Ms. Father's Day",
+			color: "Black",
+		},
 		"eb05-057 nojiko": {
 			code: "EB05-057",
 			name: "Nojiko",

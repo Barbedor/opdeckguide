@@ -7,6 +7,7 @@ const metaTitle = pageTitle ? `${pageTitle} | OPDeckGuide` : 'OPDeckGuide | One 
 const metaDescription = description ?? 'Modern One Piece Card Game deck guides, matchup breakdowns, and meta analysis built for competitive players and new pirates alike.';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const isProduction = import.meta.env.PROD;
 const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
@@ -64,6 +65,16 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			content="99zJkTfABB0n6Wfq80eF99KZjoLSz2OeJfuDGZaVNBk"
 		/>
 		<meta name="impact-site-verification" value="b5194736-a6dc-4336-bc96-c9128214506c" />
+		{
+			isProduction && (
+				<script is:inline>
+					window.googlefc = window.googlefc || {};
+					window.googlefc.usstatesoptout = window.googlefc.usstatesoptout || {};
+					window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+					window.googlefc.usstatesoptout.overrideDnsLink = true;
+				</script>
+			)
+		}
 		<script
 			async
 			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6147597626188070"
