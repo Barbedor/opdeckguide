@@ -1,9 +1,9 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Monkey.D.Luffy OP17 Deck Guide";
+const title = "Monkey D. Luffy OP17 Deck Guide: Elbaph Decklist, Mulligan & Curve";
 const description =
-	"Deck guide for Monkey.D.Luffy OP17 for One Piece Card Game with leader ability, updated sample decklist, curve guide, possible Luffy targets, matchup overview, and a conclusion for the OP17 format.";
+	"Monkey D. Luffy OP17 Elbaph deck guide with the current decklist, mulligan priorities, curves, Luffy targets, tech cards, matchups, and gameplay tips.";
 const icon = "/assets/guides/Monkey.D.Luffy%20op17.png";
 
 const expandSimLines = (count, code) => {
@@ -25,25 +25,37 @@ const expandSimLines = (count, code) => {
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
 
 
+const leader = card("OP17-079", "Monkey D. Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader");
+const chopper = card("OP17-084", "Tony Tony Chopper", "/Cards/OP17/New OP17/OP17-084.jpg");
+const rodo = card("OP17-094", "Rodo", "/Cards/OP17/New OP17/OP17-094.jpg");
+const usopp = card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg");
+const gerd = card("OP17-081", "Gerd", "/Cards/OP17/New OP17/OP17-081.jpg");
+const sanji = card("OP17-082", "Sanji", "/Cards/OP17/New OP17/OP17-082.jpg");
+const robin = card("OP17-087", "Nico Robin", "/Cards/OP17/New OP17/OP17-087.jpg");
+const franky = card("OP17-090", "Franky", "/Cards/OP17/New OP17/OP17-090.jpg");
+const brook = card("OP17-091", "Brook", "/Cards/OP17/New OP17/OP17-091.jpg");
+const zoro = card("OP17-095", "Roronoa Zoro", "/Cards/OP17/New OP17/OP17-095.jpg");
+const saul = card("OP17-089", "Jaguar D. Saul", "/Cards/OP17/New OP17/OP17-089.jpg");
+const docking = card("OP15-088", "Pirates Docking Six", "/Cards/OP15/OP15-088.jpg");
+const loki = card("OP17-119", "Loki", "/Cards/OP17/New OP17/OP17-119.jpg");
+const luffy = card("OP17-093", "Monkey D. Luffy", "/Cards/OP17/New OP17/OP17-093.jpg");
+const kongGun = card("OP17-098", "Gum-Gum Kong Gun", "/Cards/OP17/New OP17/OP17-098.jpg", null, "Event");
+const sunny = card("ST14-017", "Thousand Sunny", "/Cards/ST14/ST14-017.png", null, "Stage");
+const tempestKick = card("OP07-096", "Tempest Kick", "/Cards/OP07/OP07-096.png", null, "Event");
+const toySoldier = card("OP05-081", "One-Legged Soldier", "/Cards/OP05/OP05-081.png");
+const feedOnRage = card("OP17-097", "I'll Feed on This Rage and Use It to Bring the World to Ruin!!!", "/Cards/OP17/New OP17/OP17-097.jpg", null, "Event");
+const imLuffy = card("OP17-096", "I'm Luffy!! The Man Who's Gonna Become the King of the Pirates!!", "/Cards/OP17/New OP17/OP17-096.jpg", null, "Event");
+const dorry = card("OP17-085", "Dorry", "/Cards/OP17/New OP17/OP17-085.jpg");
+const brogy = card("OP17-092", "Brogy", "/Cards/OP17/New OP17/OP17-092.jpg");
+const jinbe = card("OP17-083", "Jinbe", "/Cards/OP17/New OP17/OP17-083.jpg");
+const stussy = card("OP07-085", "Stussy", "/Cards/OP07/OP07-085.png");
+
 const decklist = [
-	card("OP17-079", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-079.jpg", 1, "Leader"),
-	card("OP17-084", "Tony Tony.Chopper", "/Cards/OP17/New OP17/OP17-084.jpg", 2),
-	card("OP17-086", "Nami", "/Cards/OP17/New OP17/OP17-086.jpg", 4),
-	card("OP17-094", "Rodo", "/Cards/OP17/New OP17/OP17-094.jpg", 2),
-	card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg", 4),
-	card("OP17-081", "Gerd", "/Cards/OP17/New OP17/OP17-081.jpg", 4),
-	card("OP17-095", "Roronoa Zoro", "/Cards/OP17/New OP17/OP17-095.jpg", 2),
-	card("OP17-091", "Brook", "/Cards/OP17/New OP17/OP17-091.jpg", 2),
-	card("OP17-083", "Jinbe", "/Cards/OP17/New OP17/OP17-083.jpg", 2),
-	card("OP17-082", "Sanji", "/Cards/OP17/New OP17/OP17-082.jpg", 4),
-	card("OP17-087", "Nico Robin", "/Cards/OP17/New OP17/OP17-087.jpg", 2),
-	card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/New OP17/OP17-089.jpg", 4),
-	card("OP17-085", "Dorry", "/Cards/OP17/New OP17/OP17-085.jpg", 3),
-	card("OP17-092", "Brogy", "/Cards/OP17/New OP17/OP17-092.jpg", 3),
-	card("OP17-119", "Loki", "/Cards/OP17/New OP17/OP17-119.jpg", 4),
-	card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-093.jpg", 4),
-	card("OP17-098", "Gum-Gum Kong Pistol", "/Cards/OP17/New OP17/OP17-098.jpg", 2, "Event"),
-	card("OP17-097", "Instead I'll Feed on this Rage!! And Use It to Bring the World to Ruin!!", "/Cards/OP17/New OP17/OP17-097.jpg", 2, "Event"),
+	leader,
+	{ ...chopper, count: 1 }, { ...rodo, count: 3 }, { ...usopp, count: 4 }, { ...gerd, count: 4 },
+	{ ...sanji, count: 2 }, { ...robin, count: 4 }, { ...franky, count: 2 }, { ...brook, count: 3 },
+	{ ...zoro, count: 4 }, { ...saul, count: 4 }, { ...docking, count: 4, role: "Character" },
+	{ ...loki, count: 4 }, { ...luffy, count: 4 }, { ...kongGun, count: 3 }, { ...sunny, count: 4 },
 ];
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
@@ -63,32 +75,54 @@ const matchupGroups = [
 	{ title: "Unfavorable", entries: [
 		["Sabo OP13", "/assets/guides/Sabo%20OP13-004.png"],
 		["Dracule Mihawk OP14", "/assets/guides/dracule-mihawk-op14.png"],
-		["Monkey.D.Luffy OP17", "/assets/guides/Luffy%20OP17.png"],
 		["Luffy and Ace ST30", "/assets/guides/Luffy-st30.png"],
 	] },
 ];
 
-const curveGuide = [
-	{
-		label: "2 DON!!",
-		note: "Open with Usopp to search an Elbaph card and start stacking the trash.",
-		card: card("OP17-080", "Usopp", "/Cards/OP17/New OP17/OP17-080.jpg"),
-	},
-	{
-		label: "4 DON!!",
-		note: "Play Jaguar.D. Saul to establish a 12-cost body while finding another Elbaph card.",
-		card: card("OP17-089", "Jaguar.D. Saul", "/Cards/OP17/New OP17/OP17-089.jpg"),
-	},
-	{
-		label: "6 DON!!",
-		note: "Loki gives you a large 12-cost threat and controls the opponent's low-cost board.",
-		card: card("OP17-119", "Loki", "/Cards/OP17/New OP17/OP17-119.jpg"),
-	},
-	{
-		label: "8 DON!!",
-		note: "Monkey.D.Luffy draws a card and brings one of your 2-cost Characters back from the trash.",
-		card: card("OP17-093", "Monkey.D.Luffy", "/Cards/OP17/New OP17/OP17-093.jpg"),
-	},
+const mulliganSections = [
+	{ title: "Usopp", cards: [usopp], text: "Usopp is one of the best cards to see in your opening hand. He looks at the top 3 cards for an Elbaph card while sending the rest to your trash, so he finds future plays and starts preparing your trash at the same time. Filling the trash early is especially important for Roronoa Zoro, who can later protect your Characters from opposing removal." },
+	{ title: "Jaguar D. Saul", cards: [saul], text: "Jaguar D. Saul is your other key Searcher. Like Usopp, he searches the top 3 cards while feeding your trash, giving you enough consistency to find the Elbaph pieces your curve is missing." },
+	{ title: "Find a 12-Cost or Higher", cards: [loki, saul, gerd], text: "Your next priority is enabling the Characters that need a 12-cost or higher Character on your board. Loki is especially important: on your opponent's turn, his own effect and the Leader effect make him an 11K Blocker. Gerd also becomes a Blocker through the Leader while giving you access to the trash." },
+	{ title: "Keep Priorities", cards: [usopp, loki], text: "Usopp plus a way to establish a 12-cost or higher Character is an excellent start. Don't keep an opening hand only because it has powerful late-game cards; keep the Searchers and the line that makes your future turns work." },
+];
+
+const goingFirstCurve = [
+	{ label: "1 DON!! — No Play", cards: [], text: "This decklist does not play Nami, so there is usually no worthwhile play at 1 DON!!." },
+	{ label: "3 DON!! — Usopp", cards: [usopp, rodo, franky], joins: ["or", "+"], text: "Play Usopp, then use your remaining DON!! on the Leader to attack at 6K. If an opposing 2-cost must be removed immediately, Rodo into Franky is the alternative line: Rodo gives you a 12-cost Character right away, enabling Franky to deal with that target before it attacks." },
+	{ label: "5 DON!! — Pirates Docking Six or Jaguar D. Saul", cards: [docking, saul], joins: ["or"], text: "Play Pirates Docking Six when you do not need to establish a 12-cost immediately. It trashes 3 cards from your deck, then plays a 2-cost or lower Straw Hat Crew Character from your trash, improving both your trash and your board. If you need the 12-cost synergies online, choose Jaguar D. Saul instead." },
+	{ label: "7 DON!! — Loki or Gum-Gum Kong Gun", cards: [loki, kongGun], joins: ["or"], text: "Loki is the main play: his On Play can K.O. multiple Characters as long as their combined cost is 4 or less, and he is usually best kept active as an 11K Blocker on the opponent's turn. If the opponent has two key targets, Gum-Gum Kong Gun can be better by removing up to two 6-cost Characters." },
+	{ label: "9 DON!! — Luffy and a 2-Cost", cards: [luffy, robin, brook], joins: ["+", "or"], text: "Play Monkey D. Luffy after you establish a 12-cost or higher Character. He gains Rush, draws a card, and plays a 2-cost Character from your trash. Bring back Robin to reduce a target by 3K before Luffy attacks, or Brook to pressure the opponent's hand." },
+];
+
+const goingSecondCurve = [
+	{ label: "2 DON!! — Usopp", cards: [usopp], text: "Start with Usopp to find the next pieces of your curve and begin filling your trash." },
+	{ label: "4 DON!! — Jaguar D. Saul or Two 2-Costs", cards: [saul, usopp, zoro], joins: ["or", "+"], text: "Play Jaguar D. Saul to keep developing and establish a 12-cost. Alternatively, play two 2-cost Characters such as Usopp and Zoro: you build the board while Zoro protects your Characters on the following turn." },
+	{ label: "6 DON!! — Loki or Pirates Docking Six and Thousand Sunny", cards: [loki, docking, sunny], joins: ["or", "+"], text: "Loki immediately controls the opposing board and establishes your 11K Blocker. The alternate line is Pirates Docking Six plus Thousand Sunny: Docking Six reaches 11 cost with its own effect, then Thousand Sunny raises it to 12, making it a 7K Blocker through the Leader while it recovers a 2-cost Straw Hat Crew Character from your trash." },
+	{ label: "8 DON!! — Luffy and a 2-Cost", cards: [luffy, robin, gerd], joins: ["+", "or"], text: "Play Luffy with a 12-cost already in play to gain Rush, draw, and replay a 2-cost from your trash. Luffy plus Robin makes an 8K Rush attack much easier to convert. For defense, Gerd into Luffy into another Gerd creates multiple 12-cost Blockers while recycling your resources." },
+	{ label: "10 DON!! and Beyond", cards: [luffy, loki, docking, kongGun], text: "Your turns are no longer fixed. Adapt between Luffy plus 2-costs, Loki, Pirates Docking Six, your Blockers, and Gum-Gum Kong Gun according to the board and the opponent's resources." },
+];
+
+const techCards = [
+	{ card: tempestKick, title: "Tempest Kick", text: "Tempest Kick is a strong option for a cost-reduction package. It gives an opposing Character -3 cost and draws a card when your trash has 10 or more cards, so it replaces itself while expanding Loki's range. A 7-cost Character reduced to 4 cost can then be K.O.'d by Loki." },
+	{ card: toySoldier, title: "One-Legged Soldier", text: "One-Legged Soldier gives another -3 cost option while keeping a 2K Counter in the decklist. Once it is on the board, you can trash it for the reduction, making it useful for control without being dead when you simply need to defend." },
+	{ card: feedOnRage, title: "I'll Feed on This Rage and Use It to Bring the World to Ruin!!!", text: "This Event is especially strong against wide boards because it gives every opposing Character -1 cost. Against four 2-cost Characters, it reduces them all to 1 cost; Loki can then K.O. all four because their total cost is 4." },
+	{ card: imLuffy, title: "I'm Luffy!! The Man Who's Gonna Become the King of the Pirates!!", text: "If you prefer more defense over removal, this is a useful alternative. Once you control a 12-cost or higher Character, it gives 4K Counter—a condition this deck can meet consistently. Two copies are reasonable when you expect to need more protection." },
+];
+
+const tips = [
+	{ cards: [leader], text: "Don't play this deck like Sabo. This Luffy build is more defensive and grind-focused: your 12-cost Characters become Blockers, letting you slow the game, protect resources, and gradually exhaust the opponent's hand." },
+	{ cards: [loki], text: "Loki is usually more valuable active than attacking. On the opponent's turn he is an 11K Blocker, so giving up his 8K attack often forces the opponent to spend far more resources to break through your defense." },
+	{ cards: [usopp, saul, zoro, docking], text: "Filling your trash is part of the core plan. Usopp and Jaguar D. Saul do more than search: they prepare Zoro, Pirates Docking Six, Gerd, and the different 2-cost targets for Luffy." },
+	{ cards: [zoro], text: "Use Zoro to protect your smaller Characters. Once your trash is full enough, he can stop opposing removal from clearing a board of 2-costs that will later attack at 5K once a 12-cost is established." },
+	{ cards: [luffy, robin, brook, sanji, chopper], text: "Choose Luffy's 2-cost target for the situation. Robin gives -3K Power, Brook attacks the opponent's hand, Sanji fixes an awkward hand, and Chopper gives Luffy Unblockable. The same Luffy can support an aggressive, defensive, or grind-focused turn." },
+	{ cards: [gerd, luffy, zoro], text: "Gerd recycles important resources. By trashing an unneeded card, she can recover an 8-cost or lower Character other than Gerd, including Luffy or a Zoro 2K Counter when defense matters most." },
+	{ cards: [gerd, luffy], text: "Use the Gerd → Luffy → Gerd loop. Gerd recovers Luffy from the trash, then Luffy replays another Gerd from the trash, giving you an 8K Rush attacker and more 12-cost Blockers." },
+	{ cards: [docking, sunny], text: "Thousand Sunny transforms Pirates Docking Six. Docking Six reaches 11 cost with its own effect, then Sunny gives it the last cost it needs to become a 12-cost Blocker. The Stage is more than card draw—it enables this defensive interaction." },
+	{ cards: [rodo, franky], text: "Franky can remove key small Characters very early. On your 3-DON!! turn, Rodo gives you a 12-cost Character immediately, enabling Franky to K.O. an opposing 2-cost before it attacks." },
+	{ cards: [usopp, robin, brook, sanji], text: "Do not focus only on the opponent's large Characters. Once the board is established, your many 2-cost Characters attack at 5K. Repeated small attacks force Counters from the opponent while your large Blockers make their own turn much harder." },
+	{ cards: [kongGun], text: "Gum-Gum Kong Gun is strongest when you are already ahead on board. Removing two opposing targets protects that lead while your smaller Characters keep attacking. It also remains a 3K Counter for your Leader in defense." },
+	{ cards: [loki, robin, franky, kongGun], text: "Do not waste attacks when removal can do the job. Against Rocks, attacking a rested Character with Loki can be unnecessary if his effect already removes it. Check Loki, Robin, Franky, and Kong Gun first so more attacks can go to the opposing Leader." },
+	{ cards: [brook], text: "Once you have enough Blockers, start attacking the opponent's hand. Brook becomes much stronger in long games: your Loki and other Blockers keep you alive while Brook gradually reduces the opponent's resources." },
 ];
 
 const luffyTargets = [
@@ -111,12 +145,8 @@ const luffyTargets = [
 					<span class="hero-chip">Deck Guide</span>
 					<span class="hero-chip hero-chip-accent">OP17 Format</span>
 				</div>
-				<h1>Monkey.D.Luffy OP17 Deck Guide</h1>
-				<p class="hero-intro">
-					A first OP17 look at Monkey.D.Luffy, including his leader effect, an updated sample decklist, a
-					curve guide, possible Luffy targets, favorable and unfavorable matchups, and a short conclusion on
-					where the deck currently stands.
-				</p>
+				<h1>Monkey D. Luffy OP17 Deck Guide</h1>
+				<p class="hero-intro">Build an Elbaph board that turns your 12-cost Characters into Blockers, use the trash as a resource, and pressure with boosted 2-cost Characters. This guide covers the decklist, mulligan, curve lines, Luffy targets, tech choices, matchups, and gameplay tips.</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="#curve">Curve Guide</a>
 					<a class="btn btn-secondary" href="#matchups">Matchups</a>
@@ -130,72 +160,21 @@ const luffyTargets = [
 
 	<section id="decklist" class="list-section">
 		<div class="container article-stack">
-			<div class="glow-block">
-				<div class="section-header decklist-header">
-					<div class="decklist-title-row">
-						<h2>Decklist</h2>
-						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-							Copy for Sim
-						</button>
-					</div>
-					<div>
-						<p>Sample first-look OP17 list for Monkey.D.Luffy.</p>
-					</div>
-				</div>
-				<div class="deck-grid">
-					{
-						decklist.map((entry) => (
-							<button
-								class="deck-card"
-								type="button"
-								data-card-preview
-								data-full={entry.img}
-								data-name={`${entry.code} ${entry.name}`}
-								data-code={entry.code}
-							>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
-								<div class="deck-info">
-									<span class="deck-count">{entry.count}x</span>
-									<div>
-										<div class="deck-name">{entry.name}</div>
-										<div class="deck-code">{entry.code}</div>
-									</div>
-								</div>
-								<span class="deck-role">{entry.role}</span>
-							</button>
-						))
-					}
-				</div>
+			<div class="glow-block feature-block">
+				<div class="section-header decklist-header"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button></div><p>OP17 Elbaph Luffy built to establish 12-cost Blockers, pressure with 2-cost Characters, and recycle the trash.</p></div>
+				<div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /><div class="deck-info"><span class="deck-count">{entry.count}x</span><div><div class="deck-name">{entry.name}</div><div class="deck-code">{entry.code}</div></div></div><span class="deck-role">{entry.role}</span></button>)}</div>
 			</div>
 
-			<div id="curve" class="glow-block guide-feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Curve Guide</h2>
-						<p>Going second is your best start: follow the 2, 4, 6, then 8 DON!! curve.</p>
-					</div>
-				</div>
-				<div class="curve-rows">
-					{curveGuide.map((slot) => (
-						<div class="curve-row">
-							<div class="curve-label">{slot.label}</div>
-							<div class="curve-cards">
-								<button
-									class="mini-card curve-card"
-									type="button"
-									data-card-preview
-									data-full={slot.card.img}
-									data-name={`${slot.card.code} ${slot.card.name}`}
-									data-code={slot.card.code}
-								>
-									<img loading="lazy" src={slot.card.img} alt={`${slot.card.code} ${slot.card.name}`} />
-									<div class="mini-label">{slot.card.name}</div>
-								</button>
-							</div>
-							<div class="curve-note">{slot.note}</div>
-						</div>
-					))}
-				</div>
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Mulligan</h2><p>Your opening hand should set up the trash, find your Elbaph pieces, and give you access to a 12-cost or higher Character quickly.</p></div></div>
+				<div class="mulligan-list">{mulliganSections.map((section) => <article class="mulligan-priority"><h3>{section.title}</h3><div class="mulligan-cards">{section.cards.map((entry) => <button class="mini-card mulligan-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">{section.text}</p></article>)}</div>
+			</div>
+
+			<div id="curve" class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Curve Guide</h2><p>Your curve changes significantly depending on whether you go first or second. Going second is especially strong because the even DON!! steps chain your main plays naturally.</p></div></div>
+				<div class="curve-guide-block"><h3>Going First</h3><div class="curve-rows">{goingFirstCurve.map((slot) => <div class={`curve-row ${slot.cards.length === 4 ? "curve-row-four" : slot.cards.length === 3 ? "curve-row-three" : slot.cards.length === 2 ? "curve-row-two" : ""}`}><div><div class="curve-label">{slot.label}</div>{slot.cards.length > 0 && <div class={`curve-cards ${slot.cards.length === 4 ? "curve-cards-four" : slot.cards.length === 3 ? "curve-cards-three" : ""}`}>{slot.cards.map((entry, index) => <span class="curve-card-group"><button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>{slot.joins?.[index] && <span class={`curve-join ${slot.joins[index] === "or" ? "curve-join-or" : ""}`}>{slot.joins[index]}</span>}</span>)}</div>}</div><p class="curve-note">{slot.text}</p></div>)}</div></div>
+				<div class="curve-guide-block"><h3>Going Second</h3><div class="curve-rows">{goingSecondCurve.map((slot) => <div class={`curve-row ${slot.cards.length === 4 ? "curve-row-four" : slot.cards.length === 3 ? "curve-row-three" : slot.cards.length === 2 ? "curve-row-two" : ""}`}><div><div class="curve-label">{slot.label}</div><div class={`curve-cards ${slot.cards.length === 4 ? "curve-cards-four" : slot.cards.length === 3 ? "curve-cards-three" : ""}`}>{slot.cards.map((entry, index) => <span class="curve-card-group"><button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>{slot.joins?.[index] && <span class={`curve-join ${slot.joins[index] === "or" ? "curve-join-or" : ""}`}>{slot.joins[index]}</span>}</span>)}</div></div><p class="curve-note">{slot.text}</p></div>)}</div></div>
+				<div class="curve-guide-block pressure-block"><h3>Pressure with 2-Cost Characters</h3><div class="support-row"><div class="support-card-list">{[usopp, robin, brook, sanji].map((entry) => <button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">Once you establish a 12-cost or higher Character, your 2-cost Characters gain 3K Power. Those small bodies become real 5K attackers, letting you pressure the opposing Leader while you keep developing large Blockers.</p></div></div>
 			</div>
 
 			<div id="luffy-targets" class="glow-block guide-feature-block">
@@ -230,34 +209,23 @@ const luffyTargets = [
 				</div>
 			</div>
 
-			<div class="summary-grid">
-				<div class="glow-block conclusions-card">
-					<div class="section-tag section-tag-light">Conclusion</div>
-					<p class="ability-copy">
-						From the first tests, Luffy proves to be a very versatile leader capable of adapting to the meta.
-						This swarm deck requires careful resource management and timing. Some matchups depend heavily on
-						the dice, and the lists are still under development, but it already looks like a solid choice.
-					</p>
-				</div>
-				<div id="matchups" class="matchup-grid">
-					{matchupGroups.map((group, groupIndex) => (
-						<div class="matchup-card glow-block">
-							<div class={`matchup-badge ${groupIndex < 2 ? "badge-up" : groupIndex === 2 ? "badge-even" : "badge-down"}`}>
-								<span class="badge-icon">{groupIndex === 0 ? "↑" : groupIndex === 1 ? "↗" : groupIndex === 2 ? "~" : "↓"}</span>
-								<span>{group.title}</span>
-							</div>
-							<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">
-								{group.entries.map(([name, image]) => (
-									<div class="mini-card matchup-static-card" aria-label={name}>
-										<img class={name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={image} alt={name} loading="lazy" />
-										<div class="mini-label">{name.replace(/ OP\d+| ST30$/, "")}</div>
-									</div>
-								))}
-							</div></div>
-						</div>
-					))}
-				</div>
+			<div class="glow-block feature-block">
+				<div class="section-header feature-header"><div><h2>Tech Cards</h2><p>Adjust these slots toward cost reduction and board control, or add more defense for the matchups you expect.</p></div></div>
+				<div class="tech-grid">{techCards.map((entry) => <article class="tech-card"><button class="mini-card" type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.code}><img src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} loading="lazy" /></button><div><h3>{entry.title}</h3><p class="curve-note">{entry.text}</p></div></article>)}</div>
+				<div class="not-recommended"><h3>Not Recommended</h3><div class="support-row"><div class="support-card-list">{[dorry, brogy, stussy, jinbe].map((entry) => <button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">Dorry, Brogy, Stussy, and Jinbe are not necessary in this version. Jinbe matters less here than in Sabo because the Leader already turns your 12-cost or higher Characters into Blockers, giving the deck far more natural defensive options.</p></div></div>
 			</div>
+
+			<div class="section-header feature-header"><div><h2>Matchups</h2></div></div>
+			<div id="matchups" class="matchup-grid">
+				{matchupGroups.map((group, groupIndex) => (
+					<div class="matchup-card glow-block">
+						<div class={`matchup-badge ${groupIndex < 2 ? "badge-up" : groupIndex === 2 ? "badge-even" : "badge-down"}`}><span class="badge-icon">{groupIndex === 0 ? "↑" : groupIndex === 1 ? "↗" : groupIndex === 2 ? "~" : "↓"}</span><span>{group.title}</span></div>
+						<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">{group.entries.map(([name, image]) => <div class="mini-card matchup-static-card" aria-label={name}><img class={name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={image} alt={name} loading="lazy" /></div>)}</div></div>
+					</div>
+				))}
+			</div>
+
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Tips</h2><p>Elbaph Luffy rewards deliberate trash management, patient defense, and precise 2-cost sequencing.</p></div></div><ol class="tips-list">{tips.map((tip) => <li class="tip-item"><div class={`tip-card-list ${tip.cards.length === 4 ? "tip-card-list-four" : ""}`}>{tip.cards.map((entry) => <button class="mini-card tip-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">{tip.text}</p></li>)}</ol></div>
 		</div>
 	</section>
 
@@ -1041,6 +1009,17 @@ const luffyTargets = [
 	}
 
 	@media (max-width: 560px) {
+		.hero-tags {
+			flex-wrap: nowrap;
+			gap: 0.45rem;
+		}
+
+		.hero-chip {
+			padding: 0.4rem 0.65rem;
+			font-size: 0.82rem;
+			white-space: nowrap;
+		}
+
 		.guide-hero {
 			padding-top: 2rem;
 		}
@@ -1094,4 +1073,427 @@ const luffyTargets = [
 	}
 	.matchup-badge { width: fit-content; }
 	@media (max-width: 900px) { .tip-cards { flex-wrap: wrap; justify-content: center; overflow: visible; } .matchup-static-card { flex: initial; } .matchup-static-card img { width: 92px; height: 72px; max-width: 92px; object-fit: cover; } }
+
+	/* Kaido-style guide sections */
+	.feature-block,
+	.curve-guide-block {
+		display: grid;
+		gap: 1.4rem;
+	}
+
+	.curve-guide-block > h3,
+	.mulligan-priority h3,
+	.not-recommended h3 {
+		margin: 0;
+	}
+
+	.mulligan-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.mulligan-priority {
+		display: grid;
+		gap: 0.85rem;
+		padding-top: 1rem;
+		border-top: 2px solid rgba(255, 138, 42, 0.48);
+	}
+
+	.mulligan-priority:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	@media (min-width: 561px) {
+		.curve-row.curve-row-three {
+			grid-template-columns: minmax(440px, max-content) minmax(0, 1fr);
+		}
+
+		.curve-row.curve-row-two {
+			grid-template-columns: minmax(280px, max-content) minmax(0, 1fr);
+		}
+
+		.curve-row.curve-row-four,
+		.pressure-block .support-row,
+		.not-recommended .support-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.curve-row-four .curve-cards,
+		.pressure-block .support-card-list,
+		.not-recommended .support-card-list {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+
+		.curve-row-three .curve-cards {
+			flex-wrap: nowrap;
+		}
+
+		.pressure-block .support-card-list {
+			display: grid;
+			grid-template-columns: repeat(2, 112px);
+			gap: 0.75rem;
+		}
+
+		.pressure-block .support-card img {
+			width: 112px;
+		}
+
+		.not-recommended .support-card-list {
+			display: grid;
+			grid-template-columns: repeat(2, 112px);
+			gap: 0.75rem;
+		}
+
+		.not-recommended .support-card img {
+			width: 112px;
+		}
+
+		.tip-card-list-four {
+			display: grid;
+			grid-template-columns: repeat(2, 96px);
+			gap: 0.75rem;
+		}
+
+		.mulligan-priority {
+			grid-template-columns: minmax(112px, max-content) minmax(0, 1fr);
+			column-gap: 1rem;
+			row-gap: 0.75rem;
+		}
+
+		.mulligan-priority h3 {
+			grid-column: 1 / -1;
+		}
+
+		.mulligan-priority .mulligan-cards {
+			grid-column: 1;
+		}
+
+		.mulligan-priority .curve-note {
+			grid-column: 2;
+			grid-row: 2;
+			align-self: center;
+			margin: 0;
+		}
+
+		.pressure-block .support-card-list,
+		.not-recommended .support-card-list {
+			display: flex !important;
+			grid-template-columns: none !important;
+			flex-wrap: nowrap !important;
+			width: 100%;
+		}
+
+		.pressure-block .support-card,
+		.not-recommended .support-card {
+			flex: 0 0 112px;
+		}
+
+	}
+
+	.mulligan-cards,
+	.curve-cards,
+	.support-card-list,
+	.tip-card-list {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.mulligan-card {
+		flex: 0 0 104px;
+	}
+
+	.mulligan-card img {
+		width: 104px;
+	}
+
+	.curve-row {
+		grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
+		align-items: center;
+	}
+
+	.curve-label {
+		margin-bottom: 0.75rem;
+	}
+
+	.curve-cards {
+		justify-content: flex-start;
+		width: 100%;
+	}
+
+	.curve-card-group {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.curve-join {
+		color: var(--accent);
+		font-size: 1.75rem;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.curve-join-or {
+		font-size: 1.1rem;
+		text-transform: uppercase;
+	}
+
+	.curve-card img {
+		width: 112px;
+		max-width: 112px;
+	}
+
+	.curve-note {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.support-row,
+	.tech-card,
+	.tip-item {
+		display: grid;
+		grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 1rem;
+		border: 1px solid rgba(255, 138, 42, 0.16);
+		border-radius: 18px;
+		background: rgba(8, 12, 22, 0.76);
+		min-width: 0;
+	}
+
+	.support-card img {
+		width: 76px;
+	}
+
+	.tech-grid,
+	.tips-list {
+		display: grid;
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tech-card h3 {
+		margin: 0 0 0.45rem;
+	}
+
+	.tech-card > .mini-card img {
+		width: 120px;
+	}
+
+	.tip-item {
+		grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+	}
+
+	.tip-card img {
+		width: 96px;
+	}
+
+	.not-recommended {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1rem;
+		border-top: 2px solid rgba(255, 138, 42, 0.48);
+	}
+
+	@media (max-width: 900px) {
+		.support-row,
+		.tech-card,
+		.tip-item {
+			grid-template-columns: minmax(132px, 190px) minmax(0, 1fr);
+		}
+	}
+
+	@media (max-width: 560px) {
+		.mulligan-cards {
+			gap: 0.75rem;
+			width: 100%;
+			flex-wrap: nowrap;
+		}
+
+		.mulligan-card {
+			flex: 0 1 88px;
+			width: 88px;
+		}
+
+		.mulligan-card img {
+			width: 88px;
+			max-width: 100%;
+		}
+
+		.curve-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.55rem;
+			text-align: left;
+		}
+
+		.curve-cards {
+			gap: 0.5rem;
+		}
+
+		.curve-card img {
+			width: 86px;
+			max-width: 86px;
+		}
+
+		.curve-cards-three {
+			flex-wrap: nowrap;
+			gap: 0.25rem;
+		}
+
+		.curve-cards-three .curve-card-group {
+			gap: 0.25rem;
+		}
+
+		.curve-cards-three .curve-card img {
+			width: 78px;
+			max-width: 78px;
+		}
+
+		.curve-cards-four {
+			flex-wrap: nowrap;
+			gap: 0.35rem;
+		}
+
+		.curve-cards-four .curve-card img {
+			width: 64px;
+			max-width: 64px;
+		}
+
+		.curve-join {
+			font-size: 1.1rem;
+		}
+
+		.curve-join-or {
+			font-size: 0.8rem;
+		}
+
+		.support-row,
+		.tech-card {
+			grid-template-columns: 108px minmax(0, 1fr);
+			gap: 0.75rem;
+			padding: 0.8rem;
+		}
+
+		.support-card-list {
+			gap: 0.4rem;
+		}
+
+		.support-card img {
+			width: 50px;
+		}
+
+		.pressure-block .support-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.pressure-block .support-card-list {
+			width: 100%;
+			flex-wrap: nowrap;
+			gap: 0.4rem;
+		}
+
+		.pressure-block .support-card {
+			flex: 1 1 0;
+		}
+
+		.pressure-block .support-card img {
+			width: 100%;
+			max-width: 64px;
+		}
+
+		.not-recommended .support-row {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.not-recommended .support-card-list {
+			width: 100%;
+			flex-wrap: nowrap;
+			gap: 0.4rem;
+		}
+
+		.not-recommended .support-card {
+			flex: 1 1 0;
+		}
+
+		.not-recommended .support-card img {
+			width: 100%;
+			max-width: 64px;
+		}
+
+		.tech-card {
+			grid-template-columns: 120px minmax(0, 1fr);
+			gap: 1rem;
+			align-items: start;
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+		}
+
+		.tech-card > .mini-card img {
+			width: 120px;
+		}
+
+		.tech-card .curve-note {
+			padding-left: 0 !important;
+			border-left: 0 !important;
+		}
+
+		.tech-card + .tech-card {
+			margin-top: 0.75rem;
+			padding-top: 0.75rem;
+			border-top: 1px solid rgba(255, 138, 42, 0.3);
+		}
+
+		.tip-item {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			padding: 0.8rem;
+		}
+
+		.tip-card-list {
+			width: 100%;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			overflow: visible;
+		}
+
+		.tip-card {
+			flex: 0 0 auto;
+		}
+
+		.tip-card img {
+			width: 86px;
+		}
+
+		.tip-card-list-four {
+			flex-wrap: nowrap;
+			gap: 0.35rem;
+		}
+
+		.tip-card-list-four .tip-card {
+			flex: 1 1 0;
+		}
+
+		.tip-card-list-four .tip-card img {
+			width: 100%;
+			max-width: 64px;
+		}
+	}
 </style>
