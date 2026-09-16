@@ -723,6 +723,11 @@ const manualCardOverrides = {
 			name: "Hibari",
 			color: "Blue",
 		},
+		"eb05-028 boa hancock": {
+			code: "EB05-028",
+			name: "Boa Hancock",
+			color: "Blue",
+		},
 		"eb05-002 doll": {
 			code: "EB05-002",
 			name: "Doll",

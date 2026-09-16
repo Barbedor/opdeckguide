@@ -89,7 +89,7 @@ const mulliganSections = [
 const goingFirstCurve = [
 	{ label: "1 DON!! — No Play", cards: [], text: "This decklist does not play Nami, so there is usually no worthwhile play at 1 DON!!." },
 	{ label: "3 DON!! — Usopp", cards: [usopp, rodo, franky], joins: ["or", "+"], text: "Play Usopp, then use your remaining DON!! on the Leader to attack at 6K. If an opposing 2-cost must be removed immediately, Rodo into Franky is the alternative line: Rodo gives you a 12-cost Character right away, enabling Franky to deal with that target before it attacks." },
-	{ label: "5 DON!! — Pirates Docking Six or Jaguar D. Saul", cards: [docking, saul], joins: ["or"], text: "Play Pirates Docking Six when you do not need to establish a 12-cost immediately. It trashes 3 cards from your deck, then plays a 2-cost or lower Straw Hat Crew Character from your trash, improving both your trash and your board. If you need the 12-cost synergies online, choose Jaguar D. Saul instead." },
+	{ label: "5 DON!! — Pirates Docking Six or Jaguar D. Saul", cards: [docking, saul], joins: ["or"], text: "Play Pirates Docking Six when you do not need to establish a 12-cost immediately. It trashes 3 cards from your deck, then plays a 2-cost or lower Straw Hat Crew Character from your trash, improving both your trash and your board. If you need to activate your Cost 12+ synergies, Jaguar D. Saul is the other option for this turn." },
 	{ label: "7 DON!! — Loki or Gum-Gum Kong Gun", cards: [loki, kongGun], joins: ["or"], text: "Loki is the main play: his On Play can K.O. multiple Characters as long as their combined cost is 4 or less, and he is usually best kept active as an 11K Blocker on the opponent's turn. If the opponent has two key targets, Gum-Gum Kong Gun can be better by removing up to two 6-cost Characters." },
 	{ label: "9 DON!! — Luffy and a 2-Cost", cards: [luffy, robin, brook], joins: ["+", "or"], text: "Play Monkey D. Luffy after you establish a 12-cost or higher Character. He gains Rush, draws a card, and plays a 2-cost Character from your trash. Bring back Robin to reduce a target by 3K before Luffy attacks, or Brook to pressure the opponent's hand." },
 ];
@@ -215,7 +215,7 @@ const luffyTargets = [
 				<div class="not-recommended"><h3>Not Recommended</h3><div class="support-row"><div class="support-card-list">{[dorry, brogy, stussy, jinbe].map((entry) => <button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">Dorry, Brogy, Stussy, and Jinbe are not necessary in this version. Jinbe matters less here than in Sabo because the Leader already turns your 12-cost or higher Characters into Blockers, giving the deck far more natural defensive options.</p></div></div>
 			</div>
 
-			<div class="section-header feature-header"><div><h2>Matchups</h2></div></div>
+			<div class="section-header feature-header"><div><h2>Matchups</h2><p class="matchup-stats-link">For the complete turn-order win rate breakdown, see the <a href="/meta-analysis/Monkey-D-Luffy-op17-stats-OP17-Format/">Monkey D. Luffy OP17 stats in OP17 Format</a>.</p></div></div>
 			<div id="matchups" class="matchup-grid">
 				{matchupGroups.map((group, groupIndex) => (
 					<div class="matchup-card glow-block">
@@ -770,6 +770,10 @@ const luffyTargets = [
 		font-size: 0.82rem;
 		line-height: 1.3;
 	}
+
+	.matchup-stats-link { margin: 0.45rem 0 0; color: var(--text-200); }
+	.matchup-stats-link a { color: var(--accent); font-weight: 700; }
+	.matchup-stats-link a:hover { color: var(--accent-2); }
 
 	.matchup-badge {
 		display: inline-flex;

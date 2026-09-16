@@ -70,6 +70,11 @@ const description = "Leader-focused One Piece Card Game deck guides with a stron
 		margin-bottom: 1rem;
 	}
 
+	:global(.card-grid.mobile-double-grid .card-icon img) {
+		aspect-ratio: 1;
+		object-fit: cover;
+	}
+
 	@media (max-width: 640px) {
 		:global(.hero + .section) {
 			margin-top: -2.1rem;
