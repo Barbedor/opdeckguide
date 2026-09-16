@@ -72,6 +72,15 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 					window.googlefc.usstatesoptout = window.googlefc.usstatesoptout || {};
 					window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
 					window.googlefc.usstatesoptout.overrideDnsLink = true;
+					window.googlefc.callbackQueue.push({
+						INITIAL_US_STATES_OPT_OUT_DATA_READY: () => {
+							const status = googlefc.usstatesoptout.getInitialUsStatesOptOutStatus();
+							window.__opdeckguideUsStatesOptOutStatus = status;
+							window.dispatchEvent(
+								new CustomEvent("opdeckguide-us-states-opt-out-status", { detail: status }),
+							);
+						},
+					});
 				</script>
 			)
 		}

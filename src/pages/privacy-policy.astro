@@ -117,39 +117,36 @@ const isDevelopment = import.meta.env.DEV;
 			showUsPrivacyStatus("Development preview only. No privacy choice has been sent to Google.");
 		}
 	} else {
-		window.googlefc = window.googlefc || {};
-		window.googlefc.usstatesoptout = window.googlefc.usstatesoptout || {};
-		window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+		const renderUsPrivacyRights = (status) => {
+			const statusEnum = googlefc.usstatesoptout.InitialUsStatesOptOutStatusEnum;
 
-		window.googlefc.callbackQueue.push({
-			INITIAL_US_STATES_OPT_OUT_DATA_READY: () => {
-				const usStatesOptOut = window.googlefc?.usstatesoptout;
-				const status = usStatesOptOut?.getInitialUsStatesOptOutStatus?.();
-				const statusEnum = usStatesOptOut?.InitialUsStatesOptOutStatusEnum;
+			if (status !== statusEnum.NOT_OPTED_OUT && status !== statusEnum.OPTED_OUT) return;
 
-				if (
-					!statusEnum ||
-					(status !== statusEnum.NOT_OPTED_OUT && status !== statusEnum.OPTED_OUT)
-				) {
-					return;
-				}
+			showUsPrivacySection();
 
-				showUsPrivacySection();
-
-				if (status === statusEnum.NOT_OPTED_OUT && usPrivacyOptOutButton instanceof HTMLButtonElement) {
-					usPrivacyOptOutButton.removeAttribute("hidden");
-					usPrivacyOptOutButton.addEventListener("click", () => {
-						usStatesOptOut.openConfirmationDialog?.((userOptedOut) => {
+			if (status === statusEnum.NOT_OPTED_OUT && usPrivacyOptOutButton instanceof HTMLButtonElement) {
+				usPrivacyOptOutButton.removeAttribute("hidden");
+				usPrivacyOptOutButton.addEventListener(
+					"click",
+					() =>
+						googlefc.usstatesoptout.openConfirmationDialog((userOptedOut) => {
 							if (!userOptedOut) return;
 							usPrivacyOptOutButton.hidden = true;
 							showUsPrivacyStatus("Your opt-out choice is active.");
-						});
-					});
-				} else if (status === statusEnum.OPTED_OUT) {
-					showUsPrivacyStatus("Your opt-out choice is active.");
-				}
-			},
+						}),
+				);
+			} else if (status === statusEnum.OPTED_OUT) {
+				showUsPrivacyStatus("Your opt-out choice is active.");
+			}
+		};
+
+		window.addEventListener("opdeckguide-us-states-opt-out-status", (event) => {
+			renderUsPrivacyRights(event.detail);
 		});
+
+		if (typeof window.__opdeckguideUsStatesOptOutStatus !== "undefined") {
+			renderUsPrivacyRights(window.__opdeckguideUsStatesOptOutStatus);
+		}
 	}
 </script>
 
