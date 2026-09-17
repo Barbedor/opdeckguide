@@ -29658,7 +29658,9 @@ const buildDecklistSummary = (entry, leader) => {
 		.replace(/\bNA\b/g, "")
 		.replace(/\s+/g, " ")
 		.trim();
-	const subject = [entry.author, standing, leader?.name].filter(Boolean).join(" ");
+	const subject = [entry.author, standing, leader?.name]
+		.filter((value) => value && value !== "NA")
+		.join(" ");
 	const parts = [subject ? `${subject} decklist` : "Decklist"];
 	// NA means "unknown" in the source data: keep it in Location, but never
 	// present it as a country in the decklist introduction.

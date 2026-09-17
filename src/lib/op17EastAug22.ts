@@ -85,7 +85,7 @@ export const op17EastAug22DeckTemplates = {
 		{ code: "OP17-063", name: "Kaido", count: 3, img: "/Cards/OP17/New OP17/OP17-063.jpg", role: "Character" },
 		{ code: "OP17-076", name: "Wo Ro Ro Ro Ro!! I Think I've Sobored Up!!", count: 2, img: "/Cards/OP17/New OP17/OP17-076.jpg", role: "Event" },
 		{ code: "OP07-077", name: "We're Going to Claim the One Piece!!!", count: 4, img: "/Cards/OP07/OP07-077.png", role: "Event" },
-		{ code: "OP17-077", name: "Gundari Meteor Shower", count: 2, img: "/Cards/OP17/New OP17/OP17-077.jpg", role: "Event" },
+		{ code: "OP17-077", name: "Kundali Dragon Swarm", count: 2, img: "/Cards/OP17/New OP17/OP17-077.jpg", role: "Event" },
 		{ code: "OP07-076", name: "Noro Noro Beam Sword", count: 3, img: "/Cards/OP07/OP07-076.png", role: "Event" },
 	],
 	"p-enel-op17-east-cardshop-aug22-eijun": [
@@ -137,7 +137,7 @@ export const op17EastAug22DeckTemplates = {
 		{ code: "OP17-063", name: "Kaido", count: 4, img: "/Cards/OP17/New OP17/OP17-063.jpg", role: "Character" },
 		{ code: "OP15-078", name: "Mamaragan", count: 4, img: "/Cards/OP15/OP15-078.jpg", role: "Event" },
 		{ code: "OP07-077", name: "We're Going to Claim the One Piece!!!", count: 4, img: "/Cards/OP07/OP07-077.png", role: "Event" },
-		{ code: "OP17-077", name: "Gundari Meteor Shower", count: 4, img: "/Cards/OP17/New OP17/OP17-077.jpg", role: "Event" },
+		{ code: "OP17-077", name: "Kundali Dragon Swarm", count: 4, img: "/Cards/OP17/New OP17/OP17-077.jpg", role: "Event" },
 		{ code: "OP07-076", name: "Noro Noro Beam Sword", count: 3, img: "/Cards/OP07/OP07-076.png", role: "Event" },
 	],
 	"g-mihawk-op17-east-fukuou-cs-aug22-g2": [

@@ -10,6 +10,7 @@ import { buildCardIndex } from "./cards";
 const baseCardNames: Record<string, string> = {
 	"OP14-038": "I Never Bother to Remember the Faces of Trash",
 	"OP17-069": "Jack",
+	"P-105": "Sabo",
 	"EB02-030": "That Time is When Your Friend's Dreams are Laughed at!",
 	"EB04-058": "Borsalino",
 	"OP01-016": "Nami",
@@ -262,6 +263,7 @@ const baseCardNames: Record<string, string> = {
 	"OP17-063": "Kaido",
 	"OP17-065": "Queen",
 	"OP17-076": "Wo Ro Ro Ro Ro!! I Think I've Sobored Up!!",
+	"OP17-077": "Kundali Dragon Swarm",
 	"OP17-090": "Franky",
 	"OP17-098": "Gum-Gum Kong Pistol",
 	"OP14-027": "Shanks",

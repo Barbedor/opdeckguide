@@ -398,7 +398,7 @@ const manualCardOverrides = {
 		},
 		"op17-077": {
 			code: "OP17-077",
-			name: "Gundari Meteor Shower",
+			name: "Kundali Dragon Swarm",
 			color: "Purple",
 		},
 		"op17-078": {
@@ -727,6 +727,21 @@ const manualCardOverrides = {
 			code: "EB05-028",
 			name: "Boa Hancock",
 			color: "Blue",
+		},
+		"eb05-037 black maria": {
+			code: "EB05-037",
+			name: "Black Maria",
+			color: "Purple",
+		},
+		"eb05-039 pink hornet": {
+			code: "EB05-039",
+			name: "Pink Hornet",
+			color: "Purple",
+		},
+		"eb05-053 charlotte praline": {
+			code: "EB05-053",
+			name: "Charlotte Praline",
+			color: "Yellow",
 		},
 		"eb05-002 doll": {
 			code: "EB05-002",
