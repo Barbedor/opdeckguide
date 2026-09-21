@@ -1948,8 +1948,7 @@ const leakCardDetails = {
 		],
 	},
 	"EB05-016": {
-		rarity: "SP",
-		headerBadge: "SUPER RARE",
+		rarity: "Super Rare",
 		stats: "Green / Cost 6 / Wisdom / Power 6000 / Counter 1000",
 		traits: "Straw Hat Crew",
 		effectLines: [
@@ -2479,6 +2478,8 @@ const leakCardDetails = {
 const getLeakSortRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
 	if (card.code === "OP01-016") return 6;
+	if (extension.toUpperCase() === "EB05" && card.code === "EB05-016" && /\/SP EB05-016 Nico Robin\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "EB03-001" && card.edition === "ALT") return 8;
 	if (extension.toUpperCase() === "EB05" && card.rarity === "Leader Card" && card.edition === "ALT") return 7;
 	if (extension.toUpperCase() === "OP18" && card.code === "OP17-119" && card.edition === "ALT") return 1;
 	if (card.rarity === "SP") return 2;
@@ -2530,6 +2531,8 @@ const leakCards = isLeakPage
 					extension.toUpperCase() === "EB05" && card.code === "EB05-014" && card.edition === "MANGA";
 				const isOp18RobinManga =
 					extension.toUpperCase() === "OP18" && card.code === "OP18-031" && card.edition === "MANGA";
+				const isEb05NicoRobinSp =
+					extension.toUpperCase() === "EB05" && card.code === "EB05-016" && card.edition === "SP";
 				const hideEditionChip = rarity === "SP" || rarity === "Gold";
 				const hasStandaloneSpecialRarity = card.edition === "PIRATE CREW SUPER ALT MANGA";
 				const useHeaderAltBadge =
@@ -2549,12 +2552,16 @@ const leakCards = isLeakPage
 					...details,
 					rarity: hasStandaloneSpecialRarity
 						? card.edition
+						: isEb05NicoRobinSp
+							? "SP"
 						: isEb05ShirahoshiManga || isOp18RobinManga
 							? "MANGA"
 							: details?.rarity ?? "",
 					headerBadge:
 						useHeaderAltBadge || useOp18LokiAltBadge
 							? "ALT"
+							: isEb05NicoRobinSp
+								? "SUPER RARE"
 							: isEb05ShirahoshiManga || isOp18RobinManga
 								? "SUPER RARE"
 								: details?.headerBadge ?? card.headerBadge ?? null,

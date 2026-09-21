@@ -1207,6 +1207,7 @@ const getEb05VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("alt leader ")) return "ALT";
 	if (normalized.startsWith("manga ")) return "MANGA";
+	if (normalized.startsWith("sp ")) return "SP";
 	return null;
 };
 
@@ -1258,6 +1259,25 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 			],
 		};
 		cards.splice(altLeaderRobinIndex, 1);
+	}
+
+	const mangaShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && card.edition === "MANGA");
+	const baseShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && !card.edition);
+	if (mangaShirahoshiIndex !== -1 && baseShirahoshiIndex !== -1) {
+		const mangaShirahoshi = cards[mangaShirahoshiIndex];
+		const baseShirahoshi = cards[baseShirahoshiIndex];
+		cards[baseShirahoshiIndex] = {
+			...baseShirahoshi,
+			variants: [
+				...(baseShirahoshi.variants ?? []),
+				{
+					label: "MANGA",
+					fullUrl: mangaShirahoshi.fullUrl,
+					smallUrl: mangaShirahoshi.smallUrl,
+				},
+			],
+		};
+		cards.splice(mangaShirahoshiIndex, 1);
 	}
 
 	return cards.sort((a, b) => {

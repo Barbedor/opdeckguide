@@ -29666,7 +29666,8 @@ const buildDecklistSummary = (entry, leader) => {
 	// present it as a country in the decklist introduction.
 	const country = [entry.location || entry.country].find((value) => value && value !== "NA");
 
-	if (entry.eventType) parts.push(`from ${entry.eventType}`);
+	const tournamentName = normalizeEventType(entry.eventType);
+	if (tournamentName) parts.push(`from ${tournamentName}`);
 	if (entry.host) parts.push(`at ${entry.host}`);
 	if (country) parts.push(`in ${country}`);
 
