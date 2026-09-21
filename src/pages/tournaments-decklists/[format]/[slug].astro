@@ -25,6 +25,7 @@ const displayTitle = entry.title.replace(
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
+const isPirateParty = entry.eventType === "Pirate Party";
 const isOp17LuffyAce = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "ST30-001";
 const isOp17BoaHancock = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "OP14-041";
 const deckGuideHref = isOp17LuffyAce
@@ -62,7 +63,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 				<h1>{displayTitle}</h1>
 				<p>{entry.summary}</p>
 				<div class="detail-badges">
-					<span class="detail-badge">{entry.eventType}</span>
+					<span class:list={["detail-badge", { "pirate-party-detail-badge": isPirateParty }]}>{entry.eventType}</span>
 					<span class="detail-badge">{entry.placement}</span>
 					{entry.record && <span class="detail-badge">{entry.record}</span>}
 					{entry.players && <span class="detail-badge">{entry.players} players</span>}
@@ -346,6 +347,16 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		font-weight: 700;
 		color: var(--text-200);
 		line-height: 1;
+	}
+
+	.pirate-party-detail-badge {
+		position: relative;
+		isolation: isolate;
+		border-color: #c49a3a;
+		background: linear-gradient(135deg, #162a3a 0%, #151515 54%, #5c3a21 100%);
+		color: #e8e1d3;
+		box-shadow: inset 0 1px 0 rgba(226, 200, 148, 0.28), 0 3px 9px rgba(0, 0, 0, 0.32);
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 	}
 
 	@media (min-width: 901px) {

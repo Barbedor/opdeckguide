@@ -410,6 +410,15 @@ const leaderIndex = {
 		imageSrc: "/assets/guides/jinbe-op14.png",
 		href: "/deck-guides/jinbe-op14/",
 	},
+	"jinbe-op11": {
+		slug: "jinbe-op11",
+		name: "Jinbe",
+		code: "OP11-021",
+		format: "op17",
+		color: "Green",
+		imageSrc: "/assets/guides/Jinbe OP11.png",
+		href: "/deck-guides/",
+	},
 	"mihawk-sample-op16": {
 		slug: "mihawk-sample-op16",
 		name: "Dracule Mihawk",

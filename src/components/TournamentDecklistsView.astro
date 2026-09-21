@@ -21,6 +21,7 @@ const eventTypeMeta = {
 	"3vs3": { short: "3V3", color: "#2f9e5b", soft: "rgba(47, 158, 91, 0.18)" },
 	"Standard Battle": { short: "SB", color: "#c9ced8", soft: "rgba(201, 206, 216, 0.18)" },
 	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
+	"Pirate Party": { short: "PP", color: "#C49A3A", soft: "rgba(92, 58, 33, 0.48)", pirate: true },
 	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)" },
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame FC": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
@@ -28,16 +29,23 @@ const eventTypeMeta = {
 	"Taiwan Final": { short: "TW", color: "#c79a2b", soft: "rgba(199, 154, 43, 0.22)" },
 };
 
-const eventOptions = Object.keys(eventTypeMeta)
-	.filter((eventType) => entries.some((entry) => entry.eventType === eventType))
-	.map((eventType) => ({
-		name: eventType,
-		...(eventTypeMeta[eventType] ?? {
-			short: eventType.slice(0, 2).toUpperCase(),
-			color: "#9aa4c7",
-			soft: "rgba(154, 164, 199, 0.18)",
-		}),
-	}));
+const flameEventTypes = ["Flame-Flame Phase1", "Flame-Flame FC", "Flame-Flame+LCQ"];
+const eventOptions = [
+	...Object.keys(eventTypeMeta)
+		.filter((eventType) => !flameEventTypes.includes(eventType) && entries.some((entry) => entry.eventType === eventType))
+		.map((eventType) => ({
+			name: eventType,
+			eventTypes: [eventType],
+			...(eventTypeMeta[eventType] ?? {
+				short: eventType.slice(0, 2).toUpperCase(),
+				color: "#9aa4c7",
+				soft: "rgba(154, 164, 199, 0.18)",
+			}),
+		})),
+	...(entries.some((entry) => flameEventTypes.includes(entry.eventType))
+		? [{ name: "Flame-Flame", eventTypes: flameEventTypes, ...eventTypeMeta["Flame-Flame Phase1"] }]
+		: []),
+];
 
 const leaderColorMap = {
 	Red: "#ff5959",
@@ -203,12 +211,14 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 									<button
 										type="button"
 										class="event-filter-option"
-										data-event-option-value={event.name}
+										data-event-option-value={event.eventTypes.join("|")}
 										data-event-short={event.short}
 										data-event-color={event.color}
 										data-event-soft={event.soft}
+										data-event-flame={event.flame ? "true" : undefined}
+										data-event-pirate={event.pirate ? "true" : undefined}
 									>
-										<span class="event-pill" style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
+										<span class:list={["event-pill", { "flame-pill": event.flame, "pirate-party-pill": event.pirate }]} style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
 										<span class="event-option-name">{event.name}</span>
 									</button>
 								))
@@ -257,8 +267,8 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 								</span>
 							</span>
 							<span class="row-type">
-								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
-								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
+								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
+								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
 							</span>
 							<span class="row-place desktop-only">{entry.placement}</span>
 						</a>
@@ -382,15 +392,17 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 			const short = option.dataset.eventShort;
 			const color = option.dataset.eventColor;
 			const soft = option.dataset.eventSoft;
+			const flameClass = option.dataset.eventFlame === "true" ? " flame-pill" : "";
+			const pirateClass = option.dataset.eventPirate === "true" ? " pirate-party-pill" : "";
 			const name = option.querySelector(".event-option-name")?.textContent ?? option.dataset.eventOptionValue ?? "";
-			eventFilterLabel.innerHTML = `<span class="event-pill" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
+			eventFilterLabel.innerHTML = `<span class="event-pill${flameClass}${pirateClass}" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
 		};
 
 		const applyFilters = () => {
 			const leaderValue = leaderSearch.value.trim().toLowerCase();
 			const filteredRows = rows.filter((row) => {
 				const matchLeader = !leaderValue || (row.dataset.leaderName || "").includes(leaderValue);
-				const matchEvent = !selectedEvent || row.dataset.event === selectedEvent;
+				const matchEvent = !selectedEvent || selectedEvent.split("|").includes(row.dataset.event || "");
 				return matchLeader && matchEvent;
 			});
 			const totalFiltered = filteredRows.length;
@@ -611,10 +623,10 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 	.flame-pill {
 		position: relative;
 		isolation: isolate;
-		border-color: #ff8a32;
-		background: linear-gradient(120deg, #a61e16 0%, #ef4b1f 42%, #ff9d24 72%, #c72b16 100%);
+		border-color: #ff7a18;
+		background: linear-gradient(120deg, #a50e10 0%, #e72a10 35%, #ff5b0b 64%, #ff9f12 100%);
 		color: #fff7d1;
-		box-shadow: 0 0 12px rgba(255, 76, 23, 0.55), inset 0 1px 0 rgba(255, 245, 196, 0.45);
+		box-shadow: 0 0 12px rgba(255, 69, 10, 0.68), inset 0 1px 0 rgba(255, 228, 154, 0.5);
 		text-shadow: 0 1px 2px rgba(80, 10, 0, 0.72);
 	}
 
@@ -624,6 +636,16 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		font-size: 0.85rem;
 		line-height: 1;
 		filter: drop-shadow(0 0 3px rgba(255, 218, 123, 0.9));
+	}
+
+	.pirate-party-pill {
+		position: relative;
+		isolation: isolate;
+		border-color: #c49a3a;
+		background: linear-gradient(135deg, #162a3a 0%, #151515 54%, #5c3a21 100%);
+		color: #e8e1d3;
+		box-shadow: inset 0 1px 0 rgba(226, 200, 148, 0.28), 0 3px 9px rgba(0, 0, 0, 0.32);
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 	}
 
 
