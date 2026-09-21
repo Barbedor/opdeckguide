@@ -1,695 +1,124 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
-const title = "Dracule Mihawk OP14 Deck Guide";
-const description =
-	"OP17 format deck guide for Dracule Mihawk OP14 with updated decklist, curve guide, 10 DON!! combo, deck in a nutshell, and matchups.";
-
+const title = "Dracule Mihawk OP14 Deck Guide: Decklist, Mulligan & Curve";
+const description = "Dracule Mihawk OP14 deck guide for OP17 with the current decklist, mulligan priorities, curve guide, tech cards, matchups, and gameplay tips.";
 const icon = "/assets/guides/dracule-mihawk-op14.png";
-
-const expandSimLines = (count, code) => {
-	const lines = [];
-	let remaining = count;
-	while (remaining > 4) {
-		lines.push(`4x${code}`);
-		remaining -= 4;
-	}
-	if (remaining > 0) lines.push(`${remaining}x${code}`);
-	return lines;
-};
-
 const card = (code, name, img, count = null, role = "Character") => ({ code, name, img, count, role });
+const simLines = (count, code) => Array.from({ length: Math.ceil(count / 4) }, (_, index) => `${Math.min(4, count - index * 4)}x${code}`);
 
 const leader = card("OP14-020", "Dracule Mihawk", "/Cards/OP14/OP14-020.jpg", 1, "Leader");
 const otama = card("OP07-022", "Otama", "/Cards/OP07/OP07-022.png", 4);
-const perona = card("OP12-034", "Perona", "/Cards/OP12/OP12-034.jpg", 4);
+const peronaSearch = card("OP12-034", "Perona", "/Cards/OP12/OP12-034.jpg", 4);
+const kikunojo = card("OP14-023", "Kikunojo", "/Cards/OP14/OP14-023.jpg", 4);
 const kinemon = card("ST32-001", "Kin'emon", "/Cards/ST32/ST32-001.jpg", 4);
-const vanderDecken = card("OP06-033", "Vander Decken IX", "/Cards/OP06/OP06-033.png", 4);
-const kawamatsu = card("OP12-023", "Kawamatsu", "/Cards/OP12/OP12-023.jpg", 4);
-const yasopp = card("OP17-031", "Yasopp", "/Cards/OP17/New OP17/OP17-031.jpg", 4);
+const smoker = card("OP10-030", "Smoker", "/Cards/OP10/OP10-030.jpg", 2);
+const peronaSlash = card("OP14-033", "Perona", "/Cards/OP14/OP14-033.jpg", 4);
 const oden = card("ST32-002", "Kouzuki Oden", "/Cards/ST32/ST32-002.jpg", 4);
-const law = card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg", 4);
-const hody = card("OP06-035", "Hody Jones", "/Cards/OP06/OP06-035.png", 1);
-const shanks = card("OP17-022", "Shanks", "/Cards/OP17/New OP17/OP17-022.jpg", 4);
-const samourai = card("OP01-055", "You Can Be My Samourai!!", "/Cards/OP01/OP01-055.png", 4, "Event");
-const trichiliocosm = card("OP06-038", "The Billion-fold World Trichiliocosm", "/Cards/OP06/OP06-038.png", 3, "Event");
-const miniLuna = card("OP13-040", "I Know You're Strong... So I'll Go All Out from the Very Start!!!", "/Cards/OP13/OP13-040.jpg", 2, "Event");
+const mihawkCharacter = card("ST32-003", "Dracule Mihawk", "/Cards/ST32/ST32-003.jpg", 4);
+const shanksSt16 = card("ST16-004", "Shanks", "/Cards/ST16/ST16-004.png", 1);
+const shanksOp17 = card("OP17-022", "Shanks", "/Cards/OP17/New OP17/OP17-022.jpg", 3);
+const lawBepo = card("ST24-004", "Law & Bepo", "/Cards/ST24/ST24-004.jpg", 3);
+const samurai = card("OP01-055", "You Can Be My Samurai!!", "/Cards/OP01/OP01-055.png", 4, "Event");
+const trichiliocosm = card("OP06-038", "The Billion-Fold World Trichiliocosm", "/Cards/OP06/OP06-038.png", 3, "Event");
+const allOut = card("OP13-040", "I Know You're Strong... So I'll Go All Out from the Very Start!", "/Cards/OP13/OP13-040.jpg", 3, "Event");
+const electricalLuna = card("OP08-036", "Electrical Luna", "/Cards/OP08/OP08-036.png", 1, "Event");
 const coffinBoat = card("OP14-039", "Coffin Boat", "/Cards/OP14/OP14-039.jpg", 2, "Stage");
-const electricalLuna = card("OP08-036", "Electrical Luna", "/Cards/OP08/OP08-036.png", 2, "Event");
+const kawamatsu = card("OP12-023", "Kawamatsu", "/Cards/OP12/OP12-023.jpg");
+const vanderDecken = card("OP06-033", "Vander Decken IX", "/Cards/OP06/OP06-033.png");
+const hody = card("OP06-035", "Hody Jones", "/Cards/OP06/OP06-035.png");
+const shanks7 = card("OP14-027", "Shanks", "/Cards/OP14/OP14-027.jpg");
+const forFun = card("OP14-037", "For Fun", "/Cards/OP14/OP14-037.jpg", null, "Event");
+const mihawk9 = card("OP14-119", "Dracule Mihawk", "/Cards/OP14/OP14-119.jpg");
+const law6 = card("OP13-031", "Trafalgar Law", "/Cards/OP13/OP13-031.jpg");
 
-const decklist = [
-	leader,
-	otama,
-	perona,
-	kinemon,
-	vanderDecken,
-	kawamatsu,
-	yasopp,
-	oden,
-	law,
-	hody,
-	shanks,
-	samourai,
-	trichiliocosm,
-	miniLuna,
-	coffinBoat,
-	electricalLuna,
+const decklist = [leader, otama, peronaSearch, kikunojo, kinemon, smoker, peronaSlash, oden, mihawkCharacter, shanksSt16, shanksOp17, lawBepo, samurai, trichiliocosm, allOut, electricalLuna, coffinBoat];
+const simDeckCode = decklist.flatMap((entry) => simLines(entry.count, entry.code)).join("\n");
+
+const mulligan = [
+	{ title: "Perona OP12-034", cards: [peronaSearch], text: "Perona is one of the best cards to see early. She starts finding the pieces you need for the next turns, helping you build a hand that follows your curve cleanly." },
+	{ title: "Kin'emon ST32-001", cards: [kinemon], text: "Kin'emon is especially strong on your first turn. Your Leader cannot attack yet, so you can rest it with Kin'emon to draw 2 and trash 1 without sacrificing an attack." },
+	{ title: "You Can Be My Samurai!!", cards: [samurai], text: "This is a core part of the draw engine. With smaller Characters already in play, rest two of them to draw 2 and keep turning your early board into fresh options." },
+	{ title: "Otama OP07-022", cards: [otama], text: "Otama finds You Can Be My Samurai!! while also accessing the Wano cards that make your early turns more consistent." },
+	{ title: "Prepare Your Mid Game", cards: [oden, mihawkCharacter], text: "Once your draw engine is secured, look for Kouzuki Oden and especially Dracule Mihawk ST32-003. At 6 DON!!, Mihawk can play a Slash Character costing 5 or less from your hand; Oden is an excellent target because she also draws a card." },
 ];
 
-const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
-
-const goFirst = [
-	{ label: "1 DON!!", cards: [{ card: perona }], text: "Start with Perona so you can find the missing piece for the rest of your curve and prepare your next turns cleanly." },
-	{ label: "3 DON!!", cards: [{ card: perona }, { card: otama }, { card: samourai }], text: "Play Perona and Otama to keep searching for the cards you need, then play You Can Be My Samourai!! to rest the Characters you played earlier so you can draw 2 cards." },
-	{ label: "5 DON!!", cards: [{ card: yasopp }], text: "Yasopp is your clean midgame stabilizer here. He keeps your hand moving, applies pressure, and helps control a key opposing threat." },
-	{ label: "7 DON!!", cards: [{ card: law }, { card: oden, rested: true }], text: "Play Trafalgar Law to return Otama to your hand so you get a +2000 Counter, then play Oden from your hand to draw 1 card and stop one of your opponent’s Characters from attacking next turn so you can slow their game plan down." },
+const firstCurve = [
+	{ label: "1 DON!! — Set Up Your Draw Engine", cards: [kinemon, peronaSearch], connectors: ["OR"], text: "Start with Kin'emon or Perona. Kin'emon rests your Leader to draw 2 and trash 1, and you give up no attack because the Leader cannot attack on turn one. Perona begins finding the cards you need next." },
+	{ label: "3 DON!! — Draw & Search", cards: [peronaSearch, otama, samurai], connectors: ["+", "+"], text: "Keep preparing your hand with Perona, Otama, and You Can Be My Samurai!!. Your goal is to reach the mid game with Dracule Mihawk and a strong 5-cost target ready." },
+	{ label: "5 DON!! — Kouzuki Oden or Smoker", cards: [oden, smoker], connectors: ["OR"], text: "Play Oden when you need to stop an opposing Character from attacking. Otherwise, Smoker is the more flexible development play at this point." },
+	{ label: "7 DON!! — Mihawk into a 5-Cost", cards: [mihawkCharacter, oden, coffinBoat], connectors: ["+", "+"], text: "Play Dracule Mihawk ST32-003, then use his effect to play the Slash 5-cost that fits the situation. Oden is usually the best target because she also draws a card. Use your remaining DON!! on Coffin Boat when possible." },
+	{ label: "9 DON!! — Shanks or Mihawk into a 5-Cost", cards: [shanksSt16, mihawkCharacter, peronaSlash], connectors: ["OR", "+"], text: "Shanks ST16-004 is ideal when there is a valuable rested Character to K.O. Otherwise, keep developing through Mihawk into Oden, Perona, or Smoker. After the Leader effect returns DON!! active, All Out can keep up to two rested opposing Characters from becoming active." },
+	{ label: "10 DON!! — Late Game", cards: [lawBepo, shanksOp17], connectors: ["OR"], text: "Law & Bepo and Shanks OP17 are your major late-game plays. Select the one that best fits the board, then use your remaining resources for attacks, Events, or defense." },
 ];
 
-const goSecond = [
-	{ label: "2 DON!!", cards: [{ card: perona }, { card: otama }], text: "Play Perona and Otama to keep searching for the cards you need and prepare the rest of your curve." },
-	{ label: "4 DON!!", cards: [{ card: kinemon }, { card: samourai }], text: "Play Kin'emon to draw and filter your hand, then use You Can Be My Samourai!! so you keep improving your hand quality for the next turns." },
-	{ label: "6 DON!!", cards: [{ card: yasopp }], text: "At 6 DON!!, Yasopp gives you a clean midgame turn by drawing 1 card while resting an opposing threat, which helps you stay ahead on tempo." },
-	{ label: "8 DON!!", cards: [{ card: law }, { card: oden, rested: true }], text: "Play Trafalgar Law to return Otama to your hand so you get a +2000 Counter, then play Oden from your hand to draw 1 card and stop one of your opponent’s Characters from attacking next turn so you can slow their game plan down." },
+const secondCurve = [
+	{ label: "2 DON!! — Perona + Kin'emon", cards: [peronaSearch, kinemon], connectors: ["+"], text: "Play Perona and Kin'emon on your first turn to establish the draw engine immediately." },
+	{ label: "4 DON!! — Draw Engine", cards: [otama, peronaSearch, samurai], connectors: ["+", "+"], text: "Continue with Otama, Perona, and You Can Be My Samurai!!. If you played two 1-cost Characters last turn and have two copies of the Event, you can use it twice to accelerate your draw dramatically." },
+	{ label: "6 DON!! — Mihawk into a 5-Cost", cards: [mihawkCharacter, oden], connectors: ["+"], text: "This is your first major development turn. Play Dracule Mihawk, then play the 5-cost Character that best answers the board. Oden is especially valuable because she draws a card." },
+	{ label: "8 DON!! — Mihawk into a 5-Cost + Setup", cards: [mihawkCharacter, oden, coffinBoat], connectors: ["+", "+"], text: "Repeat the Mihawk into 5-cost line. The remaining DON!! can go toward Coffin Boat or another You Can Be My Samurai!! when your board still supports the draw engine." },
+	{ label: "10 DON!! — Law & Bepo or Shanks", cards: [lawBepo, shanksOp17], connectors: ["OR"], text: "Finish the curve with Law & Bepo or Shanks OP17. Shanks rests every opposing Character and returns 2 DON!! active; your Leader can return up to 3 more for a very flexible turn." },
 ];
 
-const comboSteps = [
-	{
-		cards: [{ card: shanks }],
-		text: "For 10 DON!! Play your big Shanks. Then untap 2 DON!! and rest the opponent’s board",
-	},
-	{
-		cards: [{ card: vanderDecken }],
-		text: "Tap 2 and play Vander Decken to K.O. one big body by trashing 1 fishman from your hand (typically Kawamatsu searched by perona or otama)",
-	},
-	{
-		cards: [{ card: vanderDecken, rested: true }],
-		text: "Tap Vander Decken by leader’s effect to Untap 3 DON!!",
-	},
-	{
-		cards: [{ card: electricalLuna }, { card: miniLuna }],
-		text: "Electrical Luna or I Know You're Strong if necessary, or leave open DON!! for defensive events",
-	},
+const techCards = [
+	{ title: "Kawamatsu OP12-023 + Vander Decken IX OP06-033", cards: [kawamatsu, vanderDecken], text: "A Fish-Man package can replace flexible slots. Kawamatsu can replace Kikunojo as a 2K Counter and remains a target for Perona OP14-033 or Dracule Mihawk ST32-003. Vander Decken can then trash a Fish-Man to K.O. a rested opposing Character for 2 DON!!. The line becomes especially strong after Shanks OP17 rests the opposing board and returns 2 DON!! active." },
+	{ title: "Hody Jones OP06-035", cards: [hody], text: "If you play Kawamatsu and Vander Decken, Hody Jones gives you another Fish-Man for the package. He also adds a far more aggressive option through Rush, 8000 Power, and the ability to rest up to two opposing DON!! cards or Characters in exchange for taking a Life card to hand." },
+	{ title: "Shanks OP14-027", cards: [shanks7], text: "The 7-cost Shanks is another control option. On your opponent's turn, he gives every opposing Character -1000 Power. When Shanks becomes rested, including through your Leader effect, he can also rest an opposing Character with 7000 base Power or less." },
+	{ title: "For Fun OP14-037", cards: [forFun], text: "For Fun supports the same plan against rested Characters with 7000 base Power or less. For 4 DON!!, it can K.O. one of those targets, and its 3000 Counter keeps it useful defensively. It is relevant against Red/Green Luffy, some Elbaph Characters, and Reiju after you rest the target." },
+	{ title: "Dracule Mihawk OP14-119", cards: [mihawk9], text: "The 9-cost Mihawk remains a late-game alternative. Once rested, he can stop an opposing 9-cost Character from becoming active, while also turning a card from your hand into a 2000 Counter for the turn. He is a more defensive late-game choice." },
+	{ title: "Trafalgar Law OP13-031", cards: [law6], text: "Law was more common before ST32-003 Dracule Mihawk. Both can play a 5-cost Character, but Law plays the target rested and requires another Character to return to hand. His upside is becoming a Blocker at 1 Life." },
+	{ title: "Electrical Luna OP08-036", cards: [electricalLuna], text: "Increasing Electrical Luna is an option when you expect very wide boards. Luna can freeze every opposing Character costing 7 or less, while All Out freezes up to two eligible rested Characters. This build favors All Out because it is also a Counter Event, which matters with only eight 2K Counters." },
 ];
 
-const strengths = [
-	"Absolute board dominance: you wipe threats and generate free DON!! on the same turn.",
-	"Endless card advantage through searchers, Yasopp, and events.",
+const tips = [
+	{ cards: [peronaSearch, otama, kinemon, samurai], text: "Use the early turns to prepare your hand. Prioritize Perona, Otama, Kin'emon, and You Can Be My Samurai!! to search and draw. First secure Dracule Mihawk into a 5-cost; the extra cards you see will find your finishers and Counter Events." },
+	{ cards: [kinemon], text: "Use Kin'emon on your first turn whenever possible. Resting your Leader to draw 2 and trash 1 is one of the best ways to filter your opening hand without giving up tempo." },
+	{ cards: [trichiliocosm], text: "Plan The Billion-Fold World Trichiliocosm before your opponent's turn. Its 4000 Counter for 1 DON!! needs eight rested cards, including your Leader, DON!!, Characters, and Stage. The DON!! used to pay the Event counts, so seven rested cards before paying is enough." },
+	{ cards: [coffinBoat], text: "Coffin Boat lets you be aggressive without abandoning defense. It returns 1 DON!! active at the end of the turn, allowing you to spend more resources while keeping a Counter Event available afterward." },
+	{ cards: [leader, smoker], text: "Use the Leader effect only after every Character play you need to make: once it returns 3 DON!! active, you cannot play Characters for the rest of the turn. With Smoker, use Smoker first, then the Leader, to return up to 4 DON!! on the same turn." },
+	{ cards: [lawBepo], text: "Law & Bepo can effectively buy another turn. Rest an opposing Character, then stop it from becoming active at its next Refresh Phase. When its condition is met, your Leader also gains 2000 Power through your opponent's next turn." },
+	{ cards: [shanksOp17, electricalLuna, allOut], text: "Shanks OP17 is not only a finisher. He rests every opposing Character and returns 2 DON!! active, setting up powerful freeze turns. Electrical Luna can lock down every eligible 7-cost-or-less Character, while All Out freezes up to two targets." },
+	{ cards: [shanksOp17], text: "Opposing Blockers do not protect well against Shanks OP17. His On Play effect rests them before you begin your attack sequence, making Shanks ideal when you need to shift from defense into a lethal push." },
+	{ cards: [shanksOp17, leader], text: "Know when to stop buying time and go on offense. Shanks can suddenly change the pace: rest the opposing board, recover DON!!, and attack with 12000 Rush to force the game to end." },
 ];
 
-const weaknesses = [
-	"Very reliant on finding specific combo pieces in the late game (Shanks + Decken + Fishman).",
-	"Vulnerable to decks that reduce base power (like Purple Linlin) if your Shanks stays rested.",
-	"Can struggle if starved of cards early by smart opponents who refuse to attack your life.",
-];
-
-const coreEngine = [
-	"Leader Mihawk: Rests a character to restand 3 DON!!",
-	"10c Shanks & Vander Decken: The Exodia Board Control combo",
-	"5c Yasopp: Draws a card, rests an 8 cost threat, and restands himself at the end of the turn.",
-];
-
+// The current matchup data is intentionally preserved unchanged.
 const matchupGroups = [
-	{
-		title: "Favorable",
-		tone: "up",
-		entries: [
-			{ name: "Rocks.D.Xebec OP17", image: "/assets/guides/Rocks.DXebec%20op17.png" },
-			{ name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png" },
-			{ name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte Linlin op17.png" },
-			{ name: "Monkey.D.Luffy OP17", image: "/assets/guides/Luffy OP17.png" },
-			{ name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png" },
-		],
-	},
-	{
-		title: "Slightly Favorable",
-		tone: "slight-up",
-		entries: [
-			{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png" },
-		],
-	},
-	{
-		title: "Even",
-		tone: "even",
-		entries: [{ name: "Enel OP15", image: "/assets/guides/enel-op15.png" }],
-	},
-	{
-		title: "Slightly Unfavorable",
-		tone: "slight-down",
-		entries: [
-			{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png" },
-			{ name: "Boa Hancock OP14", image: "/assets/guides/boa-hancock-op14.png" },
-		],
-	},
-	{
-		title: "Unfavorable",
-		tone: "down",
-		entries: [
-			{ name: "Portgas.D.Ace OP16", image: "/assets/guides/Ace-op16.png" },
-			{ name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png" },
-		],
-	},
+	{ title: "Favorable", tone: "up", entries: [{ name: "Rocks.D.Xebec OP17", image: "/assets/guides/Rocks.DXebec%20op17.png" }, { name: "Kaido OP17", image: "/assets/guides/Kaido%20op17.png" }, { name: "Charlotte Linlin OP17", image: "/assets/guides/Charlotte Linlin op17.png" }, { name: "Monkey.D.Luffy OP17", image: "/assets/guides/Luffy OP17.png" }, { name: "Shanks OP17", image: "/assets/guides/Shanks%20op17.png" }] },
+	{ title: "Slightly Favorable", tone: "slight-up", entries: [{ name: "Luffy and Ace ST30", image: "/assets/guides/Luffy-st30.png" }] },
+	{ title: "Even", tone: "even", entries: [{ name: "Enel OP15", image: "/assets/guides/enel-op15.png" }] },
+	{ title: "Slightly Unfavorable", tone: "slight-down", entries: [{ name: "Sabo OP13", image: "/assets/guides/Sabo%20OP13-004.png" }, { name: "Boa Hancock OP14", image: "/assets/guides/boa-hancock-op14.png" }] },
+	{ title: "Unfavorable", tone: "down", entries: [{ name: "Portgas.D.Ace OP16", image: "/assets/guides/Ace-op16.png" }, { name: "Nico Robin OP09", image: "/assets/guides/Nico-Robin-op09.png" }] },
 ];
 ---
 
 <MainLayout title={title} description={description}>
-	<section class="hero guide-hero">
-		<div class="container hero-grid">
-			<div class="hero-copy">
-				<div class="hero-tags">
-					<span class="hero-chip">Deck Guide</span>
-					<span class="hero-chip hero-chip-accent">OP17 Format</span>
-				</div>
-				<h1>Dracule Mihawk OP14 Deck Guide</h1>
-				<p class="hero-intro">
-					Be the most hated player at your locals. OP17 "Fishhawk" is the undisputed Best Deck in Format.
-					Combine the oppressive control of Green Mihawk with an explosive Fishman removal package. Swipe to
-					learn how to completely break the OP17 meta!
-				</p>
-				<div class="hero-actions">
-					<a class="btn btn-primary" href="#curve">Curve Guide</a>
-					<a class="btn btn-secondary" href="#matchups">Matchups</a>
-				</div>
-			</div>
-			<div class="guide-icon">
-				<img src={icon} alt="Dracule Mihawk OP14 deck guide icon" loading="eager" />
-			</div>
-		</div>
-	</section>
-
-	<section class="list-section">
-		<div class="container article-stack">
-			<div class="glow-block">
-				<div class="section-header decklist-header">
-					<div class="decklist-title-row">
-						<h2>Decklist</h2>
-						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button>
-					</div>
-				</div>
-				<div class="deck-grid">
-					{
-						decklist.map((entry) => (
-							<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
-								<div class="deck-info">
-									<span class="deck-count">{entry.count}x</span>
-									<div>
-										<div class="deck-name">{entry.name}</div>
-										<div class="deck-code">{entry.code}</div>
-									</div>
-								</div>
-								<span class="deck-role">{entry.role}</span>
-							</button>
-						))
-					}
-				</div>
-			</div>
-
-			<div id="curve" class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Curve Guide</h2>
-					</div>
-				</div>
-
-				<div class="curve-guide-block">
-					<h3>Go First</h3>
-					<div class="curve-rows">
-						{goFirst.map((slot) => (
-							<div class="curve-row">
-								<div class="curve-label">{slot.label}</div>
-								<div class={`curve-cards ${slot.cards.length >= 3 ? "curve-cards-triple" : ""}`}>
-									{slot.cards.map((entry, index) => (
-										<>
-											{index > 0 && <span class="curve-join">+</span>}
-											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "ST32-002" ? "curve-card-oden" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-											</button>
-										</>
-									))}
-								</div>
-								<p class="curve-note">{slot.text}</p>
-							</div>
-						))}
-					</div>
-				</div>
-
-				<div class="curve-guide-block">
-					<h3>Go Second</h3>
-					<div class="curve-rows">
-						{goSecond.map((slot) => (
-							<div class="curve-row">
-								<div class="curve-label">{slot.label}</div>
-								<div class={`curve-cards ${slot.cards.length >= 3 ? "curve-cards-triple" : ""}`}>
-									{slot.cards.map((entry, index) => (
-										<>
-											{index > 0 && <span class="curve-join">+</span>}
-											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""} ${entry.card.code === "ST32-002" ? "curve-card-oden" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-											</button>
-										</>
-									))}
-								</div>
-								<p class="curve-note">{slot.text}</p>
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-
-			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>10 DON!! Combo</h2>
-					</div>
-				</div>
-				<div class="combo-rows">
-					{comboSteps.map((step) => (
-						<div class="combo-row">
-							<div class="combo-cards">
-								{step.cards.map((entry, index) => (
-									<>
-										{index > 0 && <span class="curve-join">OR</span>}
-										<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`}>
-											<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
-										</button>
-									</>
-								))}
-							</div>
-							<p class="curve-note">{step.text}</p>
-						</div>
-					))}
-				</div>
-			</div>
-
-			<div class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Deck Overview</h2>
-					</div>
-				</div>
-				<div class="core-panel">
-					<div class="section-tag section-tag-light">The Mechanic</div>
-					<p class="nutshell-copy">
-						The "Shanks & Decken" Combo Spam. You play 10c Shanks to rest your opponent's entire board and get 2
-						DON!! back. You use those 2 DON!! to play Vander Decken, trashing a Fishman to instantly KO any
-						rested character. Then, you rest Vander Decken with Mihawk's Leader ability to restand 3 MORE
-						DON!! and push for game!
-					</p>
-				</div>
-				<div class="nutshell-grid">
-					<div class="info-panel">
-						<div class="section-tag section-tag-light">Strength</div>
-						<ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul>
-					</div>
-					<div class="info-panel">
-						<div class="section-tag section-tag-light">Weakness</div>
-						<ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul>
-					</div>
-				</div>
-				<div class="core-panel">
-					<div class="section-tag section-tag-light">The Core Engine</div>
-					<ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul>
-				</div>
-			</div>
-
-			<div id="matchups" class="glow-block feature-block">
-				<div class="section-header feature-header">
-					<div>
-						<h2>Matchups</h2>
-						<p class="matchup-stats-link">
-							For the complete turn-order win rate breakdown, see the
-							<a href="/meta-analysis/Green-Dracule-Mihawk-op14-stats-OP17-Format/">Dracule Mihawk OP14 stats in OP17 Format</a>.
-						</p>
-					</div>
-				</div>
-				<div class="matchup-grid">
-					<div class="matchup-column">
-						{matchupGroups.slice(0, 1).map((group) => (
-							<div class="matchup-card">
-								<div class={`matchup-badge matchup-${group.tone}`}>{group.title}</div>
-								<div class="matchup-cards">
-									{group.entries.map((entry) => (
-										<div class="matchup-entry">
-											<img class={entry.name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={entry.image} alt={entry.name} loading="lazy" />
-											<div class="matchup-name">{entry.name}</div>
-										</div>
-									))}
-								</div>
-							</div>
-						))}
-					</div>
-					<div class="matchup-column">
-						{matchupGroups.slice(1).map((group) => (
-							<div class="matchup-card">
-								<div class={`matchup-badge matchup-${group.tone}`}>{group.title}</div>
-								<div class="matchup-cards">
-									{group.entries.map((entry) => (
-										<div class="matchup-entry">
-											<img class={entry.name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={entry.image} alt={entry.name} loading="lazy" />
-											<div class="matchup-name">{entry.name}</div>
-										</div>
-									))}
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<div class="card-modal" data-modal aria-hidden="true">
-		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
-			<button class="modal-close" type="button" data-close>Close</button>
-			<img src="" alt="" data-modal-image />
-		</div>
-	</div>
+	<section class="hero guide-hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-tags"><span>Deck Guide</span><span>OP17 Format</span></div><h1>Dracule Mihawk OP14 Deck Guide</h1><p>Build your hand first, then take over with Dracule Mihawk into 5-cost Characters, efficient DON!! recovery, and powerful green late-game control. This guide covers the decklist, mulligan, curves, tech choices, matchups, and practical tips for Mihawk OP14 in OP17.</p><div class="hero-actions"><a class="btn btn-primary" href="#curve">Curve Guide</a><a class="btn btn-secondary" href="#matchups">Matchups</a></div></div><img class="guide-icon" src={icon} alt="Dracule Mihawk OP14 deck guide icon" loading="eager" /></div></section>
+	<section class="list-section"><div class="container article-stack">
+		<section id="decklist" class="guide-block"><div class="section-header decklist-header"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button></div></div><div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /><span class="deck-count">{entry.count}x</span><strong class="deck-name">{entry.name}</strong><small class="deck-code">{entry.code}</small><small class="deck-role">{entry.role}</small></button>)}</div></section>
+		<section class="guide-block"><header><h2>Mulligan</h2><p>Your first priority is finding the draw engine. Mihawk depends heavily on its curve, so use the early turns to shape your hand before you begin chaining mid-game plays.</p></header><div class="mulligan-list">{mulligan.map((item) => <article class="mulligan-item"><h3>{item.title}</h3><div class="card-text"><div class="card-set">{item.cards.map((entry) => <button class="card-button" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p>{item.text}</p></div></article>)}</div></section>
+		<section id="curve" class="guide-block"><header><h2>Curve Guide</h2><p>Mihawk uses the early turns to draw and prepare its hand before chaining Dracule Mihawk ST32-003 into a 5-cost Character, then its major late-game threats. The Leader can return up to 3 DON!! active for attacks, Events, and extra plays.</p></header>{[["Going First", firstCurve], ["Going Second", secondCurve]].map(([heading, curve]) => <div class="curve-block"><h3>{heading}</h3><div class="curve-list">{curve.map((item) => <article class="curve-item"><div><strong>{item.label}</strong><div class={`card-set ${item.cards.length === 3 ? "curve-card-set-three" : ""}`}>{item.cards.map((entry, index) => <><button class="card-button" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>{item.connectors?.[index] && <span class="card-connector">{item.connectors[index]}</span>}</>)}</div></div><p>{item.text}</p></article>)}</div></div>)}</section>
+		<section class="guide-block"><header><h2>Tech Cards</h2><p>Mihawk has a stable core, but flexible slots can target the matchups you expect. The main alternatives are 2K Counters, the Fish-Man package, control tools, and late-game Characters.</p></header><div class="tech-list">{techCards.map((item) => <article class="tech-item"><div class="card-set">{item.cards.map((entry) => <button class="card-button" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading={entry.code === "OP14-037" ? "eager" : "lazy"} /></button>)}</div><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section>
+		<section id="matchups" class="matchups-section"><header><h2>Matchups</h2><p>For the complete turn-order win-rate breakdown, see the <a href="/meta-analysis/Green-Dracule-Mihawk-op14-stats-OP17-Format/">Dracule Mihawk OP14 stats in OP17 Format</a>.</p></header><div class="matchup-grid">{matchupGroups.map((group, index) => <article class="matchup-card"><strong class={`matchup-badge ${group.tone}`}><span class="badge-icon">{index === 0 ? "↑" : index === 1 ? "↗" : index === 2 ? "~" : index === 3 ? "↘" : "↓"}</span><span>{group.title}</span></strong><div class="matchup-row matchup-row-cards-only"><div class="matchup-cards">{group.entries.map((entry) => <div class={`matchup-static-card ${entry.name === "Nico Robin OP09" ? "matchup-nico-robin" : ""}`} aria-label={entry.name}><img src={entry.image} alt={entry.name} loading="lazy" /></div>)}</div></div></article>)}</div></section>
+		<section class="guide-block"><header><h2>Tips</h2><p>Mihawk rewards disciplined sequencing: draw early, develop the right 5-cost target, then use recovered DON!! to control the final turns.</p></header><div class="tips-list">{tips.map((item) => <article class="tip-item"><div class={`card-set ${item.cards.length === 3 ? "tips-card-set-three" : ""}`}>{item.cards.map((entry) => <button class="card-button" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p>{item.text}</p></article>)}</div></section>
+	</div></section>
+	<div class="card-modal" data-modal aria-hidden="true"><div><button type="button" data-close>Close</button><img src="" alt="" data-modal-image /></div></div>
 </MainLayout>
 
 <script>
-	const previewButtons = document.querySelectorAll("[data-card-preview]");
-	const modal = document.querySelector("[data-modal]");
-	const modalImage = document.querySelector("[data-modal-image]");
-	const closeButton = document.querySelector("[data-close]");
-	const copyButtons = document.querySelectorAll("[data-copy-sim]");
-
-	const openModal = (button) => {
-		if (!modal || !modalImage) return;
-		const full = button.getAttribute("data-full");
-		const name = button.getAttribute("data-name") || "Card preview";
-		modalImage.setAttribute("src", full);
-		modalImage.setAttribute("alt", name);
-		modal.classList.add("is-open");
-		modal.setAttribute("aria-hidden", "false");
-		document.body.style.overflow = "hidden";
-	};
-
-	const closeModal = () => {
-		if (!modal || !modalImage) return;
-		modal.classList.remove("is-open");
-		modal.setAttribute("aria-hidden", "true");
-		modalImage.setAttribute("src", "");
-		modalImage.setAttribute("alt", "");
-		document.body.style.overflow = "";
-	};
-
-	previewButtons.forEach((button) => button.addEventListener("click", () => openModal(button)));
-	closeButton?.addEventListener("click", closeModal);
-	modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
-	document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal?.classList.contains("is-open")) closeModal(); });
-
-	copyButtons.forEach((button) => {
-		button.addEventListener("click", async () => {
-			const simDeck = button.getAttribute("data-sim-deck");
-			if (!simDeck) return;
-			const previous = button.textContent?.trim();
-			try {
-				await navigator.clipboard.writeText(simDeck);
-				button.textContent = "Copied";
-				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
-			} catch {
-				button.textContent = "Copy failed";
-				window.setTimeout(() => { button.textContent = previous ?? "Copy for Sim"; }, 1800);
-			}
-		});
-	});
+	const modal = document.querySelector("[data-modal]"); const image = document.querySelector("[data-modal-image]");
+	const close = () => { modal?.classList.remove("open"); modal?.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; };
+	document.querySelectorAll("[data-card-preview]").forEach((button) => button.addEventListener("click", () => { if (!modal || !image) return; image.setAttribute("src", button.getAttribute("data-full") || ""); image.setAttribute("alt", button.getAttribute("data-name") || "Card preview"); modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }));
+	document.querySelector("[data-close]")?.addEventListener("click", close); modal?.addEventListener("click", (event) => { if (event.target === modal) close(); });
+	document.querySelectorAll("[data-copy-sim]").forEach((button) => button.addEventListener("click", async () => { await navigator.clipboard.writeText(button.getAttribute("data-sim-deck") || ""); button.textContent = "Copied"; setTimeout(() => { button.textContent = "Copy for Sim"; }, 1800); }));
 </script>
 
 <style>
-	:root {
-		--first-look-accent: #46c269;
-		--first-look-accent-soft: rgba(70, 194, 105, 0.18);
-		--first-look-border: rgba(70, 194, 105, 0.28);
-	}
-
-	.guide-hero { padding-top: 3.2rem; }
-	.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 415px); gap: 2rem; align-items: center; }
-	.hero-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
-	.hero-chip {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.7rem 1.1rem;
-		border-radius: 999px;
-		border: 1px solid var(--first-look-border);
-		background: rgba(12, 17, 30, 0.85);
-		color: #f3f7ff;
-	}
-	.hero-chip { font-size: 0.95rem; font-weight: 600; }
-	.hero-chip-accent { color: var(--accent); }
-	.hero-intro { max-width: 60ch; }
-	.guide-icon { display: flex; justify-content: center; }
-	.guide-icon img { width: min(415px, 100%); border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
-
-	.article-stack, .feature-block, .curve-guide-block, .curve-rows, .combo-rows, .nutshell-grid, .info-panel, .core-panel {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.glow-block {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--first-look-border);
-		border-radius: 26px;
-		padding: 1.25rem;
-		box-shadow: 0 0 0 1px rgba(70,194,105,0.16), 0 0 22px rgba(70,194,105,0.08), 0 0 52px rgba(70,194,105,0.05);
-	}
-
-	.section-tag {
-		display: inline-flex;
-		padding: 0.45rem 0.9rem;
-		background: var(--first-look-accent-soft);
-		color: #eafff0;
-		margin-bottom: 1rem;
-		border-radius: 999px;
-		font-weight: 600;
-	}
-	.section-tag-light { font-weight: 500; }
-
-	.detail-card, .deck-card, .mini-card { background: transparent; border: none; padding: 0; cursor: pointer; }
-	.decklist-header { display: block; width: 100%; }
-	.decklist-title-row {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto;
-		align-items: center;
-		column-gap: 1rem;
-		width: 100%;
-	}
-	.decklist-title-row h2, .curve-guide-block h3, .curve-note { margin: 0; }
-	.copy-sim-button { justify-self: end; margin-left: 0; }
-
-	.deck-grid {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: 0.9rem;
-		margin-top: 1rem;
-	}
-	.deck-card {
-		background: rgba(12, 17, 30, 0.9);
-		border: 1px solid var(--border);
-		border-radius: var(--radius-md);
-		padding: 0.75rem;
-		display: grid;
-		gap: 0.65rem;
-		text-align: left;
-		transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
-	}
-	.deck-card:hover, .deck-card:focus-visible, .mini-card:hover, .mini-card:focus-visible {
-		transform: translateY(-4px);
-		outline: none;
-	}
-	.deck-card img { width: 100%; max-width: 110px; margin: 0 auto; border-radius: 12px; }
-	.deck-info { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: center; }
-	.deck-count {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.22rem 0.55rem;
-		border-radius: 999px;
-		background: rgba(255, 107, 61, 0.12);
-		color: var(--accent);
-		font-size: 0.8rem;
-		font-weight: 700;
-	}
-	.deck-name { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
-	.deck-code, .deck-role { color: var(--text-300); font-size: 0.78rem; }
-	.deck-role { text-transform: uppercase; letter-spacing: 1px; }
-
-	.curve-guide-block + .curve-guide-block { margin-top: 1rem; }
-	.curve-row, .combo-row {
-		display: grid;
-		gap: 0.75rem;
-		padding: 1rem;
-		border-radius: 22px;
-		border: 1px solid var(--first-look-border);
-		background: rgba(8,12,22,0.72);
-	}
-	.curve-label { color: var(--accent); font-weight: 700; }
-	.curve-cards, .combo-cards { display: flex; align-items: center; flex-wrap: wrap; gap: 0.9rem; justify-content: flex-start; }
-	.curve-card img { max-width: 120px; border-radius: 14px; box-shadow: 0 16px 32px rgba(0,0,0,0.28); }
-	.curve-card.is-rested img { transform: rotate(90deg); transform-origin: center; }
-	.curve-card-oden.is-rested { margin-left: 1rem; }
-	.curve-join {
-		color: var(--accent);
-		font-size: 1.8rem;
-		font-weight: 700;
-		line-height: 1;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-width: 1.1rem;
-		align-self: center;
-	}
-	.curve-note, .nutshell-copy { margin: 0; line-height: 1.6; }
-
-	.nutshell-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-	.info-panel, .core-panel {
-		padding: 1rem;
-		border-radius: 22px;
-		border: 1px solid var(--first-look-border);
-		background: rgba(8,12,22,0.72);
-	}
-	.info-panel {
-		grid-template-rows: max-content 1fr;
-		align-content: start;
-	}
-	.summary-list { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
-
-	.matchup-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1rem;
-	}
-	.matchup-column {
-		display: contents;
-	}
-	.matchup-stats-link { margin: 0.45rem 0 0; color: var(--text-200); }
-	.matchup-stats-link a { color: var(--accent); font-weight: 700; }
-	.matchup-stats-link a:hover { color: var(--accent-2); }
-	.matchup-card {
-		padding: 1rem;
-		border-radius: 22px;
-		border: 1px solid var(--first-look-border);
-		background: rgba(8,12,22,0.72);
-		display: grid;
-		gap: 1rem;
-	}
-	.matchup-badge {
-		display: inline-flex;
-		align-items: center;
-		justify-self: start;
-		width: fit-content;
-		height: fit-content;
-		padding: 0.5rem 0.9rem;
-		border-radius: 999px;
-		font-weight: 700;
-	}
-	.matchup-up { background: rgba(32, 201, 151, 0.14); color: #53e3b6; }
-	.matchup-slight-up { background: rgba(163, 230, 53, 0.14); color: #bef264; }
-	.matchup-even { background: rgba(148, 163, 184, 0.16); color: #cbd5e1; }
-	.matchup-slight-down { background: rgba(255, 176, 94, 0.14); color: #ffbf73; }
-	.matchup-down { background: rgba(255, 92, 122, 0.14); color: #ff8ca2; }
-	.matchup-cards {
-		display: flex;
-		flex-wrap: nowrap;
-		align-items: start;
-		gap: 1rem;
-		overflow-x: auto;
-	}
-	.matchup-entry {
-		flex: 0 0 136px;
-		display: grid;
-		gap: 0.45rem;
-		justify-items: center;
-		text-align: center;
-	}
-	.matchup-entry img {
-		width: 136px;
-		height: 85px;
-		object-fit: cover;
-		border-radius: 14px;
-		border: 1px solid rgba(255,255,255,0.08);
-	}
-	.matchup-entry img.nico-robin-matchup-image { object-position: center top; }
-	@media (max-width: 900px) {
-		.matchup-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.85rem; overflow: visible; }
-		.matchup-entry { flex: initial; }
-		.matchup-entry img { width: 100%; max-width: 92px; height: auto; object-fit: initial; }
-	}
-	.matchup-name { font-size: 0.95rem; line-height: 1.3; }
-
-	.card-modal {
-		position: fixed;
-		inset: 0;
-		display: none;
-		align-items: center;
-		justify-content: center;
-		background: rgba(5,8,16,0.82);
-		padding: 1.5rem;
-		z-index: 50;
-	}
-	.card-modal.is-open { display: flex; }
-	.card-modal-inner { position: relative; max-width: min(92vw, 520px); display: grid; gap: 1rem; }
-	.card-modal-inner > img { width: 100%; border-radius: 20px; }
-	.modal-close {
-		position: absolute;
-		top: -0.75rem;
-		right: -0.75rem;
-		border: none;
-		border-radius: 999px;
-		background: var(--accent);
-		color: #fff;
-		padding: 0.55rem 0.85rem;
-		font-weight: 700;
-		cursor: pointer;
-	}
-
-	@media (max-width: 900px) {
-		.hero-grid, .nutshell-grid, .matchup-grid {
-			grid-template-columns: 1fr;
-		}
-		.guide-icon { justify-self: center; }
-		.deck-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-	}
-
-	@media (max-width: 640px) {
-		.copy-sim-button {
-			width: auto;
-			justify-content: center;
-			padding-inline: 0.9rem;
-			min-width: 0;
-			flex-shrink: 0;
-			justify-self: end;
-		}
-		.deck-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-		.deck-card { padding: 0.7rem; }
-		.deck-card img { max-width: 92px; }
-		.matchup-cards { gap: 0.75rem; }
-	}
-
-	@media (max-width: 560px) {
-		.guide-hero { padding-top: 2rem; }
-		.glow-block { padding: 1rem; border-radius: 22px; }
-		.curve-row, .combo-row {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-		}
-		.curve-cards, .combo-cards {
-			width: 100%;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			gap: 1rem;
-			padding-left: 0;
-		}
-		.curve-cards-triple {
-			flex-wrap: nowrap;
-			gap: 0.5rem;
-		}
-		.curve-cards-triple .curve-card img {
-			max-width: 82px;
-		}
-		.curve-note { width: 100%; }
-		.curve-card img { max-width: 100px; }
-		.curve-card-oden.is-rested { margin-left: 1.8rem; }
-	}
+	.guide-hero { padding-top:3rem; } .hero-grid { display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:2rem; align-items:center; } .hero-tags,.hero-actions,.title-row { display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; } .hero-tags span { border:1px solid rgba(255,107,53,.45); border-radius:999px; padding:.3rem .7rem; font-weight:800; font-size:.8rem; } .guide-icon { width:100%; border-radius:20px; } .hero-copy p, header p, .card-text p, .curve-item p, .tech-item p, .tip-item p { line-height:1.6; } .article-stack { display:grid; gap:1.3rem; }
+	.guide-block { padding:1.1rem; border:1px solid rgba(255,107,53,.38); border-radius:24px; background:rgba(8,12,24,.82); box-shadow:0 0 28px rgba(255,107,53,.07); } .guide-block h2, .guide-block h3, .guide-block p { margin-top:0; } header p { max-width:80ch; } .title-row { justify-content:space-between; } .decklist-header { display:block; width:100%; margin-bottom:0; } .decklist-title-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:start; width:100%; } .decklist-title-row h2 { margin:0; } .copy-sim-button { justify-self:end; width:auto; }
+	.deck-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:.75rem; margin-top:1rem; } .deck-card { padding:.65rem; border:1px solid rgba(255,107,53,.22); border-radius:15px; background:rgba(0,0,0,.22); color:inherit; text-align:left; cursor:pointer; } .deck-card img { width:100%; height:145px; object-fit:contain; display:block; } .deck-card span { display:block; color:#ff6b35; font-weight:900; margin-top:.4rem; } .deck-card strong,.deck-card small { display:block; } .deck-card small { opacity:.7; margin-top:.2rem; }
+	.mulligan-list,.curve-list,.tech-list,.tips-list { display:grid; gap:1rem; margin-top:1rem; } .mulligan-item { border-top:1px solid rgba(255,107,53,.35); padding-top:1rem; } .mulligan-item:first-child { border-top:0; padding-top:0; } .card-text,.curve-item,.tech-item,.tip-item { display:grid; grid-template-columns:minmax(150px,300px) minmax(0,1fr); align-items:center; gap:1rem; } .card-set { display:flex; flex-wrap:wrap; gap:.65rem; align-items:flex-start; } .card-connector { align-self:center; color:#ff6b35; font-weight:900; } .curve-card-set-three,.tips-card-set-three { flex-wrap:nowrap; } .curve-item:has(.curve-card-set-three),.tip-item:has(.tips-card-set-three) { grid-template-columns:minmax(320px,max-content) minmax(0,1fr); } .card-button { padding:0; border:0; background:transparent; cursor:pointer; } .card-button img { width:98px; display:block; border-radius:10px; } .curve-block + .curve-block { margin-top:1.5rem; } .curve-item,.tech-item,.tip-item { padding:.85rem; border:1px solid rgba(255,107,53,.2); border-radius:18px; background:rgba(0,0,0,.2); } .curve-item strong { color:#ff6b35; display:block; margin-bottom:.65rem; }
+	.matchups-section { display:grid; gap:1rem; } .matchups-section header p a { color:#ff8a42; font-weight:800; } .matchup-grid { display:grid; grid-template-columns:1fr; gap:1rem; } .matchup-card { display:grid; align-content:start; gap:.9rem; padding:1rem; border:1px solid rgba(255,107,53,.25); border-radius:22px; background:rgba(8,12,22,.72); } .matchup-badge { display:inline-flex; align-items:center; gap:.45rem; width:fit-content; padding:.45rem .9rem; border-radius:999px; font-weight:700; } .badge-icon { display:inline-flex; align-items:center; justify-content:center; width:1.1rem; height:1.1rem; border-radius:999px; background:currentColor; color:#08101b; font-size:.78rem; font-weight:900; } .up,.slight-up { color:#56e59b; background:rgba(34,197,94,.15); } .even { color:#facc15; background:rgba(250,204,21,.15); } .down,.slight-down { color:#ff8989; background:rgba(248,113,113,.15); } .matchup-row { display:grid; gap:.9rem; margin-top:.1rem; } .matchup-row-cards-only { justify-items:center; } .matchup-cards { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:.9rem; width:100%; } .matchup-static-card { flex:0 0 132px; } .matchup-static-card img { width:132px; height:82px; display:block; object-fit:cover; border-radius:12px; } .matchup-nico-robin img { object-position:center top; }
+	.card-modal { display:none; position:fixed; inset:0; z-index:50; place-items:center; padding:1rem; background:rgba(0,0,0,.78); } .card-modal.open { display:grid; } .card-modal > div { position:relative; max-width:min(92vw,500px); } .card-modal img { max-height:86vh; max-width:100%; display:block; } [data-close] { position:absolute; top:.5rem; right:.5rem; border:0; border-radius:999px; padding:.45rem .75rem; background:#ff6b35; color:white; font-weight:900; cursor:pointer; }
+	@media (max-width:760px) { .hero-grid { grid-template-columns:1fr; } .guide-icon { width:120px; } .guide-block,.decklist-header,.decklist-title-row { min-width:0; max-width:100%; } #decklist .decklist-title-row { grid-template-columns:minmax(0,1fr) auto; column-gap:.5rem; } #decklist .copy-sim-button { width:auto !important; max-width:100%; padding:.55rem .7rem; font-size:.78rem; line-height:1.1; white-space:nowrap; } .deck-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .deck-card img { height:125px; } .card-text,.curve-item,.tip-item,.curve-item:has(.curve-card-set-three),.tip-item:has(.tips-card-set-three) { grid-template-columns:minmax(0,1fr); align-items:start; } .tech-item { grid-template-columns:120px minmax(0,1fr); gap:1rem; align-items:start; padding:0; border:0; border-radius:0; background:transparent; } .tech-item + .tech-item { margin-top:.75rem; padding-top:.75rem; border-top:1px solid rgba(255,107,53,.3); } .tech-item .card-set { flex-direction:column; flex-wrap:nowrap; gap:.5rem; } .tech-item .card-button img { width:120px; } .tech-item > div:last-child { min-width:0; } .tech-item p { overflow-wrap:anywhere; } .curve-item .card-set,.tip-item .tips-card-set-three { flex-wrap:nowrap; } .curve-item .card-button img { width:70px; } .curve-item .curve-card-set-three,.tip-item .tips-card-set-three { gap:.35rem; } .curve-item .curve-card-set-three .card-button img,.tip-item .tips-card-set-three .card-button img { width:82px; } .matchup-static-card { flex:0 0 78px; } .matchup-static-card img { width:78px; height:56px; } }
 </style>

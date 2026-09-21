@@ -47,7 +47,7 @@ export const deckGuides = [
 		leader: "Dracule Mihawk",
 		code: "OP17",
 		formatLabel: "OP17 Format",
-		summary: "Decklist, curve guide, 10 DON!! combo, deck in a nutshell, and matchups for Dracule Mihawk OP14 in the OP17 format.",
+		summary: "Decklist, mulligan priorities, going-first and going-second curves, tech cards, matchups, and practical gameplay tips for Dracule Mihawk OP14 in OP17.",
 		month: "August",
 		href: "/deck-guides/dracule-mihawk-op14-in-format-op17/",
 		imageSrc: "/assets/guides/dracule-mihawk-op14.png",
