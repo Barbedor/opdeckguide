@@ -106,7 +106,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		}
 		<script type="application/ld+json" set:html={JSON.stringify(structuredDataPayload)} />
 	</head>
-	<body>
+	<body class:list={{ "deck-guide-page": isDeckGuidePage }}>
 		<a class="skip-link" href="#content">Skip to content</a>
 		<header class="site-header">
 			<div class="container header-inner">
@@ -345,6 +345,10 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			var(--bg-900);
 		color: var(--text-100);
 		line-height: 1.6;
+	}
+
+	.deck-guide-page .glow-block {
+		overflow: hidden;
 	}
 
 	a {
