@@ -119,6 +119,94 @@ const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
 const leakCardDetails = {
+	"OP18-001": {
+		rarity: "Leader Card",
+		stats: "Red / Blue / Life 4 / Strike / Power 5000",
+		traits: "Animal / Alabasta",
+		effectLines: [
+			["All of your Characters with both the {Animal} and {Alabasta} types gain ", keyword("rush", "Rush"), " and +1000 power."],
+			[keyword("once-per-turn", "Once Per Turn"), " When your {Alabasta} type Character is K.O.'d, draw 1 card."],
+		],
+	},
+	"OP18-022": {
+		rarity: "Leader Card",
+		stats: "Green / Life 5 / Strike / Power 5000",
+		traits: "Water Seven / Straw Hat Crew",
+		effectLines: [["DON!! x3 ", keyword("when-attacking", "When Attacking"), " ", keyword("once-per-turn", "Once Per Turn"), " You may set this Leader as active. If you do, this Leader will not become active in your next Refresh Phase."]],
+	},
+	"OP18-041": {
+		rarity: "Leader Card",
+		stats: "Blue / Life 5 / Wisdom / Power 5000",
+		traits: "Baroque Works",
+		effectLines: [["When your Character with a type including \"Baroque Works\" and 3000 base power or more is K.O.'d, draw 1 card, and your opponent trashes 1 card from their hand."]],
+	},
+	"OP18-079": {
+		rarity: "Leader Card",
+		stats: "Yellow / Life 4 / Slash / Power 5000",
+		traits: "CP9",
+		effectLines: [[keyword("activate-main", "Activate: Main"), " You may rest 2 of your DON!! cards and this Leader and trash 1 card with a type including \"CP\" from your hand: Add up to 1 card from the top of your deck to the top of your Life cards."]],
+	},
+	"EB05-001": {
+		rarity: "Super Rare",
+		stats: "Red / Cost 5 / Special / Power 7000",
+		traits: "Supernovas/Bonney Pirates",
+		effectLines: [
+			[keyword("on-play", "On Play"), " If your Leader has the {Supernovas} type, draw 2 cards and play up to 2 Character cards with 2000 power or less from your hand."],
+			[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " Give up to 1 of your opponent's Leader or Characters with 6000 power or more -1000 power until the end of your opponent's next End Phase."],
+		],
+	},
+	"EB05-006": {
+		rarity: "Super Rare",
+		stats: "Red / Cost 2 / Wisdom / Power 2000 / Counter 2000",
+		traits: "Rocks Pirates",
+		effectLines: [[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " You may add 1 card from the top of your Life cards to your hand: Choose one: Give up to 1 Character +3000 power during this turn. Give up to 1 Character -4000 power during this turn."],
+		],
+	},
+	"EB05-009": {
+		rarity: "Rare",
+		stats: "Red Event / Cost 1",
+		traits: "East Blue/Straw Hat Crew",
+		effectLines: [[keyword("main", "Main"), " All of your Characters with 4000 base power or less gain +1000 power until the end of your opponent's next End Phase."], [keyword("counter", "Counter"), " Your Leader gains +3000 power during this battle."]],
+	},
+	"EB05-014": {
+		rarity: "Super Rare",
+		stats: "Green / Cost 1 / Wisdom / Power 0",
+		traits: "Merfolk/Fish-Man Island",
+		effectLines: [[keyword("on-play", "On Play"), " Look at 5 cards from the top of your deck; reveal up to a total of 2 [Megalo] or {Neptunian} type cards and add them to your hand. Then, trash the rest."], [keyword("activate-main", "Activate: Main"), " You may rest this Character: Up to 1 of your {Neptunian} type Characters with 6000 power or less gains ", keyword("rush", "Rush"), " during this turn."]],
+	},
+	"EB05-021": {
+		rarity: "Super Rare",
+		stats: "Blue / Cost 6 / Strike / Power 7000 / Counter 1000",
+		traits: "Cross Guild",
+		effectLines: [[keyword("on-play", "On Play"), " Draw 2 cards and play up to 1 {Cross Guild} type Character card with a cost of 8 or less from your hand. Then, you cannot play Character cards during this turn."], [keyword("when-attacking", "When Attacking"), " Negate the effect of up to 1 of your opponent's Characters during this turn."]],
+	},
+	"EB05-029": {
+		rarity: "Common",
+		stats: "Blue Event / Cost 5",
+		traits: "Navy",
+		effectLines: [
+			[keyword("main", "Main"), " You may trash 1 card from your hand: Negate the effects of up to 1 of your opponent's Characters with a cost of 6 or less during this turn, and return it to their hand."],
+			[keyword("trigger", "Trigger"), " Draw 2 cards and trash 1 from your hand."],
+		],
+	},
+	"EB05-046": {
+		rarity: "Super Rare",
+		stats: "Black / Cost 4 / Strike / Power 5000 / Counter 1000",
+		traits: "Land of Wano",
+		effectLines: [["If your opponent has a Character with 8000 base power or more, this Character gains ", keyword("blocker", "Blocker"), " and +3000 power."], [keyword("on-your-opponents-attack", "On Your Opponent's Attack"), " You may trash 1 card from your hand: If you have 10 or more cards in your trash, your Leader's base power becomes 7000 during this turn."]],
+	},
+	"EB05-052": {
+		rarity: "Super Rare",
+		stats: "Yellow / Cost 4 / Wisdom / Power 6000 / Counter 1000",
+		traits: "Amazon Lily/Rocks Pirates",
+		effectLines: [["If you would take damage, you may trash this Character instead."], [keyword("trigger", "Trigger"), " Draw 2 cards and trash 1 card from your hand."]],
+	},
+	"EB05-055": {
+		rarity: "Super Rare",
+		stats: "Yellow / Cost 5 / Wisdom / Power 6000 / Counter 1000",
+		traits: "East Blue/Straw Hat Crew",
+		effectLines: [[keyword("your-turn", "Your Turn"), " ", keyword("on-play", "On Play"), " If your Leader has the <Wisdom> attribute, add up to 1 card from the top of your deck to the top of your Life cards."], [keyword("trigger", "Trigger"), " You may trash 1 card from your hand: If you have 2 or less Life cards, play this card."]],
+	},
 	"EB05-012": {
 		rarity: "Rare",
 		stats: "Green / Cost 3 / Wisdom / Power 0 / Counter 2000",
@@ -2438,6 +2526,10 @@ const leakCards = isLeakPage
 			.map((card) => {
 				const details = leakCardDetails[card.code];
 				const rarity = details?.rarity ?? "";
+				const isEb05ShirahoshiManga =
+					extension.toUpperCase() === "EB05" && card.code === "EB05-014" && card.edition === "MANGA";
+				const isOp18RobinManga =
+					extension.toUpperCase() === "OP18" && card.code === "OP18-031" && card.edition === "MANGA";
 				const hideEditionChip = rarity === "SP" || rarity === "Gold";
 				const hasStandaloneSpecialRarity = card.edition === "PIRATE CREW SUPER ALT MANGA";
 				const useHeaderAltBadge =
@@ -2455,12 +2547,20 @@ const leakCards = isLeakPage
 				return {
 					...card,
 					...details,
-					rarity: hasStandaloneSpecialRarity ? card.edition : details?.rarity ?? "",
+					rarity: hasStandaloneSpecialRarity
+						? card.edition
+						: isEb05ShirahoshiManga || isOp18RobinManga
+							? "MANGA"
+							: details?.rarity ?? "",
 					headerBadge:
-						useHeaderAltBadge || useOp18LokiAltBadge ? "ALT" : details?.headerBadge ?? card.headerBadge ?? null,
+						useHeaderAltBadge || useOp18LokiAltBadge
+							? "ALT"
+							: isEb05ShirahoshiManga || isOp18RobinManga
+								? "SUPER RARE"
+								: details?.headerBadge ?? card.headerBadge ?? null,
 					edition: hideEditionChip ? null : details?.edition ?? card.edition ?? null,
 					traits: details?.traits ?? card.traits ?? "",
-					notes: details?.notes ?? card.notes ?? [],
+					notes: isOp18RobinManga ? [] : details?.notes ?? card.notes ?? [],
 					effectLines: details?.effectLines ?? card.effectLines ?? [],
 					variants: [
 						...(card.variants ?? []),

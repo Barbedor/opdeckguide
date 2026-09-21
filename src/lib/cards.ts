@@ -713,6 +713,15 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
+		"eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
+		"eb05-009 fight and die with me!!!": { code: "EB05-009", name: "Fight and die with me!!!", color: "Red" },
+		"eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
+		"manga eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
+		"eb05-021 alvida": { code: "EB05-021", name: "Alvida", color: "Blue" },
+		"eb05-046 yamato": { code: "EB05-046", name: "Yamato", color: "Black" },
+		"eb05-052 gloriosa": { code: "EB05-052", name: "Gloriosa", color: "Yellow" },
+		"eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
 		"eb05-012 camie": {
 			code: "EB05-012",
 			name: "Camie",
@@ -726,6 +735,11 @@ const manualCardOverrides = {
 		"eb05-028 boa hancock": {
 			code: "EB05-028",
 			name: "Boa Hancock",
+			color: "Blue",
+		},
+		"eb05-029 feather cage": {
+			code: "EB05-029",
+			name: "Feather Cage",
 			color: "Blue",
 		},
 		"eb05-037 black maria": {
@@ -902,6 +916,26 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-001 karoo": {
+			code: "OP18-001",
+			name: "Karoo",
+			color: "Red / Blue",
+		},
+		"op18-022 monkey.d.luffy": {
+			code: "OP18-022",
+			name: "Monkey.D.Luffy",
+			color: "Green",
+		},
+		"op18-041 ms. all sunday": {
+			code: "OP18-041",
+			name: "Ms. All Sunday",
+			color: "Blue",
+		},
+		"op18-079 spandam": {
+			code: "OP18-079",
+			name: "Spandam",
+			color: "Yellow",
+		},
 		"leader op18-021 franky": {
 			code: "OP18-021",
 			name: "Franky",
@@ -1172,12 +1206,14 @@ const getOp18VariantLabel = (base) => {
 const getEb05VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("alt leader ")) return "ALT";
+	if (normalized.startsWith("manga ")) return "MANGA";
 	return null;
 };
 
 const stripEb05VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
 	if (normalized.startsWith("alt leader ")) return base.slice("ALT Leader ".length).trim();
+	if (normalized.startsWith("manga ")) return base.slice("MANGA ".length).trim();
 	if (normalized.startsWith("sp ")) return base.slice("SP ".length).trim();
 	return base.trim();
 };
