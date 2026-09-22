@@ -117,7 +117,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 			</div>
 
 			<div class="stats-main">
-				<div class="leader-board" data-leader-board aria-label="Top 10 leader share">
+				<div class="leader-board is-refreshing" data-leader-board aria-label="Top 10 leader share">
 					{topLeaderStats.map((segment, index) => (
 						<div class="leader-bar-row" data-leader-row>
 							<div class="leader-bar-head">
@@ -449,21 +449,34 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 				? '<div class="leader-board-empty">No tournament decklists match the selected tournament.</div>'
 				: `${ranked.slice(0, 10).map(rowMarkup).join("")}${ranked.length > 10 ? `<details class="extra-leaders-details"><summary class="leader-toggle">Show more</summary><div class="extra-leaders-wrap">${ranked.slice(10).map(rowMarkup).join("")}<button type="button" class="leader-toggle leader-toggle-close" data-close-extra>Show less</button></div></details>` : ""}`;
 
-			const replaceBoard = () => {
+			const replaceBoard = (isInitialRender = false) => {
 				statsTotal.textContent = `${total} decks`;
 				leaderBoard.innerHTML = boardMarkup;
 				bindLeaderNameToggles();
-				requestAnimationFrame(() => {
+				const revealAndAnimate = () => requestAnimationFrame(() => {
 					leaderBoard.classList.remove("is-refreshing");
-					for (const fill of leaderBoard.querySelectorAll("[data-leader-share]")) {
-						fill.style.width = `${fill.dataset.leaderShare}%`;
-					}
+					// Let the zero-width state paint first, then animate every bar to
+					// its actual share on the following frame.
+					requestAnimationFrame(() => {
+						for (const fill of leaderBoard.querySelectorAll("[data-leader-share]")) {
+							fill.style.width = `${fill.dataset.leaderShare}%`;
+						}
+					});
 				});
+
+				// Format tabs load a fresh page. Give its zero-width state a brief
+				// paint before revealing it, otherwise the browser can coalesce both
+				// states into a single jump.
+				if (isInitialRender) {
+					window.setTimeout(revealAndAnimate, 90);
+				} else {
+					revealAndAnimate();
+				}
 			};
 
 			if (!hasRenderedLeaderStats) {
 				hasRenderedLeaderStats = true;
-				replaceBoard();
+				replaceBoard(true);
 				return;
 			}
 

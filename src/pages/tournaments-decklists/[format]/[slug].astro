@@ -5,7 +5,7 @@ import { getClassicCardImage } from "../../../lib/cards";
 import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
 
 export const getStaticPaths = () =>
-	tournamentDecklistEntries.map((entry) => ({
+	tournamentDecklistEntries.filter((entry) => entry.leader).map((entry) => ({
 		params: { format: entry.viewSlug, slug: entry.slug },
 		props: { entry },
 	}));

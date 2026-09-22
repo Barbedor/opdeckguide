@@ -29704,7 +29704,15 @@ const buildDecklistSummary = (entry, leader) => {
 const publishedTournamentFormats = new Set(tournamentFormats.map((format) => format.entryFormat));
 
 export const tournamentDecklistEntries = entrySeeds
-	.filter((entry) => publishedTournamentFormats.has(entry.format) && entry.region)
+	// A decklist cannot render a detail page without a registered leader. Filter
+	// these malformed seeds before static routes are generated so a single bad
+	// leaderSlug never prevents the entire site from deploying.
+	.filter(
+		(entry) =>
+			publishedTournamentFormats.has(entry.format) &&
+			entry.region &&
+			Boolean(leaderIndex[entry.leaderSlug]),
+	)
 	.flatMap((entry, entryIndex) => {
 		const leader = leaderIndex[entry.leaderSlug];
 		const cards = cloneDeck(deckTemplates[entry.deckTemplate ?? entry.leaderSlug] ?? deckTemplates["yamato-op16"]);
