@@ -20,9 +20,10 @@ const eventTypeMeta = {
 	"5vs5": { short: "5V5", color: "#7ee081", soft: "rgba(126, 224, 129, 0.18)" },
 	"3vs3": { short: "3V3", color: "#2f9e5b", soft: "rgba(47, 158, 91, 0.18)" },
 	"Standard Battle": { short: "SB", color: "#c9ced8", soft: "rgba(201, 206, 216, 0.18)" },
+	"Extra Grand Battle": { short: "EGB", color: "#a47aff", soft: "rgba(164, 122, 255, 0.22)" },
 	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
 	"Pirate Party": { short: "PP", color: "#C49A3A", soft: "rgba(92, 58, 33, 0.48)", pirate: true },
-	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)" },
+	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)", championship: true },
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame FC": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame+LCQ": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
@@ -111,12 +112,12 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 			<div class="stats-header">
 				<div>
 					<h2>Top Leaders</h2>
-					<p>{totalDecklists} decks</p>
+					<p data-stats-total>{totalDecklists} decks</p>
 				</div>
 			</div>
 
 			<div class="stats-main">
-				<div class="leader-board" aria-label="Top 10 leader share">
+				<div class="leader-board" data-leader-board aria-label="Top 10 leader share">
 					{topLeaderStats.map((segment, index) => (
 						<div class="leader-bar-row" data-leader-row>
 							<div class="leader-bar-head">
@@ -198,7 +199,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 						/>
 					</div>
 
-					<div class="event-filter" data-event-filter>
+					<div class="event-filter is-all-events" data-event-filter>
 						<button class="event-filter-button" type="button" data-event-filter-button aria-expanded="false">
 							<span class="event-filter-button-copy" data-event-filter-label>All tournaments</span>
 						</button>
@@ -217,8 +218,9 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 										data-event-soft={event.soft}
 										data-event-flame={event.flame ? "true" : undefined}
 										data-event-pirate={event.pirate ? "true" : undefined}
+										data-event-championship={event.championship ? "true" : undefined}
 									>
-										<span class:list={["event-pill", { "flame-pill": event.flame, "pirate-party-pill": event.pirate }]} style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
+										<span class:list={["event-pill", { "flame-pill": event.flame, "pirate-party-pill": event.pirate, "championship-pill": event.championship }]} style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
 										<span class="event-option-name">{event.name}</span>
 									</button>
 								))
@@ -249,6 +251,10 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 						color: "#9aa4c7",
 						soft: "rgba(154, 164, 199, 0.18)",
 					};
+					const [leaderStartColor, leaderEndColor] = getLeaderColors(entry.leader.color);
+					const leaderBarFill = leaderStartColor === leaderEndColor
+						? leaderStartColor
+						: `linear-gradient(135deg, ${leaderStartColor} 0%, ${leaderEndColor} 100%)`;
 					return (
 						<a
 							class="results-row"
@@ -256,6 +262,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 							data-entry
 							data-leader={entry.leader.slug}
 							data-event={entry.eventType}
+							data-leader-fill={leaderBarFill}
 							data-leader-name={entry.leader.name.toLowerCase()}
 							data-event-name={entry.eventName.toLowerCase()}
 						>
@@ -267,8 +274,8 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 								</span>
 							</span>
 							<span class="row-type">
-								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
-								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
+								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
+								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
 							</span>
 							<span class="row-place desktop-only">{entry.placement}</span>
 						</a>
@@ -363,43 +370,129 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		const resultsTable = document.querySelector(".results-table");
 		const leaderSearch = document.querySelector('[data-tournament-filter="leader-search"]');
 		const visibleCount = document.querySelector("[data-visible-count]");
+		const statsTotal = document.querySelector("[data-stats-total]");
+		const leaderBoard = document.querySelector("[data-leader-board]");
 		const eventFilter = document.querySelector("[data-event-filter]");
 		const eventFilterButton = document.querySelector("[data-event-filter-button]");
 		const eventFilterMenu = document.querySelector("[data-event-filter-menu]");
 		const eventFilterLabel = document.querySelector("[data-event-filter-label]");
 		const eventOptions = [...document.querySelectorAll("[data-event-option-value]")];
-		const leaderNameToggles = [...document.querySelectorAll("[data-leader-name-toggle]")];
-		const extraLeadersDetails = document.querySelector(".extra-leaders-details");
-		const closeExtraButton = document.querySelector("[data-close-extra]");
 		const paginationWrap = document.querySelector("[data-results-pagination]");
 		const prevPageButton = document.querySelector("[data-page-prev]");
 		const nextPageButton = document.querySelector("[data-page-next]");
 		const pageStatus = document.querySelector("[data-page-status]");
 		const filteredEmptyState = document.querySelector("[data-results-empty]");
 
-		if (!leaderSearch || !visibleCount || !eventFilter || !eventFilterButton || !eventFilterMenu || !eventFilterLabel) return;
+		if (!leaderSearch || !visibleCount || !statsTotal || !leaderBoard || !eventFilter || !eventFilterButton || !eventFilterMenu || !eventFilterLabel) return;
 
 		let selectedEvent = "";
 		let currentPage = 1;
+		let hasRenderedLeaderStats = false;
+		let leaderStatsRefreshTimer;
 		const pageSize = 50;
+
+		const bindLeaderNameToggles = () => {
+			const toggles = [...leaderBoard.querySelectorAll("[data-leader-name-toggle]")];
+			for (const toggle of toggles) {
+				toggle.onclick = () => {
+					const expanded = toggle.getAttribute("aria-expanded") === "true";
+					for (const item of toggles) item.setAttribute("aria-expanded", "false");
+					toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+				};
+			}
+
+			const extraLeadersDetails = leaderBoard.querySelector(".extra-leaders-details");
+			const closeExtraButton = leaderBoard.querySelector("[data-close-extra]");
+			if (closeExtraButton && extraLeadersDetails) {
+				closeExtraButton.onclick = () => {
+					extraLeadersDetails.open = false;
+				};
+			}
+		};
+
+		const renderLeaderStats = (statRows) => {
+			const leaders = new Map();
+			for (const row of statRows) {
+				const image = row.querySelector(".row-leader img");
+				const set = row.querySelector(".row-leader-set")?.textContent?.trim() ?? "";
+				if (!image) continue;
+				const key = image.src;
+				const existing = leaders.get(key) ?? {
+					name: image.alt.replace(/ icon$/, ""),
+					imageSrc: image.src,
+					set,
+					barFill: row.dataset.leaderFill || "#a47aff",
+					count: 0,
+				};
+				existing.count += 1;
+				leaders.set(key, existing);
+			}
+
+			const total = statRows.length;
+			const ranked = [...leaders.values()]
+				.map((leader) => ({ ...leader, share: total ? Math.round((leader.count / total) * 1000) / 10 : 0 }))
+				.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "en"));
+
+			const rowMarkup = (leader) => `
+				<div class="leader-bar-row" data-leader-row>
+					<div class="leader-bar-head">
+						<button class="leader-bar-name" type="button" data-leader-name-toggle aria-expanded="false">
+							<img src="${leader.imageSrc}" alt="${leader.name} icon" loading="lazy" />
+							<span class="leader-bar-name-text">${leader.name} <span class="leader-bar-name-set">${leader.set}</span></span>
+						</button>
+						<div class="leader-bar-track"><div class="leader-bar-fill" data-leader-share="${leader.share}" style="--bar-fill:${leader.barFill}; width:0;"></div></div>
+						<span class="leader-bar-meta"><strong>${leader.share}%</strong><span>${leader.count}</span></span>
+					</div>
+				</div>`;
+
+			const boardMarkup = !ranked.length
+				? '<div class="leader-board-empty">No tournament decklists match the selected tournament.</div>'
+				: `${ranked.slice(0, 10).map(rowMarkup).join("")}${ranked.length > 10 ? `<details class="extra-leaders-details"><summary class="leader-toggle">Show more</summary><div class="extra-leaders-wrap">${ranked.slice(10).map(rowMarkup).join("")}<button type="button" class="leader-toggle leader-toggle-close" data-close-extra>Show less</button></div></details>` : ""}`;
+
+			const replaceBoard = () => {
+				statsTotal.textContent = `${total} decks`;
+				leaderBoard.innerHTML = boardMarkup;
+				bindLeaderNameToggles();
+				requestAnimationFrame(() => {
+					leaderBoard.classList.remove("is-refreshing");
+					for (const fill of leaderBoard.querySelectorAll("[data-leader-share]")) {
+						fill.style.width = `${fill.dataset.leaderShare}%`;
+					}
+				});
+			};
+
+			if (!hasRenderedLeaderStats) {
+				hasRenderedLeaderStats = true;
+				replaceBoard();
+				return;
+			}
+
+			window.clearTimeout(leaderStatsRefreshTimer);
+			leaderBoard.classList.add("is-refreshing");
+			leaderStatsRefreshTimer = window.setTimeout(replaceBoard, 160);
+		};
 
 		const syncEventLabel = (option) => {
 			if (!option || !selectedEvent) {
+				eventFilter.classList.add("is-all-events");
 				eventFilterLabel.textContent = "All tournaments";
 				return;
 			}
 
+			eventFilter.classList.remove("is-all-events");
 			const short = option.dataset.eventShort;
 			const color = option.dataset.eventColor;
 			const soft = option.dataset.eventSoft;
 			const flameClass = option.dataset.eventFlame === "true" ? " flame-pill" : "";
 			const pirateClass = option.dataset.eventPirate === "true" ? " pirate-party-pill" : "";
+			const championshipClass = option.dataset.eventChampionship === "true" ? " championship-pill" : "";
 			const name = option.querySelector(".event-option-name")?.textContent ?? option.dataset.eventOptionValue ?? "";
-			eventFilterLabel.innerHTML = `<span class="event-pill${flameClass}${pirateClass}" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
+			eventFilterLabel.innerHTML = `<span class="event-pill${flameClass}${pirateClass}${championshipClass}" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
 		};
 
 		const applyFilters = () => {
 			const leaderValue = leaderSearch.value.trim().toLowerCase();
+			const eventRows = rows.filter((row) => !selectedEvent || selectedEvent.split("|").includes(row.dataset.event || ""));
 			const filteredRows = rows.filter((row) => {
 				const matchLeader = !leaderValue || (row.dataset.leaderName || "").includes(leaderValue);
 				const matchEvent = !selectedEvent || selectedEvent.split("|").includes(row.dataset.event || "");
@@ -419,6 +512,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 			}
 
 			visibleCount.textContent = String(totalFiltered);
+			renderLeaderStats(eventRows);
 
 			if (filteredEmptyState) {
 				filteredEmptyState.hidden = totalFiltered !== 0 || rows.length === 0;
@@ -485,20 +579,6 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 				applyFilters();
 				scrollToResultsTop();
 			});
-		}
-
-		for (const toggle of leaderNameToggles) {
-			toggle.onclick = () => {
-				const expanded = toggle.getAttribute("aria-expanded") === "true";
-				for (const item of leaderNameToggles) item.setAttribute("aria-expanded", "false");
-				toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-			};
-		}
-
-		if (closeExtraButton && extraLeadersDetails) {
-			closeExtraButton.onclick = () => {
-				extraLeadersDetails.open = false;
-			};
 		}
 
 		applyFilters();
@@ -646,6 +726,21 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		color: #e8e1d3;
 		box-shadow: inset 0 1px 0 rgba(226, 200, 148, 0.28), 0 3px 9px rgba(0, 0, 0, 0.32);
 		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+	}
+
+	.championship-pill {
+		border-color: #f6d36a;
+		background: linear-gradient(135deg, #17233e 0%, #6e4b13 58%, #c49a3a 100%);
+		color: #fff4c9;
+		box-shadow: 0 0 12px rgba(255, 202, 70, 0.35), inset 0 1px 0 rgba(255, 248, 202, 0.45);
+		text-shadow: 0 1px 2px rgba(35, 20, 0, 0.8);
+	}
+
+	.championship-pill::before {
+		content: "🏆";
+		margin-right: 0.28rem;
+		font-size: 0.84rem;
+		line-height: 1;
 	}
 
 
@@ -819,6 +914,18 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		cursor: pointer;
 	}
 
+	.event-filter.is-all-events .event-filter-button {
+		border-color: rgba(255, 147, 60, 0.58);
+		background: linear-gradient(110deg, rgba(255, 147, 60, 0.16), rgba(10, 14, 24, 0.92) 58%);
+		box-shadow: inset 3px 0 0 var(--accent-300), 0 0 0 1px rgba(255, 147, 60, 0.08);
+	}
+
+	.event-filter.is-all-events .event-filter-button-copy {
+		font-weight: 800;
+		color: #fff4e8;
+		white-space: nowrap;
+	}
+
 	.event-filter-button::after {
 		content: "▾";
 		color: var(--text-300);
@@ -857,6 +964,17 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 	.event-filter-option.active,
 	.event-filter-option:hover {
 		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.event-filter-option[data-event-option-value=""] {
+		background: linear-gradient(90deg, rgba(255, 147, 60, 0.18), rgba(255, 147, 60, 0.05));
+		box-shadow: inset 3px 0 0 var(--accent-300);
+		color: #fff4e8;
+	}
+
+	.event-filter-option[data-event-option-value=""]:hover,
+	.event-filter-option[data-event-option-value=""].active {
+		background: linear-gradient(90deg, rgba(255, 147, 60, 0.27), rgba(255, 147, 60, 0.1));
 	}
 
 	.event-option-name {
@@ -1136,4 +1254,30 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		}
 	}
 
+</style>
+
+<style is:global>
+	[data-leader-board] { transition: opacity 160ms ease, transform 160ms ease; }
+	[data-leader-board].is-refreshing { opacity: 0; transform: translateY(5px); pointer-events: none; }
+	[data-leader-board] .leader-bar-row { display: grid; gap: 0.18rem; }
+	[data-leader-board] .leader-bar-head { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto; align-items: center; gap: 0.55rem; }
+	[data-leader-board] .leader-bar-name { display: flex; align-items: center; gap: 0.45rem; min-width: 0; padding: 0; border: 0; background: transparent; color: var(--text-100); font-weight: 800; font-size: 0.92rem; line-height: 1.1; cursor: pointer; text-align: left; }
+	[data-leader-board] .leader-bar-name img { width: 26px; height: 26px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08); object-fit: cover; flex: 0 0 auto; }
+	[data-leader-board] .leader-bar-name-text { display: none; }
+	[data-leader-board] .leader-bar-name[aria-expanded="true"] .leader-bar-name-text { display: inline; }
+	[data-leader-board] .leader-bar-name-set { color: var(--text-300); font-size: 0.82em; font-weight: 700; }
+	[data-leader-board] .leader-bar-track { height: 8px; min-width: 0; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, 0.06); }
+	[data-leader-board] .leader-bar-fill { height: 100%; border-radius: inherit; background: var(--bar-fill); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); transition: width 560ms cubic-bezier(0.22, 1, 0.36, 1); }
+	[data-leader-board] .leader-bar-meta { display: flex; align-items: center; gap: 0.55rem; flex: 0 0 auto; }
+	[data-leader-board] .leader-bar-meta strong { font-size: 0.88rem; }
+	[data-leader-board] .leader-bar-meta span { color: var(--text-300); font-size: 0.78rem; font-weight: 700; }
+	[data-leader-board] .leader-board-empty { color: var(--text-300); font-size: 0.95rem; }
+	[data-leader-board] .extra-leaders-details, [data-leader-board] .extra-leaders-wrap { display: grid; gap: 0.45rem; }
+	[data-leader-board] .extra-leaders-details[open] > .leader-toggle { display: none; }
+	[data-leader-board] .leader-toggle { display: inline-flex; align-items: center; justify-self: start; margin-top: 0.1rem; padding: 0.5rem 0.85rem; border: 1px solid rgba(255, 147, 60, 0.25); border-radius: 999px; background: rgba(255, 147, 60, 0.08); color: var(--accent-300); font-size: 0.86rem; font-weight: 800; cursor: pointer; list-style: none; }
+	[data-leader-board] .leader-toggle::-webkit-details-marker { display: none; }
+	[data-leader-board] .leader-toggle:hover { border-color: rgba(255, 147, 60, 0.4); background: rgba(255, 147, 60, 0.14); }
+	@media (prefers-reduced-motion: reduce) {
+		[data-leader-board], [data-leader-board] .leader-bar-fill { transition: none; }
+	}
 </style>
