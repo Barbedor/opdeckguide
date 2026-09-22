@@ -502,6 +502,8 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 
 	.detail-card-media {
 		position: relative;
+		overflow: hidden;
+		border-radius: 14px;
 	}
 
 	.detail-card-preview {
@@ -551,7 +553,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 	.detail-affiliate-link {
 		position: absolute;
 		left: 0.38rem;
-		bottom: 1rem;
+		bottom: 1.2rem;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -758,7 +760,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		}
 
 		.detail-grid {
-			grid-template-columns: repeat(5, minmax(0, 1fr));
+			grid-template-columns: repeat(6, minmax(0, 1fr));
 		}
 
 		.detail-card {
@@ -766,11 +768,11 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		}
 
 		.detail-card img {
-			height: clamp(250px, 20vw, 320px);
+			height: auto;
 		}
 
 		.detail-card-copy {
-			padding-top: 0.55rem;
+			padding-top: 0.15rem;
 		}
 
 		.detail-card-count {
@@ -786,11 +788,11 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		}
 
 		.detail-affiliate-link {
-			left: 0.28rem;
-			bottom: 0.28rem;
-			padding: 0.42rem 0.78rem;
-			border-radius: 10px;
-			font-size: 1.02rem;
+			left: 0.4rem;
+			bottom: 0.62rem;
+			padding: 0.28rem 0.55rem;
+			border-radius: 7px;
+			font-size: 0.84rem;
 		}
 	}
 </style>

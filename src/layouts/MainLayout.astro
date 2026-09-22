@@ -173,6 +173,40 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 						const deckCards = Array.from(deckGrid.querySelectorAll(".deck-card"));
 						let hasAffiliateCards = false;
+						const desktopDecklistStyle = (element, property, value) => {
+							if (!(element instanceof HTMLElement)) return;
+							if (window.matchMedia("(min-width: 901px)").matches) {
+								element.style.setProperty(property, value, "important");
+							} else {
+								element.style.removeProperty(property);
+							}
+						};
+
+						const syncDeckGuideLayout = () => {
+							desktopDecklistStyle(deckGrid, "grid-template-columns", "repeat(6, minmax(0, 1fr))");
+							desktopDecklistStyle(deckGrid, "gap", "0.55rem");
+
+							deckCards.forEach((deckCard) => {
+								const image = deckCard.querySelector("img");
+								const info = deckCard.querySelector(".deck-info");
+								const count = deckCard.querySelector(".deck-count");
+								const role = deckCard.querySelector(".deck-role");
+
+								desktopDecklistStyle(deckCard, "padding", "0.7rem");
+								desktopDecklistStyle(deckCard, "gap", "0.35rem");
+								desktopDecklistStyle(image, "width", "100%");
+								desktopDecklistStyle(image, "max-width", "none");
+								desktopDecklistStyle(image, "margin", "0");
+								desktopDecklistStyle(info, "grid-template-columns", "1fr");
+								desktopDecklistStyle(info, "gap", "0.2rem");
+								desktopDecklistStyle(count, "padding", "0");
+								desktopDecklistStyle(count, "background", "transparent");
+								desktopDecklistStyle(role, "display", "none");
+							});
+						};
+
+						syncDeckGuideLayout();
+						window.addEventListener("resize", syncDeckGuideLayout);
 
 						deckCards.forEach((deckCard) => {
 							if (!(deckCard instanceof HTMLElement)) return;
@@ -220,7 +254,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 								const shellRect = shell.getBoundingClientRect();
 								const imageRect = image.getBoundingClientRect();
 								const left = imageRect.left - shellRect.left + 6;
-								const top = imageRect.top - shellRect.top + imageRect.height - 6;
+								const top = imageRect.top - shellRect.top + imageRect.height - 10;
 
 								shell.style.setProperty("--affiliate-left", `${left}px`);
 								shell.style.setProperty("--affiliate-top", `${top}px`);
@@ -802,12 +836,42 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		text-align: center;
 		backdrop-filter: blur(6px);
 		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+		transition:
+			background 0.18s ease,
+			color 0.18s ease,
+			padding-right 0.18s ease;
 		z-index: 2;
 	}
 
-	.deck-affiliate-link:hover {
-		background: rgba(12, 28, 42, 0.96);
-		color: #effbff;
+	.deck-affiliate-link::after {
+		content: "";
+		width: 0;
+		align-self: stretch;
+		height: auto;
+		margin-left: 0;
+		opacity: 0;
+		flex: 0 0 auto;
+		background: url("/assets/TCGplayer_Logo.svg") center / auto 100% no-repeat;
+		transition:
+			width 0.18s ease,
+			margin-left 0.18s ease,
+			opacity 0.18s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.deck-affiliate-link:hover,
+		.deck-affiliate-link:focus-visible {
+			background: rgba(12, 28, 42, 0.96);
+			color: #effbff;
+			padding-right: 0.85rem;
+		}
+
+		.deck-affiliate-link:hover::after,
+		.deck-affiliate-link:focus-visible::after {
+			width: 1.65rem;
+			margin-left: 0.25rem;
+			opacity: 1;
+		}
 	}
 
 	.deck-affiliate-link.is-hidden {
@@ -1058,6 +1122,62 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 	@media (min-width: 901px) {
 		.nav-two-line > span:first-child {
 			margin-right: 0.32em;
+		}
+
+		#decklist .deck-grid,
+		.list-section .deck-grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+			gap: 0.55rem !important;
+		}
+
+		#decklist .deck-card,
+		.list-section .deck-card {
+			padding: 0.7rem !important;
+			gap: 0.35rem !important;
+			align-content: start;
+		}
+
+		#decklist .deck-card img,
+		.list-section .deck-card img {
+			display: block;
+			width: 100% !important;
+			max-width: none !important;
+			height: auto !important;
+			margin: 0 !important;
+			border-radius: 14px;
+		}
+
+		#decklist .deck-info,
+		.list-section .deck-info {
+			grid-template-columns: 1fr !important;
+			gap: 0.2rem !important;
+			align-items: start !important;
+		}
+
+		#decklist .deck-count,
+		.list-section .deck-count {
+			justify-self: start;
+			padding: 0;
+			background: transparent;
+			font-size: inherit;
+		}
+
+		#decklist .deck-name,
+		.list-section .deck-name {
+			font-size: inherit;
+			line-height: 1.2;
+		}
+
+		#decklist .deck-role,
+		.list-section .deck-role {
+			display: none;
+		}
+
+		#decklist .deck-affiliate-link,
+		.list-section .deck-affiliate-link {
+			padding: 0.28rem 0.55rem;
+			border-radius: 7px;
+			font-size: 0.84rem;
 		}
 	}
 

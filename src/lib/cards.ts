@@ -807,6 +807,11 @@ const manualCardOverrides = {
 			name: "Nojiko",
 			color: "Yellow",
 		},
+		"eb05-060 take care of lilith!!!": {
+			code: "EB05-060",
+			name: "Take care of Lilith!!!",
+			color: "Yellow",
+		},
 		"alt leader nico robin eb05-010": {
 			code: "EB05-010",
 			name: "Nico Robin",
@@ -916,6 +921,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-003 sea cat": {
+			code: "OP18-003",
+			name: "Sea Cat",
+			color: "Red",
+		},
 		"op18-001 karoo": {
 			code: "OP18-001",
 			name: "Karoo",
