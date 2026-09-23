@@ -797,6 +797,11 @@ const manualCardOverrides = {
 			name: "Ripley",
 			color: "Black",
 		},
+		"eb05-048 hedgehog stinger": {
+			code: "EB05-048",
+			name: "Hedgehog Stinger",
+			color: "Black",
+		},
 		"eb05-044 ms. father's day": {
 			code: "EB05-044",
 			name: "Ms. Father's Day",
@@ -921,6 +926,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-028 chimney": {
+			code: "OP18-028",
+			name: "Chimney",
+			color: "Green",
+		},
 		"op18-003 sea cat": {
 			code: "OP18-003",
 			name: "Sea Cat",
