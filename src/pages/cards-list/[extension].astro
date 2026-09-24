@@ -146,6 +146,15 @@ const leakCardDetails = {
 		traits: "Baroque Works",
 		effectLines: [["When your Character with a type including \"Baroque Works\" and 3000 base power or more is K.O.'d, draw 1 card, and your opponent trashes 1 card from their hand."]],
 	},
+	"OP18-056": {
+		rarity: "Common",
+		stats: "Blue / Cost 2 / Wisdom / Power 3000 / Counter 1000",
+		traits: "Animal/Baroque Works",
+		effectLines: [
+			["DON!! x1 This Character gains +1000 power."],
+			[keyword("on-play", "On Play"), " You may place 1 of your Characters with a type including \"Baroque Works\" other than this Character at the bottom of your deck: Your opponent trashes 1 card from their hand."],
+		],
+	},
 	"OP18-079": {
 		rarity: "Leader Card",
 		stats: "Yellow / Life 4 / Slash / Power 5000",
@@ -159,6 +168,51 @@ const leakCardDetails = {
 		effectLines: [
 			[keyword("on-play", "On Play"), " If your Leader has the {Supernovas} type, draw 2 cards and play up to 2 Character cards with 2000 power or less from your hand."],
 			[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " Give up to 1 of your opponent's Leader or Characters with 6000 power or more -1000 power until the end of your opponent's next End Phase."],
+		],
+	},
+	"EB05-004": {
+		rarity: "Rare",
+		stats: "Red / Cost 4 / Special / Power 6000 / Counter 1000",
+		traits: "Punk Hazard/Donquixote Pirates",
+		effectLines: [
+			[keyword("on-play", "On Play"), " You may reveal 2 Event cards from your hand: Draw 2 cards."],
+			[keyword("on-ko", "On K.O."), " Play up to 1 Character card with 6000 power or less from your hand rested."],
+		],
+	},
+	"EB05-018": {
+		rarity: "Rare",
+		stats: "Green / Cost 1 / Slash / Power 1000 / Counter 2000",
+		traits: "Dressrosa",
+		effectLines: [[keyword("on-play", "On Play"), " Up to 1 of your opponent's rested Characters with a cost of 6 or less will not become active in your opponent's next Refresh Phase."]],
+	},
+	"EB05-024": {
+		rarity: "Rare",
+		stats: "Blue / Cost 1 / Wisdom / Power 0 / Counter 1000",
+		traits: "Impel Down",
+		effectLines: [["If your Leader has the {Impel Down} type, this Character gains ", keyword("blocker", "Blocker"), " and +2 cost."]],
+	},
+	"EB05-031": {
+		rarity: "Rare",
+		stats: "Purple / Cost 4 / Special / Power 5000 / Counter 1000",
+		traits: "The Vinsmoke Family/GERMA 66",
+		effectLines: [
+			[keyword("on-play", "On Play"), " DON!! -1: If your Leader has the {Vinsmoke Family} type, trash 10 cards from the top of your deck."],
+			[keyword("activate-main", "Activate: Main"), " You may trash this Character: If your opponent has a Character with 8000 base power or more, add up to 4 DON!! cards as active from your DON!! deck."],
+		],
+	},
+	"EB05-043": {
+		rarity: "Rare",
+		stats: "Black / Cost 4 / Special / Power 5000 / Counter 2000",
+		traits: "Thriller Bark Pirates",
+		effectLines: [[keyword("on-ko", "On K.O."), " K.O. or rest up to 1 of your opponent's Characters with a cost of 6 or less."]],
+	},
+	"EB05-050": {
+		rarity: "Rare",
+		stats: "Yellow / Cost 1 / Wisdom / Power 2000 / Counter 1000",
+		traits: "Egghead/Scientist",
+		effectLines: [
+			[keyword("on-play", "On Play"), " Look at 4 cards from the top of your deck; reveal up to 1 card with the <Wisdom> attribute and add it to your hand. Then, place the rest at the bottom of your deck in any order."],
+			[keyword("trigger", "Trigger"), " Activate this card's ", keyword("on-play", "On Play"), " effect."],
 		],
 	},
 	"EB05-006": {

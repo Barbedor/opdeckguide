@@ -713,6 +713,12 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-004 baby 5": { code: "EB05-004", name: "Baby 5", color: "Red" },
+		"eb05-018 rebecca": { code: "EB05-018", name: "Rebecca", color: "Green" },
+		"eb05-024 little sadi": { code: "EB05-024", name: "Little Sadi", color: "Blue" },
+		"eb05-031 vinsmoke reiju": { code: "EB05-031", name: "Vinsmoke Reiju", color: "Purple" },
+		"eb05-043 perona": { code: "EB05-043", name: "Perona", color: "Black" },
+		"eb05-050 atlas": { code: "EB05-050", name: "Atlas", color: "Yellow" },
 		"eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
 		"eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
 		"eb05-009 fight and die with me!!!": { code: "EB05-009", name: "Fight and die with me!!!", color: "Red" },
@@ -926,6 +932,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-056 mr.13 and ms. friday": {
+			code: "OP18-056",
+			name: "Mr.13 and Ms. Friday",
+			color: "Blue",
+		},
 		"op18-028 chimney": {
 			code: "OP18-028",
 			name: "Chimney",
