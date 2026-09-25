@@ -36,6 +36,8 @@ export const staticSitePaths = [
 	"/beginner-guides/",
 	"/banlist/",
 	"/cards-list/",
+	"/products/",
+	"/products/starter-decks/",
 ];
 
 export const guidePaths = [...visibleDeckGuides, ...beginnerGuides].map((guide) => guide.href);
