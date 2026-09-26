@@ -1076,6 +1076,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/QYx71M",
 		price: "$0.18",
 	},
+	"OP17-041": {
+		affiliateUrl: "https://partner.tcgplayer.com/OYd7DN",
+		price: "$0.11",
+	},
 	"OP17-042": {
 		affiliateUrl: "https://partner.tcgplayer.com/9VB06E",
 		price: "$0.23",
@@ -1768,6 +1772,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/qW69jq",
 		price: "$1.53",
 	},
+	"OP17-006": {
+		affiliateUrl: "https://partner.tcgplayer.com/WOQ7eM",
+		price: "$0.10",
+	},
 	"OP17-017": {
 		affiliateUrl: "https://partner.tcgplayer.com/jR60Lb",
 		price: "$0.12",
@@ -1779,6 +1787,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 };
 
 export const cardsListOnlyAffiliateCards: Record<string, AffiliateCardEntry> = {
+	"OP17-006": {
+		affiliateUrl: "https://partner.tcgplayer.com/WOQ7eM",
+		price: "$0.10",
+	},
 	"OP17-SP-ROGER": {
 		affiliateUrl: "https://partner.tcgplayer.com/qWL5An",
 		price: "$189.99",
