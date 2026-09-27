@@ -977,6 +977,11 @@ const manualCardOverrides = {
 			name: "Goldberg",
 			color: "Yellow",
 		},
+		"op18-112 yamakaji": {
+			code: "OP18-112",
+			name: "Yamakaji",
+			color: "Yellow",
+		},
 		"leader op18-021 franky": {
 			code: "OP18-021",
 			name: "Franky",
