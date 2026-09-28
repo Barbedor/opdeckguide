@@ -19,7 +19,7 @@ export const deckGuides = [
 		leader: "Portgas D. Ace",
 		code: "OP16",
 		formatLabel: "OP17 Format",
-		summary: "Decklist, deck overview, strengths, weaknesses, curve guide, combos, and matchup notes for Portgas D. Ace OP16 in OP17.",
+		summary: "Updated OP17 decklist, mulligan priorities, curve guide, tech cards, matchup spread, and tips for Portgas D. Ace OP16.",
 		month: "September",
 		href: "/deck-guides/portags-d-ace-op16-format-op17/",
 		imageSrc: "/assets/guides/Ace-op16.png",
