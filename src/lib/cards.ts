@@ -932,6 +932,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-016 monkey.d.luffy": {
+			code: "OP18-016",
+			name: "Monkey.D.Luffy",
+			color: "Red",
+		},
 		"op18-066 zambai": {
 			code: "OP18-066",
 			name: "Zambai",
