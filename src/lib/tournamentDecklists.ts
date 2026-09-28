@@ -70,6 +70,15 @@ export const tournamentFormats = [
 ];
 
 const leaderIndex = {
+	"king-op08": {
+		slug: "king-op08",
+		name: "King",
+		code: "OP08-057",
+		format: "op17",
+		color: "Black",
+		imageSrc: "/assets/guides/King op08.png",
+		href: "/deck-guides/",
+	},
 	"yamato-op16": {
 		slug: "yamato-op16",
 		name: "Yamato",
@@ -149,7 +158,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Red",
 		imageSrc: "/assets/guides/Ace-op16.png",
-		href: "/deck-guides/portgas-d-ace-op16/",
+		href: "/deck-guides/portags-d-ace-op16-format-op17/",
 	},
 	"red-ace-op16": {
 		slug: "red-ace-op16",
