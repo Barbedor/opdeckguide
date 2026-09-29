@@ -118,9 +118,9 @@ const cardPool = [
 ---
 
 <section class="hero hero-showcase">
-	<div class="hero-float-layer" data-hero-float-layer aria-hidden="true"></div>
 	<div class="container">
 		<div class="hero-shell" data-hero-shell>
+			<div class="hero-float-layer" data-hero-float-layer aria-hidden="true"></div>
 			<div class="hero-center">
 				{
 					newsHref && newsTitle && newsLabel && (
@@ -320,6 +320,7 @@ const cardPool = [
 			radial-gradient(circle at 88% 30%, rgba(255, 107, 61, 0.12), transparent 22%),
 			linear-gradient(180deg, rgba(12, 17, 30, 0.98), rgba(9, 13, 24, 0.98));
 		overflow: hidden;
+		overflow: clip;
 	}
 
 	.hero-shell {
@@ -327,6 +328,9 @@ const cardPool = [
 		min-height: 470px;
 		padding: 0;
 		isolation: isolate;
+		overflow: hidden;
+		overflow: clip;
+		contain: paint;
 	}
 
 	.hero-shell::before {
@@ -347,14 +351,14 @@ const cardPool = [
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
-		z-index: 1;
+		z-index: 0;
 		perspective: 1400px;
 		perspective-origin: 50% 50%;
 	}
 
 	.hero-center {
 		position: relative;
-		z-index: 2;
+		z-index: 1;
 		max-width: 760px;
 		margin: 0 auto;
 		min-height: 420px;
@@ -511,6 +515,14 @@ const cardPool = [
 		filter: saturate(1.05) contrast(1.03) brightness(1.01);
 		backface-visibility: hidden;
 		transform: translateZ(1px);
+	}
+
+	/* Auto Ads can inject an ad inside this section. Keep the decorative layer
+	   behind the ad so a floating card can never obscure the ad creative. */
+	:global(.hero-showcase ins.adsbygoogle),
+	:global(.hero-showcase .adsbygoogle) {
+		position: relative !important;
+		z-index: 3 !important;
 	}
 
 	@keyframes heroCardFlight {
