@@ -164,11 +164,11 @@ const cardPool = [
 
 	if (shell && layer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 		const activeCards = new Set();
-		const maxActiveCards = 5;
-		const spawnIntervalMs = 1450;
+		const maxActiveCards = 4;
+		const spawnIntervalMs = 1750;
 		const laneReleaseDelayMs = 1300;
-		const initialSpawnCount = 3;
-		const initialSpawnSpacingMs = 900;
+		const initialSpawnCount = 2;
+		const initialSpawnSpacingMs = 1100;
 		const sideLanes = {
 			left: [14, 34, 56],
 			right: [16, 38, 60],
@@ -208,12 +208,17 @@ const cardPool = [
 			image.className = "floating-card-face";
 			node.setAttribute("data-card-src", cardSrc);
 			image.decoding = "async";
-			image.loading = "eager";
+			// Decorative cards must not compete with the hero/news images for the
+			// initial network bandwidth.
+			image.loading = "lazy";
+			image.fetchPriority = "low";
 
 			const width = `${100 + Math.round(Math.random() * 40)}px`;
-			const startY = `${88 + Math.random() * 8}%`;
+			// Keep the complete flight inside the hero. The old 88% start plus a
+			// 500px+ travel distance made cards cross the ad slot on mobile.
+			const startY = `${68 + Math.random() * 8}%`;
 			const driftX = `${28 + Math.random() * 24}px`;
-			const driftY = `${500 + Math.random() * 160}px`;
+			const driftY = `${330 + Math.random() * 90}px`;
 			const startRotate = `${side === "left" ? -22 + Math.random() * 12 : 10 + Math.random() * 16}deg`;
 			const endRotate = `${side === "left" ? -6 + Math.random() * 18 : -2 + Math.random() * 18}deg`;
 			const pivotX = `${side === "left" ? -18 + Math.random() * 24 : -16 + Math.random() * 24}deg`;
@@ -497,6 +502,9 @@ const cardPool = [
 	:global(.floating-card-face) {
 		display: block;
 		width: 100%;
+		aspect-ratio: 0.716;
+		height: auto;
+		object-fit: cover;
 		border-radius: 12px;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
