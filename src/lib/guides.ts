@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Sabo OP13 Deck Guide",
+		leader: "Sabo",
+		code: "OP13",
+		formatLabel: "OP17 Format",
+		summary: "Updated Elbaf Straw Hat decklist, mulligan priorities, curve guide, tech cards, matchup spread, and gameplay tips for Sabo OP13 in OP17.",
+		month: "September",
+		href: "/deck-guides/sabo-op13-format-op17/",
+		imageSrc: "/assets/guides/Sabo%20OP13-004.png",
+		imageAlt: "Sabo OP13 OP17 format deck guide cover",
+		aliases: ["sabo op13 op17", "op17 sabo", "elbaf sabo", "red sabo op17", "sabo deck guide"],
+		tags: ["op13", "op17", "red", "elbaf", "straw hat crew", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Boa Hancock OP14 Deck Guide",
 		leader: "Boa Hancock",
 		code: "OP14",
