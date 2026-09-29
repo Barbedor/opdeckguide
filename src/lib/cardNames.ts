@@ -73,6 +73,7 @@ const baseCardNames: Record<string, string> = {
 	"OP11-083": "Caribou",
 	"OP12-023": "Kawamatsu",
 	"OP12-015": "Monkey.D.Luffy",
+	"OP12-006": "Shakuyaku",
 	"OP12-018": "Conqueror's Haki",
 	"OP12-034": "Perona",
 	"OP12-037": "Demonic Aura Nine-Sword Style Asura Dead Man's Game",
