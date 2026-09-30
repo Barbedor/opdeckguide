@@ -11,6 +11,7 @@ const {
 	newsTitle,
 	newsImageSrc,
 	newsImageAlt,
+	newsImageBanned,
 } = Astro.props;
 
 const cardPool = [
@@ -132,13 +133,15 @@ const cardPool = [
 							</div>
 							{
 								newsImageSrc && (
-									<img
-										class="hero-news-thumb"
-										src={newsImageSrc}
-										alt={newsImageAlt ?? ""}
-										loading="eager"
-										decoding="async"
-									/>
+									<div class:list={["hero-news-thumb-frame", { "hero-news-thumb-banned": newsImageBanned }]}>
+										<img
+											class="hero-news-thumb"
+											src={newsImageSrc}
+											alt={newsImageAlt ?? ""}
+											loading="eager"
+											decoding="async"
+										/>
+									</div>
 								)
 							}
 						</a>
@@ -434,13 +437,30 @@ const cardPool = [
 	}
 
 	.hero-news-thumb {
-		flex: 0 0 auto;
+		display: block;
 		width: 48px;
 		height: 48px;
 		object-fit: cover;
 		border-radius: 12px;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		box-shadow: 0 12px 20px rgba(0, 0, 0, 0.24);
+	}
+
+	.hero-news-thumb-frame {
+		position: relative;
+		flex: 0 0 auto;
+	}
+
+	.hero-news-thumb-banned::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: 12px;
+		pointer-events: none;
+		background:
+			linear-gradient(45deg, transparent 44%, rgba(56, 0, 0, 0.9) 44.5% 46%, #ff3d3d 46.5% 51%, rgba(255, 160, 160, 0.92) 51.5% 52.5%, rgba(56, 0, 0, 0.9) 53% 54.5%, transparent 55%),
+			linear-gradient(-45deg, transparent 44%, rgba(56, 0, 0, 0.9) 44.5% 46%, #ff3d3d 46.5% 51%, rgba(255, 160, 160, 0.92) 51.5% 52.5%, rgba(56, 0, 0, 0.9) 53% 54.5%, transparent 55%);
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.72));
 	}
 
 	.hero-copy {
@@ -719,6 +739,10 @@ const cardPool = [
 		.hero-news-thumb {
 			width: 40px;
 			height: 40px;
+			border-radius: 10px;
+		}
+
+		.hero-news-thumb-banned::after {
 			border-radius: 10px;
 		}
 

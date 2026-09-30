@@ -41,6 +41,19 @@ const description =
 				/>
 			</figure>
 			<div class="tier-article-links">
+				<a class="tier-article-card" href="/meta-analysis/meta-evolution-banlist-october-12-2026/">
+					<div class="article-thumb article-thumb-banlist" aria-hidden="true">
+						<img
+							loading="lazy"
+							src="/assets/guides/dracule-mihawk-op14.png"
+							alt=""
+						/>
+					</div>
+					<div class="tier-article-copy">
+						<strong>How Will the Meta Evolve? The New October 12, 2026 Ban List</strong>
+						<p>The expected OP17 meta changes after the ban of Dracule Mihawk.</p>
+					</div>
+				</a>
 				<a class="tier-article-card" href="/meta-analysis/Purple-Enel-op15-stats-OP17-Format/">
 					<div class="article-thumb" aria-hidden="true">
 						<img
@@ -483,6 +496,7 @@ const description =
 
 	.article-thumb {
 		width: 76px;
+		position: relative;
 		border-radius: 16px;
 		overflow: hidden;
 		border: 1px solid rgba(255, 255, 255, 0.08);
@@ -497,6 +511,30 @@ const description =
 		height: auto;
 		object-fit: cover;
 		object-position: center top;
+	}
+
+	.article-thumb-banlist::before,
+	.article-thumb-banlist::after {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.article-thumb-banlist::before {
+		inset: 0;
+		background:
+			radial-gradient(circle at center, rgba(255, 48, 48, 0.18), rgba(96, 0, 0, 0.12) 64%, transparent 75%),
+			linear-gradient(135deg, rgba(20, 0, 0, 0.1), rgba(110, 0, 0, 0.32));
+		box-shadow: inset 0 0 0 1px rgba(255, 83, 83, 0.42);
+	}
+
+	.article-thumb-banlist::after {
+		inset: -1px;
+		background:
+			linear-gradient(45deg, transparent 47%, rgba(45, 0, 0, 0.88) 47.3% 48%, #ff3838 48.3% 50%, rgba(255, 122, 122, 0.96) 50.3% 50.7%, rgba(45, 0, 0, 0.88) 51% 51.7%, transparent 52%),
+			linear-gradient(-45deg, transparent 47%, rgba(45, 0, 0, 0.88) 47.3% 48%, #ff3838 48.3% 50%, rgba(255, 122, 122, 0.96) 50.3% 50.7%, rgba(45, 0, 0, 0.88) 51% 51.7%, transparent 52%);
+		filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
 	}
 
 	.article-thumb-op165 {
