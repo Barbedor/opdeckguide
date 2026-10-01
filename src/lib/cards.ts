@@ -1349,7 +1349,9 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 	}
 
 	return cards.sort((a, b) => {
-		const codeDiff = a.code.localeCompare(b.code, "en");
+		const aSortCode = a.code === "EB05-0XX" ? "EB05-030.5" : a.code;
+		const bSortCode = b.code === "EB05-0XX" ? "EB05-030.5" : b.code;
+		const codeDiff = aSortCode.localeCompare(bSortCode, "en");
 		if (codeDiff !== 0) return codeDiff;
 		const aRank = a.edition === "ALT" ? 1 : 0;
 		const bRank = b.edition === "ALT" ? 1 : 0;
