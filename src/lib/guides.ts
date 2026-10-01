@@ -47,7 +47,7 @@ export const deckGuides = [
 		leader: "Luffy & Ace",
 		code: "OP17",
 		formatLabel: "OP17 Format",
-		summary: "Decklist, curve guide, strengths, weaknesses, and hybrid tactics for Luffy & Ace ST30 in the OP17 format.",
+		summary: "Decklist, mulligan priorities, 4 DON!! combo lines, curve guide, tech cards, matchup spread, and tips for Luffy & Ace ST30 in OP17.",
 		month: "September",
 		href: "/deck-guides/luffy-ace-st30/",
 		imageSrc: "/assets/guides/Luffy-st30.png",
