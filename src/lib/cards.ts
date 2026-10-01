@@ -713,6 +713,8 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-0xx nico robin": { code: "EB05-0XX", name: "Nico Robin", color: "Purple" },
+		"eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
 		"eb05-004 baby 5": { code: "EB05-004", name: "Baby 5", color: "Red" },
 		"eb05-018 rebecca": { code: "EB05-018", name: "Rebecca", color: "Green" },
 		"eb05-024 little sadi": { code: "EB05-024", name: "Little Sadi", color: "Blue" },
@@ -950,6 +952,11 @@ const manualCardOverrides = {
 		"op18-066 zambai": {
 			code: "OP18-066",
 			name: "Zambai",
+			color: "Purple",
+		},
+		"op18-076 shark submerge 3": {
+			code: "OP18-076",
+			name: "Shark Submerge 3",
 			color: "Purple",
 		},
 		"op18-056 mr.13 and ms. friday": {

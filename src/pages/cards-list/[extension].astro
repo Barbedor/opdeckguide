@@ -119,6 +119,20 @@ const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
 const leakCardDetails = {
+	"EB05-0XX": {
+		stats: "Purple / Cost 1 / Strike / Power 2000 / Counter 2000",
+		traits: "Straw Hat Crew",
+		effectLines: [[keyword("on-play", "On Play"), " If your Leader has the {Straw Hat Crew} type, and the number of DON!! cards on your field is at least 6 less than the number on your opponent's field, draw 3 cards and trash 2 cards from your hand. Then, add up to 4 DON!! cards from your DON!! deck and rest them."]],
+	},
+	"EB05-061": {
+		rarity: "Secret Rare",
+		stats: "Red / Cost 3 / Special / Power 4000 / Counter 2000",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[keyword("once-per-turn", "Once Per Turn"), " If your Character with 6000 base power or less would be removed from the field by your opponent, you may add 1 card from the top of your Life cards to your hand instead."],
+			[keyword("on-play", "On Play"), " Play up to 1 red Character card with a cost of 2 or less from your hand."],
+		],
+	},
 	"OP18-001": {
 		rarity: "Leader Card",
 		stats: "Red / Blue / Life 4 / Strike / Power 5000",
@@ -178,6 +192,15 @@ const leakCardDetails = {
 		stats: "Purple / Cost 5 / Slash / Power 6000 / Counter 1000",
 		traits: "Water Seven/The Franky Family",
 		effectLines: [[keyword("activate-main", "Activate: Main"), " You may K.O. 1 of your Stages with a cost of 5 or less: This Character gains ", keyword("rush", "Rush"), " during this turn."]],
+	},
+	"OP18-076": {
+		rarity: "Uncommon",
+		stats: "Purple Stage / Cost 5",
+		traits: "Straw Hat Crew",
+		effectLines: [
+			[keyword("on-play", "On Play"), " Draw 1 card, then add up to 1 DON!! card as rested from your DON!! deck."],
+			[keyword("on-your-opponents-attack", "On Your Opponent's Attack"), " You may rest this Stage: Your Leader with 5000 power or less and up to 2 of your Characters gain +1000 power during this turn."],
+		],
 	},
 	"OP18-079": {
 		rarity: "Leader Card",
