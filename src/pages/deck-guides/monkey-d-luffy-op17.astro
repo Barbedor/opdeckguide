@@ -61,20 +61,19 @@ const decklist = [
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
 const matchupGroups = [
-	{ title: "Favorable", entries: [
+	{ title: "Favorable", tone: "up", icon: "↑", entries: [
 		["Kaido OP17", "/assets/guides/Kaido%20op17.png"],
 		["Rocks.D.Xebec OP17", "/assets/guides/Rocks.DXebec%20op17.png"],
+		["Enel OP05", "/assets/guides/Enel%20OP05-098.png"],
 	] },
-	{ title: "Slightly Favorable", entries: [
-		["Nico Robin OP09", "/assets/guides/Nico-Robin-op09.png"],
-		["Shanks OP17", "/assets/guides/Shanks%20op17.png"],
+	{ title: "Slightly Favorable", tone: "slightly-up", icon: "↗", entries: [
 		["Enel OP15", "/assets/guides/enel-op15.png"],
+		["Charlotte Pudding OP08", "/assets/guides/Pudding%20op08.png"],
 	] },
-	{ title: "Even", entries: [["Boa Hancock OP14", "/assets/guides/boa-hancock-op14.png"]] },
-	{ title: "Slightly Unfavorable", entries: [["Portgas.D.Ace OP16", "/assets/guides/Ace-op16.png"]] },
-	{ title: "Unfavorable", entries: [
+	{ title: "Even", tone: "even", icon: "~", entries: [["Nico Robin OP09", "/assets/guides/Nico-Robin-op09.png"]] },
+	{ title: "Slightly Unfavorable", tone: "slightly-down", icon: "↘", entries: [["Shanks OP17", "/assets/guides/Shanks%20op17.png"]] },
+	{ title: "Unfavorable", tone: "down", icon: "↓", entries: [
 		["Sabo OP13", "/assets/guides/Sabo%20OP13-004.png"],
-		["Dracule Mihawk OP14", "/assets/guides/dracule-mihawk-op14.png"],
 		["Luffy and Ace ST30", "/assets/guides/Luffy-st30.png"],
 	] },
 ];
@@ -214,11 +213,11 @@ const luffyTargets = [
 				<div class="not-recommended"><h3>Not Recommended</h3><div class="support-row"><div class="support-card-list">{[dorry, brogy, stussy, jinbe].map((entry) => <button class="mini-card support-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /></button>)}</div><p class="curve-note">Dorry, Brogy, Stussy, and Jinbe are not necessary in this version. Jinbe matters less here than in Sabo because the Leader already turns your 12-cost or higher Characters into Blockers, giving the deck far more natural defensive options.</p></div></div>
 			</div>
 
-			<div class="section-header feature-header"><div><h2>Matchups</h2><p class="matchup-stats-link">For the complete turn-order win rate breakdown, see the <a href="/meta-analysis/Monkey-D-Luffy-op17-stats-OP17-Format/">Monkey D. Luffy OP17 stats in OP17 Format</a>.</p></div></div>
+			<div class="section-header feature-header"><div><h2>Matchups Format 17.5</h2><p class="matchup-stats-link">For the complete turn-order win rate breakdown, see the <a href="/meta-analysis/Monkey-D-Luffy-op17-stats-OP17-Format/">Monkey D. Luffy OP17 stats in OP17 Format</a>.</p></div></div>
 			<div id="matchups" class="matchup-grid">
-				{matchupGroups.map((group, groupIndex) => (
+				{matchupGroups.map((group) => (
 					<div class="matchup-card glow-block">
-						<div class={`matchup-badge ${groupIndex < 2 ? "badge-up" : groupIndex === 2 ? "badge-even" : "badge-down"}`}><span class="badge-icon">{groupIndex === 0 ? "↑" : groupIndex === 1 ? "↗" : groupIndex === 2 ? "~" : "↓"}</span><span>{group.title}</span></div>
+						<div class={`matchup-badge badge-${group.tone}`}><span class="badge-icon">{group.icon}</span><span>{group.title}</span></div>
 						<div class="matchup-row matchup-row-cards-only"><div class="tip-cards">{group.entries.map(([name, image]) => <div class="mini-card matchup-static-card" aria-label={name}><img class={name === "Nico Robin OP09" ? "nico-robin-matchup-image" : undefined} src={image} alt={name} loading="lazy" /></div>)}</div></div>
 					</div>
 				))}
@@ -786,6 +785,21 @@ const luffyTargets = [
 	.badge-up {
 		background: rgba(74, 222, 128, 0.14);
 		color: #65f59b;
+	}
+
+	.badge-slightly-up {
+		background: rgba(120, 204, 120, 0.14);
+		color: #9be58e;
+	}
+
+	.badge-even {
+		background: rgba(122, 162, 255, 0.14);
+		color: #9bb8ff;
+	}
+
+	.badge-slightly-down {
+		background: rgba(255, 176, 94, 0.14);
+		color: #ffbf73;
 	}
 
 	.badge-down {

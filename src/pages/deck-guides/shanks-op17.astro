@@ -51,6 +51,8 @@ const linlinOp17 = card("OP17-099", "Charlotte Linlin OP17", "/Cards/OP17/New OP
 const luffyAceSt30 = card("ST30-001", "Luffy & Ace ST30", "/Cards/ST30/ST30-001.jpg", null, "Leader");
 const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
 const boaOp14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg", null, "Leader");
+const puddingOp08 = card("OP08-058", "Charlotte Pudding OP08", "/Cards/OP08/OP08-058.png", null, "Leader");
+const enelOp05 = card("OP05-098", "Enel OP05", "/Cards/OP05/OP05-098.png", null, "Leader");
 
 const matchupIcons = {
 	"OP17-058": "/assets/guides/Kaido op17.png",
@@ -64,6 +66,8 @@ const matchupIcons = {
 	"OP17-099": "/assets/guides/Charlotte Linlin op17.png",
 	"ST30-001": "/assets/guides/Luffy-st30.png",
 	"OP14-041": "/assets/guides/boa-hancock-op14.png",
+	"OP08-058": "/assets/guides/Pudding op08.png",
+	"OP05-098": "/assets/guides/Enel OP05-098.png",
 };
 
 const decklist = [
@@ -86,13 +90,15 @@ const decklist = [
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
-const favorableMatchups = [kaidoOp17, luffyOp17];
+const favorableMatchups = [luffyOp17, puddingOp08];
 
-const slightlyFavorableMatchups = [enelOp15];
+const slightlyFavorableMatchups = [robinOp09, kaidoOp17];
 
-const slightlyUnfavorableMatchups = [linlinOp17];
+const evenMatchups = [enelOp15];
 
-const unfavorableMatchups = [saboOp13, rocksOp17, mihawkOp14, aceOp16, luffyAceSt30, boaOp14];
+const slightlyUnfavorableMatchups = [enelOp05];
+
+const unfavorableMatchups = [rocksOp17, saboOp13, luffyAceSt30];
 
 const nutshellStrength = [
 	"Oppressive board control: Starves the opponent of resources.",
@@ -334,8 +340,8 @@ const bigBodies = [
 			<div class="glow-block feature-block" id="matchups">
 				<div class="section-header feature-header">
 					<div>
-						<h2>Matchups</h2>
-						<p>Quick OP17 matchup spread for Shanks.</p>
+						<h2>Matchups Format 17.5</h2>
+						<p>Quick OP17.5 matchup spread for Shanks.</p>
 					</div>
 				</div>
 				<div class="matchup-grid">
@@ -359,11 +365,11 @@ const bigBodies = [
 							</div>
 						</div>
 					</div>
-					<div class="matchup-card glow-block matchup-slightly-unfavorable">
-						<div class="matchup-badge badge-down"><span class="badge-icon">&swarr;</span><span>Slightly Unfavorable</span></div>
+					<div class="matchup-card glow-block matchup-slightly-favorable">
+						<div class="matchup-badge badge-up"><span class="badge-icon">&nearr;</span><span>Slightly Favorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{slightlyUnfavorableMatchups.map((entry) => (
+								{slightlyFavorableMatchups.map((entry) => (
 									<button class="mini-card matchup-static-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
 										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
@@ -372,11 +378,11 @@ const bigBodies = [
 							</div>
 						</div>
 					</div>
-					<div class="matchup-card glow-block matchup-slightly-favorable">
-						<div class="matchup-badge badge-up"><span class="badge-icon">&nearr;</span><span>Slightly Favorable</span></div>
+					<div class="matchup-card glow-block matchup-even">
+						<div class="matchup-badge badge-mid"><span class="badge-icon">~</span><span>Even</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{slightlyFavorableMatchups.map((entry) => (
+								{evenMatchups.map((entry) => (
 									<button
 										class="mini-card matchup-static-card"
 										type="button"
@@ -385,6 +391,19 @@ const bigBodies = [
 										data-name={`${entry.code} ${entry.name}`}
 										data-code={entry.code}
 									>
+										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<div class="mini-label">{entry.name}</div>
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
+					<div class="matchup-card glow-block matchup-slightly-unfavorable">
+						<div class="matchup-badge badge-down"><span class="badge-icon">&swarr;</span><span>Slightly Unfavorable</span></div>
+						<div class="matchup-row matchup-row-cards-only">
+							<div class="tip-cards">
+								{slightlyUnfavorableMatchups.map((entry) => (
+									<button class="mini-card matchup-static-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
 										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
@@ -929,8 +948,9 @@ const bigBodies = [
 	}
 	.matchup-favorable { order: 1; }
 	.matchup-slightly-favorable { order: 2; }
-	.matchup-slightly-unfavorable { order: 3; }
-	.matchup-unfavorable { order: 4; }
+	.matchup-even { order: 3; }
+	.matchup-slightly-unfavorable { order: 4; }
+	.matchup-unfavorable { order: 5; }
 
 	.matchup-badge {
 		display: inline-flex;

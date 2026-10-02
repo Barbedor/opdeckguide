@@ -28,6 +28,42 @@ export const productCategories: ProductCategory[] = [
 		imageFile: "Starter Decks/starter-decks",
 		products: [
 			{
+				code: "ST01 Pre-Release",
+				name: "Straw Hat Crew ST01 Pre-Release",
+				description: "A sealed pre-release edition of the One Piece Card Game ST01 starter deck featuring the Straw Hat Crew.",
+				imageFile: "Starter Decks/st01 pre rea",
+				imageAlt: "ST01 Pre-Release Straw Hat Crew One Piece Card Game product",
+				price: "$2,100.68",
+				affiliateUrl: "https://partner.tcgplayer.com/QY3eKz",
+			},
+			{
+				code: "ST02 Pre-Release",
+				name: "Worst Generation ST02 Pre-Release",
+				description: "A sealed pre-release edition of the One Piece Card Game ST02 starter deck featuring the Worst Generation.",
+				imageFile: "Starter Decks/st02 pre rea",
+				imageAlt: "ST02 Pre-Release Worst Generation One Piece Card Game product",
+				price: "$333.25",
+				affiliateUrl: "https://partner.tcgplayer.com/n4Jb4a",
+			},
+			{
+				code: "ST04 Pre-Release",
+				name: "Animal Kingdom Pirates ST04 Pre-Release",
+				description: "A sealed pre-release edition of the One Piece Card Game ST04 starter deck featuring the Animal Kingdom Pirates.",
+				imageFile: "Starter Decks/st04 pre rea ",
+				imageAlt: "ST04 Pre-Release Animal Kingdom Pirates One Piece Card Game product",
+				price: "$319.20",
+				affiliateUrl: "https://partner.tcgplayer.com/7Xkxa3",
+			},
+			{
+				code: "ST03 Pre-Release",
+				name: "The Seven Warlords of the Sea ST03 Pre-Release",
+				description: "A sealed pre-release edition of the One Piece Card Game ST03 starter deck featuring the Seven Warlords of the Sea.",
+				imageFile: "Starter Decks/st03 pre rea",
+				imageAlt: "ST03 Pre-Release The Seven Warlords of the Sea One Piece Card Game product",
+				price: "$342.60",
+				affiliateUrl: "https://partner.tcgplayer.com/gRkN15",
+			},
+			{
 				code: "ST01",
 				name: "Straw Hat Crew Starter Deck",
 				description: "A ready-to-play One Piece Card Game starter deck built around the Straw Hat Crew.",
@@ -359,7 +395,12 @@ for (const category of productCategories) {
 	category.products.sort((a, b) => {
 		const aNumber = Number(a.code.replace(/\D/g, ""));
 		const bNumber = Number(b.code.replace(/\D/g, ""));
-		return bNumber - aNumber;
+		if (aNumber !== bNumber) return bNumber - aNumber;
+
+		// Keep the regular deck before its matching Pre-Release version.
+		const aIsPreRelease = a.code.toLowerCase().includes("pre-release");
+		const bIsPreRelease = b.code.toLowerCase().includes("pre-release");
+		return Number(aIsPreRelease) - Number(bIsPreRelease);
 	});
 }
 

@@ -31,6 +31,7 @@ const isNami = entry.leader.code === "OP11-041";
 const isCrocodileOp14 = entry.leader.code === "OP14-079";
 const isMonkeyDLuffySt29 = entry.leader.code === "ST29-001";
 const isEnelOp05 = entry.leader.code === "OP05-098";
+const isOp17Sengoku = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "OP16-060";
 // These leader profiles only have a guide for a different printing/version.
 // Do not show a link that would send visitors to the wrong deck guide.
 const leaderSlugsWithoutMatchingGuide = new Set([
@@ -48,7 +49,7 @@ const deckGuideHref = isOp17LuffyAce
 	: isOp17BoaHancock
 		? "/deck-guides/boa-hancock-op14-format-op17/"
 		: entry.leader.href;
-const showDeckGuideButton = !isNami && !isCrocodileOp14 && !isMonkeyDLuffySt29 && !isEnelOp05 && !leaderSlugsWithoutMatchingGuide.has(entry.leader.slug) && !entry.hideDeckGuide && (isOp17LuffyAce || isOp17BoaHancock || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
+const showDeckGuideButton = !isNami && !isCrocodileOp14 && !isMonkeyDLuffySt29 && !isEnelOp05 && !isOp17Sengoku && !leaderSlugsWithoutMatchingGuide.has(entry.leader.slug) && !entry.hideDeckGuide && (isOp17LuffyAce || isOp17BoaHancock || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
 const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
 const expandSimLines = (count, code) => {
 	const lines = [];

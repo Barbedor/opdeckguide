@@ -230,7 +230,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Red / Black",
 		imageSrc: "/assets/guides/Sabo OP13-004.png",
-		href: "/deck-guides/sabo-op13/",
+		href: "/deck-guides/sabo-op13-format-op17/",
 	},
 	"imu-op13": {
 		slug: "imu-op13",

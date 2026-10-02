@@ -72,6 +72,8 @@ const shanksOp17 = card("OP17-020", "Shanks OP17", "/Cards/OP17/New OP17/OP17-02
 const luffyAceSt30 = card("ST30-001", "Luffy & Ace ST30", "/Cards/ST30/ST30-001.jpg", null, "Leader");
 const enelOp15 = card("OP15-058", "Enel OP15", "/Cards/OP15/OP15-058.jpg", null, "Leader");
 const boaOp14 = card("OP14-041", "Boa Hancock OP14", "/Cards/OP14/OP14-041.jpg", null, "Leader");
+const puddingOp08 = card("OP08-058", "Charlotte Pudding OP08", "/Cards/OP08/OP08-058.png", null, "Leader");
+const enelOp05 = card("OP05-098", "Enel OP05", "/Cards/OP05/OP05-098.png", null, "Leader");
 
 const matchupIcons = {
 	"OP15-058": "/assets/guides/enel-op15.png",
@@ -85,6 +87,8 @@ const matchupIcons = {
 	"OP17-020": "/assets/guides/Shanks op17.png",
 	"ST30-001": "/assets/guides/Luffy-st30.png",
 	"OP14-041": "/assets/guides/boa-hancock-op14.png",
+	"OP08-058": "/assets/guides/Pudding op08.png",
+	"OP05-098": "/assets/guides/Enel OP05-098.png",
 };
 
 const decklist = [
@@ -108,13 +112,13 @@ const decklist = [
 
 const simDeckCode = decklist.flatMap((entry) => expandSimLines(entry.count, entry.code)).join("\n");
 
-const favorableMatchups = [rocksOp17];
+const favorableMatchups = [enelOp05];
 
-const slightlyFavorableMatchups = [saboOp13, robinOp09, aceOp16, shanksOp17, enelOp15];
+const slightlyFavorableMatchups = [rocksOp17, saboOp13, robinOp09, enelOp15];
 
-const evenMatchups = [boaOp14];
+const slightlyUnfavorableMatchups = [shanksOp17, puddingOp08];
 
-const unfavorableMatchups = [mihawkOp14, luffyOp17, luffyAceSt30];
+const unfavorableMatchups = [luffyOp17, luffyAceSt30];
 
 const goingFirstCurve = [
 	{ label: "1 DON!! — Hand Fixing", cards: [claimOnePiece], text: "Use We're Going to Claim the One Piece!!! to search the top 5 cards of your deck for an Animal Kingdom Pirates or Big Mom Pirates card. The priority is to set up Yamato and King." },
@@ -269,8 +273,8 @@ const tips = [
 			<div class="glow-block feature-block" id="matchups">
 				<div class="section-header feature-header">
 					<div>
-						<h2>Matchups</h2>
-						<p>Quick OP17 matchup spread for Kaido.</p>
+						<h2>Matchups Format 17.5</h2>
+						<p>Quick OP17.5 matchup spread for Kaido.</p>
 					</div>
 				</div>
 				<div class="matchup-grid">
@@ -315,10 +319,10 @@ const tips = [
 						</div>
 					</div>
 					<div class="matchup-card glow-block">
-						<div class="matchup-badge badge-mid"><span class="badge-icon">~</span><span>Even</span></div>
+						<div class="matchup-badge badge-slightly-down"><span class="badge-icon">&searr;</span><span>Slightly Unfavorable</span></div>
 						<div class="matchup-row matchup-row-cards-only">
 							<div class="tip-cards">
-								{evenMatchups.map((entry) => (
+								{slightlyUnfavorableMatchups.map((entry) => (
 									<button
 										class="mini-card matchup-static-card"
 										type="button"
@@ -1045,6 +1049,11 @@ const tips = [
 	.badge-up {
 		background: rgba(74, 222, 128, 0.14);
 		color: #65f59b;
+	}
+
+	.badge-slightly-down {
+		background: rgba(255, 174, 96, 0.14);
+		color: #ffbe75;
 	}
 
 	.badge-mid {

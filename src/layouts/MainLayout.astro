@@ -12,6 +12,11 @@ const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
 const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);
+const op17FormatGuidePaths = new Set([
+	"/deck-guides/luffy-ace-st30/",
+	"/deck-guides/nico-robin-op09/",
+]);
+const isOp17FormatGuide = isDeckGuidePage && (pathname.includes("op17") || op17FormatGuidePaths.has(pathname));
 const defaultStructuredData = isHomePage
 	? {
 			"@context": "https://schema.org",
@@ -106,7 +111,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		}
 		<script type="application/ld+json" set:html={JSON.stringify(structuredDataPayload)} />
 	</head>
-	<body class:list={{ "deck-guide-page": isDeckGuidePage }}>
+	<body class:list={{ "deck-guide-page": isDeckGuidePage, "op17-format-guide": isOp17FormatGuide }}>
 		<a class="skip-link" href="#content">Skip to content</a>
 		<header class="site-header">
 			<div class="container header-inner">
@@ -386,6 +391,30 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 	.deck-guide-page .glow-block {
 		overflow: hidden;
+	}
+
+	.deck-guide-page .matchup-entry img {
+		aspect-ratio: 1.6 / 1;
+		object-fit: cover !important;
+	}
+
+	.deck-guide-page .matchup-static-card .mini-label,
+	.deck-guide-page .matchup-entry > span,
+	.deck-guide-page .matchup-entry > .matchup-name,
+	.deck-guide-page .matchup-cards .matchup-name {
+		display: none !important;
+	}
+
+	.op17-format-guide .matchup-entry img,
+	.op17-format-guide .matchup-static-card img,
+	.op17-format-guide .matchup-list img,
+	.op17-format-guide .matchup-cards img {
+		width: 114px !important;
+		max-width: 114px !important;
+		height: 86px !important;
+		aspect-ratio: 1.3256 / 1 !important;
+		object-fit: cover !important;
+		object-position: center 18%;
 	}
 
 	a {
@@ -1339,6 +1368,33 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			width: 96px !important;
 			max-width: 96px !important;
 			border-radius: 14px !important;
+		}
+
+		.op17-format-guide .matchup-entry img,
+		.op17-format-guide .matchup-static-card img,
+		.op17-format-guide .matchup-list img,
+		.op17-format-guide .matchup-cards img {
+			width: 94px !important;
+			max-width: 94px !important;
+			height: 70px !important;
+			aspect-ratio: 1.3429 / 1 !important;
+			object-fit: cover !important;
+			object-position: center 18%;
+		}
+
+		.deck-guide-page:not(.op17-format-guide) .matchup-entry img {
+			max-width: 80px !important;
+			height: 50px !important;
+			aspect-ratio: 1.6 / 1 !important;
+			object-fit: cover !important;
+		}
+
+		.deck-guide-page:not(.op17-format-guide) .matchup-static-card img {
+			width: 80px !important;
+			max-width: 80px !important;
+			height: 50px !important;
+			aspect-ratio: 1.6 / 1 !important;
+			object-fit: cover !important;
 		}
 	}
 </style>
