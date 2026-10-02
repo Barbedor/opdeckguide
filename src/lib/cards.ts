@@ -994,6 +994,11 @@ const manualCardOverrides = {
 			name: "Spandam",
 			color: "Yellow",
 		},
+		"op18-089 dorry": {
+			code: "OP18-089",
+			name: "Dorry",
+			color: "Black",
+		},
 		"op18-086 goldberg": {
 			code: "OP18-086",
 			name: "Goldberg",
