@@ -720,6 +720,7 @@ const manualCardOverrides = {
 		"eb05-024 little sadi": { code: "EB05-024", name: "Little Sadi", color: "Blue" },
 		"eb05-031 vinsmoke reiju": { code: "EB05-031", name: "Vinsmoke Reiju", color: "Purple" },
 		"eb05-043 perona": { code: "EB05-043", name: "Perona", color: "Black" },
+		"eb05-049 special hollow": { code: "EB05-049", name: "Special Hollow", color: "Black" },
 		"eb05-050 atlas": { code: "EB05-050", name: "Atlas", color: "Yellow" },
 		"eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
 		"eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
@@ -1007,6 +1008,11 @@ const manualCardOverrides = {
 		"op18-112 yamakaji": {
 			code: "OP18-112",
 			name: "Yamakaji",
+			color: "Yellow",
+		},
+		"op18-106 doberman": {
+			code: "OP18-106",
+			name: "Doberman",
 			color: "Yellow",
 		},
 		"leader op18-021 franky": {
