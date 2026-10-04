@@ -148,6 +148,18 @@ const leakCardDetails = {
 		traits: "Animal / Alabasta",
 		effectLines: [],
 	},
+	"OP18-011": {
+		rarity: "Super Rare",
+		stats: "Red / Cost 2 / Wisdom / Power 0 / Counter 1000",
+		traits: "Alabasta",
+		effectLines: [["All of your Characters with both the {Animal} and {Alabasta} type gain +1000 power."], [keyword("opponents-turn", "Opponent's Turn"), " This Character gains ", keyword("blocker", "Blocker"), " and +6000 power."]],
+	},
+	"OP18-017": {
+		rarity: "Common",
+		stats: "Red / Cost 4 / Slash / Power 4000 / Counter 1000",
+		traits: "Alabasta/Straw Hat Crew",
+		effectLines: [[keyword("once-per-turn", "Once Per Turn"), " If your {Alabasta} type Character would be removed from the field by your opponent's effect, you may give your Leader -2000 power during this turn instead."], [keyword("when-attacking", "When Attacking"), " Up to 1 of your {Alabasta} type Characters gains ", keyword("rush", "Rush"), " during this turn."]],
+	},
 	"OP18-016": {
 		rarity: "Common",
 		stats: "Red / Cost 6 / Strike / Power 7000 / Counter 1000",
@@ -171,6 +183,12 @@ const leakCardDetails = {
 		stats: "Blue / Life 5 / Wisdom / Power 5000",
 		traits: "Baroque Works",
 		effectLines: [["When your Character with a type including \"Baroque Works\" and 3000 base power or more is K.O.'d, draw 1 card, and your opponent trashes 1 card from their hand."]],
+	},
+	"OP18-048": {
+		rarity: "Super Rare",
+		stats: "Blue / Cost 6 / Slash / Power 6000",
+		traits: "Baroque Works",
+		effectLines: [[keyword("rush", "Rush")], [keyword("on-play", "On Play"), " Play up to 1 Character card with a cost of 5 or less with a type including \"Baroque Works\" from your hand."]],
 	},
 	"OP18-044": {
 		rarity: "Common",
@@ -2654,6 +2672,7 @@ const leakCardDetails = {
 const getLeakSortRank = (card) => {
 	if (card.edition === "PIRATE CREW SUPER ALT MANGA") return 1;
 	if (card.code === "OP01-016") return 6;
+	if (extension.toUpperCase() === "EB05" && card.code === "EB05-006" && card.edition === "SP") return 7;
 	if (extension.toUpperCase() === "EB05" && card.code === "EB05-016" && /\/SP EB05-016 Nico Robin\.jpg$/i.test(card.fullUrl ?? "")) return 7;
 	if (extension.toUpperCase() === "EB05" && card.code === "EB03-001" && card.edition === "ALT") return 8;
 	if (extension.toUpperCase() === "EB05" && card.rarity === "Leader Card" && card.edition === "ALT") return 7;

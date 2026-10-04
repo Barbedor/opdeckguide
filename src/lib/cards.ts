@@ -724,6 +724,7 @@ const manualCardOverrides = {
 		"eb05-050 atlas": { code: "EB05-050", name: "Atlas", color: "Yellow" },
 		"eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
 		"eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
+		"sp eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
 		"eb05-009 fight and die with me!!!": { code: "EB05-009", name: "Fight and die with me!!!", color: "Red" },
 		"eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
 		"manga eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
@@ -855,6 +856,11 @@ const manualCardOverrides = {
 			name: "Nico Robin",
 			color: "Green",
 		},
+		"alt eb05-016 nico robin": {
+			code: "EB05-016",
+			name: "Nico Robin",
+			color: "Green",
+		},
 		"eb05-016 nico robin ": {
 			code: "EB05-016",
 			name: "Nico Robin",
@@ -975,6 +981,9 @@ const manualCardOverrides = {
 			name: "Sea Cat",
 			color: "Red",
 		},
+		"op18-011 nefertari vivi": { code: "OP18-011", name: "Nefertari Vivi", color: "Red" },
+		"op18-017 roronoa zoro": { code: "OP18-017", name: "Roronoa Zoro", color: "Red" },
+		"op18-048 mr.1 and ms doublefinger": { code: "OP18-048", name: "Mr.1 and Ms Doublefinger", color: "Blue" },
 		"op18-001 karoo": {
 			code: "OP18-001",
 			name: "Karoo",
@@ -1284,6 +1293,7 @@ const getOp18VariantLabel = (base) => {
 
 const getEb05VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt ")) return "ALT";
 	if (normalized.startsWith("alt leader ")) return "ALT";
 	if (normalized.startsWith("manga ")) return "MANGA";
 	if (normalized.startsWith("sp ")) return "SP";
@@ -1292,6 +1302,7 @@ const getEb05VariantLabel = (base) => {
 
 const stripEb05VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt ")) return base.slice("ALT ".length).trim();
 	if (normalized.startsWith("alt leader ")) return base.slice("ALT Leader ".length).trim();
 	if (normalized.startsWith("manga ")) return base.slice("MANGA ".length).trim();
 	if (normalized.startsWith("sp ")) return base.slice("SP ".length).trim();
@@ -1338,6 +1349,25 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 			],
 		};
 		cards.splice(altLeaderRobinIndex, 1);
+	}
+
+	const altNicoRobinIndex = cards.findIndex((card) => card.code === "EB05-016" && card.edition === "ALT");
+	const baseNicoRobinIndex = cards.findIndex((card) => card.code === "EB05-016" && !card.edition);
+	if (altNicoRobinIndex !== -1 && baseNicoRobinIndex !== -1) {
+		const altNicoRobin = cards[altNicoRobinIndex];
+		const baseNicoRobin = cards[baseNicoRobinIndex];
+		cards[baseNicoRobinIndex] = {
+			...baseNicoRobin,
+			variants: [
+				...(baseNicoRobin.variants ?? []),
+				{
+					label: "ALT",
+					fullUrl: altNicoRobin.fullUrl,
+					smallUrl: altNicoRobin.smallUrl,
+				},
+			],
+		};
+		cards.splice(altNicoRobinIndex, 1);
 	}
 
 	const mangaShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && card.edition === "MANGA");
