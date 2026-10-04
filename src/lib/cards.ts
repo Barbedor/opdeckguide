@@ -1016,6 +1016,15 @@ const manualCardOverrides = {
 		"op18-011 nefertari vivi": { code: "OP18-011", name: "Nefertari Vivi", color: "Red" },
 		"op18-017 roronoa zoro": { code: "OP18-017", name: "Roronoa Zoro", color: "Red" },
 		"op18-048 mr.1 and ms doublefinger": { code: "OP18-048", name: "Mr.1 and Ms Doublefinger", color: "Blue" },
+		"op18-034 franky": { code: "OP18-034", name: "Franky", color: "Green" },
+		"op18-046 mr. 0 and ms all sunday": { code: "OP18-046", name: "Mr. 0 and Ms All Sunday", color: "Blue" },
+		"op18-061 iceburg": { code: "OP18-061", name: "Iceburg", color: "Purple" },
+		"op18-084 gunko": { code: "OP18-084", name: "Gunko", color: "Black" },
+		"op18-093 mma": { code: "OP18-093", name: "MMA", color: "Black" },
+		"op18-093 mma (2)": { code: "OP18-093", name: "MMA", color: "Black" },
+		"op18-093 mma (3)": { code: "OP18-093", name: "MMA", color: "Black" },
+		"op18-100 khalifa": { code: "OP18-100", name: "Khalifa", color: "Yellow" },
+		"op18-113 rob lucci": { code: "OP18-113", name: "Rob Lucci", color: "Yellow" },
 		"op18-001 karoo": {
 			code: "OP18-001",
 			name: "Karoo",
@@ -1692,7 +1701,8 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 		const cardColor = override.color ?? meta.color ?? "Other";
 		const fullUrl = `/Cards/OP18/${file}`;
 		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl;
-		const group = groups.get(code) ?? [];
+		const groupKey = code === "OP18-093" ? fullUrl : code;
+		const group = groups.get(groupKey) ?? [];
 		group.push({
 			code,
 			name,
@@ -1701,7 +1711,7 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 			smallUrl,
 			variant,
 		});
-		groups.set(code, group);
+		groups.set(groupKey, group);
 	}
 
 	return [...groups.values()]
