@@ -301,6 +301,30 @@ const leakCardDetails = {
 		traits: "Thriller Bark Pirates",
 		effectLines: [[keyword("on-ko", "On K.O."), " K.O. or rest up to 1 of your opponent's Characters with a cost of 6 or less."]],
 	},
+	"EB05-040": {
+		rarity: "Rare",
+		stats: "Purple Event / Cost 0",
+		traits: "Donquixote Pirates",
+		effectLines: [
+			[keyword("main", "Main"), " You may return 1 of your active DON!! cards to your DON!! deck: If your Leader has the {Donquixote Pirates} type, draw 3 cards and trash 1 card from your hand."],
+			[keyword("counter", "Counter"), " Your Leader gains +2000 power during this battle."],
+		],
+	},
+	"ST17-004": {
+		rarity: "Super Rare",
+		stats: "Blue / Cost 4 / Special / Power 6000",
+		traits: "The Seven Warlords of the Sea/Kuja Pirates",
+		effectLines: [
+			[keyword("blocker", "Blocker"), " (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"],
+			[keyword("on-play", "On Play"), " Look at the top 3 cards of your deck, then place them in any order on the top or bottom of your deck. Then, give up to one of your {The Seven Warlords of the Sea} type leader or character cards one rested DON!!"],
+		],
+	},
+	"EB05-034": {
+		rarity: "Super Rare",
+		stats: "Purple / Cost 2 / Special / Power 0 / Counter 2000",
+		traits: "Donquixote Pirates",
+		effectLines: [[keyword("on-play", "On Play"), " DON!! -2: If you have 7 or more DON!! cards on your field, give up to 1 of your opponent's Characters -4000 power during this turn."]],
+	},
 	"EB05-049": {
 		rarity: "Common",
 		stats: "Black Event / Cost 1",
@@ -324,6 +348,21 @@ const leakCardDetails = {
 		stats: "Red / Cost 2 / Wisdom / Power 2000 / Counter 2000",
 		traits: "Rocks Pirates",
 		effectLines: [[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " You may add 1 card from the top of your Life cards to your hand: Choose one: Give up to 1 Character +3000 power during this turn. Give up to 1 Character -4000 power during this turn."],
+		],
+	},
+	"OP14-033": {
+		rarity: "Rare",
+		stats: "Green / Cost 5 / Wisdom / Power 6000 / Counter 1000",
+		traits: "Thriller Bark Pirates",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Up to 2 of your opponent's Characters with a cost of 5 or less cannot be rested until the end of your opponent's next turn.",
+			],
+			[
+				keyword("on-ko", "On K.O."),
+				" You may rest 1 of your cards: Play up to 1 green Character card with a cost of 5 or less from your hand.",
+			],
 		],
 	},
 	"EB05-009": {
@@ -2674,6 +2713,11 @@ const getLeakSortRank = (card) => {
 	if (card.code === "OP01-016") return 6;
 	if (extension.toUpperCase() === "EB05" && card.code === "EB05-006" && card.edition === "SP") return 7;
 	if (extension.toUpperCase() === "EB05" && card.code === "EB05-016" && /\/SP EB05-016 Nico Robin\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "OP17-081" && /\/SP OP17-081 Gerd\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "OP17-109" && /\/SP OP17-109 Charlotte Pudding\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "OP14-033" && /\/SP OP14-033 Perona\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "EB05-031" && /\/SP EB05-031 Vinsmoke Reiju\.jpg$/i.test(card.fullUrl ?? "")) return 7;
+	if (extension.toUpperCase() === "EB05" && card.code === "ST17-004" && (card.edition === "SP" || /\/SP ST17-004 Boa Hancock\.jpg$/i.test(card.fullUrl ?? ""))) return 7;
 	if (extension.toUpperCase() === "EB05" && card.code === "EB03-001" && card.edition === "ALT") return 8;
 	if (extension.toUpperCase() === "EB05" && card.rarity === "Leader Card" && card.edition === "ALT") return 7;
 	if (extension.toUpperCase() === "OP18" && card.code === "OP17-119" && card.edition === "ALT") return 1;
@@ -2729,6 +2773,18 @@ const leakCards = isLeakPage
 					extension.toUpperCase() === "OP18" && card.code === "OP18-031" && card.edition === "MANGA";
 				const isEb05NicoRobinSp =
 					extension.toUpperCase() === "EB05" && card.code === "EB05-016" && card.edition === "SP";
+				const isEb05GerdSp =
+					extension.toUpperCase() === "EB05" && card.code === "OP17-081" && /\/SP OP17-081 Gerd\.jpg$/i.test(card.fullUrl ?? "");
+				const isPuddingSp =
+					extension.toUpperCase() === "EB05" && card.code === "OP17-109" && /\/SP OP17-109 Charlotte Pudding\.jpg$/i.test(card.fullUrl ?? "");
+				const isPeronaSp =
+					extension.toUpperCase() === "EB05" && card.code === "OP14-033" && /\/SP OP14-033 Perona\.jpg$/i.test(card.fullUrl ?? "");
+				const isReijuSp =
+					extension.toUpperCase() === "EB05" && card.code === "EB05-031" && /\/SP EB05-031 Vinsmoke Reiju\.jpg$/i.test(card.fullUrl ?? "");
+				const isBoaHancockSp =
+					extension.toUpperCase() === "EB05" && card.code === "ST17-004" && (card.edition === "SP" || /\/SP ST17-004 Boa Hancock\.jpg$/i.test(card.fullUrl ?? ""));
+				const isEb05MissBuckinghamSp =
+					extension.toUpperCase() === "EB05" && card.code === "EB05-006" && /\/SP EB05-006 Miss Buckingham Stussy\.jpg$/i.test(card.fullUrl ?? "");
 				const hideEditionChip = rarity === "SP" || rarity === "Gold";
 				const hasStandaloneSpecialRarity = card.edition === "PIRATE CREW SUPER ALT MANGA";
 				const useHeaderAltBadge =
@@ -2748,7 +2804,7 @@ const leakCards = isLeakPage
 					...details,
 					rarity: hasStandaloneSpecialRarity
 						? card.edition
-						: isEb05NicoRobinSp
+							: isEb05NicoRobinSp
 							? "SP"
 						: isEb05ShirahoshiManga || isOp18RobinManga
 							? "MANGA"
@@ -2758,6 +2814,18 @@ const leakCards = isLeakPage
 							? "ALT"
 							: isEb05NicoRobinSp
 								? "SUPER RARE"
+							: isEb05GerdSp
+								? "SP"
+							: isPuddingSp
+								? "SP"
+							: isPeronaSp
+								? "SP"
+							: isReijuSp
+								? "SP"
+							: isBoaHancockSp
+								? "SP"
+							: isEb05MissBuckinghamSp
+								? "SP"
 							: isEb05ShirahoshiManga || isOp18RobinManga
 								? "SUPER RARE"
 								: details?.headerBadge ?? card.headerBadge ?? null,
@@ -2781,6 +2849,43 @@ const leakCards = isLeakPage
 				};
 			})
 			.sort((a, b) => {
+				const isGerdSp = (card) => card.code === "OP17-081" && /\/SP OP17-081 Gerd\.jpg$/i.test(card.fullUrl ?? "");
+				const isPuddingSp = (card) => card.code === "OP17-109" && /\/SP OP17-109 Charlotte Pudding\.jpg$/i.test(card.fullUrl ?? "");
+				const isPeronaSp = (card) => card.code === "OP14-033" && /\/SP OP14-033 Perona\.jpg$/i.test(card.fullUrl ?? "");
+				const isReijuSp = (card) => card.code === "EB05-031" && /\/SP EB05-031 Vinsmoke Reiju\.jpg$/i.test(card.fullUrl ?? "");
+				const isBoaHancockSp = (card) => card.code === "ST17-004" && (card.headerBadge === "SP" || /SP ST17-004 Boa Hancock\.jpg$/i.test(card.fullUrl ?? ""));
+				const isNicoRobinSp = (card) => card.code === "EB05-016" && /\/SP EB05-016 Nico Robin\.jpg$/i.test(card.fullUrl ?? "");
+				const isAltLeader = (card) => card.rarity === "Leader Card" && card.edition === "ALT";
+				if (isNicoRobinSp(a) && isGerdSp(b)) return -1;
+				if (isGerdSp(a) && isNicoRobinSp(b)) return 1;
+				if (isGerdSp(a) && isPuddingSp(b)) return -1;
+				if (isPuddingSp(a) && isGerdSp(b)) return 1;
+				if (isPuddingSp(a) && isAltLeader(b)) return -1;
+				if (isAltLeader(a) && isPuddingSp(b)) return 1;
+				if (isPeronaSp(a) && isGerdSp(b)) return -1;
+				if (isGerdSp(a) && isPeronaSp(b)) return 1;
+				if (isPeronaSp(a) && isPuddingSp(b)) return -1;
+				if (isPuddingSp(a) && isPeronaSp(b)) return 1;
+				if (isPeronaSp(a) && isReijuSp(b)) return -1;
+				if (isReijuSp(a) && isPeronaSp(b)) return 1;
+				if (isReijuSp(a) && isGerdSp(b)) return -1;
+				if (isGerdSp(a) && isReijuSp(b)) return 1;
+				if (isReijuSp(a) && isPuddingSp(b)) return -1;
+				if (isPuddingSp(a) && isReijuSp(b)) return 1;
+				if (isPeronaSp(a) && isBoaHancockSp(b)) return -1;
+				if (isBoaHancockSp(a) && isPeronaSp(b)) return 1;
+				if (isBoaHancockSp(a) && isReijuSp(b)) return -1;
+				if (isReijuSp(a) && isBoaHancockSp(b)) return 1;
+				if (isBoaHancockSp(a) && isGerdSp(b)) return -1;
+				if (isGerdSp(a) && isBoaHancockSp(b)) return 1;
+				if (isBoaHancockSp(a) && isPuddingSp(b)) return -1;
+				if (isPuddingSp(a) && isBoaHancockSp(b)) return 1;
+				if (isBoaHancockSp(a) && isAltLeader(b)) return -1;
+				if (isAltLeader(a) && isBoaHancockSp(b)) return 1;
+				if (isPeronaSp(a) && isAltLeader(b)) return -1;
+				if (isAltLeader(a) && isPeronaSp(b)) return 1;
+				if (isGerdSp(a) && isAltLeader(b)) return -1;
+				if (isAltLeader(a) && isGerdSp(b)) return 1;
 				const rankDiff = getLeakSortRank(a) - getLeakSortRank(b);
 				if (rankDiff !== 0) return rankDiff;
 				return getLeakDisplaySortCode(a).localeCompare(getLeakDisplaySortCode(b), "en");
@@ -2847,8 +2952,9 @@ const description = isLeakPage
 								<div class="leak-card-header">
 									<p class="leak-card-code">{card.code}</p>
 									<div class="leak-card-rarity-group">
+										{card.headerBadge === "SP" ? <p class="leak-card-rarity">SP</p> : null}
 										<p class="leak-card-rarity">{card.rarity}</p>
-										{card.headerBadge ? <p class="leak-card-rarity">{card.headerBadge}</p> : null}
+										{card.headerBadge && card.headerBadge !== "SP" ? <p class="leak-card-rarity">{card.headerBadge}</p> : null}
 									</div>
 								</div>
 								<h3>{card.name}</h3>

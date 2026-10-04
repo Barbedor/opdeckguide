@@ -715,23 +715,40 @@ const manualCardOverrides = {
 	EB05: {
 		"eb05-0xx nico robin": { code: "EB05-0XX", name: "Nico Robin", color: "Purple" },
 		"eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
+		"alt eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
 		"eb05-004 baby 5": { code: "EB05-004", name: "Baby 5", color: "Red" },
+		"alt eb05-004 baby 5": { code: "EB05-004", name: "Baby 5", color: "Red" },
 		"eb05-018 rebecca": { code: "EB05-018", name: "Rebecca", color: "Green" },
+		"alt eb05-018 rebecca": { code: "EB05-018", name: "Rebecca", color: "Green" },
 		"eb05-024 little sadi": { code: "EB05-024", name: "Little Sadi", color: "Blue" },
 		"eb05-031 vinsmoke reiju": { code: "EB05-031", name: "Vinsmoke Reiju", color: "Purple" },
+		"sp eb05-031 vinsmoke reiju": { code: "EB05-031", name: "Vinsmoke Reiju", color: "Purple" },
 		"eb05-043 perona": { code: "EB05-043", name: "Perona", color: "Black" },
+		"alt eb05-043 perona": { code: "EB05-043", name: "Perona", color: "Black" },
 		"eb05-049 special hollow": { code: "EB05-049", name: "Special Hollow", color: "Black" },
 		"eb05-050 atlas": { code: "EB05-050", name: "Atlas", color: "Yellow" },
 		"eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
+		"alt eb05-001 jewelry bonney": { code: "EB05-001", name: "Jewelry Bonney", color: "Red" },
 		"eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
 		"sp eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
+		"alt eb05-006 miss buckingham stussy": { code: "EB05-006", name: "Miss Buckingham Stussy", color: "Red" },
+		"sp op17-081 gerd": { code: "OP17-081", name: "Gerd", color: "Green" },
+		"sp op17-109 charlotte pudding": { code: "OP17-109", name: "Charlotte Pudding", color: "Yellow" },
+		"sp op14-033 perona": { code: "OP14-033", name: "Perona", color: "Green" },
+		"sp st17-004 boa hancock": { code: "ST17-004", name: "Boa Hancock", color: "Blue" },
 		"eb05-009 fight and die with me!!!": { code: "EB05-009", name: "Fight and die with me!!!", color: "Red" },
 		"eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
+		"alt eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
 		"manga eb05-014 shirahoshi": { code: "EB05-014", name: "Shirahoshi", color: "Green" },
 		"eb05-021 alvida": { code: "EB05-021", name: "Alvida", color: "Blue" },
+		"alt eb05-021 alvida": { code: "EB05-021", name: "Alvida", color: "Blue" },
 		"eb05-046 yamato": { code: "EB05-046", name: "Yamato", color: "Black" },
+		"alt eb05-046 yamato": { code: "EB05-046", name: "Yamato", color: "Black" },
 		"eb05-052 gloriosa": { code: "EB05-052", name: "Gloriosa", color: "Yellow" },
 		"eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
+		"alt eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
+		"alt v2 eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
+		"alt v3 eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
 		"eb05-012 camie": {
 			code: "EB05-012",
 			name: "Camie",
@@ -747,6 +764,11 @@ const manualCardOverrides = {
 			name: "Boa Hancock",
 			color: "Blue",
 		},
+		"alt eb05-028 boa hancock": {
+			code: "EB05-028",
+			name: "Boa Hancock",
+			color: "Blue",
+		},
 		"eb05-029 feather cage": {
 			code: "EB05-029",
 			name: "Feather Cage",
@@ -757,11 +779,19 @@ const manualCardOverrides = {
 			name: "Black Maria",
 			color: "Purple",
 		},
+		"alt eb05-037 black maria": { code: "EB05-037", name: "Black Maria", color: "Purple" },
 		"eb05-039 pink hornet": {
 			code: "EB05-039",
 			name: "Pink Hornet",
 			color: "Purple",
 		},
+		"eb05-040 you need me, don't you!!!": {
+			code: "EB05-040",
+			name: "You Need Me, Don't You!!",
+			color: "Purple",
+		},
+		"eb05-034 sugar": { code: "EB05-034", name: "Sugar", color: "Purple" },
+		"alt eb05-034 sugar": { code: "EB05-034", name: "Sugar", color: "Purple" },
 		"eb05-053 charlotte praline": {
 			code: "EB05-053",
 			name: "Charlotte Praline",
@@ -822,6 +852,7 @@ const manualCardOverrides = {
 			name: "Nojiko",
 			color: "Yellow",
 		},
+		"alt eb05-057 nojiko": { code: "EB05-057", name: "Nojiko", color: "Yellow" },
 		"eb05-060 take care of lilith!!!": {
 			code: "EB05-060",
 			name: "Take care of Lilith!!!",
@@ -831,6 +862,7 @@ const manualCardOverrides = {
 			code: "EB05-010",
 			name: "Nico Robin",
 		},
+		"super alt eb05-010 nico robin": { code: "EB05-010", name: "Nico Robin", color: "Green" },
 		"eb05-054 charlotte brulee": {
 			code: "EB05-054",
 			name: "Charlotte Brulee",
@@ -1293,6 +1325,9 @@ const getOp18VariantLabel = (base) => {
 
 const getEb05VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt v3 ")) return "ALT V3";
+	if (normalized.startsWith("alt v2 ")) return "ALT V2";
+	if (normalized.startsWith("super alt ")) return "SUPER ALT";
 	if (normalized.startsWith("alt ")) return "ALT";
 	if (normalized.startsWith("alt leader ")) return "ALT";
 	if (normalized.startsWith("manga ")) return "MANGA";
@@ -1302,6 +1337,9 @@ const getEb05VariantLabel = (base) => {
 
 const stripEb05VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("alt v3 ")) return base.slice("ALT V3 ".length).trim();
+	if (normalized.startsWith("alt v2 ")) return base.slice("ALT V2 ".length).trim();
+	if (normalized.startsWith("super alt ")) return base.slice("SUPER ALT ".length).trim();
 	if (normalized.startsWith("alt ")) return base.slice("ALT ".length).trim();
 	if (normalized.startsWith("alt leader ")) return base.slice("ALT Leader ".length).trim();
 	if (normalized.startsWith("manga ")) return base.slice("MANGA ".length).trim();
@@ -1351,6 +1389,36 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 		cards.splice(altLeaderRobinIndex, 1);
 	}
 
+	const superAltLeaderRobinIndex = cards.findIndex((card) => card.code === "EB05-010" && card.edition === "SUPER ALT");
+	const baseLeaderRobinIndex = cards.findIndex((card) => card.code === "EB05-010" && !card.edition);
+	if (superAltLeaderRobinIndex !== -1 && baseLeaderRobinIndex !== -1) {
+		const superAltLeaderRobin = cards[superAltLeaderRobinIndex];
+		const baseLeaderRobin = cards[baseLeaderRobinIndex];
+		cards[baseLeaderRobinIndex] = {
+			...baseLeaderRobin,
+			variants: [
+				...(baseLeaderRobin.variants ?? []),
+				{ label: "SUPER ALT", fullUrl: superAltLeaderRobin.fullUrl, smallUrl: superAltLeaderRobin.smallUrl },
+			],
+		};
+		cards.splice(superAltLeaderRobinIndex, 1);
+	}
+
+	const altBaby5Index = cards.findIndex((card) => card.code === "EB05-004" && card.edition === "ALT");
+	const baseBaby5Index = cards.findIndex((card) => card.code === "EB05-004" && !card.edition);
+	if (altBaby5Index !== -1 && baseBaby5Index !== -1) {
+		const altBaby5 = cards[altBaby5Index];
+		const baseBaby5 = cards[baseBaby5Index];
+		cards[baseBaby5Index] = {
+			...baseBaby5,
+			variants: [
+				...(baseBaby5.variants ?? []),
+				{ label: "ALT", fullUrl: altBaby5.fullUrl, smallUrl: altBaby5.smallUrl },
+			],
+		};
+		cards.splice(altBaby5Index, 1);
+	}
+
 	const altNicoRobinIndex = cards.findIndex((card) => card.code === "EB05-016" && card.edition === "ALT");
 	const baseNicoRobinIndex = cards.findIndex((card) => card.code === "EB05-016" && !card.edition);
 	if (altNicoRobinIndex !== -1 && baseNicoRobinIndex !== -1) {
@@ -1370,15 +1438,210 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 		cards.splice(altNicoRobinIndex, 1);
 	}
 
+	const altNojikoIndex = cards.findIndex((card) => card.code === "EB05-057" && card.edition === "ALT");
+	const baseNojikoIndex = cards.findIndex((card) => card.code === "EB05-057" && !card.edition);
+	if (altNojikoIndex !== -1 && baseNojikoIndex !== -1) {
+		const altNojiko = cards[altNojikoIndex];
+		const baseNojiko = cards[baseNojikoIndex];
+		cards[baseNojikoIndex] = {
+			...baseNojiko,
+			variants: [
+				...(baseNojiko.variants ?? []),
+				{ label: "ALT", fullUrl: altNojiko.fullUrl, smallUrl: altNojiko.smallUrl },
+			],
+		};
+		cards.splice(altNojikoIndex, 1);
+	}
+
+	const altPeronaIndex = cards.findIndex((card) => card.code === "EB05-043" && card.edition === "ALT");
+	const basePeronaIndex = cards.findIndex((card) => card.code === "EB05-043" && !card.edition);
+	if (altPeronaIndex !== -1 && basePeronaIndex !== -1) {
+		const altPerona = cards[altPeronaIndex];
+		const basePerona = cards[basePeronaIndex];
+		cards[basePeronaIndex] = {
+			...basePerona,
+			variants: [
+				...(basePerona.variants ?? []),
+				{ label: "ALT", fullUrl: altPerona.fullUrl, smallUrl: altPerona.smallUrl },
+			],
+		};
+		cards.splice(altPeronaIndex, 1);
+	}
+
+	const altNamiIndex = cards.findIndex((card) => card.code === "EB05-061" && card.edition === "ALT");
+	const baseNamiIndex = cards.findIndex((card) => card.code === "EB05-061" && !card.edition);
+	if (altNamiIndex !== -1 && baseNamiIndex !== -1) {
+		const altNami = cards[altNamiIndex];
+		const baseNami = cards[baseNamiIndex];
+		cards[baseNamiIndex] = {
+			...baseNami,
+			variants: [
+				...(baseNami.variants ?? []),
+				{ label: "ALT", fullUrl: altNami.fullUrl, smallUrl: altNami.smallUrl },
+			],
+		};
+		cards.splice(altNamiIndex, 1);
+	}
+
+	const altRebeccaIndex = cards.findIndex((card) => card.code === "EB05-018" && card.edition === "ALT");
+	const baseRebeccaIndex = cards.findIndex((card) => card.code === "EB05-018" && !card.edition);
+	if (altRebeccaIndex !== -1 && baseRebeccaIndex !== -1) {
+		const altRebecca = cards[altRebeccaIndex];
+		const baseRebecca = cards[baseRebeccaIndex];
+		cards[baseRebeccaIndex] = {
+			...baseRebecca,
+			variants: [
+				...(baseRebecca.variants ?? []),
+				{ label: "ALT", fullUrl: altRebecca.fullUrl, smallUrl: altRebecca.smallUrl },
+			],
+		};
+		cards.splice(altRebeccaIndex, 1);
+	}
+
+	const altBuckinghamIndex = cards.findIndex((card) => card.code === "EB05-006" && card.edition === "ALT");
+	const baseBuckinghamIndex = cards.findIndex((card) => card.code === "EB05-006" && !card.edition);
+	if (altBuckinghamIndex !== -1 && baseBuckinghamIndex !== -1) {
+		const altBuckingham = cards[altBuckinghamIndex];
+		const baseBuckingham = cards[baseBuckinghamIndex];
+		cards[baseBuckinghamIndex] = {
+			...baseBuckingham,
+			variants: [
+				...(baseBuckingham.variants ?? []),
+				{ label: "ALT", fullUrl: altBuckingham.fullUrl, smallUrl: altBuckingham.smallUrl },
+			],
+		};
+		cards.splice(altBuckinghamIndex, 1);
+	}
+
+	const altBlackMariaIndex = cards.findIndex((card) => card.code === "EB05-037" && card.edition === "ALT");
+	const baseBlackMariaIndex = cards.findIndex((card) => card.code === "EB05-037" && !card.edition);
+	if (altBlackMariaIndex !== -1 && baseBlackMariaIndex !== -1) {
+		const altBlackMaria = cards[altBlackMariaIndex];
+		const baseBlackMaria = cards[baseBlackMariaIndex];
+		cards[baseBlackMariaIndex] = {
+			...baseBlackMaria,
+			variants: [
+				...(baseBlackMaria.variants ?? []),
+				{ label: "ALT", fullUrl: altBlackMaria.fullUrl, smallUrl: altBlackMaria.smallUrl },
+			],
+		};
+		cards.splice(altBlackMariaIndex, 1);
+	}
+
+	const altBonneyIndex = cards.findIndex((card) => card.code === "EB05-001" && card.edition === "ALT");
+	const baseBonneyIndex = cards.findIndex((card) => card.code === "EB05-001" && !card.edition);
+	if (altBonneyIndex !== -1 && baseBonneyIndex !== -1) {
+		const altBonney = cards[altBonneyIndex];
+		const baseBonney = cards[baseBonneyIndex];
+		cards[baseBonneyIndex] = {
+			...baseBonney,
+			variants: [
+				...(baseBonney.variants ?? []),
+				{ label: "ALT", fullUrl: altBonney.fullUrl, smallUrl: altBonney.smallUrl },
+			],
+		};
+		cards.splice(altBonneyIndex, 1);
+	}
+
+	const altSugarIndex = cards.findIndex((card) => card.code === "EB05-034" && card.edition === "ALT");
+	const baseSugarIndex = cards.findIndex((card) => card.code === "EB05-034" && !card.edition);
+	if (altSugarIndex !== -1 && baseSugarIndex !== -1) {
+		const altSugar = cards[altSugarIndex];
+		const baseSugar = cards[baseSugarIndex];
+		cards[baseSugarIndex] = {
+			...baseSugar,
+			variants: [
+				...(baseSugar.variants ?? []),
+				{ label: "ALT", fullUrl: altSugar.fullUrl, smallUrl: altSugar.smallUrl },
+			],
+		};
+		cards.splice(altSugarIndex, 1);
+	}
+
+	const altYamatoIndex = cards.findIndex((card) => card.code === "EB05-046" && card.edition === "ALT");
+	const baseYamatoIndex = cards.findIndex((card) => card.code === "EB05-046" && !card.edition);
+	if (altYamatoIndex !== -1 && baseYamatoIndex !== -1) {
+		const altYamato = cards[altYamatoIndex];
+		const baseYamato = cards[baseYamatoIndex];
+		cards[baseYamatoIndex] = {
+			...baseYamato,
+			variants: [
+				...(baseYamato.variants ?? []),
+				{ label: "ALT", fullUrl: altYamato.fullUrl, smallUrl: altYamato.smallUrl },
+			],
+		};
+		cards.splice(altYamatoIndex, 1);
+	}
+
+	const altAlvidaIndex = cards.findIndex((card) => card.code === "EB05-021" && card.edition === "ALT");
+	const baseAlvidaIndex = cards.findIndex((card) => card.code === "EB05-021" && !card.edition);
+	if (altAlvidaIndex !== -1 && baseAlvidaIndex !== -1) {
+		const altAlvida = cards[altAlvidaIndex];
+		const baseAlvida = cards[baseAlvidaIndex];
+		cards[baseAlvidaIndex] = {
+			...baseAlvida,
+			variants: [
+				...(baseAlvida.variants ?? []),
+				{ label: "ALT", fullUrl: altAlvida.fullUrl, smallUrl: altAlvida.smallUrl },
+			],
+		};
+		cards.splice(altAlvidaIndex, 1);
+	}
+
+	const altBoaHancockIndex = cards.findIndex((card) => card.code === "EB05-028" && card.edition === "ALT");
+	const baseBoaHancockIndex = cards.findIndex((card) => card.code === "EB05-028" && !card.edition);
+	if (altBoaHancockIndex !== -1 && baseBoaHancockIndex !== -1) {
+		const altBoaHancock = cards[altBoaHancockIndex];
+		const baseBoaHancock = cards[baseBoaHancockIndex];
+		cards[baseBoaHancockIndex] = {
+			...baseBoaHancock,
+			variants: [
+				...(baseBoaHancock.variants ?? []),
+				{ label: "ALT", fullUrl: altBoaHancock.fullUrl, smallUrl: altBoaHancock.smallUrl },
+			],
+		};
+		cards.splice(altBoaHancockIndex, 1);
+	}
+
+	const altNami055Index = cards.findIndex((card) => card.code === "EB05-055" && card.edition === "ALT");
+	const altV2Nami055Index = cards.findIndex((card) => card.code === "EB05-055" && card.edition === "ALT V2");
+	const altV3Nami055Index = cards.findIndex((card) => card.code === "EB05-055" && card.edition === "ALT V3");
+	const baseNami055Index = cards.findIndex((card) => card.code === "EB05-055" && !card.edition);
+	if (altNami055Index !== -1 && baseNami055Index !== -1) {
+		const altNami055 = cards[altNami055Index];
+		const baseNami055 = cards[baseNami055Index];
+		cards[baseNami055Index] = {
+			...baseNami055,
+			variants: [
+				...(baseNami055.variants ?? []),
+				{ label: "ALT", fullUrl: altNami055.fullUrl, smallUrl: altNami055.smallUrl },
+				...(altV2Nami055Index !== -1
+					? [{ label: "ALT V2", fullUrl: cards[altV2Nami055Index].fullUrl, smallUrl: cards[altV2Nami055Index].smallUrl }]
+					: []),
+				...(altV3Nami055Index !== -1
+					? [{ label: "ALT V3", fullUrl: cards[altV3Nami055Index].fullUrl, smallUrl: cards[altV3Nami055Index].smallUrl }]
+					: []),
+			],
+		};
+		cards.splice(altNami055Index, 1);
+		if (altV2Nami055Index > altNami055Index) cards.splice(altV2Nami055Index - 1, 1);
+		if (altV3Nami055Index > altNami055Index) cards.splice(altV3Nami055Index - 2, 1);
+	}
+
 	const mangaShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && card.edition === "MANGA");
+	const altShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && card.edition === "ALT");
 	const baseShirahoshiIndex = cards.findIndex((card) => card.code === "EB05-014" && !card.edition);
 	if (mangaShirahoshiIndex !== -1 && baseShirahoshiIndex !== -1) {
 		const mangaShirahoshi = cards[mangaShirahoshiIndex];
+		const altShirahoshiFullUrl = altShirahoshiIndex !== -1 ? cards[altShirahoshiIndex].fullUrl : null;
 		const baseShirahoshi = cards[baseShirahoshiIndex];
 		cards[baseShirahoshiIndex] = {
 			...baseShirahoshi,
 			variants: [
 				...(baseShirahoshi.variants ?? []),
+				...(altShirahoshiIndex !== -1
+					? [{ label: "ALT", fullUrl: cards[altShirahoshiIndex].fullUrl, smallUrl: cards[altShirahoshiIndex].smallUrl }]
+					: []),
 				{
 					label: "MANGA",
 					fullUrl: mangaShirahoshi.fullUrl,
@@ -1387,6 +1650,8 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 			],
 		};
 		cards.splice(mangaShirahoshiIndex, 1);
+		const remainingAltShirahoshiIndex = cards.findIndex((card) => card.fullUrl === altShirahoshiFullUrl);
+		if (remainingAltShirahoshiIndex !== -1) cards.splice(remainingAltShirahoshiIndex, 1);
 	}
 
 	return cards.sort((a, b) => {
