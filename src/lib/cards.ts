@@ -745,6 +745,7 @@ const manualCardOverrides = {
 		"eb05-046 yamato": { code: "EB05-046", name: "Yamato", color: "Black" },
 		"alt eb05-046 yamato": { code: "EB05-046", name: "Yamato", color: "Black" },
 		"eb05-052 gloriosa": { code: "EB05-052", name: "Gloriosa", color: "Yellow" },
+		"alt eb05-052 gloriosa": { code: "EB05-052", name: "Gloriosa", color: "Yellow" },
 		"eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
 		"alt eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
 		"alt v2 eb05-055 nami": { code: "EB05-055", name: "Nami", color: "Yellow" },
@@ -1565,6 +1566,21 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 			],
 		};
 		cards.splice(altSugarIndex, 1);
+	}
+
+	const altGloriosaIndex = cards.findIndex((card) => card.code === "EB05-052" && card.edition === "ALT");
+	const baseGloriosaIndex = cards.findIndex((card) => card.code === "EB05-052" && !card.edition);
+	if (altGloriosaIndex !== -1 && baseGloriosaIndex !== -1) {
+		const altGloriosa = cards[altGloriosaIndex];
+		const baseGloriosa = cards[baseGloriosaIndex];
+		cards[baseGloriosaIndex] = {
+			...baseGloriosa,
+			variants: [
+				...(baseGloriosa.variants ?? []),
+				{ label: "ALT", fullUrl: altGloriosa.fullUrl, smallUrl: altGloriosa.smallUrl },
+			],
+		};
+		cards.splice(altGloriosaIndex, 1);
 	}
 
 	const altYamatoIndex = cards.findIndex((card) => card.code === "EB05-046" && card.edition === "ALT");
