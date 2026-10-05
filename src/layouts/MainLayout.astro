@@ -89,11 +89,25 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 				</script>
 			)
 		}
-		<script
-			async
-			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6147597626188070"
-			crossorigin="anonymous"
-		></script>
+		<script is:inline>
+			const loadAdSense = () => {
+				if (window.__opdeckguideAdSenseRequested) return;
+				window.__opdeckguideAdSenseRequested = true;
+
+				const script = document.createElement("script");
+				script.async = true;
+				script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6147597626188070";
+				script.crossOrigin = "anonymous";
+				document.head.append(script);
+			};
+
+			const scheduleAdSense = () => window.setTimeout(loadAdSense, 1500);
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", scheduleAdSense, { once: true });
+			} else {
+				scheduleAdSense();
+			}
+		</script>
 		<meta name="theme-color" content="#0b0f1a" />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		{
