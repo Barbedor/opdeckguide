@@ -22,16 +22,18 @@ const eventTypeMeta = {
 	"3vs3": { short: "3V3", color: "#2f9e5b", soft: "rgba(47, 158, 91, 0.18)" },
 	"Standard Battle": { short: "SB", color: "#c9ced8", soft: "rgba(201, 206, 216, 0.18)" },
 	"Extra Grand Battle": { short: "EGB", color: "#a47aff", soft: "rgba(164, 122, 255, 0.22)" },
+	StoreCS: { short: "SCS", color: "#e0c66f", soft: "rgba(201, 206, 216, 0.20)", storeCs: true },
 	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
 	"Pirate Party": { short: "PP", color: "#C49A3A", soft: "rgba(92, 58, 33, 0.48)", pirate: true },
 	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)", championship: true },
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame FC": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Flame-Flame+LCQ": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
+	FlameFlame: { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
 	"Taiwan Final": { short: "TW", color: "#c79a2b", soft: "rgba(199, 154, 43, 0.22)" },
 };
 
-const flameEventTypes = ["Flame-Flame Phase1", "Flame-Flame FC", "Flame-Flame+LCQ"];
+const flameEventTypes = ["Flame-Flame Phase1", "Flame-Flame FC", "Flame-Flame+LCQ", "FlameFlame"];
 const eventOptions = [
 	...Object.keys(eventTypeMeta)
 		.filter((eventType) => !flameEventTypes.includes(eventType) && entries.some((entry) => entry.eventType === eventType))
@@ -222,8 +224,9 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 										data-event-flame={event.flame ? "true" : undefined}
 										data-event-pirate={event.pirate ? "true" : undefined}
 										data-event-championship={event.championship ? "true" : undefined}
+										data-event-store-cs={event.storeCs ? "true" : undefined}
 									>
-										<span class:list={["event-pill", { "flame-pill": event.flame, "pirate-party-pill": event.pirate, "championship-pill": event.championship }]} style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
+										<span class:list={["event-pill", { "flame-pill": event.flame, "pirate-party-pill": event.pirate, "championship-pill": event.championship, "store-cs-pill": event.storeCs }]} style={`--pill:${event.color}; --pill-soft:${event.soft};`}>{event.short}</span>
 										<span class="event-option-name">{event.name}</span>
 									</button>
 								))
@@ -279,8 +282,8 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 								</span>
 							</span>
 							<span class="row-type">
-								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
-								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
+								<span class:list={["event-pill", "mobile-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship, "store-cs-pill": eventMeta.storeCs }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{eventMeta.short}</span>
+								<span class:list={["event-pill", "event-pill-full", "desktop-only", { "flame-pill": eventMeta.flame, "pirate-party-pill": eventMeta.pirate, "championship-pill": eventMeta.championship, "store-cs-pill": eventMeta.storeCs }]} style={`--pill:${eventMeta.color}; --pill-soft:${eventMeta.soft};`}>{entry.eventType}</span>
 							</span>
 							<span class="row-place desktop-only">{entry.placement}</span>
 						</a>
@@ -506,8 +509,9 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 			const flameClass = option.dataset.eventFlame === "true" ? " flame-pill" : "";
 			const pirateClass = option.dataset.eventPirate === "true" ? " pirate-party-pill" : "";
 			const championshipClass = option.dataset.eventChampionship === "true" ? " championship-pill" : "";
+			const storeCsClass = option.dataset.eventStoreCs === "true" ? " store-cs-pill" : "";
 			const name = option.querySelector(".event-option-name")?.textContent ?? option.dataset.eventOptionValue ?? "";
-			eventFilterLabel.innerHTML = `<span class="event-pill${flameClass}${pirateClass}${championshipClass}" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
+			eventFilterLabel.innerHTML = `<span class="event-pill${flameClass}${pirateClass}${championshipClass}${storeCsClass}" style="--pill:${color}; --pill-soft:${soft};">${short}</span><span>${name}</span>`;
 		};
 
 		const applyFilters = () => {
@@ -761,6 +765,14 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		margin-right: 0.28rem;
 		font-size: 0.84rem;
 		line-height: 1;
+	}
+
+	.store-cs-pill {
+		border-color: #d7bd62;
+		background: linear-gradient(100deg, #737b8a 0%, #737b8a 48%, #c49a3a 52%, #c49a3a 100%);
+		color: #fff8df;
+		box-shadow: inset 0 1px 0 rgba(255, 250, 220, 0.35), 0 2px 7px rgba(196, 154, 58, 0.28);
+		text-shadow: 0 1px 1px rgba(19, 23, 33, 0.82);
 	}
 
 
