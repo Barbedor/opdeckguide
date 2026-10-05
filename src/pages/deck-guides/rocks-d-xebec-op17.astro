@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Rocks D. Xebec OP17 Deck Guide: Decklist, Mulligan & Curve";
 const description =
@@ -244,7 +245,7 @@ const unfavorableMatchups = [
 								data-name={`${entry.code} ${entry.name}`}
 								data-code={entry.code}
 							>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
 									<span class="deck-count">{entry.count}x</span>
 									<div>
@@ -268,7 +269,7 @@ const unfavorableMatchups = [
 							<div class="mulligan-cards">
 								{priority.cards.map((entry) => (
 									<button class="mini-card mulligan-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-										<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+										<img loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 									</button>
 								))}
 							</div>
@@ -297,7 +298,7 @@ const unfavorableMatchups = [
 											data-name={`${entryCard.code} ${entryCard.name}`}
 											data-code={entryCard.code}
 										>
-											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<img loading="lazy" src={getCardThumbnail(entryCard.img)} alt={`${entryCard.code} ${entryCard.name}`} />
 										</button>
 									))}
 								</div>
@@ -325,7 +326,7 @@ const unfavorableMatchups = [
 											data-name={`${entryCard.code} ${entryCard.name}`}
 											data-code={entryCard.code}
 										>
-											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<img loading="lazy" src={getCardThumbnail(entryCard.img)} alt={`${entryCard.code} ${entryCard.name}`} />
 										</button>
 									))}
 								</div>
@@ -347,7 +348,7 @@ const unfavorableMatchups = [
 						data-name={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`}
 						data-code={rocksXebecCharacter.code}
 					>
-						<img src={rocksXebecCharacter.img} alt={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`} loading="lazy" />
+						<img src={getCardThumbnail(rocksXebecCharacter.img)} alt={`${rocksXebecCharacter.code} ${rocksXebecCharacter.name}`} loading="lazy" />
 					</button>
 					<div class="ten-don-intro">
 						<div class="ten-don-intro-chip">10 DON!! payoff</div>
@@ -369,7 +370,7 @@ const unfavorableMatchups = [
 											data-name={`${entryCard.code} ${entryCard.name}`}
 											data-code={entryCard.code}
 										>
-											<img loading="lazy" src={entryCard.img} alt={`${entryCard.code} ${entryCard.name}`} />
+											<img loading="lazy" src={getCardThumbnail(entryCard.img)} alt={`${entryCard.code} ${entryCard.name}`} />
 										</button>
 									</>
 								))}
@@ -385,7 +386,7 @@ const unfavorableMatchups = [
 					{techCards.map((tech) => (
 						<div class="tech-card">
 							<button class="mini-card" type="button" data-card-preview data-full={tech.card.img} data-name={`${tech.card.code} ${tech.card.name}`} data-code={tech.card.code}>
-								<img loading="lazy" src={tech.card.img} alt={`${tech.card.code} ${tech.card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(tech.card.img)} alt={`${tech.card.code} ${tech.card.name}`} />
 							</button>
 							<div><h3>{tech.title}</h3><p class="ability-copy">{tech.text}</p></div>
 						</div>
@@ -472,7 +473,7 @@ const unfavorableMatchups = [
 										data-name={entry.name}
 										data-code={entry.code}
 									>
-										<img src={entry.img} alt={entry.name} loading="lazy" />
+										<img src={getCardThumbnail(entry.img)} alt={entry.name} loading="lazy" />
 									</button>
 								))}
 							</div>

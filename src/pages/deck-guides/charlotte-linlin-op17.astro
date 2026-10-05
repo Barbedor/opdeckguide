@@ -1,5 +1,6 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Charlotte Linlin OP17 Deck Guide";
 const description =
@@ -147,7 +148,7 @@ const coreEngine = [
 					{
 						decklist.map((entry) => (
 							<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
 									<span class="deck-count">{entry.count}x</span>
 									<div>
@@ -177,7 +178,7 @@ const coreEngine = [
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
 											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.code}>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
 									))}
@@ -200,7 +201,7 @@ const coreEngine = [
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "to" ? "curve-join-to" : ""}`}>+</span>}
 											<button class={`mini-card curve-card ${entry.rested ? "is-rested" : ""}`} type="button" data-card-preview data-full={entry.card.img} data-name={`${entry.card.code} ${entry.card.name}`} data-code={entry.card.code}>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
 									))}
@@ -216,10 +217,10 @@ const coreEngine = [
 				<div class="section-header feature-header"><div><h2>Mind Games &amp; Board Traps</h2></div></div>
 				<div class="mind-games-grid">
 					<button class="detail-card mind-game-hero" type="button" data-card-preview data-full={linlin10c.img} data-name={`${linlin10c.code} ${linlin10c.name}`} data-code={linlin10c.code}>
-						<img src={linlin10c.img} alt={`${linlin10c.code} ${linlin10c.name}`} loading="lazy" />
+						<img src={getCardThumbnail(linlin10c.img)} alt={`${linlin10c.code} ${linlin10c.name}`} loading="lazy" />
 					</button>
 					<button class="detail-card mind-game-hero mind-game-side-card" type="button" data-card-preview data-full={maserSaber.img} data-name={`${maserSaber.code} ${maserSaber.name}`} data-code={maserSaber.code}>
-						<img src={maserSaber.img} alt={`${maserSaber.code} ${maserSaber.name}`} loading="lazy" />
+						<img src={getCardThumbnail(maserSaber.img)} alt={`${maserSaber.code} ${maserSaber.name}`} loading="lazy" />
 					</button>
 					<div class="mind-games-copy">
 						<div class="mind-game-block">

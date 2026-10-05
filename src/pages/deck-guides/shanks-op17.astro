@@ -1,5 +1,6 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Shanks OP17 Deck Guide";
 const description =
@@ -230,7 +231,7 @@ const bigBodies = [
 								data-name={`${entry.code} ${entry.name}`}
 								data-code={entry.code}
 							>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
 									<span class="deck-count">{entry.count}x</span>
 									<div>
@@ -271,7 +272,7 @@ const bigBodies = [
 												data-name={`${entry.card.code} ${entry.card.name}`}
 												data-code={entry.card.code}
 											>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
 									))}
@@ -300,7 +301,7 @@ const bigBodies = [
 												data-name={`${entry.card.code} ${entry.card.name}`}
 												data-code={entry.card.code}
 											>
-												<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+												<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 											</button>
 										</>
 									))}
@@ -329,7 +330,7 @@ const bigBodies = [
 								data-name={`${entry.card.code} ${entry.card.name}`}
 								data-code={entry.card.code}
 							>
-								<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 							</button>
 							<p class="curve-note">{entry.copy}</p>
 						</article>
@@ -358,7 +359,7 @@ const bigBodies = [
 										data-name={`${entry.code} ${entry.name}`}
 										data-code={entry.code}
 									>
-										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -371,7 +372,7 @@ const bigBodies = [
 							<div class="tip-cards">
 								{slightlyFavorableMatchups.map((entry) => (
 									<button class="mini-card matchup-static-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -391,7 +392,7 @@ const bigBodies = [
 										data-name={`${entry.code} ${entry.name}`}
 										data-code={entry.code}
 									>
-										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -404,7 +405,7 @@ const bigBodies = [
 							<div class="tip-cards">
 								{slightlyUnfavorableMatchups.map((entry) => (
 									<button class="mini-card matchup-static-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -424,7 +425,7 @@ const bigBodies = [
 										data-name={`${entry.code} ${entry.name}`}
 										data-code={entry.code}
 									>
-										<img src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}

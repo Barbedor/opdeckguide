@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Yamato OP16 Deck Guide";
 const description =
@@ -342,7 +343,7 @@ const tips = [
 			<div class="deck-grid">
 				{decklist.map((card) => (
 					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -382,7 +383,7 @@ const tips = [
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 										<div class="mini-label">{card.name}</div>
 									</button>
 								))}
@@ -406,7 +407,7 @@ const tips = [
 								data-full={card.img}
 								data-name={`${card.code} ${card.name}`}
 							>
-								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 							</button>
 							<div class="mini-label sendback-label">{card.name}</div>
 						</div>
@@ -447,7 +448,7 @@ const tips = [
 										data-name={`${card.code} ${card.name}`}
 									>
 										<span class="card-wrap">
-											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img class="card-main-image" loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
 										</span>
 										<div class="mini-label">{card.name}</div>
@@ -475,7 +476,7 @@ const tips = [
 										data-name={`${card.code} ${card.name}`}
 									>
 										<span class="card-wrap">
-											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img class="card-main-image" loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
 										</span>
 										<div class="mini-label">{card.name}</div>
@@ -508,7 +509,7 @@ const tips = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 							<div class="option-info">
 								<div class="deck-name">{card.name}</div>
 								<div class="deck-code">{card.code}</div>
@@ -549,7 +550,7 @@ const tips = [
 									data-full={matchup.leader.img}
 									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
 								>
-									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<img loading="lazy" src={getCardThumbnail(matchup.leader.img)} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
 									<div class="mini-label">{matchup.leader.name}</div>
 								</button>
 							</div>
@@ -586,7 +587,7 @@ const tips = [
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 										<div class="mini-label">{card.name}</div>
 									</button>
 								))}

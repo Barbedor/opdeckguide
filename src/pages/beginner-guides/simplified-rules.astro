@@ -1,5 +1,6 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail, getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "Simplified Rules Overview";
 const description = "A clear, beginner-friendly summary of the official One Piece Card Game rules for fast learning and quick reference.";
@@ -15,7 +16,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						<h1>Simplified Rules Overview</h1>
 					</div>
 					<div class="rules-hero-cover" aria-hidden="true">
-						<img src="/assets/beginner-guides/simplified-rules.png" alt="" loading="eager" />
+						<img src={getOptimizedAssetUrl("/assets/beginner-guides/simplified-rules.png")} alt="" loading="eager" />
 					</div>
 				</div>
 				<div class="rules-hero-body">
@@ -70,7 +71,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						data-full="/Cards/OP01/OP01-003.png"
 						data-name="Leader card"
 					>
-						<img src="/Cards/OP01/OP01-003.png" alt="Leader card example" />
+						<img src={getCardThumbnail("/Cards/OP01/OP01-003.png")} alt="Leader card example" />
 					</button>
 				</div>
 				<div class="rule-visual-item">
@@ -85,7 +86,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						data-full="/Cards/OP01/OP01-054.png"
 						data-name="Character card"
 					>
-						<img src="/Cards/OP01/OP01-054.png" alt="Character card example" />
+						<img src={getCardThumbnail("/Cards/OP01/OP01-054.png")} alt="Character card example" />
 					</button>
 				</div>
 				<div class="rule-visual-item">
@@ -99,7 +100,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						data-full="/Cards/OP01/OP01-029.png"
 						data-name="Event card"
 					>
-						<img src="/Cards/OP01/OP01-029.png" alt="Event card example" />
+						<img src={getCardThumbnail("/Cards/OP01/OP01-029.png")} alt="Event card example" />
 					</button>
 				</div>
 				<div class="rule-visual-item">
@@ -113,7 +114,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						data-full="/Cards/ST04/ST04-017.png"
 						data-name="Stage card"
 					>
-						<img src="/Cards/ST04/ST04-017.png" alt="Stage card example" />
+						<img src={getCardThumbnail("/Cards/ST04/ST04-017.png")} alt="Stage card example" />
 					</button>
 				</div>
 				<div class="rule-visual-item">
@@ -128,7 +129,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 						data-full="/Cards/Don/Don.png"
 						data-name="DON!! card"
 					>
-						<img src="/Cards/Don/Don.png" alt="DON!! card illustration" />
+						<img src={getCardThumbnail("/Cards/Don/Don.png")} alt="DON!! card illustration" />
 					</button>
 				</div>
 			</div>
@@ -237,7 +238,7 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<ul>
 				<li>Play a Character: place it active, then pay its cost.</li>
 				<li>Play a Stage: place it active, then pay its cost. You can control only 1 Stage.</li>
-				<li>Play an Event with <img class="keyword-badge" src="/assets/keywords/main.png" alt="Main" />: pay cost, resolve effect, then discard it.</li>
+				<li>Play an Event with <img class="keyword-badge" src={getOptimizedAssetUrl("/assets/keywords/main.png")} alt="Main" />: pay cost, resolve effect, then discard it.</li>
 				<li>Give DON!!: move active DON!! to a Leader or Character. Each adds +1000 power during your turn.</li>
 			</ul>
 		</div>
@@ -249,8 +250,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<ul>
 				<li>Attacks are not allowed on the first turn of the game.</li>
 				<li>Declare attack: rest a Leader or active Character and choose a target.</li>
-				<li>Block Step: defender may use a <img class="keyword-badge" src="/assets/keywords/blocker.png" alt="Blocker" /> to redirect the attack.</li>
-				<li>Counter Step: defender may use <img class="keyword-badge" src="/assets/keywords/counter.png" alt="Counter" /> effects from Characters or Events.</li>
+				<li>Block Step: defender may use a <img class="keyword-badge" src={getOptimizedAssetUrl("/assets/keywords/blocker.png")} alt="Blocker" /> to redirect the attack.</li>
+				<li>Counter Step: defender may use <img class="keyword-badge" src={getOptimizedAssetUrl("/assets/keywords/counter.png")} alt="Counter" /> effects from Characters or Events.</li>
 				<li>Damage Step: compare power; if attacker ≥ defender, attacker wins.</li>
 				<li>Leader hit: take 1 Life card. Character hit: that Character is KO’d and discarded.</li>
 				<li>End of battle: resolve end‑of‑battle effects.</li>
@@ -263,8 +264,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			<h2>Life and Trigger</h2>
 			<ul>
 				<li>When a Leader takes damage, take the top Life card.</li>
-				<li>If the Life card has <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" />, you may reveal it and resolve the effect instead of adding it to hand.</li>
-				<li>You may choose not to activate <img class="keyword-badge" src="/assets/keywords/trigger.png" alt="Trigger" /> and keep the card in hand.</li>
+				<li>If the Life card has <img class="keyword-badge" src={getOptimizedAssetUrl("/assets/keywords/trigger.png")} alt="Trigger" />, you may reveal it and resolve the effect instead of adding it to hand.</li>
+				<li>You may choose not to activate <img class="keyword-badge" src={getOptimizedAssetUrl("/assets/keywords/trigger.png")} alt="Trigger" /> and keep the card in hand.</li>
 			</ul>
 		</div>
 	</section>

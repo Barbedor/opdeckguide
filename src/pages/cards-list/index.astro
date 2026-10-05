@@ -95,7 +95,7 @@ const extensionLabel = (value) => {
 							</div>
 							<div class="extension-previews">
 								{entry.item.previews.map((card) => (
-									<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+									<img loading="lazy" decoding="async" fetchpriority="low" src={card.smallUrl} alt={`${card.code} card`} />
 								))}
 							</div>
 							<span class="extension-link">Browse extension</span>
@@ -314,6 +314,8 @@ const extensionLabel = (value) => {
 				button.addEventListener("click", () => openModal(card));
 				const img = document.createElement("img");
 				img.loading = "lazy";
+				img.decoding = "async";
+				img.fetchPriority = "low";
 				img.src = card.smallUrl;
 				img.alt = `${card.code} card`;
 				button.appendChild(img);
@@ -350,6 +352,8 @@ const extensionLabel = (value) => {
 			button.addEventListener("click", () => openModal(card));
 			const img = document.createElement("img");
 			img.loading = "lazy";
+			img.decoding = "async";
+			img.fetchPriority = "low";
 			img.src = card.smallUrl;
 			img.alt = `${card.code} card`;
 			button.appendChild(img);

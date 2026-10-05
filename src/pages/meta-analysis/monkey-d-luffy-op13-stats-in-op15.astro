@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "Monkey.D.Luffy OP13 Stats in OP15 Format";
 const description =
@@ -59,7 +60,7 @@ const featuredTurnOrderStats = [
 				<span class="hero-badge">Meta Article</span>
 				<h1>Monkey.D.Luffy OP13 Stats in OP15 Format</h1>
 				<div class="article-leader-hero">
-					<img src={leaderHeroArt} alt="Monkey.D.Luffy OP13 leader art" loading="eager" />
+					<img src={getOptimizedAssetUrl(leaderHeroArt)} alt="Monkey.D.Luffy OP13 leader art" loading="eager" />
 				</div>
 				<p class="article-kicker">
 					This page focuses on Red/Green Monkey D. Luffy stats in the OP15 format.
@@ -120,7 +121,7 @@ const featuredTurnOrderStats = [
 					{featuredTurnOrderStats.map((entry) => (
 						<div class="turn-order-card">
 							<div class="leader-art-frame">
-								<img src={entry.art} alt={`${entry.label} leader art`} loading="lazy" />
+								<img src={getOptimizedAssetUrl(entry.art)} alt={`${entry.label} leader art`} loading="lazy" />
 							</div>
 							<div class="turn-order-meta">
 								<div class="turn-order-name">{entry.label}</div>

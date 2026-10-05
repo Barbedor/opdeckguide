@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Portgas.D.Ace OP13 Deck Guide";
 const description =
@@ -103,7 +104,7 @@ const curveFirst = [
 		notes:
 			"Attach 1 DON!! to Ace whenever possible. Drawing on receiving damage is one of the main reasons the deck exists.",
 		cards: [
-			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.jpg" },
+			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.webp" },
 			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
 			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
 		],
@@ -155,7 +156,7 @@ const curveSecond = [
 		cards: [
 			{ code: "OP13-016", name: "Monkey.D.Garp", img: "/Cards/OP13/OP13-016.jpg" },
 			{ code: "ST22-002", name: "Izo", img: "/Cards/ST22/ST22-002.jpg" },
-			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.jpg" },
+			{ code: "OP13-002", name: "Portgas.D.Ace", img: "/Cards/OP13/OP13-002.jpg", badgeCard: "/Cards/P/Don_small.webp" },
 		],
 	},
 	{
@@ -361,7 +362,7 @@ const tips = [
 						data-full={card.img}
 						data-name={`${card.code} ${card.name}`}
 					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -403,7 +404,7 @@ const tips = [
 											data-full={card.img}
 											data-name={`${card.code} ${card.name}`}
 										>
-											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 											<div class="mini-label">{card.name}</div>
 										</button>
 									))}
@@ -426,7 +427,7 @@ const tips = [
 								data-full={card.img}
 								data-name={`${card.code} ${card.name}`}
 							>
-								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 								<div class="mini-label sendback-label">{card.name}</div>
 							</button>
 						))}
@@ -471,7 +472,7 @@ const tips = [
 										data-name={`${card.code} ${card.name}`}
 									>
 										<span class="card-wrap">
-											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img class="card-main-image" loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
 										</span>
 										<div class="mini-label">{card.name}</div>
@@ -499,7 +500,7 @@ const tips = [
 										data-name={`${card.code} ${card.name}`}
 									>
 										<span class="card-wrap">
-											<img class="card-main-image" loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img class="card-main-image" loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 											{card.badgeCard && <img class="card-badge-image" src={card.badgeCard} alt="1 DON!! attached" loading="lazy" />}
 										</span>
 										<div class="mini-label">{card.name}</div>
@@ -532,7 +533,7 @@ const tips = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 							<div class="option-info">
 								<div class="deck-name">{card.name}</div>
 								<div class="deck-code">{card.code}</div>
@@ -569,7 +570,7 @@ const tips = [
 									data-full={matchup.leader.img}
 									data-name={`${matchup.leader.code} ${matchup.leader.name}`}
 								>
-									<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+									<img loading="lazy" src={getCardThumbnail(matchup.leader.img)} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
 									<div class="mini-label">{matchup.leader.name}</div>
 								</button>
 							</div>
@@ -606,7 +607,7 @@ const tips = [
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 										<div class="mini-label">{card.name}</div>
 									</button>
 								))}

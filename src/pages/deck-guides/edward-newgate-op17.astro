@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Edward.Newgate OP17 First Look";
 const description =
@@ -91,7 +92,7 @@ const unfavorableMatchups = [
 					{
 						decklist.map((entry) => (
 							<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-								<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+								<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 								<div class="deck-info">
 									<span class="deck-count">{entry.count}x</span>
 									<div>

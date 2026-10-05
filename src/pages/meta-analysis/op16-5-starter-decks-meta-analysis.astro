@@ -1,5 +1,7 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
+import { getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "OP16.5 Meta Analysis: Which New Starter Decks Can Actually Change the Format?";
 const description =
@@ -330,22 +332,22 @@ const verdictClass = (tone: string) => {
 				</div>
 				<div class="hero-starter-strip">
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/ST21/ST21-001.jpg" data-name="ST21-001 Monkey D. Luffy">
-						<img src="/Cards/ST21/ST21-001.jpg" alt="Monkey D. Luffy ST21-001 leader card" loading="eager" />
+						<img src={getCardThumbnail("/Cards/ST21/ST21-001.jpg")} alt="Monkey D. Luffy ST21-001 leader card" loading="eager" />
 					</button>
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP12/OP12-020.jpg" data-name="OP12-020 Roronoa Zoro">
-						<img src="/Cards/OP12/OP12-020.jpg" alt="Roronoa Zoro OP12-020 leader card" loading="eager" />
+						<img src={getCardThumbnail("/Cards/OP12/OP12-020.jpg")} alt="Roronoa Zoro OP12-020 leader card" loading="eager" />
 					</button>
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP12/OP12-040.jpg" data-name="OP12-040 Kuzan">
-						<img src="/Cards/OP12/OP12-040.jpg" alt="Kuzan OP12-040 leader card" loading="eager" />
+						<img src={getCardThumbnail("/Cards/OP12/OP12-040.jpg")} alt="Kuzan OP12-040 leader card" loading="eager" />
 					</button>
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP11/OP11-062.jpg" data-name="OP11-062 Charlotte Katakuri">
-						<img src="/Cards/OP11/OP11-062.jpg" alt="Charlotte Katakuri OP11-062 leader card" loading="eager" />
+						<img src={getCardThumbnail("/Cards/OP11/OP11-062.jpg")} alt="Charlotte Katakuri OP11-062 leader card" loading="eager" />
 					</button>
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP13/OP13-004.jpg" data-name="OP13-004 Sabo">
-						<img src="/Cards/OP13/OP13-004.jpg" alt="Sabo OP13-004 leader card" loading="eager" />
+						<img src={getCardThumbnail("/Cards/OP13/OP13-004.jpg")} alt="Sabo OP13-004 leader card" loading="eager" />
 					</button>
 					<button type="button" class="hero-starter-card" data-card-preview data-full="/Cards/OP10/OP10-099.jpg" data-name='OP10-099 Eustass "Captain" Kid'>
-						<img src="/Cards/OP10/OP10-099.jpg" alt='Eustass "Captain" Kid OP10-099 leader card' loading="eager" />
+						<img src={getCardThumbnail("/Cards/OP10/OP10-099.jpg")} alt='Eustass "Captain" Kid OP10-099 leader card' loading="eager" />
 					</button>
 				</div>
 			</div>
@@ -407,7 +409,7 @@ const verdictClass = (tone: string) => {
 											data-full={card.img}
 											data-name={`${card.code} ${card.name ?? card.code}`}
 										>
-											<img src={card.img} alt={`${card.name ?? card.code} card art`} loading="lazy" />
+											<img src={getCardThumbnail(card.img)} alt={`${card.name ?? card.code} card art`} loading="lazy" />
 											<div class="starter-card-caption">
 												<strong>{card.name ?? card.code}</strong>
 												<span>{card.code}</span>
@@ -465,7 +467,7 @@ const verdictClass = (tone: string) => {
 						{surpriseWinners.map((winner) => (
 							<article id={winner.id} class="winner-card">
 								<div class="winner-head">
-									<img src={winner.art} alt={`${winner.name} leader art`} loading="lazy" />
+									<img src={getOptimizedAssetUrl(winner.art)} alt={`${winner.name} leader art`} loading="lazy" />
 									<div>
 										<h3>{winner.name}</h3>
 										{winner.record && <p>{winner.record}</p>}
@@ -497,7 +499,7 @@ const verdictClass = (tone: string) => {
 						{formatPillars.map((pillar) => (
 							<article class="pillar-card">
 								<div class="pillar-head">
-									<img src={pillar.art} alt={`${pillar.name} leader art`} loading="lazy" />
+									<img src={getOptimizedAssetUrl(pillar.art)} alt={`${pillar.name} leader art`} loading="lazy" />
 									<div>
 										<h3>{pillar.name}</h3>
 										{pillar.record && <p>{pillar.record}</p>}
@@ -534,7 +536,7 @@ const verdictClass = (tone: string) => {
 								</header>
 								<div class="tier-deck-list">
 									{tier.decks.map((deck) => (
-										<img src={deck.art} alt={`${deck.name} icon`} title={deck.name} loading="lazy" />
+										<img src={getOptimizedAssetUrl(deck.art)} alt={`${deck.name} icon`} title={deck.name} loading="lazy" />
 									))}
 								</div>
 							</section>

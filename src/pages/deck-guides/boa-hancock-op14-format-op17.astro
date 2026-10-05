@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Boa Hancock OP14 Deck Guide";
 const description = "Boa Hancock OP14 deck guide for the OP17 format with decklist, curve guide, strengths, weaknesses, tactics, and matchups.";
@@ -102,7 +103,7 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 		<div class="container article-stack">
 			<div class="glow-block">
 				<div class="section-header decklist-header"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>Copy for Sim</button></div></div>
-				<div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" /><div class="deck-info"><span class="deck-count">{entry.count}x</span><div><div class="deck-name">{entry.name}</div><div class="deck-code">{entry.code}</div></div></div><span class="deck-role">{entry.role}</span></button>)}</div>
+				<div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" /><div class="deck-info"><span class="deck-count">{entry.count}x</span><div><div class="deck-name">{entry.name}</div><div class="deck-code">{entry.code}</div></div></div><span class="deck-role">{entry.role}</span></button>)}</div>
 			</div>
 
 			<div id="curve" class="glow-block feature-block">
@@ -119,7 +120,7 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
 											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+												<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 											</button>
 										</>
 									))}
@@ -142,7 +143,7 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 										<>
 											{index > 0 && <span class={`curve-join ${slot.mode === "or" ? "curve-join-or" : ""}`}>{slot.mode === "or" ? "or" : "+"}</span>}
 											<button class="mini-card curve-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-												<img src={entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+												<img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 											</button>
 										</>
 									))}
@@ -156,7 +157,7 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 
 			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>Deck Overview</h2><h3>The Mechanic</h3><p>This deck barely runs any Blue cards. Instead, it uses the Big Mom Pirates and Kuja Pirates Trigger packages. Whenever you play a character on your opponent's turn via Trigger, your Leader lets you draw a card: you develop a body and replace the card in your hand for free.</p></div></div><div class="nutshell-grid"><div class="info-panel"><div class="section-tag section-tag-light">Strength</div><ul class="summary-list">{strengths.map((item) => <li>{item}</li>)}</ul></div><div class="info-panel"><div class="section-tag section-tag-light">Weakness</div><ul class="summary-list">{weaknesses.map((item) => <li>{item}</li>)}</ul></div></div><div class="core-panel"><div class="section-tag section-tag-light">The Core Engine</div><ul class="summary-list">{coreEngine.map((item) => <li>{item}</li>)}</ul></div></div>
 
-			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>OP17 Pro Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={boa.img} data-name={`${boa.code} ${boa.name}`} data-code={boa.code}><img src={boa.img} alt={`${boa.code} ${boa.name}`} loading="lazy" /></button><div><h3>The Unblockable Finisher</h3><p>Don't forget the Blue side of the deck. Perfume Femur gives your Leader or a Warlord character +2K Power and makes their attack completely unblockable. It's the finisher that steals games when the opponent thinks they're safe behind Blockers.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={marigold.img} data-name={`${marigold.code} ${marigold.name}`} data-code={marigold.code}><img src={marigold.img} alt={`${marigold.code} ${marigold.name}`} loading="lazy" /></button><div><h3>The Marigold Burn Block</h3><p>5c Boa Marigold is a defensive trap. At 2 Life or less, she gains Blocker. When the opponent attacks for game, block with her: if she's K.O.'d, your Leader effect triggers and forces the opponent to take a Life to hand. It's a lose-lose situation for them.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={moria.img} data-name={`${moria.code} ${moria.name}`} data-code={moria.code}><img src={moria.img} alt={`${moria.code} ${moria.name}`} loading="lazy" /></button><div><h3>The Moria Pitch</h3><p>Gecko Moria is in the deck for its powerful Trigger. Even from your hand, it has value: use Kouzuki Hiyori to place it on top of your Life cards, or discard it with Charlotte Pudding to activate her effect.</p></div></div></div></div>
+			<div class="glow-block feature-block"><div class="section-header feature-header"><div><h2>OP17 Pro Tactics &amp; Combos</h2></div></div><div class="combo-grid"><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={boa.img} data-name={`${boa.code} ${boa.name}`} data-code={boa.code}><img src={getCardThumbnail(boa.img)} alt={`${boa.code} ${boa.name}`} loading="lazy" /></button><div><h3>The Unblockable Finisher</h3><p>Don't forget the Blue side of the deck. Perfume Femur gives your Leader or a Warlord character +2K Power and makes their attack completely unblockable. It's the finisher that steals games when the opponent thinks they're safe behind Blockers.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={marigold.img} data-name={`${marigold.code} ${marigold.name}`} data-code={marigold.code}><img src={getCardThumbnail(marigold.img)} alt={`${marigold.code} ${marigold.name}`} loading="lazy" /></button><div><h3>The Marigold Burn Block</h3><p>5c Boa Marigold is a defensive trap. At 2 Life or less, she gains Blocker. When the opponent attacks for game, block with her: if she's K.O.'d, your Leader effect triggers and forces the opponent to take a Life to hand. It's a lose-lose situation for them.</p></div></div><div class="combo-card"><button class="detail-card" type="button" data-card-preview data-full={moria.img} data-name={`${moria.code} ${moria.name}`} data-code={moria.code}><img src={getCardThumbnail(moria.img)} alt={`${moria.code} ${moria.name}`} loading="lazy" /></button><div><h3>The Moria Pitch</h3><p>Gecko Moria is in the deck for its powerful Trigger. Even from your hand, it has value: use Kouzuki Hiyori to place it on top of your Life cards, or discard it with Charlotte Pudding to activate her effect.</p></div></div></div></div>
 
 			<div id="matchups" class="glow-block feature-block">
 				<div class="section-header feature-header"><div><h2>Matchups</h2><p>OP17 matchup spread for Boa Hancock OP14.</p></div></div>
@@ -167,7 +168,7 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 							<div class="matchup-list">
 								{group.cards.map((entry) => (
 									<button class="matchup-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}>
-										<img class="matchup-leader-icon" src={matchupIcons[entry.code] ?? entry.img} alt={`${entry.code} ${entry.name}`} loading="lazy" />
+										<img class="matchup-leader-icon" src={getCardThumbnail(matchupIcons[entry.code] ?? entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy" />
 										<span>{entry.name}</span>
 									</button>
 								))}

@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Sengoku OP16 Deck Guide";
 const description =
@@ -221,7 +222,7 @@ const weaknesses = [
 			<div class="deck-grid">
 				{decklist.map((card) => (
 					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -251,7 +252,7 @@ const weaknesses = [
 					data-full={leaderCard.img}
 					data-name={`${leaderCard.code} ${leaderCard.name}`}
 				>
-					<img loading="lazy" src={leaderCard.img} alt={`${leaderCard.code} ${leaderCard.name}`} />
+					<img loading="lazy" src={getCardThumbnail(leaderCard.img)} alt={`${leaderCard.code} ${leaderCard.name}`} />
 				</button>
 				<div class="leader-copy">
 					<p class="leader-lead">
@@ -278,7 +279,7 @@ const weaknesses = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						</button>
 					))}
 				</div>
@@ -314,7 +315,7 @@ const weaknesses = [
 						data-full={garpCard.img}
 						data-name={`${garpCard.code} ${garpCard.name}`}
 					>
-						<img loading="lazy" src={garpCard.img} alt={`${garpCard.code} ${garpCard.name}`} />
+						<img loading="lazy" src={getCardThumbnail(garpCard.img)} alt={`${garpCard.code} ${garpCard.name}`} />
 					</button>
 					<p class="spotlight-copy">The most important bridge card in the deck.</p>
 				</div>
@@ -373,7 +374,7 @@ const weaknesses = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						</button>
 						<div class="key-copy">
 							<h3>{card.name}</h3>
@@ -409,7 +410,7 @@ const weaknesses = [
 											data-full={card.img}
 											data-name={`${card.code} ${card.name}`}
 										>
-											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 										</button>
 									))}
 								</div>
@@ -432,7 +433,7 @@ const weaknesses = [
 											data-full={card.img}
 											data-name={`${card.code} ${card.name}`}
 										>
-											<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+											<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 										</button>
 									))}
 								</div>
@@ -470,7 +471,7 @@ const weaknesses = [
 								data-full={entry.img}
 								data-name={`${entry.code} ${entry.name}`}
 							>
-								<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+								<img loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 							</button>
 							<div class="matchup-name">{entry.name}</div>
 							<div class="turn-line">
@@ -505,7 +506,7 @@ const weaknesses = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						</button>
 						<div class="option-name">{card.name}</div>
 					</div>

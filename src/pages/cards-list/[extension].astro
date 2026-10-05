@@ -3005,7 +3005,7 @@ const description = isLeakPage
 									data-full={card.fullUrl}
 									data-name={card.code}
 								>
-									<img loading="lazy" src={card.smallUrl} alt={`${card.code} ${card.name} card`} />
+									<img loading="lazy" decoding="async" fetchpriority="low" src={card.smallUrl} alt={`${card.code} ${card.name} card`} />
 								</button>
 							</div>
 							<div class="leak-card-copy">
@@ -3093,7 +3093,7 @@ const description = isLeakPage
 										data-full={card.fullUrl}
 										data-name={card.code}
 									>
-										<img loading="lazy" src={card.smallUrl} alt={`${card.code} card`} />
+										<img loading="lazy" decoding="async" fetchpriority="low" src={card.smallUrl} alt={`${card.code} card`} />
 									</button>
 									{
 										affiliateCard && (
@@ -3243,6 +3243,8 @@ const description = isLeakPage
 			button.setAttribute("data-name", card.code);
 			const img = document.createElement("img");
 			img.loading = "lazy";
+			img.decoding = "async";
+			img.fetchPriority = "low";
 			img.src = card.smallUrl;
 			img.alt = `${card.code} card`;
 			button.appendChild(img);

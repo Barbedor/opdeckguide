@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Portgas.D.Ace OP16 Deck Guide";
 const description =
@@ -423,7 +424,7 @@ const tips = [
 			<div class="deck-grid">
 				{decklist.map((entry) => (
 					<button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}>
-						<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+						<img loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{entry.count}x</span>
 							<div>
@@ -473,7 +474,7 @@ const tips = [
 											data-full={entry.img}
 											data-name={`${entry.code} ${entry.name}`}
 										>
-											<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+											<img loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 										</button>
 									))}
 								</div>
@@ -507,7 +508,7 @@ const tips = [
 									data-full={entry.img}
 									data-name={`${entry.code} ${entry.name}`}
 								>
-									<img loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+									<img loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 								</button>
 							))}
 						</div>
@@ -552,7 +553,7 @@ const tips = [
 										data-full={entry.img}
 										data-name={`${entry.code} ${entry.name}`}
 									>
-										<img class="card-main-image" loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+										<img class="card-main-image" loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -579,7 +580,7 @@ const tips = [
 										data-full={entry.img}
 										data-name={`${entry.code} ${entry.name}`}
 									>
-										<img class="card-main-image" loading="lazy" src={entry.img} alt={`${entry.code} ${entry.name}`} />
+										<img class="card-main-image" loading="lazy" src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} />
 										<div class="mini-label">{entry.name}</div>
 									</button>
 								))}
@@ -612,7 +613,7 @@ const tips = [
 							data-full={entry.card.img}
 							data-name={`${entry.card.code} ${entry.card.name}`}
 						>
-							<img loading="lazy" src={entry.card.img} alt={`${entry.card.code} ${entry.card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(entry.card.img)} alt={`${entry.card.code} ${entry.card.name}`} />
 							<div class="option-info">
 								<div class="deck-name">{entry.card.name}</div>
 								<div class="deck-code">{entry.card.code}</div>
@@ -650,7 +651,7 @@ const tips = [
 									data-full={entry.leader.img}
 									data-name={`${entry.leader.code} ${entry.leader.name}`}
 								>
-									<img loading="lazy" src={entry.leader.img} alt={`${entry.leader.code} ${entry.leader.name}`} />
+									<img loading="lazy" src={getCardThumbnail(entry.leader.img)} alt={`${entry.leader.code} ${entry.leader.name}`} />
 									<div class="mini-label">{entry.title}</div>
 								</button>
 							</div>
@@ -695,7 +696,7 @@ const tips = [
 											data-full={tipCard.img}
 											data-name={`${tipCard.code} ${tipCard.name}`}
 										>
-											<img loading="lazy" src={tipCard.img} alt={`${tipCard.code} ${tipCard.name}`} />
+											<img loading="lazy" src={getCardThumbnail(tipCard.img)} alt={`${tipCard.code} ${tipCard.name}`} />
 											<div class="mini-label">{tipCard.name}</div>
 										</button>
 									))}

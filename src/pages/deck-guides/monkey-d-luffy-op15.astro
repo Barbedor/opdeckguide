@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Monkey.D.Luffy OP15 Deck Guide";
 const description =
@@ -303,7 +304,7 @@ const matchups = [
 			<div class="deck-grid">
 				{decklist.map((card) => (
 					<button class="deck-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -338,7 +339,7 @@ const matchups = [
 									data-full={card.img}
 									data-name={`${card.code} ${card.name}`}
 								>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 								</button>
 							))}
 						</div>
@@ -361,7 +362,7 @@ const matchups = [
 				{mulliganNotes.map((note, index) => (
 					<div class="mulligan-item">
 						<button class="mini-card" type="button" data-card-preview data-full={mulliganCards[index].img} data-name={`${mulliganCards[index].code} ${mulliganCards[index].name}`}>
-							<img loading="lazy" src={mulliganCards[index].img} alt={`${mulliganCards[index].code} ${mulliganCards[index].name}`} />
+							<img loading="lazy" src={getCardThumbnail(mulliganCards[index].img)} alt={`${mulliganCards[index].code} ${mulliganCards[index].name}`} />
 							<div class="mini-label">{mulliganCards[index].name}</div>
 						</button>
 						<div class="text-card">
@@ -391,7 +392,7 @@ const matchups = [
 							<div class="curve-cards">
 								{slot.cards.map((card) => (
 									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 									</button>
 								))}
 							</div>
@@ -409,7 +410,7 @@ const matchups = [
 							<div class="curve-cards">
 								{slot.cards.map((card) => (
 									<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 									</button>
 								))}
 							</div>
@@ -435,7 +436,7 @@ const matchups = [
 						<div class="tip-cards">
 							{tip.cards.map((card) => (
 								<button class="mini-card" type="button" data-card-preview data-full={card.img} data-name={`${card.code} ${card.name}`}>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 								</button>
 							))}
 						</div>
@@ -466,7 +467,7 @@ const matchups = [
 							<span>{matchup.label}</span>
 						</div>
 						<button class="mini-card" type="button" data-card-preview data-full={matchup.leader.img} data-name={`${matchup.leader.code} ${matchup.leader.name}`}>
-							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+							<img loading="lazy" src={getCardThumbnail(matchup.leader.img)} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
 						</button>
 						<div class="matchup-name">{matchup.leader.name}</div>
 						<ul>

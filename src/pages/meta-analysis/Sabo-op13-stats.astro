@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "OP13 Sabo Stats In OP17 Format";
 const description =
@@ -59,7 +60,7 @@ const featuredTurnOrderStats = [
 				<span class="hero-badge">Meta Article</span>
 				<h1>OP13 Sabo Stats In OP17 Format</h1>
 				<div class="article-leader-hero">
-					<img src={leaderHeroArt} alt="Red Black Sabo leader art" loading="eager" />
+					<img src={getOptimizedAssetUrl(leaderHeroArt)} alt="Red Black Sabo leader art" loading="eager" />
 				</div>
 				<p class="article-kicker">Turn-order stats for Red/Black Sabo in the OP17 field.</p>
 				<p>
@@ -125,7 +126,7 @@ const featuredTurnOrderStats = [
 						<div class="turn-order-card">
 							<div class="leader-art-frame">
 								{entry.art ? (
-									<img src={entry.art} alt={`${entry.label} leader art`} loading="lazy" />
+									<img src={getOptimizedAssetUrl(entry.art)} alt={`${entry.label} leader art`} loading="lazy" />
 								) : (
 									<div class="leader-art-placeholder">{entry.code}</div>
 								)}

@@ -127,7 +127,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 									data-leader-name-toggle
 									aria-expanded="false"
 								>
-									<img src={segment.leader.imageSrc} alt={`${segment.leader.name} icon`} loading="lazy" />
+									<img src={segment.leader.imageSrc} alt={`${segment.leader.name} icon`} loading="lazy" decoding="async" fetchpriority="low" />
 									<span class="leader-bar-name-text">
 										{segment.leader.name} <span class="leader-bar-name-set">{segment.leader.code.split("-")[0]}</span>
 									</span>
@@ -159,7 +159,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 													data-leader-name-toggle
 													aria-expanded="false"
 												>
-													<img src={segment.leader.imageSrc} alt={`${segment.leader.name} icon`} loading="lazy" />
+													<img src={segment.leader.imageSrc} alt={`${segment.leader.name} icon`} loading="lazy" decoding="async" fetchpriority="low" />
 													<span class="leader-bar-name-text">
 														{segment.leader.name} <span class="leader-bar-name-set">{segment.leader.code.split("-")[0]}</span>
 													</span>
@@ -268,7 +268,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 						>
 							<span class="row-date">{entry.formattedDate}</span>
 							<span class="row-leader">
-								<img src={entry.leader.imageSrc} alt={`${entry.leader.name} icon`} loading="lazy" />
+								<img src={entry.leader.imageSrc} alt={`${entry.leader.name} icon`} loading="lazy" decoding="async" fetchpriority="low" />
 								<span class="row-leader-name">
 									{entry.leader.name} <span class="row-leader-set">{entry.leader.code.split("-")[0]}</span>
 								</span>
@@ -437,7 +437,7 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 				<div class="leader-bar-row" data-leader-row>
 					<div class="leader-bar-head">
 						<button class="leader-bar-name" type="button" data-leader-name-toggle aria-expanded="false">
-							<img src="${leader.imageSrc}" alt="${leader.name} icon" loading="lazy" />
+							<img src="${leader.imageSrc}" alt="${leader.name} icon" loading="lazy" decoding="async" fetchpriority="low" />
 							<span class="leader-bar-name-text">${leader.name} <span class="leader-bar-name-set">${leader.set}</span></span>
 						</button>
 						<div class="leader-bar-track"><div class="leader-bar-fill" data-leader-share="${leader.share}" style="--bar-fill:${leader.barFill}; width:0;"></div></div>

@@ -1,5 +1,6 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "One Piece Card Game Ban & Limited List";
 const description = "Official One Piece Card Game banned, limited, and banned-pair list with effective dates and card references.";
@@ -52,7 +53,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 						data-full="/Cards/OP14/OP14-020.jpg"
 						data-name="OP14-020 Dracule Mihawk"
 					>
-						<img loading="lazy" src="/Cards/OP14/OP14-020.jpg" alt="OP14-020 Dracule Mihawk" />
+						<img loading="lazy" src={getCardThumbnail("/Cards/OP14/OP14-020.jpg")} alt="OP14-020 Dracule Mihawk" />
 					</button>
 					<div class="card-caption"><strong>OP14-020</strong> Dracule Mihawk</div>
 				</div>
@@ -77,7 +78,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP07/OP07-115.jpg"
 							data-name="OP07-115 I Re-Quasar Helllp!!"
 						>
-							<img loading="lazy" src="/Cards/OP07/OP07-115.jpg" alt="OP07-115 I Re-Quasar Helllp!!" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP07/OP07-115.jpg")} alt="OP07-115 I Re-Quasar Helllp!!" />
 						</button>
 						<div class="card-caption">
 							<strong>OP07-115</strong> I Re-Quasar Helllp!!
@@ -95,7 +96,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/EB04/EB04-058.jpg"
 							data-name="EB04-058 Borsalino"
 						>
-							<img loading="lazy" src="/Cards/EB04/EB04-058.jpg" alt="EB04-058 Borsalino" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/EB04/EB04-058.jpg")} alt="EB04-058 Borsalino" />
 						</button>
 						<div class="card-caption">
 							<strong>EB04-058</strong> Borsalino <span>(including parallel versions)</span>
@@ -120,7 +121,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP06/OP06-047.png"
 							data-name="OP06-047 Charlotte Pudding"
 						>
-							<img loading="lazy" src="/Cards/OP06/OP06-047.png" alt="OP06-047 Charlotte Pudding" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP06/OP06-047.png")} alt="OP06-047 Charlotte Pudding" />
 						</button>
 						<div class="card-caption"><strong>OP06-047</strong> Charlotte Pudding</div>
 					</div>
@@ -132,7 +133,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP03/OP03-040.png"
 							data-name="OP03-040 Nami"
 						>
-							<img loading="lazy" src="/Cards/OP03/OP03-040.png" alt="OP03-040 Nami" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP03/OP03-040.png")} alt="OP03-040 Nami" />
 						</button>
 						<div class="card-caption"><strong>OP03-040</strong> Nami</div>
 					</div>
@@ -144,7 +145,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP06/OP06-086.png"
 							data-name="OP06-086 Gecko Moria"
 						>
-							<img loading="lazy" src="/Cards/OP06/OP06-086.png" alt="OP06-086 Gecko Moria" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP06/OP06-086.png")} alt="OP06-086 Gecko Moria" />
 						</button>
 						<div class="card-caption"><strong>OP06-086</strong> Gecko Moria</div>
 					</div>
@@ -156,7 +157,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/ST10/ST10-001.png"
 							data-name="ST10-001 Trafalgar Law"
 						>
-							<img loading="lazy" src="/Cards/ST10/ST10-001.png" alt="ST10-001 Trafalgar Law" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/ST10/ST10-001.png")} alt="ST10-001 Trafalgar Law" />
 						</button>
 						<div class="card-caption"><strong>ST10-001</strong> Trafalgar Law</div>
 					</div>
@@ -168,7 +169,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP06/OP06-116.png"
 							data-name="OP06-116 Reject"
 						>
-							<img loading="lazy" src="/Cards/OP06/OP06-116.png" alt="OP06-116 Reject" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP06/OP06-116.png")} alt="OP06-116 Reject" />
 						</button>
 						<div class="card-caption"><strong>OP06-116</strong> Reject</div>
 					</div>
@@ -198,7 +199,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 							data-full="/Cards/OP11/OP11-040.jpg"
 							data-name="OP11-040 Monkey D. Luffy"
 						>
-							<img loading="lazy" src="/Cards/OP11/OP11-040.jpg" alt="OP11-040 Monkey D. Luffy" />
+							<img loading="lazy" src={getCardThumbnail("/Cards/OP11/OP11-040.jpg")} alt="OP11-040 Monkey D. Luffy" />
 						</button>
 						<div class="card-caption"><strong>OP11-040</strong> Monkey D. Luffy</div>
 					</div>
@@ -215,7 +216,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 								data-full="/Cards/OP11/OP11-067.jpg"
 								data-name="OP11-067 Charlotte Katakuri"
 							>
-								<img loading="lazy" src="/Cards/OP11/OP11-067.jpg" alt="OP11-067 Charlotte Katakuri" />
+								<img loading="lazy" src={getCardThumbnail("/Cards/OP11/OP11-067.jpg")} alt="OP11-067 Charlotte Katakuri" />
 							</button>
 							<div class="card-caption"><strong>OP11-067</strong> Charlotte Katakuri</div>
 						</div>
@@ -227,7 +228,7 @@ const description = "Official One Piece Card Game banned, limited, and banned-pa
 								data-full="/Cards/OP08/OP08-069.png"
 								data-name="OP08-069 Charlotte Linlin"
 							>
-								<img loading="lazy" src="/Cards/OP08/OP08-069.png" alt="OP08-069 Charlotte Linlin" />
+								<img loading="lazy" src={getCardThumbnail("/Cards/OP08/OP08-069.png")} alt="OP08-069 Charlotte Linlin" />
 							</button>
 							<div class="card-caption"><strong>OP08-069</strong> Charlotte Linlin</div>
 						</div>

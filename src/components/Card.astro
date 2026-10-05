@@ -1,5 +1,8 @@
 ﻿---
+import { getOptimizedAssetUrl } from "../lib/assets";
+
 const { title, description, href, eyebrow, imageSrc, imageAlt, imagePosition } = Astro.props;
+const optimizedImageSrc = imageSrc ? getOptimizedAssetUrl(imageSrc) : imageSrc;
 ---
 
 <a class="card" href={href}>
@@ -7,7 +10,7 @@ const { title, description, href, eyebrow, imageSrc, imageAlt, imagePosition } =
 	{imageSrc && (
 		<div class="card-icon">
 			<img
-				src={imageSrc}
+				src={optimizedImageSrc}
 				alt={imageAlt ?? title}
 				loading="lazy"
 				decoding="async"

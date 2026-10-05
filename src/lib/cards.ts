@@ -1789,13 +1789,17 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 			const detectedCode = extractCodeFromBase(canonicalBase);
 			const override = directOverride ?? Object.values(overrides).find((item) => item.code === detectedCode) ?? {};
 			const code = override.code ?? detectedCode ?? canonicalBase.toUpperCase();
+			const thumbnailFile = `${base}_small.webp`;
+			const smallUrl = fs.existsSync(path.join(basePath, thumbnailFile))
+				? `/Cards/OP17/New%20OP17/${thumbnailFile}`
+				: `/Cards/OP17/New%20OP17/${file}`;
 			if (code === "OP17-020" && !variant) continue;
 			const meta = metadataIndex.get(code) ?? {};
 			cards.push({
 				code,
 				name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
 				color: override.color ?? meta.color ?? "Other",
-				smallUrl: `/Cards/OP17/New%20OP17/${file}`,
+				smallUrl,
 				fullUrl: `/Cards/OP17/New%20OP17/${file}`,
 				edition: getOp17VariantDisplayLabel(code, variant) ?? null,
 			});
@@ -1812,13 +1816,14 @@ const getCardsForOp17 = (files, smallByBase, metadataIndex) => {
 		const detectedCode = extractCodeFromBase(canonicalBase);
 		const override = directOverride ?? Object.values(overrides).find((item) => item.code === detectedCode) ?? {};
 		const code = override.code ?? detectedCode;
+		const smallUrl = smallByBase.get(base) ?? `/Cards/OP17/${file}`;
 		if (!code) continue;
 		const meta = metadataIndex.get(code) ?? {};
 		cards.push({
 			code,
 			name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
 			color: override.color ?? meta.color ?? "Other",
-			smallUrl: `/Cards/OP17/${file}`,
+			smallUrl,
 			fullUrl: `/Cards/OP17/${file}`,
 			edition: getOp17VariantDisplayLabel(code, variant) ?? null,
 		});
@@ -1949,6 +1954,14 @@ export const getClassicCardImage = (code) => {
 		if (fs.existsSync(path.join(folder, filename))) return `/Cards/${publicFolder}/${filename}`;
 	}
 	return null;
+};
+
+export const getClassicCardThumbnail = (code) => {
+	const set = code.split("-")[0];
+	const folder = set === "OP17" ? path.join(cardsRoot, "OP17", "New OP17") : path.join(cardsRoot, set);
+	const publicFolder = set === "OP17" ? "OP17/New%20OP17" : set;
+	const filename = `${code}_small.webp`;
+	return fs.existsSync(path.join(folder, filename)) ? `/Cards/${publicFolder}/${filename}` : null;
 };
 
 export const hasMetadata = () => {

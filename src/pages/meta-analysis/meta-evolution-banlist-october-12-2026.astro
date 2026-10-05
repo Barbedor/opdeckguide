@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "How Will the Meta Evolve? The New October 12, 2026 Ban List";
 const description =
@@ -50,7 +51,7 @@ const leaderArt = {
 					</p>
 				</div>
 				<div class="banlist-hero-icon" aria-label="Dracule Mihawk banned leader">
-					<img src="/assets/guides/dracule-mihawk-op14.png" alt="Dracule Mihawk" loading="eager" />
+					<img src={getOptimizedAssetUrl("/assets/guides/dracule-mihawk-op14.png")} alt="Dracule Mihawk" loading="eager" />
 				</div>
 			</div>
 
@@ -58,7 +59,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.xebec} alt="Rocks D. Xebec" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.xebec)} alt="Rocks D. Xebec" loading="lazy" /></div>
 					<h3>Rocks D. Xebec</h3>
 				</div>
 				<p>Rocks D. Xebec is the biggest winner from this Ban List.</p>
@@ -83,7 +84,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon leader-icon-elbaf-luffy"><img src={leaderArt.elbafLuffy} alt="Elbaf Luffy" loading="lazy" /></div>
+					<div class="leader-icon leader-icon-elbaf-luffy"><img src={getOptimizedAssetUrl(leaderArt.elbafLuffy)} alt="Elbaf Luffy" loading="lazy" /></div>
 					<h3>Elbaf Luffy</h3>
 				</div>
 				<p>Elbaf Luffy also benefits greatly from Mihawk&apos;s departure, as Mihawk was one of his very bad matchups.</p>
@@ -103,7 +104,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.sabo} alt="Sabo OP13" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.sabo)} alt="Sabo OP13" loading="lazy" /></div>
 					<h3>Sabo OP13</h3>
 				</div>
 				<p>Sabo does not benefit from the change in any particular way.</p>
@@ -122,7 +123,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.kaido} alt="Kaido OP17" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.kaido)} alt="Kaido OP17" loading="lazy" /></div>
 					<h3>Kaido OP17</h3>
 				</div>
 				<p>Kaido benefits more from the ban.</p>
@@ -142,7 +143,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon leader-icon-luffy-ace"><img src={leaderArt.luffyAce} alt="Luffy/Ace ST30" loading="lazy" /></div>
+					<div class="leader-icon leader-icon-luffy-ace"><img src={getOptimizedAssetUrl(leaderArt.luffyAce)} alt="Luffy/Ace ST30" loading="lazy" /></div>
 					<h3>Luffy/Ace ST30</h3>
 				</div>
 				<p>
@@ -157,7 +158,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon leader-icon-hancock"><img src={leaderArt.hancock} alt="Boa Hancock OP14" loading="lazy" /></div>
+					<div class="leader-icon leader-icon-hancock"><img src={getOptimizedAssetUrl(leaderArt.hancock)} alt="Boa Hancock OP14" loading="lazy" /></div>
 					<h3>Boa Hancock OP14</h3>
 				</div>
 				<p>Boa Hancock also gains from Mihawk&apos;s ban, especially if Robin becomes less popular.</p>
@@ -173,7 +174,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.pudding} alt="Pudding OP08" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.pudding)} alt="Pudding OP08" loading="lazy" /></div>
 					<h3>Pudding</h3>
 				</div>
 				<p>Pudding is another deck to watch.</p>
@@ -192,7 +193,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon leader-icon-robin"><img src={leaderArt.robin} alt="Robin OP09" loading="lazy" /></div>
+					<div class="leader-icon leader-icon-robin"><img src={getOptimizedAssetUrl(leaderArt.robin)} alt="Robin OP09" loading="lazy" /></div>
 					<h3>Robin OP09</h3>
 				</div>
 				<p>Robin is directly hurt by Mihawk&apos;s disappearance.</p>
@@ -216,7 +217,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon leader-icon-ace"><img src={leaderArt.ace} alt="Ace OP16" loading="lazy" /></div>
+					<div class="leader-icon leader-icon-ace"><img src={getOptimizedAssetUrl(leaderArt.ace)} alt="Ace OP16" loading="lazy" /></div>
 					<h3>Ace OP16</h3>
 				</div>
 				<p>Ace finds itself in a fairly similar situation.</p>
@@ -238,7 +239,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.shanks} alt="Shanks OP17" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.shanks)} alt="Shanks OP17" loading="lazy" /></div>
 					<h3>Shanks OP17</h3>
 				</div>
 				<p>Green Shanks had been overshadowed by Mihawk among green decks and could now find more room in the format.</p>
@@ -256,7 +257,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.nami} alt="Nami OP11" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.nami)} alt="Nami OP11" loading="lazy" /></div>
 					<h3>Nami OP11</h3>
 				</div>
 				<p>Blue/Yellow Nami is also being discussed as a deck that could return after Mihawk&apos;s disappearance.</p>
@@ -269,7 +270,7 @@ const leaderArt = {
 
 			<article class="leader-block">
 				<div class="leader-heading">
-					<div class="leader-icon"><img src={leaderArt.teach} alt="Teach" loading="lazy" /></div>
+					<div class="leader-icon"><img src={getOptimizedAssetUrl(leaderArt.teach)} alt="Teach" loading="lazy" /></div>
 					<h3>Teach and the Other Outsiders</h3>
 				</div>
 				<p>Other decks remain strong enough to reappear depending on how the format evolves.</p>

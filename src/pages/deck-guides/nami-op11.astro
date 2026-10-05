@@ -1,5 +1,6 @@
-﻿---
+---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Nami OP11 Deck Guide";
 const description =
@@ -225,7 +226,7 @@ const matchups = [
 						data-full={card.img}
 						data-name={`${card.code} ${card.name}`}
 					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -257,7 +258,7 @@ const matchups = [
 						data-full={card.img}
 						data-name={`${card.code} ${card.name}`}
 					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="option-info">
 							<div class="deck-name">{card.name}</div>
 							<div class="deck-code">{card.code}</div>
@@ -286,7 +287,7 @@ const matchups = [
 						data-full={card.img}
 						data-name={`${card.code} ${card.name}`}
 					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="mini-label">{card.name}</div>
 					</button>
 				))}
@@ -318,7 +319,7 @@ const matchups = [
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 									</button>
 								))}
 							</div>
@@ -342,7 +343,7 @@ const matchups = [
 										data-full={card.img}
 										data-name={`${card.code} ${card.name}`}
 									>
-										<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+										<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 									</button>
 								))}
 							</div>
@@ -374,7 +375,7 @@ const matchups = [
 									data-full={card.img}
 									data-name={`${card.code} ${card.name}`}
 								>
-									<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+									<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 								</button>
 							))}
 						</div>
@@ -408,7 +409,7 @@ const matchups = [
 							data-full={matchup.leader.img}
 							data-name={`${matchup.leader.code} ${matchup.leader.name}`}
 						>
-							<img loading="lazy" src={matchup.leader.img} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
+							<img loading="lazy" src={getCardThumbnail(matchup.leader.img)} alt={`${matchup.leader.code} ${matchup.leader.name}`} />
 						</button>
 						<div class="matchup-name">{matchup.leader.name}</div>
 						<ul>

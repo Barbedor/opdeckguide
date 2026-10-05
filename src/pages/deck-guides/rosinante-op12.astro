@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Donquixote Rosinante OP12 Deck Guide";
 const description =
@@ -218,7 +219,7 @@ const matchupLegend = [
 						data-full={card.img}
 						data-name={`${card.code} ${card.name}`}
 					>
-						<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+						<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						<div class="deck-info">
 							<span class="deck-count">{card.count}x</span>
 							<div>
@@ -251,7 +252,7 @@ const matchupLegend = [
 								data-full={card.img}
 								data-name={`${card.code} ${card.name}`}
 							>
-								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 							</button>
 							<div class="combo-copy">
 								<p class="combo-text">{card.text}</p>
@@ -270,7 +271,7 @@ const matchupLegend = [
 								data-full={card.img}
 								data-name={`${card.code} ${card.name}`}
 							>
-								<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+								<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 							</button>
 						))}
 					</div>
@@ -301,7 +302,7 @@ const matchupLegend = [
 							data-full={card.img}
 							data-name={`${card.code} ${card.name}`}
 						>
-							<img loading="lazy" src={card.img} alt={`${card.code} ${card.name}`} />
+							<img loading="lazy" src={getCardThumbnail(card.img)} alt={`${card.code} ${card.name}`} />
 						</button>
 						<div class="option-name">{card.name}</div>
 						<div class="option-lines">
@@ -345,7 +346,7 @@ const matchupLegend = [
 								data-full={matchup.img}
 								data-name={`${matchup.code} ${matchup.name}`}
 							>
-								<img loading="lazy" src={matchup.img} alt={`${matchup.code} ${matchup.name}`} />
+								<img loading="lazy" src={getCardThumbnail(matchup.img)} alt={`${matchup.code} ${matchup.name}`} />
 							</button>
 							<div class="matchup-name">{matchup.name}</div>
 							<div class="turn-lines">
@@ -380,7 +381,7 @@ const matchupLegend = [
 					data-full={mirrorCard.img}
 					data-name={`${mirrorCard.code} ${mirrorCard.name}`}
 				>
-					<img loading="lazy" src={mirrorCard.img} alt={`${mirrorCard.code} ${mirrorCard.name}`} />
+					<img loading="lazy" src={getCardThumbnail(mirrorCard.img)} alt={`${mirrorCard.code} ${mirrorCard.name}`} />
 				</button>
 				<ul class="bullet-list">
 					<li><strong>Dice roll:</strong> Always go first (it's a huge advantage).</li>
@@ -409,7 +410,7 @@ const matchupLegend = [
 							data-full={matchup.img}
 							data-name={`${matchup.code} ${matchup.name}`}
 						>
-							<img loading="lazy" src={matchup.img} alt={`${matchup.code} ${matchup.name}`} />
+							<img loading="lazy" src={getCardThumbnail(matchup.img)} alt={`${matchup.code} ${matchup.name}`} />
 						</button>
 						<ul class="bullet-list">
 							{matchup.bullets.map((bullet) => (
