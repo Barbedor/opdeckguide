@@ -1,5 +1,6 @@
 ﻿---
 import { affiliateCards } from "../lib/affiliateCards";
+import ManualAd from "../components/ManualAd.astro";
 import { siteUrl } from "../lib/site";
 
 const { title: pageTitle, description, canonical, noindex = false, structuredData } = Astro.props;
@@ -12,6 +13,8 @@ const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
 const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);
+const isMetaAnalysisArticlePage = /^\/meta-analysis\/[^/]+\/?$/.test(pathname);
+const isBeginnerGuideArticlePage = /^\/beginner-guides\/[^/]+\/?$/.test(pathname);
 const op17FormatGuidePaths = new Set([
 	"/deck-guides/luffy-ace-st30/",
 	"/deck-guides/nico-robin-op09/",
@@ -90,6 +93,20 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			)
 		}
 		<script is:inline>
+			const initializeManualAds = () => {
+				if (!window.adsbygoogle) return;
+
+				document.querySelectorAll("ins[data-manual-ad]:not([data-manual-ad-initialized])").forEach((slot) => {
+					slot.setAttribute("data-manual-ad-initialized", "true");
+					try {
+						(window.adsbygoogle = window.adsbygoogle || []).push({});
+					} catch (error) {
+						slot.removeAttribute("data-manual-ad-initialized");
+						console.error("Unable to initialize a manual AdSense slot.", error);
+					}
+				});
+			};
+
 			const loadAdSense = () => {
 				if (window.__opdeckguideAdSenseRequested) return;
 				window.__opdeckguideAdSenseRequested = true;
@@ -98,6 +115,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 				script.async = true;
 				script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6147597626188070";
 				script.crossOrigin = "anonymous";
+				script.addEventListener("load", initializeManualAds, { once: true });
 				document.head.append(script);
 			};
 
@@ -169,6 +187,9 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 		<main id="content">
 			<slot />
+			{isDeckGuidePage && <ManualAd variant="banner" />}
+			{isMetaAnalysisArticlePage && <ManualAd variant="rectangle" />}
+			{isBeginnerGuideArticlePage && <ManualAd variant="banner" />}
 		</main>
 
 		{

@@ -1,5 +1,6 @@
 ---
 import { tournamentFormats, getTournamentLeaderStats } from "../lib/tournamentDecklists";
+import ManualAd from "./ManualAd.astro";
 
 const { currentFormat, entries, heroTitle, heroIntro, showSeoContent = false } = Astro.props;
 
@@ -234,6 +235,8 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		</div>
 	</div>
 </section>
+
+<ManualAd variant="banner" />
 
 <section class="tournament-results">
 	<div class="container">

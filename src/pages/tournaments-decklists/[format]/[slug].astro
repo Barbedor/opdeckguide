@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
+import ManualAd from "../../../components/ManualAd.astro";
 import { getAffiliateCard } from "../../../lib/affiliateCards";
 import { getClassicCardImage, getClassicCardThumbnail } from "../../../lib/cards";
 import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
@@ -139,6 +140,8 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 			}
 		</div>
 	</section>
+
+	<ManualAd variant="banner" />
 
 	<section class="detail-decklist">
 		<div class="container">

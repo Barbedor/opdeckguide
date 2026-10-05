@@ -1,0 +1,59 @@
+---
+const { variant = "banner", label = "Advertisement" } = Astro.props;
+
+const slots = {
+	banner: "3625611664",
+	rectangle: "3920319239",
+};
+
+if (!(variant in slots)) {
+	throw new Error(`Unsupported manual ad variant: ${variant}`);
+}
+
+const slot = slots[variant];
+---
+
+<aside class:list={["manual-ad", `manual-ad--${variant}`]} aria-label={label} data-manual-ad-wrapper>
+	<ins
+		class:list={["adsbygoogle", `manual-ad-unit--${variant}`]}
+		style="display:block"
+		data-manual-ad
+		data-ad-client="ca-pub-6147597626188070"
+		data-ad-slot={slot}
+		aria-label={label}
+	></ins>
+</aside>
+
+<style is:inline>
+	.manual-ad {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		margin: 2rem 0;
+		contain: layout;
+	}
+
+	.manual-ad-unit--banner {
+		width: 320px;
+		height: 100px;
+	}
+
+	.manual-ad-unit--rectangle {
+		width: 300px;
+		height: 250px;
+	}
+
+	@media (min-width: 500px) {
+		.manual-ad-unit--banner {
+			width: 468px;
+			height: 60px;
+		}
+	}
+
+	@media (min-width: 800px) {
+		.manual-ad-unit--banner {
+			width: 728px;
+			height: 90px;
+		}
+	}
+</style>

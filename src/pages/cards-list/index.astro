@@ -1,5 +1,6 @@
 ﻿---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 import { cardsListAffiliateCards } from "../../lib/affiliateCards";
 import { getExtensionSummaries, hasMetadata } from "../../lib/cards";
 import { guideSearchIndex } from "../../lib/guides";
@@ -105,6 +106,8 @@ const extensionLabel = (value) => {
 			</div>
 		</div>
 	</section>
+
+	<ManualAd variant="banner" />
 
 	<section class="seo-block">
 		<div class="container">
