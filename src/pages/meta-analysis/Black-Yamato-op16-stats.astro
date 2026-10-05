@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 import { getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "OP16 Black Yamato stats in OP16 Format";
@@ -91,6 +92,8 @@ const featuredTurnOrderStats = [
 		</div>
 	</section>
 
+	<ManualAd variant="banner" />
+
 	<section class="stats-section">
 		<div class="container stats-stack">
 			<article class="stats-panel">
@@ -149,6 +152,8 @@ const featuredTurnOrderStats = [
 						</div>
 					))}
 				</div>
+
+				<ManualAd variant="rectangle" />
 
 				<div class="analysis-grid">
 					<div class="analysis-card">

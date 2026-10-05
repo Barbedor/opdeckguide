@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 import { getCardThumbnail, getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "Simplified Rules Overview";
@@ -40,6 +41,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 		</div>
 	</section>
 
+	<ManualAd variant="banner" />
+
 	<section class="list-section">
 		<div class="container">
 			<h2>Quick Setup Checklist</h2>
@@ -54,6 +57,8 @@ const description = "A clear, beginner-friendly summary of the official One Piec
 			</ul>
 		</div>
 	</section>
+
+	<ManualAd variant="rectangle" />
 
 	<section class="list-section">
 		<div class="container">

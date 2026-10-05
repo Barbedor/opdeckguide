@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 
 const title = "How to Choose a Deck?";
 const description = "A beginner guide to understand the main One Piece Card Game color identities and pick a deck style that fits the way you want to play.";
@@ -156,6 +157,8 @@ const playstyles = [
 		</div>
 	</section>
 
+	<ManualAd variant="banner" />
+
 	<section class="list-section">
 		<div class="container intro-strip">
 			<div class="intro-chip"><span class="swatch swatch-red"></span> Red = Aggro</div>
@@ -166,6 +169,8 @@ const playstyles = [
 			<div class="intro-chip"><span class="swatch swatch-yellow"></span> Yellow = Trigger</div>
 		</div>
 	</section>
+
+	<ManualAd variant="rectangle" />
 
 	{playstyles.map((group) => (
 		<section class={`list-section playstyle-section accent-${group.accent}`}>

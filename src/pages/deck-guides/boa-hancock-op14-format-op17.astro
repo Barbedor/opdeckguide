@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 import { getCardThumbnail } from "../../lib/assets";
 
 const title = "Boa Hancock OP14 Deck Guide";
@@ -98,6 +99,8 @@ const coreEngine = ["Leader Boa Hancock: draws cards on defense and burns the op
 			<div class="guide-icon"><img src={icon} alt="Boa Hancock OP14 deck guide" loading="eager" /></div>
 		</div>
 	</section>
+
+	<ManualAd variant="banner" />
 
 	<section id="decklist" class="list-section">
 		<div class="container article-stack">

@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
 import { getCardThumbnail, getOptimizedAssetUrl } from "../../lib/assets";
 
 const title = "Complete One Piece TCG Rules";
@@ -45,6 +46,8 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 		</div>
 	</section>
 
+	<ManualAd variant="banner" />
+
 	<section class="list-section">
 		<div class="container">
 			<h2>Game Overview and Win Conditions</h2>
@@ -57,6 +60,8 @@ const description = "Complete, precise One Piece Card Game rules based on the of
 			</ul>
 		</div>
 	</section>
+
+	<ManualAd variant="rectangle" />
 
 	<section class="list-section">
 		<div class="container">
