@@ -3190,10 +3190,12 @@ const description = isLeakPage
 
 <script
 	define:vars={{
-		remainingCards,
-		cardsListAffiliateCards,
-		cardsListOnlyAffiliateCards,
-		cardsListVariantAffiliateCards,
+		// Revealed-card pages render their whole card list on the server, so they
+		// never need the large client-side affiliate maps or a load-more payload.
+		remainingCards: isLeakPage ? [] : remainingCards,
+		cardsListAffiliateCards: isLeakPage ? {} : cardsListAffiliateCards,
+		cardsListOnlyAffiliateCards: isLeakPage ? {} : cardsListOnlyAffiliateCards,
+		cardsListVariantAffiliateCards: isLeakPage ? {} : cardsListVariantAffiliateCards,
 		isLeakPage,
 		op17AffiliateEditionsByCode,
 	}}
@@ -3363,6 +3365,7 @@ const description = isLeakPage
 		position: relative;
 		width: 120px;
 		max-width: 120px;
+		aspect-ratio: 349 / 480;
 		line-height: 0;
 	}
 
