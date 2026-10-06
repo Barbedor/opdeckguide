@@ -11,6 +11,14 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const isProduction = import.meta.env.PROD;
 const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
+const hasTopManualAd =
+	isHomePage ||
+	pathname.startsWith("/cards-list/") ||
+	pathname.startsWith("/deck-guides/") ||
+	pathname.startsWith("/tournaments-decklists/") ||
+	pathname.startsWith("/meta-analysis/") ||
+	pathname.startsWith("/beginner-guides/") ||
+	pathname.startsWith("/banlist/");
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
 const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);
 const isMetaAnalysisArticlePage = /^\/meta-analysis\/[^/]+\/?$/.test(pathname);
@@ -186,6 +194,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		</header>
 
 		<main id="content">
+			{hasTopManualAd && <ManualAd variant="banner" />}
 			<slot />
 			{isDeckGuidePage && <ManualAd variant="banner" />}
 			{isMetaAnalysisArticlePage && <ManualAd variant="rectangle" />}
