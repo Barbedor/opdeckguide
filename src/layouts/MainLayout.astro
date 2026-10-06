@@ -18,6 +18,7 @@ const hasTopManualAd =
 	pathname.startsWith("/tournaments-decklists/") ||
 	pathname.startsWith("/meta-analysis/") ||
 	pathname.startsWith("/beginner-guides/") ||
+	pathname.startsWith("/products/") ||
 	pathname.startsWith("/banlist/");
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
 const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);

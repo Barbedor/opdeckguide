@@ -17,6 +17,22 @@ export type ProductCategory = {
 	products: SealedProduct[];
 };
 
+export type BoosterSet = {
+	slug: string;
+	code: string;
+	name: string;
+	description: string;
+};
+
+export const boosterSets: BoosterSet[] = [
+	{
+		slug: "op17",
+		code: "OP17",
+		name: "The World's Strongest Warriors",
+		description: "Explore sealed booster boxes and products from the OP17 expansion.",
+	},
+];
+
 // Replace each empty affiliateUrl with your tracked retailer URL before publishing a product.
 // Starter Deck images belong in public/assets/Products/Starter Decks/.
 export const productCategories: ProductCategory[] = [
@@ -388,6 +404,14 @@ export const productCategories: ProductCategory[] = [
 				affiliateUrl: "https://partner.tcgplayer.com/E0dD1Q",
 			},
 		],
+	},
+	{
+		slug: "expansions",
+		label: "Expansions",
+		title: "One Piece Card Game Expansions",
+		description: "Explore One Piece Card Game expansions and find the sealed products released for each set.",
+		imageFile: "",
+		products: [],
 	},
 ];
 
