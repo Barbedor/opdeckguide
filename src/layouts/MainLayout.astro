@@ -211,6 +211,51 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 		{
 			isDeckGuidePage && (
+				<script is:inline>
+					const guideAnchorIds = ["curve", "matchups"];
+					const setupGuideAnchors = () => {
+						const guideHeader = document.querySelector(".site-header");
+						const syncGuideAnchorOffset = () => {
+							const headerHeight = guideHeader?.getBoundingClientRect().height ?? 0;
+							document.documentElement.style.setProperty("--deck-guide-anchor-offset", `${Math.ceil(headerHeight) + 12}px`);
+						};
+
+						guideAnchorIds.forEach((id) => {
+							const currentTarget = document.getElementById(id);
+							const heading = currentTarget?.matches("h2") ? currentTarget : currentTarget?.querySelector("h2");
+							if (!heading || heading === currentTarget) return;
+
+							currentTarget.removeAttribute("id");
+							heading.id = id;
+						});
+
+						syncGuideAnchorOffset();
+						window.addEventListener("resize", syncGuideAnchorOffset);
+
+						document.querySelectorAll('a[href="#curve"], a[href="#matchups"]').forEach((link) => {
+							link.addEventListener("click", (event) => {
+								const target = document.getElementById(link.getAttribute("href")?.slice(1) ?? "");
+								if (!target) return;
+
+								event.preventDefault();
+								syncGuideAnchorOffset();
+								target.scrollIntoView({ behavior: "smooth", block: "start" });
+								history.replaceState(null, "", link.getAttribute("href"));
+							});
+						});
+					};
+
+					if (document.readyState === "loading") {
+						document.addEventListener("DOMContentLoaded", setupGuideAnchors, { once: true });
+					} else {
+						setupGuideAnchors();
+					}
+				</script>
+			)
+		}
+
+		{
+			isDeckGuidePage && (
 				<script is:inline define:vars={{ affiliateCards }}>
 					const setupDeckGuideAffiliatePrices = () => {
 						const deckGrid = document.querySelector("#decklist .deck-grid, .list-section .deck-grid");
@@ -506,6 +551,11 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		backdrop-filter: blur(12px);
 		background: rgba(11, 15, 26, 0.85);
 		border-bottom: 1px solid var(--border);
+	}
+
+	.deck-guide-page #curve,
+	.deck-guide-page #matchups {
+		scroll-margin-top: var(--deck-guide-anchor-offset, 12rem);
 	}
 
 	.header-inner {

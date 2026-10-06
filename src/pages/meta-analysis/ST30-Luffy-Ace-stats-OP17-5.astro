@@ -1,0 +1,454 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ManualAd from "../../components/ManualAd.astro";
+import { getOptimizedAssetUrl } from "../../lib/assets";
+
+const title = "ST30 Luffy and Ace Stats In OP17.5 Format";
+const description =
+	"Turn-order win rate article for ST30 Luffy & Ace in the OP17.5 format, with a breakdown of first and second player performance.";
+
+const summary = {
+	totalGames: "37321",
+	winRate: "57.2%",
+	wins: "21364",
+	losses: "15957",
+};
+
+const leaderHeroArt = "/assets/guides/Luffy-st30.png";
+const getRateTone = (value: string) => {
+	const numeric = Number.parseFloat(value.replace("%", "").trim());
+	if (numeric < 50) return "turn-rate-negative";
+	if (numeric > 50) return "turn-rate-positive";
+	return "turn-rate-neutral";
+};
+
+const featuredTurnOrderStats = [
+	{ label: "Rocks D. Xebec", code: "OP17-039", art: "/assets/guides/Rocks.DXebec op17.png", first: "43.9%", second: "42.2%" },
+	{ label: "Sabo", code: "OP13", art: "/assets/guides/Sabo OP13-004.png", first: "39.4%", second: "48.7%" },
+	{ label: "Monkey D. Luffy", code: "OP17", art: "/assets/guides/Luffy OP17.png", first: "58.5%", second: "75.3%" },
+	{ label: "Kaido", code: "OP17", art: "/assets/guides/Kaido op17.png", first: "77.7%", second: "63%" },
+	{ label: "Luffy & Ace", code: "ST30", art: "/assets/guides/Luffy-st30.png", first: "48.4%", second: "51.6%" },
+	{ label: "Nico Robin", code: "OP09", art: "/assets/guides/Nico-Robin-op09.png", first: "66.9%", second: "63.8%" },
+	{ label: "Shanks", code: "OP17", art: "/assets/guides/Shanks op17.png", first: "78.3%", second: "76.7%" },
+	{ label: "Enel", code: "OP15-058", art: "/assets/guides/enel-op15.png", first: "60.2%", second: "44.1%" },
+	{ label: "Charlotte Pudding", code: "OP08-058", art: "/assets/guides/Pudding op08.png", first: "77.3%", second: "72.3%" },
+	{ label: "Portgas D. Ace", code: "OP16-001", art: "/assets/guides/Ace-op16.png", first: "56.7%", second: "79.6%" },
+	{ label: "Charlotte Hancock", code: "OP14-041", art: "/assets/guides/boa-hancock-op14.png", first: "39.7%", second: "51.1%" },
+	{ label: "Donquixote Rosinante", code: "OP12-061", art: "/assets/guides/rosinante-op12.png", first: "84.9%", second: "73.7%" },
+	{ label: "Enel", code: "OP05-098", art: "/assets/guides/Enel OP05-098.png", first: "35.8%", second: "51.4%" },
+	{ label: "Yamato", code: "OP16-079", art: "/assets/guides/yamato-op16.png", first: "75.2%", second: "80.9%" },
+	{ label: "Roronoa Zoro", code: "OP12-020", art: "/assets/guides/Roronoa Zoro OP12-020.png", first: "70.9%", second: "72.4%" },
+	{ label: "Charlotte Linlin", code: "OP17-099", art: "/assets/guides/Charlotte Linlin op17.png", first: "45.6%", second: "63.9%" },
+	{ label: "Portgas D. Ace", code: "OP13-002", art: "/assets/guides/portgas-d-ace-op13.png", first: "37.9%", second: "29.2%" },
+	{ label: "Monkey D. Luffy", code: "OP13-001", art: "/assets/guides/monkey-d-luffy-op13.png", first: "21.8%", second: "30.1%" },
+	{ label: "Nami", code: "OP11-041", art: "/assets/guides/nami-op11.png", first: "36.2%", second: "23.3%" },
+	{ label: "Imu", code: "OP13-001", art: "/assets/guides/Imu OP13-079.png", first: "100%", second: "92%" },
+	{ label: "Edward Newgate", code: "OP17-005", art: "/assets/guides/Edward.Newgate op17.png", first: "20.7%", second: "22.5%" },
+	{ label: "Gecko Moria", code: "OP14-080", art: "/assets/guides/Gecko Moria OP14-080.png", first: "31%", second: "42.4%" },
+	{ label: "Marshall D. Teach", code: "OP16-080", art: "/assets/guides/Teach-op16.png", first: "49.4%", second: "76.3%" },
+	{ label: "Marshall D. Teach", code: "OP09-081", art: "/assets/guides/Marshall D. Teach OP09-081.png", first: "43.9%", second: "52.3%" },
+	{ label: "Monkey D. Luffy", code: "OP16-022", art: "/assets/guides/Luffy op16.png", first: "52.8%", second: "66%" },
+	{ label: "Kalagara", code: "OP08-036", art: "/assets/guides/Kalgara OP08-098.png", first: "64.3%", second: "70.8%" },
+	{ label: "Jewelry Bonney", code: "OP13-033", art: "/assets/guides/Bonney op13.png", first: "50%", second: "63.2%" },
+	{ label: "Brook", code: "OP15-022", art: "/assets/guides/Brook OP15-022.png", first: "79.2%", second: "74.4%" },
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero meta-article-hero">
+		<div class="container article-hero-grid">
+			<div>
+				<span class="hero-badge">Meta Article</span>
+				<h1>ST30 Luffy and Ace Stats In OP17.5 Format</h1>
+				<div class="article-leader-hero">
+					<img src={getOptimizedAssetUrl(leaderHeroArt)} alt="ST30 Luffy and Ace leader art" loading="eager" />
+				</div>
+				<p class="article-kicker">Turn-order stats for ST30 Luffy &amp; Ace in the OP17.5 field.</p>
+				<p>For the decklist and full game plan, see the <a class="deck-guide-link" href="/deck-guides/luffy-ace-st30/">deck guide Luffy and Ace</a>.</p>
+				<p>
+					If you want a leader that <strong>sets the pace of the game with aggressive plays, efficient Characters, and flexible Event cards that can answer a variety of situations</strong>, <strong>ST30 Luffy &amp; Ace</strong> is a strong option.
+				</p>
+				<p>
+					How does <strong>ST30 Luffy &amp; Ace</strong> perform when going first compared with going second?
+				</p>
+				<p>
+					These win-rate statistics show how turn order shapes <strong>Luffy &amp; Ace’s gameplay</strong>, offering valuable insight into how to approach different matchups and make the most of the deck’s strengths.
+				</p>
+			</div>
+			<div class="article-hero-side">
+				<div class="hero-summary-card">
+					<div class="hero-summary-label">Format</div>
+						<strong>OP17.5</strong>
+					<div class="hero-summary-divider"></div>
+					<div class="hero-summary-label">Source Sample</div>
+					<strong>{summary.totalGames} Games</strong>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<ManualAd variant="banner" />
+
+	<section class="stats-section">
+		<div class="container stats-stack">
+			<article class="stats-panel">
+				<div class="section-header">
+					<div>
+						<h2>1st / 2nd Win Rate Stats</h2>
+					</div>
+				</div>
+
+				<div class="summary-metrics">
+					<div class="summary-metric">
+						<span class="summary-label">Total Games</span>
+						<strong>{summary.totalGames}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">Winrate</span>
+						<strong>{summary.winRate}</strong>
+					</div>
+					<div class="summary-metric">
+						<span class="summary-label">W / L</span>
+						<strong class="wl-stat">
+							<span class="wl-win">{summary.wins}</span>/<span class="wl-loss">{summary.losses}</span>
+						</strong>
+					</div>
+				</div>
+
+				<div class="turn-order-grid">
+					{featuredTurnOrderStats.map((entry) => (
+						<div class="turn-order-card">
+							<div class="leader-art-frame">
+								{entry.art ? (
+									<img src={getOptimizedAssetUrl(entry.art)} alt={`${entry.label} leader art`} loading="lazy" />
+								) : (
+									<div class="leader-art-placeholder">{entry.code}</div>
+								)}
+							</div>
+							<div class="turn-order-meta">
+								<div class="turn-order-name">{entry.label}</div>
+								<div class="turn-order-code">{entry.code}</div>
+							</div>
+							<div class="turn-order-split">
+								<div class={`turn-rate ${getRateTone(entry.first)}`}>
+									<span class="turn-label">1st</span>
+									<strong>{entry.first}</strong>
+								</div>
+								<div class={`turn-rate ${getRateTone(entry.second)}`}>
+									<span class="turn-label">2nd</span>
+									<strong>{entry.second}</strong>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</article>
+
+			<ManualAd variant="rectangle" />
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	.meta-article-hero {
+		padding-bottom: 34px;
+	}
+
+	.article-hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) 260px;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
+	.article-kicker {
+		color: var(--text-200);
+		font-weight: 600;
+	}
+
+	.article-leader-hero {
+		margin: 1.15rem 0 1.1rem;
+		border-radius: 20px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background:
+			radial-gradient(circle at left, rgba(117, 51, 142, 0.26), transparent 36%),
+			radial-gradient(circle at right, rgba(218, 100, 204, 0.18), transparent 40%),
+			rgba(8, 11, 19, 0.96);
+		box-shadow: var(--shadow);
+	}
+
+	.article-leader-hero img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3.2 / 1;
+		object-fit: cover;
+		object-position: center 18%;
+	}
+
+	.hero-summary-card {
+		background:
+			radial-gradient(circle at top left, rgba(117, 51, 142, 0.34), transparent 46%),
+			radial-gradient(circle at top right, rgba(218, 100, 204, 0.2), transparent 44%),
+			linear-gradient(135deg, rgba(78, 28, 98, 0.26), rgba(132, 50, 126, 0.16) 58%, rgba(12, 17, 30, 0.94));
+		border: 1px solid rgba(201, 101, 205, 0.24);
+		border-radius: 20px;
+		padding: 1rem 1.1rem;
+		display: grid;
+		gap: 0.45rem;
+		box-shadow: var(--shadow);
+	}
+
+	.hero-summary-label {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-300);
+	}
+
+	.hero-summary-divider {
+		height: 1px;
+		background: rgba(255, 255, 255, 0.08);
+		margin: 0.2rem 0 0.15rem;
+	}
+
+	.stats-section {
+		padding: 0 0 56px;
+	}
+
+	.stats-stack {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.stats-panel {
+		background: rgba(10, 14, 24, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 22px;
+		padding: 1.25rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.section-header h2 {
+		margin-bottom: 0.55rem;
+	}
+
+	.section-header p {
+		margin: 0;
+		max-width: 760px;
+		color: var(--text-200);
+	}
+
+	.summary-metrics {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.summary-metric {
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		padding: 0.95rem 0.9rem;
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.summary-label {
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #8fb3ff;
+	}
+
+	.summary-metric strong {
+		font-size: 1rem;
+	}
+
+	.wl-stat {
+		display: inline-flex;
+		gap: 0.05rem;
+		align-items: baseline;
+	}
+
+	.wl-win {
+		color: #57d18b;
+	}
+
+	.wl-loss {
+		color: #ff8d6f;
+	}
+
+	.turn-order-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.turn-order-card {
+		border: 1px solid var(--border);
+		border-radius: 18px;
+		padding: 0.8rem;
+		background: rgba(7, 10, 18, 0.92);
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.leader-art-frame img,
+	.leader-art-placeholder {
+		width: 100%;
+		aspect-ratio: 1.75 / 1;
+		border-radius: 14px;
+		display: block;
+	}
+
+	.leader-art-frame img {
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.leader-art-placeholder {
+		display: grid;
+		place-items: center;
+		background:
+			radial-gradient(circle at top left, rgba(117, 51, 142, 0.28), transparent 45%),
+			radial-gradient(circle at bottom right, rgba(218, 100, 204, 0.22), transparent 48%),
+			rgba(12, 17, 30, 0.96);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		color: var(--text-100);
+		font-weight: 800;
+	}
+
+	.turn-order-meta {
+		display: grid;
+		gap: 0.18rem;
+	}
+
+	.turn-order-name {
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.turn-order-code {
+		color: #9fb7ff;
+		font-size: 0.82rem;
+	}
+
+	.turn-order-split {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem;
+	}
+
+	.turn-rate {
+		border-radius: 14px;
+		padding: 0.55rem 0.45rem;
+		display: grid;
+		justify-items: center;
+		gap: 0.2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.turn-rate-positive {
+		background: rgba(19, 76, 52, 0.36);
+		border-color: rgba(70, 200, 128, 0.28);
+	}
+
+	.turn-rate-negative {
+		background: rgba(82, 28, 38, 0.32);
+		border-color: rgba(215, 92, 122, 0.24);
+	}
+
+	.turn-rate-neutral {
+		background: rgba(55, 68, 95, 0.3);
+		border-color: rgba(149, 165, 195, 0.18);
+	}
+
+	.turn-label {
+		color: var(--text-300);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.turn-rate strong {
+		color: var(--text-100);
+		font-size: 0.94rem;
+	}
+
+	.analysis-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.analysis-card {
+		background: rgba(8, 11, 19, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		padding: 1rem;
+	}
+
+	.analysis-card h3 {
+		margin-bottom: 0.4rem;
+		font-size: 1.05rem;
+	}
+
+	.analysis-card p {
+		margin: 0;
+		color: var(--text-200);
+	}
+
+	.deck-guide-link-copy {
+		margin-top: 0.2rem;
+	}
+
+	.deck-guide-link {
+		color: #ff8b3d;
+		font-weight: 700;
+	}
+
+	.deck-guide-link:hover {
+		color: #ffb06f;
+	}
+
+	@media (max-width: 900px) {
+		.article-hero-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.summary-metrics,
+		.analysis-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.turn-order-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.article-leader-hero img {
+			object-position: center 18%;
+		}
+
+		.turn-order-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.8rem;
+		}
+
+		.turn-order-card {
+			padding: 0.7rem;
+		}
+	}
+</style>
+
+<style>
+	/* ST30 Luffy & Ace uses its red/green identity rather than Purple Enel's purple palette. */
+	.hero-summary-card { background: linear-gradient(135deg, rgba(128, 38, 38, .38), rgba(16, 91, 66, .3)); border-color: rgba(255, 107, 53, .35); }
+	.article-leader-hero { background: linear-gradient(135deg, rgba(128, 38, 38, .3), rgba(16, 91, 66, .24)); }
+	.turn-rate-positive { border-color: rgba(81, 231, 155, .42); background: rgba(15, 106, 69, .22); }
+	.turn-rate-negative { border-color: rgba(255, 119, 119, .42); background: rgba(132, 47, 47, .22); }
+</style>

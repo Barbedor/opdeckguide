@@ -1,6 +1,22 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Shanks OP17 Deck Guide OP17.5",
+		leader: "Shanks",
+		code: "OP17",
+		formatLabel: "OP17.5 Format",
+		summary: "OP17.5 decklist, mulligan priorities, control curve, tech cards, matchup spread, and tips for Shanks OP17.",
+		month: "October",
+		href: "/deck-guides/shanks-op17-format-op17-5/",
+		imageSrc: "/assets/guides/Shanks%20op17.png",
+		imageAlt: "Shanks OP17.5 deck guide cover",
+		aliases: ["mon cétacé"],
+		tags: [],
+		hidden: true,
+		searchOnly: true,
+	},
+	{
+		kind: "deck",
 		title: "Sabo OP13 Deck Guide",
 		leader: "Sabo",
 		code: "OP13",
@@ -516,6 +532,7 @@ export const deckGuides = [
 ] as const;
 
 export const visibleDeckGuides = deckGuides.filter((guide) => !guide.hidden);
+const searchOnlyDeckGuides = deckGuides.filter((guide) => "searchOnly" in guide && guide.searchOnly);
 
 export const beginnerGuides = [
 	{
@@ -575,15 +592,14 @@ export const beginnerGuides = [
 const buildGuideSearchIndex = (guides) =>
 	guides.map((guide) => ({
 		...guide,
-		primaryText: [guide.title, guide.leader, guide.code, ...(guide.aliases ?? [])].join(" "),
-		searchText: [guide.title, guide.leader, guide.code, guide.month, ...(guide.aliases ?? []), ...(guide.tags ?? [])].join(
-			" ",
-		),
+		primaryText: "searchOnly" in guide && guide.searchOnly ? (guide.aliases ?? []).join(" ") : [guide.title, guide.leader, guide.code, ...(guide.aliases ?? [])].join(" "),
+		searchText: "searchOnly" in guide && guide.searchOnly ? (guide.aliases ?? []).join(" ") : [guide.title, guide.leader, guide.code, guide.month, ...(guide.aliases ?? []), ...(guide.tags ?? [])].join(" "),
 		secondaryText: [guide.code, guide.month, ...(guide.tags ?? [])].join(" "),
 	}));
 
 export const guideSearchIndex = [
 	...buildGuideSearchIndex(visibleDeckGuides),
+	...buildGuideSearchIndex(searchOnlyDeckGuides),
 	...buildGuideSearchIndex(beginnerGuides),
 ];
 
