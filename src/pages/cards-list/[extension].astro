@@ -119,6 +119,15 @@ const shouldShowAffiliateLink = (card) => {
 const releaseDateLabel = "August 28, 2026";
 const keywordAssetBase = "/assets/keywords";
 const keyword = (icon, alt) => ({ icon, alt });
+const eb05Card019Details = {
+	rarity: "Common",
+	stats: "Green Event / Cost 1",
+	traits: "Land of Wano",
+	effectLines: [
+		[keyword("counter", "Counter"), " You may rest 1 of your cards: Up to 1 of your {Land of Wano} type Leader or Characters gains +4000 power during this battle."],
+		[keyword("trigger", "Trigger"), " If your opponent has 3 or less Life cards, play up to 1 {Land of Wano} type Character card with 6000 power or less from your hand."],
+	],
+};
 const leakCardDetails = {
 	"EB05-0XX": {
 		stats: "Purple / Cost 1 / Strike / Power 2000 / Counter 2000",
@@ -331,6 +340,9 @@ const leakCardDetails = {
 		stats: "Green / Cost 1 / Slash / Power 1000 / Counter 2000",
 		traits: "Dressrosa",
 		effectLines: [[keyword("on-play", "On Play"), " Up to 1 of your opponent's rested Characters with a cost of 6 or less will not become active in your opponent's next Refresh Phase."]],
+	},
+	"EB05-019": {
+		...eb05Card019Details,
 	},
 	"EB05-024": {
 		rarity: "Rare",
@@ -2543,7 +2555,6 @@ const leakCardDetails = {
 	},
 	"OP18-031": {
 		rarity: "Super Rare",
-		notes: ["MANGA"],
 		stats: "Green / Cost 4 / Wisdom / Power 5000 / Counter 1000",
 		traits: "Water Seven / Straw Hat Crew",
 		effectLines: [
@@ -2555,6 +2566,15 @@ const leakCardDetails = {
 				keyword("end-of-your-turn", "End of Your Turn"),
 				" Set up to 1 of your {Water Seven} type cards and up to 1 of your DON!! cards as active.",
 			],
+		],
+	},
+	"OP18-055": {
+		rarity: "Common",
+		stats: "Blue / Cost 3 / Slash / Power 4000 / Counter 1000",
+		traits: "Baroque Works",
+		effectLines: [
+			["DON!! x1 This Character gains +1000 power."],
+			[keyword("on-play", "On Play"), " Return up to 1 of your opponent's Characters with a cost of 2 or less to the owner's hand."],
 		],
 	},
 	"OP18-060": {
@@ -2826,7 +2846,7 @@ const getLeakDisplaySortCode = (card) => {
 const leakCards = isLeakPage
 	? cards
 			.map((card) => {
-				const details = leakCardDetails[card.code];
+				const details = card.code === "EB05-019" ? eb05Card019Details : leakCardDetails[card.code];
 				const rarity = details?.rarity ?? "";
 				const isEb05ShirahoshiManga =
 					extension.toUpperCase() === "EB05" && card.code === "EB05-014" && card.edition === "MANGA";

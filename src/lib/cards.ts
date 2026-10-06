@@ -713,6 +713,11 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-019 i choose to open this country to the world!! i want to fight on you side!!": {
+			code: "EB05-019",
+			name: "I Choose to Open This Country to the World!! I Want to Fight on Your Side!!",
+			color: "Green",
+		},
 		"eb05-030 take care, everybody.": { code: "EB05-030", name: "Take Care, Everybody.", color: "Blue" },
 		"eb05-0xx nico robin": { code: "EB05-0XX", name: "Nico Robin", color: "Purple" },
 		"eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
@@ -975,6 +980,21 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-055 mr.9 and ms wednesday": {
+			code: "OP18-055",
+			name: "Mr.9 & Ms. Wednesday",
+			color: "Blue",
+		},
+		"op18-031 nico robin": {
+			code: "OP18-031",
+			name: "Nico Robin",
+			color: "Green",
+		},
+		"op18-065 saint gunko": {
+			code: "OP18-065",
+			name: "Saint Gunko",
+			color: "Purple",
+		},
 		"op18-044 mr.beans and miss.katherina": {
 			code: "OP18-044",
 			name: "Mr.Beans and Miss.Katherina",
