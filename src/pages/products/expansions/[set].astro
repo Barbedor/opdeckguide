@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
-import { boosterSets } from "../../../lib/products";
+import { boosterSets, getProductImageUrl } from "../../../lib/products";
 import { siteUrl } from "../../../lib/site";
 
 export const getStaticPaths = () => boosterSets.map((set) => ({ params: { set: set.slug } }));
@@ -16,12 +16,23 @@ const structuredData = [
 
 <MainLayout title={title} description={description} structuredData={structuredData}>
 	<section class="hero"><div class="container"><a class="breadcrumb" href="/products/expansions/">← All expansions</a><span class="hero-badge">{set.code}</span><h1>{title}</h1><p>{set.description} This page will collect the sealed products available for this expansion.</p></div></section>
-	<section class="list-section" aria-labelledby="set-products-title"><div class="container"><div class="section-header"><div><h2 id="set-products-title">{set.code} sealed products</h2><p>Open an expansion to browse its available products.</p></div></div><div class="empty-state"><p>Products for this expansion are being added soon. Check back for booster boxes and other sealed releases from {set.code}.</p></div></div></section>
-	<section class="seo-block"><div class="container copy-grid"><div><h2>What is {set.code}?</h2><p>{set.name} is a One Piece Card Game expansion. Its sealed lineup can include booster boxes, booster packs, collections, and other release formats.</p></div><div><h2>How to choose a sealed {set.code} product</h2><p>Check the product format, language, edition, seller details, and current availability before ordering.</p></div><div class="internal-links"><h2>Continue exploring OPDeckGuide</h2><p>Browse all <a href="/products/expansions/">One Piece Card Game Expansions</a> or return to the <a href="/products/">sealed products hub</a>.</p></div></div></section>
+	<section class="list-section" aria-labelledby="set-products-title"><div class="container"><div class="section-header"><div><h2 id="set-products-title">{set.code} sealed products</h2><p>Browse sealed products from this expansion and check current availability.</p></div></div>{set.products.length > 0 ? <div class="product-grid">{set.products.map((product) => <article class="product-card"><div class="product-image"><img src={getProductImageUrl(product.imageFile)} alt={product.imageAlt} loading="lazy" /></div><div class="product-content"><h3>{product.name}</h3><p class="product-description">{product.description}</p><a class="product-link" href={product.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">{product.price}</a></div></article>)}</div> : <div class="empty-state"><p>Products for this expansion are being added soon. Check back for booster boxes and other sealed releases from {set.code}.</p></div>}</div></section>
+	<section class="seo-block"><div class="container copy-grid"><div><h2>What is {set.code}?</h2><p>{set.name} is a One Piece Card Game expansion. Its sealed lineup can include booster boxes, booster packs, collections, and other release formats.</p></div><div><h2>How to choose a sealed {set.code} product</h2><p>Check the product format, edition, seller details, and current availability before ordering.</p></div><div class="internal-links"><h2>Continue exploring OPDeckGuide</h2><p>Browse all <a href="/products/expansions/">One Piece Card Game Expansions</a> or return to the <a href="/products/">sealed products hub</a>.</p></div></div></section>
 </MainLayout>
 
 <style>
 	.breadcrumb { display:inline-block; margin:0 1rem 1rem 0; color:var(--text-200); font-size:.92rem; } .breadcrumb:hover { color:var(--accent); }
+	.product-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+	.product-card { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:var(--radius-md); background:rgba(12,17,30,.72); }
+	.product-image { position:relative; display:grid; place-items:center; height:180px; overflow:hidden; padding:1rem; background:rgba(255,107,61,.08); }
+	.product-image img { display:block; width:82%; height:82%; max-width:100%; max-height:100%; object-fit:contain; }
+	.product-content { display:flex; flex:1; flex-direction:column; align-items:flex-start; padding:1rem; }
+	.product-code { color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.03em; line-height:1.2; overflow-wrap:anywhere; text-transform:uppercase; }
+	.product-content h3 { margin:.45rem 0 0; font-size:1.05rem; line-height:1.25; overflow-wrap:anywhere; }
+	.product-description { margin:.65rem 0 1rem; color:var(--text-200); font-size:.9rem; line-height:1.5; }
+	.product-link { margin-top:auto; display:inline-flex; align-items:center; justify-content:center; min-height:2.4rem; padding:.55rem 1rem; border-radius:999px; background:linear-gradient(135deg,#ff6b3d,#ff9f1c); color:#160d09; font-size:.85rem; font-weight:700; text-decoration:none; }
+	.product-link:hover { filter:brightness(1.08); transform:translateY(-1px); }
 	.empty-state { padding:2rem; border:1px solid var(--border); border-radius:var(--radius-md); background:rgba(12,17,30,.72); color:var(--text-200); }
-	.seo-block { padding-top:3.5rem; } .copy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; } .copy-grid h2 { font-size:1.35rem; } .copy-grid p { color:var(--text-200); } .internal-links { grid-column:1 / -1; } .internal-links a { color:var(--accent); font-weight:600; } @media (max-width:650px) { .copy-grid { grid-template-columns:1fr; gap:1rem; } .internal-links { grid-column:auto; } }
+	@media (min-width:651px) { .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .product-image img { width:auto; height:auto; max-width:90%; max-height:145px; object-fit:contain; } }
+	.seo-block { padding-top:3.5rem; } .copy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; } .copy-grid h2 { font-size:1.35rem; } .copy-grid p { color:var(--text-200); } .internal-links { grid-column:1 / -1; } .internal-links a { color:var(--accent); font-weight:600; } @media (max-width:650px) { .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; } .product-image { height:145px; padding:.65rem; } .product-content { padding:.7rem; } .product-content h3 { font-size:.9rem; line-height:1.2; } .product-description { font-size:.78rem; } .product-link { width:100%; padding:.5rem .65rem; font-size:.78rem; } .copy-grid { grid-template-columns:1fr; gap:1rem; } .internal-links { grid-column:auto; } }
 </style>

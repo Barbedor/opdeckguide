@@ -22,6 +22,9 @@ export type BoosterSet = {
 	code: string;
 	name: string;
 	description: string;
+	imageFile: string;
+	imageAlt: string;
+	products: SealedProduct[];
 };
 
 export const boosterSets: BoosterSet[] = [
@@ -30,6 +33,46 @@ export const boosterSets: BoosterSet[] = [
 		code: "OP17",
 		name: "The World's Strongest Warriors",
 		description: "Explore sealed booster boxes and products from the OP17 expansion.",
+		imageFile: "Expansions/OP17/Visuel OP17",
+		imageAlt: "OP17 The World's Strongest Warriors One Piece Card Game expansion",
+		products: [
+			{
+				code: "OP17",
+				name: "OP17 Booster Pack",
+				description: "A sealed 12-card booster pack from The World's Strongest Warriors expansion.",
+				imageFile: "Expansions/OP17/Booster op17",
+				imageAlt: "OP17 The World's Strongest Warriors sealed 12-card booster pack",
+				price: "$9.13",
+				affiliateUrl: "https://partner.tcgplayer.com/AgXJ7N",
+			},
+			{
+				code: "OP17",
+				name: "OP17 Cardboard Booster Pack",
+				description: "A sealed cardboard OP17 booster pack from The World's Strongest Warriors expansion.",
+				imageFile: "Expansions/OP17/booster cartonné OP17",
+				imageAlt: "OP17 The World's Strongest Warriors sealed cardboard booster pack",
+				price: "$13.42",
+				affiliateUrl: "https://partner.tcgplayer.com/5kP92L",
+			},
+			{
+				code: "OP17",
+				name: "OP17 Booster Box",
+				description: "A sealed OP17 booster box from The World's Strongest Warriors expansion.",
+				imageFile: "Expansions/OP17/Booster box op17",
+				imageAlt: "OP17 The World's Strongest Warriors sealed booster box",
+				price: "$304.12",
+				affiliateUrl: "https://partner.tcgplayer.com/L03beZ",
+			},
+			{
+				code: "Double Pack Set Vol. 12",
+				name: "Double Pack Set Vol. 12",
+				description: "A sealed Double Pack Set Vol. 12 containing 2 OP17 booster packs and 1 alternative DON!! card.",
+				imageFile: "Expansions/OP17/double-pack-set-vol-12",
+				imageAlt: "One Piece Card Game Double Pack Set Vol. 12 sealed product",
+				price: "$41.07",
+				affiliateUrl: "https://partner.tcgplayer.com/aNQa0b",
+			},
+		],
 	},
 ];
 

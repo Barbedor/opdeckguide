@@ -10,10 +10,8 @@ export const deckGuides = [
 		href: "/deck-guides/shanks-op17-format-op17-5/",
 		imageSrc: "/assets/guides/Shanks%20op17.png",
 		imageAlt: "Shanks OP17.5 deck guide cover",
-		aliases: ["mon cétacé"],
-		tags: [],
-		hidden: true,
-		searchOnly: true,
+		aliases: ["shanks op17.5", "shanks op17 format 17.5", "shanks deck guide"],
+		tags: ["op17", "op17.5", "red-haired pirates", "deck guide"],
 	},
 	{
 		kind: "deck",
