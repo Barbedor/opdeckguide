@@ -147,7 +147,214 @@ export const boosterSets: BoosterSet[] = [
 			},
 		],
 	},
+	{
+		slug: "op15",
+		code: "OP15",
+		name: "Adventure on Kami's Island",
+		description: "Explore sealed One Piece Card Game products from the Adventure on Kami's Island expansion. In western releases, the EB04 Egghead Crisis cards are split between OP14-EB04 and OP15-EB04.",
+		imageFile: "Expansions/OP15/Visuel OP15",
+		imageAlt: "Adventure on Kami's Island OP15 One Piece Card Game expansion",
+		products: [
+			{
+				code: "OP15",
+				name: "OP15 Booster Pack",
+				description: "A sealed booster pack from the Adventure on Kami's Island expansion.",
+				imageFile: "Expansions/OP15/Booster pack op15",
+				imageAlt: "OP15 Adventure on Kami's Island sealed booster pack",
+				price: "$8.02",
+				affiliateUrl: "https://partner.tcgplayer.com/9Vavmj",
+			},
+			{
+				code: "OP15",
+				name: "OP15 Booster Box",
+				description: "A sealed OP15 booster box from the Adventure on Kami's Island expansion.",
+				imageFile: "Expansions/OP15/booster-box",
+				imageAlt: "OP15 Adventure on Kami's Island sealed booster box",
+				price: "$255.31",
+				affiliateUrl: "https://partner.tcgplayer.com/L03eej",
+			},
+			{
+				code: "Double Pack Set Vol. 10",
+				name: "Double Pack Set Vol. 10",
+				description: "A sealed Double Pack Set Vol. 10 release from the Adventure on Kami's Island expansion.",
+				imageFile: "Expansions/OP15/double-pack-set-vol-10",
+				imageAlt: "One Piece Card Game Double Pack Set Vol. 10 sealed product",
+				price: "$39.77",
+				affiliateUrl: "https://partner.tcgplayer.com/B5oqjW",
+			},
+			{
+				code: "OP15",
+				name: "Special DON!! Card Pack - DP-10",
+				description: "A sealed Special DON!! Card Pack - DP-10 release from the OP15 expansion.",
+				imageFile: "Expansions/OP15/special-don-card-pack-dp-10",
+				imageAlt: "One Piece Card Game Special DON!! Card Pack DP-10 sealed product",
+				price: "$4.54",
+				affiliateUrl: "https://partner.tcgplayer.com/3krb6X",
+			},
+			{
+				code: "OP15",
+				name: "Release Event Pack",
+				description: "A sealed Release Event Pack from the OP15 expansion.",
+				imageFile: "Expansions/OP15/release-event-pack",
+				imageAlt: "One Piece Card Game OP15 Release Event Pack sealed product",
+				price: "$5.65",
+				affiliateUrl: "https://partner.tcgplayer.com/WO3BBG",
+			},
+			{
+				code: "OP15",
+				name: "Sleeved Booster Pack",
+				description: "A sealed sleeved booster pack from the Adventure on Kami's Island expansion.",
+				imageFile: "Expansions/OP15/sleeved-booster-pack",
+				imageAlt: "OP15 Adventure on Kami's Island sleeved booster pack",
+				price: "$14.22",
+				affiliateUrl: "https://partner.tcgplayer.com/4aj66M",
+			},
+		],
+	},
+	{
+		slug: "op14",
+		code: "OP14",
+		name: "The Azure Sea's Seven",
+		description: "Explore sealed One Piece Card Game products from The Azure Sea's Seven expansion. In western releases, OP14 includes the green, blue, and purple EB04 Egghead Crisis cards.",
+		imageFile: "Expansions/OP14/Visuel op14",
+		imageAlt: "The Azure Sea's Seven OP14 One Piece Card Game expansion",
+		products: [
+			{
+				code: "OP14",
+				name: "OP14 Booster Box",
+				description: "A sealed OP14 booster box from The Azure Sea's Seven expansion.",
+				imageFile: "Expansions/OP14/booster-box",
+				imageAlt: "OP14 The Azure Sea's Seven sealed booster box",
+				price: "$268.06",
+				affiliateUrl: "https://partner.tcgplayer.com/QY3Rq9",
+			},
+			{
+				code: "OP14",
+				name: "Release Event Pack",
+				description: "A sealed Release Event Pack from the OP14 expansion.",
+				imageFile: "Expansions/OP14/release-event-pack",
+				imageAlt: "One Piece Card Game OP14 Release Event Pack sealed product",
+				price: "$5.18",
+				affiliateUrl: "https://partner.tcgplayer.com/X43Q6y",
+			},
+			{
+				code: "OP14",
+				name: "Sleeved Booster Pack",
+				description: "A sealed sleeved booster pack from The Azure Sea's Seven expansion.",
+				imageFile: "Expansions/OP14/sleeved-booster-pack",
+				imageAlt: "OP14 The Azure Sea's Seven sleeved booster pack",
+				price: "$13.37",
+				affiliateUrl: "https://partner.tcgplayer.com/3krV2y",
+			},
+			{
+				code: "OP14",
+				name: "OP14 Booster Pack",
+				description: "A sealed booster pack from The Azure Sea's Seven expansion.",
+				imageFile: "Expansions/OP14/booster-pack",
+				imageAlt: "OP14 The Azure Sea's Seven sealed booster pack",
+				price: "$8.66",
+				affiliateUrl: "https://partner.tcgplayer.com/L03zAV",
+			},
+			{
+				code: "OP14",
+				name: "Special DON!! Card Pack - DP-09",
+				description: "A sealed Special DON!! Card Pack - DP-09 release from the OP14 expansion.",
+				imageFile: "Expansions/OP14/special-don-card-pack-dp-09",
+				imageAlt: "One Piece Card Game Special DON!! Card Pack DP-09 sealed product",
+				price: "$4.70",
+				affiliateUrl: "https://partner.tcgplayer.com/oNZjQW",
+			},
+			{
+				code: "OP14",
+				name: "Dash Pack",
+				description: "A sealed Dash Pack from the OP14 expansion.",
+				imageFile: "Expansions/OP14/dash-pack",
+				imageAlt: "One Piece Card Game OP14 Dash Pack sealed product",
+				price: "$2.60",
+				affiliateUrl: "https://partner.tcgplayer.com/DWzjjb",
+			},
+			{
+				code: "Double Pack Set Vol. 9",
+				name: "Double Pack Set Vol. 9",
+				description: "A sealed Double Pack Set Vol. 9 release from the OP14 expansion.",
+				imageFile: "Expansions/OP14/double-pack-set-vol-9",
+				imageAlt: "One Piece Card Game Double Pack Set Vol. 9 sealed product",
+				price: "$35.14",
+				affiliateUrl: "https://partner.tcgplayer.com/qWqDDg",
+			},
+		],
+	},
+	{
+		slug: "op13",
+		code: "OP13",
+		name: "Carrying on His Will",
+		description: "Explore sealed One Piece Card Game products from the Carrying on His Will expansion.",
+		imageFile: "Expansions/OP13/Visuel op13",
+		imageAlt: "Carrying on His Will OP13 One Piece Card Game expansion",
+		products: [
+			{
+				code: "OP13",
+				name: "3rd Anniversary Tournament Pack",
+				description: "A sealed 3rd Anniversary Tournament Pack from the Carrying on His Will expansion.",
+				imageFile: "Expansions/OP13/3rd-anniversary-tournament-pack",
+				imageAlt: "One Piece Card Game 3rd Anniversary Tournament Pack sealed product",
+				price: "$6.71",
+				affiliateUrl: "https://partner.tcgplayer.com/m4BRbZ",
+			},
+			{
+				code: "OP13",
+				name: "3rd Anniversary Tournament 3 Brothers Pack",
+				description: "A sealed 3rd Anniversary Tournament 3 Brothers Pack from the OP13 expansion.",
+				imageFile: "Expansions/OP13/3rd-anniversary-tournament-3-brothers-pack",
+				imageAlt: "One Piece Card Game 3rd Anniversary Tournament 3 Brothers Pack sealed product",
+				price: "$26.24",
+				affiliateUrl: "https://partner.tcgplayer.com/9V3Gj4",
+			},
+			{
+				code: "OP13",
+				name: "OP13 Booster Box",
+				description: "A sealed OP13 booster box from the Carrying on His Will expansion.",
+				imageFile: "Expansions/OP13/booster-box",
+				imageAlt: "OP13 Carrying on His Will sealed booster box",
+				price: "$439.74",
+				affiliateUrl: "https://partner.tcgplayer.com/bkebKg",
+			},
+			{
+				code: "OP13",
+				name: "Sleeved Booster Pack",
+				description: "A sealed sleeved booster pack from the Carrying on His Will expansion.",
+				imageFile: "Expansions/OP13/sleeved-booster-pack",
+				imageAlt: "OP13 Carrying on His Will sleeved booster pack",
+				price: "$20.40",
+				affiliateUrl: "https://partner.tcgplayer.com/xJPEvx",
+			},
+			{
+				code: "OP13",
+				name: "OP13 Booster Pack",
+				description: "A sealed booster pack from the Carrying on His Will expansion.",
+				imageFile: "Expansions/OP13/booster-pack",
+				imageAlt: "OP13 Carrying on His Will sealed booster pack",
+				price: "$10.89",
+				affiliateUrl: "https://partner.tcgplayer.com/ZVDbjz",
+			},
+		],
+	},
 ];
+
+const sealedProductOrder = (product: SealedProduct) => {
+	const name = product.name.toLowerCase();
+	if (name.includes("booster box")) return 0;
+	if (name.includes("sleeved booster") || name.includes("cardboard booster")) return 2;
+	if (name.includes("booster pack")) return 1;
+	if (name.includes("double pack")) return 3;
+	if (name.includes("special don")) return 4;
+	if (name.includes("release event")) return 5;
+	return 6;
+};
+
+for (const set of boosterSets) {
+	set.products.sort((a, b) => sealedProductOrder(a) - sealedProductOrder(b));
+}
 
 // Replace each empty affiliateUrl with your tracked retailer URL before publishing a product.
 // Starter Deck images belong in public/assets/Products/Starter Decks/.

@@ -12,6 +12,7 @@ import { op17EastSep12Sep13DeckTemplates, op17EastSep12Sep13EntrySeeds } from ".
 import { op17EastSep21DeckTemplates, op17EastSep21EntrySeeds } from "./op17EastSep21";
 import { op17EastSep22DeckTemplates, op17EastSep22EntrySeeds } from "./op17EastSep22";
 import { op17EastOct04DeckTemplates, op17EastOct04EntrySeeds } from "./op17EastOct04";
+import { op17EastOct06Oct08DeckTemplates, op17EastOct06Oct08EntrySeeds } from "./op17EastOct06Oct08";
 import { op17WestSep10DeckTemplates, op17WestSep10EntrySeeds } from "./op17WestSep10";
 import { op17WestSep11DeckTemplates, op17WestSep11EntrySeeds } from "./op17WestSep11";
 import { op17WestSep12Sep13DeckTemplates, op17WestSep12Sep13EntrySeeds } from "./op17WestSep12Sep13";
@@ -27,6 +28,7 @@ import { op17WestSep04DeckTemplates, op17WestSep04EntrySeeds } from "./op17WestS
 import { op17WestSep05DeckTemplates, op17WestSep05EntrySeeds } from "./op17WestSep05";
 import { op17WestSep06DeckTemplates, op17WestSep06EntrySeeds } from "./op17WestSep06";
 import { op17WestOct01Oct04DeckTemplates, op17WestOct01Oct04EntrySeeds } from "./op17WestOct01Oct04";
+import { op17WestOct05Oct06DeckTemplates, op17WestOct05Oct06EntrySeeds } from "./op17WestOct05Oct06";
 import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
@@ -1892,6 +1894,7 @@ const deckTemplates = {
 	...op17EastSep21DeckTemplates,
 	...op17EastSep22DeckTemplates,
 	...op17EastOct04DeckTemplates,
+	...op17EastOct06Oct08DeckTemplates,
 	...op17EastSep06DeckTemplates,
 	...op17EastSep09DeckTemplates,
 	...op17WestAug29DeckTemplates,
@@ -1904,6 +1907,7 @@ const deckTemplates = {
 	...op17WestSep05DeckTemplates,
 	...op17WestSep06DeckTemplates,
 	...op17WestOct01Oct04DeckTemplates,
+	...op17WestOct05Oct06DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
 	...op17WestSep11DeckTemplates,
@@ -16470,6 +16474,7 @@ const entrySeeds = [
 	...op17EastSep21EntrySeeds,
 	...op17EastSep22EntrySeeds,
 	...op17EastOct04EntrySeeds,
+	...op17EastOct06Oct08EntrySeeds,
 	...op17EastSep06EntrySeeds,
 	...op17EastSep09EntrySeeds,
 	...op17WestAug29EntrySeeds,
@@ -16482,6 +16487,7 @@ const entrySeeds = [
 	...op17WestSep05EntrySeeds,
 	...op17WestSep06EntrySeeds,
 	...op17WestOct01Oct04EntrySeeds,
+	...op17WestOct05Oct06EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
 	...op17WestSep11EntrySeeds,
