@@ -713,6 +713,12 @@ const manualCardOverrides = {
 		},
 	},
 	EB05: {
+		"eb05-003 pasia": { code: "EB05-003", name: "Pasia", color: "Red" },
+		"eb05-015 tashigi": { code: "EB05-015", name: "Tashigi", color: "Green" },
+		"eb05-026 hina": { code: "EB05-026", name: "Hina", color: "Blue" },
+		"eb05-032 ulti": { code: "EB05-032", name: "Ulti", color: "Purple" },
+		"eb05-041 koala": { code: "EB05-041", name: "Koala", color: "Black" },
+		"eb05-058 bell-mère": { code: "EB05-058", name: "Bell-mère", color: "Yellow" },
 		"eb05-019 i choose to open this country to the world!! i want to fight on you side!!": {
 			code: "EB05-019",
 			name: "I Choose to Open This Country to the World!! I Want to Fight on Your Side!!",

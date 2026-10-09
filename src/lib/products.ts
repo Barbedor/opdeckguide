@@ -339,7 +339,157 @@ export const boosterSets: BoosterSet[] = [
 			},
 		],
 	},
+	{
+		slug: "eb03",
+		code: "EB03",
+		name: "Heroines Edition",
+		description: "Explore sealed One Piece Card Game products from ONE PIECE Heroines Edition, an Extra Booster celebrating the heroines of the series.",
+		imageFile: "Expansions/EB03/Visuel eb03",
+		imageAlt: "Heroines Edition EB03 One Piece Card Game expansion",
+		products: [
+			{
+				code: "EB03",
+				name: "EB03 Heroines Edition Booster Box",
+				description: "A sealed booster box from ONE PIECE Heroines Edition, featuring powerful female characters from across the series.",
+				imageFile: "Expansions/EB03/booster-one-piece-heroines-edition-box",
+				imageAlt: "EB03 ONE PIECE Heroines Edition sealed booster box",
+				price: "$323.46",
+				affiliateUrl: "https://partner.tcgplayer.com/rExEoD",
+			},
+			{
+				code: "EB03",
+				name: "EB03 Heroines Edition Booster Pack",
+				description: "A sealed booster pack from ONE PIECE Heroines Edition, an Extra Booster centered on the heroines of One Piece.",
+				imageFile: "Expansions/EB03/booster-one-piece-heroines-edition-pack",
+				imageAlt: "EB03 ONE PIECE Heroines Edition sealed booster pack",
+				price: "$11.79",
+				affiliateUrl: "https://partner.tcgplayer.com/VOWO3M",
+			},
+			{
+				code: "EB03",
+				name: "Heroines Battle Pack",
+				description: "A sealed promotion card pack from the EB03 Heroines Edition release.",
+				imageFile: "Expansions/EB03/promotion-cards-heroines-battle-pack",
+				imageAlt: "EB03 Heroines Battle Pack sealed promotion card pack",
+				price: "$9.89",
+				affiliateUrl: "https://partner.tcgplayer.com/vDrD6L",
+			},
+			{
+				code: "EB03",
+				name: "Heroines Edition Dash Pack",
+				description: "A sealed Dash Pack from the ONE PIECE Heroines Edition release.",
+				imageFile: "Expansions/EB03/dash-pack",
+				imageAlt: "EB03 Heroines Edition sealed Dash Pack",
+				price: "$7.02",
+				affiliateUrl: "https://partner.tcgplayer.com/3k3k3k",
+			},
+		],
+	},
+	{
+		slug: "prb02",
+		code: "PRB02",
+		name: "The Best Vol. 2",
+		description: "Explore sealed One Piece Card Game products from The Best Vol. 2 expansion, a best-of release bringing together memorable cards and strategies.",
+		imageFile: "Expansions/PRB02/Visuel prb02",
+		imageAlt: "The Best Vol. 2 PRB02 One Piece Card Game expansion",
+		products: [
+			{
+				code: "PRB02",
+				name: "PRB02 Booster Box",
+				description: "A sealed booster box from The Best Vol. 2 One Piece Card Game release.",
+				imageFile: "Expansions/PRB02/booster-box",
+				imageAlt: "PRB02 The Best Vol. 2 sealed booster box",
+				price: "$377.69",
+				affiliateUrl: "https://partner.tcgplayer.com/rExEY3",
+			},
+			{
+				code: "PRB02",
+				name: "PRB02 Booster Pack",
+				description: "A sealed booster pack from The Best Vol. 2 One Piece Card Game release.",
+				imageFile: "Expansions/PRB02/booster-pack",
+				imageAlt: "PRB02 The Best Vol. 2 sealed booster pack",
+				price: "$13.16",
+				affiliateUrl: "https://partner.tcgplayer.com/3k3k4d",
+			},
+			{
+				code: "PRB02",
+				name: "PRB02 Sleeved Booster Pack",
+				description: "A sealed sleeved booster pack from The Best Vol. 2 One Piece Card Game release.",
+				imageFile: "Expansions/PRB02/sleeved-booster-pack",
+				imageAlt: "PRB02 The Best Vol. 2 sleeved booster pack",
+				price: "$27.02",
+				affiliateUrl: "https://partner.tcgplayer.com/KBAB7x",
+			},
+		],
+	},
+	{
+		slug: "op12",
+		code: "OP12",
+		name: "Legacy of the Master",
+		description: "Explore sealed One Piece Card Game products from the Legacy of the Master expansion, centered on mentors, students, and the transmission of knowledge.",
+		imageFile: "Expansions/OP12/Visuel op12",
+		imageAlt: "Legacy of the Master OP12 One Piece Card Game expansion",
+		products: [
+			{
+				code: "OP12",
+				name: "OP12 Booster Box",
+				description: "A sealed OP12 booster box from the Legacy of the Master expansion.",
+				imageFile: "Expansions/OP12/booster-box",
+				imageAlt: "OP12 Legacy of the Master sealed booster box",
+				price: "$288.57",
+				affiliateUrl: "https://partner.tcgplayer.com/aNkKZj",
+			},
+			{
+				code: "OP12",
+				name: "OP12 Booster Pack",
+				description: "A sealed booster pack from the Legacy of the Master expansion.",
+				imageFile: "Expansions/OP12/booster-pack",
+				imageAlt: "OP12 Legacy of the Master sealed booster pack",
+				price: "$8.56",
+				affiliateUrl: "https://partner.tcgplayer.com/3k37aA",
+			},
+			{
+				code: "OP12",
+				name: "OP12 Sleeved Booster Pack",
+				description: "A sealed sleeved booster pack from the Legacy of the Master expansion.",
+				imageFile: "Expansions/OP12/sleeved-booster-pack",
+				imageAlt: "OP12 Legacy of the Master sleeved booster pack",
+				price: "$16.29",
+				affiliateUrl: "https://partner.tcgplayer.com/R0XRD7",
+			},
+			{
+				code: "Double Pack Set Vol. 8",
+				name: "Double Pack Set Vol. 8",
+				description: "A sealed Double Pack Set Vol. 8 release from the OP12 expansion.",
+				imageFile: "Expansions/OP12/double-pack-set-vol-8",
+				imageAlt: "One Piece Card Game Double Pack Set Vol. 8 sealed product",
+				price: "$38.28",
+				affiliateUrl: "https://partner.tcgplayer.com/QYgKdz",
+			},
+			{
+				code: "OP12",
+				name: "Special DON!! Card Pack - DP-08",
+				description: "A sealed Special DON!! Card Pack - DP-08 release from the OP12 expansion.",
+				imageFile: "Expansions/OP12/special-don-card-pack-dp-08",
+				imageAlt: "One Piece Card Game Special DON!! Card Pack DP-08 sealed product",
+				price: "$4.08",
+				affiliateUrl: "https://partner.tcgplayer.com/OYJ1ZG",
+			},
+			{
+				code: "OP12",
+				name: "Release Event Pack",
+				description: "A sealed Release Event Pack from the OP12 expansion.",
+				imageFile: "Expansions/OP12/release-event-pack",
+				imageAlt: "One Piece Card Game OP12 Release Event Pack sealed product",
+				price: "$5.24",
+				affiliateUrl: "https://partner.tcgplayer.com/L0GDyO",
+			},
+		],
+	},
 ];
+
+const boosterSetDisplayOrder = ["op17", "op16", "op15", "eb03", "op14", "op13", "prb02", "op12"];
+boosterSets.sort((a, b) => boosterSetDisplayOrder.indexOf(a.slug) - boosterSetDisplayOrder.indexOf(b.slug));
 
 const sealedProductOrder = (product: SealedProduct) => {
 	const name = product.name.toLowerCase();
@@ -349,7 +499,9 @@ const sealedProductOrder = (product: SealedProduct) => {
 	if (name.includes("double pack")) return 3;
 	if (name.includes("special don")) return 4;
 	if (name.includes("release event")) return 5;
-	return 6;
+	if (name.includes("dash pack")) return 6;
+	if (name.includes("promotion") || name.includes("battle pack")) return 7;
+	return 8;
 };
 
 for (const set of boosterSets) {

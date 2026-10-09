@@ -21,6 +21,9 @@ const expansionTheme = {
 	OP15: "Skypiea, with Luffy, Enel, Shandia, and the people of Skypiea, alongside the OP15-EB04 portion linked to Egghead Crisis.",
 	OP14: "The Seven Great Warlords, or Shichibukai, including Mihawk, Doflamingo, Boa Hancock, Crocodile, Moria, Jinbe, and Law, alongside the OP14-EB04 portion.",
 	OP13: "Luffy, Ace, and Sabo, with inherited will, Roger, Imu, the Five Elders, and the major legacy themes of the story.",
+	EB03: "The heroines of One Piece, including Nami, Nico Robin, Boa Hancock, Uta, Perona, Reiju, Tashigi, and Vivi. EB03 features Nefertari Vivi as its only new Leader and brings together characters from different story arcs.",
+	PRB02: "A best-of compilation of notable One Piece Card Game cards and themes from across previous releases, bringing together fan-favorite characters and strategies.",
+	OP12: "The mentor and student legacy of One Piece, featuring pairs such as Zoro and Mihawk, Luffy and Rayleigh, Sanji and Zeff, and Kuzan and Garp.",
 } as Record<string, string>;
 const themeDescription = expansionTheme[set.code] ?? "The characters, stories, and themes introduced by this One Piece Card Game expansion.";
 const structuredData = [
@@ -44,7 +47,7 @@ const structuredData = [
 	.set-visual--op16 { object-position:center 22%; }
 	.set-visual--op17 { object-position:center 22%; }
 	.set-visual--op15 { object-position:center 38%; }
-	@media (min-width:651px) { .set-visual--op13 { object-position:center 36%; } }
+@media (min-width:651px) { .set-visual--op13 { object-position:center 36%; } .set-visual--prb02 { object-position:center 42%; } .set-visual--op12 { object-position:center 44%; } }
 	.product-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
 	.product-card { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:var(--radius-md); background:rgba(12,17,30,.72); }
 	.product-image { position:relative; display:grid; place-items:center; height:180px; overflow:hidden; padding:1rem; background:rgba(255,107,61,.08); }

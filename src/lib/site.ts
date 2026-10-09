@@ -44,8 +44,11 @@ export const staticSitePaths = [
 	"/products/expansions/op17/",
 	"/products/expansions/op16/",
 	"/products/expansions/op15/",
+	"/products/expansions/eb03/",
 	"/products/expansions/op14/",
 	"/products/expansions/op13/",
+	"/products/expansions/prb02/",
+	"/products/expansions/op12/",
 ];
 
 export const guidePaths = [...visibleDeckGuides, ...beginnerGuides].map((guide) => guide.href);
