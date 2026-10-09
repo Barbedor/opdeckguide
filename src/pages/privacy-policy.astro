@@ -4,7 +4,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 const title = "Privacy Policy";
 const description =
 	"Privacy policy for OPDeckGuide, including the use of Google Analytics and possible future use of Google AdSense.";
-const isDevelopment = import.meta.env.DEV;
 ---
 
 <MainLayout title={title} description={description}>
@@ -57,16 +56,12 @@ const isDevelopment = import.meta.env.DEV;
 				Google’s requirements.
 			</p>
 
-			<section id="us-privacy-rights" class="us-privacy-rights" hidden>
+			<section class="us-privacy-rights">
 				<h2>US Privacy Rights</h2>
 				<p>
 					If US state privacy laws apply to you, you can opt out of the sale or sharing of your personal
 					information and of targeted advertising.
 				</p>
-				<button id="us-privacy-opt-out" class="us-privacy-control" type="button" hidden>
-					Do Not Sell or Share My Personal Information
-				</button>
-				<p id="us-privacy-status" class="us-privacy-status" aria-live="polite" hidden></p>
 			</section>
 
 			<h2>Third-party service</h2>
@@ -88,67 +83,6 @@ const isDevelopment = import.meta.env.DEV;
 		</div>
 	</section>
 </MainLayout>
-
-<script is:inline define:vars={{ isDevelopment }}>
-	const usPrivacySection = document.getElementById("us-privacy-rights");
-	const usPrivacyOptOutButton = document.getElementById("us-privacy-opt-out");
-	const usPrivacyStatus = document.getElementById("us-privacy-status");
-
-	const showUsPrivacySection = () => {
-		usPrivacySection?.removeAttribute("hidden");
-	};
-
-	const showUsPrivacyStatus = (message) => {
-		if (!usPrivacyStatus) return;
-		usPrivacyStatus.textContent = message;
-		usPrivacyStatus.removeAttribute("hidden");
-	};
-
-	if (isDevelopment) {
-		const isVisualTest = new URLSearchParams(window.location.search).get("test-us-privacy") === "1";
-
-		if (isVisualTest) {
-			showUsPrivacySection();
-			if (usPrivacyOptOutButton instanceof HTMLButtonElement) {
-				usPrivacyOptOutButton.removeAttribute("hidden");
-				usPrivacyOptOutButton.disabled = true;
-				usPrivacyOptOutButton.setAttribute("aria-describedby", "us-privacy-status");
-			}
-			showUsPrivacyStatus("Development preview only. No privacy choice has been sent to Google.");
-		}
-	} else {
-		const renderUsPrivacyRights = (status) => {
-			const statusEnum = googlefc.usstatesoptout.InitialUsStatesOptOutStatusEnum;
-
-			if (status !== statusEnum.NOT_OPTED_OUT && status !== statusEnum.OPTED_OUT) return;
-
-			showUsPrivacySection();
-
-			if (status === statusEnum.NOT_OPTED_OUT && usPrivacyOptOutButton instanceof HTMLButtonElement) {
-				usPrivacyOptOutButton.removeAttribute("hidden");
-				usPrivacyOptOutButton.addEventListener(
-					"click",
-					() =>
-						googlefc.usstatesoptout.openConfirmationDialog((userOptedOut) => {
-							if (!userOptedOut) return;
-							usPrivacyOptOutButton.hidden = true;
-							showUsPrivacyStatus("Your opt-out choice is active.");
-						}),
-				);
-			} else if (status === statusEnum.OPTED_OUT) {
-				showUsPrivacyStatus("Your opt-out choice is active.");
-			}
-		};
-
-		window.addEventListener("opdeckguide-us-states-opt-out-status", (event) => {
-			renderUsPrivacyRights(event.detail);
-		});
-
-		if (typeof window.__opdeckguideUsStatesOptOutStatus !== "undefined") {
-			renderUsPrivacyRights(window.__opdeckguideUsStatesOptOutStatus);
-		}
-	}
-</script>
 
 <style>
 	.legal-copy {
@@ -177,31 +111,4 @@ const isDevelopment = import.meta.env.DEV;
 		margin-top: 0;
 	}
 
-	.us-privacy-control {
-		margin-top: 0.35rem;
-		padding: 0.7rem 1rem;
-		border: 1px solid rgba(255, 107, 61, 0.55);
-		border-radius: 999px;
-		background: transparent;
-		color: var(--text-100);
-		font: inherit;
-		font-weight: 600;
-		cursor: pointer;
-	}
-
-	.us-privacy-control:hover,
-	.us-privacy-control:focus-visible {
-		border-color: var(--accent);
-		background: rgba(255, 107, 61, 0.12);
-		outline: none;
-	}
-
-	.us-privacy-control:disabled {
-		cursor: not-allowed;
-		opacity: 0.7;
-	}
-
-	.us-privacy-status {
-		margin-bottom: 0;
-	}
 </style>
