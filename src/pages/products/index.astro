@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import ManualAd from "../../components/ManualAd.astro";
 import { getProductImageUrl, productCategories } from "../../lib/products";
 import { siteUrl } from "../../lib/site";
 
@@ -11,11 +10,8 @@ const structuredData = { "@context": "https://schema.org", "@type": "CollectionP
 
 <MainLayout title={title} description={description} structuredData={structuredData}>
 	<section class="hero"><div class="container"><span class="hero-badge">Sealed Products</span><h1>One Piece Card Game Sealed Products</h1><p>Explore sealed One Piece Card Game releases by product type. This product hub will bring together starter decks, booster products, collections, and other sealed releases.</p></div></section>
-	<ManualAd variant="banner" />
 	<section class="list-section" aria-labelledby="product-categories-title"><div class="container"><div class="section-header"><div><h2 id="product-categories-title">Browse product categories</h2><p>Choose a category to compare the sealed products currently available.</p></div></div><div class="category-grid">{productCategories.map((category) => (<section class="category-group" aria-labelledby={`${category.slug}-title`}><a class="category-card" href={`/products/${category.slug}/`}><div class="category-image">{category.imageFile ? <img src={getProductImageUrl(category.imageFile)} alt={category.title} /> : <div class="category-placeholder" aria-hidden="true"><span>{category.label}</span></div>}</div><div class="category-content"><span>{category.label}</span><h3 id={`${category.slug}-title`}>{category.title}</h3><p>{category.description}</p><strong>Explore category</strong></div></a></section>))}</div></div></section>
-	<ManualAd variant="rectangle" />
 	<section class="seo-block"><div class="container"><h2>One Piece Card Game product hub</h2><p>Use this page to browse sealed One Piece Card Game products by category. Each category page brings together product formats, release details, and retailer links in one place.</p><p>We are adding categories gradually so every product page stays clear and useful for players, collectors, and gift buyers.</p></div></section>
-	<ManualAd variant="banner" />
 </MainLayout>
 
 <style>

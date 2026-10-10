@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import ManualAd from "../../components/ManualAd.astro";
 import { boosterSets, getProductCategory, getProductImageUrl, productCategories } from "../../lib/products";
 import { siteUrl } from "../../lib/site";
 
@@ -35,12 +34,9 @@ const structuredData = [{ "@context": "https://schema.org", "@type": "Breadcrumb
 
 <MainLayout title={title} description={description} structuredData={structuredData}>
 	<section class="hero"><div class="container"><a class="breadcrumb" href="/products/">← All sealed products</a><span class="hero-badge">{category.label}</span><h1>{category.title}</h1><p>{intro}</p></div></section>
-	<ManualAd variant="banner" />
 	<section class="list-section" aria-labelledby="product-list-title"><div class="container"><div class="section-header"><div><h2 id="product-list-title">{guideHeading}</h2><p>Open an expansion to browse its sealed product lineup.</p></div></div>{isExpansions ? <div class="set-grid">{boosterSets.map((set) => (<a class="set-card" href={`/products/expansions/${set.slug}/`}><span class="product-code">{set.code}</span><div class="set-media">{set.imageFile ? <img class="set-image" src={getProductImageUrl(set.imageFile)} alt={set.imageAlt} loading="lazy" /> : <span class="set-placeholder" aria-hidden="true">{set.code}</span>}<div class="set-overlay"><h3>{set.name}</h3></div></div><p>{set.description}</p><strong>Explore {set.code}</strong></a>))}</div> : category.products.length ? <div class="product-grid">{category.products.map((product) => (<article class="product-card"><div class="product-image"><img src={getProductImageUrl(product.imageFile)} alt={product.imageAlt} loading="lazy" /></div><div class="product-content"><span class="product-code">{product.code}</span><h3>{product.name}</h3>{product.affiliateUrl ? (<a class="product-link" href={product.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">{product.price}</a>) : (<span class="product-link is-unavailable">Link soon</span>)}</div></article>))}</div> : <div class="empty-state"><p>Booster box listings are being added soon. Check back for sealed displays from the latest One Piece Card Game expansions.</p></div>}</div></section>
-	<ManualAd variant="rectangle" />
 	<section class="seo-block"><div class="container copy-grid"><div><h2>What is a One Piece Card Game {productType}?</h2><p>{definition}</p></div><div><h2>Which {productType} should I choose?</h2><p>{choosing}</p></div><div class="internal-links"><h2>Continue exploring OPDeckGuide</h2><p>Looking for individual cards? Browse the <a href="/cards-list/">One Piece Card List</a>. Want gameplay context? Read the <a href="/deck-guides/">Deck Guides</a> before choosing your next sealed product.</p></div></div></section>
 	<section class="faq-section"><div class="container"><div class="section-header faq-header"><div><h2>{faqHeading}</h2></div></div><div class="faq-grid"><article class="faq-card"><h3>{faqOne}</h3><p>{faqOneAnswer}</p></article><article class="faq-card"><h3>{faqTwo}</h3><p>{faqTwoAnswer}</p></article><article class="faq-card"><h3>{faqThree}</h3><p>{faqThreeAnswer}</p></article></div></div></section>
-	<ManualAd variant="banner" />
 </MainLayout>
 
 <style>

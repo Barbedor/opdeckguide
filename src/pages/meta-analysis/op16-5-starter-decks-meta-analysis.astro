@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import ManualAd from "../../components/ManualAd.astro";
 import { getCardThumbnail } from "../../lib/assets";
 import { getOptimizedAssetUrl } from "../../lib/assets";
 
@@ -355,8 +354,6 @@ const verdictClass = (tone: string) => {
 		</div>
 	</section>
 
-	<ManualAd variant="banner" />
-
 	<section class="section">
 		<div class="container article-layout">
 			<aside class="article-toc">
@@ -454,8 +451,6 @@ const verdictClass = (tone: string) => {
 						))}
 					</div>
 				</section>
-
-				<ManualAd variant="rectangle" />
 
 				<section id="hidden-winners" class="article-block">
 					<div class="section-header compact-header">

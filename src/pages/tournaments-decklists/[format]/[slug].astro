@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
-import ManualAd from "../../../components/ManualAd.astro";
 import { getAffiliateCard } from "../../../lib/affiliateCards";
 import { getClassicCardImage, getClassicCardThumbnail } from "../../../lib/cards";
 import { tournamentDecklistEntries } from "../../../lib/tournamentDecklists";
@@ -104,8 +103,6 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		</div>
 	</section>
 
-	<ManualAd variant="banner" />
-
 	<section class="detail-meta">
 		<div class="container detail-meta-grid">
 			<div class="detail-meta-card">
@@ -142,8 +139,6 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 			}
 		</div>
 	</section>
-
-	<ManualAd variant="banner" />
 
 	<section class="detail-decklist">
 		<div class="container">
@@ -212,8 +207,6 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 			</div>
 		</div>
 	</section>
-
-	<ManualAd variant="rectangle" />
 
 	<div class="card-modal" data-modal aria-hidden="true">
 		<div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview">
