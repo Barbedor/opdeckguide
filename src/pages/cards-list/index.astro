@@ -10,9 +10,11 @@ const description =
 
 const metadataAvailable = hasMetadata();
 const featuredExtensionOrder = new Map([
-	["EB05", 0],
-	["OP18", 1],
-	["OP17", 2],
+	["ST37", 0],
+	["ST38", 1],
+	["EB05", 2],
+	["OP18", 3],
+	["OP17", 4],
 ]);
 const extensionSummaries = getExtensionSummaries().sort((a, b) => {
 	const aFeatured = featuredExtensionOrder.get(a.extension);

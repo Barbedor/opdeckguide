@@ -50,6 +50,34 @@ const revealPageConfigs = {
 		faqSecondaryAnswer:
 			"OP18 is notably centered on the Holy Knights (God's Knights) and Water 7, based on the cards officially revealed by Bandai so far.",
 	},
+	ST37: {
+		badgeLabel: "ST37",
+		displayLabel: "ST37 Alabasta Starter Deck",
+		title: "ST37 Alabasta Starter Deck Card List | Mugiwara | One Piece Card Game",
+		description:
+		"Browse the ST37 Alabasta Starter Deck cards for the One Piece Card Game, centered on the Mugiwara during the Alabasta arc.",
+		intro:
+			"This page lists the ST37 Alabasta Starter Deck cards for the One Piece Card Game, centered on the Mugiwara (Straw Hat Crew) during the Alabasta arc.",
+		faqIntro: "Quick answers about the ST37 Starter Deck cards page.",
+		faqCards: "This page lists the cards currently available from the ST37 Alabasta Starter Deck.",
+		faqSecondaryTitle: "What is the ST37 Starter Deck centered on?",
+		faqSecondaryAnswer:
+			"ST37 is centered on the Mugiwara, also known as the Straw Hat Crew, during the Alabasta arc.",
+	},
+	ST38: {
+		badgeLabel: "ST38",
+		displayLabel: "ST38 Alabasta Starter Deck",
+		title: "ST38 Alabasta Starter Deck Card List | Baroque Works | One Piece Card Game",
+		description:
+		"Browse the ST38 Alabasta Starter Deck cards for the One Piece Card Game, centered on Baroque Works during the Alabasta arc.",
+		intro:
+			"This page lists the ST38 Alabasta Starter Deck cards for the One Piece Card Game, centered on Baroque Works during the Alabasta arc.",
+		faqIntro: "Quick answers about the ST38 Starter Deck cards page.",
+		faqCards: "This page lists the cards currently available from the ST38 Alabasta Starter Deck.",
+		faqSecondaryTitle: "What is the ST38 Starter Deck centered on?",
+		faqSecondaryAnswer:
+			"ST38 is centered on Baroque Works and its characters during the Alabasta arc.",
+	},
 };
 const revealPageConfig = revealPageConfigs[extension.toUpperCase()] ?? null;
 const extensionLabel = revealPageConfig?.displayLabel ?? (extension === "P" ? "Promo" : extension);
@@ -151,6 +179,24 @@ const leakCardDetails = {
 			[keyword("once-per-turn", "Once Per Turn"), " When your {Alabasta} type Character is K.O.'d, draw 1 card."],
 		],
 	},
+	"ST37-001": {
+		rarity: "Leader Card",
+		stats: "Red / Blue / Life 3 / Strike / Power 5000",
+		traits: "Alabasta / Straw Hat Crew",
+		effectLines: [
+			["Under the rules of this game, you may only include {Alabasta} type cards in your deck."],
+			[keyword("when-attacking", "When Attacking"), " Draw 2 cards. Then, at the end of your turn, trash cards from your hand until you have 7 cards in your hand."],
+		],
+	},
+	"ST38-001": {
+		rarity: "Leader Card",
+		stats: "Blue / Black / Life 4 / Special / Power 5000",
+		traits: "The Seven Warlords of the Sea / Baroque Works",
+		effectLines: [
+			[keyword("when-attacking", "When Attacking"), " You may trash 1 card from your hand: Draw 1 card."],
+			[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " You may K.O. 1 of your Characters with a type including \"Baroque Works\" and a base cost of 3 or more: Draw 1 card."],
+		],
+	},
 	"OP18-003": {
 		rarity: "Common",
 		stats: "Red / Cost 5 / Wisdom / Power 6000 / Counter 2000",
@@ -201,6 +247,12 @@ const leakCardDetails = {
 		stats: "Green / Cost 1 / Wisdom / Power 0 / Counter 1000",
 		traits: "Animal/Water Seven",
 		effectLines: [[keyword("end-of-your-turn", "End of Your Turn"), " If this Character is rested, set your Leader as active."]],
+	},
+	"OP18-032": {
+		rarity: "Uncommon",
+		stats: "Green / Cost 5 / Slash / Power 6000 / Counter 1000",
+		traits: "East Blue/Buggy Pirates",
+		effectLines: [[keyword("on-play", "On Play"), " ", keyword("on-ko", "On K.O."), " Up to 1 of your opponent's rested Characters with 8000 power or less will not become active in your opponent's next Refresh Phase."]],
 	},
 	"OP18-041": {
 		rarity: "Leader Card",

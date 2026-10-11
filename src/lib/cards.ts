@@ -5,6 +5,12 @@ const cardsRoot = path.join(process.cwd(), "public", "Cards");
 const hiddenExtensions = new Set(["back_cards", "don"]);
 const variantPriority = ["base", "ALT BAKI", "ALT", "SUPER ALT", "MANGA", "PIRATE CREW SUPER ALT MANGA", "ALT GOLD", "TREASURE RARE"];
 const manualCardOverrides = {
+	ST37: {
+		"st37-001 monkey.d.luffy": { code: "ST37-001", name: "Monkey.D.Luffy", color: "Red / Blue" },
+	},
+	ST38: {
+		"st38-001 mr. 0 (crocodile)": { code: "ST38-001", name: "Mr. 0 (Crocodile)", color: "Blue / Black" },
+	},
 	OP17: {
 		"op17-001 edward newgate": {
 			code: "OP17-001",
@@ -1880,6 +1886,14 @@ export const getExtensions = () => {
 		.filter((entry) => !hiddenExtensions.has(entry.name.toLowerCase()))
 		.map((entry) => entry.name)
 		.sort((a, b) => {
+			const featuredOrder = { ST37: 0, ST38: 1, OP18: 2 };
+			const aFeatured = featuredOrder[a.toUpperCase()];
+			const bFeatured = featuredOrder[b.toUpperCase()];
+			if (aFeatured !== undefined || bFeatured !== undefined) {
+				if (aFeatured === undefined) return 1;
+				if (bFeatured === undefined) return -1;
+				return aFeatured - bFeatured;
+			}
 			const aInfo = parse(a);
 			const bInfo = parse(b);
 			const aGroup = prefixOrder.indexOf(aInfo.prefix);
