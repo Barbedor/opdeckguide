@@ -731,7 +731,7 @@ const manualCardOverrides = {
 			color: "Green",
 		},
 		"eb05-030 take care, everybody.": { code: "EB05-030", name: "Take Care, Everybody.", color: "Blue" },
-		"eb05-0xx nico robin": { code: "EB05-0XX", name: "Nico Robin", color: "Purple" },
+		"eb05-033 nico robin": { code: "EB05-033", name: "Nico Robin", color: "Purple" },
 		"eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
 		"alt eb05-061 nami": { code: "EB05-061", name: "Nami", color: "Red" },
 		"eb05-004 baby 5": { code: "EB05-004", name: "Baby 5", color: "Red" },
@@ -1718,8 +1718,8 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 	}
 
 	return cards.sort((a, b) => {
-		const aSortCode = a.code === "EB05-0XX" ? "EB05-030.5" : a.code;
-		const bSortCode = b.code === "EB05-0XX" ? "EB05-030.5" : b.code;
+		const aSortCode = a.code;
+		const bSortCode = b.code;
 		const codeDiff = aSortCode.localeCompare(bSortCode, "en");
 		if (codeDiff !== 0) return codeDiff;
 		const aRank = a.edition === "ALT" ? 1 : 0;

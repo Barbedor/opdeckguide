@@ -156,7 +156,8 @@ const eb05Card019Details = {
 	],
 };
 const leakCardDetails = {
-	"EB05-0XX": {
+	"EB05-033": {
+		rarity: "Rare",
 		stats: "Purple / Cost 1 / Strike / Power 2000 / Counter 2000",
 		traits: "Straw Hat Crew",
 		effectLines: [[keyword("on-play", "On Play"), " If your Leader has the {Straw Hat Crew} type, and the number of DON!! cards on your field is at least 6 less than the number on your opponent's field, draw 3 cards and trash 2 cards from your hand. Then, add up to 4 DON!! cards from your DON!! deck and rest them."]],
@@ -500,6 +501,21 @@ const leakCardDetails = {
 		traits: "Rocks Pirates",
 		effectLines: [[keyword("activate-main", "Activate: Main"), " ", keyword("once-per-turn", "Once Per Turn"), " You may add 1 card from the top of your Life cards to your hand: Choose one: Give up to 1 Character +3000 power during this turn. Give up to 1 Character -4000 power during this turn."],
 		],
+	},
+	"EB05-007": {
+		rarity: "Common",
+		stats: "Red / Cost 2 / Special / Power 1000 / Counter 2000",
+		traits: "Punk Hazard/Donquixote Pirates",
+		effectLines: [
+			[keyword("on-play", "On Play"), " You may reveal a total of 3 Event or {Punk Hazard} type cards from your hand: Draw 1 card."],
+			[keyword("end-of-your-turn", "End of Your Turn"), " This Character gains +5000 power until the end of your opponent's next End Phase."],
+		],
+	},
+	"EB05-020": {
+		rarity: "Rare",
+		stats: "Green Event / Cost 1",
+		traits: "Merfolk/Fish-Man Island",
+		effectLines: [[keyword("main", "Main"), " You may rest your Leader {Shirahoshi}: Draw 2 cards."]],
 	},
 	"OP14-033": {
 		rarity: "Rare",
@@ -2945,7 +2961,7 @@ const getLeakSortCode = (code) => {
 
 const getLeakDisplaySortCode = (card) => {
 	const explicitAnchors = {
-		"EB05-0XX": "EB05-030.5",
+		"EB05-033": "EB05-033",
 		"OP17-119-ALT": "OP18-999",
 		"OP17-HARUTA": "OP17-018.7",
 		"OP17-RAKUYO": "OP17-018.8",
