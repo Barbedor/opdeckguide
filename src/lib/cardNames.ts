@@ -11,6 +11,7 @@ const baseCardNames: Record<string, string> = {
 	"OP14-038": "I Never Bother to Remember the Faces of Trash",
 	"OP17-069": "Jack",
 	"P-105": "Sabo",
+	"P-146": "Miss Goldenweek(Marianne)",
 	"P-157": "Monkey D. Luffy",
 	"EB02-030": "That Time is When Your Friend's Dreams are Laughed at!",
 	"EB04-058": "Borsalino",
