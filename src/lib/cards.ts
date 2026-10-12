@@ -992,6 +992,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-052 mr.5 and miss.valentine": {
+			code: "OP18-052",
+			name: "Mr.5 & Miss.Valentine",
+			color: "Blue",
+		},
 		"op18-055 mr.9 and ms wednesday": {
 			code: "OP18-055",
 			name: "Mr.9 & Ms. Wednesday",

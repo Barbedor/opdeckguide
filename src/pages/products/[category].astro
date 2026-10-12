@@ -29,7 +29,23 @@ const faqTwo = isExpansions ? "Which expansion should I choose?" : "Do starter d
 const faqTwoAnswer = isExpansions ? "Start with the set whose cards, leaders, or artwork interest you most, then check the language and edition before ordering." : "Yes. Each deck focuses on a different leader, crew, or story theme from One Piece.";
 const faqThree = isExpansions ? "Where can I see cards from an expansion?" : "Where can I see the cards from a starter deck?";
 const faqThreeAnswer = isExpansions ? "Use the One Piece Card List and search for the expansion code to browse the cards included in a set." : "Use the One Piece Card List and search for its ST code to browse its cards.";
-const structuredData = [{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/` }, { "@type": "ListItem", position: 3, name: category.title, item: `${siteUrl}/products/${category.slug}/` }] }, { "@context": "https://schema.org", "@type": "ItemList", name: category.title, itemListElement: category.products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: `${product.code} ${product.name}` })) }];
+const listItems = isExpansions
+	? boosterSets.map((set, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		name: `${set.code} ${set.name}`,
+		item: { "@type": "CollectionPage", name: `${set.code} ${set.name}`, url: `${siteUrl}/products/expansions/${set.slug}/` },
+	}))
+	: category.products.map((product, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		name: `${product.code} ${product.name}`,
+		item: { "@type": "Product", name: `${product.code} ${product.name}` },
+	}));
+const structuredData = [
+	{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/` }, { "@type": "ListItem", position: 3, name: category.title, item: `${siteUrl}/products/${category.slug}/` }] },
+	...(listItems.length ? [{ "@context": "https://schema.org", "@type": "ItemList", name: category.title, itemListElement: listItems }] : []),
+];
 ---
 
 <MainLayout title={title} description={description} structuredData={structuredData}>
