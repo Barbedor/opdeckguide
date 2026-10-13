@@ -992,6 +992,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-063 kiwi and mozu": {
+			code: "OP18-063",
+			name: "Kiwi & Mozu",
+			color: "Purple",
+		},
 		"op18-052 mr.5 and miss.valentine": {
 			code: "OP18-052",
 			name: "Mr.5 & Miss.Valentine",
@@ -1891,7 +1896,7 @@ export const getExtensions = () => {
 		.filter((entry) => !hiddenExtensions.has(entry.name.toLowerCase()))
 		.map((entry) => entry.name)
 		.sort((a, b) => {
-			const featuredOrder = { ST37: 0, ST38: 1, OP18: 2 };
+			const featuredOrder = { EB05: 0, OP18: 1, ST37: 2, ST38: 3 };
 			const aFeatured = featuredOrder[a.toUpperCase()];
 			const bFeatured = featuredOrder[b.toUpperCase()];
 			if (aFeatured !== undefined || bFeatured !== undefined) {
