@@ -992,6 +992,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-085 cerberus": {
+			code: "OP18-085",
+			name: "Cerberus",
+			color: "Black",
+		},
 		"op18-063 kiwi and mozu": {
 			code: "OP18-063",
 			name: "Kiwi & Mozu",
