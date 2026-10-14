@@ -109,6 +109,7 @@ const baseCardNames: Record<string, string> = {
 	"ST04-005": "Queen",
 	"ST04-016": "Blast Breath",
 	"ST04-017": "Onigashima Island",
+	"ST06-017": "Marineford",
 	"OP17-015": "Marco",
 	"OP17-023": "Nami",
 	"OP14-020": "Dracule Mihawk",
