@@ -170,29 +170,42 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 							document.documentElement.style.setProperty("--deck-guide-anchor-offset", `${Math.ceil(headerHeight) + 12}px`);
 						};
 
-						guideAnchorIds.forEach((id) => {
-							const currentTarget = document.getElementById(id);
-							const heading = currentTarget?.matches("h2") ? currentTarget : currentTarget?.querySelector("h2");
-							if (!heading || heading === currentTarget) return;
+						const getGuideAnchorTarget = (id) => {
+							const section = document.getElementById(id);
+							if (!section) return null;
 
-							currentTarget.removeAttribute("id");
-							heading.id = id;
-						});
+							const heading = section.matches("h2") ? section : section.querySelector("h2");
+							const target = heading ?? section;
+							target.setAttribute("data-guide-anchor", id);
+							return target;
+						};
+
+						guideAnchorIds.forEach(getGuideAnchorTarget);
 
 						syncGuideAnchorOffset();
 						window.addEventListener("resize", syncGuideAnchorOffset);
+						const scrollToGuideAnchor = (target, behavior = "auto") => {
+							const headerHeight = guideHeader?.getBoundingClientRect().height ?? 0;
+							const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerHeight - 12);
+							window.scrollTo({ top, behavior });
+						};
 
 						document.querySelectorAll('a[href="#curve"], a[href="#matchups"]').forEach((link) => {
 							link.addEventListener("click", (event) => {
-								const target = document.getElementById(link.getAttribute("href")?.slice(1) ?? "");
+								const target = getGuideAnchorTarget(link.getAttribute("href")?.slice(1) ?? "");
 								if (!target) return;
 
 								event.preventDefault();
 								syncGuideAnchorOffset();
-								target.scrollIntoView({ behavior: "smooth", block: "start" });
+								scrollToGuideAnchor(target, "smooth");
 								history.replaceState(null, "", link.getAttribute("href"));
 							});
 						});
+
+						if (location.hash) {
+							const target = getGuideAnchorTarget(location.hash.slice(1));
+							if (target) requestAnimationFrame(() => scrollToGuideAnchor(target));
+						}
 					};
 
 					if (document.readyState === "loading") {
@@ -503,8 +516,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		border-bottom: 1px solid var(--border);
 	}
 
-	.deck-guide-page #curve,
-	.deck-guide-page #matchups {
+	.deck-guide-page [data-guide-anchor] {
 		scroll-margin-top: var(--deck-guide-anchor-offset, 12rem);
 	}
 
