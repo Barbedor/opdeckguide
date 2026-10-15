@@ -11,6 +11,7 @@ const pathname = Astro.url.pathname;
 const isHomePage = pathname === "/";
 const isArticlePage = /^\/(deck-guides|meta-analysis|beginner-guides)\/[^/]+\/?$/.test(pathname);
 const isDeckGuidePage = /^\/deck-guides\/[^/]+\/?$/.test(pathname);
+const isNicoRobinEb05Guide = pathname === "/deck-guides/nico-robin-eb05/";
 const op17FormatGuidePaths = new Set([
 	"/deck-guides/luffy-ace-st30/",
 	"/deck-guides/nico-robin-op09/",
@@ -112,7 +113,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		}
 		<script type="application/ld+json" set:html={JSON.stringify(structuredDataPayload)} />
 	</head>
-	<body class:list={{ "deck-guide-page": isDeckGuidePage, "op17-format-guide": isOp17FormatGuide }}>
+	<body class:list={{ "deck-guide-page": isDeckGuidePage, "op17-format-guide": isOp17FormatGuide, "nico-robin-eb05-guide": isNicoRobinEb05Guide }}>
 		<a class="skip-link" href="#content">Skip to content</a>
 		<header class="site-header">
 			<div class="container header-inner">
@@ -1446,6 +1447,14 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 			height: 50px !important;
 			aspect-ratio: 1.6 / 1 !important;
 			object-fit: cover !important;
+		}
+
+		.deck-guide-page.nico-robin-eb05-guide .matchup-static-card img {
+			width: 98px !important;
+			max-width: 98px !important;
+			height: auto !important;
+			aspect-ratio: 480 / 670 !important;
+			object-fit: contain !important;
 		}
 	}
 </style>

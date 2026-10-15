@@ -320,6 +320,21 @@ const leakCardDetails = {
 		traits: "CP9",
 		effectLines: [[keyword("on-play", "On Play"), " Draw 1 card and add up to 1 card with a type including \"CP\" from your hand face-up to the top or bottom of your Life cards."], [keyword("trigger", "Trigger"), " If your Leader has a type including \"CP\", draw 1 card and rest up to 1 of your opponent's Leader or Character cards."]],
 	},
+	"OP18-101": {
+		rarity: "Uncommon",
+		stats: "Yellow / Cost 4 / Strike / Power 6000",
+		traits: "CP9",
+		effectLines: [
+			[
+				keyword("on-ko", "On K.O."),
+				' Add up to 1 card with a type including "CP" from your hand to the top or bottom of your Life cards face-up.',
+			],
+			[
+				keyword("trigger", "Trigger"),
+				' If your Leader\'s type includes "CP", K.O. or rest up to 1 of your opponent\'s Characters with a cost of 6 or less.',
+			],
+		],
+	},
 	"OP18-113": {
 		rarity: "Super Rare",
 		stats: "Yellow / Cost 8 / Strike / Power 10000",
@@ -3193,7 +3208,9 @@ const description = isLeakPage
 							: `${cards.length} cards available in this extension.`}
 					</p>
 				</div>
-				<a href="/cards-list/">Back to all extensions</a>
+				<a href={extension.toUpperCase() === "EB05" ? "/deck-guides/nico-robin-eb05/" : "/cards-list/"}>
+					{extension.toUpperCase() === "EB05" ? "Nico Robin EB05 Deck Guide" : "Back to all extensions"}
+				</a>
 			</div>
 			{isLeakPage ? (
 				<div class="leak-cards-grid">

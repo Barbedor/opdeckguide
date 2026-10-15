@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Nico Robin EB05 Deck Guide",
+		leader: "Nico Robin",
+		code: "EB05",
+		formatLabel: "EB05 Format",
+		summary: "Decklist, mulligan priorities, game plan, tech cards, matchup notes, and practical tips for Nico Robin EB05.",
+		month: "October",
+		href: "/deck-guides/nico-robin-eb05/",
+		imageSrc: "/assets/guides/Nico Robin EB05.png",
+		imageAlt: "Nico Robin EB05 deck guide cover",
+		aliases: ["nico robin eb05", "eb05 robin", "nico robin deck guide"],
+		tags: ["eb05", "yellow", "wisdom", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Shanks OP17 Deck Guide OP17.5",
 		leader: "Shanks",
 		code: "OP17",
