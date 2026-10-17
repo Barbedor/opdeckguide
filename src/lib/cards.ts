@@ -1084,6 +1084,10 @@ const manualCardOverrides = {
 		"op18-093 mma (3)": { code: "OP18-093", name: "MMA", color: "Black" },
 		"op18-100 khalifa": { code: "OP18-100", name: "Khalifa", color: "Yellow" },
 		"op18-113 rob lucci": { code: "OP18-113", name: "Rob Lucci", color: "Yellow" },
+		"op18-015 eyelashes": { code: "OP18-015", name: "Eyelashes", color: "Red" },
+		"op18-036-monkey.d.luffy": { code: "OP18-036", name: "Monkey.D.Luffy", color: "Green" },
+		"op18-075 thousand sunny": { code: "OP18-075", name: "Thousand Sunny", color: "Purple" },
+		"op18-077 white hobby horse": { code: "OP18-077", name: "White Hobby Horse", color: "Purple" },
 		"op18-001 karoo": {
 			code: "OP18-001",
 			name: "Karoo",
