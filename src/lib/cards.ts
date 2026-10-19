@@ -992,6 +992,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-047 mr.1 (daz.bonez)": {
+			code: "OP18-047",
+			name: "Mr.1 (Daz.Bonez)",
+			color: "Blue",
+		},
 		"op18-101 kumadori": {
 			code: "OP18-101",
 			name: "Kumadori",
