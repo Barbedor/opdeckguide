@@ -11,6 +11,7 @@ export const staticSitePaths = [
 	"/meta-analysis/meta-evolution-banlist-october-12-2026/",
 	"/meta-analysis/ST30-Luffy-Ace-stats-OP17-5/",
 	"/meta-analysis/Purple-Kaido-op17-stats-OP17-Format/",
+	"/meta-analysis/Yellow-Enel-op05-stats-OP17.5-Format/",
 	"/meta-analysis/Purple-Enel-op15-stats-OP17-Format/",
 	"/meta-analysis/Monkey-D-Luffy-op17-stats-OP17-Format/",
 	"/meta-analysis/Nico-Robin-op09-stats-OP17-Format/",
