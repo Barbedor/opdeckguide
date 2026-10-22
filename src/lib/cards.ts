@@ -992,6 +992,7 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-013 pell": { code: "OP18-013", name: "Pell", color: "Red" },
 		"op18-108 funkfreed": { code: "OP18-108", name: "Funkfreed", color: "Yellow" },
 		"op18-092 roronoa zoro": { code: "OP18-092", name: "Roronoa Zoro", color: "Black" },
 		"op18-047 mr.1 (daz.bonez)": {
