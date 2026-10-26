@@ -992,6 +992,12 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-070 tom": { code: "OP18-070", name: "Tom", color: "Purple" },
+		"op18-088 saint sommers": { code: "OP18-088", name: "Saint Sommers", color: "Black" },
+		"op18-064 saint killingham": { code: "OP18-064", name: "Saint Killingham", color: "Purple" },
+		"op18-029 tony tony.chopper": { code: "OP18-029", name: "Tony Tony.Chopper", color: "Green" },
+		"op18-051 mr4 and miss.merrychristmas": { code: "OP18-051", name: "Mr.4 & Miss.MerryChristmas", color: "Blue" },
+		"op18-110 blueno": { code: "OP18-110", name: "Blueno", color: "Yellow" },
 		"op18-013 pell": { code: "OP18-013", name: "Pell", color: "Red" },
 		"op18-108 funkfreed": { code: "OP18-108", name: "Funkfreed", color: "Yellow" },
 		"op18-092 roronoa zoro": { code: "OP18-092", name: "Roronoa Zoro", color: "Black" },
