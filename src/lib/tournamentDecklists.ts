@@ -40,6 +40,7 @@ import { op17WestOct08DeckTemplates, op17WestOct08EntrySeeds } from "./op17WestO
 import { op17WestOct10DeckTemplates, op17WestOct10EntrySeeds } from "./op17WestOct10";
 import { op17WestOct11DeckTemplates, op17WestOct11EntrySeeds } from "./op17WestOct11";
 import { op17WestOct13Oct18DeckTemplates, op17WestOct13Oct18EntrySeeds } from "./op17WestOct13Oct18";
+import { op17WestOct18Oct24DeckTemplates, op17WestOct18Oct24EntrySeeds } from "./op17WestOct18Oct24";
 import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
@@ -1930,6 +1931,7 @@ const deckTemplates = {
 	...op17WestOct10DeckTemplates,
 	...op17WestOct11DeckTemplates,
 	...op17WestOct13Oct18DeckTemplates,
+	...op17WestOct18Oct24DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
 	...op17WestSep11DeckTemplates,
@@ -16521,6 +16523,7 @@ const entrySeeds = [
 	...op17WestOct10EntrySeeds,
 	...op17WestOct11EntrySeeds,
 	...op17WestOct13Oct18EntrySeeds,
+	...op17WestOct18Oct24EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
 	...op17WestSep11EntrySeeds,

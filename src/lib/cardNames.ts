@@ -8,6 +8,10 @@ import { buildCardIndex } from "./cards";
  * absente provoque une erreur lors de la construction du site.
  */
 const baseCardNames: Record<string, string> = {
+	"OP16-068": "Trafalgar Law",
+	"OP10-113": "Roronoa Zoro",
+	"OP10-116": "Damned Punk: Electromagnetic Cannon",
+	"OP12-117": "Slam Gibson",
 	"OP14-038": "I Never Bother to Remember the Faces of Trash",
 	"OP17-069": "Jack",
 	"P-105": "Sabo",
