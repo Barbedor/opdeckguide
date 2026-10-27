@@ -992,6 +992,8 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-18 let's go, karoo!!": { code: "OP18-018", name: "Let's Go, Karoo!!", color: "Red" },
+		"op18-103 jabra": { code: "OP18-103", name: "Jabra", color: "Yellow" },
 		"op18-070 tom": { code: "OP18-070", name: "Tom", color: "Purple" },
 		"op18-088 saint sommers": { code: "OP18-088", name: "Saint Sommers", color: "Black" },
 		"op18-064 saint killingham": { code: "OP18-064", name: "Saint Killingham", color: "Purple" },
