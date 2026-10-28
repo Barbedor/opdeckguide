@@ -992,6 +992,8 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"op18-040 diable jambe flambé shot": { code: "OP18-040", name: "Diable Jambe Flambé Shot", color: "Green" },
+		"op18-004 karoo": { code: "OP18-004", name: "Karoo", color: "Red" },
 		"op18-18 let's go, karoo!!": { code: "OP18-018", name: "Let's Go, Karoo!!", color: "Red" },
 		"op18-103 jabra": { code: "OP18-103", name: "Jabra", color: "Yellow" },
 		"op18-070 tom": { code: "OP18-070", name: "Tom", color: "Purple" },
