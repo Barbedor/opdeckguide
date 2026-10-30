@@ -7,6 +7,7 @@ import {
 	getCardsListAffiliateCard,
 } from "../../lib/affiliateCards";
 import { getExtensions, getCardsForExtension } from "../../lib/cards";
+import { getOptimizedAssetUrl } from "../../lib/assets";
 
 export const getStaticPaths = () => {
 	const extensions = getExtensions();
@@ -156,6 +157,24 @@ const eb05Card019Details = {
 	],
 };
 const leakCardDetails = {
+	"OP18-002": { rarity: "Uncommon", stats: "Red Character / Cost 1 / Power 2000 (Ranged)", traits: "Alabasta", effectLines: [[keyword("on-play", "On Play"), " You may trash 1 {Alabasta} type card from your hand: Draw 2 cards."]] },
+	"OP18-005": { rarity: "Common", stats: "Red Character / Cost 1 / Power 0 (Strike)", traits: "Animal / Alabasta", counter: "+1000", effectLines: [[keyword("your-turn", "Your Turn"), " This Character gains +1000 power for every of your [Kung Fu Jugon]."]] },
+	"OP18-006": { rarity: "Common", stats: "Red Character / Cost 3 / Power 4000 (Slash)", traits: "Alabasta", counter: "+2000", effectLines: [["If you have a [Nefertari Vivi], this Character gains ", keyword("rush", "Rush"), " and +1000 power."]] },
+	"OP18-007": { rarity: "Common", stats: "Red Character / Cost 4 / Power 5000 (Special)", traits: "Alabasta / Navy", counter: "+1000", effectLines: [["If your Leader has the {Navy} type, this Character gains ", keyword("banish", "Banish"), " and +1000 power."]] },
+	"OP18-008": { rarity: "Rare", stats: "Red Character / Cost 5 / Power 6000 (Slash)", traits: "Alabasta", counter: "+1000", effectLines: [["If your Leader has the {Alabasta} type, this Character gains ", keyword("rush", "Rush"), "."], [keyword("on-play", "On Play"), " You may trash 1 Character card with 5000 power or less from your hand: Draw 2 cards and this Character gains ", keyword("banish", "Banish"), " until the end of this turn."]] },
+	"OP18-009": { rarity: "Rare", stats: "Red Character / Cost 4 / Power 5000 (Strike)", traits: "Animal / Alabasta", effectLines: [[keyword("rush", "Rush"), " This card can attack on the turn in which it is played."], [keyword("activate-main", "Activate: Main"), " You may trash this Character: If you have 9 or more DON!! cards on your field, play up to 1 [Karoo] from your hand."]] },
+	"OP18-012": { rarity: "Common", stats: "Red Character / Cost 1 / Power 0 (Strike)", traits: "Animal / Alabasta", counter: "+2000", effectLines: [[keyword("when-attacking", "When Attacking"), " Up to 1 of your characters with both the {Animal} and {Alabasta} types gains +1000 power until the end of your turn."]] },
+	"OP18-014": { rarity: "Common", stats: "Red Character / Cost 3 / Power 5000 (Special)", traits: "Alabasta / Whitebeard Pirates", effectLines: [[keyword("when-attacking", "When Attacking"), " Up to one of your Characters with the {Alabasta} type gains ", keyword("rush", "Rush"), " during this turn."]] },
+	"OP18-019": { rarity: "Rare", stats: "Red Event", traits: "Animal / Alabasta", effectLines: [[keyword("main", "Main"), " If you don't have a character with base 7000 power or more, give up to 1 of your opponent's characters -3000 power during this turn."], [keyword("counter", "Counter"), " Your leader gains +3000 power during this battle."]] },
+	"OP18-020": { rarity: "Common", stats: "Red Event / Cost 1", traits: "Alabasta", effectLines: [[keyword("counter", "Counter"), " You may add all Life cards to your hand: If your Leader is [Nefertari Vivi], give your opponent's Leader and all of your opponent's Characters -5000 power during this turn."]] },
+	"OP18-039": { rarity: "Rare", stats: "Green Event / Cost 1", traits: "Water Seven / Straw Hat Crew", effectLines: [[keyword("counter", "Counter"), " Up to 1 of your [Monkey.D.Luffy] gains +2000 power during this battle. Then, if your Leader is active, draw 1 card."]] },
+	"OP18-038": { rarity: "Common", stats: "Green Event / Cost 1", traits: "Water Seven / Straw Hat Crew", effectLines: [[keyword("main", "Main"), " Look at 5 cards from the top of your deck; reveal up to 1 [Sogeking] or {Straw Hat Crew} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order."], [keyword("trigger", "Trigger"), " Draw 1 card."]] },
+	"OP18-037": { rarity: "Common", stats: "Green / Cost 4 / Strike / Power 2000 / Counter 1000", traits: "Animal / Water Seven", effectLines: [[keyword("blocker", "Blocker"), " (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"], [keyword("on-ko", "On K.O."), " Rest up to 1 of your opponent's cards."]] },
+	"OP18-033": { rarity: "Common", stats: "Green / Cost 2 / Wisdom / Power 0 / Counter 1000", traits: "Water Seven", effectLines: [[keyword("blocker", "Blocker"), " (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)"], [keyword("end-of-your-turn", "End of Your Turn"), " You may trash this Character: Set up to 1 of your Characters as active."]] },
+	"OP18-030": { rarity: "Common", stats: "Green / Cost 4 / Wisdom / Power 6000", traits: "Water Seven / Straw Hat Pirates", effectLines: [[keyword("opponents-turn", "Opponent's Turn"), " If this Character is rested, give it -2000 power."]] },
+	"OP18-027": { rarity: "Rare", stats: "Green / Cost 5 / Slash/Ranged / Power 6000", traits: "Water Seven / Straw Hat Crew", effectLines: [[keyword("opponents-turn", "Opponent's Turn"), " If your [Monkey D. Luffy] Leader has 3 DON!! cards attached and is active, set its base power to 7000."], [keyword("on-play", "On Play"), " Set up to 2 of your DON!! cards as active, then up to 1 of your opponent's Characters with a cost of 6 or less cannot be rested until the end of your opponent's next turn."]] },
+	"OP18-026": { rarity: "Rare", stats: "Green / Cost 2 / Strike / Power 2000 / Counter 2000", traits: "Water Seven / Straw Hat Crew", effectLines: [["If one of your {Straw Hat Crew} type Characters would be removed from the field by your opponent's effect, you may trash this Character instead."]] },
+	"OP18-023": { rarity: "Common", stats: "Green / Cost 1 / Wisdom / Power 0 / Counter 2000", traits: "East Blue", effectLines: [[keyword("on-play", "On Play"), " Up to 1 of your {East Blue} type Leaders or Characters gains ", keyword("banish", "Banish"), " until the end of your turn."]] },
 	"OP18-059": { rarity: "Rare", stats: "Blue Event / Cost 0", traits: "The Seven Warlords of the Sea / Baroque Works", effectLines: [[keyword("main", "Main"), " You may rest 1 of your DON!! cards and trash 1 {Baroque Works} type card from your hand: Draw 2 cards."], [keyword("counter", "Counter"), " You may trash 1 card from your hand: Up to 1 of your Leader or Character cards gains +3000 power during this battle."]] },
 	"OP18-058": { rarity: "Common", stats: "Blue Event / Cost 3", traits: "The Seven Warlords of the Sea / Baroque Works", effectLines: [[keyword("main", "Main"), " You may return 1 of your Characters to the owner's hand: Place up to 1 Character with a cost of 4 or less at the bottom of the owner's deck."], [keyword("trigger", "Trigger"), " Activate this card's [Main] effect."]] },
 	"OP18-057": { rarity: "Uncommon", stats: "Blue Event / Cost 1", traits: "Baroque Works", effectLines: [[keyword("main", "Main"), " You may rest 3 of your DON!! cards: Return up to 1 Character with a cost of 5 or less to its owner's hand."], [keyword("counter", "Counter"), " Your Leader gains +3000 power during this battle."]] },
@@ -3424,7 +3443,7 @@ const description = isLeakPage
 												) : (
 													<img
 														class="keyword-badge"
-														src={`${keywordAssetBase}/${part.icon}.png`}
+									 src={getOptimizedAssetUrl(`${keywordAssetBase}/${part.icon}.png`)}
 														alt={part.alt}
 													/>
 												)
