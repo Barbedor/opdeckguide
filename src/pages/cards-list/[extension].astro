@@ -2989,6 +2989,21 @@ const leakCardDetails = {
 			],
 		],
 	},
+	"OP18-118": {
+		rarity: "Secret Rare",
+		stats: "Green / Cost 9 / Strike / Power 10000",
+		traits: "Water Seven / Straw Hat Crew",
+		effectLines: [
+			[
+				keyword("on-play", "On Play"),
+				" Set up to 3 of your DON!! cards as active. Then, up to 1 of your opponent's Characters cannot be rested until the end of your opponent's next End Phase.",
+			],
+			[
+				keyword("end-of-your-turn", "End of Your Turn"),
+				" Set up to 1 of your {Water Seven} type cards as active.",
+			],
+		],
+	},
 	"OP18-119": {
 		rarity: "Secret Rare",
 		stats: "Yellow / Cost 8 / Slash / Power 9000",
@@ -3387,7 +3402,7 @@ const description = isLeakPage
 				<div class="leak-cards-grid">
 					{leakCards.map((card) => {
 						return (
-						<article class="leak-card">
+						<article class="leak-card" id={getLeakDisplaySortCode(card)}>
 							<div class="card-thumb-shell leak-card-thumb-shell">
 								<button
 									class="card-thumb leak-card-thumb"
@@ -3620,6 +3635,13 @@ const description = isLeakPage
 			closeModal();
 		}
 	});
+
+	const centerNicoRobinCard = () => {
+		if (!isLeakPage || window.location.hash !== "#EB05-033") return;
+		document.getElementById("EB05-033")?.scrollIntoView({ block: "center", behavior: "instant" });
+	};
+	requestAnimationFrame(centerNicoRobinCard);
+	window.addEventListener("load", centerNicoRobinCard, { once: true });
 
 	const appendBatch = () => {
 		if (!grid || remaining.length === 0) return;
