@@ -2092,15 +2092,22 @@ export const getClassicCardImage = (code) => {
 		const filename = `${code}.${extension}`;
 		if (fs.existsSync(path.join(folder, filename))) return `/Cards/${publicFolder}/${filename}`;
 	}
-	return null;
+	// Some extensions store images with both the card number and card name in
+	// the filename (for example, "EB05-043 Perona.jpg"). Resolve those through
+	// the card index instead of returning a plausible but nonexistent code-only URL.
+	return getCardsForExtension(set).find((card) => card.code === code && !card.edition)?.fullUrl ?? null;
 };
 
 export const getClassicCardThumbnail = (code) => {
 	const set = code.split("-")[0];
 	const folder = set === "OP17" ? path.join(cardsRoot, "OP17", "New OP17") : path.join(cardsRoot, set);
 	const publicFolder = set === "OP17" ? "OP17/New%20OP17" : set;
-	const filename = `${code}_small.webp`;
-	return fs.existsSync(path.join(folder, filename)) ? `/Cards/${publicFolder}/${filename}` : null;
+	for (const extension of ["webp", "jpg", "png", "jpeg"]) {
+		const filename = `${code}_small.${extension}`;
+		if (fs.existsSync(path.join(folder, filename))) return `/Cards/${publicFolder}/${filename}`;
+	}
+	// Fall back to the matching catalog thumbnail when filenames include a card name.
+	return getCardsForExtension(set).find((card) => card.code === code && !card.edition)?.smallUrl ?? null;
 };
 
 export const hasMetadata = () => {

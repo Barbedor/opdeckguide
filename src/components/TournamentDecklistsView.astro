@@ -1,7 +1,7 @@
 ---
 import { tournamentFormats, getTournamentLeaderStats } from "../lib/tournamentDecklists";
 
-const { currentFormat, entries, heroTitle, heroIntro, showSeoContent = false } = Astro.props;
+const { currentFormat, entries, heroTitle, heroIntro, showSeoContent = false, seoEventDefinitions = [] } = Astro.props;
 
 const formatConfig = tournamentFormats.find((format) => format.slug === currentFormat);
 const formatLabel = formatConfig?.title ?? "Tournament Decklists";
@@ -23,6 +23,7 @@ const eventTypeMeta = {
 	"Extra Grand Battle": { short: "EGB", color: "#a47aff", soft: "rgba(164, 122, 255, 0.22)" },
 	StoreCS: { short: "SCS", color: "#e0c66f", soft: "rgba(201, 206, 216, 0.20)", storeCs: true },
 	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
+	"Heroine Battle": { short: "HB", color: "#f178bd", soft: "rgba(241, 120, 189, 0.2)" },
 	"Pirate Party": { short: "PP", color: "#C49A3A", soft: "rgba(92, 58, 33, 0.48)", pirate: true },
 	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)", championship: true },
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
@@ -83,7 +84,8 @@ const allLeaderStats = leaderStats.map((item) => {
 const topLeaderStats = allLeaderStats.slice(0, 10);
 const extraLeaderStats = allLeaderStats.slice(10);
 const hasExtraLeaders = extraLeaderStats.length > 0;
-const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
+const getFormatHref = (slug) =>
+	slug === "eb05-op18-west" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`;
 ---
 
 <section class="hero tournament-hero">
@@ -312,6 +314,23 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 	showSeoContent && (
 		<section class="tournament-seo">
 			<div class="container">
+				{seoEventDefinitions.length > 0 && (
+					<div class="seo-event-definitions">
+						<h2>What do these tournament types mean?</h2>
+						<p>These descriptions use Bandai and event-organizer information. When a local event listing does not state its rules, check with the host rather than infer them from the label.</p>
+						<div class="tournament-seo-grid">
+							{seoEventDefinitions.map((definition) => (
+								<article class="seo-card">
+									<h3>{definition.name}</h3>
+									<p>{definition.description}</p>
+									{definition.sources?.map((source) => (
+										<a href={source.href} target="_blank" rel="noreferrer">{source.label}</a>
+									))}
+								</article>
+							))}
+						</div>
+					</div>
+				)}
 				<div class="tournament-seo-header">
 					<h2>{formatLabel} FAQ</h2>
 					<p>Quick answers about the {regionName.toLowerCase()} tournament results tracked on this page and how to use them.</p>
@@ -356,9 +375,9 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 					<article class="seo-card">
 						<h2>Which tournament types are tracked?</h2>
 						<p>
-							This section currently tracks Shop Events, Standard Battles, Flagship Battles, Treasure
-							Cups, and Championships. Each tournament type gives a different signal, from local
-							consistency to stronger large-event performance.
+							Current event labels include {eventOptions.map((option) => option.name).join(", ")}. Use the
+							filters above to compare results by event label; the event host's rules determine the exact
+							format where the listing does not provide further details.
 						</p>
 					</article>
 				</div>
@@ -629,18 +648,18 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 	}
 
 	.format-tabs {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: 0.45rem;
 		margin-top: 1rem;
-		flex-wrap: nowrap;
 	}
 
 	.format-tab {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-width: 72px;
-		padding: 0.58rem 0.72rem;
+		min-width: 0;
+		padding: 0.58rem 0.45rem;
 		border-radius: 999px;
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		background: rgba(17, 21, 34, 0.95);
@@ -648,6 +667,23 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		font-weight: 700;
 		font-size: 0.9rem;
 		white-space: nowrap;
+	}
+
+	@media (max-width: 640px) {
+		.format-tabs {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 0.3rem;
+		}
+
+		.format-tab {
+			min-height: 44px;
+			padding: 0.45rem 0.18rem;
+			font-size: 0.68rem;
+			white-space: normal;
+			overflow-wrap: anywhere;
+			line-height: 1.2;
+			text-align: center;
+		}
 	}
 
 	.format-tab.active {
@@ -1130,10 +1166,36 @@ const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/
 		font-size: 1.02rem;
 	}
 
+	.seo-card h3 {
+		margin: 0 0 0.45rem;
+		font-size: 1rem;
+	}
+
 	.seo-card p {
 		margin: 0;
 		color: var(--text-200);
 		line-height: 1.68;
+	}
+
+	.seo-event-definitions {
+		margin-top: 1.4rem;
+	}
+
+	.seo-event-definitions > h2 {
+		margin-bottom: 0.4rem;
+	}
+
+	.seo-event-definitions > p {
+		margin: 0 0 1rem;
+		color: var(--text-200);
+		line-height: 1.65;
+	}
+
+	.seo-card a {
+		display: inline-block;
+		margin-top: 0.7rem;
+		color: var(--accent-300);
+		font-weight: 700;
 	}
 
 	.row-date {

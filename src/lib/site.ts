@@ -1,6 +1,6 @@
 import { getExtensions } from "./cards";
 import { beginnerGuides, visibleDeckGuides } from "./guides";
-import { tournamentFormats } from "./tournamentDecklists";
+import { tournamentDecklistEntries, tournamentFormats } from "./tournamentDecklists";
 
 export const siteUrl = "https://opdeckguide.com";
 
@@ -60,10 +60,18 @@ export const cardsListPaths = getExtensions().map((extension) => `/cards-list/${
 export const tournamentDecklistPaths = [
 	"/tournaments-decklists/",
 	...tournamentFormats
-		.filter((format) => format.slug !== "op17-east")
+		.filter((format) => format.slug !== "eb05-op18-west")
 		.map((format) => `/tournaments-decklists/${format.slug}/`),
 ];
 
-export const sitemapPaths = [...staticSitePaths, ...guidePaths, ...cardsListPaths, ...tournamentDecklistPaths];
+export const sitemapPaths = [
+	...new Set([
+		...staticSitePaths,
+		...guidePaths,
+		...cardsListPaths,
+		...tournamentDecklistPaths,
+		...tournamentDecklistEntries.map((entry) => entry.href),
+	]),
+];
 
 export const toAbsoluteUrl = (pathname: string) => new URL(pathname, siteUrl).toString();

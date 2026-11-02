@@ -42,19 +42,30 @@ import { op17WestOct11DeckTemplates, op17WestOct11EntrySeeds } from "./op17WestO
 import { op17WestOct13Oct18DeckTemplates, op17WestOct13Oct18EntrySeeds } from "./op17WestOct13Oct18";
 import { op17WestOct18Oct24DeckTemplates, op17WestOct18Oct24EntrySeeds } from "./op17WestOct18Oct24";
 import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
+import { eb05EastNov01DeckTemplates, eb05EastNov01EntrySeeds } from "./eb05EastNov01";
+import { eb05WestOct30Oct31DeckTemplates, eb05WestOct30Oct31EntrySeeds } from "./eb05WestOct30Oct31";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
 export const tournamentDecklistSampleMode = true;
 
 export const tournamentFormats = [
 	{
-		slug: "op17-east",
-		label: "East OP17",
-		title: "East OP17 Tournament Decklists",
-		description: "Winning decklists, leader share, and event results for the Eastern OP17 format.",
-		entryFormat: "op17",
+		slug: "eb05-op18-west",
+		label: "West EB05 + OP18",
+		title: "West EB05 + OP18 Tournament Decklists",
+		description: "Western tournament decklists for the EB05 + OP18 format.",
+		entryFormat: "eb05-op18",
+		region: "west",
+		status: "New format",
+	},
+	{
+		slug: "eb05-op18-east",
+		label: "East EB05 + OP18",
+		title: "East EB05 + OP18 Tournament Decklists",
+		description: "Eastern tournament decklists for the EB05 + OP18 format.",
+		entryFormat: "eb05-op18",
 		region: "east",
-		status: "Current format",
+		status: "New format",
 	},
 	{
 		slug: "op17-west",
@@ -66,24 +77,38 @@ export const tournamentFormats = [
 		status: "Current format",
 	},
 	{
+		slug: "op17-east",
+		label: "East OP17",
+		title: "East OP17 Tournament Decklists",
+		description: "Winning decklists, leader share, and event results for the Eastern OP17 format.",
+		entryFormat: "op17",
+		region: "east",
+		status: "Current format",
+	},
+];
+
+// OP16 remains available as an archive, but is no longer part of the current-format selector.
+export const archivedTournamentFormats = [
+	{
 		slug: "op16-east",
 		label: "East OP16",
 		title: "East OP16 Tournament Decklists",
-		description: "Winning decklists, leader share, and event results for the Eastern OP16 format.",
+		description: "Archived winning decklists and event results for the Eastern OP16 format.",
 		entryFormat: "op16",
 		region: "east",
-		status: "Current format",
+		status: "Archive",
 	},
 	{
 		slug: "op16-west",
 		label: "West OP16",
 		title: "West OP16 Tournament Decklists",
-		description: "Winning decklists, leader share, and event results for the Western OP16 format.",
+		description: "Archived winning decklists and event results for the Western OP16 format.",
 		entryFormat: "op16",
 		region: "west",
-		status: "Current format",
+		status: "Archive",
 	},
 ];
+export const allTournamentFormats = [...tournamentFormats, ...archivedTournamentFormats];
 
 const leaderIndex = {
 	"king-op08": {
@@ -146,7 +171,7 @@ const leaderIndex = {
 		code: "OP09-061",
 		format: "op16",
 		color: "Purple / Black",
-		imageSrc: "/assets/guides/Luffy-op09.png",
+		imageSrc: "/assets/guides/Luffy-op09.webp",
 		href: "/deck-guides/",
 	},
 	"rp-luffy-st10": {
@@ -164,7 +189,7 @@ const leaderIndex = {
 		code: "OP13-001",
 		format: "op16",
 		color: "Red / Green",
-		imageSrc: "/assets/guides/monkey-d-luffy-op13.png",
+		imageSrc: "/assets/guides/monkey-d-luffy-op13.webp",
 		href: "/deck-guides/monkey-d-luffy-op15/",
 	},
 	"ace-op16": {
@@ -191,7 +216,7 @@ const leaderIndex = {
 		code: "OP14-080",
 		format: "op17",
 		color: "Black",
-		imageSrc: "/assets/guides/Gecko Moria OP14-080.png",
+		imageSrc: "/assets/guides/Gecko Moria OP14-080.webp",
 		href: "/deck-guides/",
 	},
 	"koala-op12": {
@@ -292,6 +317,15 @@ const leaderIndex = {
 		color: "Blue",
 		imageSrc: "/assets/guides/Buggy op16.png",
 		href: "/deck-guides/buggy-op16/",
+	},
+	"buggy-op09": {
+		slug: "buggy-op09",
+		name: "Buggy",
+		code: "OP09-042",
+		format: "eb05-op18",
+		color: "Blue",
+		imageSrc: "/assets/guides/BuggY OP09.webp",
+		href: "/deck-guides/",
 	},
 	"lim-op09": {
 		slug: "lim-op09",
@@ -434,7 +468,7 @@ const leaderIndex = {
 		code: "OP14-041",
 		format: "op16",
 		color: "Blue / Yellow",
-		imageSrc: "/assets/guides/boa-hancock-op14.png",
+		imageSrc: "/assets/guides/boa-hancock-op14.webp",
 		href: "/deck-guides/boa-hancock-op14/",
 	},
 	"jinbe-sample-op16": {
@@ -526,6 +560,24 @@ const leaderIndex = {
 		color: "Yellow / Black",
 		imageSrc: "/assets/guides/Nico-Robin-op09.png",
 		href: "/deck-guides/nico-robin-op09/",
+	},
+	"nico-robin-eb05": {
+		slug: "nico-robin-eb05",
+		name: "Nico Robin",
+		code: "EB05-010",
+		format: "eb05-op18",
+		color: "Green / Yellow",
+		imageSrc: "/assets/guides/Nico Robin EB05.webp",
+		href: "/deck-guides/",
+	},
+	"perona-op06": {
+		slug: "perona-op06",
+		name: "Perona",
+		code: "OP06-021",
+		format: "eb05-op18",
+		color: "Green",
+		imageSrc: "/assets/guides/Perona OP06.webp",
+		href: "/deck-guides/",
 	},
 	"edward-newgate-op02": {
 		slug: "edward-newgate-op02",
@@ -623,7 +675,7 @@ const leaderIndex = {
 		code: "OP05-098",
 		format: "op15",
 		color: "Yellow",
-		imageSrc: "/assets/guides/New op05 enel.png",
+		imageSrc: "/assets/guides/New op05 enel.webp",
 		href: "/deck-guides/enel-op15/",
 	},
 	"purple-enel-op16": {
@@ -641,7 +693,7 @@ const leaderIndex = {
 		code: "OP15-058",
 		format: "op17",
 		color: "Purple",
-		imageSrc: "/assets/guides/enel-op15.png",
+		imageSrc: "/assets/guides/enel-op15.webp",
 		href: "/deck-guides/enel-op15/",
 	},
 	"luffy-op15": {
@@ -731,7 +783,7 @@ const leaderIndex = {
 		code: "OP17-058",
 		format: "op17",
 		color: "Purple",
-		imageSrc: "/assets/guides/Kaido op17.png",
+		imageSrc: "/assets/guides/Kaido op17.webp",
 		href: "/deck-guides/kaido-op17/",
 	},
 	"monkey-d-luffy-op17": {
@@ -758,7 +810,7 @@ const leaderIndex = {
 		code: "OP08-058",
 		format: "op17",
 		color: "Purple / Yellow",
-		imageSrc: "/assets/guides/Pudding op08.png",
+		imageSrc: "/assets/guides/Pudding op08.webp",
 		href: "/deck-guides/",
 	},
 };
@@ -1932,6 +1984,8 @@ const deckTemplates = {
 	...op17WestOct11DeckTemplates,
 	...op17WestOct13Oct18DeckTemplates,
 	...op17WestOct18Oct24DeckTemplates,
+	...eb05EastNov01DeckTemplates,
+	...eb05WestOct30Oct31DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
 	...op17WestSep11DeckTemplates,
@@ -16524,6 +16578,8 @@ const entrySeeds = [
 	...op17WestOct11EntrySeeds,
 	...op17WestOct13Oct18EntrySeeds,
 	...op17WestOct18Oct24EntrySeeds,
+	...eb05EastNov01EntrySeeds,
+	...eb05WestOct30Oct31EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
 	...op17WestSep11EntrySeeds,
@@ -29765,7 +29821,7 @@ const buildDecklistSummary = (entry, leader) => {
 	return `${parts.join(" ")}.`;
 };
 
-const publishedTournamentFormats = new Set(tournamentFormats.map((format) => format.entryFormat));
+const publishedTournamentFormats = new Set(allTournamentFormats.map((format) => format.entryFormat));
 
 export const tournamentDecklistEntries = entrySeeds
 	// A decklist cannot render a detail page without a registered leader. Filter
@@ -29780,7 +29836,7 @@ export const tournamentDecklistEntries = entrySeeds
 	.flatMap((entry, entryIndex) => {
 		const leader = leaderIndex[entry.leaderSlug];
 		const cards = cloneDeck(deckTemplates[entry.deckTemplate ?? entry.leaderSlug] ?? deckTemplates["yamato-op16"]);
-		const matchingViews = tournamentFormats.filter(
+		const matchingViews = allTournamentFormats.filter(
 			(format) =>
 				format.entryFormat === entry.format &&
 				format.region === entry.region,

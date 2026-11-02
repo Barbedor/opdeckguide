@@ -1,17 +1,25 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import TournamentDecklistsView from "../../components/TournamentDecklistsView.astro";
-import {
-	getTournamentEntriesByFormat,
-	tournamentFormats,
-} from "../../lib/tournamentDecklists";
+import { getTournamentEntriesByFormat, tournamentFormats } from "../../lib/tournamentDecklists";
 
-const defaultFormat = "op17-east";
+const defaultFormat = "eb05-op18-west";
 const formatConfig = tournamentFormats.find((format) => format.slug === defaultFormat);
-
-const title = "OP17 Tournament Decklists & Winners";
+const title = "One Piece TCG EB05 + OP18 West Decklists | Tournament Meta";
 const description =
-	"Browse winning One Piece TCG tournament decklists for OP17 across East and West formats. Track top leaders, recent results, and the latest competitive builds.";
+	"Browse West One Piece TCG tournament decklists for EB05 + OP18. Follow winning leaders, recent event results, and competitive builds as the new format develops.";
+const seoEventDefinitions = [
+	{
+		name: "Shop Event",
+		description: "A store-hosted tournament. The event label alone does not define its format, rounds, or prizes; Bandai advises players to confirm event details with the host shop.",
+		sources: [{ label: "Bandai event information", href: "https://www.carddass.com/onepiece-tcg_asia-en/events/officialevents/standardbattle/" }],
+	},
+	{
+		name: "Standard Battle",
+		description: "A Bandai organized local store event for the One Piece Card Game. The host shop provides the event listing; check with that shop for its schedule and current details.",
+		sources: [{ label: "Bandai Standard Battle shop list", href: "https://www.carddass.com/onepiece-tcg_asia-en/events/officialevents/standardbattle/" }],
+	},
+];
 ---
 
 <MainLayout title={title} description={description}>
@@ -19,8 +27,9 @@ const description =
 		currentFormat={defaultFormat}
 		entries={getTournamentEntriesByFormat(defaultFormat)}
 		formatConfig={formatConfig}
-		heroTitle="One Piece TCG OP17 Tournament Decklists"
-		heroIntro="Track winning One Piece TCG tournament decklists for the OP17 format across East and West. Browse recent results, top-performing leaders, and the competitive builds shaping the current meta."
+		heroTitle="One Piece TCG EB05 + OP18 West Tournament Decklists"
+		heroIntro="Track Western tournament decklists for the EB05 + OP18 format. Browse event results, leading decks, and the competitive meta as new lists are added."
 		showSeoContent={true}
+		seoEventDefinitions={seoEventDefinitions}
 	/>
 </MainLayout>

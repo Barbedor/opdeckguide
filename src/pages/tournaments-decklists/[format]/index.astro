@@ -3,12 +3,12 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import TournamentDecklistsView from "../../../components/TournamentDecklistsView.astro";
 import {
 	getTournamentEntriesByFormat,
-	tournamentFormats,
+	allTournamentFormats,
 } from "../../../lib/tournamentDecklists";
 
 export const getStaticPaths = () =>
-	tournamentFormats
-		.filter((format) => format.slug !== "op17-east")
+	allTournamentFormats
+		.filter((format) => format.slug !== "eb05-op18-west")
 		.map((format) => ({
 		params: { format: format.slug },
 		props: { format },
@@ -21,16 +21,51 @@ const regionLabel = format.region === "west" ? "West" : "East";
 const regionName = format.region === "west" ? "Western" : "Eastern";
 const title = isOp17Format
 	? `One Piece TCG OP17 ${regionLabel} Tournament Decklists | Winners & Meta`
-	: `One Piece TCG ${regionLabel} Tournament Decklists | Winners & Meta`;
+	: format.entryFormat === "eb05-op18"
+		? `One Piece TCG EB05 + OP18 ${regionLabel} Decklists | Tournament Results`
+		: `One Piece TCG ${regionLabel} Tournament Decklists | Winners & Meta`;
 const description = isOp17Format
 	? `Browse winning One Piece TCG OP17 ${regionName} tournament decklists. Track ${regionLabel} leader share, recent results, and competitive builds from the current ${regionName.toLowerCase()} meta.`
-	: `Browse winning One Piece TCG ${regionName} tournament decklists. Track ${regionLabel} leader share, recent results, and competitive builds.`;
+	: format.entryFormat === "eb05-op18"
+		? `Browse ${regionName} One Piece TCG EB05 + OP18 tournament decklists, winning leaders, and competitive results as the new format develops.`
+		: `Browse winning One Piece TCG ${regionName} tournament decklists. Track ${regionLabel} leader share, recent results, and competitive builds.`;
 const heroTitle = isOp17Format
 	? `One Piece TCG OP17 ${regionLabel} Tournament Decklists`
-	: `One Piece TCG ${regionLabel} Tournament Decklists`;
+	: format.entryFormat === "eb05-op18"
+		? `One Piece TCG EB05 + OP18 ${regionLabel} Tournament Decklists`
+		: `One Piece TCG ${regionLabel} Tournament Decklists`;
 const heroIntro = isOp17Format
 	? `Track winning OP17 decklists from the ${regionName} tournament scene. Browse recent ${regionLabel} results, leading decks, and the builds shaping the current regional meta.`
-	: `Track winning decklists from the ${regionName} tournament scene. Browse recent ${regionLabel} results, leading decks, and the builds shaping the current regional meta.`;
+	: format.entryFormat === "eb05-op18"
+		? `Explore ${regionLabel} tournament decklists for EB05 + OP18. Browse recent event results, leading decks, and competitive builds.`
+		: `Track winning decklists from the ${regionName} tournament scene. Browse recent ${regionLabel} results, leading decks, and the builds shaping the current regional meta.`;
+const seoEventDefinitions = format.slug === "eb05-op18-east" ? [
+	{
+		name: "Shop Event",
+		description: "A store-hosted tournament label. Bandai's event listings tell players to confirm event details with the host shop and note that event formats can be modified by the host; the label alone does not specify the structure.",
+		sources: [{ label: "Bandai Standard Battle shop list", href: "https://www.carddass.com/onepiece-tcg_asia-en/events/officialevents/standardbattle/" }],
+	},
+	{
+		name: "Standard Battle",
+		description: "Bandai lists Standard Battle as an official store event and provides a shop list. Check the individual listing or host for its schedule and event-specific details.",
+		sources: [{ label: "Bandai Standard Battle", href: "https://www.carddass.com/onepiece-tcg_asia-en/events/officialevents/standardbattle/" }],
+	},
+	{
+		name: "3v3",
+		description: "A team event with three players per team. Bandai describes its 3on3 events as three-person team battles; deck restrictions and match procedures are specific to each event.",
+		sources: [{ label: "Bandai 3on3 event announcement", href: "https://one-piece.com/news/80761/index.html" }],
+	},
+	{
+		name: "Heroine Battle",
+		description: "This badge is used here for source listings labeled HeroinesCup. Bandai's Heroines CUP -3on3- announcement describes a three-player team event with specified eligible Leaders. The local listings here do not, by their label alone, confirm that they use those same event rules.",
+		sources: [{ label: "Bandai Heroines CUP announcement", href: "https://one-piece.com/news/82552/index.html" }],
+	},
+	{
+		name: "BattleRoyal",
+		description: "This is the event name shown in the result listing. The listing does not specify its tournament structure, so check with the host rather than infer rules from the name.",
+		sources: [{ label: "Bandai Tournament Rules Manual", href: "https://en.onepiece-cardgame.com/pdf/tournament_rules_manual.pdf?20251017=" }],
+	},
+] : [];
 ---
 
 <MainLayout title={title} description={description}>
@@ -41,5 +76,6 @@ const heroIntro = isOp17Format
 		heroTitle={heroTitle}
 		heroIntro={heroIntro}
 		showSeoContent={true}
+		seoEventDefinitions={seoEventDefinitions}
 	/>
 </MainLayout>

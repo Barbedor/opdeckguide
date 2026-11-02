@@ -50,7 +50,8 @@ const deckGuideHref = isOp17LuffyAce
 		? "/deck-guides/boa-hancock-op14-format-op17/"
 		: entry.leader.href;
 const showDeckGuideButton = !isNami && !isCrocodileOp14 && !isMonkeyDLuffySt29 && !isEnelOp05 && !isOp17Sengoku && !leaderSlugsWithoutMatchingGuide.has(entry.leader.slug) && !entry.hideDeckGuide && (isOp17LuffyAce || isOp17BoaHancock || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
-const getFormatHref = (slug) => (slug === "op17-east" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`);
+const getFormatHref = (slug) =>
+	slug === "eb05-op18-west" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`;
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
