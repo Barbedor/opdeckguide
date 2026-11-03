@@ -469,7 +469,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Blue / Yellow",
 		imageSrc: "/assets/guides/boa-hancock-op14.webp",
-		href: "/deck-guides/boa-hancock-op14/",
+		href: "/deck-guides/boa-hancock-op14-format-op17/",
 	},
 	"jinbe-sample-op16": {
 		slug: "jinbe-sample-op16",
@@ -568,7 +568,7 @@ const leaderIndex = {
 		format: "eb05-op18",
 		color: "Green / Yellow",
 		imageSrc: "/assets/guides/Nico Robin EB05.webp",
-		href: "/deck-guides/",
+		href: "/deck-guides/nico-robin-eb05/",
 	},
 	"perona-op06": {
 		slug: "perona-op06",
@@ -649,7 +649,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Red",
 		imageSrc: "/assets/guides/trafalgar-law-op14.png",
-		href: "/deck-guides/trafalgar-law-op14/",
+		href: "/deck-guides/trafalgar-law-op14-eb05/",
 	},
 	"rayleigh-sample-op16": {
 		slug: "rayleigh-sample-op16",

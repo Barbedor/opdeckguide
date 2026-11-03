@@ -19,12 +19,30 @@ const forcedFormatCode =
 			? "OP16"
 			: null;
 const displayTitle = entry.title.replace(
-	/\s+(OP\d+|EB\d+|ST\d+)\s+/,
-	(_, code) => ` (Format ${forcedFormatCode ?? code}) `,
+	/\s+(OP\d+|EB\d+|ST\d+)(\s*\+\s*OP\d+)?\s+/,
+	(_, code, pairedFormat = "") => ` (Format ${forcedFormatCode ?? `${code}${pairedFormat.replace(/\s+/g, " ")}`}) `,
 );
 const title = `${displayTitle} - ${entry.eventName}`;
 const description = `${displayTitle} tournament decklist page with event metadata and full card grid.`;
 const leaderFormat = entry.leader.code.split("-")[0];
+const locationNames: Record<string, string> = {
+	BR: "Brazil",
+	CN: "China",
+	HK: "Hong Kong",
+	ID: "Indonesia",
+	JP: "Japan",
+	MX: "Mexico",
+	MY: "Malaysia",
+	NA: "North America",
+	PH: "Philippines",
+	SG: "Singapore",
+	TH: "Thailand",
+	TW: "Taiwan",
+	UK: "United Kingdom",
+	US: "United States",
+	USA: "United States",
+};
+const displayLocation = locationNames[entry.location] ?? entry.location;
 const isOp17LuffyAce = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "ST30-001";
 const isOp17BoaHancock = (entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west") && entry.leader.code === "OP14-041";
 const isNami = entry.leader.code === "OP11-041";
@@ -87,8 +105,8 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 				</div>
 				<div class="detail-links">
 					<a class="btn btn-secondary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
-					{showDeckGuideButton && <a class="btn btn-secondary" href={deckGuideHref}>Read the deck guide</a>}
-					<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+					{showDeckGuideButton && <a class="btn btn-primary" href={deckGuideHref}>Read the deck guide</a>}
+					<button class="btn btn-secondary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
 						Copy for Sim
 					</button>
 				</div>
@@ -120,7 +138,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 			</div>
 			<div class="detail-meta-card">
 				<span class="meta-label">Location</span>
-				<strong>{entry.location}</strong>
+				<strong>{displayLocation}</strong>
 			</div>
 			{
 				entry.author && (
