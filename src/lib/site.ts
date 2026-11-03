@@ -60,7 +60,7 @@ export const cardsListPaths = getExtensions().map((extension) => `/cards-list/${
 export const tournamentDecklistPaths = [
 	"/tournaments-decklists/",
 	...tournamentFormats
-		.filter((format) => format.slug !== "eb05-op18-west")
+		.filter((format) => format.slug === "eb05-op18-east")
 		.map((format) => `/tournaments-decklists/${format.slug}/`),
 ];
 
@@ -70,7 +70,9 @@ export const sitemapPaths = [
 		...guidePaths,
 		...cardsListPaths,
 		...tournamentDecklistPaths,
-		...tournamentDecklistEntries.map((entry) => entry.href),
+		...tournamentDecklistEntries
+			.filter((entry) => entry.viewSlug.startsWith("eb05-op18-"))
+			.map((entry) => entry.href),
 	]),
 ];
 
