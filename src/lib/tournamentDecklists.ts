@@ -43,6 +43,7 @@ import { op17WestOct13Oct18DeckTemplates, op17WestOct13Oct18EntrySeeds } from ".
 import { op17WestOct18Oct24DeckTemplates, op17WestOct18Oct24EntrySeeds } from "./op17WestOct18Oct24";
 import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
 import { eb05EastNov01DeckTemplates, eb05EastNov01EntrySeeds } from "./eb05EastNov01";
+import { eb05EastNov02Nov03DeckTemplates, eb05EastNov02Nov03EntrySeeds } from "./eb05EastNov02Nov03";
 import { eb05WestOct30Oct31DeckTemplates, eb05WestOct30Oct31EntrySeeds } from "./eb05WestOct30Oct31";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
@@ -181,7 +182,7 @@ const leaderIndex = {
 		format: "op16",
 		color: "Red / Purple",
 		imageSrc: "/assets/guides/Luffy ST10-002.png",
-		href: "/deck-guides/",
+		href: "/deck-guides/monkey-d-luffy-st10-eb05/",
 	},
 	"luffy-op13": {
 		slug: "luffy-op13",
@@ -325,7 +326,7 @@ const leaderIndex = {
 		format: "eb05-op18",
 		color: "Blue",
 		imageSrc: "/assets/guides/BuggY OP09.webp",
-		href: "/deck-guides/",
+		href: "/deck-guides/buggy-op09-eb05/",
 	},
 	"lim-op09": {
 		slug: "lim-op09",
@@ -1985,6 +1986,7 @@ const deckTemplates = {
 	...op17WestOct13Oct18DeckTemplates,
 	...op17WestOct18Oct24DeckTemplates,
 	...eb05EastNov01DeckTemplates,
+	...eb05EastNov02Nov03DeckTemplates,
 	...eb05WestOct30Oct31DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
@@ -16579,6 +16581,7 @@ const entrySeeds = [
 	...op17WestOct13Oct18EntrySeeds,
 	...op17WestOct18Oct24EntrySeeds,
 	...eb05EastNov01EntrySeeds,
+	...eb05EastNov02Nov03EntrySeeds,
 	...eb05WestOct30Oct31EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
