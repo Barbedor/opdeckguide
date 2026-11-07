@@ -992,6 +992,11 @@ const manualCardOverrides = {
 		},
 	},
 	OP18: {
+		"sp charlotte linlin st34-004": { code: "ST34-004", name: "Charlotte Linlin", color: "Purple" },
+		"sp op17-040 edward.newgate": { code: "OP17-040", name: "Edward.Newgate", color: "Blue" },
+		"sp bepo and law st24-004": { code: "ST24-004", name: "Law & Bepo", color: "Green" },
+		"sp nefertari vivi op13-012": { code: "OP13-012", name: "Nefertari Vivi", color: "Red" },
+		"sp lilith op13-113": { code: "OP13-113", name: "Lilith", color: "Yellow" },
 		"op18-002 igaram": { code: "OP18-002", name: "Igaram", color: "Red" },
 		"op18-005 kung fu jugon": { code: "OP18-005", name: "Kung Fu Jugon", color: "Red" },
 		"op18-006 koza": { code: "OP18-006", name: "Koza", color: "Red" },
@@ -1001,7 +1006,6 @@ const manualCardOverrides = {
 		"op18-012 pincers": { code: "OP18-012", name: "Pincers", color: "Red" },
 		"op18-014 portgas d. ace": { code: "OP18-014", name: "Portgas D. Ace", color: "Red" },
 		"op18-019 quaaaack": { code: "OP18-019", name: "Quaaaack", color: "Red" },
-		"op18-020 stop fighting!": { code: "OP18-020", name: "Stop Fighting!", color: "Red" },
 		"op18-039 gum-gum giant axe": { code: "OP18-039", name: "Gum-Gum Giant Axe", color: "Green" },
 		"op18-038 shoot down that flag": { code: "OP18-038", name: "Shoot Down That Flag", color: "Green" },
 		"op18-037 yokozuna": { code: "OP18-037", name: "Yokozuna", color: "Green" },
@@ -1091,6 +1095,7 @@ const manualCardOverrides = {
 			name: "Nico Robin",
 			color: "Green",
 		},
+		"alt op18-031 nico robin": { code: "OP18-031", name: "Nico Robin", color: "Green" },
 		"op18-065 saint gunko": {
 			code: "OP18-065",
 			name: "Saint Gunko",
@@ -1183,6 +1188,10 @@ const manualCardOverrides = {
 			name: "Spandam",
 			color: "Yellow",
 		},
+		"alt op18-001 karoo": { code: "OP18-001", name: "Karoo", color: "Red / Blue" },
+		"alt op18-041 ms. all sunday": { code: "OP18-041", name: "Ms. All Sunday", color: "Blue" },
+		"alt op18-022 monkey.d.luffy": { code: "OP18-022", name: "Monkey.D.Luffy", color: "Green" },
+		"alt op18-079 spandam": { code: "OP18-079", name: "Spandam", color: "Yellow" },
 		"op18-089 dorry": {
 			code: "OP18-089",
 			name: "Dorry",
@@ -1463,6 +1472,8 @@ const shouldKeepOp17SpecialFile = (file) => {
 
 const getOp18VariantLabel = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("english tr ")) return "ENGLISH TR";
+	if (normalized.startsWith("sp ")) return "SP";
 	if (normalized.startsWith("leader alt ")) return "ALT";
 	if (normalized.startsWith("super alt ")) return "SUPER ALT";
 	if (normalized.startsWith("alt ")) return "ALT";
@@ -1496,21 +1507,49 @@ const stripEb05VariantPrefix = (base) => {
 
 const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 	const overrides = manualCardOverrides.EB05 ?? {};
-	const cards = files
+	const rootPath = path.join(cardsRoot, "EB05");
+	const basePath = path.join(rootPath, "EB05");
+	const baseFiles = fs.existsSync(basePath)
+		? fs.readdirSync(basePath)
+				.filter((file) => /\.(png|jpg|jpeg|webp)$/i.test(file) && !/_small\.(png|jpg|jpeg|webp)$/i.test(file))
+				.map((file) => ({ file, nested: true }))
+		: [];
+	const rootBaseNamesByCode = new Map();
+	for (const file of files) {
+		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
+		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		if (getEb05VariantLabel(base)) continue;
+		const code = extractCodeFromBase(base);
+		if (code && !rootBaseNamesByCode.has(code)) rootBaseNamesByCode.set(code, base);
+	}
+	const variantFiles = files
 		.filter((file) => /\.(png|jpg|jpeg|webp)$/i.test(file) && !/_small\.(png|jpg|jpeg|webp)$/i.test(file))
-		.map((file) => {
+		.filter((file) => getEb05VariantLabel(file.replace(/\.(png|jpg|jpeg|webp)$/i, "")))
+		.map((file) => ({ file, nested: false }));
+	const cards = [...baseFiles, ...variantFiles]
+		.map(({ file, nested }) => {
 			const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
-			const canonicalBase = stripEb05VariantPrefix(base);
+			const initialCanonicalBase = stripEb05VariantPrefix(base);
 			const variant = getEb05VariantLabel(base);
-			const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
-			const code = override.code ?? extractCodeFromBase(canonicalBase) ?? canonicalBase.toUpperCase();
+			const initialOverride = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(initialCanonicalBase)] ?? {};
+			const code = initialOverride.code ?? extractCodeFromBase(initialCanonicalBase) ?? initialCanonicalBase.toUpperCase();
+			const canonicalBase = nested ? rootBaseNamesByCode.get(code) ?? initialCanonicalBase : initialCanonicalBase;
+			const override = initialOverride.code
+				? initialOverride
+				: overrides[normalizeOverrideKey(canonicalBase)] ?? initialOverride;
 			const meta = metadataIndex.get(code) ?? {};
-			const fullUrl = `/Cards/EB05/${file}`;
+			const fullUrl = nested ? `/Cards/EB05/EB05/${file}` : `/Cards/EB05/${file}`;
+			const nestedSmallFile = `${base}_small.webp`;
+			const nestedSmallUrl = `/Cards/EB05/EB05/${nestedSmallFile}`;
 			return {
 				code,
 				name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
 				color: override.color ?? meta.color ?? "Other",
-				smallUrl: smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl,
+				smallUrl: nested && fs.existsSync(path.join(basePath, nestedSmallFile))
+					? nestedSmallUrl
+					: nested
+						? fullUrl
+						: smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl,
 				fullUrl,
 				edition: variant ?? null,
 			};
@@ -1829,6 +1868,8 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 
 const stripOp18VariantPrefix = (base) => {
 	const normalized = normalizeOverrideKey(base);
+	if (normalized.startsWith("english tr ")) return base.slice("English TR ".length).trim();
+	if (normalized.startsWith("sp ")) return base.slice("SP ".length).trim();
 	if (normalized.startsWith("leader alt ")) return base.slice("Leader ALT ".length).trim();
 	if (normalized.startsWith("leader ")) return base.slice("Leader ".length).trim();
 	if (normalized.startsWith("super alt ")) return base.slice("Super ALT ".length).trim();
@@ -1842,8 +1883,8 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 	const groups = new Map();
 
 	for (const file of files) {
-		if (!/\.(png|jpg|jpeg|webp)$/i.test(file) || /_small\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
-		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		if (!/\.(png|jpg|jpeg|webp|jfif)$/i.test(file) || /_small\.(png|jpg|jpeg|webp|jfif)$/i.test(file)) continue;
+		const base = file.replace(/\.(png|jpg|jpeg|webp|jfif)$/i, "");
 		const canonicalBase = stripOp18VariantPrefix(base);
 		const variant = getOp18VariantLabel(base);
 		const override = overrides[normalizeOverrideKey(base)] ?? overrides[normalizeOverrideKey(canonicalBase)] ?? {};
@@ -1853,8 +1894,8 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 		const name = override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code;
 		const cardColor = override.color ?? meta.color ?? "Other";
 		const fullUrl = `/Cards/OP18/${file}`;
-		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl;
-		const groupKey = code === "OP18-093" ? fullUrl : code;
+		const smallUrl = smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? `/Cards/OP18/${base}_small.webp`;
+		const groupKey = code === "OP18-093" || variant === "SP" || variant === "ENGLISH TR" ? fullUrl : code;
 		const group = groups.get(groupKey) ?? [];
 		group.push({
 			code,
@@ -1874,7 +1915,7 @@ const getCardsForOp18 = (files, smallByBase, metadataIndex) => {
 			const variants = sortedEntries
 				.slice(1)
 				.sort((a, b) => {
-					const order = { ALT: 0, "SUPER ALT": 1, MANGA: 2 };
+				const order = { ALT: 0, "SUPER ALT": 1, MANGA: 2 };
 					const aRank = order[a.variant ?? ""] ?? 99;
 					const bRank = order[b.variant ?? ""] ?? 99;
 					if (aRank !== bRank) return aRank - bRank;
@@ -2015,14 +2056,14 @@ export const getCardsForExtension = (extension) => {
 	const overrides = manualCardOverrides[extension.toUpperCase()] ?? {};
 
 	for (const file of files) {
-		if (/_small\.(png|jpg|jpeg|webp)$/i.test(file)) {
-			const base = file.replace(/_small\.(png|jpg|jpeg|webp)$/i, "");
+		if (/_small\.(png|jpg|jpeg|webp|jfif)$/i.test(file)) {
+			const base = file.replace(/_small\.(png|jpg|jpeg|webp|jfif)$/i, "");
 			if (isPromoDon(base)) continue;
 			smallByBase.set(base, `/Cards/${extension}/${file}`);
 			continue;
 		}
-		if (!/\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
-		const base = file.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+		if (!/\.(png|jpg|jpeg|webp|jfif)$/i.test(file)) continue;
+		const base = file.replace(/\.(png|jpg|jpeg|webp|jfif)$/i, "");
 		if (isPromoDon(base)) continue;
 		fullByBase.set(base, `/Cards/${extension}/${file}`);
 	}
