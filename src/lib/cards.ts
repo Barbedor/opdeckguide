@@ -1541,12 +1541,15 @@ const getCardsForEb05 = (files, smallByBase, metadataIndex) => {
 			const fullUrl = nested ? `/Cards/EB05/EB05/${file}` : `/Cards/EB05/${file}`;
 			const nestedSmallFile = `${base}_small.webp`;
 			const nestedSmallUrl = `/Cards/EB05/EB05/${nestedSmallFile}`;
+			const rootSmallUrl = smallByBase.get(canonicalBase);
 			return {
 				code,
 				name: override.name ?? meta.name ?? fallbackNameFromBase(canonicalBase, code) ?? code,
 				color: override.color ?? meta.color ?? "Other",
-				smallUrl: nested && fs.existsSync(path.join(basePath, nestedSmallFile))
-					? nestedSmallUrl
+				smallUrl: nested && rootSmallUrl
+					? rootSmallUrl
+					: nested && fs.existsSync(path.join(basePath, nestedSmallFile))
+						? nestedSmallUrl
 					: nested
 						? fullUrl
 						: smallByBase.get(base) ?? smallByBase.get(canonicalBase) ?? fullUrl,
@@ -2026,7 +2029,7 @@ export const getExtensions = () => {
 		.filter((entry) => !hiddenExtensions.has(entry.name.toLowerCase()))
 		.map((entry) => entry.name)
 		.sort((a, b) => {
-			const featuredOrder = { EB05: 0, OP18: 1, ST37: 2, ST38: 3 };
+			const featuredOrder = { OP18: 0, EB05: 1, ST37: 2, ST38: 3 };
 			const aFeatured = featuredOrder[a.toUpperCase()];
 			const bFeatured = featuredOrder[b.toUpperCase()];
 			if (aFeatured !== undefined || bFeatured !== undefined) {

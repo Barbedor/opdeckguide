@@ -3552,7 +3552,9 @@ const description = isLeakPage
 					>
 						{(isEb05GridPage ? initialEb05GridCards : initialCards).map((card) => {
 			const affiliateCard = isEb05GridPage
-				? null
+				? card.edition || /\/(?:SP|ALT|MANGA)\s/i.test(card.fullUrl ?? "")
+					? null
+					: cardsListAffiliateCards[card.code]
 				: isOp17GoldLuffySpecial(card)
 								? cardsListOnlyAffiliateCards["OP17-GOLD-LUFFY"]
 								: isOp17ZoroSpecial(card)
@@ -3648,9 +3650,9 @@ const description = isLeakPage
 		// Revealed-card pages render their whole card list on the server, so they
 		// never need the large client-side affiliate maps or a load-more payload.
 		remainingCards: isLeakPage && !isEb05GridPage ? [] : isEb05GridPage ? remainingEb05GridCards : remainingCards,
-		cardsListAffiliateCards: isLeakPage ? {} : cardsListAffiliateCards,
-		cardsListOnlyAffiliateCards: isLeakPage ? {} : cardsListOnlyAffiliateCards,
-		cardsListVariantAffiliateCards: isLeakPage ? {} : cardsListVariantAffiliateCards,
+		cardsListAffiliateCards: isLeakPage && !isEb05GridPage ? {} : cardsListAffiliateCards,
+		cardsListOnlyAffiliateCards: isLeakPage && !isEb05GridPage ? {} : cardsListOnlyAffiliateCards,
+		cardsListVariantAffiliateCards: isLeakPage && !isEb05GridPage ? {} : cardsListVariantAffiliateCards,
 		isLeakPage,
 		isEb05GridPage,
 		op17AffiliateEditionsByCode,
@@ -3741,7 +3743,11 @@ const description = isLeakPage
 			img.alt = `${card.code} card`;
 			button.appendChild(img);
 			shell.appendChild(button);
-			const affiliateCard = !isLeakPage
+			const affiliateCard = isEb05GridPage
+				? card.edition || /\/(?:SP|ALT|MANGA)\s/i.test(card.fullUrl ?? "")
+					? null
+					: cardsListAffiliateCards[card.code]
+				: !isLeakPage
 				? isOp17GoldLuffySpecial(card)
 					? cardsListOnlyAffiliateCards["OP17-GOLD-LUFFY"]
 					: isOp17ZoroSpecial(card)

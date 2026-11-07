@@ -4,9 +4,97 @@ export type AffiliateCardEntry = {
 };
 
 export const affiliateCards: Record<string, AffiliateCardEntry> = {
+	"P-107": {
+		affiliateUrl: "https://partner.tcgplayer.com/m4KPVD",
+		price: "$6.89",
+	},
+	"OP05-067": {
+		affiliateUrl: "https://partner.tcgplayer.com/5kdvzN",
+		price: "$0.30",
+	},
+	"OP05-081": {
+		affiliateUrl: "https://partner.tcgplayer.com/2R6v0D",
+		price: "$0.17",
+	},
+	"OP05-119": {
+		affiliateUrl: "https://partner.tcgplayer.com/VOkMdE",
+		price: "$16.88",
+	},
+	"OP10-019": {
+		affiliateUrl: "https://partner.tcgplayer.com/B53vkq",
+		price: "$0.28",
+	},
+	"OP09-060": {
+		affiliateUrl: "https://partner.tcgplayer.com/4a7vAn",
+		price: "$0.10",
+	},
+	"OP09-061": {
+		affiliateUrl: "https://partner.tcgplayer.com/MKqMdP",
+		price: "$0.22",
+	},
+	"OP09-069": {
+		affiliateUrl: "https://partner.tcgplayer.com/L0LM3a",
+		price: "$0.29",
+	},
+	"OP09-076": {
+		affiliateUrl: "https://partner.tcgplayer.com/B53vo9",
+		price: "$0.20",
+	},
+	"OP09-046": {
+		affiliateUrl: "https://partner.tcgplayer.com/9V67Z5",
+		price: "$0.97",
+	},
+	"OP06-036": {
+		affiliateUrl: "https://partner.tcgplayer.com/en0L2O",
+		price: "$0.15",
+	},
+	"OP06-021": {
+		affiliateUrl: "https://partner.tcgplayer.com/bkBM1B",
+		price: "$0.23",
+	},
+	"OP07-056": {
+		affiliateUrl: "https://partner.tcgplayer.com/B53vd9",
+		price: "$0.22",
+	},
+	"OP10-018": {
+		affiliateUrl: "https://partner.tcgplayer.com/7X6v9g",
+		price: "$0.11",
+	},
+	"OP10-040": {
+		affiliateUrl: "https://partner.tcgplayer.com/Jk6Mvq",
+		price: "$0.09",
+	},
+	"OP14-013": {
+		affiliateUrl: "https://partner.tcgplayer.com/jR79jP",
+		price: "$4.53",
+	},
+	"OP14-115": {
+		affiliateUrl: "https://partner.tcgplayer.com/Jk6MdQ",
+		price: "$0.11",
+	},
+	"OP15-030": {
+		affiliateUrl: "https://partner.tcgplayer.com/rEKmxG",
+		price: "$0.10",
+	},
+	"OP16-058": {
+		affiliateUrl: "https://partner.tcgplayer.com/dyWMvj",
+		price: "$0.16",
+	},
+	"OP13-029": {
+		affiliateUrl: "https://partner.tcgplayer.com/6k6YQq",
+		price: "$0.08",
+	},
+	"OP12-049": {
+		affiliateUrl: "https://partner.tcgplayer.com/en0LZg",
+		price: "$0.12",
+	},
 	"EB03-053": {
 		affiliateUrl: "https://partner.tcgplayer.com/zz0QJ0",
 		price: "$12.14",
+	},
+	"EB03-002": {
+		affiliateUrl: "https://partner.tcgplayer.com/rEKmNG",
+		price: "$0.06",
 	},
 	"EB03-041": {
 		affiliateUrl: "https://partner.tcgplayer.com/xJbQ3x",
@@ -95,6 +183,70 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"EB04-059": {
 		affiliateUrl: "https://partner.tcgplayer.com/WO0QDX",
 		price: "$0.26",
+	},
+	"EB05-010": {
+		affiliateUrl: "https://partner.tcgplayer.com/gRnxJr",
+		price: "$0.10",
+	},
+	"EB05-001": {
+		affiliateUrl: "https://partner.tcgplayer.com/AgOvG7",
+		price: "$9.70",
+	},
+	"EB05-016": {
+		affiliateUrl: "https://partner.tcgplayer.com/X4aMoa",
+		price: "$5.07",
+	},
+	"EB05-033": {
+		affiliateUrl: "https://partner.tcgplayer.com/9V67q3",
+		price: "$0.40",
+	},
+	"EB05-021": {
+		affiliateUrl: "https://partner.tcgplayer.com/MKqMWK",
+		price: "$6.46",
+	},
+	"EB05-028": {
+		affiliateUrl: "https://partner.tcgplayer.com/1GYvOd",
+		price: "$0.54",
+	},
+	"EB05-031": {
+		affiliateUrl: "https://partner.tcgplayer.com/3kKvrv",
+		price: "$0.17",
+	},
+	"EB05-047": {
+		affiliateUrl: "https://partner.tcgplayer.com/en0Lbj",
+		price: "$0.71",
+	},
+	"EB05-043": {
+		affiliateUrl: "https://partner.tcgplayer.com/1GYvk9",
+		price: "$0.17",
+	},
+	"EB05-046": {
+		affiliateUrl: "https://partner.tcgplayer.com/vDKJgj",
+		price: "$11.32",
+	},
+	"EB05-055": {
+		affiliateUrl: "https://partner.tcgplayer.com/AgOvk1",
+		price: "$5.56",
+	},
+	"EB05-050": {
+		affiliateUrl: "https://partner.tcgplayer.com/n4K5g6",
+		price: "$0.26",
+	},
+	"EB05-049": {
+		affiliateUrl: "https://partner.tcgplayer.com/n4K5vA",
+		price: "$0.08",
+	},
+	"EB05-051": {
+		affiliateUrl: "https://partner.tcgplayer.com/6k6YRG",
+		price: "$0.08",
+	},
+	"EB05-052": {
+		affiliateUrl: "https://partner.tcgplayer.com/X4aMro",
+		price: "$6.24",
+	},
+	"EB05-057": {
+		affiliateUrl: "https://partner.tcgplayer.com/GbyMQV",
+		price: "$0.36",
 	},
 	"OP11-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/X4ZOAG",
@@ -332,9 +484,25 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/9VDYm5",
 		price: "$0.93",
 	},
+	"OP09-042": {
+		affiliateUrl: "https://partner.tcgplayer.com/bkBMvx",
+		price: "$0.14",
+	},
+	"OP09-048": {
+		affiliateUrl: "https://partner.tcgplayer.com/ZVGM41",
+		price: "$1.72",
+	},
 	"OP09-051": {
 		affiliateUrl: "https://partner.tcgplayer.com/MKWXYq",
 		price: "$0.20",
+	},
+	"OP09-056": {
+		affiliateUrl: "https://partner.tcgplayer.com/2R6vXO",
+		price: "$0.20",
+	},
+	"OP09-057": {
+		affiliateUrl: "https://partner.tcgplayer.com/xJKgR5",
+		price: "$0.11",
 	},
 	"OP09-062": {
 		affiliateUrl: "https://partner.tcgplayer.com/2RYn0O",
@@ -1092,6 +1260,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/k4XVWV",
 		price: "$0.10",
 	},
+	"OP16-051": {
+		affiliateUrl: "https://partner.tcgplayer.com/0G6vOV",
+		price: "$0.04",
+	},
 	"OP16-054": {
 		affiliateUrl: "https://partner.tcgplayer.com/6kXyWr",
 		price: "$0.21",
@@ -1436,6 +1608,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/n4jXaV",
 		price: "$0.94",
 	},
+	"P-084": {
+		affiliateUrl: "https://partner.tcgplayer.com/vDKJbe",
+		price: "$2.43",
+	},
 	"P-093": {
 		affiliateUrl: "https://partner.tcgplayer.com/3kXJ7M",
 		price: "$3.73",
@@ -1468,6 +1644,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/2RX4Qg",
 		price: "$6.56",
 	},
+	"PRB02-012": {
+		affiliateUrl: "https://partner.tcgplayer.com/rEKmoG",
+		price: "$2.46",
+	},
 	"PRB02-013": {
 		affiliateUrl: "https://partner.tcgplayer.com/X4vzoy",
 		price: "$2.41",
@@ -1484,6 +1664,14 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/L0oXEZ",
 		price: "$10.43",
 	},
+	"ST02-007": {
+		affiliateUrl: "https://partner.tcgplayer.com/QY9Mxo",
+		price: "$1.45",
+	},
+	"ST10-002": {
+		affiliateUrl: "https://partner.tcgplayer.com/L0LMEY",
+		price: "$16.44",
+	},
 	"ST01-011": {
 		affiliateUrl: "https://partner.tcgplayer.com/DWJrVb",
 		price: "$4.39",
@@ -1491,6 +1679,22 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"ST12-010": {
 		affiliateUrl: "https://partner.tcgplayer.com/R0aLBg",
 		price: "$2.58",
+	},
+	"ST24-002": {
+		affiliateUrl: "https://partner.tcgplayer.com/en0LxO",
+		price: "$1.29",
+	},
+	"ST26-003": {
+		affiliateUrl: "https://partner.tcgplayer.com/VOkM3R",
+		price: "$2.01",
+	},
+	"ST26-005": {
+		affiliateUrl: "https://partner.tcgplayer.com/NGxM3O",
+		price: "$3.51",
+	},
+	"ST30-006": {
+		affiliateUrl: "https://partner.tcgplayer.com/X4aMvX",
+		price: "$0.16",
 	},
 	"ST13-017": {
 		affiliateUrl: "https://partner.tcgplayer.com/MKzLGP",
@@ -1539,6 +1743,22 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"ST23-001": {
 		affiliateUrl: "https://partner.tcgplayer.com/VOv5n6",
 		price: "$10.95",
+	},
+	"ST25-001": {
+		affiliateUrl: "https://partner.tcgplayer.com/vDKJ1e",
+		price: "$5.53",
+	},
+	"ST25-002": {
+		affiliateUrl: "https://partner.tcgplayer.com/yZKXL2",
+		price: "$0.19",
+	},
+	"ST25-003": {
+		affiliateUrl: "https://partner.tcgplayer.com/yZKXB2",
+		price: "$4.83",
+	},
+	"ST25-005": {
+		affiliateUrl: "https://partner.tcgplayer.com/L0LMrZ",
+		price: "$0.17",
 	},
 	"ST24-004": {
 		affiliateUrl: "https://partner.tcgplayer.com/DWAgzG",
@@ -1743,6 +1963,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"EB03-062": {
 		affiliateUrl: "https://partner.tcgplayer.com/7XLa4Y",
 		price: "$6.46",
+	},
+	"EB01-013": {
+		affiliateUrl: "https://partner.tcgplayer.com/DW6vJd",
+		price: "$17.72",
 	},
 	"EB01-059": {
 		affiliateUrl: "https://partner.tcgplayer.com/7XL51d",
