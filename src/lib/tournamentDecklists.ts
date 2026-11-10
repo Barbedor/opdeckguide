@@ -44,7 +44,11 @@ import { op17WestOct18Oct24DeckTemplates, op17WestOct18Oct24EntrySeeds } from ".
 import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestSep07";
 import { eb05EastNov01DeckTemplates, eb05EastNov01EntrySeeds } from "./eb05EastNov01";
 import { eb05EastNov02Nov03DeckTemplates, eb05EastNov02Nov03EntrySeeds } from "./eb05EastNov02Nov03";
+import { eb05EastNov07Nov08DeckTemplates, eb05EastNov07Nov08EntrySeeds } from "./eb05EastNov07Nov08";
+import { eb05EastNov06Nov07MoreDeckTemplates, eb05EastNov06Nov07MoreEntrySeeds } from "./eb05EastNov06Nov07More";
 import { eb05WestOct30Oct31DeckTemplates, eb05WestOct30Oct31EntrySeeds } from "./eb05WestOct30Oct31";
+import { eb05WestNov07Nov08DeckTemplates, eb05WestNov07Nov08EntrySeeds } from "./eb05WestNov07Nov08";
+import { eb05WestNov04Nov07DeckTemplates, eb05WestNov04Nov07EntrySeeds } from "./eb05WestNov04Nov07";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
 export const tournamentDecklistSampleMode = true;
@@ -571,6 +575,15 @@ const leaderIndex = {
 		imageSrc: "/assets/guides/Nico Robin EB05.webp",
 		href: "/deck-guides/nico-robin-eb05/",
 	},
+	"oden-eb01": {
+		slug: "oden-eb01",
+		name: "Kozuki Oden",
+		code: "EB01-001",
+		format: "eb05-op18",
+		color: "Red / Green",
+		imageSrc: "/assets/guides/Oden EB01.webp",
+		href: "/deck-guides/",
+	},
 	"perona-op06": {
 		slug: "perona-op06",
 		name: "Perona",
@@ -651,6 +664,15 @@ const leaderIndex = {
 		color: "Red",
 		imageSrc: "/assets/guides/trafalgar-law-op14.png",
 		href: "/deck-guides/trafalgar-law-op14-eb05/",
+	},
+	"law-op01": {
+		slug: "law-op01",
+		name: "Trafalgar Law",
+		code: "OP01-002",
+		format: "eb05-op18",
+		color: "Red / Green",
+		imageSrc: "/assets/guides/Law OP1.png",
+		href: "/deck-guides/",
 	},
 	"rayleigh-sample-op16": {
 		slug: "rayleigh-sample-op16",
@@ -812,6 +834,30 @@ const leaderIndex = {
 		format: "op17",
 		color: "Purple / Yellow",
 		imageSrc: "/assets/guides/Pudding op08.webp",
+		href: "/deck-guides/",
+	},
+	"sugar-op10": {
+		slug: "sugar-op10",
+		name: "Sugar",
+		code: "OP10-003",
+		format: "eb05-op18",
+		imageSrc: "/assets/guides/Sugar OP10.webp",
+		href: "/deck-guides/",
+	},
+	"shirahoshi-op11": {
+		slug: "shirahoshi-op11",
+		name: "Shirahoshi",
+		code: "OP11-022",
+		format: "eb05-op18",
+		imageSrc: "/assets/guides/ShiraoshiOP11-022.webp",
+		href: "/deck-guides/",
+	},
+	"vivi-eb03": {
+		slug: "vivi-eb03",
+		name: "Nefertari Vivi",
+		code: "EB03-001",
+		format: "eb05-op18",
+		imageSrc: "/assets/guides/Nefeltari Vivi EB03-001.webp",
 		href: "/deck-guides/",
 	},
 };
@@ -1987,7 +2033,11 @@ const deckTemplates = {
 	...op17WestOct18Oct24DeckTemplates,
 	...eb05EastNov01DeckTemplates,
 	...eb05EastNov02Nov03DeckTemplates,
+	...eb05EastNov07Nov08DeckTemplates,
+	...eb05EastNov06Nov07MoreDeckTemplates,
 	...eb05WestOct30Oct31DeckTemplates,
+	...eb05WestNov07Nov08DeckTemplates,
+	...eb05WestNov04Nov07DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
 	...op17WestSep11DeckTemplates,
@@ -16582,7 +16632,11 @@ const entrySeeds = [
 	...op17WestOct18Oct24EntrySeeds,
 	...eb05EastNov01EntrySeeds,
 	...eb05EastNov02Nov03EntrySeeds,
+	...eb05EastNov07Nov08EntrySeeds,
+	...eb05EastNov06Nov07MoreEntrySeeds,
 	...eb05WestOct30Oct31EntrySeeds,
+	...eb05WestNov07Nov08EntrySeeds,
+	...eb05WestNov04Nov07EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
 	...op17WestSep11EntrySeeds,

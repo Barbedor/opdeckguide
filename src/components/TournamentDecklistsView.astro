@@ -11,7 +11,7 @@ const totalDecklists = entries.length;
 
 const eventTypeMeta = {
 	"Grand Asia Open": { short: "GAO", color: "#f5c451", soft: "rgba(245, 196, 81, 0.18)" },
-	"Area Qualifiers": { short: "AQ", color: "#a06eff", soft: "rgba(160, 110, 255, 0.18)" },
+	"Area Qualifiers": { short: "AQ", color: "#14b8a6", soft: "rgba(20, 184, 166, 0.18)" },
 	"Area Final": { short: "AF", color: "#ff9f43", soft: "rgba(255, 159, 67, 0.18)" },
 	"EU Final": { short: "EU", color: "#b8e6ff", soft: "rgba(184, 230, 255, 0.30)" },
 	Regional: { short: "R", color: "#ff9f43", soft: "rgba(255, 159, 67, 0.18)" },
@@ -24,6 +24,7 @@ const eventTypeMeta = {
 	StoreCS: { short: "SCS", color: "#e0c66f", soft: "rgba(201, 206, 216, 0.20)", storeCs: true },
 	"Shop Event": { short: "SE", color: "#6f7788", soft: "rgba(111, 119, 136, 0.18)" },
 	"Heroine Battle": { short: "HB", color: "#f178bd", soft: "rgba(241, 120, 189, 0.2)" },
+	"Heroines Battle": { short: "HB", color: "#f178bd", soft: "rgba(241, 120, 189, 0.2)" },
 	"Pirate Party": { short: "PP", color: "#C49A3A", soft: "rgba(92, 58, 33, 0.48)", pirate: true },
 	Championship: { short: "CS", color: "#ffd257", soft: "rgba(255, 210, 87, 0.18)", championship: true },
 	"Flame-Flame Phase1": { short: "FF", color: "#ffe08a", soft: "rgba(255, 72, 24, 0.32)", flame: true },
@@ -61,7 +62,7 @@ const leaderColorMap = {
 };
 
 const getLeaderColors = (colorLabel) => {
-	const colors = colorLabel
+	const colors = (typeof colorLabel === "string" ? colorLabel : "")
 		.split("/")
 		.map((part) => part.trim())
 		.map((part) => leaderColorMap[part] ?? "#9aa4c7");

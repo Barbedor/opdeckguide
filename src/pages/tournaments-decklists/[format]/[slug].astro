@@ -192,15 +192,22 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 					return (
 						<div class="detail-card">
 							<div class="detail-card-media">
-								<button
-									class="detail-card-preview"
-									type="button"
-									data-card-preview
-									data-full={classicImage}
-									data-name={`${card.code} ${card.name}`}
-								>
-									<img src={thumbnailImage} alt={`${card.code} ${card.name}`} loading="lazy" decoding="async" fetchpriority="low" />
-								</button>
+								{thumbnailImage ? (
+									<button
+										class="detail-card-preview"
+										type="button"
+										data-card-preview
+										data-full={classicImage}
+										data-name={`${card.code} ${card.name}`}
+										>
+										<img src={thumbnailImage} alt={`${card.code} ${card.name}`} loading="lazy" decoding="async" fetchpriority="low" />
+									</button>
+								) : (
+									<div class="detail-card-image-missing" role="img" aria-label={`Image missing for ${card.code} ${card.name}`}>
+										<span>{card.code}</span>
+										<span>Image unavailable</span>
+									</div>
+								)}
 								{
 									affiliateCard && (
 										<a
@@ -551,6 +558,27 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		object-fit: contain;
 		object-position: center top;
 		background: rgba(3, 6, 12, 0.82);
+	}
+
+	.detail-card-image-missing {
+		display: grid;
+		width: 100%;
+		height: clamp(132px, 38vw, 190px);
+		align-content: center;
+		justify-items: center;
+		gap: 0.4rem;
+		padding: 0.5rem;
+		border: 1px dashed rgba(255, 179, 106, 0.45);
+		border-radius: 14px;
+		background: rgba(3, 6, 12, 0.82);
+		color: var(--text-300);
+		font-size: 0.72rem;
+		text-align: center;
+	}
+
+	.detail-card-image-missing span:first-child {
+		color: var(--accent);
+		font-weight: 800;
 	}
 
 	.detail-card-copy {
