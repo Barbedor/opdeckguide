@@ -652,6 +652,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/X4jeQM",
 		price: "$0.12",
 	},
+	"OP12-118": {
+		affiliateUrl: "https://partner.tcgplayer.com/n4QyMV",
+		price: "$6.02",
+	},
 	"OP12-071": {
 		affiliateUrl: "https://partner.tcgplayer.com/QYzyWA",
 		price: "$0.72",
@@ -928,6 +932,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/PzY9NM",
 		price: "$0.90",
 	},
+	"OP01-002": {
+		affiliateUrl: "https://partner.tcgplayer.com/4aNEVL",
+		price: "$2.10",
+	},
 	"OP01-096": {
 		affiliateUrl: "https://partner.tcgplayer.com/m4BNEa",
 		price: "$0.57",
@@ -968,9 +976,17 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/NGPeOK",
 		price: "$0.53",
 	},
+	"OP02-117": {
+		affiliateUrl: "https://partner.tcgplayer.com/AgNjvK",
+		price: "$0.15",
+	},
 	"OP04-016": {
 		affiliateUrl: "https://partner.tcgplayer.com/4aqYe3",
 		price: "$1.76",
+	},
+	"OP04-038": {
+		affiliateUrl: "https://partner.tcgplayer.com/jRLmLb",
+		price: "$0.09",
 	},
 	"OP05-038": {
 		affiliateUrl: "https://partner.tcgplayer.com/qWk3jg",
@@ -1668,6 +1684,14 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 		affiliateUrl: "https://partner.tcgplayer.com/QY9Mxo",
 		price: "$1.45",
 	},
+	"ST02-009": {
+		affiliateUrl: "https://partner.tcgplayer.com/DWN3x5",
+		price: "$3.69",
+	},
+	"ST06-015": {
+		affiliateUrl: "https://partner.tcgplayer.com/m4mGM7",
+		price: "$4.18",
+	},
 	"ST10-002": {
 		affiliateUrl: "https://partner.tcgplayer.com/L0LMEY",
 		price: "$16.44",
@@ -1967,6 +1991,10 @@ export const affiliateCards: Record<string, AffiliateCardEntry> = {
 	"EB01-013": {
 		affiliateUrl: "https://partner.tcgplayer.com/DW6vJd",
 		price: "$17.72",
+	},
+	"EB01-012": {
+		affiliateUrl: "https://partner.tcgplayer.com/GbNgWn",
+		price: "$4.17",
 	},
 	"EB01-059": {
 		affiliateUrl: "https://partner.tcgplayer.com/7XL51d",
