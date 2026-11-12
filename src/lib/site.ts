@@ -9,6 +9,7 @@ export const staticSitePaths = [
 	"/deck-guides/",
 	"/meta-analysis/",
 	"/meta-analysis/meta-evolution-banlist-october-12-2026/",
+	"/meta-analysis/Green-Yellow-Robin-eb05-stats-EB05-Format/",
 	"/meta-analysis/Red-Green-Luffy-op13-stats-EB05-Format/",
 	"/meta-analysis/ST30-Luffy-Ace-stats-OP17-5/",
 	"/meta-analysis/Purple-Kaido-op17-stats-OP17-Format/",
