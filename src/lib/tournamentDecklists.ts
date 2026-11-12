@@ -45,6 +45,7 @@ import { op17WestSep07DeckTemplates, op17WestSep07EntrySeeds } from "./op17WestS
 import { eb05EastNov01DeckTemplates, eb05EastNov01EntrySeeds } from "./eb05EastNov01";
 import { eb05EastNov02Nov03DeckTemplates, eb05EastNov02Nov03EntrySeeds } from "./eb05EastNov02Nov03";
 import { eb05EastNov07Nov08DeckTemplates, eb05EastNov07Nov08EntrySeeds } from "./eb05EastNov07Nov08";
+import { eb05EastNov09Nov10DeckTemplates, eb05EastNov09Nov10EntrySeeds } from "./eb05EastNov09Nov10";
 import { eb05EastNov06Nov07MoreDeckTemplates, eb05EastNov06Nov07MoreEntrySeeds } from "./eb05EastNov06Nov07More";
 import { eb05WestOct30Oct31DeckTemplates, eb05WestOct30Oct31EntrySeeds } from "./eb05WestOct30Oct31";
 import { eb05WestNov07Nov08DeckTemplates, eb05WestNov07Nov08EntrySeeds } from "./eb05WestNov07Nov08";
@@ -2034,6 +2035,7 @@ const deckTemplates = {
 	...eb05EastNov01DeckTemplates,
 	...eb05EastNov02Nov03DeckTemplates,
 	...eb05EastNov07Nov08DeckTemplates,
+	...eb05EastNov09Nov10DeckTemplates,
 	...eb05EastNov06Nov07MoreDeckTemplates,
 	...eb05WestOct30Oct31DeckTemplates,
 	...eb05WestNov07Nov08DeckTemplates,
@@ -16633,6 +16635,7 @@ const entrySeeds = [
 	...eb05EastNov01EntrySeeds,
 	...eb05EastNov02Nov03EntrySeeds,
 	...eb05EastNov07Nov08EntrySeeds,
+	...eb05EastNov09Nov10EntrySeeds,
 	...eb05EastNov06Nov07MoreEntrySeeds,
 	...eb05WestOct30Oct31EntrySeeds,
 	...eb05WestNov07Nov08EntrySeeds,

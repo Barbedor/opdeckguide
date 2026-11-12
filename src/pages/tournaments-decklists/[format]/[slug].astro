@@ -68,8 +68,6 @@ const deckGuideHref = isOp17LuffyAce
 		? "/deck-guides/boa-hancock-op14-format-op17/"
 		: entry.leader.href;
 const showDeckGuideButton = !isNami && !isCrocodileOp14 && !isMonkeyDLuffySt29 && !isEnelOp05 && !isOp17Sengoku && !leaderSlugsWithoutMatchingGuide.has(entry.leader.slug) && !entry.hideDeckGuide && (isOp17LuffyAce || isOp17BoaHancock || (entry.leader.code !== "OP15-058" && Boolean(deckGuideHref) && deckGuideHref !== "/deck-guides/"));
-const getFormatHref = (slug) =>
-	slug === "eb05-op18-west" ? "/tournaments-decklists/" : `/tournaments-decklists/${slug}/`;
 const expandSimLines = (count, code) => {
 	const lines = [];
 	let remaining = count;
@@ -103,13 +101,7 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 					{entry.record && <span class="detail-badge">{entry.record}</span>}
 					{entry.players && <span class="detail-badge">{entry.players} players</span>}
 				</div>
-				<div class="detail-links">
-					<a class="btn btn-secondary" href={getFormatHref(entry.viewSlug)}>Back to {entry.viewLabel}</a>
-					{showDeckGuideButton && <a class="btn btn-primary" href={deckGuideHref}>Read the deck guide</a>}
-					<button class="btn btn-secondary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
-						Copy for Sim
-					</button>
-				</div>
+				{showDeckGuideButton && <div class="detail-links"><a class="btn btn-primary" href={deckGuideHref}>Read the deck guide</a></div>}
 			</div>
 			<div class="detail-sidecard">
 				<img src={entry.leader.imageSrc} alt={`${entry.leader.name} icon`} loading="lazy" />
@@ -163,7 +155,12 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		<div class="container">
 			<div class="section-header">
 				<div class="detail-decklist-heading">
-					<h2>Decklist</h2>
+					<div class="decklist-title-row">
+						<h2>Decklist</h2>
+						<button class="btn btn-primary copy-sim-button" type="button" data-copy-sim data-sim-deck={simDeckCode}>
+							Copy for Sim
+						</button>
+					</div>
 					<p>Complete tournament decklist.</p>
 				</div>
 				{
@@ -373,6 +370,17 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 		min-width: 0;
 	}
 
+	.decklist-title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.decklist-title-row h2 {
+		margin: 0;
+	}
+
 	.detail-badge,
 	.detail-sidecard,
 	.detail-meta-card,
@@ -424,6 +432,11 @@ const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code)
 	.copy-sim-button {
 		font-family: inherit;
 		font-weight: 700;
+		flex: 0 0 auto;
+		width: auto;
+		min-width: 0;
+		padding: 0.75rem 1rem;
+		white-space: nowrap;
 	}
 
 	.price-toggle {

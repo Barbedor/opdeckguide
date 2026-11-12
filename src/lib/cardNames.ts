@@ -48,6 +48,8 @@ const baseCardNames: Record<string, string> = {
 	"OP14-002": "Urouge",
 	"OP14-004": "Cavendish",
 	"OP14-014": "Eustass\"Captain\"Kid",
+	"OP14-061": "Vergo",
+	"OP14-074": "Monet",
 	"OP14-005": "Killer",
 	"OP14-007": "Jewelry Bonney",
 	"OP14-010": "Basil Hawkins",
