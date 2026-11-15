@@ -11,6 +11,7 @@ export const getStaticPaths = () =>
 	}));
 
 const { entry } = Astro.props;
+const isEb05Op18Decklist = entry.viewSlug === "eb05-op18-east" || entry.viewSlug === "eb05-op18-west";
 
 const forcedFormatCode =
 	entry.viewSlug === "op17-east" || entry.viewSlug === "op17-west"
@@ -88,7 +89,7 @@ const simDeckCode = entry.cards.flatMap((card) => expandSimLines(card.count, car
 const hasAffiliateCards = entry.cards.some((card) => getAffiliateCard(card.code));
 ---
 
-<MainLayout title={title} description={description} noindex={true}>
+<MainLayout title={title} description={description} noindex={!isEb05Op18Decklist}>
 	<section class="hero tournament-detail-hero">
 		<div class="container detail-hero-grid">
 			<div>
