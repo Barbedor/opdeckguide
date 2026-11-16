@@ -47,9 +47,11 @@ import { eb05EastNov02Nov03DeckTemplates, eb05EastNov02Nov03EntrySeeds } from ".
 import { eb05EastNov07Nov08DeckTemplates, eb05EastNov07Nov08EntrySeeds } from "./eb05EastNov07Nov08";
 import { eb05EastNov09Nov10DeckTemplates, eb05EastNov09Nov10EntrySeeds } from "./eb05EastNov09Nov10";
 import { eb05EastNov06Nov07MoreDeckTemplates, eb05EastNov06Nov07MoreEntrySeeds } from "./eb05EastNov06Nov07More";
+import { eb05EastNov11Nov14DeckTemplates, eb05EastNov11Nov14EntrySeeds } from "./eb05EastNov11Nov14";
 import { eb05WestOct30Oct31DeckTemplates, eb05WestOct30Oct31EntrySeeds } from "./eb05WestOct30Oct31";
 import { eb05WestNov07Nov08DeckTemplates, eb05WestNov07Nov08EntrySeeds } from "./eb05WestNov07Nov08";
 import { eb05WestNov04Nov07DeckTemplates, eb05WestNov04Nov07EntrySeeds } from "./eb05WestNov04Nov07";
+import { eb05WestNov08Nov12DeckTemplates, eb05WestNov08Nov12EntrySeeds } from "./eb05WestNov08Nov12";
 import { cardNames, registerDeckCardNames } from "./cardNames";
 
 export const tournamentDecklistSampleMode = true;
@@ -2037,9 +2039,11 @@ const deckTemplates = {
 	...eb05EastNov07Nov08DeckTemplates,
 	...eb05EastNov09Nov10DeckTemplates,
 	...eb05EastNov06Nov07MoreDeckTemplates,
+	...eb05EastNov11Nov14DeckTemplates,
 	...eb05WestOct30Oct31DeckTemplates,
 	...eb05WestNov07Nov08DeckTemplates,
 	...eb05WestNov04Nov07DeckTemplates,
+	...eb05WestNov08Nov12DeckTemplates,
 	...op17WestSep07DeckTemplates,
 	...op17WestSep10DeckTemplates,
 	...op17WestSep11DeckTemplates,
@@ -16637,9 +16641,11 @@ const entrySeeds = [
 	...eb05EastNov07Nov08EntrySeeds,
 	...eb05EastNov09Nov10EntrySeeds,
 	...eb05EastNov06Nov07MoreEntrySeeds,
+	...eb05EastNov11Nov14EntrySeeds,
 	...eb05WestOct30Oct31EntrySeeds,
 	...eb05WestNov07Nov08EntrySeeds,
 	...eb05WestNov04Nov07EntrySeeds,
+	...eb05WestNov08Nov12EntrySeeds,
 	...op17WestSep07EntrySeeds,
 	...op17WestSep10EntrySeeds,
 	...op17WestSep11EntrySeeds,
