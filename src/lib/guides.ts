@@ -1,16 +1,16 @@
 export const deckGuides = [
 	{
 		kind: "deck",
-		title: "Miss Allsunday OP18 Deck Guide",
-		leader: "Miss Allsunday",
+		title: "Ms. All Sunday OP18 Deck Guide",
+		leader: "Ms. All Sunday",
 		code: "OP18",
 		formatLabel: "OP18 Format",
-		summary: "Decklist, mulligan priorities, going-first and going-second curves, tech cards, matchups, and practical tips for Miss Allsunday OP18.",
+		summary: "Decklist, mulligan priorities, going-first and going-second curves, tech cards, matchups, and practical tips for Ms. All Sunday OP18.",
 		month: "November",
-		href: "/deck-guides/miss-allsunday-op18/",
-		imageSrc: "/assets/guides/Ms. Allsunday OP18.png",
-		imageAlt: "Miss Allsunday OP18 deck guide cover",
-		aliases: ["miss allsunday op18", "ms all sunday op18", "miss all sunday deck guide"],
+		href: "/deck-guides/ms-all-sunday-op18/",
+		imageSrc: "/assets/guides/Ms. All Sunday OP18.png",
+		imageAlt: "Ms. All Sunday OP18 deck guide cover",
+		aliases: ["ms all sunday op18", "ms. all sunday op18", "ms all sunday deck guide"],
 		tags: ["op18", "baroque works", "deck guide"],
 	},
 	{
