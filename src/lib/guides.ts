@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Saint Gunko OP18 Deck Guide",
+		leader: "Saint Gunko",
+		code: "OP18",
+		formatLabel: "OP18 Format",
+		summary: "Decklist, mulligan priorities, going-first and going-second curves, tech cards, and matchups for Saint Gunko OP18.",
+		month: "November",
+		href: "/deck-guides/saint-gunko-op18/",
+		imageSrc: "/assets/guides/Gunko OP18.png",
+		imageAlt: "Saint Gunko OP18 deck guide cover",
+		aliases: ["saint gunko op18", "op18 saint gunko", "saint gunko deck guide"],
+		tags: ["op18", "holy knights", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Ms. All Sunday OP18 Deck Guide",
 		leader: "Ms. All Sunday",
 		code: "OP18",
