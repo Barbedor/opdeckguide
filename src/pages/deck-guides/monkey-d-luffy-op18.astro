@@ -44,7 +44,7 @@ const mulligan = [
     "Nico Robin is the most important card to look for in your opening hand. Her End of Your Turn effect can set up to 1 {Water Seven} type Character and up to 1 DON!! as Active.",
     "This interaction is essential with your Leader. With 3 DON!! attached, Monkey.D.Luffy can become Active after his first attack and attack a second time, but he will not become Active during your next Refresh Phase. Nico Robin lets you get around this restriction by setting your Leader Active at the end of your turn.",
     "Once Robin is in play, you can use your Leader's two attacks much more consistently.",
-    "Robin also has a useful protection effect: during your opponent's turn, if one of your Characters would leave the field because of an opposing effect, you can rest Robin instead. This helps you protect important pieces, although using this anti-Removal effect may cost you her end-of-turn restand because your opponent can attack into and rest her."
+    "Robin also has a useful protection effect: during your opponent’s turn, if one of your Characters would leave the field because of an opposing effect, you can rest Robin instead. This helps you protect important pieces, although using this anti-Removal effect may cost you her end-of-turn restand because your opponent can attack her."
   ]},
   { title: "The Searchers — EB02-017 Nami and OP18-038 Shoot Down That Flag", cards: [nami, shootDown], connectors: ["OR"], titleAboveCards: true, textBesideCards: true, paragraphs: [
     "If you do not have Nico Robin in your hand, Nami and Shoot Down That Flag are your best options for finding her."
@@ -135,7 +135,7 @@ const curveSecond = [
 ];
 
 const techCards = [
-  { cards: [luffyNine], title: "OP18-118 Monkey.D.Luffy — Backup Leader Re-stand", paragraphs: [
+  { cards: [luffyCharacter], title: "OP18-036 Monkey.D.Luffy — Backup Leader Re-stand", paragraphs: [
     "This Luffy is a backup option when you do not have OP18-031 Nico Robin.",
     "At the end of your turn, you can trash him to set your Leader Active and draw a card. This lets you use your Leader's ability without leaving it Rested for the next turn.",
     "The draw effect is especially valuable in a deck that often runs low on cards in hand.",
@@ -200,7 +200,7 @@ const matchupIntro = [
   "The most difficult matchups are those where the opponent can remove Nico Robin, interrupt your attacks with Triggers, or build enough defensive resources to withstand Double Attack."
 ];
 const matchups = [
-  { title: "OP18 Ms. All Sunday", leader: sundayLeader, intro: ["Against Ms. All Sunday, aim to gradually reduce the opponent's Life while keeping a way to set your Leader Active."], gamePlan: [
+  { title: "OP18 Ms. All Sunday", leader: sundayLeader, rating: "Favorable", ratingTone: "favorable", intro: ["Against Ms. All Sunday, aim to gradually reduce the opponent's Life while keeping a way to set your Leader Active."], gamePlan: [
     "Use Kokoro if you do not have Robin. She lets you use your Leader's ability without leaving it Rested for the next turn.",
     "Play Gonbe + Chimney only when the board allows it. The combination is worthwhile if your opponent cannot immediately use Removal.",
     "Preserve Zoro & Sogeking when possible. Losing it can cost you your Leader's defensive bonus.",
@@ -210,7 +210,7 @@ const matchups = [
     "In this matchup, Gonbe + Chimney can let you make three attacks at 12000 Power, forcing your opponent to commit many defensive resources. Do not treat the combination as consistently reliable: it works best when both Characters can stay on the field long enough.",
     "Try to reduce the opponent's Life to make Double Attack especially threatening. If a Blocker stops your offensive, use Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game to rest it before starting your main attacks. Do not K.O. their Characters, or Ms. All Sunday's effect will make you trash cards from your hand, which is disastrous for this deck."
   ]},
-  { title: "OP17 Rocks D. Xebec", leader: rocksLeader, intro: [
+  { title: "OP17 Rocks D. Xebec", leader: rocksLeader, rating: "Unfavorable", ratingTone: "unfavorable", intro: [
     "Against Rocks, the game is about managing large opposing Characters and defensive resources.",
     "Use your Leader's multiple attacks to reduce your opponent's hand while preventing their most dangerous Characters from attacking freely."
   ], gamePlan: [
@@ -225,7 +225,7 @@ const matchups = [
     "OP16-035 Roronoa Zoro is also useful for resting Gloriosa or another troublesome Character before focusing your attacks on a threat such as Linlin.",
     "Do not feel that you have to deal all your damage immediately. Forcing Rocks to use four or five Counter cards can make a decisive attack on the following turn much easier."
   ]},
-  { title: "OP18 Spandam", leader: spandamLeader, intro: [
+  { title: "OP18 Spandam", leader: spandamLeader, rating: "Unfavorable", ratingTone: "unfavorable", intro: [
     "Spandam is a difficult matchup for Monkey.D.Luffy because its Heal mechanics and Triggers can directly disrupt your offensive plan.",
     "Effects that rest your Leader are especially dangerous because they can interrupt a Double Attack sequence before you make all your attacks."
   ], gamePlan: [
@@ -240,7 +240,7 @@ const matchups = [
     "Still, avoid spending your entire hand on an offensive that a single Trigger can interrupt.",
     "Before playing Gum-Gum Twin Jet Pistol, evaluate which opposing Triggers may still be revealed. If lethal is too uncertain, focus on board control and wait for a better opening. When you do need to go for the game, plan your attacks to limit the impact of an unfavorable Trigger."
   ]},
-  { title: "OP17 Kaido", leader: kaidoLeader, intro: [
+  { title: "OP17 Kaido", leader: kaidoLeader, rating: "Favorable", ratingTone: "favorable", intro: [
     "Against Kaido, OP18-027 Zoro & Sogeking is one of your most important cards.",
     "Its effect can prevent King from becoming Rested, which can considerably reduce the pressure from your opponent over several turns."
   ], gamePlan: [
@@ -255,6 +255,27 @@ const matchups = [
     "If the Blocker is not an immediate threat, targeting Linlin may be much more useful. Preventing Linlin from attacking during your opponent's turn can help you preserve more Life and keep your Characters for your next offensive turn. This can be crucial when you need to survive one more turn before going for lethal.",
     "Use Zoro & Sogeking to slow King and preserve your Life. Against Blockers and Counter Events, plan your attacks around your opponent's Active DON!! instead of committing all your resources to Double Attack immediately."
   ]}
+];
+
+const matchupSummaryLeaders = {
+  gunko: card("OP18-060", "Gunko OP18", "/Cards/OP18/OP18-060 Saint Gunko.jpg", null, "Leader"),
+  buggy: card("OP09-042", "Buggy OP09", "/Cards/OP09/OP09-042.jpg", null, "Leader"),
+  robin: card("EB05-010", "Nico Robin EB05", "/Cards/EB05/EB05-010 Nico Robin .jpg", null, "Leader"),
+  luffy: card("OP13-001", "Monkey D. Luffy OP13", "/Cards/OP13/OP13-001.jpg", null, "Leader"),
+  sabo: card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader")
+};
+const matchupSummaryIcons = {
+  "OP18-060": "/assets/guides/Gunko OP18.png",
+  "OP09-042": "/assets/guides/BuggY OP09.png",
+  "EB05-010": "/assets/guides/Nico Robin EB05.png",
+  "OP13-001": "/assets/guides/monkey-d-luffy-op13.png",
+  "OP18-079": "/assets/guides/Spandam OP18.png",
+  "OP13-004": "/assets/guides/Sabo OP13-004.png"
+};
+const matchupSummaryGroups = [
+  { label: "Favorable", tone: "favorable", icon: "↑", cards: [matchupSummaryLeaders.gunko, matchupSummaryLeaders.robin] },
+  { label: "Slightly Favorable", tone: "slightly-favorable", icon: "↗", cards: [matchupSummaryLeaders.buggy] },
+  { label: "Unfavorable", tone: "unfavorable", icon: "↓", cards: [matchupSummaryLeaders.luffy, matchupSummaryLeaders.sabo] }
 ];
 
 const tips = [
@@ -326,7 +347,8 @@ const renderText = (text) => text.split(/(\*\*.*?\*\*)/g);
     <section id="mulligan" class="glow-block"><h2>Mulligan</h2>{mulliganIntro.map((text) => <p>{text}</p>)}<div class="content-list">{mulligan.map((item) => <article class={`content-item has-cards ${item.cards.length > 1 ? "multiple-cards" : ""} ${item.titleAboveCards ? "title-above-cards" : ""} ${item.textBesideCards ? "text-beside-cards" : ""}`}><h3>{item.title}</h3><div class="card-row">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></article>)}</div></section>
     <section id="curve" class="glow-block"><h2>Game Plan &amp; Curve</h2><p>OP18-022 Monkey.D.Luffy's game plan is built around two key cards: OP18-031 Nico Robin, which can set your Leader Active at the end of your turn, and OP18-027 Zoro &amp; Sogeking, which supports its multiple attacks while strengthening your defense.</p><p>Going second is especially effective thanks to the sequence of Robin at 4 DON!! followed by Zoro &amp; Sogeking at 6 DON!!. Going first, OP16-035 Roronoa Zoro and OP18-118 Monkey.D.Luffy offer options at odd DON!! thresholds.</p>{[["Going First", curveFirst], ["Going Second", curveSecond]].map(([heading, curve]) => <div class="curve-block"><h3>{heading}</h3>{curve.map((item) => <article class="curve-item"><strong>{item.title}</strong><div class="curve-content"><div class={`card-set ${item.cards.length === 1 ? "one" : ""} ${item.cards.length === 2 ? "two" : ""} ${item.cards.length === 4 ? "four" : ""} ${item.cards.length === 3 ? "three" : ""} ${item.connectors?.length ? "connected" : ""} ${item.optionRows ? "option-rows" : ""}`}>{item.cards.map((entry, index) => <>{index > 0 && item.connectors?.[index - 1] && <span class={`connector ${item.optionRows && item.connectors[index - 1] === "OR" && index === 2 ? "option-break" : ""}`}>{item.connectors[index - 1]}</span>}<button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button></>)}</div><div class="curve-note">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></div></article>)}</div>)}</section>
     <section id="tech-cards" class="glow-block"><h2>Tech Cards</h2><p>These Tech Cards help compensate for the weaknesses of OP18-022 Monkey.D.Luffy, especially its re-stand restriction and lack of card draw. They also provide answers to Removal, Blockers, and opposing defenses.</p><div class="content-list">{techCards.map((item) => <article class={`tech-card ${item.cards.length > 1 ? "multiple-tech-cards" : ""}`}><div class="tech-card-images">{item.cards.map((entry) => <button class="mini-card tech-card-image" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><h3>{item.title}</h3><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
-    <section id="matchups" class="glow-block"><h2>Matchups</h2>{matchupIntro.map((text) => <p>{text}</p>)}<div class="content-list">{matchups.map((item) => <article class="content-item matchup-card"><div class="matchup-heading"><button class="mini-card matchup-leader-card" type="button" data-card-preview data-full={item.leader.img} data-name={`${item.leader.code} ${item.leader.name}`}><img src={getCardThumbnail(item.leader.img)} alt={`${item.leader.code} ${item.leader.name} Leader`} loading="lazy"/></button><h3>{item.title}</h3></div><div class="matchup-body">{item.intro?.map((text) => <p>{text}</p>)}<h4>Game Plan</h4><ul>{item.gamePlan.map((text) => <li>{text}</li>)}</ul>{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="matchups" class="glow-block"><h2>Matchup Analysis</h2>{matchupIntro.map((text) => <p>{text}</p>)}<div class="content-list">{matchups.map((item) => <article class="content-item matchup-card"><div class="matchup-heading"><button class="mini-card matchup-leader-card" type="button" data-card-preview data-full={item.leader.img} data-name={`${item.leader.code} ${item.leader.name}`}><img src={getCardThumbnail(item.leader.img)} alt={`${item.leader.code} ${item.leader.name} Leader`} loading="lazy"/></button><div class="matchup-title-stack"><h3>{item.title}</h3>{item.rating && <span class={`matchup-rating-badge rating-${item.ratingTone}`}>{item.rating}</span>}</div></div><div class="matchup-body">{item.intro?.map((text) => <p>{text}</p>)}<h4>Game Plan</h4><ul>{item.gamePlan.map((text) => <li>{text}</li>)}</ul>{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="matchup-ratings" class="glow-block matchup-overview"><div class="section-header"><div><h2>Matchups</h2><p>Quick OP18 matchup spread for Monkey D. Luffy.</p></div></div><div class="matchup-overview-grid">{matchupSummaryGroups.map((group) => <div class="matchup-overview-group"><div class={`matchup-overview-badge overview-badge-${group.tone}`}><span class="matchup-overview-icon">{group.icon}</span><span>{group.label}</span></div><div class="matchup-overview-list">{group.cards.map((entry) => <button class="matchup-overview-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={getCardThumbnail(matchupSummaryIcons[entry.code] ?? entry.img)} alt={`${entry.name} Leader`} loading="lazy"/><span>{entry.name}</span></button>)}</div></div>)}</div></section>
     <section id="tips" class="glow-block"><h2>Tips</h2><div class="content-list">{tips.map((item) => <article class="tip-card"><div class="tip-card-images">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="tip-copy">{item.paragraphs.map((text) => <p>{text}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
   </div>
   <div class="card-modal" data-modal aria-hidden="true"><div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview"><button class="modal-close" type="button" data-close>Close</button><img src="" alt="" data-modal-image/></div></div>
@@ -350,4 +372,6 @@ const renderText = (text) => text.split(/(\*\*.*?\*\*)/g);
   @media(min-width:761px){.tech-card-images .mini-card img{width:120px}}
   @media(min-width:761px){.curve-content .card-set.one .mini-card img,.curve-content .card-set.two .mini-card img{width:120px}}
   @media(min-width:761px){.content-item.text-beside-cards{grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto auto;align-items:start;column-gap:1.25rem}.content-item.text-beside-cards>h3{grid-column:1/-1;grid-row:1}.content-item.text-beside-cards>.card-row{grid-column:1;grid-row:2;flex-wrap:nowrap;margin:0}.content-item.text-beside-cards>.paragraphs{grid-column:2;grid-row:2;align-self:center}}
+  .matchup-title-stack{display:flex;flex-direction:column;align-items:flex-start;gap:.4rem}.matchup-rating-badge{display:inline-flex;flex:0 0 auto;align-items:center;padding:.35rem .75rem;border-radius:999px;font-size:.78rem;font-weight:700;white-space:nowrap}.matchup-rating-badge::before{font-size:1rem;line-height:1}.rating-favorable{color:#51e79b;background:rgba(15,106,69,.3)}.rating-favorable::before{content:"↑"}.rating-unfavorable{color:#ff7777;background:rgba(118,38,48,.3)}.rating-unfavorable::before{content:"↓"}.matchup-overview{margin-top:1rem}.matchup-overview-grid{display:grid;grid-template-columns:1fr;gap:1rem}.matchup-overview-group{display:grid;gap:.9rem;align-content:start;padding:1rem;border:1px solid rgba(255,107,53,.3);border-radius:16px;background:rgba(0,0,0,.2)}.matchup-overview-badge{display:inline-flex;width:fit-content;align-items:center;gap:.45rem;padding:.45rem .9rem;border-radius:999px;font-weight:700}.matchup-overview-icon{font-size:1.1rem;font-weight:900}.overview-badge-favorable{color:#51e79b;background:rgba(15,106,69,.3)}.overview-badge-slightly-favorable{color:#9aebbd;background:rgba(15,106,69,.2)}.overview-badge-unfavorable{color:#ff7777;background:rgba(118,38,48,.3)}.matchup-overview-list{display:flex;flex-wrap:nowrap;gap:.75rem;justify-content:flex-start;width:100%;overflow-x:auto}.matchup-overview-entry{flex:0 0 105px;display:grid;gap:.4rem;justify-items:center;padding:.45rem;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(12,17,30,.72);color:var(--text-100);cursor:pointer;text-align:center}.matchup-overview-entry:hover,.matchup-overview-entry:focus-visible{border-color:#ff6b35;transform:translateY(-2px)}.matchup-overview-entry img{width:100%;max-width:96px;border-radius:10px}.matchup-overview-entry span{font-size:.78rem;line-height:1.2}
+  @media(max-width:760px){.matchup-overview-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;gap:.5rem}.matchup-overview-entry{min-width:0;flex-basis:auto;padding:.3rem}.matchup-overview-entry span{font-size:.68rem}}
 </style>

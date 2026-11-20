@@ -162,7 +162,7 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 		{
 			isDeckGuidePage && (
 				<script is:inline>
-					const guideAnchorIds = ["curve", "matchups"];
+					const guideAnchorIds = ["curve", "matchups", "matchup-analysis"];
 					const setupGuideAnchors = () => {
 						const guideHeader = document.querySelector(".site-header");
 						const syncGuideAnchorOffset = () => {
@@ -184,13 +184,24 @@ const structuredDataPayload = [defaultStructuredData, ...extraStructuredData];
 
 						syncGuideAnchorOffset();
 						window.addEventListener("resize", syncGuideAnchorOffset);
+						let guideScrollSequence = 0;
 						const scrollToGuideAnchor = (target, behavior = "auto") => {
-							const headerHeight = guideHeader?.getBoundingClientRect().height ?? 0;
-							const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerHeight - 12);
-							window.scrollTo({ top, behavior });
+							const sequence = ++guideScrollSequence;
+							const alignTarget = (scrollBehavior) => {
+								const headerHeight = guideHeader?.getBoundingClientRect().height ?? 0;
+								const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerHeight - 12);
+								window.scrollTo({ top, behavior: scrollBehavior });
+							};
+
+							alignTarget(behavior);
+							[250, 500, 900, 1400].forEach((delay) => {
+								window.setTimeout(() => {
+									if (sequence === guideScrollSequence) alignTarget("auto");
+								}, delay);
+							});
 						};
 
-						document.querySelectorAll('a[href="#curve"], a[href="#matchups"]').forEach((link) => {
+						document.querySelectorAll('a[href="#curve"], a[href="#matchups"], a[href="#matchup-analysis"]').forEach((link) => {
 							link.addEventListener("click", (event) => {
 								const target = getGuideAnchorTarget(link.getAttribute("href")?.slice(1) ?? "");
 								if (!target) return;
