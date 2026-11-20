@@ -1,6 +1,20 @@
 export const deckGuides = [
 	{
 		kind: "deck",
+		title: "Monkey D. Luffy OP18 Deck Guide",
+		leader: "Monkey D. Luffy",
+		code: "OP18",
+		formatLabel: "OP18 Format",
+		summary: "Decklist, mulligan priorities, going-first and going-second curves, tech cards, matchups, and gameplay tips for Monkey D. Luffy OP18.",
+		month: "November",
+		href: "/deck-guides/monkey-d-luffy-op18/",
+		imageSrc: "/assets/guides/Monkey.DLuffy OP18.png",
+		imageAlt: "Monkey D. Luffy OP18 deck guide cover",
+		aliases: ["monkey d luffy op18", "monkey.d.luffy op18", "op18 luffy deck guide"],
+		tags: ["op18", "water seven", "straw hat crew", "deck guide"],
+	},
+	{
+		kind: "deck",
 		title: "Saint Gunko OP18 Deck Guide",
 		leader: "Saint Gunko",
 		code: "OP18",
