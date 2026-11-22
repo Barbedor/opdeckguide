@@ -56,6 +56,8 @@ import { eb05WestNov04Nov07DeckTemplates, eb05WestNov04Nov07EntrySeeds } from ".
 import { eb05WestNov08Nov12DeckTemplates, eb05WestNov08Nov12EntrySeeds } from "./eb05WestNov08Nov12";
 import { eb05WestNov13Nov15DeckTemplates, eb05WestNov13Nov15EntrySeeds } from "./eb05WestNov13Nov15";
 import { cardNames, registerDeckCardNames } from "./cardNames";
+import { eb05EastNov21DeckTemplates, eb05EastNov21EntrySeeds, eb05EastNov21Leaders } from "./eb05EastNov21";
+import { eb05WestNov16Nov20DeckTemplates, eb05WestNov16Nov20EntrySeeds, eb05WestNov16Nov20Leaders } from "./eb05WestNov16Nov20";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -122,6 +124,8 @@ export const archivedTournamentFormats = [
 export const allTournamentFormats = [...tournamentFormats, ...archivedTournamentFormats];
 
 const leaderIndex = {
+ ...eb05EastNov21Leaders,
+ ...eb05WestNov16Nov20Leaders,
 	"king-op08": {
 		slug: "king-op08",
 		name: "King",
@@ -869,6 +873,8 @@ const leaderIndex = {
 };
 
 const deckTemplates = {
+ ...eb05EastNov21DeckTemplates,
+ ...eb05WestNov16Nov20DeckTemplates,
 	"shanks-op17-east-pao-aug22-hori": [
 		{ code: "OP17-020", name: "Shanks", count: 1, img: "/Cards/OP17/New OP17/OP17-020.jpg", role: "Leader" },
 		{ code: "OP12-034", name: "Perona", count: 3, img: "/Cards/OP12/OP12-034.jpg", role: "Character" },
@@ -15684,6 +15690,8 @@ const deckTemplates = {
 };
 
 const entrySeeds = [
+ ...eb05EastNov21EntrySeeds,
+ ...eb05WestNov16Nov20EntrySeeds,
 	{
 		format: "op17",
 		region: "east",
@@ -29845,6 +29853,10 @@ const formatDate = (value) => {
 };
 
 const legacyEventTypeMap = {
+ "Simu (OP18 postban)": "simu",
+ "sim (OP18 Postban)": "simu",
+ "sim (OP18)": "simu",
+ "sin (op18)": "simu",
 	SB: "Standard Battle",
 	SE: "Shop Event",
 	ShopEvent: "Shop Event",

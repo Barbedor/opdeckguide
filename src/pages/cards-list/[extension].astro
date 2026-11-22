@@ -3475,6 +3475,13 @@ const description = isLeakPage
 			{isLeakPage && !isEb05GridPage ? (
 				<div class="leak-cards-grid">
 					{leakCards.map((card) => {
+						const specialPrintLabels = ["ALT", "ENGLISH TR", "GOLD", "MANGA", "SP", "SUPER ALT"];
+						const isSpecialPrint =
+							Boolean(card.edition) ||
+							specialPrintLabels.includes((card.headerBadge ?? "").toUpperCase()) ||
+							specialPrintLabels.includes((card.rarity ?? "").toUpperCase()) ||
+							/\/(?:SP|ALT|MANGA|ENGLISH TR)\s/i.test(card.fullUrl ?? "");
+						const affiliateCard = isSpecialPrint ? null : cardsListAffiliateCards[card.code];
 						return (
 						<article class="leak-card" id={getLeakDisplaySortCode(card)}>
 							<div class="card-thumb-shell leak-card-thumb-shell">
@@ -3487,6 +3494,16 @@ const description = isLeakPage
 								>
 									<img loading="lazy" decoding="async" fetchpriority="low" src={card.smallUrl} alt={`${card.code} ${card.name} card`} />
 								</button>
+								{affiliateCard && (
+									<a
+										class="card-affiliate-link"
+										href={affiliateCard.affiliateUrl}
+										target="_blank"
+										rel="nofollow sponsored noopener"
+									>
+										{affiliateCard.price}
+									</a>
+								)}
 							</div>
 							<div class="leak-card-copy">
 								<div class="leak-card-header">

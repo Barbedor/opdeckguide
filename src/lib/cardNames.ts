@@ -8,6 +8,9 @@ import { buildCardIndex } from "./cards";
  * absente provoque une erreur lors de la construction du site.
  */
 const baseCardNames: Record<string, string> = {
+	"OP18-096": "I'll Make the Call",
+	"OP18-095": "I'm Late, I'm Very Late!!",
+	"OP18-097": "Abyss Pentagram",
 	"EB02-031": "Hope",
 	"EB02-055": "Jinbe",
 	"EB03-002": "Ain",
