@@ -30,6 +30,6 @@ export const eb05EastNov22DeckTemplates = Object.fromEntries(entries.map(entry =
 export const eb05EastNov22EntrySeeds = entries.map(({ cards, ...entry }) => entry);
 export const eb05EastNov22Leaders = {
  "luffy-op18": { slug: "luffy-op18", code: "OP18-022", name: "Monkey.D.Luffy", format: "eb05-op18", color: "Green", imageSrc: "/assets/guides/Monkey.DLuffy OP18.png", href: "/deck-guides/monkey-d-luffy-op18/" },
- "karoo-op18": { slug: "karoo-op18", code: "OP18-001", name: "Karoo", format: "eb05-op18", color: "Red / Blue", imageSrc: "/assets/guides/Karoo OP18.png", href: "/deck-guides/" },
+ "karoo-op18": { slug: "karoo-op18", code: "OP18-001", name: "Karoo", format: "eb05-op18", color: "Red / Blue", imageSrc: "/assets/guides/Karoo OP18.png", href: "/deck-guides/karoo-op18/" },
  "boa-hancock-op14": { slug: "boa-hancock-op14", code: "OP14-041", name: "Boa Hancock", format: "eb05-op18", color: "Blue / Yellow", imageSrc: "/assets/guides/boa-hancock-op14.png", href: "/deck-guides/boa-hancock-op14/" },
 };

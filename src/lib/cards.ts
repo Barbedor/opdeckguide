@@ -7,6 +7,9 @@ const variantPriority = ["base", "ALT BAKI", "ALT", "SUPER ALT", "MANGA", "PIRAT
 const manualCardOverrides = {
 	ST37: {
 		"st37-001 monkey.d.luffy": { code: "ST37-001", name: "Monkey.D.Luffy", color: "Red / Blue" },
+		"st37-006 portgas.d.ace": { code: "ST37-006", name: "Portgas.D.Ace", color: "Red", fullUrl: "/Cards/ST37/card-images/ST37-006 Portgas.D.Ace.jpg", smallUrl: "/Cards/ST37/card-images/ST37-006 Portgas.D.Ace_small.webp" },
+		"st37-007 monkey.d.luffy": { code: "ST37-007", name: "Monkey.D.Luffy", color: "Red" },
+		"st37-015 oh yeah! you're the one who's minow!!": { code: "ST37-015", name: "Oh Yeah! You're The One Who's Minow!!", color: "Red" },
 	},
 	ST38: {
 		"st38-001 mr. 0 (crocodile)": { code: "ST38-001", name: "Mr. 0 (Crocodile)", color: "Blue / Black" },
@@ -2027,7 +2030,7 @@ export const getExtensions = () => {
 		.filter((entry) => !hiddenExtensions.has(entry.name.toLowerCase()))
 		.map((entry) => entry.name)
 		.sort((a, b) => {
-			const featuredOrder = { OP18: 0, EB05: 1, ST37: 2, ST38: 3 };
+			const featuredOrder = { OP18: 0, ST37: 1, ST38: 2 };
 			const aFeatured = featuredOrder[a.toUpperCase()];
 			const bFeatured = featuredOrder[b.toUpperCase()];
 			if (aFeatured !== undefined || bFeatured !== undefined) {
@@ -2089,8 +2092,8 @@ export const getCardsForExtension = (extension) => {
 				code,
 				name: override.name ?? meta.name ?? code,
 				color: override.color ?? meta.color ?? "Other",
-				smallUrl: smallByBase.get(base) ?? fullUrl,
-				fullUrl,
+				smallUrl: override.smallUrl ?? smallByBase.get(base) ?? fullUrl,
+				fullUrl: override.fullUrl ?? fullUrl,
 			};
 		})
 		.filter((card) => card && Boolean(card.fullUrl))
@@ -2101,11 +2104,15 @@ export const getExtensionSummary = (extension) => {
 	const extensionPath = path.join(cardsRoot, extension);
 	if (!fs.existsSync(extensionPath)) return { extension, count: 0, previews: [] };
 	const cards = getCardsForExtension(extension);
+	const setCode = extension.toUpperCase();
+	const previewPool = ["OP18", "EB05"].includes(setCode)
+		? cards.filter((card) => card.code.startsWith(setCode + "-"))
+		: cards;
 
 	return {
 		extension,
 		count: cards.length,
-		previews: cards.slice(0, 3),
+		previews: previewPool.slice(0, 3),
 	};
 };
 

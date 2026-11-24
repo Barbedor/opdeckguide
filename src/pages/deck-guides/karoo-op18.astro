@@ -1,0 +1,386 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCardThumbnail } from "../../lib/assets";
+
+const title = "Karoo OP18 Deck Guide";
+const description = "Karoo OP18 deck guide with decklist, mulligan priorities, curve guide, important combinations, tech cards, matchups, and gameplay tips.";
+const heroIntro = "Karoo's game plan is built around constant offensive pressure from Animal and Alabasta Characters, which gain Rush and +1000 Power from your Leader's effect.";
+const guideIcon = "/assets/guides/Karoo OP18.png";
+const card = (code, name, file, count = null, role = "Character") => ({ code, name, img: "/Cards/" + file, count, role });
+
+const leader = card("OP18-001", "Karoo", "OP18/OP18-001 Karoo .jpg", 1, "Leader");
+const viviSearcher = card("OP13-012", "Nefeltari Vivi", "OP13/OP13-012.jpg", 4);
+const igaram = card("OP18-002", "Igaram", "OP18/OP18-002 Igaram.jpg", 4);
+const viviTwoCost = card("OP18-011", "Nefeltari Vivi", "OP18/OP18-011 Nefertari Vivi.jpg", 4);
+const nami = card("EB05-061", "Nami", "EB05/EB05-061 Nami.jpg", 4);
+const karooRush = card("OP18-004", "Karoo", "OP18/OP18-004 Karoo.jpg", 4);
+const boa = card("EB05-028", "Boa Hancock", "EB05/EB05-028 Boa Hancock.jpg", 2);
+const duckTroops = card("OP18-009", "Super Spot-Billed Duck Troops", "OP18/OP18-009 Super Spot-Billed Duck Troops.jpg", 4);
+const chopper = card("OP18-010", "Tony Tony.Chopper", "OP18/OP18-010 Tony Tony.Chopper.jpg", 4);
+const accelegator = card("OP18-043", "Accelegator", "OP18/OP18-043 Banana Gator.webp", 4);
+const karooEb02 = card("EB02-001", "Karoo", "EB02/EB02-001.jpg", 4);
+const viviEb03 = card("EB03-024", "Nefeltari Vivi", "EB03/EB03-024.jpg", 4);
+const seaCat = card("OP18-003", "Sea Cat", "OP18/OP18-003 Sea Cat.jpg", 4);
+const chaka = card("OP18-008", "Chaka", "OP18/OP18-008 Chaka.jpg", 4);
+const sundayLeader = card("OP18-041", "Ms. All Sunday OP18", "OP18/OP18-041 Ms. All Sunday.jpg", null, "Leader");
+const spandamLeader = card("OP18-079", "Spandam OP18", "OP18/OP18-079 Spandam.jpg", null, "Leader");
+const gunkoLeader = card("OP18-060", "Saint Gunko OP18", "OP18/OP18-060 Saint Gunko.jpg", null, "Leader");
+const greenLuffyLeader = card("OP18-022", "Green Luffy OP18", "OP18/OP18-022 Monkey.D.Luffy.jpg", null, "Leader");
+const rocksLeader = card("OP17-039", "Rocks D. Xebec OP17", "OP17/New OP17/OP17-039.jpg", null, "Leader");
+
+const decklist = [leader, viviSearcher, igaram, viviTwoCost, nami, karooRush, boa, duckTroops, chopper, accelegator, karooEb02, viviEb03, seaCat, chaka];
+const simDeckCode = decklist.flatMap((entry) => {
+  const lines = [];
+  let remaining = entry.count;
+  while (remaining > 4) {
+    lines.push("4x" + entry.code);
+    remaining -= 4;
+  }
+  if (remaining > 0) lines.push(remaining + "x" + entry.code);
+  return lines;
+}).join("\n");
+
+const mulliganIntro = [
+  "Your opening hand with Karoo mainly revolves around finding OP18-011 Nefeltari Vivi and OP18-004 Karoo. These two cards are essential for setting up your offensive pressure quickly.",
+  "The deck has only one true Searcher, which makes access to these cards less consistent."
+];
+const priorityCards = [
+  { title: "OP18-011 Nefeltari Vivi", card: viviTwoCost, paragraphs: [
+    "The most important card to have in your opening hand.",
+    "Combined with your Leader's effect, it lets all your Characters with the Animal and Alabasta types gain a total of +2000 Power.",
+    "It lets OP18-004 Karoo reach 6000 Power with Rush and Banish right away, without attaching the DON!! normally required to activate those effects.",
+    "It is also a 6000-Power Blocker during your opponent's turn for only 2 DON!!."
+  ]},
+  { title: "OP13-012 Nefeltari Vivi", card: viviSearcher, paragraphs: [
+    "The deck's only Searcher. It lets you look at the top four cards of your deck and add an Alabasta or Straw Hat Crew card with a Cost of 2 or more to your hand.",
+    "It is especially important for finding 2-cost Vivi or the deck's different Karoo cards."
+  ]},
+  { title: "OP18-004 Karoo", card: karooRush, paragraphs: [
+    "One of the deck's main attackers.",
+    "With your Leader's effect giving it +1000 Power, it immediately has Rush and 5000 Power. With Vivi on the field, it reaches 6000 Power and gains Banish in addition to Rush.",
+    "Games where you find several copies of Karoo early are generally easier to play."
+  ]},
+  { title: "OP18-002 Igaram", card: igaram, paragraphs: [
+    "When you do not have a Searcher, Igaram is another way to find the pieces you are missing.",
+    "Its effect lets you send an Alabasta card from your hand to your Trash to draw two cards."
+  ]}
+];
+const mulliganFirst = [
+  "Vivi Searcher and Igaram let you use your first DON!! to look for the pieces you need to develop.",
+  "Your priority is still to find 2-cost Vivi and Animal/Alabasta Characters that can use her Power bonus."
+];
+const mulliganSecond = [
+  "Going second lets you play 2-cost Vivi on your first turn.",
+  "You can therefore benefit from her Power bonus on your first offensive turn.",
+  "Your opening-hand priorities stay the same: find Vivi, Karoo, and the cards that help you access them."
+];
+
+const curveFirst = [
+  { title: "1 DON!! — Find Your Pieces", cards: [viviSearcher, igaram], connectors: ["OR"], paragraphs: [
+    "OP13-012 Nefeltari Vivi searches for 2-cost Vivi or your next attackers.",
+    "OP18-002 Igaram refreshes your hand by sending an Alabasta card to your Trash and drawing two cards."
+  ]},
+  { title: "3 DON!! — Play Vivi", cards: [viviTwoCost, nami, karooRush], connectors: ["OR", "OR"], layout: "three-alternatives", paragraphs: [
+    "Your priority is to play OP18-011 Nefeltari Vivi to strengthen your next Animal/Alabasta Characters.",
+    "You can also play EB05-061 Nami, which lets you play Vivi from your hand with its On Play effect. For only 1 more DON!! than Vivi alone, you get an additional Character that can protect your board.",
+    "If you do not have Vivi, OP18-004 Karoo lets you start applying offensive pressure right away with a 5000-Power attack thanks to your Leader's effect."
+  ]},
+  { title: "5 DON!! — Develop Your Characters", cards: [karooEb02, seaCat, chaka, karooRush], connectors: ["OR", "OR", "OR"], layout: "four-alternatives", paragraphs: [
+    "Several Characters can keep up your offensive pressure.",
+    "EB02-001 Karoo: an immediate attack at 8000 Power, or 9000 with Vivi.",
+    "OP18-003 Sea Cat: an immediate attack at 7000 Power, or 8000 with Vivi.",
+    "OP18-008 Chaka: a Character with Rush that refreshes your hand and gains Banish during the turn you play it.",
+    "If Vivi is already on your board, OP18-004 Karoo is also a 6000-Power attack with Banish for only 3 DON!!."
+  ]},
+  { title: "7 DON!! — Maintain Pressure", cards: [duckTroops, karooRush], connectors: ["OR / +"], layout: "two-cards-line", paragraphs: [
+    "Keep playing Characters with Rush, especially OP18-009 Super Spot-Billed Duck Troops, which represents a 7000-Power attack with Vivi on the field.",
+    "You can also play OP18-004 Karoo to apply additional pressure with Banish.",
+    "Start preparing for your next turn by finding Karoo to play with Super Spot-Billed Duck Troops' Activate: Main effect."
+  ]},
+  { title: "9 DON!! — Generate Additional Attacks", cards: [duckTroops, karooEb02], connectors: ["+"], paragraphs: [
+    "With at least 9 DON!! on your field, you can use Super Spot-Billed Duck Troops' Activate: Main effect.",
+    "The sequence is:",
+  ], steps: [
+    "Attack with Super Spot-Billed Duck Troops.",
+    "Send it to your Trash to play a Karoo from your hand.",
+    "Attack immediately with the new Karoo thanks to Rush from your Leader."
+  ], ending: [
+    "EB02-001 Karoo is especially useful for this sequence because it represents another attack at 9000 Power if you have 2-cost Vivi on the board.",
+    "If you have several Super Spot-Billed Duck Troops and several Karoo in hand, you can repeat this sequence during the same turn."
+  ]}
+];
+const curveSecond = [
+  { title: "2 DON!! — Play Vivi", cards: [viviTwoCost, viviSearcher, igaram], connectors: ["OR", "+"], layout: "three-alternatives", paragraphs: [
+    "If you have OP18-011 Nefeltari Vivi, you can play it on your first turn.",
+    "Otherwise, use Vivi Searcher and Igaram to try to find the missing pieces."
+  ]},
+  { title: "4 DON!! — Start Applying Offensive Pressure", cards: [duckTroops, karooRush, viviSearcher], connectors: ["OR", "+"], layout: "three-alternatives", paragraphs: [
+    "OP18-009 Super Spot-Billed Duck Troops can attack immediately at 6000 Power, or 7000 Power with 2-cost Vivi on the board.",
+    "You can also play OP18-004 Karoo and use the remaining DON!! to play Vivi Searcher and prepare for your next turns.",
+    "Even without 2-cost Vivi, it is important to start applying offensive pressure instead of waiting until you have all your pieces."
+  ]},
+  { title: "6 DON!! — Strengthen Your Board", cards: [viviTwoCost, duckTroops], connectors: ["+"], paragraphs: [
+    "If you played Super Spot-Billed Duck Troops on your previous turn without Vivi on your board and have her in hand now, play her before attacking to boost Super Spot-Billed Duck Troops' attack. You can even play a second 2-cost Vivi to stack the Power bonuses and make your attacks much harder for your opponent to defend.",
+    "Then use your remaining 4 DON!! to play a second Super Spot-Billed Duck Troops.",
+    "This sequence lets you make at least two attacks at 7000 Power by combining the 2-cost Vivi Power bonus with your Leader's."
+  ]},
+  { title: "8 DON!! — Prepare Your Finishing Attacks", cards: [duckTroops, viviSearcher], connectors: ["+"], paragraphs: [
+    "Keep playing Super Spot-Billed Duck Troops and use Vivi Searcher to find more Karoo.",
+    "The goal is to have several Super Spot-Billed Duck Troops on your board and several Karoo in hand for your next turn.",
+    "At 8 DON!!, you still cannot use their Activate: Main effect."
+  ]},
+  { title: "10 DON!! — Look for Lethal", cards: [duckTroops, karooRush, karooEb02], connectors: ["+", "+"], layout: "three-alternatives", paragraphs: [
+    "Attack with the Characters already on the field before using Super Spot-Billed Duck Troops' effects.",
+    "You can then replace them with new Karoo with Rush while keeping your DON!! available to increase the Power of your attacks.",
+    "This interaction is especially useful against Saint Gunko. Even if purple Saint Killingham prevents your Super Spot-Billed Duck Troops from attacking, you can still use their effect to play new Karoo that can attack immediately."
+  ]}
+];
+
+const combinations = [
+  { title: "EB05-061 Nami + OP18-011 Nefeltari Vivi", cards: [nami, viviTwoCost], paragraphs: [
+    "Nami lets you play Vivi while providing additional protection for your board.",
+    "Once per turn, when one of your Characters with a base Power of 6000 or less would be removed from the field by your opponent, you may add the top card of your Life to your hand instead.",
+    "This protection works against both K.O.s in battle and opposing removal effects.",
+    "It is especially useful for keeping OP18-004 Karoo on the field after it attacks with Banish. It can also let you take a Life card when your opponent is trying to starve you."
+  ]},
+  { title: "EB03-024 Nefeltari Vivi + OP18-008 Chaka", cards: [viviEb03, chaka], paragraphs: [
+    "When its On Play effect's conditions are met, Vivi, which is a Blocker, lets you play an Alabasta or Straw Hat Crew Character with a Cost of 5 or less from your hand.",
+    "You can play Chaka this way to refresh your hand and immediately make an attack with Banish.",
+    "Note that Chaka only has Banish during the turn you play it.",
+    "After resolving Vivi's effect, you cannot play any more Characters during that turn."
+  ]}
+];
+
+const techCards = [
+  { card: nami, title: "EB05-061 Nami — Board Protection", paragraphs: [
+    "At four copies, Nami protects your most important Characters, especially OP18-004 Karoo.",
+    "Once per turn, when one of your Characters with a base Power of 6000 or less would be removed from the field by your opponent, you may add the top card of your Life to your hand instead.",
+    "This protection works against both attacks and opposing removal effects. It can also counter starve strategies by letting you take a Life card while keeping your Characters.",
+    "Its On Play effect lets you play a red Character with a Cost of 2 or less from your hand, especially OP18-011 Nefeltari Vivi.",
+    "Vivi Searcher can also find Nami, making it easier to include her in the deck."
+  ]},
+  { card: boa, title: "EB05-028 Boa Hancock — Anti-Rocks", paragraphs: [
+    "Boa Hancock is included at two copies mainly for the matchup against Rocks.",
+    "When your opponent has at least nine cards in hand, Boa makes them send four cards to the Trash.",
+    "Rocks has a strong draw engine that lets it make up for Karoo's offensive pressure. Boa Hancock reduces its resources and limits its ability to defend against your next attacks.",
+    "This card is still a situational choice and is not essential to the deck's game plan."
+  ]},
+  { card: chopper, title: "OP18-010 Tony Tony.Chopper — Resource Recovery", paragraphs: [
+    "Despite having relatively low base Power for its 4-DON!! Cost, Chopper benefits from your Leader's and Vivi's bonuses to become a 6000- or 7000-Power Character with Rush.",
+    "When it is K.O.'d, its effect lets you return a Character with 4000 Power or less from your Trash to your hand.",
+    "Combined with your Leader's draw effect, Chopper can therefore add two cards to your hand when both effects are used.",
+    "This interaction can make your opponent hesitate to K.O. it.",
+    "It also has a +2000 Counter, giving it defensive value while it is in your hand."
+  ]},
+  { card: chaka, title: "OP18-008 Chaka — Draw and Banish", paragraphs: [
+    "Chaka lets you refresh your hand by sending a Character with 5000 Power or less from your hand to your Trash to draw two cards.",
+    "Chaka also has Rush and can gain Banish during the turn you play it.",
+    "Unlike Animal/Alabasta Characters, Chaka does not get the Leader's and 2-cost Vivi's Power bonuses because it does not have the Animal type.",
+    "Its main value is refreshing your hand while applying immediate pressure with Rush and Banish."
+  ]},
+  { card: seaCat, title: "OP18-003 Sea Cat — Character and Counter", paragraphs: [
+    "Sea Cat is a vanilla 5-cost Character with 6000 Power and a +2000 Counter.",
+    "Your Leader's effect immediately makes it a 7000-Power Character with Rush, or 8000 Power with Vivi on the field.",
+    "It gives you an offensive option while still being useful defensively when it stays in your hand."
+  ]},
+  { card: igaram, title: "OP18-002 Igaram — Refresh Your Hand", paragraphs: [
+    "Igaram lets you send an Alabasta card from your hand to your Trash to draw two cards.",
+    "The deck has only one true Searcher, so Igaram plays an important role in making up for the deck's inconsistency and increasing your chances of finding OP18-011 Nefeltari Vivi and your different Karoo.",
+    "It also lets you refresh your hand by getting rid of a card you do not need right away.",
+    "Its low Cost of 1 DON!! makes it easy to fit into your plays without slowing your offensive development too much."
+  ]}
+];
+
+const matchups = [
+  { title: "OP18 Ms. All Sunday", leader: sundayLeader, paragraphs: [
+    "The goal is to maintain steady offensive pressure with your Characters with Rush.",
+    "OP18-004 Karoo threatens opposing Life with Banish, while Super Spot-Billed Duck Troops' 7000-Power attacks force your opponent to use defensive resources.",
+    "EB02-001 Karoo is also a major threat at 9000 Power whenever 2-cost Vivi is on your board.",
+    "In the late game, use Super Spot-Billed Duck Troops to generate additional attacks by replacing them with new Karoo.",
+    "How consistently you can apply pressure depends heavily on your ability to find your different Karoo."
+  ]},
+  { title: "OP18 Spandam", leader: spandamLeader, paragraphs: [
+    "Against Spandam's many removal and Bottom Deck effects, prioritize immediate damage with Rush.",
+    "Even if your opponent removes your Characters from the board, they will already have attacked during your turn.",
+    "OP18-008 Chaka applies especially useful pressure with Banish while refreshing your hand. Losing it is less of a problem after the turn you play it because it no longer has Banish.",
+    "When your opponent threatens to remove a Character during your turn, attack with it before triggering your opponent's removal effects.",
+    "EB05-061 Nami is especially useful in this matchup. For example, she can protect OP18-004 Karoo from Buster Call by letting you take a Life card instead.",
+    "Karoo can then use its Unblockable effect at 7000 Power to get around opposing Blockers and look for lethal."
+  ]},
+  { title: "OP18 Saint Gunko", leader: gunkoLeader, paragraphs: [
+    "Your goal is to apply as much pressure as possible before Gunko stabilizes its board.",
+    "Characters with Rush are especially effective against purple Saint Killingham because they can attack the turn they are played. So even if Saint Killingham prevents them from attacking on later turns, they have already helped pressure your opponent.",
+    "Starting at 9 DON!!, OP18-009 Super Spot-Billed Duck Troops can also get around this effect.",
+    "Even when they cannot attack, you can send them to the Trash with their Activate: Main effect to play new Karoo from your hand and attack immediately with them.",
+    "Try to have several Karoo in hand for this late-game sequence.",
+    "OP18-004 Karoo can also gain Unblockable at 7000 Power, letting it get around opposing Blockers, especially the 10-cost Saint Gunko and Sleeptids played with black Saint Killingham's effect."
+  ]},
+  { title: "OP18 Green Luffy", leader: greenLuffyLeader, paragraphs: [
+    "Green Luffy can apply significant pressure with repeated 8000-Power attacks.",
+    "It is especially important to play OP18-011 Nefeltari Vivi, which provides both a Blocker and a Power bonus for your Characters.",
+    "EB03-024 Nefeltari Vivi, which is a Blocker, lets you play a Character such as Chaka so you can maintain offensive pressure while also needing to defend.",
+    "One of the main threats in this matchup is OP18-027 Zoro & Sogeking.",
+    "When your opponent's Leader has 7000 base Power, your attacks become much less threatening, especially if you do not have 2-cost Vivi to strengthen your Characters.",
+    "Not finding Vivi can therefore make this matchup especially difficult, both offensively and defensively."
+  ]},
+  { title: "OP17 Rocks", leader: rocksLeader, paragraphs: [
+    "Rocks has a strong draw engine that lets it make up for the damage Karoo deals.",
+    "Your offensive pressure may therefore not be enough to overcome the many resources your opponent accumulates.",
+    "EB05-028 Boa Hancock is included in the deck at two copies mainly for this matchup.",
+    "When Rocks has at least nine cards in hand, Boa Hancock makes it trash four cards.",
+    "This reduces its resources and limits the advantage generated by its draw engine.",
+    "Boa Hancock is still a situational choice and is not essential to the deck's game plan."
+  ]}
+];
+
+const tips = [
+  { title: "Prioritize OP18-011 Nefeltari Vivi", cards: [viviTwoCost], paragraphs: [
+    "Vivi is one of the deck's most important cards. Her +1000 Power bonus strengthens all your Animal/Alabasta Characters and lets OP18-004 Karoo gain Banish without attaching DON!! to it.",
+    "Try to keep Vivi on your board. You can stack multiple copies to stack the Power boost on your Animal/Alabasta Characters.",
+    "Her role is both offensive and defensive because she is also a Blocker with 6000 Power during your opponent's turn."
+  ]},
+  { title: "Use Karoo's Different Power Thresholds", cards: [viviTwoCost, karooRush], layout: "cards-with-text", paragraphs: [
+    "With 2-cost Vivi on your board, OP18-004 Karoo naturally has 6000 Power with Rush and Banish.",
+    "If your opponent has Blockers, attach one additional DON!! to it to reach 7000 Power and gain Unblockable.",
+    "With two copies of 2-cost Vivi on your board, Karoo gets all three abilities without attaching DON!! to it."
+  ]},
+  { title: "Attack Before Using Super Spot-Billed Duck Troops", cards: [duckTroops, karooRush, karooEb02], layout: "cards-below", paragraphs: [
+    "Starting at 9 DON!! on your field, remember to attack with Super Spot-Billed Duck Troops before sending it to the Trash to play a new Karoo.",
+    "This gives you two consecutive attacks without spending DON!! to play a new Character.",
+    "Try to find several Karoo ahead of time so you can repeat this sequence with several Super Spot-Billed Duck Troops during the same turn.",
+    "Even if purple Saint Killingham's effect prevents your Super Spot-Billed Duck Troops from attacking, you can still use their Activate: Main effect to replace them with new Karoo with Rush."
+  ]},
+  { title: "Use Nami to Protect Your Characters and Counter Starve", cards: [nami, karooRush, karooEb02], layout: "cards-below", paragraphs: [
+    "Nami protects your most important Characters against opposing attacks and removal effects.",
+    "This protection is especially useful for OP18-004 Karoo, which you want to keep on your board to continue applying pressure with Banish.",
+    "If your opponent is trying to starve you, Nami's effect also lets you add a Life card to your hand while keeping your Character on the board.",
+    "Note that this protection only works on Characters with a base Power of 6000 or less. EB02-001 Karoo, which has 7000 base Power, cannot benefit from it."
+  ]},
+  { title: "Pay Attention to Your Attack Order", cards: [spandamLeader], paragraphs: [
+    "Against a deck with Triggers that can remove your Characters from the field, prioritize attacking with Characters already on your board that could be targeted.",
+    "Against Spandam, for example, attacking with a Character before your Leader lets it attack before a possible opposing Trigger removes it.",
+    "Also consider attacking with your Leader before playing new Characters when opposing Triggers could interfere with their development."
+  ]},
+  { title: "Use Banish During Chaka's Play Turn", cards: [chaka], paragraphs: [
+    "Chaka only has Banish during the turn it is played, provided you used its On Play effect.",
+    "Use this ability right away and attach DON!! to it if needed to strengthen its attack.",
+    "Its effect also refreshes your hand by sending one card from your hand to your Trash and drawing two cards.",
+    "After the turn you play it, losing Chaka is less of a problem because it no longer has Banish."
+  ]},
+  { title: "Use Chopper's On K.O. Effect", cards: [chopper], paragraphs: [
+    "When Tony Tony.Chopper is K.O.'d, its effect lets you return a Character with 4000 Power or less from your Trash to your hand.",
+    "If your Leader's draw effect is still available, you gain two additional cards in hand this way.",
+    "This interaction can make your opponent hesitate to K.O. Chopper because it would let you recover resources."
+  ]},
+  { title: "Do Not Always Wait for All Your Pieces", cards: [viviSearcher, igaram, chaka], layout: "cards-below", paragraphs: [
+    "The deck's limited number of Searchers is one of its main weaknesses. You will not necessarily find 2-cost Vivi and your different Karoo early in every game.",
+    "Even without 2-cost Vivi, keep applying offensive pressure with your Characters with Rush.",
+    "Use Vivi Searcher, Igaram, and Chaka to keep looking for the missing pieces while maintaining offensive pressure."
+  ]}
+];
+
+const renderText = (text) => text.split(/(\*\*.*?\*\*)/g);
+---
+
+<MainLayout title={title} description={description}>
+  <section class="hero guide-hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-tags"><span class="hero-chip">Deck Guide</span><span class="hero-chip hero-chip-accent">OP18 Format</span></div><h1>{title}</h1><p class="hero-intro">{heroIntro}</p><div class="hero-actions"><a class="btn btn-primary" href="#curve">Game Plan &amp; Curve</a><a class="btn btn-secondary" href="#matchups">Matchups</a><a class="btn btn-secondary btn-card-list" href="/cards-list/OP18/">Card List OP18</a></div></div><div class="guide-icon"><img src={guideIcon} alt="Karoo OP18 deck guide icon" loading="eager"/></div></div></section>
+  <div class="container article-stack">
+    <section id="decklist" class="glow-block"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim={simDeckCode}>Copy for Sim</button></div><div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={entry.code + " " + entry.name}><img src={getCardThumbnail(entry.img)} alt={entry.code + " " + entry.name} loading="lazy"/><div class="deck-info"><b class="deck-count">{entry.count}x</b><span>{entry.name}<small class="deck-code">{entry.code}</small><small class="deck-role">{entry.role}</small></span></div></button>)}</div></section>
+    <section id="mulligan" class="glow-block"><h2>Mulligan</h2>{mulliganIntro.map((text) => <p>{text}</p>)}<h3>Priority Cards</h3><div class="content-list">{priorityCards.map((item) => <article class="content-item has-cards priority-card-item"><h3>{item.title}</h3><div class="card-row"><button class="mini-card" type="button" data-card-preview data-full={item.card.img} data-name={item.card.code + " " + item.card.name}><img src={getCardThumbnail(item.card.img)} alt={item.card.code + " " + item.card.name} loading="lazy"/></button></div><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></article>)}</div><h3>Going First</h3>{mulliganFirst.map((text) => <p>{text}</p>)}<h3>Going Second</h3>{mulliganSecond.map((text) => <p>{text}</p>)}</section>
+    <section id="curve" class="glow-block"><h2>Curve Guide</h2><p>Karoo's game plan is built around constant offensive pressure from Characters with the Animal and Alabasta types, which gain Rush and +1000 Power from your Leader's effect.</p><p>OP18-011 Nefeltari Vivi is essential for strengthening this pressure. Combined with your Leader's effect, she lets your Animal/Alabasta Characters gain a total of +2000 Power during both your turn and your opponent's turn.</p>{[["Going First", curveFirst], ["Going Second", curveSecond]].map(([heading, curve]) => <div class="curve-block"><h3>{heading}</h3>{curve.map((item) => <article class="curve-item"><strong>{item.title}</strong><div class={"curve-content " + (item.layout ?? "")}><div class={"card-set " + (item.layout ?? "")}>{item.layout === "four-alternatives" ? <><div class="card-line"><button class="mini-card" type="button" data-card-preview data-full={item.cards[0].img} data-name={item.cards[0].code + " " + item.cards[0].name}><img src={getCardThumbnail(item.cards[0].img)} alt={item.cards[0].code + " " + item.cards[0].name} loading="lazy"/></button><span class="connector">OR</span><button class="mini-card" type="button" data-card-preview data-full={item.cards[1].img} data-name={item.cards[1].code + " " + item.cards[1].name}><img src={getCardThumbnail(item.cards[1].img)} alt={item.cards[1].code + " " + item.cards[1].name} loading="lazy"/></button></div><div class="card-line"><span class="connector">OR</span><button class="mini-card" type="button" data-card-preview data-full={item.cards[2].img} data-name={item.cards[2].code + " " + item.cards[2].name}><img src={getCardThumbnail(item.cards[2].img)} alt={item.cards[2].code + " " + item.cards[2].name} loading="lazy"/></button><span class="connector">OR</span><button class="mini-card" type="button" data-card-preview data-full={item.cards[3].img} data-name={item.cards[3].code + " " + item.cards[3].name}><img src={getCardThumbnail(item.cards[3].img)} alt={item.cards[3].code + " " + item.cards[3].name} loading="lazy"/></button></div></> : item.cards.map((entry, index) => <>{index > 0 && item.connectors?.[index - 1] && <span class="connector">{item.connectors[index - 1]}</span>}<button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={entry.code + " " + entry.name}><img src={getCardThumbnail(entry.img)} alt={entry.code + " " + entry.name} loading="lazy"/></button></>)}</div><div class="curve-note">{item.paragraphs.map((text) => <p>{text}</p>)}{item.steps && <ol>{item.steps.map((text) => <li>{text}</li>)}</ol>}{item.ending?.map((text) => <p>{text}</p>)}</div></div></article>)}</div>)}</section>
+    <section id="combinations" class="glow-block"><h2>Important Combinations</h2><div class="content-list">{combinations.map((item) => <article class="content-item has-cards"><h3>{item.title}</h3><div class="card-row">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={entry.code + " " + entry.name}><img src={getCardThumbnail(entry.img)} alt={entry.code + " " + entry.name} loading="lazy"/></button>)}</div><div class="paragraphs">{item.paragraphs.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="tech-cards" class="glow-block"><h2>Tech Cards</h2><div class="content-list">{techCards.map((item) => <article class="tech-card"><button class="mini-card tech-card-image" type="button" data-card-preview data-full={item.card.img} data-name={item.card.code + " " + item.card.name}><img src={getCardThumbnail(item.card.img)} alt={item.card.code + " " + item.card.name} loading="lazy"/></button><h3>{item.title}</h3><div class="paragraphs">{item.paragraphs.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="matchups" class="glow-block"><h2>Matchups</h2><div class="content-list">{matchups.map((item) => <article class="content-item matchup-card"><div class="matchup-heading"><button class="mini-card matchup-leader-card" type="button" data-card-preview data-full={item.leader.img} data-name={item.leader.code + " " + item.leader.name}><img src={getCardThumbnail(item.leader.img)} alt={item.leader.name + " Leader"} loading="lazy"/></button><div class="matchup-title-stack"><h3>{item.title}</h3></div></div>{item.paragraphs.map((text) => <p>{text}</p>)}</article>)}</div></section>
+    <section id="tips" class="glow-block"><h2>Tips</h2><div class="content-list">{tips.map((item) => <article class={`content-item has-cards ${item.layout ?? ""}`}><h3>{item.title}</h3><div class="card-row">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={entry.code + " " + entry.name}><img src={getCardThumbnail(entry.img)} alt={entry.code + " " + entry.name} loading="lazy"/></button>)}</div><div class="paragraphs">{item.paragraphs.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+  </div>
+  <div class="card-modal" data-modal aria-hidden="true"><div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview"><button class="modal-close" type="button" data-close>Close</button><img src="" alt="" data-modal-image/></div></div>
+</MainLayout>
+
+<script>
+  const modal = document.querySelector("[data-modal]");
+  const modalImage = document.querySelector("[data-modal-image]");
+  const closeModal = () => { modal?.classList.remove("is-open"); modal?.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; };
+  document.querySelectorAll("[data-card-preview]").forEach((button) => button.addEventListener("click", () => { if (!modal || !modalImage) return; modalImage.src = button.dataset.full || ""; modalImage.alt = button.dataset.name || "Card preview"; modal.classList.add("is-open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }));
+  document.querySelector("[data-close]")?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+  document.querySelector("[data-copy-sim]")?.addEventListener("click", async (event) => { const button = event.currentTarget; try { await navigator.clipboard.writeText(button.dataset.copySim); const previous = button.textContent; button.textContent = "Copied"; window.setTimeout(() => { button.textContent = previous; }, 1800); } catch { button.textContent = "Copy failed"; } });
+</script>
+
+<style>
+  .guide-hero{padding:3rem 0 2rem}.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(220px,.9fr);gap:3rem;align-items:center}.hero-copy h1{margin:0;font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.05}.hero-tags,.hero-actions,.card-row{display:flex;flex-wrap:wrap;gap:.65rem;align-items:flex-start}.hero-tags{margin-bottom:1rem}.hero-tags span{padding:.4rem .8rem;border:1px solid rgba(255,138,42,.3);border-radius:999px;color:#ffb47c;font-size:.8rem;font-weight:800}.guide-icon img{display:block;width:min(190px,100%);margin-left:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)}.hero-intro{max-width:44rem;color:var(--text-200);line-height:1.6}.article-stack,.content-list{display:grid;gap:1rem}.article-stack{padding-bottom:2rem}.glow-block{padding:1.25rem;border:2px solid rgba(255,107,53,.48);border-radius:18px;background:rgba(8,12,24,.82)}.glow-block h2,.glow-block h3,.glow-block p{margin-top:0}.decklist-title-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}.deck-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem}.deck-card{display:grid;gap:.55rem;padding:.7rem;border:1px solid rgba(255,107,53,.26);border-radius:12px;background:rgba(0,0,0,.22);color:inherit;text-align:left}.deck-card img{width:100%;max-width:110px;margin:auto;border-radius:10px}.deck-info{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.5rem}.deck-count{color:#ff8a42}.deck-code,.deck-role{display:block;color:var(--text-300);font-size:.75rem}.content-item,.tech-card{padding:1rem;border:1px solid rgba(255,107,53,.3);border-radius:14px;background:rgba(0,0,0,.2)}.content-item h3,.tech-card h3{margin-bottom:.7rem}.mini-card{border:0;padding:0;background:transparent;cursor:pointer}.mini-card img{display:block;width:88px;border-radius:10px;aspect-ratio:480 / 670;object-fit:contain}.paragraphs p,.matchup-card p{line-height:1.6}.curve-block{margin-top:1.5rem}.curve-item{padding:1rem;border:1px solid rgba(255,107,53,.3);border-radius:14px;background:rgba(0,0,0,.2)}.curve-item>strong{display:block;margin-bottom:.7rem;color:#ff6b35}.curve-content{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:1rem;align-items:center}.curve-content .card-set{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem}.curve-content .mini-card img{width:88px}.curve-note p{line-height:1.6}.curve-note p:last-child{margin-bottom:0}.curve-note ol{padding-left:1.4rem;line-height:1.6}.connector{color:#ff6b35;font-weight:900}.card-modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:1rem;background:rgba(0,0,0,.78)}.card-modal[aria-hidden="true"]{display:none}.card-modal-inner{position:relative;max-width:min(440px,92vw)}.card-modal img{display:block;width:100%;max-height:84vh;object-fit:contain}.modal-close{position:absolute;right:0;top:-2.5rem;border:0;border-radius:999px;padding:.5rem .9rem;background:#ff6b35;color:#fff}.tech-card{display:grid;grid-template-columns:120px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}.tech-card-image{grid-column:1;grid-row:1/span 2}.tech-card>h3{grid-column:2;grid-row:1}.tech-card>.paragraphs{grid-column:2;grid-row:2}
+  @media(min-width:761px){.content-item.has-cards{display:grid;grid-template-columns:120px minmax(0,1fr);grid-template-rows:auto 1fr;align-items:center;column-gap:1.25rem}.content-item.has-cards>h3{grid-column:2;grid-row:1;margin-bottom:.4rem}.content-item.has-cards>.card-row{grid-column:1;grid-row:1/span 2;margin:0}.content-item.has-cards>.paragraphs{grid-column:2;grid-row:2}.content-item.has-cards .card-row img{width:120px}.curve-content .mini-card img,.tech-card-image img{width:120px}}
+  @media(max-width:760px){.guide-hero{padding-top:2rem}.hero-grid{grid-template-columns:1fr;gap:1.25rem}.guide-icon img{margin-inline:auto}.glow-block{padding:.9rem;border-radius:14px}.deck-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem}.deck-card{padding:.45rem;text-align:center}.deck-info{grid-template-columns:1fr;gap:.1rem}.deck-code,.deck-role{font-size:.62rem}.decklist-title-row{display:grid;grid-template-columns:minmax(0,1fr) auto}.copy-sim-button{width:auto}.card-row{gap:.45rem}.card-row img{width:88px}.curve-content{grid-template-columns:1fr;gap:.75rem;align-items:start}.curve-content .card-set{flex-wrap:wrap}.curve-content .mini-card img{width:88px}.tech-card{grid-template-columns:88px minmax(0,1fr);grid-template-rows:auto auto;column-gap:.75rem;align-items:center}.tech-card-image{grid-column:1;grid-row:1}.tech-card>h3{grid-column:2;grid-row:1;margin:0}.tech-card>.paragraphs{grid-column:1/-1;grid-row:2}.glow-block h3{line-height:1.25}}
+
+  @media(min-width:761px){
+    #tips .content-item.cards-below{display:block}
+    #tips .content-item.cards-below>h3{margin-bottom:.7rem}
+    #tips .content-item.cards-below>.card-row{display:flex;flex-wrap:nowrap;gap:.65rem;margin:0 0 .75rem}
+    #tips .content-item.cards-below>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #tips .content-item.cards-below>.card-row img{width:120px;max-width:120px}
+  }
+
+  @media(min-width:761px){
+    #tips .content-item.cards-with-text{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}
+    #tips .content-item.cards-with-text>h3{grid-column:1/-1;grid-row:1;margin-bottom:.7rem}
+    #tips .content-item.cards-with-text>.card-row{grid-column:1;grid-row:2;display:flex;flex-wrap:nowrap;gap:.65rem;margin:0}
+    #tips .content-item.cards-with-text>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #tips .content-item.cards-with-text>.card-row img{width:120px;max-width:120px}
+    #tips .content-item.cards-with-text>.paragraphs{grid-column:2;grid-row:2}
+  }
+  @media(min-width:761px){
+    #combinations .content-item.has-cards{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}
+    #combinations .content-item.has-cards>h3{grid-column:1/-1;grid-row:1;margin-bottom:.7rem}
+    #combinations .content-item.has-cards>.card-row{grid-column:1;grid-row:2;display:flex;flex-wrap:nowrap;gap:.65rem;margin:0}
+    #combinations .content-item.has-cards>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #combinations .content-item.has-cards>.card-row img{width:120px;max-width:120px}
+    #combinations .content-item.has-cards>.paragraphs{grid-column:2;grid-row:2}
+  }
+
+  .curve-content.two-cards-line .card-set.two-cards-line{display:flex;flex-wrap:nowrap;align-items:center;gap:.35rem}
+  .curve-content.two-cards-line .card-set.two-cards-line .mini-card{flex:0 0 auto}
+  .curve-content.two-cards-line .card-set.two-cards-line .mini-card img{width:88px;max-width:88px}
+  @media(min-width:761px){
+    .curve-content.two-cards-line{grid-template-columns:minmax(0,340px) minmax(0,1fr)}
+    .curve-content.two-cards-line .card-set.two-cards-line .mini-card img{width:120px;max-width:120px}
+  }
+</style>
+
+<style>
+  .matchup-heading{display:flex;align-items:center;gap:1rem;margin-bottom:.85rem}.matchup-leader-card{flex:0 0 auto}.matchup-title-stack h3{margin:0}.matchup-card>p{line-height:1.6}
+  @media(min-width:761px){.matchup-card{display:grid;grid-template-columns:120px minmax(0,1fr);grid-template-rows:auto repeat(6,auto);align-items:center;column-gap:1.25rem}.matchup-heading{display:contents}.matchup-leader-card{grid-column:1;grid-row:1/span 7;align-self:center}.matchup-leader-card img{width:120px}.matchup-title-stack{grid-column:2;grid-row:1;align-self:end}.matchup-card>p{grid-column:2;margin-bottom:.75rem}.matchup-card>p:nth-of-type(1){grid-row:2}.matchup-card>p:nth-of-type(2){grid-row:3}.matchup-card>p:nth-of-type(3){grid-row:4}.matchup-card>p:nth-of-type(4){grid-row:5}.matchup-card>p:nth-of-type(5){grid-row:6}.matchup-card>p:nth-of-type(6){grid-row:7}}
+  @media(max-width:760px){.matchup-leader-card img{width:88px}}
+  @media(min-width:761px){
+    #combinations .content-item.has-cards{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}
+    #combinations .content-item.has-cards>h3{grid-column:1/-1;grid-row:1;margin-bottom:.7rem}
+    #combinations .content-item.has-cards>.card-row{grid-column:1;grid-row:2;display:flex;flex-wrap:nowrap;gap:.65rem;margin:0}
+    #combinations .content-item.has-cards>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #combinations .content-item.has-cards>.card-row img{width:120px;max-width:120px}
+    #combinations .content-item.has-cards>.paragraphs{grid-column:2;grid-row:2}
+  }
+</style>
+
+<style>
+  @media(max-width:760px){.priority-card-item{display:grid;grid-template-columns:88px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:.75rem}.priority-card-item>h3{grid-column:2;grid-row:1;margin:0}.priority-card-item>.card-row{grid-column:1;grid-row:1;margin:0}.priority-card-item>.paragraphs{grid-column:1/-1;grid-row:2}}
+  @media(min-width:761px){
+    #combinations .content-item.has-cards{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}
+    #combinations .content-item.has-cards>h3{grid-column:1/-1;grid-row:1;margin-bottom:.7rem}
+    #combinations .content-item.has-cards>.card-row{grid-column:1;grid-row:2;display:flex;flex-wrap:nowrap;gap:.65rem;margin:0}
+    #combinations .content-item.has-cards>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #combinations .content-item.has-cards>.card-row img{width:120px;max-width:120px}
+    #combinations .content-item.has-cards>.paragraphs{grid-column:2;grid-row:2}
+  }
+</style>
+
+<style>
+  .curve-content.three-alternatives{grid-template-columns:minmax(400px,420px) minmax(0,1fr)}.curve-content.three-alternatives .card-set{flex-wrap:nowrap;gap:.35rem}.curve-content.three-alternatives .mini-card{flex:0 0 auto}
+  .curve-content.four-alternatives .card-set{display:grid;gap:.45rem}.curve-content.four-alternatives .card-line{display:flex;align-items:center;gap:.45rem}
+  @media(max-width:760px){.curve-content.three-alternatives{grid-template-columns:1fr}.curve-content.three-alternatives .card-set{gap:.15rem}.curve-content.three-alternatives .mini-card img{width:80px}}
+  @media(min-width:761px){
+    #combinations .content-item.has-cards{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.25rem;align-items:start}
+    #combinations .content-item.has-cards>h3{grid-column:1/-1;grid-row:1;margin-bottom:.7rem}
+    #combinations .content-item.has-cards>.card-row{grid-column:1;grid-row:2;display:flex;flex-wrap:nowrap;gap:.65rem;margin:0}
+    #combinations .content-item.has-cards>.card-row .mini-card{flex:0 0 120px;width:120px}
+    #combinations .content-item.has-cards>.card-row img{width:120px;max-width:120px}
+    #combinations .content-item.has-cards>.paragraphs{grid-column:2;grid-row:2}
+  }
+</style>

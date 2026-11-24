@@ -83,7 +83,8 @@ const revealPageConfigs = {
 const revealPageConfig = revealPageConfigs[extension.toUpperCase()] ?? null;
 const extensionLabel = revealPageConfig?.displayLabel ?? (extension === "P" ? "Promo" : extension);
 const heroBadgeLabel = revealPageConfig?.badgeLabel ?? extensionLabel;
-const isLeakPage = Boolean(revealPageConfig);
+const isReleasedFullList = ["EB05", "OP18"].includes(extension.toUpperCase());
+const isLeakPage = Boolean(revealPageConfig) && !isReleasedFullList;
 const isEb05GridPage = extension.toUpperCase() === "EB05";
 const useExpandedMobileCardGrid = (!isLeakPage || isEb05GridPage) && /^(OP|EB)/i.test(extension.toUpperCase());
 const op17AffiliateEditionsByCode = {
@@ -158,6 +159,47 @@ const eb05Card019Details = {
 	],
 };
 const leakCardDetails = {
+	"ST37-007": {
+		rarity: "Super Rare",
+		stats: "Red / Cost 7 / Strike / Power 9000",
+		traits: "Straw Hat Crew / Alabasta",
+		effectLines: [
+			[keyword("rush", "Rush")],
+			[
+				keyword("activate-main", "Activate: Main"),
+				" ",
+				keyword("once-per-turn", "Once Per Turn"),
+				" You may trash 1 card from your hand: Negate the effects of up to 1 of your opponent's Characters with 10000 power or less during this turn.",
+			],
+		],
+	},
+	"ST37-006": {
+		rarity: "Common",
+		stats: "Red / Cost 8 / Special / Power 8000",
+		traits: "Whitebeard Pirates / Alabasta",
+		effectLines: [
+			[keyword("blocker", "Blocker")],
+			[
+				keyword("on-play", "On Play"),
+				" Give up to 1 of your opponent's Characters -3000 power during this turn.",
+			],
+		],
+	},
+	"ST37-015": {
+		rarity: "Common",
+		stats: "Red Event / Cost 1",
+		traits: "Straw Hat Crew / Alabasta",
+		effectLines: [
+			[
+				keyword("counter", "Counter"),
+				" If the only Characters on your field are {Alabasta} type Characters, up to 1 of your Leader or Character cards gains +4000 power during this battle.",
+			],
+			[
+				keyword("trigger", "Trigger"),
+				" Trash up to 1 of your opponent's Characters with 5000 power or less.",
+			],
+		],
+	},
 	"ST34-004": {
 		rarity: "Super Rare",
 		stats: "Purple / Cost 10 / Special / Power 12000",

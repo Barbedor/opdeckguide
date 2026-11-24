@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 const rasterExtension = /\.(png|jpe?g)$/i;
+const cardThumbnailExtension = /\.(png|jpe?g|webp)$/i;
 
 export const getOptimizedAssetUrl = (assetUrl: string) => {
 	if (!assetUrl.startsWith("/assets/") || !rasterExtension.test(assetUrl)) return assetUrl;
@@ -12,9 +13,9 @@ export const getOptimizedAssetUrl = (assetUrl: string) => {
 };
 
 export const getCardThumbnail = (assetUrl: string) => {
-	if (!assetUrl.startsWith("/Cards/") || !rasterExtension.test(assetUrl)) return assetUrl;
+	if (!assetUrl.startsWith("/Cards/") || !cardThumbnailExtension.test(assetUrl)) return assetUrl;
 
-	const thumbnailUrl = assetUrl.replace(rasterExtension, "_small.webp");
+	const thumbnailUrl = assetUrl.replace(cardThumbnailExtension, "_small.webp");
 	const relativePath = decodeURIComponent(thumbnailUrl.replace(/^\//, ""));
 	return existsSync(join(process.cwd(), "public", relativePath)) ? thumbnailUrl : assetUrl;
 };
