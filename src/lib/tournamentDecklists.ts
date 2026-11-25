@@ -58,7 +58,9 @@ import { eb05WestNov13Nov15DeckTemplates, eb05WestNov13Nov15EntrySeeds } from ".
 import { cardNames, registerDeckCardNames } from "./cardNames";
 import { eb05EastNov21DeckTemplates, eb05EastNov21EntrySeeds, eb05EastNov21Leaders } from "./eb05EastNov21";
 import { eb05EastNov22DeckTemplates, eb05EastNov22EntrySeeds, eb05EastNov22Leaders } from "./eb05EastNov22";
+import { eb05EastNov23Nov24DeckTemplates, eb05EastNov23Nov24EntrySeeds, eb05EastNov23Nov24Leaders } from "./eb05EastNov23Nov24";
 import { eb05WestNov16Nov20DeckTemplates, eb05WestNov16Nov20EntrySeeds, eb05WestNov16Nov20Leaders } from "./eb05WestNov16Nov20";
+import { eb05WestNov21Nov24DeckTemplates, eb05WestNov21Nov24EntrySeeds } from "./eb05WestNov21Nov24";
 
 export const tournamentDecklistSampleMode = true;
 
@@ -127,6 +129,7 @@ export const allTournamentFormats = [...tournamentFormats, ...archivedTournament
 const leaderIndex = {
  ...eb05EastNov21Leaders,
  ...eb05EastNov22Leaders,
+ ...eb05EastNov23Nov24Leaders,
  ...eb05WestNov16Nov20Leaders,
 	"king-op08": {
 		slug: "king-op08",
@@ -877,7 +880,9 @@ const leaderIndex = {
 const deckTemplates = {
  ...eb05EastNov21DeckTemplates,
  ...eb05EastNov22DeckTemplates,
+ ...eb05EastNov23Nov24DeckTemplates,
  ...eb05WestNov16Nov20DeckTemplates,
+ ...eb05WestNov21Nov24DeckTemplates,
 	"shanks-op17-east-pao-aug22-hori": [
 		{ code: "OP17-020", name: "Shanks", count: 1, img: "/Cards/OP17/New OP17/OP17-020.jpg", role: "Leader" },
 		{ code: "OP12-034", name: "Perona", count: 3, img: "/Cards/OP12/OP12-034.jpg", role: "Character" },
@@ -15695,7 +15700,9 @@ const deckTemplates = {
 const entrySeeds = [
  ...eb05EastNov21EntrySeeds,
  ...eb05EastNov22EntrySeeds,
+ ...eb05EastNov23Nov24EntrySeeds,
  ...eb05WestNov16Nov20EntrySeeds,
+ ...eb05WestNov21Nov24EntrySeeds,
 	{
 		format: "op17",
 		region: "east",

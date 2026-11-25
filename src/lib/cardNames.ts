@@ -14,6 +14,7 @@ const baseCardNames: Record<string, string> = {
 	"OP07-036": "Demonic Aura Nine-Sword Style Asura Demon Nine Flash",
 	"EB02-001": "Karoo",
 	"EB02-022": "Usopp",
+	"OP05-010": "Nico Robin",
 	"EB02-031": "Hope",
 	"EB02-055": "Jinbe",
 	"EB03-002": "Ain",
