@@ -10,9 +10,14 @@ const manualCardOverrides = {
 		"st37-006 portgas.d.ace": { code: "ST37-006", name: "Portgas.D.Ace", color: "Red", fullUrl: "/Cards/ST37/card-images/ST37-006 Portgas.D.Ace.jpg", smallUrl: "/Cards/ST37/card-images/ST37-006 Portgas.D.Ace_small.webp" },
 		"st37-007 monkey.d.luffy": { code: "ST37-007", name: "Monkey.D.Luffy", color: "Red" },
 		"st37-015 oh yeah! you're the one who's minow!!": { code: "ST37-015", name: "Oh Yeah! You're The One Who's Minow!!", color: "Red" },
+		"st37-01x i'm gonna defeat you !": { code: "ST37-01X", name: "I'm Gonna Defeat You!", color: "Red" },
 	},
 	ST38: {
 		"st38-001 mr. 0 (crocodile)": { code: "ST38-001", name: "Mr. 0 (Crocodile)", color: "Blue / Black" },
+		"st38-004 miss goldenweek (marianne)": { code: "ST38-004", name: "Miss Goldenweek (Marianne)", color: "Blue" },
+		"st38-008 mr 0 (crocodile)": { code: "ST38-008", name: "Mr. 0 (Crocodile)", color: "Black" },
+		"st38-015 don't be so full of yourself fishbait": { code: "ST38-015", name: "Don't Be so Full of Yourself Fishbait", color: "Blue" },
+		"st38-01x do you realize who i am": { code: "ST38-01X", name: "Do You Realize Who I Am?", color: "Black" },
 	},
 	OP17: {
 		"op17-001 edward newgate": {
