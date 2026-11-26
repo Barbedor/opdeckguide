@@ -16,18 +16,32 @@ const chimney = card("OP18-028", "Chimney", "OP18/OP18-028 Chimney.jpg", 4);
 const luffyCharacter = card("OP18-036", "Monkey.D.Luffy", "OP18/OP18-036-Monkey.D.Luffy.jpg", 4);
 const robin = card("OP18-031", "Nico Robin", "OP18/OP18-031 Nico Robin.jpg", 4);
 const zoroSogeking = card("OP18-027", "Zoro & Sogeking", "OP18/OP18-027 Zoro and Sogeking.jpg", 4);
-const zoro = card("OP16-035", "Roronoa Zoro", "OP16/OP16-035.jpg", 3);
+const zoro = card("OP16-035", "Roronoa Zoro", "OP16/OP16-035.jpg", 2);
 const luffyNine = card("OP18-118", "Monkey.D.Luffy", "OP18/OP18-118 Monkey D Luffy.jpg", 3);
-const asura = card("OP12-037", "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", "OP12/OP12-037.jpg", 4, "Event");
-const twinJet = card("OP16-039", "Gum-Gum Twin Jet Pistol", "OP16/OP16-039.jpg", 4, "Event");
+const asura = card("OP12-037", "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", "OP12/OP12-037.jpg", 2, "Event");
+const twinJet = card("OP16-039", "Gum-Gum Twin Jet Pistol", "OP16/OP16-039.jpg", 3, "Event");
 const shootDown = card("OP18-038", "Shoot Down That Flag", "OP18/OP18-038 Shoot Down That Flag.jpg", 4, "Event");
+const giantAxe = card("OP18-039", "Gum-Gum Giant Axe", "OP18/OP18-039 Gum-Gum Giant Axe.jpg", 4, "Event");
+const uglyFuture = card("OP17-038", "I Think He's Seen an Ugly Future...", "OP17/New OP17/OP17-038.jpg", null, "Event");
+const zoroOp13 = card("OP13-037", "Roronoa Zoro", "OP13/OP13-037.jpg", null);
+const chopperNine = card("OP18-029", "Tony Tony.Chopper", "OP18/OP18-029 Tony Tony.Chopper.jpg", null);
+const namiOp14 = card("OP14-031", "Nami", "OP14/OP14-031.jpg", null);
+const strongEvent = card("OP13-040", "I Know You're Strong... So I'll Go All Out from the Very Start!!!", "OP13/OP13-040.jpg", null, "Event");
+const laboon = card("OP15-035", "Laboon", "OP15/OP15-035.jpg", null);
+const asuraOp07 = card("OP07-036", "Demonic Aura Nine-Sword Style Asura Demon Nine Flash", "OP07/OP07-036.png", null, "Event");
 
 const sundayLeader = card("OP18-041", "Ms. All Sunday", "OP18/OP18-041 Ms. All Sunday.jpg", null, "Leader");
 const rocksLeader = card("OP17-039", "Rocks D. Xebec", "OP17/New OP17/OP17-039.jpg", null, "Leader");
 const spandamLeader = card("OP18-079", "Spandam", "OP18/OP18-079 Spandam.jpg", null, "Leader");
 const kaidoLeader = card("OP17-058", "Kaido", "OP17/New OP17/OP17-058.jpg", null, "Leader");
+const purpleEnelLeader = card("OP15-058", "Purple Enel", "OP15/OP15-058.jpg", null, "Leader");
+const redLawLeader = card("OP14-001", "Red Trafalgar Law", "OP14/OP14-001.jpg", null, "Leader");
+const yellowEnelLeader = card("OP05-098", "Yellow Enel", "OP05/OP05-098.png", null, "Leader");
+const frankyLeader = card("OP18-034", "Franky OP18", "OP18/OP18-034 Franky.jpg", null, "Leader");
+const luffySt10Leader = card("ST10-001", "Monkey D. Luffy ST10", "ST10/ST10-001.png", null, "Leader");
+const luffyAceLeader = card("ST30-001", "Luffy & Ace ST30", "ST30/ST30-001.jpg", null, "Leader");
 
-const decklist = [leader, nami, gonbe, kokoro, sanji, chimney, luffyCharacter, robin, zoroSogeking, zoro, luffyNine, asura, twinJet, shootDown];
+const decklist = [leader, nami, gonbe, kokoro, sanji, chimney, luffyCharacter, robin, zoroSogeking, zoro, luffyNine, asura, twinJet, shootDown, giantAxe];
 const simDeckCode = decklist.flatMap((entry) => {
   const lines = []; let remaining = entry.count;
   while (remaining > 4) { lines.push(`4x${entry.code}`); remaining -= 4; }
@@ -36,119 +50,136 @@ const simDeckCode = decklist.flatMap((entry) => {
 }).join("\n");
 
 const mulliganIntro = [
-  "Your opening hand should have the cards you need to use your Leader's multiple attacks without suffering its main drawback: it cannot become Active during your next Refresh Phase.",
-  "Your priority is to find OP18-031 Nico Robin while keeping a hand that can develop your board and prepare your first offensive turns."
+  "Green Luffy's opening hand mainly depends on having OP18-031 Nico Robin, which lets you fully use your Leader's effect, followed by OP18-027 Zoro & Sogeking to strengthen your defense while maintaining offensive pressure."
 ];
 const mulligan = [
-  { title: "OP18-031 Nico Robin — Absolute Priority", cards: [robin], paragraphs: [
-    "Nico Robin is the most important card to look for in your opening hand. Her End of Your Turn effect can set up to 1 {Water Seven} type Character and up to 1 DON!! as Active.",
-    "This interaction is essential with your Leader. With 3 DON!! attached, Monkey.D.Luffy can become Active after his first attack and attack a second time, but he will not become Active during your next Refresh Phase. Nico Robin lets you get around this restriction by setting your Leader Active at the end of your turn.",
-    "Once Robin is in play, you can use your Leader's two attacks much more consistently.",
-    "Robin also has a useful protection effect: during your opponent’s turn, if one of your Characters would leave the field because of an opposing effect, you can rest Robin instead. This helps you protect important pieces, although using this anti-Removal effect may cost you her end-of-turn restand because your opponent can attack her."
+  { title: "OP18-031 Nico Robin", cards: [robin], paragraphs: [
+    "The most important card to have in your opening hand.",
+    "At the end of your turn, Robin lets you set a Water Seven card and a DON!! Active. This lets you attack twice with your Leader, then set it Active to get around the restriction on its effect during your next Refresh Phase.",
+    "She is your best 4 DON!! play when going second or 5 DON!! play when going first."
   ]},
-  { title: "The Searchers — EB02-017 Nami and OP18-038 Shoot Down That Flag", cards: [nami, shootDown], connectors: ["OR"], titleAboveCards: true, textBesideCards: true, paragraphs: [
-    "If you do not have Nico Robin in your hand, Nami and Shoot Down That Flag are your best options for finding her."
+  { title: "EB02-017 Nami and OP18-038 Shoot Down That Flag", cards: [nami, shootDown], titleAboveCards: true, paragraphs: [
+    "The deck's two Searchers can find Straw Hat Crew cards among the top five cards of your deck.",
+    "They are especially important for finding Nico Robin, Zoro & Sogeking, and 2-cost Monkey.D.Luffy.",
+    "However, the deck has no Water Seven Searcher, which makes some pieces difficult to find, especially Gonbe and Chimney."
   ]},
   { title: "OP18-027 Zoro & Sogeking", cards: [zoroSogeking], paragraphs: [
-    "This is an excellent card to have in your hand for your 6 DON!! turn. Its On Play effect sets up to 2 DON!! as Active, leaving you with enough resources to attach 3 DON!! to your Leader and use its two attacks.",
-    "This combination lets you develop your board while maintaining significant offensive pressure."
+    "The best card to pair with Nico Robin in the midgame.",
+    "Its On Play effect sets 2 DON!! Active and prevents an opposing Character with a Cost of 6 or less from becoming Rested until the end of your opponent's next turn.",
+    "During your opponent's turn, if your Leader is Active with at least 3 DON!! attached, its base Power becomes 7000.",
+    "Combined with Nico Robin, Zoro & Sogeking lets you maintain offensive pressure with both of your Leader's attacks while greatly strengthening your defense."
   ]},
-  { title: "OP18-024 Kokoro", cards: [kokoro], paragraphs: [
-    "Kokoro is an interesting alternative when Nico Robin is unavailable. Her End of Your Turn effect lets you trash her to set your Leader Active, so it does not stay rested after using its ability.",
-    "Unlike Robin, this is a one-time solution and costs you a Blocker, but it lets you continue using Monkey.D.Luffy's multiple attacks while you look for your main piece."
+  { title: "OP18-025 Gonbe and OP18-028 Chimney", cards: [gonbe, chimney], titleAboveCards: true, paragraphs: [
+    "These two Characters are an important late-game combination because they let you make a third attack with your Leader.",
+    "No Searcher in the deck can find them, so an opening hand with Gonbe, Chimney, and a Searcher is worth keeping.",
+    "This combination is still secondary to Nico Robin and is not required to win every game. Two powerful attacks with your Leader may be enough."
   ]}
+];
+const mulliganGuidelines = [
+  "Prioritize a hand with Nico Robin or Searchers that can find her.",
+  "A hand with Robin and Zoro & Sogeking is especially good because it gives you access to your best midgame curve.",
+  "A hand with Gonbe, Chimney, and a Searcher is also worth keeping because these two Characters cannot be searched directly.",
+  "Once you have your midgame pieces, look for OP18-118 Monkey.D.Luffy to prepare your 9- and 10-DON!! turns."
 ];
 
 const curveFirst = [
-  { title: "1 DON!! — Search for Nico Robin", cards: [nami, shootDown], connectors: ["OR"], paragraphs: [
-    "Play EB02-017 Nami or OP18-038 Shoot Down That Flag to search for Nico Robin.",
-    "If you already have Robin in your hand, prioritize Zoro & Sogeking to prepare for the midgame. OP18-025 Gonbe is also a possible opening if you have Chimney and your opponent has little Removal."
+  { title: "1 DON!! — Find Your Pieces", cards: [nami, shootDown], connectors: ["OR"], paragraphs: [
+    "Play one of your two Searchers: EB02-017 Nami or OP18-038 Shoot Down That Flag.",
+    "Your priority is to find Nico Robin, then Zoro & Sogeking to prepare for your midgame."
   ]},
-  { title: "3 DON!! — Develop Your Support Cards", cards: [kokoro, gonbe, chimney], connectors: ["OR", "+"], paragraphs: [
-    "OP18-024 Kokoro is a good option when Robin is unavailable. Her effect lets you put her in the Trash to set your Leader Active at the end of your turn. Otherwise, having a Blocker in play is always useful.",
-    "You can also play OP18-025 Gonbe and OP18-028 Chimney to prepare a third Leader attack later in the game.",
-    "This combination is situational: it requires both Characters and works best when your opponent cannot easily remove them."
+  { title: "3 DON!! — Continue Searching", cards: [nami, shootDown], connectors: ["+"], paragraphs: [
+    "The deck has no major play at this point.",
+    "You can use your Searchers to complete your hand or attack with your Leader."
   ]},
-  { title: "5 DON!! — Play Robin or Zoro & Sogeking", cards: [robin, zoroSogeking], connectors: ["OR"], paragraphs: [
-    "OP18-031 Nico Robin is your priority. She can set your Leader and 1 DON!! Active at the end of your turn, supporting both your offense and defense on later turns.",
-    "If you do not have Robin, OP18-027 Zoro & Sogeking is an alternative.",
-    "Its On Play effect sets 2 DON!! as Active and can prevent an opposing Character with a Cost of 6 or less from becoming Rested. This can stop a Character from attacking or a Blocker from blocking your next attack.",
-    "At this point, the 2 DON!! you get back are not enough to activate your Leader's ability immediately, which requires 3 DON!! attached. This is mainly a development turn."
+  { title: "5 DON!! — Play Nico Robin", cards: [robin], paragraphs: [
+    "OP18-031 Nico Robin is your priority play.",
+    "Her End of Your Turn effect sets a Water Seven card and a DON!! Active. This lets you make two attacks with your Leader on your next turns, then set it Active to get around the restriction on its effect.",
+    "You can also use the Active DON!! during your opponent's turn for Counter Events.",
+    "Robin gives your board additional protection: during your opponent's turn, when one of your Characters would be removed from the board by an opposing effect, you can rest Robin instead. However, this exposes her to opposing attacks."
   ]},
-  { title: "7 DON!! — Roronoa Zoro or Zoro & Sogeking", cards: [zoro, zoroSogeking], connectors: ["OR"], paragraphs: [
-    "OP16-035 Roronoa Zoro is an interesting option at this point in the curve.",
-    "For 7 DON!!, you play a 9000-Power Character and can rest an opposing card. By discarding a card from your hand, you attach 3 rested DON!! to your Leader, allowing it to attack twice at 8000 Power.",
-    "Zoro can rest a Blocker, a Character you want to attack, or an opposing DON!!.",
-    "This card is a supplementary option rather than an absolute priority. Its discard cost can be painful in a deck that lacks card draw.",
-    "OP18-027 Zoro & Sogeking is an alternative if you want to develop your board while keeping more resources. Its On Play effect can also prepare your Leader's multiple attacks."
+  { title: "7 DON!! — Zoro & Sogeking or Roronoa Zoro", cards: [zoroSogeking, zoro], connectors: ["OR"], paragraphs: [
+    "You have two main options:",
+    "OP18-027 Zoro & Sogeking: its On Play effect sets 2 DON!! Active and prevents an opposing Character with a Cost of 6 or less from becoming Rested until the end of your opponent's next turn. You can attach the 4 DON!! available to your Leader to make two attacks at 9000 Power.",
+    "OP16-035 Roronoa Zoro: playing a 9000-Power Character lets you set an opposing card Rested and attach 3 rested DON!! to your Leader by discarding a card from your hand. You can then make two attacks at 8000 Power while adding a large Character to your board.",
+    "In either case, Nico Robin lets you set your Leader Active at the end of the turn.",
+    "If you played Zoro & Sogeking, your Leader has 7000 base Power during your opponent's turn, provided it is Active with at least 3 DON!! attached.",
+    "If Nico Robin is no longer on your board, make sure you have another way to set your Leader Active before making your second attack."
   ]},
-  { title: "9 DON!! — OP18-118 Monkey.D.Luffy", cards: [luffyNine, twinJet], connectors: ["OR"], paragraphs: [
-    "OP18-118 Monkey.D.Luffy becomes your main development option.",
-    "Its On Play effect attaches 3 rested DON!! to your Leader and can prevent an opposing Character from becoming Rested until the end of your opponent's next turn.",
-    "Most importantly, it can set your Leader Active at the end of your turn, making it an excellent solution if Nico Robin has been removed or you have not found her.",
-    "Its restand effect can also target another Character.",
-    "If your board is already established, OP16-039 Gum-Gum Twin Jet Pistol is an offensive alternative: for 1 DON!!, it gives your Leader Double Attack, and you can use the remaining 8 DON!! to make two 13000-Power attacks with Double Attack.",
-    "Prioritize Luffy to maintain pressure over multiple turns, and use Double Attack when you have a real opportunity to threaten your opponent's Life."
+  { title: "9 DON!! — Play Monkey.D.Luffy", cards: [luffyNine], paragraphs: [
+    "OP18-118 Monkey.D.Luffy is your main late-game play.",
+    "Its On Play effect sets 3 DON!! Active and prevents an opposing Character, regardless of Cost, from becoming Rested until the end of your opponent's next turn.",
+    "You can therefore play a 10000-Power Character while making two 8000-Power attacks with your Leader.",
+    "Its End of Your Turn effect can also set a Water Seven card Active. If Nico Robin is no longer on your board, Luffy can set your Leader Active instead."
+  ]},
+  { title: "10 DON!! — Maintain Pressure or Set Up Lethal", cards: [luffyNine, gonbe, chimney, twinJet], paragraphs: [
+    "Keep playing OP18-118 Monkey.D.Luffy to develop your board, limit opposing attacks, and maintain pressure with your Leader.",
+    "If your opponent is low enough on Life, you can also use your DON!! for late-game combinations with Gonbe, Chimney, and Gum-Gum Twin Jet Pistol."
   ]}
 ];
 
 const curveSecond = [
-  { title: "2 DON!! — Prepare Your Curve", cards: [nami, shootDown, kokoro], connectors: ["+", "OR"], paragraphs: [
-    "Use EB02-017 Nami and OP18-038 Shoot Down That Flag to search for Nico Robin and Zoro & Sogeking, depending on the cards already in your hand.",
-    "OP18-024 Kokoro is a useful alternative if you need a temporary way to set your Leader Active, or simply want a Blocker."
+  { title: "2 DON!! — Find Your Pieces", cards: [nami, shootDown], connectors: ["+"], paragraphs: [
+    "Use EB02-017 Nami or OP18-038 Shoot Down That Flag to search for Nico Robin and Zoro & Sogeking.",
+    "Your priority is to have Robin for your next turn."
   ]},
-  { title: "4 DON!! — OP18-031 Nico Robin", cards: [robin], paragraphs: [
-    "This is your ideal play.",
-    "Play OP18-031 Nico Robin to prepare your Leader's multiple attacks starting next turn.",
-    "Her End of Your Turn effect sets your Leader and 1 DON!! Active. You can keep that DON!! available to defend your Leader with OP12-037 Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game during your opponent's turn.",
-    "Robin also protects your Characters from opposing Removal effects, helping you preserve important pieces."
+  { title: "4 DON!! — Play Nico Robin", cards: [robin], paragraphs: [
+    "Play OP18-031 Nico Robin to prepare for your 6 DON!! turn.",
+    "The Active DON!! at the end of your turn lets you use, among other things:",
+    "OP18-039 Gum-Gum Giant Axe.",
+    "OP12-037 Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game."
   ]},
-  { title: "6 DON!! — OP18-027 Zoro & Sogeking", cards: [zoroSogeking], paragraphs: [
-    "This is one of the deck's most important sequences.",
-    "Play OP18-027 Zoro & Sogeking for 5 DON!! and set 2 DON!! Active with its On Play effect. Together with the 1 DON!! you have left, you can attach 3 DON!! to your Leader.",
-    "You can then attack once at 8000 Power, set your Leader Active with its ability, and attack a second time at 8000 Power.",
-    "At the end of your turn, Nico Robin sets your Leader Active again.",
-    "Zoro & Sogeking can also prevent an opposing Character with a Cost of 6 or less from becoming Rested, limiting opposing attacks or stopping your opponent from using a Blocker.",
-    "If your Leader is Active with 3 DON!! attached, its effect also raises its base Power to 7000 during your opponent's turn.",
-    "This gives you two strong attacks, a 6000-Power Character, and better defense."
+  { title: "6 DON!! — Play Zoro & Sogeking", cards: [zoroSogeking], paragraphs: [
+    "With Nico Robin on your board, this is your best midgame sequence:",
+  ], bullets: [
+    "Play OP18-027 Zoro & Sogeking for 5 DON!!.",
+    "Set 2 DON!! Active with its On Play effect.",
+    "Prevent an opposing Character with a Cost of 6 or less from becoming Rested.",
+    "Attach your 3 available DON!! to your Leader.",
+    "Make two attacks at 8000 Power with your Leader.",
+  ], after: [
+    "At the end of the turn, Nico Robin sets your Leader and 1 DON!! Active.",
+    "During your opponent's turn, you then have an Active Leader with 7000 base Power, a DON!! available for Counter Events, an opposing Character that cannot become Rested, and Nico Robin's protection against Removal effects.",
+    "This sequence perfectly illustrates the deck's game plan: apply strong offensive pressure while strengthening your defense."
   ]},
-  { title: "8 DON!! — Double Attack or a Second Zoro & Sogeking", cards: [twinJet, zoroSogeking], connectors: ["OR"], paragraphs: [
-    "At 8 DON!!, you have two main options.",
-    "**Option 1: OP16-039 Gum-Gum Twin Jet Pistol.** For 1 DON!!, this Event gives your Leader Double Attack. With the remaining 7 DON!! attached, you can make two 12000-Power attacks with Double Attack.",
-    "This is especially dangerous against an opponent with only two Life, but it can also force them to spend many Counter cards.",
-    "**Option 2: A second OP18-027 Zoro & Sogeking.** If your opponent still has a lot of Life or defensive resources, playing a second Zoro & Sogeking may be better.",
-    "You can neutralize another threat and strengthen your board. The defensive bonus remains available while a Zoro & Sogeking is in play and your Leader meets its effect's conditions, including being Active with 3 DON!! attached.",
-    "Choose based on your goal: increase pressure immediately with Double Attack or consolidate your board for the next turns."
+  { title: "8 DON!! — Adapt Your Play", cards: [zoro, zoroSogeking], connectors: ["OR"], paragraphs: [
+    "The deck has no particularly attractive Water Seven Character to play at 8 DON!!, so you can choose between:",
+    "OP16-035 Roronoa Zoro: play a 9000-Power Character, set an opposing card Rested, and fuel your Leader's attacks.",
+    "OP18-027 Zoro & Sogeking: continue limiting opposing attacks and reinforce your Leader's base Power in case one of your Zoro & Sogeking is removed from the board. In general, it is better not to attack with it during the midgame to increase the chance it stays on your board.",
+    "Roronoa Zoro can also set an opposing Character Rested regardless of its Cost, letting you remove it with your attacks and reduce pressure on your Life."
   ]},
-  { title: "10 DON!! — Set Up Lethal", cards: [zoro, luffyNine, gonbe, chimney, twinJet], connectors: ["OR", "OR", "+", "+"], optionRows: true, paragraphs: [
-    "At 10 DON!!, OP16-035 Roronoa Zoro lets you get around your opponent's defenses.",
-    "After playing him for 7 DON!!, you can rest an opposing card, then discard a card to attach 3 rested DON!! to your Leader.",
-    "By adding the 3 DON!! you have left, you can make two attacks at 11000 Power.",
-    "OP18-118 Monkey.D.Luffy is an alternative if you need to replace Nico Robin and find a reliable way to set your Leader Active again.",
-    "Finally, if OP18-025 Gonbe and OP18-028 Chimney are already on the field, you can make your strongest offensive combination.",
-    "With OP16-039 Gum-Gum Twin Jet Pistol and 9 DON!! attached, your Leader can make a first 14000-Power attack with Double Attack, become Active with its ability and make a second 14000-Power Double Attack, then make a third 14000-Power Double Attack thanks to Gonbe and Chimney.",
-    "This combination represents up to six Life damage, but it is difficult to set up: your Searchers for Straw Hat Crew cards cannot find either Character, and both are vulnerable to Removal.",
-    "Before committing to your decisive attacks, check for Blockers and opposing Active DON!! that could interrupt your sequence.",
-    "OP12-037 Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game can rest opposing Blockers or DON!! to help secure lethal, provided you plan for the resources needed to use it.",
-    "The deck lacks card draw, so avoid sacrificing your entire hand for an offensive line that cannot realistically finish the game."
+  { title: "10 DON!! — Play Monkey.D.Luffy", cards: [luffyNine], paragraphs: [
+    "Play OP18-118 Monkey.D.Luffy to develop your board and prevent an opposing Character from becoming Rested."
+  ], bullets: [
+    "Use its On Play effect to set 3 DON!! Active.",
+    "Use those DON!! and your remaining DON!! to make two attacks at 9000 Power with your Leader."
+  ], after: [
+    "If Nico Robin is still on your board, you have two effects that can set Water Seven cards Active at the end of your turn.",
+    "You can set your Leader Active and also set a Water Seven Character that attacked, such as Nico Robin or Zoro & Sogeking.",
+    "On later turns, keep playing your Monkey.D.Luffy or prepare lethal with the combinations below."
   ]}
 ];
 
 const techCards = [
+  { cards: [giantAxe], title: "OP18-039 Gum-Gum Giant Axe — Flexible Defense", paragraphs: [
+    "This 1-cost Event gives one of your Monkey.D.Luffy Characters +2000 Power during a battle. If your Leader is Active, you also draw a card.",
+    "It has good synergy with Nico Robin, who can set your Leader and 1 DON!! Active at the end of your turn. You can defend your Leader and replace the Event you used with a new card.",
+    "Its main drawback is its restriction: it cannot defend your Characters that are not named Monkey.D.Luffy, especially Nico Robin and Zoro & Sogeking.",
+    "This limitation is especially problematic when your opponent tries to remove Nico Robin after you have used her anti-Removal effect.",
+    "Despite its popularity in Green Luffy decklists, Gum-Gum Giant Axe is still a debatable inclusion. You can reduce the number of copies or remove it entirely in favor of other defensive options."
+  ]},
   { cards: [luffyCharacter], title: "OP18-036 Monkey.D.Luffy — Backup Leader Re-stand", paragraphs: [
-    "This Luffy is a backup option when you do not have OP18-031 Nico Robin.",
-    "At the end of your turn, you can trash him to set your Leader Active and draw a card. This lets you use your Leader's ability without leaving it Rested for the next turn.",
-    "The draw effect is especially valuable in a deck that often runs low on cards in hand.",
-    "Unlike Robin, he can only do this once, but his +2000 Counter also gives him defensive value."
+    "This 2-cost Character is mainly a source of +2000 Counter.",
+    "Its effect can also set your Leader Active at the end of your turn by placing itself in your Trash.",
+    "It is a backup solution when you do not have Nico Robin to set your Leader Active after its second attack.",
+    "Unlike Gonbe and Chimney, it can be found with your Searchers because it is a Straw Hat Crew card."
   ]},
   { cards: [kokoro], title: "OP18-024 Kokoro — Blocker and Leader Re-stand", paragraphs: [
-    "Kokoro combines two roles: Blocker and Leader re-stand.",
-    "She can secure an offensive turn when you do not have Robin by sacrificing herself at the end of the turn to set Monkey.D.Luffy Active.",
-    "Her main advantage is flexibility: you can keep her as a Blocker when your Leader does not need to be re-stood.",
-    "Her re-stand effect is temporary, however. Avoid sacrificing her unnecessarily if you have no other solution for the following turns."
+    "Kokoro is a 2-cost Blocker that can also set your Leader Active at the end of your turn by placing herself in your Trash.",
+    "It is generally better to keep her on your board to block an opposing attack rather than sacrifice her to set your Leader Active.",
+    "Her effect is still a backup solution when your other re-stand options are unavailable."
   ]},
   { cards: [gonbe, chimney], title: "OP18-025 Gonbe + OP18-028 Chimney — Third Leader Attack", paragraphs: [
-    "This combination is one of the less reliable deck-building choices in the list.",
+    "This combination is one of the less reliable deck-building choices in the decklist.",
     "It gives your Leader a third attack, but requires you to assemble two different Characters.",
     "The main issue is consistency: Gonbe and Chimney have the Water Seven type but not Straw Hat Crew, so the deck's Searchers cannot find them.",
     "They are also vulnerable to Removal, which can make the combination unusable before the decisive turn.",
@@ -158,30 +189,30 @@ const techCards = [
     "Gonbe is useful on its own because it can attack and become Rested, allowing you to set your Leader Active at the end of your turn."
   ], after: ["Gonbe and Chimney should therefore be treated as an additional offensive option, not as the deck's main game plan."]},
   { cards: [twinJet], title: "OP16-039 Gum-Gum Twin Jet Pistol — Double Attack", paragraphs: [
-    "This Event is especially dangerous with a Leader that can attack multiple times.",
-    "Its low cost lets you keep almost all your DON!! available to increase the power of your attacks, while Double Attack forces your opponent to defend their Life.",
-    "Timing is essential, however.",
-    "Against Spandam, it is better to delay your offensive on purpose because of opposing Triggers, especially Khalifa, Kaku, Kumadori, and Jabra, which can interrupt your attack sequence.",
-    "Account for possible Triggers before committing to this kind of offensive.",
-    "Twin Jet Pistol can also be used to exhaust your opponent's Counters without necessarily going for immediate lethal. This is especially useful against decks that build up a large hand."
+    "This 1-cost Event gives one of your Monkey.D.Luffy Characters Double Attack for the turn.",
+    "It is mainly used on your Leader to take advantage of its multiple attacks.",
+    "Combined with Gonbe and Chimney, it lets your Leader make three attacks at 11000 Power with Double Attack at 10 DON!! if you need to play both Characters that turn.",
+    "This card is a major threat to an opponent who still has a lot of Life.",
+    "Its Trigger can also set the opposing Leader Rested, potentially preventing an attack if they have not attacked yet that turn."
   ]},
   { cards: [asura], title: "OP12-037 Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game — Flexible Counter", paragraphs: [
-    "This Event gives you important flexibility between offense and defense.",
-    "During your opponent's turn, its +3000 Counter can protect your Leader, particularly with the DON!! Nico Robin sets Active.",
-    "Offensively, it can rest opposing Characters and/or DON!! to reduce your opponent's defensive options.",
-    "The Event is very useful in some situations, but 4 copies can clog a hand that already lacks resources. Consider playing 3 instead."
+    "This Event has both offensive and defensive uses:",
+    "Counter: for 1 DON!!, give your Leader +3000 Power during a battle.",
+    "Main: for 4 DON!!, set up to two opposing cards Rested.",
+    "Its Main effect is especially useful for preparing lethal by neutralizing Blockers or Active DON!! kept for Counter Events.",
+    "Do not use it too early. If your opponent still has enough resources to survive your attacks, it may be better to develop your board, particularly with OP18-118 Monkey.D.Luffy, and save this Event for a later turn."
   ]},
   { cards: [sanji], title: "OP18-026 Sanji — Removal Protection", paragraphs: [
-    "Sanji provides +2000 Counter and protection from Removal effects.",
-    "He is useful in situations where Nico Robin cannot intervene.",
-    "Robin protects your Characters during your opponent's turn, while Sanji can help against effects triggered during your own turn, including effects from your opponent's Life cards.",
-    "This complementarity helps protect your key pieces against decks with a lot of Removal. Sanji also has immediate value in hand thanks to his Counter, which is useful when you need to preserve your defensive resources."
+    "Sanji provides additional protection from opposing Removal effects by placing himself in your Trash with his effect.",
+    "He is especially important for protecting Nico Robin, who supports much of the game plan.",
+    "Even when his protection effect is not needed, Sanji remains useful in hand as a +2000 Counter. Your Searchers can also find him because he is a Straw Hat Crew card."
   ]},
   { cards: [zoro], title: "OP16-035 Roronoa Zoro — Mid-Cost Flexibility", paragraphs: [
-    "Roronoa Zoro is a useful card for improving your 7- and 8-DON!! turns, where the deck has few attractive options.",
-    "His main advantage is combining several functions: playing a 9000-Power Character, resting an opposing card, and attaching DON!! to your Leader in exchange for discarding a card from your hand.",
-    "He can get around a Blocker, limit the DON!! available for defensive Events, or help you attack an opposing Character.",
-    "However, this resource cost can be painful in a deck that draws few cards. Zoro adds flexibility but is not essential to the deck's game plan."
+    "This 7-cost, 9000-Power Character helps fill out the deck's 7- and 8-DON!! turns, which otherwise have few natural options.",
+    "Its On Play effect sets an opposing card Rested and attaches 3 rested DON!! to your Leader by discarding a card from your hand.",
+    "It can play a 9000-Power Character, neutralize a Blocker before lethal, make an opposing Character attackable, set an opposing DON!! Rested, and fuel your Leader's multiple attacks.",
+    "At 10 DON!!, play Zoro, attach 3 rested DON!! with its effect, then attach your 3 remaining Active DON!! to your Leader. If your Leader can attack and has not used its re-stand effect, it can make two attacks at 11000 Power.",
+    "Zoro is a flexible option rather than an essential deck piece. You can also choose not to play it and prioritize Zoro & Sogeking on your 7- and 8-DON!! turns."
   ]},
   { cards: [nami, shootDown], title: "EB02-017 Nami + OP18-038 Shoot Down That Flag — Searchers", paragraphs: [
     "These Searchers are essential for making the deck more consistent.",
@@ -189,15 +220,62 @@ const techCards = [
     "Once you have Robin, they can find other cards that meet their respective conditions and help prepare your next turns.",
     "They are particularly important because the deck has little natural card draw. However, they do not solve the problem completely: they can find eligible pieces, but not Gonbe or Chimney."
   ]},
-  { cards: [robin, sanji, zoro, gonbe, chimney], title: "Deck-Building Trade-Off — Consistency and Card Draw", paragraphs: [
-    "The main trade-off in this list is consistency. Re-stand cards are necessary to make full use of the Leader, but they take up many slots in a deck that already lacks card draw.",
+  { cards: [sanji, zoro], title: "Deck-Building Trade-Off — Consistency and Card Draw", paragraphs: [
+    "The main trade-off in this decklist is consistency. Re-stand cards are necessary to make full use of the Leader, but they take up many slots in a deck that already lacks card draw.",
     "More flexible choices, such as Sanji and Roronoa Zoro, should therefore be evaluated according to how useful they are across different situations."
+  ]},
+  { cards: [uglyFuture], optionalStart: true, title: "OP17-038 I Think He's Seen an Ugly Future...", paragraphs: [
+    "This Event lets you discard a card from your hand to give your Leader +3000 Counter.",
+    "It can make use of cards in your hand without Counter, such as Zoro & Sogeking or 9-cost Monkey.D.Luffy.",
+    "Its Main effect rests four of your cards to set an opposing Character Rested, with no Cost restriction.",
+    "It is an offensive and defensive option."
+  ]},
+  { cards: [zoroOp13], title: "OP13-037 Roronoa Zoro — Alternative 7-DON!! Option", paragraphs: [
+    "This version of Zoro sets 2 DON!! Active on play and also sets itself Active at the end of your turn.",
+    "It is an alternative to OP16-035 Roronoa Zoro for players who want a less expensive option while keeping DON!! immediately available for their Leader."
+  ]},
+  { cards: [chopperNine], title: "OP18-029 Tony Tony.Chopper", paragraphs: [
+    "This 9-cost, 6000-Power Character has Rush and +1000 Counter.",
+    "When it attacks, once per turn, its effect attaches 3 rested DON!! to your Leader and sets Chopper Active. In exchange, Chopper cannot become Active during your next Refresh Phase.",
+    "Keeping Chopper Active after its first attack on the turn you play it can prepare a particularly aggressive turn.",
+    "If it is still available on your next turn, the combination with Gonbe and Chimney can let you make up to five attacks: two with Chopper and three with your Leader.",
+    "Its main drawback is that it offers less defense than OP18-118 Monkey.D.Luffy. Unlike Luffy, Chopper cannot neutralize an opposing Character, and the 3 DON!! are attached to your Leader rather than set Active, limiting how you can use them.",
+    "Monkey.D.Luffy is therefore preferable for maintaining a balance between aggression and defense."
+  ]},
+  { cards: [namiOp14], title: "OP14-031 Nami", paragraphs: [
+    "This version of Nami is an alternative for players who want to focus more on board control.",
+    "She can set an opposing Character with a Cost of 8 or less Rested and set 5 DON!! Active at the end of the turn.",
+    "This helps you remove opposing Characters while providing additional protection with her Blocker effect."
+  ]},
+  { cards: [strongEvent], title: "OP13-040 I Know You're Strong... So I'll Go All Out from the Very Start!!!", paragraphs: [
+    "This Event is a more defensive alternative to Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game.",
+    "Counter: give +3000 Power for 1 DON!!.",
+    "Main: for a total investment of 3 DON!!, prevent up to two opposing Rested Characters with a Cost of 7 or less from becoming Active during their next Refresh Phase.",
+    "It is especially useful for limiting the number of opposing attacks."
+  ]},
+  { cards: [laboon], title: "OP15-035 Laboon", paragraphs: [
+    "Laboon can be considered if the protection from Nico Robin and Sanji is not enough against decks focused on Removal.",
+    "Its effect protects your Characters with 7000 Power or less by setting two of your cards Rested. Unlike Sanji, Laboon does not need to be placed in your Trash to use its effect, and Laboon can target itself to pay for its effect.",
+    "You can use this protection multiple times as long as you have enough cards to pay its cost.",
+    "Its main limitation is that it cannot protect your Characters with more than 7000 Power.",
+    "In hand, it is a +2000 Counter."
+  ]},
+  { cards: [asuraOp07], title: "OP07-036 Demonic Aura Nine-Sword Style Asura Demon Nine Flash", paragraphs: [
+    "This 2-cost Event gives +3000 Power and sets an opposing Character with a Cost of 5 or less Rested.",
+    "It is another option for setting up lethal, especially by neutralizing an opposing Blocker before your Leader attacks."
   ]}
 ];
 
 const matchupIntro = [
   "OP18-022 Monkey.D.Luffy is especially effective when he can establish his support Characters and maintain constant pressure through repeated Leader attacks.",
   "The most difficult matchups are those where the opponent can remove Nico Robin, interrupt your attacks with Triggers, or build enough defensive resources to withstand Double Attack."
+];
+const matchupPositioning = [
+  "Green Luffy's main difficulty is its unfavorable matchups against Rocks and Buggy, two Leaders that occupy a significant place in the OP18 meta.",
+  "Red Purple Luffy has favorable matchups against both Leaders, while Green Luffy is itself especially favored against Red Purple Luffy.",
+  "If Red Purple Luffy becomes more popular to counter Rocks and Buggy, Green Luffy could in turn be an interesting answer to this change in the meta.",
+  "A strong presence of Saint Gunko could also improve Green Luffy's position.",
+  "Green Luffy's competitiveness will therefore depend in part on how popular these Leaders become."
 ];
 const matchups = [
   { title: "OP18 Ms. All Sunday", leader: sundayLeader, rating: "Favorable", ratingTone: "favorable", intro: ["Against Ms. All Sunday, aim to gradually reduce the opponent's Life while keeping a way to set your Leader Active."], gamePlan: [
@@ -254,6 +332,27 @@ const matchups = [
     "Be careful about what you target with OP18-118 Monkey.D.Luffy. Its effect that prevents a Character from becoming Rested does not last until your next turn, so do not target a Blocker expecting it to remain neutralized during your next attack.",
     "If the Blocker is not an immediate threat, targeting Linlin may be much more useful. Preventing Linlin from attacking during your opponent's turn can help you preserve more Life and keep your Characters for your next offensive turn. This can be crucial when you need to survive one more turn before going for lethal.",
     "Use Zoro & Sogeking to slow King and preserve your Life. Against Blockers and Counter Events, plan your attacks around your opponent's Active DON!! instead of committing all your resources to Double Attack immediately."
+  ]},
+  { title: "OP15 Purple Enel", leader: purpleEnelLeader, rating: "Unfavorable", ratingTone: "unfavorable", intro: [
+    "Purple Enel has many Removal and Power-reduction options that can weaken your board.",
+    "Nico Robin is important in this matchup, but her anti-Removal effect is not always enough to keep her in play. Gum-Gum Giant Axe also has limits because it cannot defend Nico Robin when your opponent attacks her."
+  ], gamePlan: [
+    "Removing Ohm can be useful to limit your opponent's Power-reduction options.",
+    "Use Zoro & Sogeking and OP18-118 Monkey.D.Luffy to limit opposing attacks, especially those from the 6-cost Enel, by preventing Characters from becoming Rested.",
+    "Delay the damage you take while gradually reducing your opponent's Life.",
+    "You do not always need to maximize your Characters' Power immediately. Keeping your Leader at 7000 base Power with Zoro & Sogeking can help you survive long enough to prepare lethal."
+  ]},
+  { title: "OP14 Red Trafalgar Law", leader: redLawLeader, rating: "Unfavorable", ratingTone: "unfavorable", intro: [
+    "Red Law has a direct answer to one of Green Luffy's main defensive tools.",
+    "Bonney can cancel the base Power increase from Zoro & Sogeking and bring your Leader back to 5000 base Power. This removes a significant part of your ability to limit opposing damage."
+  ], gamePlan: []},
+  { title: "OP05 Yellow Enel", leader: yellowEnelLeader, rating: "Unfavorable", ratingTone: "unfavorable", intro: [
+    "Against a board of several small Characters, especially Pudding and Daifuku, it can be useful to prioritize board control to limit the number of opposing attacks on later turns."
+  ], gamePlan: [
+    "OP16-035 Roronoa Zoro can support this plan by setting an opposing Character Rested and making it attackable.",
+    "Use Zoro & Sogeking and OP18-118 Monkey.D.Luffy to slow opposing attacks while preparing your offensive turn.",
+    "Evaluate whether to make your Leader's second attack. In some situations, keeping your Leader Active after its first attack is better than making a second attack that could give your opponent an additional Trigger.",
+    "Gum-Gum Twin Jet Pistol and your Characters' attacks can then help prepare lethal when you cannot afford to give your opponent another turn."
   ]}
 ];
 
@@ -262,7 +361,10 @@ const matchupSummaryLeaders = {
   buggy: card("OP09-042", "Buggy OP09", "/Cards/OP09/OP09-042.jpg", null, "Leader"),
   robin: card("EB05-010", "Nico Robin EB05", "/Cards/EB05/EB05-010 Nico Robin .jpg", null, "Leader"),
   luffy: card("OP13-001", "Monkey D. Luffy OP13", "/Cards/OP13/OP13-001.jpg", null, "Leader"),
-  sabo: card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader")
+  sabo: card("OP13-004", "Sabo OP13", "/Cards/OP13/OP13-004.jpg", null, "Leader"),
+  purpleEnel: purpleEnelLeader,
+  redLaw: redLawLeader,
+  yellowEnel: yellowEnelLeader
 };
 const matchupSummaryIcons = {
   "OP18-060": "/assets/guides/Gunko OP18.png",
@@ -270,70 +372,94 @@ const matchupSummaryIcons = {
   "EB05-010": "/assets/guides/Nico Robin EB05.png",
   "OP13-001": "/assets/guides/monkey-d-luffy-op13.png",
   "OP18-079": "/assets/guides/Spandam OP18.png",
-  "OP13-004": "/assets/guides/Sabo OP13-004.png"
+  "OP13-004": "/assets/guides/Sabo OP13-004.png",
+  "OP15-058": "/assets/guides/enel-op15.png",
+  "OP14-001": "/assets/guides/trafalgar-law-op14.png",
+  "OP05-098": "/assets/guides/Enel OP05-098.png",
+  "OP17-058": "/assets/guides/Kaido op17.png",
+  "ST10-001": "/assets/guides/Luffy ST10-002.png",
+  "OP18-041": "/assets/guides/Ms. All Sunday OP18.png",
+  "OP18-034": "/assets/guides/Franky op18.png",
+  "ST30-001": "/assets/guides/Luffy-st30.png",
+  "OP17-039": "/assets/guides/Rocks.DXebec op17.png"
 };
 const matchupSummaryGroups = [
-  { label: "Favorable", tone: "favorable", icon: "↑", cards: [matchupSummaryLeaders.gunko, matchupSummaryLeaders.robin] },
-  { label: "Slightly Favorable", tone: "slightly-favorable", icon: "↗", cards: [matchupSummaryLeaders.buggy] },
-  { label: "Unfavorable", tone: "unfavorable", icon: "↓", cards: [matchupSummaryLeaders.luffy, matchupSummaryLeaders.sabo] }
+  { label: "Favorable", tone: "favorable", icon: "↑", cards: [matchupSummaryLeaders.gunko, matchupSummaryLeaders.robin, kaidoLeader, luffySt10Leader, sundayLeader] },
+  { label: "Slightly Favorable", tone: "slightly-favorable", icon: "↗", cards: [matchupSummaryLeaders.buggy, frankyLeader, luffyAceLeader] },
+  { label: "Unfavorable", tone: "unfavorable", icon: "↓", cards: [matchupSummaryLeaders.luffy, matchupSummaryLeaders.sabo, matchupSummaryLeaders.purpleEnel, matchupSummaryLeaders.redLaw, matchupSummaryLeaders.yellowEnel, rocksLeader, spandamLeader] }
 ];
 
 const tips = [
-  { cards: [leader, robin], paragraphs: [
-    "Before using OP18-022 Monkey.D.Luffy's ability, always check how you will set your Leader Active at the end of your turn.",
-    "If you have neither Nico Robin nor another available solution, making a second attack is usually not a good option.",
-    "Do not treat the extra attack as automatic: it should be worth the defensive risk."
+  { title: "Balance Offense and Defense", cards: [zoroSogeking, kokoro, luffyNine, luffyCharacter], paragraphs: [
+    "Green Luffy should not be played as an exclusively aggressive deck. Your goal is to deal as much damage to your opponent as possible while limiting the damage you take in return.",
+    "Zoro & Sogeking, Kokoro, and OP18-118 Monkey.D.Luffy can slow opposing attacks and buy you extra turns to prepare lethal. Sometimes playing a defensive option is better than investing more DON!! in your Leader's attacks.",
+    "Kokoro is generally more useful as a Blocker than as a way to set your Leader Active. OP18-036 Monkey.D.Luffy is mainly used for its +2000 Counter.",
+    "You do not need to deal all your damage early. Aim to keep enough offensive and defensive resources to take control in the late game."
   ]},
-  { cards: [robin, zoroSogeking], paragraphs: [
-    "One characteristic of the deck is that your Characters can be more useful while they are Active.",
-    "Nico Robin is often needed to set your Leader Active, while Zoro & Sogeking can keep your Leader at 7000 base Power.",
-    "Before attacking with either of them, consider whether the extra damage is worth potentially losing those benefits.",
-    "When you have several Zoro & Sogeking in play, you can attack with one while keeping the other Active to maintain your defensive bonus."
+  { title: "Protect Nico Robin", cards: [robin, sanji], paragraphs: [
+    "Nico Robin is one of the deck's most important cards. As long as she stays on your board, you can use your Leader's multiple attacks without sacrificing a Character to set it Active at the end of every turn.",
+    "Sanji provides additional protection against opposing Removal effects.",
+    "Remember that Nico Robin's anti-Removal effect only works during your opponent's turn. It cannot protect your Characters from Triggers activated during your own turn.",
+    "When Robin uses her anti-Removal effect, she becomes Rested and vulnerable to opposing attacks. Gum-Gum Giant Axe cannot defend her, so keep enough Counter in hand, especially against decks that combine Removal effects with attacks on your board."
   ]},
-  { cards: [leader, zoroSogeking, luffyNine], paragraphs: [
-    "The deck has several effects that attach DON!! to your Leader or set DON!! Active. Their order can significantly change the power of your attacks.",
-    "Before playing a high-Cost Character, calculate:"
+  { title: "Choose Whether to Make Your Leader's Second Attack", cards: [leader, zoroSogeking], paragraphs: [
+    "After using your Leader's re-stand effect, you can choose to keep it Active rather than make a second attack. This can be useful when you do not have a way to set your Leader Active at the end of the turn, when you want the 7000 base Power from Zoro & Sogeking during your opponent's turn, or when another attack may give your opponent a Trigger without bringing you close enough to lethal.",
+    "For Zoro & Sogeking's defensive effect, your Leader must be Active with at least 3 DON!! attached.",
+    "Your Leader's effect prevents it from becoming Active during your next Refresh Phase, but this restriction has no effect if it is already Active at the start of your turn.",
+    "Plan for your Leader's state at the end of the turn before making the second attack."
+  ]},
+  { title: "Set Up Gonbe and Chimney for Lethal", cards: [gonbe, chimney, twinJet], paragraphs: [
+    "Gonbe + Chimney is a combination for making three attacks with your Leader during one turn.",
+    "Neither card can be found by your current Searchers because they do not have the Straw Hat Crew type. Having several copies of Gonbe without Chimney, or several copies of Chimney without Gonbe, does not let you use the combination.",
+    "Keep these cards when you plan to use them for lethal, but do not hesitate to use their Counter if your survival depends on it.",
+    "At 10 DON!!, the possible configurations are:",
+    "Gonbe + Chimney in hand: spend 3 DON!! to play both Characters, then attach the remaining 7 DON!! to your Leader to make three attacks at 12000 Power.",
+    "Gonbe + Chimney already on your board and Active: attach all 10 DON!! to your Leader to make three attacks at 15000 Power.",
+    "Playing Gonbe + Chimney + Gum-Gum Twin Jet Pistol that turn: the total investment is 4 DON!!, leaving 6 DON!! to attach to your Leader for three attacks at 11000 Power with Double Attack.",
+    "Playing Gonbe and Chimney ahead of time raises your attack Power, but risks losing one of them before your next turn.",
+    "This combination is not required to win. Two attacks at 14000 or 15000 Power may be enough."
+  ]},
+  { title: "Use Zoro & Sogeking and 9-Cost Luffy to Stop Threats", cards: [zoroSogeking, luffyNine], paragraphs: [
+    "Zoro & Sogeking and OP18-118 Monkey.D.Luffy can prevent an opposing Character from becoming Rested until the end of your opponent's next turn.",
+    "Zoro & Sogeking can target a Character with a Cost of 6 or less, while OP18-118 Monkey.D.Luffy has no Cost restriction.",
+    "Use these effects on the Characters that pose the greatest threat on your opponent's next turn. You can also target Blockers to stop them from blocking your attacks for the duration of the effect.",
+    "In the late game, chaining several OP18-118 Monkey.D.Luffy lets you play 10000-Power Characters while limiting your opponent's offensive options."
+  ]},
+  { title: "Keep DON!! for Defense When Needed", cards: [giantAxe, asura], paragraphs: [
+    "Do not automatically spend every Active DON!! on your Leader's attacks. Keeping one Active during your opponent's turn can let you use Gum-Gum Giant Axe or Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game to defend your Leader.",
+    "Gum-Gum Giant Axe is especially useful while your Leader is Active because it also lets you draw a card.",
+    "In the late game, giving up an extra 1000 Power on your attacks may be worthwhile if keeping the DON!! helps you survive another turn."
+  ]},
+  { title: "Time Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", cards: [asura], paragraphs: [
+    "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game is an excellent tool for setting up lethal. Its Main effect can set up to two opposing cards Rested, whether they are Blockers or Active DON!! held for Counter Events.",
+    "However, using it costs 4 DON!!, reducing the resources available to increase your Leader's attack Power.",
+    "Before using it offensively, consider:"
   ], bullets: [
-    "The DON!! needed to play it and activate its effects.",
-    "The DON!! that will then be attached to your Leader.",
-    "The Power of each of your attacks.",
-    "The DON!! you may want to keep available for an Event."
+    "How many cards are in your opponent's hand.",
+    "Which Blockers are on the board.",
+    "The Power and number of attacks you can make.",
+    "Whether you can survive the next turn if your lethal attempt fails."
   ], after: [
-    "It can sometimes be better to make an initial attack to provoke a response before committing all your resources.",
-    "Conversely, when you are going for lethal, spreading your DON!! too cautiously can leave your opponent with enough Counters to survive."
+    "If your opponent still has many defensive resources and you can survive another turn, it may be better to play OP18-118 Monkey.D.Luffy and save the Event for a better opportunity.",
+    "Dead Man's Game can also be used defensively for its +3000 Counter when your survival depends on it."
   ]},
-  { cards: [twinJet], paragraphs: [
-    "Gum-Gum Twin Jet Pistol can be worthwhile even if your opponent does not lose any Life.",
-    "Two powerful Double Attack swings often force your opponent to use several Counters to protect their Life. This strategy is very effective against Rocks, as it makes your later attacks harder to defend.",
-    "However, do not repeat this line without evaluating your own hand: the deck lacks card draw and can run out of cards faster than your opponent."
+  { title: "Control the Board Instead of Always Attacking the Leader", cards: [zoro], paragraphs: [
+    "Although Green Luffy mainly focuses on multiple Leader attacks, it is not always best to direct every attack at your opponent's Leader.",
+    "Removing some Characters can greatly reduce the pressure you face on later turns. OP16-035 Roronoa Zoro is especially useful here because it can set an opposing Character Rested while attaching 3 rested DON!! to your Leader by discarding a card from your hand.",
+    "Against Purple Enel, removing Ohm limits opposing Power reduction. Against Yellow Enel, removing Characters such as Pudding or Daifuku early or in the midgame can stop them from becoming more threatening attackers later.",
+    "Board control can extend the game until you have a better opportunity for lethal."
   ]},
-  { cards: [leader], paragraphs: [
-    "Your repeated attacks do not always have to target the opposing Leader.",
-    "When you cannot finish the game, removing an important Character may be more valuable than dealing one more Life damage.",
-    "Against Rocks, your Leader's attacks can help remove Linlin after you have exhausted your opponent's defensive resources.",
-    "Against Spandam, when Triggers make a reliable Double Attack offensive difficult, taking control of the board is often better than risking a failed lethal attempt.",
-    "The goal is to reduce your opponent's counterattack options while preparing your next offensive turn."
+  { title: "Use Your Re-stand Effects on Water Seven Characters", cards: [robin, luffyNine], paragraphs: [
+    "Nico Robin and OP18-118 Monkey.D.Luffy are not only for setting your Leader Active. Their effects can also set your Water Seven Characters Active at the end of your turn.",
+    "When you have multiple re-stand effects, you can attack with some of your Characters and still set them Active afterward. You can set Nico Robin Active to keep her Removal protection, Zoro & Sogeking Active so it cannot be directly attacked, or OP18-118 Monkey.D.Luffy Active after it attacks.",
+    "This flexibility lets you use more of your offensive resources without necessarily exposing your board to opposing attacks."
   ]},
-  { cards: [robin, zoroSogeking], paragraphs: [
-    "When several of your Characters are threatened, do not automatically spend Counters to save the first one attacked. Decide based on what you will need next turn.",
-    "Keeping Nico Robin lets you continue using your Leader's ability regularly.",
-    "Keeping Zoro & Sogeking may matter more if its defensive bonus helps you survive opposing attacks.",
-    "You can accept losing Robin to keep your Leader at 7000 Power, or do the reverse if you have two Zoro & Sogeking on your board.",
-    "Always consider the consequences of each loss before spending your Counters."
-  ]},
-  { cards: [asura, robin], paragraphs: [
-    "Keeping 1 DON!! Active can let you use Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game during your opponent's turn.",
-    "With Nico Robin, you can get 1 DON!! Active at the end of your turn to prepare that defense.",
-    "When you are trying to finish the game, however, keeping too much DON!! available can unnecessarily weaken your attacks.",
-    "The distinction is important: to survive, keep the resources you need for Counter Events; to finish the game, prioritize attack Power if the additional DON!! really increases your chances of lethal.",
-    "Do not give up several thousand Power on offense to keep DON!! you probably will not use."
-  ]},
-  { cards: [leader], paragraphs: [
-    "Monkey.D.Luffy can deal enormous damage in a single turn, but a failed offensive can leave you without defensive resources.",
-    "Before committing, check for Blockers, your opponent's Active DON!!, possible Triggers, and the Counters they may still have.",
-    "Also consider your own hand. The deck can quickly run low on cards while some opponents may have more than ten cards in hand.",
-    "If you cannot reasonably survive the next turn, a risky offensive may be your best option. If you still have a solid defense, developing your board or removing a threat may offer better prospects.",
-    "The most important thing is knowing when to maintain pressure, when to preserve resources, and when to commit all your attacks to finish the game."
+  { title: "Evaluate the Lethal Attempt", cards: [leader, twinJet, gonbe, chimney], paragraphs: [
+    "Before committing all your resources to lethal, assess whether you can survive your opponent's next turn.",
+    "If you can survive, playing another Character, neutralizing an opposing threat, or keeping defensive resources may give you a better opportunity next turn. If you do not think you can survive another turn, you may need to commit all your offensive resources, even without the Gonbe + Chimney combination.",
+    "Do not overlook your Characters' attacks when going for lethal. Even a 5000- or 6000-Power attack can matter after your opponent has spent much of their Counter defending your Leader.",
+    "Gum-Gum Twin Jet Pistol, your Leader's multiple attacks, and your Characters' attacks can all help finish the game.",
+    "Mastering Green Luffy comes down to recognizing when to stop preparing for lethal and try to win the game."
   ]}
 ];
 
@@ -344,12 +470,30 @@ const renderText = (text) => text.split(/(\*\*.*?\*\*)/g);
   <section class="hero guide-hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-tags"><span class="hero-chip">Deck Guide</span><span class="hero-chip hero-chip-accent">OP18 Format</span></div><h1>Monkey D. Luffy OP18 Deck Guide</h1><p class="hero-intro">Your priority is to find OP18-031 Nico Robin while keeping a hand that can develop your board and prepare your first offensive turns.</p><div class="hero-actions"><a class="btn btn-primary" href="#curve">Game Plan &amp; Curve</a><a class="btn btn-secondary" href="#matchups">Matchups</a><a class="btn btn-secondary btn-card-list" href="/cards-list/OP18/">Card List OP18</a></div></div><div class="guide-icon"><img src={guideIcon} alt="Monkey D. Luffy OP18 deck guide icon" loading="eager" /></div></div></section>
   <div class="container article-stack">
     <section id="decklist" class="glow-block"><div class="decklist-title-row"><h2>Decklist</h2><button class="btn btn-primary copy-sim-button" type="button" data-copy-sim={simDeckCode}>Copy for Sim</button></div><div class="deck-grid">{decklist.map((entry) => <button class="deck-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/><div class="deck-info"><b class="deck-count">{entry.count}x</b><span>{entry.name}<small class="deck-code">{entry.code}</small><small class="deck-role">{entry.role}</small></span></div></button>)}</div></section>
-    <section id="mulligan" class="glow-block"><h2>Mulligan</h2>{mulliganIntro.map((text) => <p>{text}</p>)}<div class="content-list">{mulligan.map((item) => <article class={`content-item has-cards ${item.cards.length > 1 ? "multiple-cards" : ""} ${item.titleAboveCards ? "title-above-cards" : ""} ${item.textBesideCards ? "text-beside-cards" : ""}`}><h3>{item.title}</h3><div class="card-row">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></article>)}</div></section>
-    <section id="curve" class="glow-block"><h2>Game Plan &amp; Curve</h2><p>OP18-022 Monkey.D.Luffy's game plan is built around two key cards: OP18-031 Nico Robin, which can set your Leader Active at the end of your turn, and OP18-027 Zoro &amp; Sogeking, which supports its multiple attacks while strengthening your defense.</p><p>Going second is especially effective thanks to the sequence of Robin at 4 DON!! followed by Zoro &amp; Sogeking at 6 DON!!. Going first, OP16-035 Roronoa Zoro and OP18-118 Monkey.D.Luffy offer options at odd DON!! thresholds.</p>{[["Going First", curveFirst], ["Going Second", curveSecond]].map(([heading, curve]) => <div class="curve-block"><h3>{heading}</h3>{curve.map((item) => <article class="curve-item"><strong>{item.title}</strong><div class="curve-content"><div class={`card-set ${item.cards.length === 1 ? "one" : ""} ${item.cards.length === 2 ? "two" : ""} ${item.cards.length === 4 ? "four" : ""} ${item.cards.length === 3 ? "three" : ""} ${item.connectors?.length ? "connected" : ""} ${item.optionRows ? "option-rows" : ""}`}>{item.cards.map((entry, index) => <>{index > 0 && item.connectors?.[index - 1] && <span class={`connector ${item.optionRows && item.connectors[index - 1] === "OR" && index === 2 ? "option-break" : ""}`}>{item.connectors[index - 1]}</span>}<button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button></>)}</div><div class="curve-note">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></div></article>)}</div>)}</section>
-    <section id="tech-cards" class="glow-block"><h2>Tech Cards</h2><p>These Tech Cards help compensate for the weaknesses of OP18-022 Monkey.D.Luffy, especially its re-stand restriction and lack of card draw. They also provide answers to Removal, Blockers, and opposing defenses.</p><div class="content-list">{techCards.map((item) => <article class={`tech-card ${item.cards.length > 1 ? "multiple-tech-cards" : ""}`}><div class="tech-card-images">{item.cards.map((entry) => <button class="mini-card tech-card-image" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><h3>{item.title}</h3><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
-    <section id="matchups" class="glow-block"><h2>Matchup Analysis</h2>{matchupIntro.map((text) => <p>{text}</p>)}<div class="content-list">{matchups.map((item) => <article class="content-item matchup-card"><div class="matchup-heading"><button class="mini-card matchup-leader-card" type="button" data-card-preview data-full={item.leader.img} data-name={`${item.leader.code} ${item.leader.name}`}><img src={getCardThumbnail(item.leader.img)} alt={`${item.leader.code} ${item.leader.name} Leader`} loading="lazy"/></button><div class="matchup-title-stack"><h3>{item.title}</h3>{item.rating && <span class={`matchup-rating-badge rating-${item.ratingTone}`}>{item.rating}</span>}</div></div><div class="matchup-body">{item.intro?.map((text) => <p>{text}</p>)}<h4>Game Plan</h4><ul>{item.gamePlan.map((text) => <li>{text}</li>)}</ul>{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
-    <section id="matchup-ratings" class="glow-block matchup-overview"><div class="section-header"><div><h2>Matchups</h2><p>Quick OP18 matchup spread for Monkey D. Luffy.</p></div></div><div class="matchup-overview-grid">{matchupSummaryGroups.map((group) => <div class="matchup-overview-group"><div class={`matchup-overview-badge overview-badge-${group.tone}`}><span class="matchup-overview-icon">{group.icon}</span><span>{group.label}</span></div><div class="matchup-overview-list">{group.cards.map((entry) => <button class="matchup-overview-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code}><img src={getCardThumbnail(matchupSummaryIcons[entry.code] ?? entry.img)} alt={`${entry.name} Leader`} loading="lazy"/><span>{entry.name}</span></button>)}</div></div>)}</div></section>
-    <section id="tips" class="glow-block"><h2>Tips</h2><div class="content-list">{tips.map((item) => <article class="tip-card"><div class="tip-card-images">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="tip-copy">{item.paragraphs.map((text) => <p>{text}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="mulligan" class="glow-block"><h2>Mulligan</h2>{mulliganIntro.map((text) => <p>{text}</p>)}<h3>Priority Cards</h3><div class="content-list">{mulligan.map((item) => <article class={`content-item has-cards ${item.cards.length > 1 ? "multiple-cards" : ""} ${item.titleAboveCards ? "title-above-cards" : ""} ${item.textBesideCards ? "text-beside-cards" : ""}`}><h3>{item.title}</h3><div class="card-row">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}</div></article>)}</div><h3>When to Mulligan?</h3>{mulliganGuidelines.map((text) => <p>{text}</p>)}</section>
+    <section id="curve" class="glow-block">
+      <h2>Game Plan &amp; Curve</h2>
+      <p>Green Luffy balances offensive pressure with defense. Your goal is to deal as much damage to your opponent as possible while limiting the damage you take in return.</p>
+      <p>With 3 or more DON!! attached, your Leader can set itself Active when it attacks, once per turn. In return, it cannot become Active during your next Refresh Phase.</p>
+      <p>After using your Leader's re-stand effect, you can choose to keep it Active or make a second attack before setting it Active again with another card's effect.</p>
+      <p>Going second is preferable because it lets you play Nico Robin at 4 DON!! and Zoro &amp; Sogeking at 6 DON!!.</p>
+      {[['Going First', curveFirst], ['Going Second', curveSecond]].map(([heading, curve]) => <div class="curve-block">
+        <h3>{heading}</h3>
+        {curve.map((item) => <article class="curve-item">
+          <strong>{item.title}</strong>
+          <div class="curve-content">
+            <div class={`card-set ${item.cards.length === 1 ? 'one' : ''} ${item.cards.length === 2 ? 'two' : ''} ${item.cards.length === 4 ? 'four' : ''} ${item.cards.length === 3 ? 'three' : ''} ${item.connectors?.length ? 'connected' : ''}`}>
+              {item.cards.map((entry, index) => <>{index > 0 && item.connectors?.[index - 1] && <span class="connector">{item.connectors[index - 1]}</span>}<button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button></>)}
+            </div>
+            <div class="curve-note">{item.paragraphs?.map((text) => <p>{renderText(text).map((part) => part.startsWith('**') && part.endsWith('**') ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{renderText(text).map((part) => part.startsWith('**') && part.endsWith('**') ? <strong>{part.slice(2,-2)}</strong> : part)}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div>
+          </div>
+        </article>)}
+      </div>)}
+    </section>
+    <section id="tech-cards" class="glow-block"><h2>Tech Cards</h2><p>In addition to its Water Seven core, Green Luffy has several cards that strengthen its defense, complete its curve, and help set up lethal attacks.</p><div class="content-list">{techCards.map((item) => <>{item.optionalStart && <><h3>Other Possible Tech Cards</h3><p>These cards are not in this decklist, but they are options for changing your strategy or adapting the deck to the meta.</p></>}<article class={`tech-card ${item.cards.length > 1 ? "multiple-tech-cards" : ""}`}><div class="tech-card-images">{item.cards.map((entry) => <button class="mini-card tech-card-image" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><h3>{item.title}</h3><div class="paragraphs">{item.paragraphs.map((text) => <p>{renderText(text).map((part) => part.startsWith("**") && part.endsWith("**") ? <strong>{part.slice(2,-2)}</strong> : part)}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article></>)}</div></section>
+    <section id="matchups" class="glow-block"><h2>Matchup Analysis</h2>{matchupIntro.map((text) => <p>{text}</p>)}<div class="content-list">{matchups.map((item) => <article class="content-item matchup-card"><div class="matchup-heading"><button class="mini-card matchup-leader-card" type="button" data-card-preview data-full={`${item.leader.img}`} data-name={`${item.leader.code} ${item.leader.name}`}><img src={getCardThumbnail(item.leader.img)} alt={`${item.leader.code} ${item.leader.name} Leader`} loading="lazy"/></button><div class="matchup-title-stack"><h3>{item.title}</h3>{item.rating && <span class={`matchup-rating-badge rating-${item.ratingTone}`}>{item.rating}</span>}</div></div><div class="matchup-body">{item.intro?.map((text) => <p>{text}</p>)}{item.gamePlan?.length > 0 && <><h4>Game Plan</h4><ul>{item.gamePlan.map((text) => <li>{text}</li>)}</ul></>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
+    <section id="matchup-ratings" class="glow-block matchup-overview"><div class="section-header"><div><h2>Matchups</h2><p>Quick OP18 matchup spread for Monkey D. Luffy.</p></div></div><div class="matchup-overview-grid">{matchupSummaryGroups.map((group) => <div class="matchup-overview-group"><div class={`matchup-overview-badge overview-badge-${group.tone}`}><span class="matchup-overview-icon">{group.icon}</span><span>{group.label}</span></div><div class="matchup-overview-list">{group.cards.map((entry) => <button class="matchup-overview-entry" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`} data-code={entry.code} aria-label={`${entry.name} Leader`}><img src={getCardThumbnail(matchupSummaryIcons[entry.code] ?? entry.img)} alt={`${entry.name} Leader`} loading="lazy"/></button>)}</div></div>)}</div><h3>Green Luffy's Position in the OP18 Meta</h3>{matchupPositioning.map((text) => <p>{text}</p>)}</section>
+    <section id="tips" class="glow-block"><h2>Tips</h2><div class="content-list">{tips.map((item) => <article class="tip-card"><h3>{item.title}</h3><div class="tip-card-images">{item.cards.map((entry) => <button class="mini-card" type="button" data-card-preview data-full={entry.img} data-name={`${entry.code} ${entry.name}`}><img src={getCardThumbnail(entry.img)} alt={`${entry.code} ${entry.name}`} loading="lazy"/></button>)}</div><div class="tip-copy">{item.paragraphs.map((text) => <p>{text}</p>)}{item.bullets && <ul>{item.bullets.map((text) => <li>{text}</li>)}</ul>}{item.after?.map((text) => <p>{text}</p>)}</div></article>)}</div></section>
   </div>
   <div class="card-modal" data-modal aria-hidden="true"><div class="card-modal-inner" role="dialog" aria-modal="true" aria-label="Card preview"><button class="modal-close" type="button" data-close>Close</button><img src="" alt="" data-modal-image/></div></div>
 </MainLayout>
@@ -374,4 +518,6 @@ const renderText = (text) => text.split(/(\*\*.*?\*\*)/g);
   @media(min-width:761px){.content-item.text-beside-cards{grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto auto;align-items:start;column-gap:1.25rem}.content-item.text-beside-cards>h3{grid-column:1/-1;grid-row:1}.content-item.text-beside-cards>.card-row{grid-column:1;grid-row:2;flex-wrap:nowrap;margin:0}.content-item.text-beside-cards>.paragraphs{grid-column:2;grid-row:2;align-self:center}}
   .matchup-title-stack{display:flex;flex-direction:column;align-items:flex-start;gap:.4rem}.matchup-rating-badge{display:inline-flex;flex:0 0 auto;align-items:center;padding:.35rem .75rem;border-radius:999px;font-size:.78rem;font-weight:700;white-space:nowrap}.matchup-rating-badge::before{font-size:1rem;line-height:1}.rating-favorable{color:#51e79b;background:rgba(15,106,69,.3)}.rating-favorable::before{content:"↑"}.rating-unfavorable{color:#ff7777;background:rgba(118,38,48,.3)}.rating-unfavorable::before{content:"↓"}.matchup-overview{margin-top:1rem}.matchup-overview-grid{display:grid;grid-template-columns:1fr;gap:1rem}.matchup-overview-group{display:grid;gap:.9rem;align-content:start;padding:1rem;border:1px solid rgba(255,107,53,.3);border-radius:16px;background:rgba(0,0,0,.2)}.matchup-overview-badge{display:inline-flex;width:fit-content;align-items:center;gap:.45rem;padding:.45rem .9rem;border-radius:999px;font-weight:700}.matchup-overview-icon{font-size:1.1rem;font-weight:900}.overview-badge-favorable{color:#51e79b;background:rgba(15,106,69,.3)}.overview-badge-slightly-favorable{color:#9aebbd;background:rgba(15,106,69,.2)}.overview-badge-unfavorable{color:#ff7777;background:rgba(118,38,48,.3)}.matchup-overview-list{display:flex;flex-wrap:nowrap;gap:.75rem;justify-content:flex-start;width:100%;overflow-x:auto}.matchup-overview-entry{flex:0 0 105px;display:grid;gap:.4rem;justify-items:center;padding:.45rem;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(12,17,30,.72);color:var(--text-100);cursor:pointer;text-align:center}.matchup-overview-entry:hover,.matchup-overview-entry:focus-visible{border-color:#ff6b35;transform:translateY(-2px)}.matchup-overview-entry img{width:100%;max-width:96px;border-radius:10px}.matchup-overview-entry span{font-size:.78rem;line-height:1.2}
   @media(max-width:760px){.matchup-overview-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;gap:.5rem}.matchup-overview-entry{min-width:0;flex-basis:auto;padding:.3rem}.matchup-overview-entry span{font-size:.68rem}}
+  .tip-card>h3{grid-column:1/-1;grid-row:1;margin:0 0 .75rem}.tip-card-images{grid-column:1/-1;grid-row:2}.tip-copy{grid-column:1/-1;grid-row:3}
+  @media(min-width:761px){.tip-card{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-items:start}.tip-card>h3{grid-column:1;grid-row:1}.tip-card-images{grid-column:1;grid-row:2}.tip-copy{grid-column:1;grid-row:3}}
 </style>
