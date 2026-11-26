@@ -1,0 +1,152 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getOptimizedAssetUrl } from "../../lib/assets";
+
+const title = "OP18 Saint Gunko 1st/2nd Win Rates";
+const description =
+	"Turn-order win rates for OP18 Purple/Black Saint Gunko in the OP18 format, with a matchup-by-matchup breakdown of first and second player performance.";
+
+const summary = {
+	totalGames: "21084",
+	winRate: "48.5%",
+	wins: "10233",
+	losses: "10851",
+};
+
+const leaderHeroArt = "/assets/guides/Gunko OP18.png";
+const getRateTone = (value: string) => {
+	const numeric = Number.parseFloat(value.replace("%", "").trim());
+	if (numeric < 50) return "turn-rate-negative";
+	if (numeric > 50) return "turn-rate-positive";
+	return "turn-rate-neutral";
+};
+
+const featuredTurnOrderStats = [
+	{ label: "Saint Gunko", code: "OP18", art: "/assets/guides/Gunko OP18.png", first: "44.7%", second: "55.3%" },
+	{ label: "Rocks D. Xebec", code: "OP17", art: "/assets/guides/Rocks.DXebec op17.png", first: "51.6%", second: "59.4%" },
+	{ label: "Buggy", code: "OP09", art: "/assets/guides/BuggY OP09.png", first: "49.4%", second: "34.4%" },
+	{ label: "Monkey D. Luffy", code: "OP13", art: "/assets/guides/monkey-d-luffy-op13.png", first: "37.1%", second: "37.4%" },
+	{ label: "Monkey D. Luffy", code: "ST10", art: "/assets/guides/Luffy ST10-002.png", first: "33.2%", second: "36.5%" },
+	{ label: "Nico Robin", code: "EB05", art: "/assets/guides/Nico Robin EB05.png", first: "42.4%", second: "57.2%" },
+	{ label: "Spandam", code: "OP18", art: "/assets/guides/Spandam OP18.png", first: "46.6%", second: "61.5%" },
+	{ label: "Enel", code: "OP15", art: "/assets/guides/enel-op15.png", first: "54.1%", second: "29.1%" },
+	{ label: "Miss All Sunday", code: "OP18", art: "/assets/guides/Ms. All Sunday OP18.png", first: "44.2%", second: "47.8%" },
+	{ label: "Franky", code: "OP18", art: "/assets/guides/Franky op18.png", first: "49.2%", second: "64.6%" },
+	{ label: "Trafalgar Law", code: "OP14", art: "/assets/guides/trafalgar-law-op14.png", first: "55.4%", second: "38.9%" },
+	{ label: "Sabo", code: "OP13", art: "/assets/guides/Sabo OP13-004.png", first: "46.3%", second: "63.7%" },
+	{ label: "Monkey D. Luffy", code: "OP18", art: "/assets/guides/Monkey.DLuffy OP18.png", first: "37.3%", second: "43.5%" },
+	{ label: "Kaido", code: "OP17", art: "/assets/guides/Kaido op17.png", first: "63%", second: "54.3%" },
+	{ label: "Luffy & Ace", code: "ST30", art: "/assets/guides/Luffy-st30.png", first: "22.9%", second: "47.7%" },
+	{ label: "Karoo", code: "OP18", art: "/assets/guides/Karoo OP18.png", first: "38.9%", second: "58.3%" },
+	{ label: "Marshall D. Teach", code: "OP09", art: "/assets/guides/Marshall D. Teach OP09-081.png", first: "52.5%", second: "61.1%" },
+	{ label: "Shanks", code: "OP17", art: "/assets/guides/Shanks op17.png", first: "63.4%", second: "59.7%" },
+	{ label: "Sugar", code: "OP10", art: "/assets/guides/Sugar OP10.png", first: "35.1%", second: "49%" },
+	{ label: "Nami", code: "OP11", art: "/assets/guides/nami-op11.png", first: "48.3%", second: "35.5%" },
+	{ label: "Boa Hancock", code: "OP14", art: "/assets/guides/boa-hancock-op14.png", first: "51.6%", second: "63.8%" },
+	{ label: "Enel", code: "OP05", art: "/assets/guides/Enel OP05-098.png", first: "60%", second: "77.2%" },
+	{ label: "Monkey D. Luffy", code: "OP17", art: "/assets/guides/Luffy OP17.png", first: "45.5%", second: "80%" },
+	{ label: "Portgas D. Ace", code: "OP16", art: "/assets/guides/Ace-op16.png", first: "47.8%", second: "63.6%" },
+	{ label: "Monkey D. Luffy", code: "OP16", art: "/assets/guides/Luffy op16.png", first: "32.5%", second: "48.6%" },
+	{ label: "Imu", code: "OP13", art: "/assets/guides/Imu OP13-079.png", first: "40%", second: "53.3%" },
+	{ label: "Edward Newgate", code: "OP17", art: "/assets/guides/Edward.Newgate op17.png", first: "19.5%", second: "50%" },
+	{ label: "Koala", code: "OP12", art: "/assets/guides/Koala op12.png", first: "13.2%", second: "44.8%" },
+];
+---
+
+<MainLayout title={title} description={description}>
+	<section class="hero meta-article-hero">
+		<div class="container article-hero-grid">
+			<div>
+				<span class="hero-badge">Meta Article</span>
+				<h1>OP18 Saint Gunko 1st/2nd Win Rates</h1>
+				<div class="article-leader-hero">
+					<img src={getOptimizedAssetUrl(leaderHeroArt)} alt="Purple/Black Saint Gunko leader art" loading="eager" />
+				</div>
+				<p class="article-kicker">Turn-order stats for Purple/Black Gunko in the OP18 field.</p>
+				<p class="deck-guide-link">For the complete deck guide, see <a href="/deck-guides/saint-gunko-op18/"><strong>Saint Gunko OP18 Deck Guide.</strong></a></p>
+				<p>
+					The Gunko deck is built around Holy Knights of God synergy and card advantage from Trash interactions.
+					Its game plan uses other card effects to play Characters from the Trash, triggering Gunko&apos;s ability to generate
+					additional card draw when a Character is played this way. This helps the deck sustain its resources, build its board,
+					and keep up steady pressure throughout the game.
+				</p>
+				<p>
+					How do <strong>Purple/Black Gunko&apos;s</strong> results compare when going first versus second? These win rates show how
+					turn order affects Gunko&apos;s game plan and help you decide how to approach individual matchups.
+				</p>
+			</div>
+			<div class="article-hero-side">
+				<div class="hero-summary-card">
+					<div class="hero-summary-label">Format</div>
+					<strong>OP18</strong>
+					<div class="hero-summary-divider"></div>
+					<div class="hero-summary-label">Source Sample</div>
+					<strong>{summary.totalGames} Games</strong>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="stats-section">
+		<div class="container stats-stack">
+			<article class="stats-panel">
+				<div class="section-header"><div><h2>1st / 2nd Win Rate Stats</h2><p>Compare Purple/Black Gunko&apos;s results when going first and second to see how turn order affects its game plan across different matchups.</p></div></div>
+				<div class="summary-metrics">
+					<div class="summary-metric"><span class="summary-label">Total Games</span><strong>{summary.totalGames}</strong></div>
+					<div class="summary-metric"><span class="summary-label">Winrate</span><strong>{summary.winRate}</strong></div>
+					<div class="summary-metric"><span class="summary-label">W / L</span><strong class="wl-stat"><span class="wl-win">{summary.wins}</span>/<span class="wl-loss">{summary.losses}</span></strong></div>
+				</div>
+				<div class="turn-order-grid">
+					{featuredTurnOrderStats.map((entry) => (
+						<div class="turn-order-card">
+							<div class="leader-art-frame"><img src={getOptimizedAssetUrl(entry.art)} alt={`${entry.label} leader art`} loading="lazy" /></div>
+							<div class="turn-order-meta"><div class="turn-order-name">{entry.label}</div><div class="turn-order-code">{entry.code}</div></div>
+							<div class="turn-order-split"><div class={`turn-rate ${getRateTone(entry.first)}`}><span class="turn-label">1st</span><strong>{entry.first}</strong></div><div class={`turn-rate ${getRateTone(entry.second)}`}><span class="turn-label">2nd</span><strong>{entry.second}</strong></div></div>
+						</div>
+					))}
+				</div>
+			</article>
+		</div>
+	</section>
+</MainLayout>
+
+<style>
+	.meta-article-hero { padding-bottom: 34px; }
+	.article-hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) 260px; gap: 1.5rem; align-items: start; }
+	.article-kicker { color: var(--text-200); font-weight: 600; }
+	.deck-guide-link { margin: .75rem 0 1rem; color: var(--text-200); }
+	.deck-guide-link a, .deck-guide-link a:visited { color: #ff8a42 !important; font-weight: 800; text-decoration: none; }
+	.deck-guide-link a:hover { color: #ffb06f !important; text-decoration: underline; }
+	.article-leader-hero { margin: 1.15rem 0 1.1rem; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: radial-gradient(circle at left, rgba(109,63,151,.26), transparent 36%), radial-gradient(circle at right, rgba(29,27,39,.18), transparent 40%), rgba(8,11,19,.96); box-shadow: var(--shadow); }
+	.article-leader-hero img { display: block; width: 100%; aspect-ratio: 3.2 / 1; object-fit: cover; object-position: center top; }
+	.hero-summary-card { background: radial-gradient(circle at top left, rgba(109,63,151,.34), transparent 46%), linear-gradient(135deg, rgba(78,45,106,.26), rgba(12,17,30,.94)); border: 1px solid rgba(137,101,167,.28); border-radius: 20px; padding: 1rem 1.1rem; display: grid; gap: .45rem; box-shadow: var(--shadow); }
+	.hero-summary-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-300); }
+	.hero-summary-divider { height: 1px; background: rgba(255,255,255,.08); margin: .2rem 0 .15rem; }
+	.stats-section { padding: 0 0 56px; }
+	.stats-stack { display: grid; gap: 1.2rem; }
+	.stats-panel { background: rgba(10,14,24,.82); border: 1px solid rgba(255,255,255,.08); border-radius: 22px; padding: 1.25rem; display: grid; gap: 1rem; }
+	.section-header h2 { margin-bottom: .55rem; }
+	.section-header p { margin: 0; max-width: 760px; color: var(--text-200); }
+	.summary-metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .85rem; }
+	.summary-metric { background: rgba(8,11,19,.92); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: .95rem .9rem; display: grid; gap: .3rem; }
+	.summary-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: #8fb3ff; }
+	.summary-metric strong { font-size: 1rem; }
+	.wl-stat { display: inline-flex; gap: .05rem; align-items: baseline; }
+	.wl-win { color: #57d18b; }
+	.wl-loss { color: #ff8d6f; }
+	.turn-order-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1rem; }
+	.turn-order-card { border: 1px solid var(--border); border-radius: 18px; padding: .8rem; background: rgba(7,10,18,.92); display: grid; gap: .7rem; }
+	.leader-art-frame img { width: 100%; aspect-ratio: 1.75 / 1; border-radius: 14px; display: block; object-fit: cover; object-position: center top; }
+	.turn-order-meta { display: grid; gap: .18rem; }
+	.turn-order-name { font-weight: 800; line-height: 1.2; }
+	.turn-order-code { color: #9fb7ff; font-size: .82rem; }
+	.turn-order-split { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .5rem; }
+	.turn-rate { border-radius: 14px; padding: .55rem .45rem; display: grid; justify-items: center; gap: .2rem; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+	.turn-rate-positive { background: rgba(19,76,52,.36); border-color: rgba(70,200,128,.28); }
+	.turn-rate-negative { background: rgba(82,28,38,.32); border-color: rgba(215,92,122,.24); }
+	.turn-rate-neutral { background: rgba(55,68,95,.3); border-color: rgba(149,165,195,.18); }
+	.turn-label { color: var(--text-300); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+	.turn-rate strong { color: var(--text-100); font-size: .94rem; }
+	@media (max-width: 900px) { .article-hero-grid { grid-template-columns: 1fr; } .summary-metrics { grid-template-columns: 1fr; } .turn-order-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+	@media (max-width: 640px) { .article-leader-hero img { object-position: center top; } .turn-order-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .8rem; } .turn-order-card { padding: .7rem; } }
+</style>
