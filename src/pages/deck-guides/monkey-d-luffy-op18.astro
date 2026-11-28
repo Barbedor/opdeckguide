@@ -56,7 +56,7 @@ const mulligan = [
   { title: "OP18-031 Nico Robin", cards: [robin], paragraphs: [
     "The most important card to have in your opening hand.",
     "At the end of your turn, Robin lets you set a Water Seven card and a DON!! Active. This lets you attack twice with your Leader, then set it Active to get around the restriction on its effect during your next Refresh Phase.",
-    "She is your best 4 DON!! play when going second or 5 DON!! play when going first."
+    "She is your best 4 DON!! turn play when going second or 5 DON!! turn play when going first."
   ]},
   { title: "EB02-017 Nami and OP18-038 Shoot Down That Flag", cards: [nami, shootDown], titleAboveCards: true, paragraphs: [
     "The deck's two Searchers can find Straw Hat Crew cards among the top five cards of your deck.",
@@ -100,7 +100,7 @@ const curveFirst = [
   { title: "7 DON!! — Zoro & Sogeking or Roronoa Zoro", cards: [zoroSogeking, zoro], connectors: ["OR"], paragraphs: [
     "You have two main options:",
     "OP18-027 Zoro & Sogeking: its On Play effect sets 2 DON!! Active and prevents an opposing Character with a Cost of 6 or less from becoming Rested until the end of your opponent's next turn. You can attach the 4 DON!! available to your Leader to make two attacks at 9000 Power.",
-    "OP16-035 Roronoa Zoro: playing a 9000-Power Character lets you set an opposing card Rested and attach 3 rested DON!! to your Leader by discarding a card from your hand. You can then make two attacks at 8000 Power while adding a large Character to your board.",
+    "OP16-035 Roronoa Zoro is a 9000-Power Character whose On Play effect lets you set an opposing card Rested and attach 3 rested DON!! to your Leader by discarding a card from your hand. You can then make two attacks at 8000 Power while adding a large Character to your board.",
     "In either case, Nico Robin lets you set your Leader Active at the end of the turn.",
     "If you played Zoro & Sogeking, your Leader has 7000 base Power during your opponent's turn, provided it is Active with at least 3 DON!! attached.",
     "If Nico Robin is no longer on your board, make sure you have another way to set your Leader Active before making your second attack."
@@ -169,7 +169,7 @@ const techCards = [
   ]},
   { cards: [luffyCharacter], title: "OP18-036 Monkey.D.Luffy — Backup Leader Re-stand", paragraphs: [
     "This 2-cost Character is mainly a source of +2000 Counter.",
-    "Its effect can also set your Leader Active at the end of your turn by placing itself in your Trash.",
+    "At the end of your turn, you may trash this Character to draw 1 card and set your Leader Active.",
     "It is a backup solution when you do not have Nico Robin to set your Leader Active after its second attack.",
     "Unlike Gonbe and Chimney, it can be found with your Searchers because it is a Straw Hat Crew card."
   ]},
@@ -198,7 +198,7 @@ const techCards = [
   { cards: [asura], title: "OP12-037 Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game — Flexible Counter", paragraphs: [
     "This Event has both offensive and defensive uses:",
     "Counter: for 1 DON!!, give your Leader +3000 Power during a battle.",
-    "Main: for 4 DON!!, set up to two opposing cards Rested.",
+    "Main: for 4 DON!!, rest up to two opposing DON!! or Characters.",
     "Its Main effect is especially useful for preparing lethal by neutralizing Blockers or Active DON!! kept for Counter Events.",
     "Do not use it too early. If your opponent still has enough resources to survive your attacks, it may be better to develop your board, particularly with OP18-118 Monkey.D.Luffy, and save this Event for a later turn."
   ]},
@@ -209,8 +209,8 @@ const techCards = [
   ]},
   { cards: [zoro], title: "OP16-035 Roronoa Zoro — Mid-Cost Flexibility", paragraphs: [
     "This 7-cost, 9000-Power Character helps fill out the deck's 7- and 8-DON!! turns, which otherwise have few natural options.",
-    "Its On Play effect sets an opposing card Rested and attaches 3 rested DON!! to your Leader by discarding a card from your hand.",
-    "It can play a 9000-Power Character, neutralize a Blocker before lethal, make an opposing Character attackable, set an opposing DON!! Rested, and fuel your Leader's multiple attacks.",
+    "Its On Play effect rests an opposing card and attaches 3 rested DON!! to your Leader by discarding a card from your hand.",
+    "You can play a 9000-Power Character, neutralize a Blocker before lethal, make an opposing Character attackable, or rest an opposing DON!! while fueling your Leader's multiple attacks.",
     "At 10 DON!!, play Zoro, attach 3 rested DON!! with its effect, then attach your 3 remaining Active DON!! to your Leader. If your Leader can attack and has not used its re-stand effect, it can make two attacks at 11000 Power.",
     "Zoro is a flexible option rather than an essential deck piece. You can also choose not to play it and prioritize Zoro & Sogeking on your 7- and 8-DON!! turns."
   ]},
@@ -431,7 +431,7 @@ const tips = [
     "In the late game, giving up an extra 1000 Power on your attacks may be worthwhile if keeping the DON!! helps you survive another turn."
   ]},
   { title: "Time Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game", cards: [asura], paragraphs: [
-    "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game is an excellent tool for setting up lethal. Its Main effect can set up to two opposing cards Rested, whether they are Blockers or Active DON!! held for Counter Events.",
+    "Demon Aura Nine Sword Style Asura Blades Drawn Dead Man's Game is an excellent tool for setting up lethal. Its Main effect can rest up to two opposing DON!! or Characters, including Blockers or Active DON!! held for Counter Events.",
     "However, using it costs 4 DON!!, reducing the resources available to increase your Leader's attack Power.",
     "Before using it offensively, consider:"
   ], bullets: [
